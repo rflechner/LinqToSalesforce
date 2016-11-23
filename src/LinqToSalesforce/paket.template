@@ -1,0 +1,25 @@
+type project
+title
+    LinqToSalesforce
+owners
+    rflechner
+authors 
+    rflechner
+projectUrl
+    https://github.com/rflechner/LinqToSalesforce/rflechner/LinqToSalesforce
+iconUrl
+    https://raw.githubusercontent.com/rflechner/LinqToSalesforce/master/docs/files/img/logo.png
+licenseUrl
+    https://github.com/rflechner/LinqToSalesforce/rflechner/LinqToSalesforce/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2015
+tags
+    salesforce SOQL linq
+summary
+    Linq provider for Salesforce SOQL REST API
+description
+    Linq provider for Salesforce SOQL REST API
+
+
