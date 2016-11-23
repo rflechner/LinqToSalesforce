@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{AC02854F
 		src\files\SelectAccountContacts.json = src\files\SelectAccountContacts.json
 	EndProjectSection
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "LinqToSalesforce.ModelGenerator", "src\LinqToSalesforce.ModelGenerator\LinqToSalesforce.ModelGenerator.fsproj", "{56F71B7A-D2C0-4205-AE0D-D0934286F7BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{07C592DC-C999-495C-AE35-216207A5DD34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07C592DC-C999-495C-AE35-216207A5DD34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07C592DC-C999-495C-AE35-216207A5DD34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F71B7A-D2C0-4205-AE0D-D0934286F7BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F71B7A-D2C0-4205-AE0D-D0934286F7BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F71B7A-D2C0-4205-AE0D-D0934286F7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F71B7A-D2C0-4205-AE0D-D0934286F7BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

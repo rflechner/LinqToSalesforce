@@ -1,5 +1,6 @@
 source https://nuget.org/api/v2
 
+nuget Argu
 nuget FSharp.Core redirects: force
 nuget Microsoft.Net.Http
 nuget Newtonsoft.Json
