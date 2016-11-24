@@ -202,6 +202,7 @@ module Visitor =
             let subLeft = parseWhereArgs left
             let subRight = parseWhereArgs right
             BinaryComparison(subLeft, kind, subRight)
+        // TODO: handle Convert ...
         | _ -> failwithf "Cannot translate %A" exp
     | :? UnaryExpression as e ->
         match e.Operand with

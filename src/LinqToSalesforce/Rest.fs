@@ -19,7 +19,6 @@ type Result<'ts,'te> =
   | Success of 'ts
   | Failure of 'te
 
-
 module Rest =
 
   type HttpMethod with
@@ -51,7 +50,6 @@ module Rest =
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
     let j = JObject.FromObject o
-    //(j.Item "Id").Parent.Remove()
     for f in invalidFields do
       (j.Item f).Parent.Remove()
     JsonConvert.SerializeObject(j, settings)

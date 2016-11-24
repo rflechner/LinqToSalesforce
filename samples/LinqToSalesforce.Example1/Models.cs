@@ -8,6716 +8,7859 @@ using System.ComponentModel;
 
 namespace LinqToSalesforce
 {
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountType
-    {
-        [EnumMember(Value = "Prospect")]
-        Prospect,
-        [EnumMember(Value = "Customer - Direct")]
-        CustomerDirect,
-        [EnumMember(Value = "Customer - Channel")]
-        CustomerChannel,
-        [EnumMember(Value = "Channel Partner / Reseller")]
-        ChannelPartnerReseller,
-        [EnumMember(Value = "Installation Partner")]
-        InstallationPartner,
-        [EnumMember(Value = "Technology Partner")]
-        TechnologyPartner,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountIndustry
-    {
-        [EnumMember(Value = "Agriculture")]
-        Agriculture,
-        [EnumMember(Value = "Apparel")]
-        Apparel,
-        [EnumMember(Value = "Banking")]
-        Banking,
-        [EnumMember(Value = "Biotechnology")]
-        Biotechnology,
-        [EnumMember(Value = "Chemicals")]
-        Chemicals,
-        [EnumMember(Value = "Communications")]
-        Communications,
-        [EnumMember(Value = "Construction")]
-        Construction,
-        [EnumMember(Value = "Consulting")]
-        Consulting,
-        [EnumMember(Value = "Education")]
-        Education,
-        [EnumMember(Value = "Electronics")]
-        Electronics,
-        [EnumMember(Value = "Energy")]
-        Energy,
-        [EnumMember(Value = "Engineering")]
-        Engineering,
-        [EnumMember(Value = "Entertainment")]
-        Entertainment,
-        [EnumMember(Value = "Environmental")]
-        Environmental,
-        [EnumMember(Value = "Finance")]
-        Finance,
-        [EnumMember(Value = "Food & Beverage")]
-        FoodBeverage,
-        [EnumMember(Value = "Government")]
-        Government,
-        [EnumMember(Value = "Healthcare")]
-        Healthcare,
-        [EnumMember(Value = "Hospitality")]
-        Hospitality,
-        [EnumMember(Value = "Insurance")]
-        Insurance,
-        [EnumMember(Value = "Machinery")]
-        Machinery,
-        [EnumMember(Value = "Manufacturing")]
-        Manufacturing,
-        [EnumMember(Value = "Media")]
-        Media,
-        [EnumMember(Value = "Not For Profit")]
-        NotForProfit,
-        [EnumMember(Value = "Recreation")]
-        Recreation,
-        [EnumMember(Value = "Retail")]
-        Retail,
-        [EnumMember(Value = "Shipping")]
-        Shipping,
-        [EnumMember(Value = "Technology")]
-        Technology,
-        [EnumMember(Value = "Telecommunications")]
-        Telecommunications,
-        [EnumMember(Value = "Transportation")]
-        Transportation,
-        [EnumMember(Value = "Utilities")]
-        Utilities,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountOwnership
-    {
-        [EnumMember(Value = "Public")]
-        Public,
-        [EnumMember(Value = "Private")]
-        Private,
-        [EnumMember(Value = "Subsidiary")]
-        Subsidiary,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountRating
-    {
-        [EnumMember(Value = "Hot")]
-        Hot,
-        [EnumMember(Value = "Warm")]
-        Warm,
-        [EnumMember(Value = "Cold")]
-        Cold
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountCustomerPriority__c
-    {
-        [EnumMember(Value = "High")]
-        High,
-        [EnumMember(Value = "Low")]
-        Low,
-        [EnumMember(Value = "Medium")]
-        Medium
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountSLA__c
-    {
-        [EnumMember(Value = "Gold")]
-        Gold,
-        [EnumMember(Value = "Silver")]
-        Silver,
-        [EnumMember(Value = "Platinum")]
-        Platinum,
-        [EnumMember(Value = "Bronze")]
-        Bronze
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountActive__c
-    {
-        [EnumMember(Value = "No")]
-        No,
-        [EnumMember(Value = "Yes")]
-        Yes
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountUpsellOpportunity__c
-    {
-        [EnumMember(Value = "Maybe")]
-        Maybe,
-        [EnumMember(Value = "No")]
-        No,
-        [EnumMember(Value = "Yes")]
-        Yes
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountContactRoleRole
-    {
-        [EnumMember(Value = "Business User")]
-        BusinessUser,
-        [EnumMember(Value = "Decision Maker")]
-        DecisionMaker,
-        [EnumMember(Value = "Economic Buyer")]
-        EconomicBuyer,
-        [EnumMember(Value = "Economic Decision Maker")]
-        EconomicDecisionMaker,
-        [EnumMember(Value = "Evaluator")]
-        Evaluator,
-        [EnumMember(Value = "Executive Sponsor")]
-        ExecutiveSponsor,
-        [EnumMember(Value = "Influencer")]
-        Influencer,
-        [EnumMember(Value = "Technical Buyer")]
-        TechnicalBuyer,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountHistoryField
-    {
-        [EnumMember(Value = "accountMerged")]
-        accountMerged,
-        [EnumMember(Value = "AccountNumber")]
-        AccountNumber,
-        [EnumMember(Value = "AccountSource")]
-        AccountSource,
-        [EnumMember(Value = "Active__c")]
-        Activec,
-        [EnumMember(Value = "AnnualRevenue")]
-        AnnualRevenue,
-        [EnumMember(Value = "BillingAddress")]
-        BillingAddress,
-        [EnumMember(Value = "BillingCity")]
-        BillingCity,
-        [EnumMember(Value = "BillingCountry")]
-        BillingCountry,
-        [EnumMember(Value = "BillingGeocodeAccuracy")]
-        BillingGeocodeAccuracy,
-        [EnumMember(Value = "BillingLatitude")]
-        BillingLatitude,
-        [EnumMember(Value = "BillingLongitude")]
-        BillingLongitude,
-        [EnumMember(Value = "BillingPostalCode")]
-        BillingPostalCode,
-        [EnumMember(Value = "BillingState")]
-        BillingState,
-        [EnumMember(Value = "BillingStreet")]
-        BillingStreet,
-        [EnumMember(Value = "CleanStatus")]
-        CleanStatus,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "accountCreatedFromLead")]
-        accountCreatedFromLead,
-        [EnumMember(Value = "CustomerPriority__c")]
-        CustomerPriorityc,
-        [EnumMember(Value = "DandbCompany")]
-        DandbCompany,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "DunsNumber")]
-        DunsNumber,
-        [EnumMember(Value = "Fax")]
-        Fax,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "Industry")]
-        Industry,
-        [EnumMember(Value = "Jigsaw")]
-        Jigsaw,
-        [EnumMember(Value = "accountUpdatedByLead")]
-        accountUpdatedByLead,
-        [EnumMember(Value = "personAccountUpdatedByLead")]
-        personAccountUpdatedByLead,
-        [EnumMember(Value = "NaicsCode")]
-        NaicsCode,
-        [EnumMember(Value = "NaicsDesc")]
-        NaicsDesc,
-        [EnumMember(Value = "Name")]
-        Name,
-        [EnumMember(Value = "NumberOfEmployees")]
-        NumberOfEmployees,
-        [EnumMember(Value = "NumberofLocations__c")]
-        NumberofLocationsc,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "Ownership")]
-        Ownership,
-        [EnumMember(Value = "Parent")]
-        Parent,
-        [EnumMember(Value = "Phone")]
-        Phone,
-        [EnumMember(Value = "Rating")]
-        Rating,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "ShippingAddress")]
-        ShippingAddress,
-        [EnumMember(Value = "ShippingCity")]
-        ShippingCity,
-        [EnumMember(Value = "ShippingCountry")]
-        ShippingCountry,
-        [EnumMember(Value = "ShippingGeocodeAccuracy")]
-        ShippingGeocodeAccuracy,
-        [EnumMember(Value = "ShippingLatitude")]
-        ShippingLatitude,
-        [EnumMember(Value = "ShippingLongitude")]
-        ShippingLongitude,
-        [EnumMember(Value = "ShippingPostalCode")]
-        ShippingPostalCode,
-        [EnumMember(Value = "ShippingState")]
-        ShippingState,
-        [EnumMember(Value = "ShippingStreet")]
-        ShippingStreet,
-        [EnumMember(Value = "Sic")]
-        Sic,
-        [EnumMember(Value = "SicDesc")]
-        SicDesc,
-        [EnumMember(Value = "Site")]
-        Site,
-        [EnumMember(Value = "SLA__c")]
-        SLAc,
-        [EnumMember(Value = "SLAExpirationDate__c")]
-        SLAExpirationDatec,
-        [EnumMember(Value = "SLASerialNumber__c")]
-        SLASerialNumberc,
-        [EnumMember(Value = "TextName")]
-        TextName,
-        [EnumMember(Value = "TickerSymbol")]
-        TickerSymbol,
-        [EnumMember(Value = "Tradestyle")]
-        Tradestyle,
-        [EnumMember(Value = "Type")]
-        Type,
-        [EnumMember(Value = "UpsellOpportunity__c")]
-        UpsellOpportunityc,
-        [EnumMember(Value = "Website")]
-        Website,
-        [EnumMember(Value = "YearStarted")]
-        YearStarted
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountPartnerRole
-    {
-        [EnumMember(Value = "System Integrator")]
-        SystemIntegrator,
-        [EnumMember(Value = "Agency")]
-        Agency,
-        [EnumMember(Value = "Advertiser")]
-        Advertiser,
-        [EnumMember(Value = "VAR/Reseller")]
-        VARReseller,
-        [EnumMember(Value = "Distributor")]
-        Distributor,
-        [EnumMember(Value = "Developer")]
-        Developer,
-        [EnumMember(Value = "Broker")]
-        Broker,
-        [EnumMember(Value = "Lender")]
-        Lender,
-        [EnumMember(Value = "Supplier")]
-        Supplier,
-        [EnumMember(Value = "Institution")]
-        Institution,
-        [EnumMember(Value = "Contractor")]
-        Contractor,
-        [EnumMember(Value = "Dealer")]
-        Dealer,
-        [EnumMember(Value = "Consultant")]
-        Consultant
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountShareAccountAccessLevel
-    {
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "All")]
-        All
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountShareOpportunityAccessLevel
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountShareCaseAccessLevel
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountShareContactAccessLevel
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAccountShareRowCause
-    {
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "Manual")]
-        Manual,
-        [EnumMember(Value = "Rule")]
-        Rule,
-        [EnumMember(Value = "ImplicitChild")]
-        ImplicitChild,
-        [EnumMember(Value = "ImplicitParent")]
-        ImplicitParent,
-        [EnumMember(Value = "ImplicitPerson")]
-        ImplicitPerson,
-        [EnumMember(Value = "Team")]
-        Team,
-        [EnumMember(Value = "Territory")]
-        Territory,
-        [EnumMember(Value = "TerritoryManual")]
-        TerritoryManual,
-        [EnumMember(Value = "TerritoryRule")]
-        TerritoryRule,
-        [EnumMember(Value = "Territory2Forecast")]
-        Territory2Forecast
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickActivityHistoryStatus
-    {
-        [EnumMember(Value = "Not Started")]
-        NotStarted,
-        [EnumMember(Value = "In Progress")]
-        InProgress,
-        [EnumMember(Value = "Completed")]
-        Completed,
-        [EnumMember(Value = "Waiting on someone else")]
-        Waitingonsomeoneelse,
-        [EnumMember(Value = "Deferred")]
-        Deferred
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickActivityHistoryPriority
-    {
-        [EnumMember(Value = "High")]
-        High,
-        [EnumMember(Value = "Normal")]
-        Normal,
-        [EnumMember(Value = "Low")]
-        Low
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickActivityHistoryActivityType
-    {
-        [EnumMember(Value = "Call")]
-        Call,
-        [EnumMember(Value = "Email")]
-        Email,
-        [EnumMember(Value = "Meeting")]
-        Meeting,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickActivityHistoryCallType
-    {
-        [EnumMember(Value = "Internal")]
-        Internal,
-        [EnumMember(Value = "Inbound")]
-        Inbound,
-        [EnumMember(Value = "Outbound")]
-        Outbound
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickApexClassStatus
-    {
-        [EnumMember(Value = "Inactive")]
-        Inactive,
-        [EnumMember(Value = "Active")]
-        Active,
-        [EnumMember(Value = "Deleted")]
-        Deleted
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickApexComponentControllerType
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "4")]
-        _4,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3,
-        [EnumMember(Value = "5")]
-        _5
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickApexLogLocation
-    {
-        [EnumMember(Value = "Monitoring")]
-        Monitoring,
-        [EnumMember(Value = "Profiling")]
-        Profiling,
-        [EnumMember(Value = "SystemLog")]
-        SystemLog,
-        [EnumMember(Value = "HeapDump")]
-        HeapDump,
-        [EnumMember(Value = "Preserved")]
-        Preserved
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickApexPageControllerType
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "4")]
-        _4,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3,
-        [EnumMember(Value = "5")]
-        _5
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickApexTriggerTableEnumOrId
-    {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "Asset")]
-        Asset,
-        [EnumMember(Value = "AssistantInteraction")]
-        AssistantInteraction,
-        [EnumMember(Value = "Attachment")]
-        Attachment,
-        [EnumMember(Value = "Campaign")]
-        Campaign,
-        [EnumMember(Value = "CampaignMember")]
-        CampaignMember,
-        [EnumMember(Value = "Case")]
-        Case,
-        [EnumMember(Value = "CaseComment")]
-        CaseComment,
-        [EnumMember(Value = "ChatterMessage")]
-        ChatterMessage,
-        [EnumMember(Value = "CollaborationGroup")]
-        CollaborationGroup,
-        [EnumMember(Value = "CollaborationGroupMember")]
-        CollaborationGroupMember,
-        [EnumMember(Value = "CollaborationGroupRecord")]
-        CollaborationGroupRecord,
-        [EnumMember(Value = "Contact")]
-        Contact,
-        [EnumMember(Value = "ContentDistribution")]
-        ContentDistribution,
-        [EnumMember(Value = "ContentDocument")]
-        ContentDocument,
-        [EnumMember(Value = "ContentDocumentLink")]
-        ContentDocumentLink,
-        [EnumMember(Value = "ContentVersion")]
-        ContentVersion,
-        [EnumMember(Value = "Contract")]
-        Contract,
-        [EnumMember(Value = "DandBCompany")]
-        DandBCompany,
-        [EnumMember(Value = "DuplicateRecordItem")]
-        DuplicateRecordItem,
-        [EnumMember(Value = "DuplicateRecordSet")]
-        DuplicateRecordSet,
-        [EnumMember(Value = "EmailMessage")]
-        EmailMessage,
-        [EnumMember(Value = "Event")]
-        Event,
-        [EnumMember(Value = "FeedComment")]
-        FeedComment,
-        [EnumMember(Value = "FeedItem")]
-        FeedItem,
-        [EnumMember(Value = "Goal")]
-        Goal,
-        [EnumMember(Value = "GoalLink")]
-        GoalLink,
-        [EnumMember(Value = "Idea")]
-        Idea,
-        [EnumMember(Value = "IdeaComment")]
-        IdeaComment,
-        [EnumMember(Value = "Lead")]
-        Lead,
-        [EnumMember(Value = "Macro")]
-        Macro,
-        [EnumMember(Value = "Metric")]
-        Metric,
-        [EnumMember(Value = "MetricDataLink")]
-        MetricDataLink,
-        [EnumMember(Value = "Note")]
-        Note,
-        [EnumMember(Value = "Opportunity")]
-        Opportunity,
-        [EnumMember(Value = "OpportunityLineItem")]
-        OpportunityLineItem,
-        [EnumMember(Value = "Order")]
-        Order,
-        [EnumMember(Value = "OrderItem")]
-        OrderItem,
-        [EnumMember(Value = "Partner")]
-        Partner,
-        [EnumMember(Value = "Pricebook2")]
-        Pricebook2,
-        [EnumMember(Value = "Product2")]
-        Product2,
-        [EnumMember(Value = "RecordOrigin")]
-        RecordOrigin,
-        [EnumMember(Value = "SocialPersona")]
-        SocialPersona,
-        [EnumMember(Value = "Solution")]
-        Solution,
-        [EnumMember(Value = "StreamingChannel")]
-        StreamingChannel,
-        [EnumMember(Value = "Task")]
-        Task,
-        [EnumMember(Value = "Topic")]
-        Topic,
-        [EnumMember(Value = "TopicAssignment")]
-        TopicAssignment,
-        [EnumMember(Value = "User")]
-        User,
-        [EnumMember(Value = "UserProvAccount")]
-        UserProvAccount,
-        [EnumMember(Value = "UserProvAccountStaging")]
-        UserProvAccountStaging,
-        [EnumMember(Value = "UserProvisioningLog")]
-        UserProvisioningLog,
-        [EnumMember(Value = "UserProvisioningRequest")]
-        UserProvisioningRequest,
-        [EnumMember(Value = "UserProvMockTarget")]
-        UserProvMockTarget,
-        [EnumMember(Value = "WorkCoaching")]
-        WorkCoaching,
-        [EnumMember(Value = "WorkFeedback")]
-        WorkFeedback,
-        [EnumMember(Value = "WorkFeedbackQuestion")]
-        WorkFeedbackQuestion,
-        [EnumMember(Value = "WorkFeedbackQuestionSet")]
-        WorkFeedbackQuestionSet,
-        [EnumMember(Value = "WorkFeedbackRequest")]
-        WorkFeedbackRequest,
-        [EnumMember(Value = "WorkFeedbackTemplate")]
-        WorkFeedbackTemplate,
-        [EnumMember(Value = "WorkPerformanceCycle")]
-        WorkPerformanceCycle
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickApexTriggerStatus
-    {
-        [EnumMember(Value = "Inactive")]
-        Inactive,
-        [EnumMember(Value = "Active")]
-        Active,
-        [EnumMember(Value = "Deleted")]
-        Deleted
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAssetStatus
-    {
-        [EnumMember(Value = "Shipped")]
-        Shipped,
-        [EnumMember(Value = "Installed")]
-        Installed,
-        [EnumMember(Value = "Registered")]
-        Registered,
-        [EnumMember(Value = "Obsolete")]
-        Obsolete,
-        [EnumMember(Value = "Purchased")]
-        Purchased
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAssetFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAssetHistoryField
-    {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "Contact")]
-        Contact,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "InstallDate")]
-        InstallDate,
-        [EnumMember(Value = "IsCompetitorProduct")]
-        IsCompetitorProduct,
-        [EnumMember(Value = "Name")]
-        Name,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "Parent")]
-        Parent,
-        [EnumMember(Value = "Price")]
-        Price,
-        [EnumMember(Value = "Product2")]
-        Product2,
-        [EnumMember(Value = "PurchaseDate")]
-        PurchaseDate,
-        [EnumMember(Value = "Quantity")]
-        Quantity,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "RootAsset")]
-        RootAsset,
-        [EnumMember(Value = "SerialNumber")]
-        SerialNumber,
-        [EnumMember(Value = "Status")]
-        Status,
-        [EnumMember(Value = "UsageEndDate")]
-        UsageEndDate
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAssignmentRuleSobjectType
-    {
-        [EnumMember(Value = "Case")]
-        Case,
-        [EnumMember(Value = "Lead")]
-        Lead
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAsyncApexJobJobType
-    {
-        [EnumMember(Value = "Future")]
-        Future,
-        [EnumMember(Value = "SharingRecalculation")]
-        SharingRecalculation,
-        [EnumMember(Value = "ScheduledApex")]
-        ScheduledApex,
-        [EnumMember(Value = "BatchApex")]
-        BatchApex,
-        [EnumMember(Value = "BatchApexWorker")]
-        BatchApexWorker,
-        [EnumMember(Value = "TestRequest")]
-        TestRequest,
-        [EnumMember(Value = "TestWorker")]
-        TestWorker,
-        [EnumMember(Value = "ApexToken")]
-        ApexToken,
-        [EnumMember(Value = "Queueable")]
-        Queueable
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickAsyncApexJobStatus
-    {
-        [EnumMember(Value = "Queued")]
-        Queued,
-        [EnumMember(Value = "Processing")]
-        Processing,
-        [EnumMember(Value = "Aborted")]
-        Aborted,
-        [EnumMember(Value = "Completed")]
-        Completed,
-        [EnumMember(Value = "Failed")]
-        Failed,
-        [EnumMember(Value = "Preparing")]
-        Preparing,
-        [EnumMember(Value = "Holding")]
-        Holding
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickBusinessHoursTimeZoneSidKey
-    {
-        [EnumMember(Value = "Pacific/Kiritimati")]
-        PacificKiritimati,
-        [EnumMember(Value = "Pacific/Tongatapu")]
-        PacificTongatapu,
-        [EnumMember(Value = "Pacific/Chatham")]
-        PacificChatham,
-        [EnumMember(Value = "Pacific/Auckland")]
-        PacificAuckland,
-        [EnumMember(Value = "Pacific/Enderbury")]
-        PacificEnderbury,
-        [EnumMember(Value = "Pacific/Fiji")]
-        PacificFiji,
-        [EnumMember(Value = "Asia/Kamchatka")]
-        AsiaKamchatka,
-        [EnumMember(Value = "Australia/Lord_Howe")]
-        AustraliaLordHowe,
-        [EnumMember(Value = "Australia/Sydney")]
-        AustraliaSydney,
-        [EnumMember(Value = "Pacific/Guadalcanal")]
-        PacificGuadalcanal,
-        [EnumMember(Value = "Pacific/Norfolk")]
-        PacificNorfolk,
-        [EnumMember(Value = "Australia/Adelaide")]
-        AustraliaAdelaide,
-        [EnumMember(Value = "Australia/Brisbane")]
-        AustraliaBrisbane,
-        [EnumMember(Value = "Australia/Darwin")]
-        AustraliaDarwin,
-        [EnumMember(Value = "Asia/Seoul")]
-        AsiaSeoul,
-        [EnumMember(Value = "Asia/Tokyo")]
-        AsiaTokyo,
-        [EnumMember(Value = "Asia/Hong_Kong")]
-        AsiaHongKong,
-        [EnumMember(Value = "Asia/Kuala_Lumpur")]
-        AsiaKualaLumpur,
-        [EnumMember(Value = "Asia/Manila")]
-        AsiaManila,
-        [EnumMember(Value = "Asia/Shanghai")]
-        AsiaShanghai,
-        [EnumMember(Value = "Asia/Singapore")]
-        AsiaSingapore,
-        [EnumMember(Value = "Asia/Taipei")]
-        AsiaTaipei,
-        [EnumMember(Value = "Australia/Perth")]
-        AustraliaPerth,
-        [EnumMember(Value = "Asia/Bangkok")]
-        AsiaBangkok,
-        [EnumMember(Value = "Asia/Ho_Chi_Minh")]
-        AsiaHoChiMinh,
-        [EnumMember(Value = "Asia/Jakarta")]
-        AsiaJakarta,
-        [EnumMember(Value = "Asia/Rangoon")]
-        AsiaRangoon,
-        [EnumMember(Value = "Asia/Dhaka")]
-        AsiaDhaka,
-        [EnumMember(Value = "Asia/Kathmandu")]
-        AsiaKathmandu,
-        [EnumMember(Value = "Asia/Colombo")]
-        AsiaColombo,
-        [EnumMember(Value = "Asia/Kolkata")]
-        AsiaKolkata,
-        [EnumMember(Value = "Asia/Karachi")]
-        AsiaKarachi,
-        [EnumMember(Value = "Asia/Tashkent")]
-        AsiaTashkent,
-        [EnumMember(Value = "Asia/Yekaterinburg")]
-        AsiaYekaterinburg,
-        [EnumMember(Value = "Asia/Kabul")]
-        AsiaKabul,
-        [EnumMember(Value = "Asia/Dubai")]
-        AsiaDubai,
-        [EnumMember(Value = "Asia/Tbilisi")]
-        AsiaTbilisi,
-        [EnumMember(Value = "Asia/Tehran")]
-        AsiaTehran,
-        [EnumMember(Value = "Africa/Nairobi")]
-        AfricaNairobi,
-        [EnumMember(Value = "Asia/Baghdad")]
-        AsiaBaghdad,
-        [EnumMember(Value = "Asia/Kuwait")]
-        AsiaKuwait,
-        [EnumMember(Value = "Asia/Riyadh")]
-        AsiaRiyadh,
-        [EnumMember(Value = "Europe/Istanbul")]
-        EuropeIstanbul,
-        [EnumMember(Value = "Europe/Minsk")]
-        EuropeMinsk,
-        [EnumMember(Value = "Europe/Moscow")]
-        EuropeMoscow,
-        [EnumMember(Value = "Africa/Cairo")]
-        AfricaCairo,
-        [EnumMember(Value = "Africa/Johannesburg")]
-        AfricaJohannesburg,
-        [EnumMember(Value = "Asia/Jerusalem")]
-        AsiaJerusalem,
-        [EnumMember(Value = "Europe/Athens")]
-        EuropeAthens,
-        [EnumMember(Value = "Europe/Bucharest")]
-        EuropeBucharest,
-        [EnumMember(Value = "Europe/Helsinki")]
-        EuropeHelsinki,
-        [EnumMember(Value = "Africa/Algiers")]
-        AfricaAlgiers,
-        [EnumMember(Value = "Europe/Amsterdam")]
-        EuropeAmsterdam,
-        [EnumMember(Value = "Europe/Berlin")]
-        EuropeBerlin,
-        [EnumMember(Value = "Europe/Brussels")]
-        EuropeBrussels,
-        [EnumMember(Value = "Europe/Paris")]
-        EuropeParis,
-        [EnumMember(Value = "Europe/Prague")]
-        EuropePrague,
-        [EnumMember(Value = "Europe/Rome")]
-        EuropeRome,
-        [EnumMember(Value = "Europe/Dublin")]
-        EuropeDublin,
-        [EnumMember(Value = "Europe/Lisbon")]
-        EuropeLisbon,
-        [EnumMember(Value = "Europe/London")]
-        EuropeLondon,
-        [EnumMember(Value = "GMT")]
-        GMT,
-        [EnumMember(Value = "Atlantic/Cape_Verde")]
-        AtlanticCapeVerde,
-        [EnumMember(Value = "America/Sao_Paulo")]
-        AmericaSaoPaulo,
-        [EnumMember(Value = "Atlantic/South_Georgia")]
-        AtlanticSouthGeorgia,
-        [EnumMember(Value = "America/Argentina/Buenos_Aires")]
-        AmericaArgentinaBuenosAires,
-        [EnumMember(Value = "America/Santiago")]
-        AmericaSantiago,
-        [EnumMember(Value = "America/St_Johns")]
-        AmericaStJohns,
-        [EnumMember(Value = "America/Caracas")]
-        AmericaCaracas,
-        [EnumMember(Value = "America/Halifax")]
-        AmericaHalifax,
-        [EnumMember(Value = "America/Puerto_Rico")]
-        AmericaPuertoRico,
-        [EnumMember(Value = "Atlantic/Bermuda")]
-        AtlanticBermuda,
-        [EnumMember(Value = "America/Bogota")]
-        AmericaBogota,
-        [EnumMember(Value = "America/Indiana/Indianapolis")]
-        AmericaIndianaIndianapolis,
-        [EnumMember(Value = "America/Lima")]
-        AmericaLima,
-        [EnumMember(Value = "America/New_York")]
-        AmericaNewYork,
-        [EnumMember(Value = "America/Panama")]
-        AmericaPanama,
-        [EnumMember(Value = "America/Chicago")]
-        AmericaChicago,
-        [EnumMember(Value = "America/El_Salvador")]
-        AmericaElSalvador,
-        [EnumMember(Value = "America/Mexico_City")]
-        AmericaMexicoCity,
-        [EnumMember(Value = "America/Denver")]
-        AmericaDenver,
-        [EnumMember(Value = "America/Phoenix")]
-        AmericaPhoenix,
-        [EnumMember(Value = "America/Los_Angeles")]
-        AmericaLosAngeles,
-        [EnumMember(Value = "America/Tijuana")]
-        AmericaTijuana,
-        [EnumMember(Value = "America/Anchorage")]
-        AmericaAnchorage,
-        [EnumMember(Value = "Pacific/Honolulu")]
-        PacificHonolulu,
-        [EnumMember(Value = "Pacific/Niue")]
-        PacificNiue,
-        [EnumMember(Value = "Pacific/Pago_Pago")]
-        PacificPagoPago
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickBusinessProcessTableEnumOrId
-    {
-        [EnumMember(Value = "Case")]
-        Case,
-        [EnumMember(Value = "Lead")]
-        Lead,
-        [EnumMember(Value = "Opportunity")]
-        Opportunity,
-        [EnumMember(Value = "Solution")]
-        Solution
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCampaignType
-    {
-        [EnumMember(Value = "Conference")]
-        Conference,
-        [EnumMember(Value = "Webinar")]
-        Webinar,
-        [EnumMember(Value = "Trade Show")]
-        TradeShow,
-        [EnumMember(Value = "Public Relations")]
-        PublicRelations,
-        [EnumMember(Value = "Partners")]
-        Partners,
-        [EnumMember(Value = "Referral Program")]
-        ReferralProgram,
-        [EnumMember(Value = "Advertisement")]
-        Advertisement,
-        [EnumMember(Value = "Banner Ads")]
-        BannerAds,
-        [EnumMember(Value = "Direct Mail")]
-        DirectMail,
-        [EnumMember(Value = "Email")]
-        Email,
-        [EnumMember(Value = "Telemarketing")]
-        Telemarketing,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCampaignStatus
-    {
-        [EnumMember(Value = "Planned")]
-        Planned,
-        [EnumMember(Value = "In Progress")]
-        InProgress,
-        [EnumMember(Value = "Completed")]
-        Completed,
-        [EnumMember(Value = "Aborted")]
-        Aborted
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCampaignFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCampaignMemberStatus
-    {
-        [EnumMember(Value = "Planned")]
-        Planned,
-        [EnumMember(Value = "Received")]
-        Received,
-        [EnumMember(Value = "Responded")]
-        Responded,
-        [EnumMember(Value = "Sent")]
-        Sent
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCampaignShareCampaignAccessLevel
-    {
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "All")]
-        All
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCampaignShareRowCause
-    {
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "Manual")]
-        Manual,
-        [EnumMember(Value = "Rule")]
-        Rule,
-        [EnumMember(Value = "ImplicitChild")]
-        ImplicitChild,
-        [EnumMember(Value = "ImplicitParent")]
-        ImplicitParent,
-        [EnumMember(Value = "ImplicitPerson")]
-        ImplicitPerson,
-        [EnumMember(Value = "Team")]
-        Team,
-        [EnumMember(Value = "Territory")]
-        Territory,
-        [EnumMember(Value = "TerritoryManual")]
-        TerritoryManual,
-        [EnumMember(Value = "TerritoryRule")]
-        TerritoryRule,
-        [EnumMember(Value = "Territory2Forecast")]
-        Territory2Forecast
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseType
-    {
-        [EnumMember(Value = "Mechanical")]
-        Mechanical,
-        [EnumMember(Value = "Electrical")]
-        Electrical,
-        [EnumMember(Value = "Electronic")]
-        Electronic,
-        [EnumMember(Value = "Structural")]
-        Structural,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseStatus
-    {
-        [EnumMember(Value = "New")]
-        New,
-        [EnumMember(Value = "Working")]
-        Working,
-        [EnumMember(Value = "Escalated")]
-        Escalated,
-        [EnumMember(Value = "Closed")]
-        Closed
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseReason
-    {
-        [EnumMember(Value = "Installation")]
-        Installation,
-        [EnumMember(Value = "Equipment Complexity")]
-        EquipmentComplexity,
-        [EnumMember(Value = "Performance")]
-        Performance,
-        [EnumMember(Value = "Breakdown")]
-        Breakdown,
-        [EnumMember(Value = "Equipment Design")]
-        EquipmentDesign,
-        [EnumMember(Value = "Feedback")]
-        Feedback,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseOrigin
-    {
-        [EnumMember(Value = "Phone")]
-        Phone,
-        [EnumMember(Value = "Email")]
-        Email,
-        [EnumMember(Value = "Web")]
-        Web
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCasePriority
-    {
-        [EnumMember(Value = "High")]
-        High,
-        [EnumMember(Value = "Medium")]
-        Medium,
-        [EnumMember(Value = "Low")]
-        Low
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseSLAViolation__c
-    {
-        [EnumMember(Value = "No")]
-        No,
-        [EnumMember(Value = "Yes")]
-        Yes
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseProduct__c
-    {
-        [EnumMember(Value = "GC1040")]
-        GC1040,
-        [EnumMember(Value = "GC1060")]
-        GC1060,
-        [EnumMember(Value = "GC3020")]
-        GC3020,
-        [EnumMember(Value = "GC3040")]
-        GC3040,
-        [EnumMember(Value = "GC3060")]
-        GC3060,
-        [EnumMember(Value = "GC5020")]
-        GC5020,
-        [EnumMember(Value = "GC5040")]
-        GC5040,
-        [EnumMember(Value = "GC5060")]
-        GC5060,
-        [EnumMember(Value = "GC1020")]
-        GC1020
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCasePotentialLiability__c
-    {
-        [EnumMember(Value = "No")]
-        No,
-        [EnumMember(Value = "Yes")]
-        Yes
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseContactRoleRole
-    {
-        [EnumMember(Value = "Technical Contact")]
-        TechnicalContact,
-        [EnumMember(Value = "Business Contact")]
-        BusinessContact,
-        [EnumMember(Value = "Decision Maker")]
-        DecisionMaker,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseHistoryField
-    {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "Asset")]
-        Asset,
-        [EnumMember(Value = "BusinessHours")]
-        BusinessHours,
-        [EnumMember(Value = "closed")]
-        closed,
-        [EnumMember(Value = "Contact")]
-        Contact,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "EngineeringReqNumber__c")]
-        EngineeringReqNumberc,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "IsClosedOnCreate")]
-        IsClosedOnCreate,
-        [EnumMember(Value = "IsEscalated")]
-        IsEscalated,
-        [EnumMember(Value = "Origin")]
-        Origin,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "ownerEscalated")]
-        ownerEscalated,
-        [EnumMember(Value = "Parent")]
-        Parent,
-        [EnumMember(Value = "PotentialLiability__c")]
-        PotentialLiabilityc,
-        [EnumMember(Value = "Priority")]
-        Priority,
-        [EnumMember(Value = "Product__c")]
-        Productc,
-        [EnumMember(Value = "Reason")]
-        Reason,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "SLAViolation__c")]
-        SLAViolationc,
-        [EnumMember(Value = "Status")]
-        Status,
-        [EnumMember(Value = "Subject")]
-        Subject,
-        [EnumMember(Value = "Type")]
-        Type
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseShareCaseAccessLevel
-    {
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "All")]
-        All
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseShareRowCause
-    {
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "Manual")]
-        Manual,
-        [EnumMember(Value = "Rule")]
-        Rule,
-        [EnumMember(Value = "ImplicitChild")]
-        ImplicitChild,
-        [EnumMember(Value = "ImplicitParent")]
-        ImplicitParent,
-        [EnumMember(Value = "ImplicitPerson")]
-        ImplicitPerson,
-        [EnumMember(Value = "Team")]
-        Team,
-        [EnumMember(Value = "Territory")]
-        Territory,
-        [EnumMember(Value = "TerritoryManual")]
-        TerritoryManual,
-        [EnumMember(Value = "TerritoryRule")]
-        TerritoryRule,
-        [EnumMember(Value = "Territory2Forecast")]
-        Territory2Forecast
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCaseTeamRoleAccessLevel
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCategoryNodeSortStyle
-    {
-        [EnumMember(Value = "custom")]
-        custom,
-        [EnumMember(Value = "alphabetical")]
-        alphabetical
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCollaborationGroupCollaborationType
-    {
-        [EnumMember(Value = "Public")]
-        Public,
-        [EnumMember(Value = "Private")]
-        Private
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCollaborationGroupFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCollaborationGroupMemberNotificationFrequency
-    {
-        [EnumMember(Value = "P")]
-        P,
-        [EnumMember(Value = "D")]
-        D,
-        [EnumMember(Value = "W")]
-        W,
-        [EnumMember(Value = "N")]
-        N
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCollaborationInvitationStatus
-    {
-        [EnumMember(Value = "Sent")]
-        Sent,
-        [EnumMember(Value = "Accepted")]
-        Accepted,
-        [EnumMember(Value = "Canceled")]
-        Canceled
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContactSalutation
-    {
-        [EnumMember(Value = "Mr.")]
-        Mr,
-        [EnumMember(Value = "Ms.")]
-        Ms,
-        [EnumMember(Value = "Mrs.")]
-        Mrs,
-        [EnumMember(Value = "Dr.")]
-        Dr,
-        [EnumMember(Value = "Prof.")]
-        Prof
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContactLeadSource
-    {
-        [EnumMember(Value = "Web")]
-        Web,
-        [EnumMember(Value = "Phone Inquiry")]
-        PhoneInquiry,
-        [EnumMember(Value = "Partner Referral")]
-        PartnerReferral,
-        [EnumMember(Value = "Purchased List")]
-        PurchasedList,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContactLevel__c
-    {
-        [EnumMember(Value = "Secondary")]
-        Secondary,
-        [EnumMember(Value = "Tertiary")]
-        Tertiary,
-        [EnumMember(Value = "Primary")]
-        Primary
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContactFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContactHistoryField
-    {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "AssistantName")]
-        AssistantName,
-        [EnumMember(Value = "AssistantPhone")]
-        AssistantPhone,
-        [EnumMember(Value = "Birthdate")]
-        Birthdate,
-        [EnumMember(Value = "CleanStatus")]
-        CleanStatus,
-        [EnumMember(Value = "contactMerged")]
-        contactMerged,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "contactCreatedFromLead")]
-        contactCreatedFromLead,
-        [EnumMember(Value = "Department")]
-        Department,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "DoNotCall")]
-        DoNotCall,
-        [EnumMember(Value = "Email")]
-        Email,
-        [EnumMember(Value = "EmailBouncedDate")]
-        EmailBouncedDate,
-        [EnumMember(Value = "EmailBouncedReason")]
-        EmailBouncedReason,
-        [EnumMember(Value = "Fax")]
-        Fax,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "FirstName")]
-        FirstName,
-        [EnumMember(Value = "HasOptedOutOfEmail")]
-        HasOptedOutOfEmail,
-        [EnumMember(Value = "HasOptedOutOfFax")]
-        HasOptedOutOfFax,
-        [EnumMember(Value = "HomePhone")]
-        HomePhone,
-        [EnumMember(Value = "Jigsaw")]
-        Jigsaw,
-        [EnumMember(Value = "Languages__c")]
-        Languagesc,
-        [EnumMember(Value = "LastName")]
-        LastName,
-        [EnumMember(Value = "contactUpdatedByLead")]
-        contactUpdatedByLead,
-        [EnumMember(Value = "LeadSource")]
-        LeadSource,
-        [EnumMember(Value = "Level__c")]
-        Levelc,
-        [EnumMember(Value = "MailingAddress")]
-        MailingAddress,
-        [EnumMember(Value = "MailingCity")]
-        MailingCity,
-        [EnumMember(Value = "MailingCountry")]
-        MailingCountry,
-        [EnumMember(Value = "MailingGeocodeAccuracy")]
-        MailingGeocodeAccuracy,
-        [EnumMember(Value = "MailingLatitude")]
-        MailingLatitude,
-        [EnumMember(Value = "MailingLongitude")]
-        MailingLongitude,
-        [EnumMember(Value = "MailingPostalCode")]
-        MailingPostalCode,
-        [EnumMember(Value = "MailingState")]
-        MailingState,
-        [EnumMember(Value = "MailingStreet")]
-        MailingStreet,
-        [EnumMember(Value = "MobilePhone")]
-        MobilePhone,
-        [EnumMember(Value = "Name")]
-        Name,
-        [EnumMember(Value = "OtherAddress")]
-        OtherAddress,
-        [EnumMember(Value = "OtherCity")]
-        OtherCity,
-        [EnumMember(Value = "OtherCountry")]
-        OtherCountry,
-        [EnumMember(Value = "OtherGeocodeAccuracy")]
-        OtherGeocodeAccuracy,
-        [EnumMember(Value = "OtherLatitude")]
-        OtherLatitude,
-        [EnumMember(Value = "OtherLongitude")]
-        OtherLongitude,
-        [EnumMember(Value = "OtherPhone")]
-        OtherPhone,
-        [EnumMember(Value = "OtherPostalCode")]
-        OtherPostalCode,
-        [EnumMember(Value = "OtherState")]
-        OtherState,
-        [EnumMember(Value = "OtherStreet")]
-        OtherStreet,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "Phone")]
-        Phone,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "ReportsTo")]
-        ReportsTo,
-        [EnumMember(Value = "Salutation")]
-        Salutation,
-        [EnumMember(Value = "Title")]
-        Title
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContactShareContactAccessLevel
-    {
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "All")]
-        All
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContactShareRowCause
-    {
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "Manual")]
-        Manual,
-        [EnumMember(Value = "Rule")]
-        Rule,
-        [EnumMember(Value = "ImplicitChild")]
-        ImplicitChild,
-        [EnumMember(Value = "ImplicitParent")]
-        ImplicitParent,
-        [EnumMember(Value = "ImplicitPerson")]
-        ImplicitPerson,
-        [EnumMember(Value = "Team")]
-        Team,
-        [EnumMember(Value = "Territory")]
-        Territory,
-        [EnumMember(Value = "TerritoryManual")]
-        TerritoryManual,
-        [EnumMember(Value = "TerritoryRule")]
-        TerritoryRule,
-        [EnumMember(Value = "Territory2Forecast")]
-        Territory2Forecast
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContentDocumentPublishStatus
-    {
-        [EnumMember(Value = "U")]
-        U,
-        [EnumMember(Value = "P")]
-        P,
-        [EnumMember(Value = "R")]
-        R
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContentDocumentFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContentDocumentHistoryField
-    {
-        [EnumMember(Value = "ArchivedBy")]
-        ArchivedBy,
-        [EnumMember(Value = "ArchivedDate")]
-        ArchivedDate,
-        [EnumMember(Value = "ContentAsset")]
-        ContentAsset,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "DeletedBy")]
-        DeletedBy,
-        [EnumMember(Value = "DeletedDate")]
-        DeletedDate,
-        [EnumMember(Value = "contentDocPublished")]
-        contentDocPublished,
-        [EnumMember(Value = "contentDocFeatured")]
-        contentDocFeatured,
-        [EnumMember(Value = "contentDocRepublished")]
-        contentDocRepublished,
-        [EnumMember(Value = "contentDocUnpublished")]
-        contentDocUnpublished,
-        [EnumMember(Value = "contentDocSubscribed")]
-        contentDocSubscribed,
-        [EnumMember(Value = "contentDocUnsubscribed")]
-        contentDocUnsubscribed,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "IsArchived")]
-        IsArchived,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "Parent")]
-        Parent,
-        [EnumMember(Value = "PublishStatus")]
-        PublishStatus,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "Title")]
-        Title
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContentVersionPublishStatus
-    {
-        [EnumMember(Value = "U")]
-        U,
-        [EnumMember(Value = "P")]
-        P,
-        [EnumMember(Value = "R")]
-        R
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContentVersionOrigin
-    {
-        [EnumMember(Value = "C")]
-        C,
-        [EnumMember(Value = "H")]
-        H
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContentVersionHistoryField
-    {
-        [EnumMember(Value = "ContentUrl")]
-        ContentUrl,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "ExternalDataSource")]
-        ExternalDataSource,
-        [EnumMember(Value = "ExternalDocumentInfo1")]
-        ExternalDocumentInfo1,
-        [EnumMember(Value = "ExternalDocumentInfo2")]
-        ExternalDocumentInfo2,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "IsMajorVersion")]
-        IsMajorVersion,
-        [EnumMember(Value = "Language")]
-        Language,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "ReasonForChange")]
-        ReasonForChange,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "SharingOption")]
-        SharingOption,
-        [EnumMember(Value = "Title")]
-        Title,
-        [EnumMember(Value = "contentVersionCommented")]
-        contentVersionCommented,
-        [EnumMember(Value = "contentVersionCreated")]
-        contentVersionCreated,
-        [EnumMember(Value = "contentVersionDataReplaced")]
-        contentVersionDataReplaced,
-        [EnumMember(Value = "contentVersionDeleted")]
-        contentVersionDeleted,
-        [EnumMember(Value = "contentVersionDownloaded")]
-        contentVersionDownloaded,
-        [EnumMember(Value = "contentVersionRated")]
-        contentVersionRated,
-        [EnumMember(Value = "contentVersionUpdated")]
-        contentVersionUpdated,
-        [EnumMember(Value = "contentVersionViewed")]
-        contentVersionViewed
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContentWorkspaceTagModel
-    {
-        [EnumMember(Value = "U")]
-        U,
-        [EnumMember(Value = "G")]
-        G,
-        [EnumMember(Value = "R")]
-        R
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContractOwnerExpirationNotice
-    {
-        [EnumMember(Value = "15")]
-        _15,
-        [EnumMember(Value = "30")]
-        _30,
-        [EnumMember(Value = "45")]
-        _45,
-        [EnumMember(Value = "60")]
-        _60,
-        [EnumMember(Value = "90")]
-        _90,
-        [EnumMember(Value = "120")]
-        _120
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContractStatus
-    {
-        [EnumMember(Value = "In Approval Process")]
-        InApprovalProcess,
-        [EnumMember(Value = "Activated")]
-        Activated,
-        [EnumMember(Value = "Draft")]
-        Draft
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContractStatusCode
-    {
-        [EnumMember(Value = "Draft")]
-        Draft,
-        [EnumMember(Value = "InApproval")]
-        InApproval,
-        [EnumMember(Value = "Activated")]
-        Activated,
-        [EnumMember(Value = "Terminated")]
-        Terminated,
-        [EnumMember(Value = "Expired")]
-        Expired
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContractContactRoleRole
-    {
-        [EnumMember(Value = "Business User")]
-        BusinessUser,
-        [EnumMember(Value = "Decision Maker")]
-        DecisionMaker,
-        [EnumMember(Value = "Economic Buyer")]
-        EconomicBuyer,
-        [EnumMember(Value = "Economic Decision Maker")]
-        EconomicDecisionMaker,
-        [EnumMember(Value = "Evaluator")]
-        Evaluator,
-        [EnumMember(Value = "Executive Sponsor")]
-        ExecutiveSponsor,
-        [EnumMember(Value = "Influencer")]
-        Influencer,
-        [EnumMember(Value = "Technical Buyer")]
-        TechnicalBuyer,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContractFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContractHistoryField
-    {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "ActivatedBy")]
-        ActivatedBy,
-        [EnumMember(Value = "ActivatedDate")]
-        ActivatedDate,
-        [EnumMember(Value = "BillingAddress")]
-        BillingAddress,
-        [EnumMember(Value = "BillingCity")]
-        BillingCity,
-        [EnumMember(Value = "BillingCountry")]
-        BillingCountry,
-        [EnumMember(Value = "BillingGeocodeAccuracy")]
-        BillingGeocodeAccuracy,
-        [EnumMember(Value = "BillingLatitude")]
-        BillingLatitude,
-        [EnumMember(Value = "BillingLongitude")]
-        BillingLongitude,
-        [EnumMember(Value = "BillingPostalCode")]
-        BillingPostalCode,
-        [EnumMember(Value = "BillingState")]
-        BillingState,
-        [EnumMember(Value = "BillingStreet")]
-        BillingStreet,
-        [EnumMember(Value = "CompanySigned")]
-        CompanySigned,
-        [EnumMember(Value = "CompanySignedDate")]
-        CompanySignedDate,
-        [EnumMember(Value = "contractActivation")]
-        contractActivation,
-        [EnumMember(Value = "contractApproval")]
-        contractApproval,
-        [EnumMember(Value = "contractConversion")]
-        contractConversion,
-        [EnumMember(Value = "contractDraft")]
-        contractDraft,
-        [EnumMember(Value = "contractExpiration")]
-        contractExpiration,
-        [EnumMember(Value = "ContractTerm")]
-        ContractTerm,
-        [EnumMember(Value = "contractTermination")]
-        contractTermination,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "CustomerSigned")]
-        CustomerSigned,
-        [EnumMember(Value = "CustomerSignedDate")]
-        CustomerSignedDate,
-        [EnumMember(Value = "CustomerSignedTitle")]
-        CustomerSignedTitle,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "EndDate")]
-        EndDate,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "Name")]
-        Name,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "OwnerExpirationNotice")]
-        OwnerExpirationNotice,
-        [EnumMember(Value = "Pricebook2")]
-        Pricebook2,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "ShippingAddress")]
-        ShippingAddress,
-        [EnumMember(Value = "ShippingCity")]
-        ShippingCity,
-        [EnumMember(Value = "ShippingCountry")]
-        ShippingCountry,
-        [EnumMember(Value = "ShippingGeocodeAccuracy")]
-        ShippingGeocodeAccuracy,
-        [EnumMember(Value = "ShippingLatitude")]
-        ShippingLatitude,
-        [EnumMember(Value = "ShippingLongitude")]
-        ShippingLongitude,
-        [EnumMember(Value = "ShippingPostalCode")]
-        ShippingPostalCode,
-        [EnumMember(Value = "ShippingState")]
-        ShippingState,
-        [EnumMember(Value = "ShippingStreet")]
-        ShippingStreet,
-        [EnumMember(Value = "SpecialTerms")]
-        SpecialTerms,
-        [EnumMember(Value = "StartDate")]
-        StartDate,
-        [EnumMember(Value = "Status")]
-        Status
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickContractStatusStatusCode
-    {
-        [EnumMember(Value = "Draft")]
-        Draft,
-        [EnumMember(Value = "InApproval")]
-        InApproval,
-        [EnumMember(Value = "Activated")]
-        Activated,
-        [EnumMember(Value = "Terminated")]
-        Terminated,
-        [EnumMember(Value = "Expired")]
-        Expired
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickCronTriggerTimeZoneSidKey
-    {
-        [EnumMember(Value = "Pacific/Kiritimati")]
-        PacificKiritimati,
-        [EnumMember(Value = "Pacific/Tongatapu")]
-        PacificTongatapu,
-        [EnumMember(Value = "Pacific/Chatham")]
-        PacificChatham,
-        [EnumMember(Value = "Pacific/Auckland")]
-        PacificAuckland,
-        [EnumMember(Value = "Pacific/Enderbury")]
-        PacificEnderbury,
-        [EnumMember(Value = "Pacific/Fiji")]
-        PacificFiji,
-        [EnumMember(Value = "Asia/Kamchatka")]
-        AsiaKamchatka,
-        [EnumMember(Value = "Australia/Lord_Howe")]
-        AustraliaLordHowe,
-        [EnumMember(Value = "Australia/Sydney")]
-        AustraliaSydney,
-        [EnumMember(Value = "Pacific/Guadalcanal")]
-        PacificGuadalcanal,
-        [EnumMember(Value = "Pacific/Norfolk")]
-        PacificNorfolk,
-        [EnumMember(Value = "Australia/Adelaide")]
-        AustraliaAdelaide,
-        [EnumMember(Value = "Australia/Brisbane")]
-        AustraliaBrisbane,
-        [EnumMember(Value = "Australia/Darwin")]
-        AustraliaDarwin,
-        [EnumMember(Value = "Asia/Seoul")]
-        AsiaSeoul,
-        [EnumMember(Value = "Asia/Tokyo")]
-        AsiaTokyo,
-        [EnumMember(Value = "Asia/Hong_Kong")]
-        AsiaHongKong,
-        [EnumMember(Value = "Asia/Kuala_Lumpur")]
-        AsiaKualaLumpur,
-        [EnumMember(Value = "Asia/Manila")]
-        AsiaManila,
-        [EnumMember(Value = "Asia/Shanghai")]
-        AsiaShanghai,
-        [EnumMember(Value = "Asia/Singapore")]
-        AsiaSingapore,
-        [EnumMember(Value = "Asia/Taipei")]
-        AsiaTaipei,
-        [EnumMember(Value = "Australia/Perth")]
-        AustraliaPerth,
-        [EnumMember(Value = "Asia/Bangkok")]
-        AsiaBangkok,
-        [EnumMember(Value = "Asia/Ho_Chi_Minh")]
-        AsiaHoChiMinh,
-        [EnumMember(Value = "Asia/Jakarta")]
-        AsiaJakarta,
-        [EnumMember(Value = "Asia/Rangoon")]
-        AsiaRangoon,
-        [EnumMember(Value = "Asia/Dhaka")]
-        AsiaDhaka,
-        [EnumMember(Value = "Asia/Kathmandu")]
-        AsiaKathmandu,
-        [EnumMember(Value = "Asia/Colombo")]
-        AsiaColombo,
-        [EnumMember(Value = "Asia/Kolkata")]
-        AsiaKolkata,
-        [EnumMember(Value = "Asia/Karachi")]
-        AsiaKarachi,
-        [EnumMember(Value = "Asia/Tashkent")]
-        AsiaTashkent,
-        [EnumMember(Value = "Asia/Yekaterinburg")]
-        AsiaYekaterinburg,
-        [EnumMember(Value = "Asia/Kabul")]
-        AsiaKabul,
-        [EnumMember(Value = "Asia/Dubai")]
-        AsiaDubai,
-        [EnumMember(Value = "Asia/Tbilisi")]
-        AsiaTbilisi,
-        [EnumMember(Value = "Asia/Tehran")]
-        AsiaTehran,
-        [EnumMember(Value = "Africa/Nairobi")]
-        AfricaNairobi,
-        [EnumMember(Value = "Asia/Baghdad")]
-        AsiaBaghdad,
-        [EnumMember(Value = "Asia/Kuwait")]
-        AsiaKuwait,
-        [EnumMember(Value = "Asia/Riyadh")]
-        AsiaRiyadh,
-        [EnumMember(Value = "Europe/Istanbul")]
-        EuropeIstanbul,
-        [EnumMember(Value = "Europe/Minsk")]
-        EuropeMinsk,
-        [EnumMember(Value = "Europe/Moscow")]
-        EuropeMoscow,
-        [EnumMember(Value = "Africa/Cairo")]
-        AfricaCairo,
-        [EnumMember(Value = "Africa/Johannesburg")]
-        AfricaJohannesburg,
-        [EnumMember(Value = "Asia/Jerusalem")]
-        AsiaJerusalem,
-        [EnumMember(Value = "Europe/Athens")]
-        EuropeAthens,
-        [EnumMember(Value = "Europe/Bucharest")]
-        EuropeBucharest,
-        [EnumMember(Value = "Europe/Helsinki")]
-        EuropeHelsinki,
-        [EnumMember(Value = "Africa/Algiers")]
-        AfricaAlgiers,
-        [EnumMember(Value = "Europe/Amsterdam")]
-        EuropeAmsterdam,
-        [EnumMember(Value = "Europe/Berlin")]
-        EuropeBerlin,
-        [EnumMember(Value = "Europe/Brussels")]
-        EuropeBrussels,
-        [EnumMember(Value = "Europe/Paris")]
-        EuropeParis,
-        [EnumMember(Value = "Europe/Prague")]
-        EuropePrague,
-        [EnumMember(Value = "Europe/Rome")]
-        EuropeRome,
-        [EnumMember(Value = "Europe/Dublin")]
-        EuropeDublin,
-        [EnumMember(Value = "Europe/Lisbon")]
-        EuropeLisbon,
-        [EnumMember(Value = "Europe/London")]
-        EuropeLondon,
-        [EnumMember(Value = "GMT")]
-        GMT,
-        [EnumMember(Value = "Atlantic/Cape_Verde")]
-        AtlanticCapeVerde,
-        [EnumMember(Value = "America/Sao_Paulo")]
-        AmericaSaoPaulo,
-        [EnumMember(Value = "Atlantic/South_Georgia")]
-        AtlanticSouthGeorgia,
-        [EnumMember(Value = "America/Argentina/Buenos_Aires")]
-        AmericaArgentinaBuenosAires,
-        [EnumMember(Value = "America/Santiago")]
-        AmericaSantiago,
-        [EnumMember(Value = "America/St_Johns")]
-        AmericaStJohns,
-        [EnumMember(Value = "America/Caracas")]
-        AmericaCaracas,
-        [EnumMember(Value = "America/Halifax")]
-        AmericaHalifax,
-        [EnumMember(Value = "America/Puerto_Rico")]
-        AmericaPuertoRico,
-        [EnumMember(Value = "Atlantic/Bermuda")]
-        AtlanticBermuda,
-        [EnumMember(Value = "America/Bogota")]
-        AmericaBogota,
-        [EnumMember(Value = "America/Indiana/Indianapolis")]
-        AmericaIndianaIndianapolis,
-        [EnumMember(Value = "America/Lima")]
-        AmericaLima,
-        [EnumMember(Value = "America/New_York")]
-        AmericaNewYork,
-        [EnumMember(Value = "America/Panama")]
-        AmericaPanama,
-        [EnumMember(Value = "America/Chicago")]
-        AmericaChicago,
-        [EnumMember(Value = "America/El_Salvador")]
-        AmericaElSalvador,
-        [EnumMember(Value = "America/Mexico_City")]
-        AmericaMexicoCity,
-        [EnumMember(Value = "America/Denver")]
-        AmericaDenver,
-        [EnumMember(Value = "America/Phoenix")]
-        AmericaPhoenix,
-        [EnumMember(Value = "America/Los_Angeles")]
-        AmericaLosAngeles,
-        [EnumMember(Value = "America/Tijuana")]
-        AmericaTijuana,
-        [EnumMember(Value = "America/Anchorage")]
-        AmericaAnchorage,
-        [EnumMember(Value = "Pacific/Honolulu")]
-        PacificHonolulu,
-        [EnumMember(Value = "Pacific/Niue")]
-        PacificNiue,
-        [EnumMember(Value = "Pacific/Pago_Pago")]
-        PacificPagoPago
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickDashboardLeftSize
-    {
-        [EnumMember(Value = "Narrow")]
-        Narrow,
-        [EnumMember(Value = "Medium")]
-        Medium,
-        [EnumMember(Value = "Wide")]
-        Wide
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickDashboardMiddleSize
-    {
-        [EnumMember(Value = "Narrow")]
-        Narrow,
-        [EnumMember(Value = "Medium")]
-        Medium,
-        [EnumMember(Value = "Wide")]
-        Wide
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickDashboardRightSize
-    {
-        [EnumMember(Value = "Narrow")]
-        Narrow,
-        [EnumMember(Value = "Medium")]
-        Medium,
-        [EnumMember(Value = "Wide")]
-        Wide
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickDashboardBackgroundDirection
-    {
-        [EnumMember(Value = "TopToBottom")]
-        TopToBottom,
-        [EnumMember(Value = "LeftToRight")]
-        LeftToRight,
-        [EnumMember(Value = "Diagonal")]
-        Diagonal
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickDashboardType
-    {
-        [EnumMember(Value = "SpecifiedUser")]
-        SpecifiedUser,
-        [EnumMember(Value = "LoggedInUser")]
-        LoggedInUser,
-        [EnumMember(Value = "MyTeamUser")]
-        MyTeamUser
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickDashboardFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailMessageStatus
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3,
-        [EnumMember(Value = "4")]
-        _4,
-        [EnumMember(Value = "5")]
-        _5
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailServicesFunctionAttachmentOption
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3,
-        [EnumMember(Value = "4")]
-        _4
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailServicesFunctionOverLimitAction
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailServicesFunctionFunctionInactiveAction
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailServicesFunctionAddressInactiveAction
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailServicesFunctionAuthenticationFailureAction
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailServicesFunctionAuthorizationFailureAction
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailTemplateTemplateStyle
-    {
-        [EnumMember(Value = "none")]
-        none,
-        [EnumMember(Value = "freeForm")]
-        freeForm,
-        [EnumMember(Value = "formalLetter")]
-        formalLetter,
-        [EnumMember(Value = "promotionRight")]
-        promotionRight,
-        [EnumMember(Value = "promotionLeft")]
-        promotionLeft,
-        [EnumMember(Value = "newsletter")]
-        newsletter,
-        [EnumMember(Value = "products")]
-        products
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailTemplateTemplateType
-    {
-        [EnumMember(Value = "text")]
-        text,
-        [EnumMember(Value = "html")]
-        html,
-        [EnumMember(Value = "custom")]
-        custom,
-        [EnumMember(Value = "visualforce")]
-        visualforce
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEmailTemplateEncoding
-    {
-        [EnumMember(Value = "UTF-8")]
-        UTF8,
-        [EnumMember(Value = "ISO-8859-1")]
-        ISO88591,
-        [EnumMember(Value = "Shift_JIS")]
-        ShiftJIS,
-        [EnumMember(Value = "ISO-2022-JP")]
-        ISO2022JP,
-        [EnumMember(Value = "EUC-JP")]
-        EUCJP,
-        [EnumMember(Value = "ks_c_5601-1987")]
-        ksc56011987,
-        [EnumMember(Value = "Big5")]
-        Big5,
-        [EnumMember(Value = "GB2312")]
-        GB2312
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEventShowAs
-    {
-        [EnumMember(Value = "Busy")]
-        Busy,
-        [EnumMember(Value = "OutOfOffice")]
-        OutOfOffice,
-        [EnumMember(Value = "Free")]
-        Free
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEventGroupEventType
-    {
-        [EnumMember(Value = "0")]
-        _0,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "2")]
-        _2
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEventRecurrenceTimeZoneSidKey
-    {
-        [EnumMember(Value = "Pacific/Kiritimati")]
-        PacificKiritimati,
-        [EnumMember(Value = "Pacific/Tongatapu")]
-        PacificTongatapu,
-        [EnumMember(Value = "Pacific/Chatham")]
-        PacificChatham,
-        [EnumMember(Value = "Pacific/Auckland")]
-        PacificAuckland,
-        [EnumMember(Value = "Pacific/Enderbury")]
-        PacificEnderbury,
-        [EnumMember(Value = "Pacific/Fiji")]
-        PacificFiji,
-        [EnumMember(Value = "Asia/Kamchatka")]
-        AsiaKamchatka,
-        [EnumMember(Value = "Australia/Lord_Howe")]
-        AustraliaLordHowe,
-        [EnumMember(Value = "Australia/Sydney")]
-        AustraliaSydney,
-        [EnumMember(Value = "Pacific/Guadalcanal")]
-        PacificGuadalcanal,
-        [EnumMember(Value = "Pacific/Norfolk")]
-        PacificNorfolk,
-        [EnumMember(Value = "Australia/Adelaide")]
-        AustraliaAdelaide,
-        [EnumMember(Value = "Australia/Brisbane")]
-        AustraliaBrisbane,
-        [EnumMember(Value = "Australia/Darwin")]
-        AustraliaDarwin,
-        [EnumMember(Value = "Asia/Seoul")]
-        AsiaSeoul,
-        [EnumMember(Value = "Asia/Tokyo")]
-        AsiaTokyo,
-        [EnumMember(Value = "Asia/Hong_Kong")]
-        AsiaHongKong,
-        [EnumMember(Value = "Asia/Kuala_Lumpur")]
-        AsiaKualaLumpur,
-        [EnumMember(Value = "Asia/Manila")]
-        AsiaManila,
-        [EnumMember(Value = "Asia/Shanghai")]
-        AsiaShanghai,
-        [EnumMember(Value = "Asia/Singapore")]
-        AsiaSingapore,
-        [EnumMember(Value = "Asia/Taipei")]
-        AsiaTaipei,
-        [EnumMember(Value = "Australia/Perth")]
-        AustraliaPerth,
-        [EnumMember(Value = "Asia/Bangkok")]
-        AsiaBangkok,
-        [EnumMember(Value = "Asia/Ho_Chi_Minh")]
-        AsiaHoChiMinh,
-        [EnumMember(Value = "Asia/Jakarta")]
-        AsiaJakarta,
-        [EnumMember(Value = "Asia/Rangoon")]
-        AsiaRangoon,
-        [EnumMember(Value = "Asia/Dhaka")]
-        AsiaDhaka,
-        [EnumMember(Value = "Asia/Kathmandu")]
-        AsiaKathmandu,
-        [EnumMember(Value = "Asia/Colombo")]
-        AsiaColombo,
-        [EnumMember(Value = "Asia/Kolkata")]
-        AsiaKolkata,
-        [EnumMember(Value = "Asia/Karachi")]
-        AsiaKarachi,
-        [EnumMember(Value = "Asia/Tashkent")]
-        AsiaTashkent,
-        [EnumMember(Value = "Asia/Yekaterinburg")]
-        AsiaYekaterinburg,
-        [EnumMember(Value = "Asia/Kabul")]
-        AsiaKabul,
-        [EnumMember(Value = "Asia/Dubai")]
-        AsiaDubai,
-        [EnumMember(Value = "Asia/Tbilisi")]
-        AsiaTbilisi,
-        [EnumMember(Value = "Asia/Tehran")]
-        AsiaTehran,
-        [EnumMember(Value = "Africa/Nairobi")]
-        AfricaNairobi,
-        [EnumMember(Value = "Asia/Baghdad")]
-        AsiaBaghdad,
-        [EnumMember(Value = "Asia/Kuwait")]
-        AsiaKuwait,
-        [EnumMember(Value = "Asia/Riyadh")]
-        AsiaRiyadh,
-        [EnumMember(Value = "Europe/Istanbul")]
-        EuropeIstanbul,
-        [EnumMember(Value = "Europe/Minsk")]
-        EuropeMinsk,
-        [EnumMember(Value = "Europe/Moscow")]
-        EuropeMoscow,
-        [EnumMember(Value = "Africa/Cairo")]
-        AfricaCairo,
-        [EnumMember(Value = "Africa/Johannesburg")]
-        AfricaJohannesburg,
-        [EnumMember(Value = "Asia/Jerusalem")]
-        AsiaJerusalem,
-        [EnumMember(Value = "Europe/Athens")]
-        EuropeAthens,
-        [EnumMember(Value = "Europe/Bucharest")]
-        EuropeBucharest,
-        [EnumMember(Value = "Europe/Helsinki")]
-        EuropeHelsinki,
-        [EnumMember(Value = "Africa/Algiers")]
-        AfricaAlgiers,
-        [EnumMember(Value = "Europe/Amsterdam")]
-        EuropeAmsterdam,
-        [EnumMember(Value = "Europe/Berlin")]
-        EuropeBerlin,
-        [EnumMember(Value = "Europe/Brussels")]
-        EuropeBrussels,
-        [EnumMember(Value = "Europe/Paris")]
-        EuropeParis,
-        [EnumMember(Value = "Europe/Prague")]
-        EuropePrague,
-        [EnumMember(Value = "Europe/Rome")]
-        EuropeRome,
-        [EnumMember(Value = "Europe/Dublin")]
-        EuropeDublin,
-        [EnumMember(Value = "Europe/Lisbon")]
-        EuropeLisbon,
-        [EnumMember(Value = "Europe/London")]
-        EuropeLondon,
-        [EnumMember(Value = "GMT")]
-        GMT,
-        [EnumMember(Value = "Atlantic/Cape_Verde")]
-        AtlanticCapeVerde,
-        [EnumMember(Value = "America/Sao_Paulo")]
-        AmericaSaoPaulo,
-        [EnumMember(Value = "Atlantic/South_Georgia")]
-        AtlanticSouthGeorgia,
-        [EnumMember(Value = "America/Argentina/Buenos_Aires")]
-        AmericaArgentinaBuenosAires,
-        [EnumMember(Value = "America/Santiago")]
-        AmericaSantiago,
-        [EnumMember(Value = "America/St_Johns")]
-        AmericaStJohns,
-        [EnumMember(Value = "America/Caracas")]
-        AmericaCaracas,
-        [EnumMember(Value = "America/Halifax")]
-        AmericaHalifax,
-        [EnumMember(Value = "America/Puerto_Rico")]
-        AmericaPuertoRico,
-        [EnumMember(Value = "Atlantic/Bermuda")]
-        AtlanticBermuda,
-        [EnumMember(Value = "America/Bogota")]
-        AmericaBogota,
-        [EnumMember(Value = "America/Indiana/Indianapolis")]
-        AmericaIndianaIndianapolis,
-        [EnumMember(Value = "America/Lima")]
-        AmericaLima,
-        [EnumMember(Value = "America/New_York")]
-        AmericaNewYork,
-        [EnumMember(Value = "America/Panama")]
-        AmericaPanama,
-        [EnumMember(Value = "America/Chicago")]
-        AmericaChicago,
-        [EnumMember(Value = "America/El_Salvador")]
-        AmericaElSalvador,
-        [EnumMember(Value = "America/Mexico_City")]
-        AmericaMexicoCity,
-        [EnumMember(Value = "America/Denver")]
-        AmericaDenver,
-        [EnumMember(Value = "America/Phoenix")]
-        AmericaPhoenix,
-        [EnumMember(Value = "America/Los_Angeles")]
-        AmericaLosAngeles,
-        [EnumMember(Value = "America/Tijuana")]
-        AmericaTijuana,
-        [EnumMember(Value = "America/Anchorage")]
-        AmericaAnchorage,
-        [EnumMember(Value = "Pacific/Honolulu")]
-        PacificHonolulu,
-        [EnumMember(Value = "Pacific/Niue")]
-        PacificNiue,
-        [EnumMember(Value = "Pacific/Pago_Pago")]
-        PacificPagoPago
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEventRecurrenceType
-    {
-        [EnumMember(Value = "RecursDaily")]
-        RecursDaily,
-        [EnumMember(Value = "RecursEveryWeekday")]
-        RecursEveryWeekday,
-        [EnumMember(Value = "RecursMonthly")]
-        RecursMonthly,
-        [EnumMember(Value = "RecursMonthlyNth")]
-        RecursMonthlyNth,
-        [EnumMember(Value = "RecursWeekly")]
-        RecursWeekly,
-        [EnumMember(Value = "RecursYearly")]
-        RecursYearly,
-        [EnumMember(Value = "RecursYearlyNth")]
-        RecursYearlyNth
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEventRecurrenceInstance
-    {
-        [EnumMember(Value = "First")]
-        First,
-        [EnumMember(Value = "Second")]
-        Second,
-        [EnumMember(Value = "Third")]
-        Third,
-        [EnumMember(Value = "Fourth")]
-        Fourth,
-        [EnumMember(Value = "Last")]
-        Last
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEventRecurrenceMonthOfYear
-    {
-        [EnumMember(Value = "January")]
-        January,
-        [EnumMember(Value = "February")]
-        February,
-        [EnumMember(Value = "March")]
-        March,
-        [EnumMember(Value = "April")]
-        April,
-        [EnumMember(Value = "May")]
-        May,
-        [EnumMember(Value = "June")]
-        June,
-        [EnumMember(Value = "July")]
-        July,
-        [EnumMember(Value = "August")]
-        August,
-        [EnumMember(Value = "September")]
-        September,
-        [EnumMember(Value = "October")]
-        October,
-        [EnumMember(Value = "November")]
-        November,
-        [EnumMember(Value = "December")]
-        December
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEventAttendeeStatus
-    {
-        [EnumMember(Value = "New")]
-        New,
-        [EnumMember(Value = "Declined")]
-        Declined,
-        [EnumMember(Value = "Accepted")]
-        Accepted,
-        [EnumMember(Value = "Uninvited")]
-        Uninvited,
-        [EnumMember(Value = "Maybe")]
-        Maybe
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickEventFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickFeedPostType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickFiscalYearSettingsYearType
-    {
-        [EnumMember(Value = "Standard")]
-        Standard,
-        [EnumMember(Value = "Custom")]
-        Custom,
-        [EnumMember(Value = "Placeholder")]
-        Placeholder
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickFiscalYearSettingsQuarterLabelScheme
-    {
-        [EnumMember(Value = "NumberByYear")]
-        NumberByYear,
-        [EnumMember(Value = "Custom")]
-        Custom
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickFiscalYearSettingsPeriodLabelScheme
-    {
-        [EnumMember(Value = "NumberByYear")]
-        NumberByYear,
-        [EnumMember(Value = "NumberByQuarter")]
-        NumberByQuarter,
-        [EnumMember(Value = "StandardMonths")]
-        StandardMonths,
-        [EnumMember(Value = "Custom")]
-        Custom
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickFiscalYearSettingsWeekLabelScheme
-    {
-        [EnumMember(Value = "NumberByYear")]
-        NumberByYear,
-        [EnumMember(Value = "NumberByQuarter")]
-        NumberByQuarter,
-        [EnumMember(Value = "NumberByPeriod")]
-        NumberByPeriod
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickFiscalYearSettingsQuarterPrefix
-    {
-        [EnumMember(Value = "Quarter")]
-        Quarter,
-        [EnumMember(Value = "FQ")]
-        FQ,
-        [EnumMember(Value = "Q")]
-        Q,
-        [EnumMember(Value = "Trimester")]
-        Trimester
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickFiscalYearSettingsPeriodPrefix
-    {
-        [EnumMember(Value = "Period")]
-        Period,
-        [EnumMember(Value = "FP")]
-        FP,
-        [EnumMember(Value = "P")]
-        P,
-        [EnumMember(Value = "Month")]
-        Month
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickFolderAccessType
-    {
-        [EnumMember(Value = "Shared")]
-        Shared,
-        [EnumMember(Value = "Public")]
-        Public,
-        [EnumMember(Value = "Hidden")]
-        Hidden,
-        [EnumMember(Value = "PublicInternal")]
-        PublicInternal
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickFolderType
-    {
-        [EnumMember(Value = "Document")]
-        Document,
-        [EnumMember(Value = "Email")]
-        Email,
-        [EnumMember(Value = "Report")]
-        Report,
-        [EnumMember(Value = "Dashboard")]
-        Dashboard
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickForecastShareAccessLevel
-    {
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "All")]
-        All
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickForecastShareRowCause
-    {
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "Manual")]
-        Manual,
-        [EnumMember(Value = "Rule")]
-        Rule,
-        [EnumMember(Value = "ImplicitChild")]
-        ImplicitChild,
-        [EnumMember(Value = "ImplicitParent")]
-        ImplicitParent,
-        [EnumMember(Value = "ImplicitPerson")]
-        ImplicitPerson,
-        [EnumMember(Value = "Team")]
-        Team,
-        [EnumMember(Value = "Territory")]
-        Territory,
-        [EnumMember(Value = "TerritoryManual")]
-        TerritoryManual,
-        [EnumMember(Value = "TerritoryRule")]
-        TerritoryRule,
-        [EnumMember(Value = "Territory2Forecast")]
-        Territory2Forecast
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickGroupType
-    {
-        [EnumMember(Value = "AllCustomerPortal")]
-        AllCustomerPortal,
-        [EnumMember(Value = "CollaborationGroup")]
-        CollaborationGroup,
-        [EnumMember(Value = "Manager")]
-        Manager,
-        [EnumMember(Value = "ManagerAndSubordinatesInternal")]
-        ManagerAndSubordinatesInternal,
-        [EnumMember(Value = "Organization")]
-        Organization,
-        [EnumMember(Value = "PRMOrganization")]
-        PRMOrganization,
-        [EnumMember(Value = "Queue")]
-        Queue,
-        [EnumMember(Value = "Regular")]
-        Regular,
-        [EnumMember(Value = "Role")]
-        Role,
-        [EnumMember(Value = "RoleAndSubordinates")]
-        RoleAndSubordinates,
-        [EnumMember(Value = "RoleAndSubordinatesInternal")]
-        RoleAndSubordinatesInternal,
-        [EnumMember(Value = "SharingRuleGroup")]
-        SharingRuleGroup,
-        [EnumMember(Value = "Territory")]
-        Territory,
-        [EnumMember(Value = "TerritoryAndSubordinates")]
-        TerritoryAndSubordinates
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickHolidayRecurrenceType
-    {
-        [EnumMember(Value = "RecursDaily")]
-        RecursDaily,
-        [EnumMember(Value = "RecursEveryWeekday")]
-        RecursEveryWeekday,
-        [EnumMember(Value = "RecursMonthly")]
-        RecursMonthly,
-        [EnumMember(Value = "RecursMonthlyNth")]
-        RecursMonthlyNth,
-        [EnumMember(Value = "RecursWeekly")]
-        RecursWeekly,
-        [EnumMember(Value = "RecursYearly")]
-        RecursYearly,
-        [EnumMember(Value = "RecursYearlyNth")]
-        RecursYearlyNth
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickHolidayRecurrenceInstance
-    {
-        [EnumMember(Value = "First")]
-        First,
-        [EnumMember(Value = "Second")]
-        Second,
-        [EnumMember(Value = "Third")]
-        Third,
-        [EnumMember(Value = "Fourth")]
-        Fourth,
-        [EnumMember(Value = "Last")]
-        Last
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickHolidayRecurrenceMonthOfYear
-    {
-        [EnumMember(Value = "January")]
-        January,
-        [EnumMember(Value = "February")]
-        February,
-        [EnumMember(Value = "March")]
-        March,
-        [EnumMember(Value = "April")]
-        April,
-        [EnumMember(Value = "May")]
-        May,
-        [EnumMember(Value = "June")]
-        June,
-        [EnumMember(Value = "July")]
-        July,
-        [EnumMember(Value = "August")]
-        August,
-        [EnumMember(Value = "September")]
-        September,
-        [EnumMember(Value = "October")]
-        October,
-        [EnumMember(Value = "November")]
-        November,
-        [EnumMember(Value = "December")]
-        December
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickIdeaStatus
-    {
+    public class PickAccountType
+    {
+        public static readonly string  Prospect = "Prospect"; 
+        public static readonly string  CustomerDirect = "Customer - Direct"; 
+        public static readonly string  CustomerChannel = "Customer - Channel"; 
+        public static readonly string  ChannelPartnerReseller = "Channel Partner / Reseller"; 
+        public static readonly string  InstallationPartner = "Installation Partner"; 
+        public static readonly string  TechnologyPartner = "Technology Partner"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountType(string s)
+        {
+            return new PickAccountType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
 
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadSalutation
+    public class PickAccountIndustry
     {
-        [EnumMember(Value = "Mr.")]
-        Mr,
-        [EnumMember(Value = "Ms.")]
-        Ms,
-        [EnumMember(Value = "Mrs.")]
-        Mrs,
-        [EnumMember(Value = "Dr.")]
-        Dr,
-        [EnumMember(Value = "Prof.")]
-        Prof
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadLeadSource
-    {
-        [EnumMember(Value = "Web")]
-        Web,
-        [EnumMember(Value = "Phone Inquiry")]
-        PhoneInquiry,
-        [EnumMember(Value = "Partner Referral")]
-        PartnerReferral,
-        [EnumMember(Value = "Purchased List")]
-        PurchasedList,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadStatus
-    {
-        [EnumMember(Value = "Open - Not Contacted")]
-        OpenNotContacted,
-        [EnumMember(Value = "Working - Contacted")]
-        WorkingContacted,
-        [EnumMember(Value = "Closed - Converted")]
-        ClosedConverted,
-        [EnumMember(Value = "Closed - Not Converted")]
-        ClosedNotConverted
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadIndustry
-    {
-        [EnumMember(Value = "Agriculture")]
-        Agriculture,
-        [EnumMember(Value = "Apparel")]
-        Apparel,
-        [EnumMember(Value = "Banking")]
-        Banking,
-        [EnumMember(Value = "Biotechnology")]
-        Biotechnology,
-        [EnumMember(Value = "Chemicals")]
-        Chemicals,
-        [EnumMember(Value = "Communications")]
-        Communications,
-        [EnumMember(Value = "Construction")]
-        Construction,
-        [EnumMember(Value = "Consulting")]
-        Consulting,
-        [EnumMember(Value = "Education")]
-        Education,
-        [EnumMember(Value = "Electronics")]
-        Electronics,
-        [EnumMember(Value = "Energy")]
-        Energy,
-        [EnumMember(Value = "Engineering")]
-        Engineering,
-        [EnumMember(Value = "Entertainment")]
-        Entertainment,
-        [EnumMember(Value = "Environmental")]
-        Environmental,
-        [EnumMember(Value = "Finance")]
-        Finance,
-        [EnumMember(Value = "Food & Beverage")]
-        FoodBeverage,
-        [EnumMember(Value = "Government")]
-        Government,
-        [EnumMember(Value = "Healthcare")]
-        Healthcare,
-        [EnumMember(Value = "Hospitality")]
-        Hospitality,
-        [EnumMember(Value = "Insurance")]
-        Insurance,
-        [EnumMember(Value = "Machinery")]
-        Machinery,
-        [EnumMember(Value = "Manufacturing")]
-        Manufacturing,
-        [EnumMember(Value = "Media")]
-        Media,
-        [EnumMember(Value = "Not For Profit")]
-        NotForProfit,
-        [EnumMember(Value = "Recreation")]
-        Recreation,
-        [EnumMember(Value = "Retail")]
-        Retail,
-        [EnumMember(Value = "Shipping")]
-        Shipping,
-        [EnumMember(Value = "Technology")]
-        Technology,
-        [EnumMember(Value = "Telecommunications")]
-        Telecommunications,
-        [EnumMember(Value = "Transportation")]
-        Transportation,
-        [EnumMember(Value = "Utilities")]
-        Utilities,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadRating
-    {
-        [EnumMember(Value = "Hot")]
-        Hot,
-        [EnumMember(Value = "Warm")]
-        Warm,
-        [EnumMember(Value = "Cold")]
-        Cold
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadProductInterest__c
-    {
-        [EnumMember(Value = "GC1000 series")]
-        GC1000series,
-        [EnumMember(Value = "GC5000 series")]
-        GC5000series,
-        [EnumMember(Value = "GC3000 series")]
-        GC3000series
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadPrimary__c
-    {
-        [EnumMember(Value = "No")]
-        No,
-        [EnumMember(Value = "Yes")]
-        Yes
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadHistoryField
-    {
-        [EnumMember(Value = "Address")]
-        Address,
-        [EnumMember(Value = "AnnualRevenue")]
-        AnnualRevenue,
-        [EnumMember(Value = "City")]
-        City,
-        [EnumMember(Value = "CleanStatus")]
-        CleanStatus,
-        [EnumMember(Value = "Company")]
-        Company,
-        [EnumMember(Value = "CompanyDunsNumber")]
-        CompanyDunsNumber,
-        [EnumMember(Value = "Country")]
-        Country,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "CurrentGenerators__c")]
-        CurrentGeneratorsc,
-        [EnumMember(Value = "DandbCompany")]
-        DandbCompany,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "DoNotCall")]
-        DoNotCall,
-        [EnumMember(Value = "Email")]
-        Email,
-        [EnumMember(Value = "EmailBouncedDate")]
-        EmailBouncedDate,
-        [EnumMember(Value = "EmailBouncedReason")]
-        EmailBouncedReason,
-        [EnumMember(Value = "Fax")]
-        Fax,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "FirstName")]
-        FirstName,
-        [EnumMember(Value = "GeocodeAccuracy")]
-        GeocodeAccuracy,
-        [EnumMember(Value = "HasOptedOutOfEmail")]
-        HasOptedOutOfEmail,
-        [EnumMember(Value = "HasOptedOutOfFax")]
-        HasOptedOutOfFax,
-        [EnumMember(Value = "Industry")]
-        Industry,
-        [EnumMember(Value = "IsUnreadByOwner")]
-        IsUnreadByOwner,
-        [EnumMember(Value = "Jigsaw")]
-        Jigsaw,
-        [EnumMember(Value = "LastName")]
-        LastName,
-        [EnumMember(Value = "Latitude")]
-        Latitude,
-        [EnumMember(Value = "leadConverted")]
-        leadConverted,
-        [EnumMember(Value = "leadMerged")]
-        leadMerged,
-        [EnumMember(Value = "LeadSource")]
-        LeadSource,
-        [EnumMember(Value = "Longitude")]
-        Longitude,
-        [EnumMember(Value = "MobilePhone")]
-        MobilePhone,
-        [EnumMember(Value = "Name")]
-        Name,
-        [EnumMember(Value = "NumberOfEmployees")]
-        NumberOfEmployees,
-        [EnumMember(Value = "NumberofLocations__c")]
-        NumberofLocationsc,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "Phone")]
-        Phone,
-        [EnumMember(Value = "PostalCode")]
-        PostalCode,
-        [EnumMember(Value = "Primary__c")]
-        Primaryc,
-        [EnumMember(Value = "ProductInterest__c")]
-        ProductInterestc,
-        [EnumMember(Value = "Rating")]
-        Rating,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "Salutation")]
-        Salutation,
-        [EnumMember(Value = "SICCode__c")]
-        SICCodec,
-        [EnumMember(Value = "State")]
-        State,
-        [EnumMember(Value = "Status")]
-        Status,
-        [EnumMember(Value = "Street")]
-        Street,
-        [EnumMember(Value = "Title")]
-        Title,
-        [EnumMember(Value = "Website")]
-        Website
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadShareLeadAccessLevel
-    {
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "All")]
-        All
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickLeadShareRowCause
-    {
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "Manual")]
-        Manual,
-        [EnumMember(Value = "Rule")]
-        Rule,
-        [EnumMember(Value = "ImplicitChild")]
-        ImplicitChild,
-        [EnumMember(Value = "ImplicitParent")]
-        ImplicitParent,
-        [EnumMember(Value = "ImplicitPerson")]
-        ImplicitPerson,
-        [EnumMember(Value = "Team")]
-        Team,
-        [EnumMember(Value = "Territory")]
-        Territory,
-        [EnumMember(Value = "TerritoryManual")]
-        TerritoryManual,
-        [EnumMember(Value = "TerritoryRule")]
-        TerritoryRule,
-        [EnumMember(Value = "Territory2Forecast")]
-        Territory2Forecast
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickNameType
-    {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "AccountContactRole")]
-        AccountContactRole,
-        [EnumMember(Value = "Asset")]
-        Asset,
-        [EnumMember(Value = "Campaign")]
-        Campaign,
-        [EnumMember(Value = "Case")]
-        Case,
-        [EnumMember(Value = "CollaborationGroup")]
-        CollaborationGroup,
-        [EnumMember(Value = "Contact")]
-        Contact,
-        [EnumMember(Value = "ContentDocument")]
-        ContentDocument,
-        [EnumMember(Value = "ContentVersion")]
-        ContentVersion,
-        [EnumMember(Value = "Contract")]
-        Contract,
-        [EnumMember(Value = "Dashboard")]
-        Dashboard,
-        [EnumMember(Value = "Document")]
-        Document,
-        [EnumMember(Value = "EmailMessage")]
-        EmailMessage,
-        [EnumMember(Value = "Event")]
-        Event,
-        [EnumMember(Value = "Idea")]
-        Idea,
-        [EnumMember(Value = "IdeaComment")]
-        IdeaComment,
-        [EnumMember(Value = "Lead")]
-        Lead,
-        [EnumMember(Value = "Opportunity")]
-        Opportunity,
-        [EnumMember(Value = "Order")]
-        Order,
-        [EnumMember(Value = "OrderItem")]
-        OrderItem,
-        [EnumMember(Value = "Pricebook2")]
-        Pricebook2,
-        [EnumMember(Value = "Product2")]
-        Product2,
-        [EnumMember(Value = "Queue")]
-        Queue,
-        [EnumMember(Value = "Report")]
-        Report,
-        [EnumMember(Value = "SelfServiceUser")]
-        SelfServiceUser,
-        [EnumMember(Value = "Solution")]
-        Solution,
-        [EnumMember(Value = "Task")]
-        Task,
-        [EnumMember(Value = "User")]
-        User
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickNewsFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpenActivityStatus
-    {
-        [EnumMember(Value = "Not Started")]
-        NotStarted,
-        [EnumMember(Value = "In Progress")]
-        InProgress,
-        [EnumMember(Value = "Completed")]
-        Completed,
-        [EnumMember(Value = "Waiting on someone else")]
-        Waitingonsomeoneelse,
-        [EnumMember(Value = "Deferred")]
-        Deferred
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpenActivityPriority
-    {
-        [EnumMember(Value = "High")]
-        High,
-        [EnumMember(Value = "Normal")]
-        Normal,
-        [EnumMember(Value = "Low")]
-        Low
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpenActivityActivityType
-    {
-        [EnumMember(Value = "Call")]
-        Call,
-        [EnumMember(Value = "Email")]
-        Email,
-        [EnumMember(Value = "Meeting")]
-        Meeting,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpenActivityCallType
-    {
-        [EnumMember(Value = "Internal")]
-        Internal,
-        [EnumMember(Value = "Inbound")]
-        Inbound,
-        [EnumMember(Value = "Outbound")]
-        Outbound
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityStageName
-    {
-        [EnumMember(Value = "Prospecting")]
-        Prospecting,
-        [EnumMember(Value = "Qualification")]
-        Qualification,
-        [EnumMember(Value = "Needs Analysis")]
-        NeedsAnalysis,
-        [EnumMember(Value = "Value Proposition")]
-        ValueProposition,
-        [EnumMember(Value = "Id. Decision Makers")]
-        IdDecisionMakers,
-        [EnumMember(Value = "Perception Analysis")]
-        PerceptionAnalysis,
-        [EnumMember(Value = "Proposal/Price Quote")]
-        ProposalPriceQuote,
-        [EnumMember(Value = "Negotiation/Review")]
-        NegotiationReview,
-        [EnumMember(Value = "Closed Won")]
-        ClosedWon,
-        [EnumMember(Value = "Closed Lost")]
-        ClosedLost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityType
-    {
-        [EnumMember(Value = "Existing Customer - Upgrade")]
-        ExistingCustomerUpgrade,
-        [EnumMember(Value = "Existing Customer - Replacement")]
-        ExistingCustomerReplacement,
-        [EnumMember(Value = "Existing Customer - Downgrade")]
-        ExistingCustomerDowngrade,
-        [EnumMember(Value = "New Customer")]
-        NewCustomer
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityLeadSource
-    {
-        [EnumMember(Value = "Web")]
-        Web,
-        [EnumMember(Value = "Phone Inquiry")]
-        PhoneInquiry,
-        [EnumMember(Value = "Partner Referral")]
-        PartnerReferral,
-        [EnumMember(Value = "Purchased List")]
-        PurchasedList,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityForecastCategory
-    {
-        [EnumMember(Value = "Omitted")]
-        Omitted,
-        [EnumMember(Value = "Pipeline")]
-        Pipeline,
-        [EnumMember(Value = "BestCase")]
-        BestCase,
-        [EnumMember(Value = "Forecast")]
-        Forecast,
-        [EnumMember(Value = "Closed")]
-        Closed
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityForecastCategoryName
-    {
-        [EnumMember(Value = "Omitted")]
-        Omitted,
-        [EnumMember(Value = "Pipeline")]
-        Pipeline,
-        [EnumMember(Value = "Best Case")]
-        BestCase,
-        [EnumMember(Value = "Commit")]
-        Commit,
-        [EnumMember(Value = "Closed")]
-        Closed
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityDeliveryInstallationStatus__c
-    {
-        [EnumMember(Value = "In progress")]
-        Inprogress,
-        [EnumMember(Value = "Yet to begin")]
-        Yettobegin,
-        [EnumMember(Value = "Completed")]
-        Completed
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityContactRoleRole
-    {
-        [EnumMember(Value = "Business User")]
-        BusinessUser,
-        [EnumMember(Value = "Decision Maker")]
-        DecisionMaker,
-        [EnumMember(Value = "Economic Buyer")]
-        EconomicBuyer,
-        [EnumMember(Value = "Economic Decision Maker")]
-        EconomicDecisionMaker,
-        [EnumMember(Value = "Evaluator")]
-        Evaluator,
-        [EnumMember(Value = "Executive Sponsor")]
-        ExecutiveSponsor,
-        [EnumMember(Value = "Influencer")]
-        Influencer,
-        [EnumMember(Value = "Technical Buyer")]
-        TechnicalBuyer,
-        [EnumMember(Value = "Other")]
-        Other
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityFeedType
-    {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityFieldHistoryField
-    {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "Amount")]
-        Amount,
-        [EnumMember(Value = "Campaign")]
-        Campaign,
-        [EnumMember(Value = "CloseDate")]
-        CloseDate,
-        [EnumMember(Value = "Contract")]
-        Contract,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "opportunityCreatedFromLead")]
-        opportunityCreatedFromLead,
-        [EnumMember(Value = "CurrentGenerators__c")]
-        CurrentGeneratorsc,
-        [EnumMember(Value = "DeliveryInstallationStatus__c")]
-        DeliveryInstallationStatusc,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "ForecastCategoryName")]
-        ForecastCategoryName,
-        [EnumMember(Value = "IsPrivate")]
-        IsPrivate,
-        [EnumMember(Value = "LeadSource")]
-        LeadSource,
-        [EnumMember(Value = "MainCompetitors__c")]
-        MainCompetitorsc,
-        [EnumMember(Value = "Name")]
-        Name,
-        [EnumMember(Value = "NextStep")]
-        NextStep,
-        [EnumMember(Value = "OrderNumber__c")]
-        OrderNumberc,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "Probability")]
-        Probability,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "StageName")]
-        StageName,
-        [EnumMember(Value = "TotalOpportunityQuantity")]
-        TotalOpportunityQuantity,
-        [EnumMember(Value = "TrackingNumber__c")]
-        TrackingNumberc,
-        [EnumMember(Value = "Type")]
-        Type
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityHistoryStageName
-    {
-        [EnumMember(Value = "Prospecting")]
-        Prospecting,
-        [EnumMember(Value = "Qualification")]
-        Qualification,
-        [EnumMember(Value = "Needs Analysis")]
-        NeedsAnalysis,
-        [EnumMember(Value = "Value Proposition")]
-        ValueProposition,
-        [EnumMember(Value = "Id. Decision Makers")]
-        IdDecisionMakers,
-        [EnumMember(Value = "Perception Analysis")]
-        PerceptionAnalysis,
-        [EnumMember(Value = "Proposal/Price Quote")]
-        ProposalPriceQuote,
-        [EnumMember(Value = "Negotiation/Review")]
-        NegotiationReview,
-        [EnumMember(Value = "Closed Won")]
-        ClosedWon,
-        [EnumMember(Value = "Closed Lost")]
-        ClosedLost
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityHistoryForecastCategory
-    {
-        [EnumMember(Value = "Omitted")]
-        Omitted,
-        [EnumMember(Value = "Pipeline")]
-        Pipeline,
-        [EnumMember(Value = "BestCase")]
-        BestCase,
-        [EnumMember(Value = "Forecast")]
-        Forecast,
-        [EnumMember(Value = "Closed")]
-        Closed
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityPartnerRole
-    {
-        [EnumMember(Value = "System Integrator")]
-        SystemIntegrator,
-        [EnumMember(Value = "Agency")]
-        Agency,
-        [EnumMember(Value = "Advertiser")]
-        Advertiser,
-        [EnumMember(Value = "VAR/Reseller")]
-        VARReseller,
-        [EnumMember(Value = "Distributor")]
-        Distributor,
-        [EnumMember(Value = "Developer")]
-        Developer,
-        [EnumMember(Value = "Broker")]
-        Broker,
-        [EnumMember(Value = "Lender")]
-        Lender,
-        [EnumMember(Value = "Supplier")]
-        Supplier,
-        [EnumMember(Value = "Institution")]
-        Institution,
-        [EnumMember(Value = "Contractor")]
-        Contractor,
-        [EnumMember(Value = "Dealer")]
-        Dealer,
-        [EnumMember(Value = "Consultant")]
-        Consultant
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityShareOpportunityAccessLevel
-    {
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "All")]
-        All
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityShareRowCause
-    {
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "Manual")]
-        Manual,
-        [EnumMember(Value = "Rule")]
-        Rule,
-        [EnumMember(Value = "ImplicitChild")]
-        ImplicitChild,
-        [EnumMember(Value = "ImplicitParent")]
-        ImplicitParent,
-        [EnumMember(Value = "ImplicitPerson")]
-        ImplicitPerson,
-        [EnumMember(Value = "Team")]
-        Team,
-        [EnumMember(Value = "Territory")]
-        Territory,
-        [EnumMember(Value = "TerritoryManual")]
-        TerritoryManual,
-        [EnumMember(Value = "TerritoryRule")]
-        TerritoryRule,
-        [EnumMember(Value = "Territory2Forecast")]
-        Territory2Forecast
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityStageForecastCategory
-    {
-        [EnumMember(Value = "Omitted")]
-        Omitted,
-        [EnumMember(Value = "Pipeline")]
-        Pipeline,
-        [EnumMember(Value = "BestCase")]
-        BestCase,
-        [EnumMember(Value = "Forecast")]
-        Forecast,
-        [EnumMember(Value = "Closed")]
-        Closed
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOpportunityStageForecastCategoryName
-    {
-        [EnumMember(Value = "Omitted")]
-        Omitted,
-        [EnumMember(Value = "Pipeline")]
-        Pipeline,
-        [EnumMember(Value = "Best Case")]
-        BestCase,
-        [EnumMember(Value = "Commit")]
-        Commit,
-        [EnumMember(Value = "Closed")]
-        Closed
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrderStatus
-    {
-        [EnumMember(Value = "Draft")]
-        Draft,
-        [EnumMember(Value = "Activated")]
-        Activated
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrderType
-    {
+        public static readonly string  Agriculture = "Agriculture"; 
+        public static readonly string  Apparel = "Apparel"; 
+        public static readonly string  Banking = "Banking"; 
+        public static readonly string  Biotechnology = "Biotechnology"; 
+        public static readonly string  Chemicals = "Chemicals"; 
+        public static readonly string  Communications = "Communications"; 
+        public static readonly string  Construction = "Construction"; 
+        public static readonly string  Consulting = "Consulting"; 
+        public static readonly string  Education = "Education"; 
+        public static readonly string  Electronics = "Electronics"; 
+        public static readonly string  Energy = "Energy"; 
+        public static readonly string  Engineering = "Engineering"; 
+        public static readonly string  Entertainment = "Entertainment"; 
+        public static readonly string  Environmental = "Environmental"; 
+        public static readonly string  Finance = "Finance"; 
+        public static readonly string  FoodBeverage = "Food & Beverage"; 
+        public static readonly string  Government = "Government"; 
+        public static readonly string  Healthcare = "Healthcare"; 
+        public static readonly string  Hospitality = "Hospitality"; 
+        public static readonly string  Insurance = "Insurance"; 
+        public static readonly string  Machinery = "Machinery"; 
+        public static readonly string  Manufacturing = "Manufacturing"; 
+        public static readonly string  Media = "Media"; 
+        public static readonly string  NotForProfit = "Not For Profit"; 
+        public static readonly string  Recreation = "Recreation"; 
+        public static readonly string  Retail = "Retail"; 
+        public static readonly string  Shipping = "Shipping"; 
+        public static readonly string  Technology = "Technology"; 
+        public static readonly string  Telecommunications = "Telecommunications"; 
+        public static readonly string  Transportation = "Transportation"; 
+        public static readonly string  Utilities = "Utilities"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountIndustry o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountIndustry(string s)
+        {
+            return new PickAccountIndustry {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
 
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrderStatusCode
+    public class PickAccountOwnership
     {
-        [EnumMember(Value = "D")]
-        D,
-        [EnumMember(Value = "A")]
-        A,
-        [EnumMember(Value = "C")]
-        C,
-        [EnumMember(Value = "E")]
-        E
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrderHistoryField
-    {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "ActivatedBy")]
-        ActivatedBy,
-        [EnumMember(Value = "ActivatedDate")]
-        ActivatedDate,
-        [EnumMember(Value = "BillingAddress")]
-        BillingAddress,
-        [EnumMember(Value = "BillingCity")]
-        BillingCity,
-        [EnumMember(Value = "BillingCountry")]
-        BillingCountry,
-        [EnumMember(Value = "BillingGeocodeAccuracy")]
-        BillingGeocodeAccuracy,
-        [EnumMember(Value = "BillingLatitude")]
-        BillingLatitude,
-        [EnumMember(Value = "BillingLongitude")]
-        BillingLongitude,
-        [EnumMember(Value = "BillingPostalCode")]
-        BillingPostalCode,
-        [EnumMember(Value = "BillingState")]
-        BillingState,
-        [EnumMember(Value = "BillingStreet")]
-        BillingStreet,
-        [EnumMember(Value = "BillToContact")]
-        BillToContact,
-        [EnumMember(Value = "CompanyAuthorizedBy")]
-        CompanyAuthorizedBy,
-        [EnumMember(Value = "CompanyAuthorizedDate")]
-        CompanyAuthorizedDate,
-        [EnumMember(Value = "Contract")]
-        Contract,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "CustomerAuthorizedBy")]
-        CustomerAuthorizedBy,
-        [EnumMember(Value = "CustomerAuthorizedDate")]
-        CustomerAuthorizedDate,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "EffectiveDate")]
-        EffectiveDate,
-        [EnumMember(Value = "EndDate")]
-        EndDate,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "Name")]
-        Name,
-        [EnumMember(Value = "Opportunity")]
-        Opportunity,
-        [EnumMember(Value = "orderActivated")]
-        orderActivated,
-        [EnumMember(Value = "orderApproved")]
-        orderApproved,
-        [EnumMember(Value = "orderCancelled")]
-        orderCancelled,
-        [EnumMember(Value = "orderDeactivated")]
-        orderDeactivated,
-        [EnumMember(Value = "orderExpired")]
-        orderExpired,
-        [EnumMember(Value = "OrderReferenceNumber")]
-        OrderReferenceNumber,
-        [EnumMember(Value = "orderSubmitted")]
-        orderSubmitted,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "PoDate")]
-        PoDate,
-        [EnumMember(Value = "PoNumber")]
-        PoNumber,
-        [EnumMember(Value = "Pricebook2")]
-        Pricebook2,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "ShippingAddress")]
-        ShippingAddress,
-        [EnumMember(Value = "ShippingCity")]
-        ShippingCity,
-        [EnumMember(Value = "ShippingCountry")]
-        ShippingCountry,
-        [EnumMember(Value = "ShippingGeocodeAccuracy")]
-        ShippingGeocodeAccuracy,
-        [EnumMember(Value = "ShippingLatitude")]
-        ShippingLatitude,
-        [EnumMember(Value = "ShippingLongitude")]
-        ShippingLongitude,
-        [EnumMember(Value = "ShippingPostalCode")]
-        ShippingPostalCode,
-        [EnumMember(Value = "ShippingState")]
-        ShippingState,
-        [EnumMember(Value = "ShippingStreet")]
-        ShippingStreet,
-        [EnumMember(Value = "ShipToContact")]
-        ShipToContact,
-        [EnumMember(Value = "Status")]
-        Status,
-        [EnumMember(Value = "StatusCode")]
-        StatusCode,
-        [EnumMember(Value = "Type")]
-        Type
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationDefaultLocaleSidKey
-    {
-        [EnumMember(Value = "ar_BH")]
-        arBH,
-        [EnumMember(Value = "ar_EG")]
-        arEG,
-        [EnumMember(Value = "ar_JO")]
-        arJO,
-        [EnumMember(Value = "ar_KW")]
-        arKW,
-        [EnumMember(Value = "ar_LB")]
-        arLB,
-        [EnumMember(Value = "ar_SA")]
-        arSA,
-        [EnumMember(Value = "ar_AE")]
-        arAE,
-        [EnumMember(Value = "hy_AM")]
-        hyAM,
-        [EnumMember(Value = "bg_BG")]
-        bgBG,
-        [EnumMember(Value = "ca_ES")]
-        caES,
-        [EnumMember(Value = "zh_CN")]
-        zhCN,
-        [EnumMember(Value = "zh_HK")]
-        zhHK,
-        [EnumMember(Value = "zh_TW")]
-        zhTW,
-        [EnumMember(Value = "hr_HR")]
-        hrHR,
-        [EnumMember(Value = "cs_CZ")]
-        csCZ,
-        [EnumMember(Value = "da_DK")]
-        daDK,
-        [EnumMember(Value = "nl_BE")]
-        nlBE,
-        [EnumMember(Value = "nl_NL")]
-        nlNL,
-        [EnumMember(Value = "nl_SR")]
-        nlSR,
-        [EnumMember(Value = "en_AU")]
-        enAU,
-        [EnumMember(Value = "en_BB")]
-        enBB,
-        [EnumMember(Value = "en_BM")]
-        enBM,
-        [EnumMember(Value = "en_CA")]
-        enCA,
-        [EnumMember(Value = "en_GH")]
-        enGH,
-        [EnumMember(Value = "en_IN")]
-        enIN,
-        [EnumMember(Value = "en_ID")]
-        enID,
-        [EnumMember(Value = "en_IE")]
-        enIE,
-        [EnumMember(Value = "en_MY")]
-        enMY,
-        [EnumMember(Value = "en_NZ")]
-        enNZ,
-        [EnumMember(Value = "en_NG")]
-        enNG,
-        [EnumMember(Value = "en_PH")]
-        enPH,
-        [EnumMember(Value = "en_SG")]
-        enSG,
-        [EnumMember(Value = "en_ZA")]
-        enZA,
-        [EnumMember(Value = "en_GB")]
-        enGB,
-        [EnumMember(Value = "en_US")]
-        enUS,
-        [EnumMember(Value = "et_EE")]
-        etEE,
-        [EnumMember(Value = "fi_FI")]
-        fiFI,
-        [EnumMember(Value = "fr_BE")]
-        frBE,
-        [EnumMember(Value = "fr_CA")]
-        frCA,
-        [EnumMember(Value = "fr_FR")]
-        frFR,
-        [EnumMember(Value = "fr_LU")]
-        frLU,
-        [EnumMember(Value = "fr_MC")]
-        frMC,
-        [EnumMember(Value = "fr_CH")]
-        frCH,
-        [EnumMember(Value = "ka_GE")]
-        kaGE,
-        [EnumMember(Value = "de_AT")]
-        deAT,
-        [EnumMember(Value = "de_DE")]
-        deDE,
-        [EnumMember(Value = "de_LU")]
-        deLU,
-        [EnumMember(Value = "de_CH")]
-        deCH,
-        [EnumMember(Value = "el_GR")]
-        elGR,
-        [EnumMember(Value = "iw_IL")]
-        iwIL,
-        [EnumMember(Value = "is_IS")]
-        isIS,
-        [EnumMember(Value = "it_IT")]
-        itIT,
-        [EnumMember(Value = "it_CH")]
-        itCH,
-        [EnumMember(Value = "ja_JP")]
-        jaJP,
-        [EnumMember(Value = "kk_KZ")]
-        kkKZ,
-        [EnumMember(Value = "km_KH")]
-        kmKH,
-        [EnumMember(Value = "ko_KR")]
-        koKR,
-        [EnumMember(Value = "lv_LV")]
-        lvLV,
-        [EnumMember(Value = "lt_LT")]
-        ltLT,
-        [EnumMember(Value = "ms_MY")]
-        msMY,
-        [EnumMember(Value = "no_NO")]
-        noNO,
-        [EnumMember(Value = "pt_AO")]
-        ptAO,
-        [EnumMember(Value = "pt_BR")]
-        ptBR,
-        [EnumMember(Value = "pt_PT")]
-        ptPT,
-        [EnumMember(Value = "ro_RO")]
-        roRO,
-        [EnumMember(Value = "ru_RU")]
-        ruRU,
-        [EnumMember(Value = "sr_BA")]
-        srBA,
-        [EnumMember(Value = "sh_BA")]
-        shBA,
-        [EnumMember(Value = "sh_CS")]
-        shCS,
-        [EnumMember(Value = "sr_CS")]
-        srCS,
-        [EnumMember(Value = "sk_SK")]
-        skSK,
-        [EnumMember(Value = "sl_SI")]
-        slSI,
-        [EnumMember(Value = "es_AR")]
-        esAR,
-        [EnumMember(Value = "es_BO")]
-        esBO,
-        [EnumMember(Value = "es_CL")]
-        esCL,
-        [EnumMember(Value = "es_CO")]
-        esCO,
-        [EnumMember(Value = "es_CR")]
-        esCR,
-        [EnumMember(Value = "es_DO")]
-        esDO,
-        [EnumMember(Value = "es_EC")]
-        esEC,
-        [EnumMember(Value = "es_SV")]
-        esSV,
-        [EnumMember(Value = "es_GT")]
-        esGT,
-        [EnumMember(Value = "es_HN")]
-        esHN,
-        [EnumMember(Value = "es_MX")]
-        esMX,
-        [EnumMember(Value = "es_PA")]
-        esPA,
-        [EnumMember(Value = "es_PY")]
-        esPY,
-        [EnumMember(Value = "es_PE")]
-        esPE,
-        [EnumMember(Value = "es_PR")]
-        esPR,
-        [EnumMember(Value = "es_ES")]
-        esES,
-        [EnumMember(Value = "es_UY")]
-        esUY,
-        [EnumMember(Value = "es_VE")]
-        esVE,
-        [EnumMember(Value = "sv_SE")]
-        svSE,
-        [EnumMember(Value = "tl_PH")]
-        tlPH,
-        [EnumMember(Value = "th_TH")]
-        thTH,
-        [EnumMember(Value = "uk_UA")]
-        ukUA,
-        [EnumMember(Value = "ur_PK")]
-        urPK,
-        [EnumMember(Value = "vi_VN")]
-        viVN
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationLanguageLocaleKey
-    {
-        [EnumMember(Value = "en_US")]
-        enUS,
-        [EnumMember(Value = "de")]
-        de,
-        [EnumMember(Value = "es")]
-        es,
-        [EnumMember(Value = "fr")]
-        fr,
-        [EnumMember(Value = "it")]
-        it,
-        [EnumMember(Value = "ja")]
-        ja,
-        [EnumMember(Value = "sv")]
-        sv,
-        [EnumMember(Value = "ko")]
-        ko,
-        [EnumMember(Value = "zh_TW")]
-        zhTW,
-        [EnumMember(Value = "zh_CN")]
-        zhCN,
-        [EnumMember(Value = "pt_BR")]
-        ptBR,
-        [EnumMember(Value = "nl_NL")]
-        nlNL,
-        [EnumMember(Value = "da")]
-        da,
-        [EnumMember(Value = "th")]
-        th,
-        [EnumMember(Value = "fi")]
-        fi,
-        [EnumMember(Value = "ru")]
-        ru,
-        [EnumMember(Value = "es_MX")]
-        esMX,
-        [EnumMember(Value = "no")]
-        no
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationDefaultAccountAccess
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationDefaultContactAccess
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "ControlledByParent")]
-        ControlledByParent
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationDefaultOpportunityAccess
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationDefaultLeadAccess
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "ReadEditTransfer")]
-        ReadEditTransfer
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationDefaultCaseAccess
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "ReadEditTransfer")]
-        ReadEditTransfer
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationDefaultCalendarAccess
-    {
-        [EnumMember(Value = "HideDetails")]
-        HideDetails,
-        [EnumMember(Value = "HideDetailsInsert")]
-        HideDetailsInsert,
-        [EnumMember(Value = "ShowDetails")]
-        ShowDetails,
-        [EnumMember(Value = "ShowDetailsInsert")]
-        ShowDetailsInsert,
-        [EnumMember(Value = "AllowEdits")]
-        AllowEdits
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationDefaultPricebookAccess
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "ReadSelect")]
-        ReadSelect
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationDefaultCampaignAccess
-    {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit,
-        [EnumMember(Value = "All")]
-        All
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationUiSkin
-    {
-        [EnumMember(Value = "Theme1")]
-        Theme1,
-        [EnumMember(Value = "Theme2")]
-        Theme2,
-        [EnumMember(Value = "PortalDefault")]
-        PortalDefault,
-        [EnumMember(Value = "Webstore")]
-        Webstore,
-        [EnumMember(Value = "Theme3")]
-        Theme3
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickOrganizationOrganizationType
-    {
-        [EnumMember(Value = "Team Edition")]
-        TeamEdition,
-        [EnumMember(Value = "Professional Edition")]
-        ProfessionalEdition,
-        [EnumMember(Value = "Enterprise Edition")]
-        EnterpriseEdition,
-        [EnumMember(Value = "Developer Edition")]
-        DeveloperEdition,
-        [EnumMember(Value = "Personal Edition")]
-        PersonalEdition,
-        [EnumMember(Value = "Unlimited Edition")]
-        UnlimitedEdition,
-        [EnumMember(Value = "Contact Manager Edition")]
-        ContactManagerEdition,
-        [EnumMember(Value = "Base Edition")]
-        BaseEdition
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickPartnerRole
-    {
-        [EnumMember(Value = "System Integrator")]
-        SystemIntegrator,
-        [EnumMember(Value = "Agency")]
-        Agency,
-        [EnumMember(Value = "Advertiser")]
-        Advertiser,
-        [EnumMember(Value = "VAR/Reseller")]
-        VARReseller,
-        [EnumMember(Value = "Distributor")]
-        Distributor,
-        [EnumMember(Value = "Developer")]
-        Developer,
-        [EnumMember(Value = "Broker")]
-        Broker,
-        [EnumMember(Value = "Lender")]
-        Lender,
-        [EnumMember(Value = "Supplier")]
-        Supplier,
-        [EnumMember(Value = "Institution")]
-        Institution,
-        [EnumMember(Value = "Contractor")]
-        Contractor,
-        [EnumMember(Value = "Dealer")]
-        Dealer,
-        [EnumMember(Value = "Consultant")]
-        Consultant
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickPartnerRoleReverseRole
-    {
-        [EnumMember(Value = "System Integrator")]
-        SystemIntegrator,
-        [EnumMember(Value = "Agency")]
-        Agency,
-        [EnumMember(Value = "Advertiser")]
-        Advertiser,
-        [EnumMember(Value = "VAR/Reseller")]
-        VARReseller,
-        [EnumMember(Value = "Distributor")]
-        Distributor,
-        [EnumMember(Value = "Developer")]
-        Developer,
-        [EnumMember(Value = "Broker")]
-        Broker,
-        [EnumMember(Value = "Lender")]
-        Lender,
-        [EnumMember(Value = "Supplier")]
-        Supplier,
-        [EnumMember(Value = "Institution")]
-        Institution,
-        [EnumMember(Value = "Contractor")]
-        Contractor,
-        [EnumMember(Value = "Dealer")]
-        Dealer,
-        [EnumMember(Value = "Consultant")]
-        Consultant
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickPeriodType
-    {
-        [EnumMember(Value = "Month")]
-        Month,
-        [EnumMember(Value = "Quarter")]
-        Quarter,
-        [EnumMember(Value = "Week")]
-        Week,
-        [EnumMember(Value = "Year")]
-        Year
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickPeriodQuarterLabel
-    {
-        [EnumMember(Value = "Spring")]
-        Spring,
-        [EnumMember(Value = "Summer")]
-        Summer,
-        [EnumMember(Value = "Fall")]
-        Fall,
-        [EnumMember(Value = "Winter")]
-        Winter
-    }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickPeriodPeriodLabel
-    {
+        public static readonly string  Public = "Public"; 
+        public static readonly string  Private = "Private"; 
+        public static readonly string  Subsidiary = "Subsidiary"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountOwnership o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountOwnership(string s)
+        {
+            return new PickAccountOwnership {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
 
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickPricebook2HistoryField
+    public class PickAccountRating
     {
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "IsActive")]
-        IsActive,
-        [EnumMember(Value = "IsArchived")]
-        IsArchived,
-        [EnumMember(Value = "IsStandard")]
-        IsStandard,
-        [EnumMember(Value = "Name")]
-        Name,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked
+        public static readonly string  Hot = "Hot"; 
+        public static readonly string  Warm = "Warm"; 
+        public static readonly string  Cold = "Cold"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountRating o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountRating(string s)
+        {
+            return new PickAccountRating {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProcessDefinitionType
+    public class PickAccountCustomerPriority__c
     {
-        [EnumMember(Value = "Approval")]
-        Approval,
-        [EnumMember(Value = "State")]
-        State
+        public static readonly string  High = "High"; 
+        public static readonly string  Low = "Low"; 
+        public static readonly string  Medium = "Medium"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountCustomerPriority__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountCustomerPriority__c(string s)
+        {
+            return new PickAccountCustomerPriority__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProcessDefinitionTableEnumOrId
+    public class PickAccountSLA__c
     {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "Asset")]
-        Asset,
-        [EnumMember(Value = "AssistantProgress")]
-        AssistantProgress,
-        [EnumMember(Value = "Campaign")]
-        Campaign,
-        [EnumMember(Value = "Case")]
-        Case,
-        [EnumMember(Value = "Contact")]
-        Contact,
-        [EnumMember(Value = "Contract")]
-        Contract,
-        [EnumMember(Value = "DuplicateRecordItem")]
-        DuplicateRecordItem,
-        [EnumMember(Value = "DuplicateRecordSet")]
-        DuplicateRecordSet,
-        [EnumMember(Value = "EmailMessage")]
-        EmailMessage,
-        [EnumMember(Value = "ExchangeUserMapping")]
-        ExchangeUserMapping,
-        [EnumMember(Value = "Goal")]
-        Goal,
-        [EnumMember(Value = "KnowledgeArticle")]
-        KnowledgeArticle,
-        [EnumMember(Value = "KnowledgeArticleVersion")]
-        KnowledgeArticleVersion,
-        [EnumMember(Value = "Lead")]
-        Lead,
-        [EnumMember(Value = "Metric")]
-        Metric,
-        [EnumMember(Value = "Opportunity")]
-        Opportunity,
-        [EnumMember(Value = "Order")]
-        Order,
-        [EnumMember(Value = "Product2")]
-        Product2,
-        [EnumMember(Value = "Solution")]
-        Solution,
-        [EnumMember(Value = "StreamingChannel")]
-        StreamingChannel,
-        [EnumMember(Value = "UserProvisioningRequest")]
-        UserProvisioningRequest,
-        [EnumMember(Value = "WorkCoaching")]
-        WorkCoaching,
-        [EnumMember(Value = "WorkFeedback")]
-        WorkFeedback,
-        [EnumMember(Value = "WorkFeedbackQuestion")]
-        WorkFeedbackQuestion,
-        [EnumMember(Value = "WorkFeedbackQuestionSet")]
-        WorkFeedbackQuestionSet,
-        [EnumMember(Value = "WorkFeedbackRequest")]
-        WorkFeedbackRequest,
-        [EnumMember(Value = "WorkFeedbackTemplate")]
-        WorkFeedbackTemplate,
-        [EnumMember(Value = "WorkPerformanceCycle")]
-        WorkPerformanceCycle
+        public static readonly string  Gold = "Gold"; 
+        public static readonly string  Silver = "Silver"; 
+        public static readonly string  Platinum = "Platinum"; 
+        public static readonly string  Bronze = "Bronze"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountSLA__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountSLA__c(string s)
+        {
+            return new PickAccountSLA__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProcessDefinitionLockType
+    public class PickAccountActive__c
     {
-        [EnumMember(Value = "Total")]
-        Total,
-        [EnumMember(Value = "Admin")]
-        Admin,
-        [EnumMember(Value = "Owner")]
-        Owner,
-        [EnumMember(Value = "Workitem")]
-        Workitem,
-        [EnumMember(Value = "Node")]
-        Node,
-        [EnumMember(Value = "none")]
-        none
+        public static readonly string  No = "No"; 
+        public static readonly string  Yes = "Yes"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountActive__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountActive__c(string s)
+        {
+            return new PickAccountActive__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProcessDefinitionState
+    public class PickAccountUpsellOpportunity__c
     {
-        [EnumMember(Value = "Active")]
-        Active,
-        [EnumMember(Value = "Inactive")]
-        Inactive,
-        [EnumMember(Value = "Obsolete")]
-        Obsolete
+        public static readonly string  Maybe = "Maybe"; 
+        public static readonly string  No = "No"; 
+        public static readonly string  Yes = "Yes"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountUpsellOpportunity__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountUpsellOpportunity__c(string s)
+        {
+            return new PickAccountUpsellOpportunity__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProcessInstanceStatus
+    public class PickAccountContactRoleRole
     {
-        [EnumMember(Value = "Approved")]
-        Approved,
-        [EnumMember(Value = "Rejected")]
-        Rejected,
-        [EnumMember(Value = "Removed")]
-        Removed,
-        [EnumMember(Value = "Fault")]
-        Fault,
-        [EnumMember(Value = "Pending")]
-        Pending,
-        [EnumMember(Value = "Held")]
-        Held,
-        [EnumMember(Value = "Reassigned")]
-        Reassigned,
-        [EnumMember(Value = "Started")]
-        Started,
-        [EnumMember(Value = "NoResponse")]
-        NoResponse
+        public static readonly string  BusinessUser = "Business User"; 
+        public static readonly string  DecisionMaker = "Decision Maker"; 
+        public static readonly string  EconomicBuyer = "Economic Buyer"; 
+        public static readonly string  EconomicDecisionMaker = "Economic Decision Maker"; 
+        public static readonly string  Evaluator = "Evaluator"; 
+        public static readonly string  ExecutiveSponsor = "Executive Sponsor"; 
+        public static readonly string  Influencer = "Influencer"; 
+        public static readonly string  TechnicalBuyer = "Technical Buyer"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountContactRoleRole o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountContactRoleRole(string s)
+        {
+            return new PickAccountContactRoleRole {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProcessInstanceHistoryStepStatus
+    public class PickAccountFeedType
     {
-        [EnumMember(Value = "Approved")]
-        Approved,
-        [EnumMember(Value = "Rejected")]
-        Rejected,
-        [EnumMember(Value = "Removed")]
-        Removed,
-        [EnumMember(Value = "Fault")]
-        Fault,
-        [EnumMember(Value = "Pending")]
-        Pending,
-        [EnumMember(Value = "Held")]
-        Held,
-        [EnumMember(Value = "Reassigned")]
-        Reassigned,
-        [EnumMember(Value = "Started")]
-        Started,
-        [EnumMember(Value = "NoResponse")]
-        NoResponse
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountFeedType(string s)
+        {
+            return new PickAccountFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProcessInstanceStepStepStatus
+    public class PickAccountHistoryField
     {
-        [EnumMember(Value = "Approved")]
-        Approved,
-        [EnumMember(Value = "Rejected")]
-        Rejected,
-        [EnumMember(Value = "Removed")]
-        Removed,
-        [EnumMember(Value = "Fault")]
-        Fault,
-        [EnumMember(Value = "Pending")]
-        Pending,
-        [EnumMember(Value = "Held")]
-        Held,
-        [EnumMember(Value = "Reassigned")]
-        Reassigned,
-        [EnumMember(Value = "Started")]
-        Started,
-        [EnumMember(Value = "NoResponse")]
-        NoResponse
+        public static readonly string  accountMerged = "accountMerged"; 
+        public static readonly string  AccountNumber = "AccountNumber"; 
+        public static readonly string  AccountSource = "AccountSource"; 
+        public static readonly string  Activec = "Active__c"; 
+        public static readonly string  AnnualRevenue = "AnnualRevenue"; 
+        public static readonly string  BillingAddress = "BillingAddress"; 
+        public static readonly string  BillingCity = "BillingCity"; 
+        public static readonly string  BillingCountry = "BillingCountry"; 
+        public static readonly string  BillingGeocodeAccuracy = "BillingGeocodeAccuracy"; 
+        public static readonly string  BillingLatitude = "BillingLatitude"; 
+        public static readonly string  BillingLongitude = "BillingLongitude"; 
+        public static readonly string  BillingPostalCode = "BillingPostalCode"; 
+        public static readonly string  BillingState = "BillingState"; 
+        public static readonly string  BillingStreet = "BillingStreet"; 
+        public static readonly string  CleanStatus = "CleanStatus"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  accountCreatedFromLead = "accountCreatedFromLead"; 
+        public static readonly string  CustomerPriorityc = "CustomerPriority__c"; 
+        public static readonly string  DandbCompany = "DandbCompany"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  DunsNumber = "DunsNumber"; 
+        public static readonly string  Fax = "Fax"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  Industry = "Industry"; 
+        public static readonly string  Jigsaw = "Jigsaw"; 
+        public static readonly string  accountUpdatedByLead = "accountUpdatedByLead"; 
+        public static readonly string  personAccountUpdatedByLead = "personAccountUpdatedByLead"; 
+        public static readonly string  NaicsCode = "NaicsCode"; 
+        public static readonly string  NaicsDesc = "NaicsDesc"; 
+        public static readonly string  Name = "Name"; 
+        public static readonly string  NumberOfEmployees = "NumberOfEmployees"; 
+        public static readonly string  NumberofLocationsc = "NumberofLocations__c"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  Ownership = "Ownership"; 
+        public static readonly string  Parent = "Parent"; 
+        public static readonly string  Phone = "Phone"; 
+        public static readonly string  Rating = "Rating"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  ShippingAddress = "ShippingAddress"; 
+        public static readonly string  ShippingCity = "ShippingCity"; 
+        public static readonly string  ShippingCountry = "ShippingCountry"; 
+        public static readonly string  ShippingGeocodeAccuracy = "ShippingGeocodeAccuracy"; 
+        public static readonly string  ShippingLatitude = "ShippingLatitude"; 
+        public static readonly string  ShippingLongitude = "ShippingLongitude"; 
+        public static readonly string  ShippingPostalCode = "ShippingPostalCode"; 
+        public static readonly string  ShippingState = "ShippingState"; 
+        public static readonly string  ShippingStreet = "ShippingStreet"; 
+        public static readonly string  Sic = "Sic"; 
+        public static readonly string  SicDesc = "SicDesc"; 
+        public static readonly string  Site = "Site"; 
+        public static readonly string  SLAc = "SLA__c"; 
+        public static readonly string  SLAExpirationDatec = "SLAExpirationDate__c"; 
+        public static readonly string  SLASerialNumberc = "SLASerialNumber__c"; 
+        public static readonly string  TextName = "TextName"; 
+        public static readonly string  TickerSymbol = "TickerSymbol"; 
+        public static readonly string  Tradestyle = "Tradestyle"; 
+        public static readonly string  Type = "Type"; 
+        public static readonly string  UpsellOpportunityc = "UpsellOpportunity__c"; 
+        public static readonly string  Website = "Website"; 
+        public static readonly string  YearStarted = "YearStarted"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountHistoryField(string s)
+        {
+            return new PickAccountHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProduct2Family
+    public class PickAccountPartnerRole
     {
-        [EnumMember(Value = "None")]
-        None
+        public static readonly string  SystemIntegrator = "System Integrator"; 
+        public static readonly string  Agency = "Agency"; 
+        public static readonly string  Advertiser = "Advertiser"; 
+        public static readonly string  VARReseller = "VAR/Reseller"; 
+        public static readonly string  Distributor = "Distributor"; 
+        public static readonly string  Developer = "Developer"; 
+        public static readonly string  Broker = "Broker"; 
+        public static readonly string  Lender = "Lender"; 
+        public static readonly string  Supplier = "Supplier"; 
+        public static readonly string  Institution = "Institution"; 
+        public static readonly string  Contractor = "Contractor"; 
+        public static readonly string  Dealer = "Dealer"; 
+        public static readonly string  Consultant = "Consultant"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountPartnerRole o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountPartnerRole(string s)
+        {
+            return new PickAccountPartnerRole {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProduct2FeedType
+    public class PickAccountShareAccountAccessLevel
     {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  All = "All"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountShareAccountAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountShareAccountAccessLevel(string s)
+        {
+            return new PickAccountShareAccountAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickProfileUserType
+    public class PickAccountShareOpportunityAccessLevel
     {
-        [EnumMember(Value = "Standard")]
-        Standard,
-        [EnumMember(Value = "PowerPartner")]
-        PowerPartner,
-        [EnumMember(Value = "PowerCustomerSuccess")]
-        PowerCustomerSuccess,
-        [EnumMember(Value = "CustomerSuccess")]
-        CustomerSuccess,
-        [EnumMember(Value = "Guest")]
-        Guest,
-        [EnumMember(Value = "CSPLitePortal")]
-        CSPLitePortal,
-        [EnumMember(Value = "CSNOnly")]
-        CSNOnly,
-        [EnumMember(Value = "SelfService")]
-        SelfService
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountShareOpportunityAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountShareOpportunityAccessLevel(string s)
+        {
+            return new PickAccountShareOpportunityAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickQueueSobjectSobjectType
+    public class PickAccountShareCaseAccessLevel
     {
-        [EnumMember(Value = "Case")]
-        Case,
-        [EnumMember(Value = "Goal")]
-        Goal,
-        [EnumMember(Value = "Lead")]
-        Lead,
-        [EnumMember(Value = "Macro")]
-        Macro,
-        [EnumMember(Value = "Metric")]
-        Metric,
-        [EnumMember(Value = "Order")]
-        Order,
-        [EnumMember(Value = "UserProvisioningRequest")]
-        UserProvisioningRequest,
-        [EnumMember(Value = "WorkCoaching")]
-        WorkCoaching,
-        [EnumMember(Value = "WorkFeedback")]
-        WorkFeedback,
-        [EnumMember(Value = "WorkFeedbackQuestion")]
-        WorkFeedbackQuestion,
-        [EnumMember(Value = "WorkFeedbackQuestionSet")]
-        WorkFeedbackQuestionSet,
-        [EnumMember(Value = "WorkFeedbackRequest")]
-        WorkFeedbackRequest,
-        [EnumMember(Value = "WorkFeedbackTemplate")]
-        WorkFeedbackTemplate,
-        [EnumMember(Value = "WorkPerformanceCycle")]
-        WorkPerformanceCycle
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountShareCaseAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountShareCaseAccessLevel(string s)
+        {
+            return new PickAccountShareCaseAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickRecordTypeSobjectType
+    public class PickAccountShareContactAccessLevel
     {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "Announcement")]
-        Announcement,
-        [EnumMember(Value = "AssistantProgress")]
-        AssistantProgress,
-        [EnumMember(Value = "Campaign")]
-        Campaign,
-        [EnumMember(Value = "CampaignMember")]
-        CampaignMember,
-        [EnumMember(Value = "Case")]
-        Case,
-        [EnumMember(Value = "CollaborationGroupRecord")]
-        CollaborationGroupRecord,
-        [EnumMember(Value = "Contact")]
-        Contact,
-        [EnumMember(Value = "ContentVersion")]
-        ContentVersion,
-        [EnumMember(Value = "Contract")]
-        Contract,
-        [EnumMember(Value = "DuplicateErrorLog")]
-        DuplicateErrorLog,
-        [EnumMember(Value = "DuplicateRecordItem")]
-        DuplicateRecordItem,
-        [EnumMember(Value = "DuplicateRecordSet")]
-        DuplicateRecordSet,
-        [EnumMember(Value = "Event")]
-        Event,
-        [EnumMember(Value = "FileSearchActivity")]
-        FileSearchActivity,
-        [EnumMember(Value = "Goal")]
-        Goal,
-        [EnumMember(Value = "GoalLink")]
-        GoalLink,
-        [EnumMember(Value = "Idea")]
-        Idea,
-        [EnumMember(Value = "InboundSocialPost")]
-        InboundSocialPost,
-        [EnumMember(Value = "Lead")]
-        Lead,
-        [EnumMember(Value = "Macro")]
-        Macro,
-        [EnumMember(Value = "MacroAction")]
-        MacroAction,
-        [EnumMember(Value = "MacroInstruction")]
-        MacroInstruction,
-        [EnumMember(Value = "Metric")]
-        Metric,
-        [EnumMember(Value = "MetricDataLink")]
-        MetricDataLink,
-        [EnumMember(Value = "Opportunity")]
-        Opportunity,
-        [EnumMember(Value = "Order")]
-        Order,
-        [EnumMember(Value = "Pricebook2")]
-        Pricebook2,
-        [EnumMember(Value = "Product2")]
-        Product2,
-        [EnumMember(Value = "RecordOrigin")]
-        RecordOrigin,
-        [EnumMember(Value = "SearchActivity")]
-        SearchActivity,
-        [EnumMember(Value = "SearchPromotionRule")]
-        SearchPromotionRule,
-        [EnumMember(Value = "SetupAssistantAnswer")]
-        SetupAssistantAnswer,
-        [EnumMember(Value = "Solution")]
-        Solution,
-        [EnumMember(Value = "Task")]
-        Task,
-        [EnumMember(Value = "TransactionSecurityAction")]
-        TransactionSecurityAction,
-        [EnumMember(Value = "TransactionSecurityActionEvent")]
-        TransactionSecurityActionEvent,
-        [EnumMember(Value = "WorkCoaching")]
-        WorkCoaching,
-        [EnumMember(Value = "WorkFeedback")]
-        WorkFeedback,
-        [EnumMember(Value = "WorkFeedbackQuestion")]
-        WorkFeedbackQuestion,
-        [EnumMember(Value = "WorkFeedbackQuestionSet")]
-        WorkFeedbackQuestionSet,
-        [EnumMember(Value = "WorkFeedbackRequest")]
-        WorkFeedbackRequest,
-        [EnumMember(Value = "WorkFeedbackTemplate")]
-        WorkFeedbackTemplate,
-        [EnumMember(Value = "WorkPerformanceCycle")]
-        WorkPerformanceCycle
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountShareContactAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountShareContactAccessLevel(string s)
+        {
+            return new PickAccountShareContactAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickReportFeedType
+    public class PickAccountShareRowCause
     {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  Manual = "Manual"; 
+        public static readonly string  Rule = "Rule"; 
+        public static readonly string  ImplicitChild = "ImplicitChild"; 
+        public static readonly string  ImplicitParent = "ImplicitParent"; 
+        public static readonly string  ImplicitPerson = "ImplicitPerson"; 
+        public static readonly string  Team = "Team"; 
+        public static readonly string  Territory = "Territory"; 
+        public static readonly string  TerritoryManual = "TerritoryManual"; 
+        public static readonly string  TerritoryRule = "TerritoryRule"; 
+        public static readonly string  Territory2Forecast = "Territory2Forecast"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountShareRowCause o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountShareRowCause(string s)
+        {
+            return new PickAccountShareRowCause {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickSiteStatus
+    public class PickActivityHistoryStatus
     {
-        [EnumMember(Value = "Active")]
-        Active,
-        [EnumMember(Value = "Inactive")]
-        Inactive
+        public static readonly string  NotStarted = "Not Started"; 
+        public static readonly string  InProgress = "In Progress"; 
+        public static readonly string  Completed = "Completed"; 
+        public static readonly string  Waitingonsomeoneelse = "Waiting on someone else"; 
+        public static readonly string  Deferred = "Deferred"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickActivityHistoryStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickActivityHistoryStatus(string s)
+        {
+            return new PickActivityHistoryStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickSiteFeedType
+    public class PickActivityHistoryPriority
     {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
+        public static readonly string  High = "High"; 
+        public static readonly string  Normal = "Normal"; 
+        public static readonly string  Low = "Low"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickActivityHistoryPriority o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickActivityHistoryPriority(string s)
+        {
+            return new PickActivityHistoryPriority {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickSiteHistoryField
+    public class PickActivityHistoryActivityType
     {
-        [EnumMember(Value = "siteActive")]
-        siteActive,
-        [EnumMember(Value = "Admin")]
-        Admin,
-        [EnumMember(Value = "AnalyticsTrackingCode")]
-        AnalyticsTrackingCode,
-        [EnumMember(Value = "siteOverride401")]
-        siteOverride401,
-        [EnumMember(Value = "siteOverrideChangePassword")]
-        siteOverrideChangePassword,
-        [EnumMember(Value = "ClickjackProtectionLevel")]
-        ClickjackProtectionLevel,
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "SiteDeleteDomain")]
-        SiteDeleteDomain,
-        [EnumMember(Value = "siteNewDomain")]
-        siteNewDomain,
-        [EnumMember(Value = "DefaultDomain")]
-        DefaultDomain,
-        [EnumMember(Value = "siteSetPrimaryDomain")]
-        siteSetPrimaryDomain,
-        [EnumMember(Value = "Description")]
-        Description,
-        [EnumMember(Value = "siteBTDisabled")]
-        siteBTDisabled,
-        [EnumMember(Value = "siteEnableFeeds")]
-        siteEnableFeeds,
-        [EnumMember(Value = "siteAllowStandardAnswersPages")]
-        siteAllowStandardAnswersPages,
-        [EnumMember(Value = "siteAllowHomePage")]
-        siteAllowHomePage,
-        [EnumMember(Value = "siteAllowStandardIdeasPages")]
-        siteAllowStandardIdeasPages,
-        [EnumMember(Value = "siteAllowStandardSearch")]
-        siteAllowStandardSearch,
-        [EnumMember(Value = "siteAllowStandardLookups")]
-        siteAllowStandardLookups,
-        [EnumMember(Value = "FavoriteIcon")]
-        FavoriteIcon,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "siteOverrideForgotPassword")]
-        siteOverrideForgotPassword,
-        [EnumMember(Value = "siteOverride500")]
-        siteOverride500,
-        [EnumMember(Value = "GuestUser")]
-        GuestUser,
-        [EnumMember(Value = "Guid")]
-        Guid,
-        [EnumMember(Value = "siteOverrideInactive")]
-        siteOverrideInactive,
-        [EnumMember(Value = "IndexPage")]
-        IndexPage,
-        [EnumMember(Value = "Language")]
-        Language,
-        [EnumMember(Value = "siteOverride509")]
-        siteOverride509,
-        [EnumMember(Value = "siteOverride503")]
-        siteOverride503,
-        [EnumMember(Value = "MasterLabel")]
-        MasterLabel,
-        [EnumMember(Value = "sitePageLimitExceeded")]
-        sitePageLimitExceeded,
-        [EnumMember(Value = "siteOverrideMyProfile")]
-        siteOverrideMyProfile,
-        [EnumMember(Value = "Name")]
-        Name,
-        [EnumMember(Value = "NewPassTemplate")]
-        NewPassTemplate,
-        [EnumMember(Value = "NewUserTemplate")]
-        NewUserTemplate,
-        [EnumMember(Value = "Options")]
-        Options,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "siteOverride404")]
-        siteOverride404,
-        [EnumMember(Value = "Portal")]
-        Portal,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "siteNewRedirect")]
-        siteNewRedirect,
-        [EnumMember(Value = "siteDeleteRedirect")]
-        siteDeleteRedirect,
-        [EnumMember(Value = "siteChangeRedirect")]
-        siteChangeRedirect,
-        [EnumMember(Value = "siteRequireInsecurePortalAccess")]
-        siteRequireInsecurePortalAccess,
-        [EnumMember(Value = "siteRequireHttps")]
-        siteRequireHttps,
-        [EnumMember(Value = "siteOverrideSelfReg")]
-        siteOverrideSelfReg,
-        [EnumMember(Value = "ServerIsDown")]
-        ServerIsDown,
-        [EnumMember(Value = "siteOverrideRobotsTxt")]
-        siteOverrideRobotsTxt,
-        [EnumMember(Value = "siteOverrideTemplate")]
-        siteOverrideTemplate,
-        [EnumMember(Value = "SiteType")]
-        SiteType,
-        [EnumMember(Value = "Status")]
-        Status,
-        [EnumMember(Value = "Subdomain")]
-        Subdomain,
-        [EnumMember(Value = "TopLevelDomain")]
-        TopLevelDomain,
-        [EnumMember(Value = "UrlPathPrefix")]
-        UrlPathPrefix,
-        [EnumMember(Value = "UrlRewriterClass")]
-        UrlRewriterClass
+        public static readonly string  Call = "Call"; 
+        public static readonly string  Email = "Email"; 
+        public static readonly string  Meeting = "Meeting"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickActivityHistoryActivityType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickActivityHistoryActivityType(string s)
+        {
+            return new PickActivityHistoryActivityType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickSolutionStatus
+    public class PickActivityHistoryCallType
     {
-        [EnumMember(Value = "Draft")]
-        Draft,
-        [EnumMember(Value = "Reviewed")]
-        Reviewed,
-        [EnumMember(Value = "Duplicate")]
-        Duplicate
+        public static readonly string  Internal = "Internal"; 
+        public static readonly string  Inbound = "Inbound"; 
+        public static readonly string  Outbound = "Outbound"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickActivityHistoryCallType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickActivityHistoryCallType(string s)
+        {
+            return new PickActivityHistoryCallType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickSolutionFeedType
+    public class PickApexClassStatus
     {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
+        public static readonly string  Inactive = "Inactive"; 
+        public static readonly string  Active = "Active"; 
+        public static readonly string  Deleted = "Deleted"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickApexClassStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickApexClassStatus(string s)
+        {
+            return new PickApexClassStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickSolutionHistoryField
+    public class PickApexComponentControllerType
     {
-        [EnumMember(Value = "created")]
-        created,
-        [EnumMember(Value = "feedEvent")]
-        feedEvent,
-        [EnumMember(Value = "IsPublished")]
-        IsPublished,
-        [EnumMember(Value = "IsPublishedInPublicKb")]
-        IsPublishedInPublicKb,
-        [EnumMember(Value = "ownerAccepted")]
-        ownerAccepted,
-        [EnumMember(Value = "ownerAssignment")]
-        ownerAssignment,
-        [EnumMember(Value = "locked")]
-        locked,
-        [EnumMember(Value = "unlocked")]
-        unlocked,
-        [EnumMember(Value = "SolutionName")]
-        SolutionName,
-        [EnumMember(Value = "SolutionNote")]
-        SolutionNote,
-        [EnumMember(Value = "Status")]
-        Status
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _4 = "4"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+        public static readonly string _5 = "5"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickApexComponentControllerType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickApexComponentControllerType(string s)
+        {
+            return new PickApexComponentControllerType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickStaticResourceCacheControl
+    public class PickApexLogLocation
     {
-        [EnumMember(Value = "Private")]
-        Private,
-        [EnumMember(Value = "Public")]
-        Public
+        public static readonly string  Monitoring = "Monitoring"; 
+        public static readonly string  Profiling = "Profiling"; 
+        public static readonly string  SystemLog = "SystemLog"; 
+        public static readonly string  HeapDump = "HeapDump"; 
+        public static readonly string  Preserved = "Preserved"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickApexLogLocation o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickApexLogLocation(string s)
+        {
+            return new PickApexLogLocation {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickTaskStatus
+    public class PickApexPageControllerType
     {
-        [EnumMember(Value = "Not Started")]
-        NotStarted,
-        [EnumMember(Value = "In Progress")]
-        InProgress,
-        [EnumMember(Value = "Completed")]
-        Completed,
-        [EnumMember(Value = "Waiting on someone else")]
-        Waitingonsomeoneelse,
-        [EnumMember(Value = "Deferred")]
-        Deferred
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _4 = "4"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+        public static readonly string _5 = "5"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickApexPageControllerType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickApexPageControllerType(string s)
+        {
+            return new PickApexPageControllerType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickTaskPriority
+    public class PickApexTriggerTableEnumOrId
     {
-        [EnumMember(Value = "High")]
-        High,
-        [EnumMember(Value = "Normal")]
-        Normal,
-        [EnumMember(Value = "Low")]
-        Low
+        public static readonly string  Account = "Account"; 
+        public static readonly string  Asset = "Asset"; 
+        public static readonly string  AssistantInteraction = "AssistantInteraction"; 
+        public static readonly string  Attachment = "Attachment"; 
+        public static readonly string  Campaign = "Campaign"; 
+        public static readonly string  CampaignMember = "CampaignMember"; 
+        public static readonly string  Case = "Case"; 
+        public static readonly string  CaseComment = "CaseComment"; 
+        public static readonly string  ChatterMessage = "ChatterMessage"; 
+        public static readonly string  CollaborationGroup = "CollaborationGroup"; 
+        public static readonly string  CollaborationGroupMember = "CollaborationGroupMember"; 
+        public static readonly string  CollaborationGroupRecord = "CollaborationGroupRecord"; 
+        public static readonly string  Contact = "Contact"; 
+        public static readonly string  ContentDistribution = "ContentDistribution"; 
+        public static readonly string  ContentDocument = "ContentDocument"; 
+        public static readonly string  ContentDocumentLink = "ContentDocumentLink"; 
+        public static readonly string  ContentVersion = "ContentVersion"; 
+        public static readonly string  Contract = "Contract"; 
+        public static readonly string  DandBCompany = "DandBCompany"; 
+        public static readonly string  DuplicateRecordItem = "DuplicateRecordItem"; 
+        public static readonly string  DuplicateRecordSet = "DuplicateRecordSet"; 
+        public static readonly string  EmailMessage = "EmailMessage"; 
+        public static readonly string  Event = "Event"; 
+        public static readonly string  FeedComment = "FeedComment"; 
+        public static readonly string  FeedItem = "FeedItem"; 
+        public static readonly string  Goal = "Goal"; 
+        public static readonly string  GoalLink = "GoalLink"; 
+        public static readonly string  Idea = "Idea"; 
+        public static readonly string  IdeaComment = "IdeaComment"; 
+        public static readonly string  Lead = "Lead"; 
+        public static readonly string  Macro = "Macro"; 
+        public static readonly string  Metric = "Metric"; 
+        public static readonly string  MetricDataLink = "MetricDataLink"; 
+        public static readonly string  Note = "Note"; 
+        public static readonly string  Opportunity = "Opportunity"; 
+        public static readonly string  OpportunityLineItem = "OpportunityLineItem"; 
+        public static readonly string  Order = "Order"; 
+        public static readonly string  OrderItem = "OrderItem"; 
+        public static readonly string  Partner = "Partner"; 
+        public static readonly string  Pricebook2 = "Pricebook2"; 
+        public static readonly string  Product2 = "Product2"; 
+        public static readonly string  RecordOrigin = "RecordOrigin"; 
+        public static readonly string  SocialPersona = "SocialPersona"; 
+        public static readonly string  Solution = "Solution"; 
+        public static readonly string  StreamingChannel = "StreamingChannel"; 
+        public static readonly string  Task = "Task"; 
+        public static readonly string  Topic = "Topic"; 
+        public static readonly string  TopicAssignment = "TopicAssignment"; 
+        public static readonly string  User = "User"; 
+        public static readonly string  UserProvAccount = "UserProvAccount"; 
+        public static readonly string  UserProvAccountStaging = "UserProvAccountStaging"; 
+        public static readonly string  UserProvisioningLog = "UserProvisioningLog"; 
+        public static readonly string  UserProvisioningRequest = "UserProvisioningRequest"; 
+        public static readonly string  UserProvMockTarget = "UserProvMockTarget"; 
+        public static readonly string  WorkCoaching = "WorkCoaching"; 
+        public static readonly string  WorkFeedback = "WorkFeedback"; 
+        public static readonly string  WorkFeedbackQuestion = "WorkFeedbackQuestion"; 
+        public static readonly string  WorkFeedbackQuestionSet = "WorkFeedbackQuestionSet"; 
+        public static readonly string  WorkFeedbackRequest = "WorkFeedbackRequest"; 
+        public static readonly string  WorkFeedbackTemplate = "WorkFeedbackTemplate"; 
+        public static readonly string  WorkPerformanceCycle = "WorkPerformanceCycle"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickApexTriggerTableEnumOrId o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickApexTriggerTableEnumOrId(string s)
+        {
+            return new PickApexTriggerTableEnumOrId {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickTaskCallType
+    public class PickApexTriggerStatus
     {
-        [EnumMember(Value = "Internal")]
-        Internal,
-        [EnumMember(Value = "Inbound")]
-        Inbound,
-        [EnumMember(Value = "Outbound")]
-        Outbound
+        public static readonly string  Inactive = "Inactive"; 
+        public static readonly string  Active = "Active"; 
+        public static readonly string  Deleted = "Deleted"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickApexTriggerStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickApexTriggerStatus(string s)
+        {
+            return new PickApexTriggerStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickTaskRecurrenceTimeZoneSidKey
+    public class PickAssetStatus
     {
-        [EnumMember(Value = "Pacific/Kiritimati")]
-        PacificKiritimati,
-        [EnumMember(Value = "Pacific/Tongatapu")]
-        PacificTongatapu,
-        [EnumMember(Value = "Pacific/Chatham")]
-        PacificChatham,
-        [EnumMember(Value = "Pacific/Auckland")]
-        PacificAuckland,
-        [EnumMember(Value = "Pacific/Enderbury")]
-        PacificEnderbury,
-        [EnumMember(Value = "Pacific/Fiji")]
-        PacificFiji,
-        [EnumMember(Value = "Asia/Kamchatka")]
-        AsiaKamchatka,
-        [EnumMember(Value = "Australia/Lord_Howe")]
-        AustraliaLordHowe,
-        [EnumMember(Value = "Australia/Sydney")]
-        AustraliaSydney,
-        [EnumMember(Value = "Pacific/Guadalcanal")]
-        PacificGuadalcanal,
-        [EnumMember(Value = "Pacific/Norfolk")]
-        PacificNorfolk,
-        [EnumMember(Value = "Australia/Adelaide")]
-        AustraliaAdelaide,
-        [EnumMember(Value = "Australia/Brisbane")]
-        AustraliaBrisbane,
-        [EnumMember(Value = "Australia/Darwin")]
-        AustraliaDarwin,
-        [EnumMember(Value = "Asia/Seoul")]
-        AsiaSeoul,
-        [EnumMember(Value = "Asia/Tokyo")]
-        AsiaTokyo,
-        [EnumMember(Value = "Asia/Hong_Kong")]
-        AsiaHongKong,
-        [EnumMember(Value = "Asia/Kuala_Lumpur")]
-        AsiaKualaLumpur,
-        [EnumMember(Value = "Asia/Manila")]
-        AsiaManila,
-        [EnumMember(Value = "Asia/Shanghai")]
-        AsiaShanghai,
-        [EnumMember(Value = "Asia/Singapore")]
-        AsiaSingapore,
-        [EnumMember(Value = "Asia/Taipei")]
-        AsiaTaipei,
-        [EnumMember(Value = "Australia/Perth")]
-        AustraliaPerth,
-        [EnumMember(Value = "Asia/Bangkok")]
-        AsiaBangkok,
-        [EnumMember(Value = "Asia/Ho_Chi_Minh")]
-        AsiaHoChiMinh,
-        [EnumMember(Value = "Asia/Jakarta")]
-        AsiaJakarta,
-        [EnumMember(Value = "Asia/Rangoon")]
-        AsiaRangoon,
-        [EnumMember(Value = "Asia/Dhaka")]
-        AsiaDhaka,
-        [EnumMember(Value = "Asia/Kathmandu")]
-        AsiaKathmandu,
-        [EnumMember(Value = "Asia/Colombo")]
-        AsiaColombo,
-        [EnumMember(Value = "Asia/Kolkata")]
-        AsiaKolkata,
-        [EnumMember(Value = "Asia/Karachi")]
-        AsiaKarachi,
-        [EnumMember(Value = "Asia/Tashkent")]
-        AsiaTashkent,
-        [EnumMember(Value = "Asia/Yekaterinburg")]
-        AsiaYekaterinburg,
-        [EnumMember(Value = "Asia/Kabul")]
-        AsiaKabul,
-        [EnumMember(Value = "Asia/Dubai")]
-        AsiaDubai,
-        [EnumMember(Value = "Asia/Tbilisi")]
-        AsiaTbilisi,
-        [EnumMember(Value = "Asia/Tehran")]
-        AsiaTehran,
-        [EnumMember(Value = "Africa/Nairobi")]
-        AfricaNairobi,
-        [EnumMember(Value = "Asia/Baghdad")]
-        AsiaBaghdad,
-        [EnumMember(Value = "Asia/Kuwait")]
-        AsiaKuwait,
-        [EnumMember(Value = "Asia/Riyadh")]
-        AsiaRiyadh,
-        [EnumMember(Value = "Europe/Istanbul")]
-        EuropeIstanbul,
-        [EnumMember(Value = "Europe/Minsk")]
-        EuropeMinsk,
-        [EnumMember(Value = "Europe/Moscow")]
-        EuropeMoscow,
-        [EnumMember(Value = "Africa/Cairo")]
-        AfricaCairo,
-        [EnumMember(Value = "Africa/Johannesburg")]
-        AfricaJohannesburg,
-        [EnumMember(Value = "Asia/Jerusalem")]
-        AsiaJerusalem,
-        [EnumMember(Value = "Europe/Athens")]
-        EuropeAthens,
-        [EnumMember(Value = "Europe/Bucharest")]
-        EuropeBucharest,
-        [EnumMember(Value = "Europe/Helsinki")]
-        EuropeHelsinki,
-        [EnumMember(Value = "Africa/Algiers")]
-        AfricaAlgiers,
-        [EnumMember(Value = "Europe/Amsterdam")]
-        EuropeAmsterdam,
-        [EnumMember(Value = "Europe/Berlin")]
-        EuropeBerlin,
-        [EnumMember(Value = "Europe/Brussels")]
-        EuropeBrussels,
-        [EnumMember(Value = "Europe/Paris")]
-        EuropeParis,
-        [EnumMember(Value = "Europe/Prague")]
-        EuropePrague,
-        [EnumMember(Value = "Europe/Rome")]
-        EuropeRome,
-        [EnumMember(Value = "Europe/Dublin")]
-        EuropeDublin,
-        [EnumMember(Value = "Europe/Lisbon")]
-        EuropeLisbon,
-        [EnumMember(Value = "Europe/London")]
-        EuropeLondon,
-        [EnumMember(Value = "GMT")]
-        GMT,
-        [EnumMember(Value = "Atlantic/Cape_Verde")]
-        AtlanticCapeVerde,
-        [EnumMember(Value = "America/Sao_Paulo")]
-        AmericaSaoPaulo,
-        [EnumMember(Value = "Atlantic/South_Georgia")]
-        AtlanticSouthGeorgia,
-        [EnumMember(Value = "America/Argentina/Buenos_Aires")]
-        AmericaArgentinaBuenosAires,
-        [EnumMember(Value = "America/Santiago")]
-        AmericaSantiago,
-        [EnumMember(Value = "America/St_Johns")]
-        AmericaStJohns,
-        [EnumMember(Value = "America/Caracas")]
-        AmericaCaracas,
-        [EnumMember(Value = "America/Halifax")]
-        AmericaHalifax,
-        [EnumMember(Value = "America/Puerto_Rico")]
-        AmericaPuertoRico,
-        [EnumMember(Value = "Atlantic/Bermuda")]
-        AtlanticBermuda,
-        [EnumMember(Value = "America/Bogota")]
-        AmericaBogota,
-        [EnumMember(Value = "America/Indiana/Indianapolis")]
-        AmericaIndianaIndianapolis,
-        [EnumMember(Value = "America/Lima")]
-        AmericaLima,
-        [EnumMember(Value = "America/New_York")]
-        AmericaNewYork,
-        [EnumMember(Value = "America/Panama")]
-        AmericaPanama,
-        [EnumMember(Value = "America/Chicago")]
-        AmericaChicago,
-        [EnumMember(Value = "America/El_Salvador")]
-        AmericaElSalvador,
-        [EnumMember(Value = "America/Mexico_City")]
-        AmericaMexicoCity,
-        [EnumMember(Value = "America/Denver")]
-        AmericaDenver,
-        [EnumMember(Value = "America/Phoenix")]
-        AmericaPhoenix,
-        [EnumMember(Value = "America/Los_Angeles")]
-        AmericaLosAngeles,
-        [EnumMember(Value = "America/Tijuana")]
-        AmericaTijuana,
-        [EnumMember(Value = "America/Anchorage")]
-        AmericaAnchorage,
-        [EnumMember(Value = "Pacific/Honolulu")]
-        PacificHonolulu,
-        [EnumMember(Value = "Pacific/Niue")]
-        PacificNiue,
-        [EnumMember(Value = "Pacific/Pago_Pago")]
-        PacificPagoPago
+        public static readonly string  Shipped = "Shipped"; 
+        public static readonly string  Installed = "Installed"; 
+        public static readonly string  Registered = "Registered"; 
+        public static readonly string  Obsolete = "Obsolete"; 
+        public static readonly string  Purchased = "Purchased"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAssetStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAssetStatus(string s)
+        {
+            return new PickAssetStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickTaskRecurrenceType
+    public class PickAssetFeedType
     {
-        [EnumMember(Value = "RecursDaily")]
-        RecursDaily,
-        [EnumMember(Value = "RecursEveryWeekday")]
-        RecursEveryWeekday,
-        [EnumMember(Value = "RecursMonthly")]
-        RecursMonthly,
-        [EnumMember(Value = "RecursMonthlyNth")]
-        RecursMonthlyNth,
-        [EnumMember(Value = "RecursWeekly")]
-        RecursWeekly,
-        [EnumMember(Value = "RecursYearly")]
-        RecursYearly,
-        [EnumMember(Value = "RecursYearlyNth")]
-        RecursYearlyNth
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAssetFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAssetFeedType(string s)
+        {
+            return new PickAssetFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickTaskRecurrenceInstance
+    public class PickAssetHistoryField
     {
-        [EnumMember(Value = "First")]
-        First,
-        [EnumMember(Value = "Second")]
-        Second,
-        [EnumMember(Value = "Third")]
-        Third,
-        [EnumMember(Value = "Fourth")]
-        Fourth,
-        [EnumMember(Value = "Last")]
-        Last
+        public static readonly string  Account = "Account"; 
+        public static readonly string  Contact = "Contact"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  InstallDate = "InstallDate"; 
+        public static readonly string  IsCompetitorProduct = "IsCompetitorProduct"; 
+        public static readonly string  Name = "Name"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  Parent = "Parent"; 
+        public static readonly string  Price = "Price"; 
+        public static readonly string  Product2 = "Product2"; 
+        public static readonly string  PurchaseDate = "PurchaseDate"; 
+        public static readonly string  Quantity = "Quantity"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  RootAsset = "RootAsset"; 
+        public static readonly string  SerialNumber = "SerialNumber"; 
+        public static readonly string  Status = "Status"; 
+        public static readonly string  UsageEndDate = "UsageEndDate"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAssetHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAssetHistoryField(string s)
+        {
+            return new PickAssetHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickTaskRecurrenceMonthOfYear
+    public class PickAssignmentRuleSobjectType
     {
-        [EnumMember(Value = "January")]
-        January,
-        [EnumMember(Value = "February")]
-        February,
-        [EnumMember(Value = "March")]
-        March,
-        [EnumMember(Value = "April")]
-        April,
-        [EnumMember(Value = "May")]
-        May,
-        [EnumMember(Value = "June")]
-        June,
-        [EnumMember(Value = "July")]
-        July,
-        [EnumMember(Value = "August")]
-        August,
-        [EnumMember(Value = "September")]
-        September,
-        [EnumMember(Value = "October")]
-        October,
-        [EnumMember(Value = "November")]
-        November,
-        [EnumMember(Value = "December")]
-        December
+        public static readonly string  Case = "Case"; 
+        public static readonly string  Lead = "Lead"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAssignmentRuleSobjectType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAssignmentRuleSobjectType(string s)
+        {
+            return new PickAssignmentRuleSobjectType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickTaskFeedType
+    public class PickAsyncApexJobJobType
     {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
+        public static readonly string  Future = "Future"; 
+        public static readonly string  SharingRecalculation = "SharingRecalculation"; 
+        public static readonly string  ScheduledApex = "ScheduledApex"; 
+        public static readonly string  BatchApex = "BatchApex"; 
+        public static readonly string  BatchApexWorker = "BatchApexWorker"; 
+        public static readonly string  TestRequest = "TestRequest"; 
+        public static readonly string  TestWorker = "TestWorker"; 
+        public static readonly string  ApexToken = "ApexToken"; 
+        public static readonly string  Queueable = "Queueable"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAsyncApexJobJobType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAsyncApexJobJobType(string s)
+        {
+            return new PickAsyncApexJobJobType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserTimeZoneSidKey
+    public class PickAsyncApexJobStatus
     {
-        [EnumMember(Value = "Pacific/Kiritimati")]
-        PacificKiritimati,
-        [EnumMember(Value = "Pacific/Tongatapu")]
-        PacificTongatapu,
-        [EnumMember(Value = "Pacific/Chatham")]
-        PacificChatham,
-        [EnumMember(Value = "Pacific/Auckland")]
-        PacificAuckland,
-        [EnumMember(Value = "Pacific/Enderbury")]
-        PacificEnderbury,
-        [EnumMember(Value = "Pacific/Fiji")]
-        PacificFiji,
-        [EnumMember(Value = "Asia/Kamchatka")]
-        AsiaKamchatka,
-        [EnumMember(Value = "Australia/Lord_Howe")]
-        AustraliaLordHowe,
-        [EnumMember(Value = "Australia/Sydney")]
-        AustraliaSydney,
-        [EnumMember(Value = "Pacific/Guadalcanal")]
-        PacificGuadalcanal,
-        [EnumMember(Value = "Pacific/Norfolk")]
-        PacificNorfolk,
-        [EnumMember(Value = "Australia/Adelaide")]
-        AustraliaAdelaide,
-        [EnumMember(Value = "Australia/Brisbane")]
-        AustraliaBrisbane,
-        [EnumMember(Value = "Australia/Darwin")]
-        AustraliaDarwin,
-        [EnumMember(Value = "Asia/Seoul")]
-        AsiaSeoul,
-        [EnumMember(Value = "Asia/Tokyo")]
-        AsiaTokyo,
-        [EnumMember(Value = "Asia/Hong_Kong")]
-        AsiaHongKong,
-        [EnumMember(Value = "Asia/Kuala_Lumpur")]
-        AsiaKualaLumpur,
-        [EnumMember(Value = "Asia/Manila")]
-        AsiaManila,
-        [EnumMember(Value = "Asia/Shanghai")]
-        AsiaShanghai,
-        [EnumMember(Value = "Asia/Singapore")]
-        AsiaSingapore,
-        [EnumMember(Value = "Asia/Taipei")]
-        AsiaTaipei,
-        [EnumMember(Value = "Australia/Perth")]
-        AustraliaPerth,
-        [EnumMember(Value = "Asia/Bangkok")]
-        AsiaBangkok,
-        [EnumMember(Value = "Asia/Ho_Chi_Minh")]
-        AsiaHoChiMinh,
-        [EnumMember(Value = "Asia/Jakarta")]
-        AsiaJakarta,
-        [EnumMember(Value = "Asia/Rangoon")]
-        AsiaRangoon,
-        [EnumMember(Value = "Asia/Dhaka")]
-        AsiaDhaka,
-        [EnumMember(Value = "Asia/Kathmandu")]
-        AsiaKathmandu,
-        [EnumMember(Value = "Asia/Colombo")]
-        AsiaColombo,
-        [EnumMember(Value = "Asia/Kolkata")]
-        AsiaKolkata,
-        [EnumMember(Value = "Asia/Karachi")]
-        AsiaKarachi,
-        [EnumMember(Value = "Asia/Tashkent")]
-        AsiaTashkent,
-        [EnumMember(Value = "Asia/Yekaterinburg")]
-        AsiaYekaterinburg,
-        [EnumMember(Value = "Asia/Kabul")]
-        AsiaKabul,
-        [EnumMember(Value = "Asia/Dubai")]
-        AsiaDubai,
-        [EnumMember(Value = "Asia/Tbilisi")]
-        AsiaTbilisi,
-        [EnumMember(Value = "Asia/Tehran")]
-        AsiaTehran,
-        [EnumMember(Value = "Africa/Nairobi")]
-        AfricaNairobi,
-        [EnumMember(Value = "Asia/Baghdad")]
-        AsiaBaghdad,
-        [EnumMember(Value = "Asia/Kuwait")]
-        AsiaKuwait,
-        [EnumMember(Value = "Asia/Riyadh")]
-        AsiaRiyadh,
-        [EnumMember(Value = "Europe/Istanbul")]
-        EuropeIstanbul,
-        [EnumMember(Value = "Europe/Minsk")]
-        EuropeMinsk,
-        [EnumMember(Value = "Europe/Moscow")]
-        EuropeMoscow,
-        [EnumMember(Value = "Africa/Cairo")]
-        AfricaCairo,
-        [EnumMember(Value = "Africa/Johannesburg")]
-        AfricaJohannesburg,
-        [EnumMember(Value = "Asia/Jerusalem")]
-        AsiaJerusalem,
-        [EnumMember(Value = "Europe/Athens")]
-        EuropeAthens,
-        [EnumMember(Value = "Europe/Bucharest")]
-        EuropeBucharest,
-        [EnumMember(Value = "Europe/Helsinki")]
-        EuropeHelsinki,
-        [EnumMember(Value = "Africa/Algiers")]
-        AfricaAlgiers,
-        [EnumMember(Value = "Europe/Amsterdam")]
-        EuropeAmsterdam,
-        [EnumMember(Value = "Europe/Berlin")]
-        EuropeBerlin,
-        [EnumMember(Value = "Europe/Brussels")]
-        EuropeBrussels,
-        [EnumMember(Value = "Europe/Paris")]
-        EuropeParis,
-        [EnumMember(Value = "Europe/Prague")]
-        EuropePrague,
-        [EnumMember(Value = "Europe/Rome")]
-        EuropeRome,
-        [EnumMember(Value = "Europe/Dublin")]
-        EuropeDublin,
-        [EnumMember(Value = "Europe/Lisbon")]
-        EuropeLisbon,
-        [EnumMember(Value = "Europe/London")]
-        EuropeLondon,
-        [EnumMember(Value = "GMT")]
-        GMT,
-        [EnumMember(Value = "Atlantic/Cape_Verde")]
-        AtlanticCapeVerde,
-        [EnumMember(Value = "America/Sao_Paulo")]
-        AmericaSaoPaulo,
-        [EnumMember(Value = "Atlantic/South_Georgia")]
-        AtlanticSouthGeorgia,
-        [EnumMember(Value = "America/Argentina/Buenos_Aires")]
-        AmericaArgentinaBuenosAires,
-        [EnumMember(Value = "America/Santiago")]
-        AmericaSantiago,
-        [EnumMember(Value = "America/St_Johns")]
-        AmericaStJohns,
-        [EnumMember(Value = "America/Caracas")]
-        AmericaCaracas,
-        [EnumMember(Value = "America/Halifax")]
-        AmericaHalifax,
-        [EnumMember(Value = "America/Puerto_Rico")]
-        AmericaPuertoRico,
-        [EnumMember(Value = "Atlantic/Bermuda")]
-        AtlanticBermuda,
-        [EnumMember(Value = "America/Bogota")]
-        AmericaBogota,
-        [EnumMember(Value = "America/Indiana/Indianapolis")]
-        AmericaIndianaIndianapolis,
-        [EnumMember(Value = "America/Lima")]
-        AmericaLima,
-        [EnumMember(Value = "America/New_York")]
-        AmericaNewYork,
-        [EnumMember(Value = "America/Panama")]
-        AmericaPanama,
-        [EnumMember(Value = "America/Chicago")]
-        AmericaChicago,
-        [EnumMember(Value = "America/El_Salvador")]
-        AmericaElSalvador,
-        [EnumMember(Value = "America/Mexico_City")]
-        AmericaMexicoCity,
-        [EnumMember(Value = "America/Denver")]
-        AmericaDenver,
-        [EnumMember(Value = "America/Phoenix")]
-        AmericaPhoenix,
-        [EnumMember(Value = "America/Los_Angeles")]
-        AmericaLosAngeles,
-        [EnumMember(Value = "America/Tijuana")]
-        AmericaTijuana,
-        [EnumMember(Value = "America/Anchorage")]
-        AmericaAnchorage,
-        [EnumMember(Value = "Pacific/Honolulu")]
-        PacificHonolulu,
-        [EnumMember(Value = "Pacific/Niue")]
-        PacificNiue,
-        [EnumMember(Value = "Pacific/Pago_Pago")]
-        PacificPagoPago
+        public static readonly string  Queued = "Queued"; 
+        public static readonly string  Processing = "Processing"; 
+        public static readonly string  Aborted = "Aborted"; 
+        public static readonly string  Completed = "Completed"; 
+        public static readonly string  Failed = "Failed"; 
+        public static readonly string  Preparing = "Preparing"; 
+        public static readonly string  Holding = "Holding"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAsyncApexJobStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAsyncApexJobStatus(string s)
+        {
+            return new PickAsyncApexJobStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserLocaleSidKey
+    public class PickBusinessHoursTimeZoneSidKey
     {
-        [EnumMember(Value = "ar_BH")]
-        arBH,
-        [EnumMember(Value = "ar_EG")]
-        arEG,
-        [EnumMember(Value = "ar_JO")]
-        arJO,
-        [EnumMember(Value = "ar_KW")]
-        arKW,
-        [EnumMember(Value = "ar_LB")]
-        arLB,
-        [EnumMember(Value = "ar_SA")]
-        arSA,
-        [EnumMember(Value = "ar_AE")]
-        arAE,
-        [EnumMember(Value = "hy_AM")]
-        hyAM,
-        [EnumMember(Value = "bg_BG")]
-        bgBG,
-        [EnumMember(Value = "ca_ES")]
-        caES,
-        [EnumMember(Value = "zh_CN")]
-        zhCN,
-        [EnumMember(Value = "zh_HK")]
-        zhHK,
-        [EnumMember(Value = "zh_TW")]
-        zhTW,
-        [EnumMember(Value = "hr_HR")]
-        hrHR,
-        [EnumMember(Value = "cs_CZ")]
-        csCZ,
-        [EnumMember(Value = "da_DK")]
-        daDK,
-        [EnumMember(Value = "nl_BE")]
-        nlBE,
-        [EnumMember(Value = "nl_NL")]
-        nlNL,
-        [EnumMember(Value = "nl_SR")]
-        nlSR,
-        [EnumMember(Value = "en_AU")]
-        enAU,
-        [EnumMember(Value = "en_BB")]
-        enBB,
-        [EnumMember(Value = "en_BM")]
-        enBM,
-        [EnumMember(Value = "en_CA")]
-        enCA,
-        [EnumMember(Value = "en_GH")]
-        enGH,
-        [EnumMember(Value = "en_IN")]
-        enIN,
-        [EnumMember(Value = "en_ID")]
-        enID,
-        [EnumMember(Value = "en_IE")]
-        enIE,
-        [EnumMember(Value = "en_MY")]
-        enMY,
-        [EnumMember(Value = "en_NZ")]
-        enNZ,
-        [EnumMember(Value = "en_NG")]
-        enNG,
-        [EnumMember(Value = "en_PH")]
-        enPH,
-        [EnumMember(Value = "en_SG")]
-        enSG,
-        [EnumMember(Value = "en_ZA")]
-        enZA,
-        [EnumMember(Value = "en_GB")]
-        enGB,
-        [EnumMember(Value = "en_US")]
-        enUS,
-        [EnumMember(Value = "et_EE")]
-        etEE,
-        [EnumMember(Value = "fi_FI")]
-        fiFI,
-        [EnumMember(Value = "fr_BE")]
-        frBE,
-        [EnumMember(Value = "fr_CA")]
-        frCA,
-        [EnumMember(Value = "fr_FR")]
-        frFR,
-        [EnumMember(Value = "fr_LU")]
-        frLU,
-        [EnumMember(Value = "fr_MC")]
-        frMC,
-        [EnumMember(Value = "fr_CH")]
-        frCH,
-        [EnumMember(Value = "ka_GE")]
-        kaGE,
-        [EnumMember(Value = "de_AT")]
-        deAT,
-        [EnumMember(Value = "de_DE")]
-        deDE,
-        [EnumMember(Value = "de_LU")]
-        deLU,
-        [EnumMember(Value = "de_CH")]
-        deCH,
-        [EnumMember(Value = "el_GR")]
-        elGR,
-        [EnumMember(Value = "iw_IL")]
-        iwIL,
-        [EnumMember(Value = "is_IS")]
-        isIS,
-        [EnumMember(Value = "it_IT")]
-        itIT,
-        [EnumMember(Value = "it_CH")]
-        itCH,
-        [EnumMember(Value = "ja_JP")]
-        jaJP,
-        [EnumMember(Value = "kk_KZ")]
-        kkKZ,
-        [EnumMember(Value = "km_KH")]
-        kmKH,
-        [EnumMember(Value = "ko_KR")]
-        koKR,
-        [EnumMember(Value = "lv_LV")]
-        lvLV,
-        [EnumMember(Value = "lt_LT")]
-        ltLT,
-        [EnumMember(Value = "ms_MY")]
-        msMY,
-        [EnumMember(Value = "no_NO")]
-        noNO,
-        [EnumMember(Value = "pt_AO")]
-        ptAO,
-        [EnumMember(Value = "pt_BR")]
-        ptBR,
-        [EnumMember(Value = "pt_PT")]
-        ptPT,
-        [EnumMember(Value = "ro_RO")]
-        roRO,
-        [EnumMember(Value = "ru_RU")]
-        ruRU,
-        [EnumMember(Value = "sr_BA")]
-        srBA,
-        [EnumMember(Value = "sh_BA")]
-        shBA,
-        [EnumMember(Value = "sh_CS")]
-        shCS,
-        [EnumMember(Value = "sr_CS")]
-        srCS,
-        [EnumMember(Value = "sk_SK")]
-        skSK,
-        [EnumMember(Value = "sl_SI")]
-        slSI,
-        [EnumMember(Value = "es_AR")]
-        esAR,
-        [EnumMember(Value = "es_BO")]
-        esBO,
-        [EnumMember(Value = "es_CL")]
-        esCL,
-        [EnumMember(Value = "es_CO")]
-        esCO,
-        [EnumMember(Value = "es_CR")]
-        esCR,
-        [EnumMember(Value = "es_DO")]
-        esDO,
-        [EnumMember(Value = "es_EC")]
-        esEC,
-        [EnumMember(Value = "es_SV")]
-        esSV,
-        [EnumMember(Value = "es_GT")]
-        esGT,
-        [EnumMember(Value = "es_HN")]
-        esHN,
-        [EnumMember(Value = "es_MX")]
-        esMX,
-        [EnumMember(Value = "es_PA")]
-        esPA,
-        [EnumMember(Value = "es_PY")]
-        esPY,
-        [EnumMember(Value = "es_PE")]
-        esPE,
-        [EnumMember(Value = "es_PR")]
-        esPR,
-        [EnumMember(Value = "es_ES")]
-        esES,
-        [EnumMember(Value = "es_UY")]
-        esUY,
-        [EnumMember(Value = "es_VE")]
-        esVE,
-        [EnumMember(Value = "sv_SE")]
-        svSE,
-        [EnumMember(Value = "tl_PH")]
-        tlPH,
-        [EnumMember(Value = "th_TH")]
-        thTH,
-        [EnumMember(Value = "uk_UA")]
-        ukUA,
-        [EnumMember(Value = "ur_PK")]
-        urPK,
-        [EnumMember(Value = "vi_VN")]
-        viVN
+        public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
+        public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
+        public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
+        public static readonly string  AsiaSeoul = "Asia/Seoul"; 
+        public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
+        public static readonly string  AsiaHongKong = "Asia/Hong_Kong"; 
+        public static readonly string  AsiaKualaLumpur = "Asia/Kuala_Lumpur"; 
+        public static readonly string  AsiaManila = "Asia/Manila"; 
+        public static readonly string  AsiaShanghai = "Asia/Shanghai"; 
+        public static readonly string  AsiaSingapore = "Asia/Singapore"; 
+        public static readonly string  AsiaTaipei = "Asia/Taipei"; 
+        public static readonly string  AustraliaPerth = "Australia/Perth"; 
+        public static readonly string  AsiaBangkok = "Asia/Bangkok"; 
+        public static readonly string  AsiaHoChiMinh = "Asia/Ho_Chi_Minh"; 
+        public static readonly string  AsiaJakarta = "Asia/Jakarta"; 
+        public static readonly string  AsiaRangoon = "Asia/Rangoon"; 
+        public static readonly string  AsiaDhaka = "Asia/Dhaka"; 
+        public static readonly string  AsiaKathmandu = "Asia/Kathmandu"; 
+        public static readonly string  AsiaColombo = "Asia/Colombo"; 
+        public static readonly string  AsiaKolkata = "Asia/Kolkata"; 
+        public static readonly string  AsiaKarachi = "Asia/Karachi"; 
+        public static readonly string  AsiaTashkent = "Asia/Tashkent"; 
+        public static readonly string  AsiaYekaterinburg = "Asia/Yekaterinburg"; 
+        public static readonly string  AsiaKabul = "Asia/Kabul"; 
+        public static readonly string  AsiaDubai = "Asia/Dubai"; 
+        public static readonly string  AsiaTbilisi = "Asia/Tbilisi"; 
+        public static readonly string  AsiaTehran = "Asia/Tehran"; 
+        public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
+        public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
+        public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
+        public static readonly string  EuropeMinsk = "Europe/Minsk"; 
+        public static readonly string  EuropeMoscow = "Europe/Moscow"; 
+        public static readonly string  AfricaCairo = "Africa/Cairo"; 
+        public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
+        public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
+        public static readonly string  EuropeBerlin = "Europe/Berlin"; 
+        public static readonly string  EuropeBrussels = "Europe/Brussels"; 
+        public static readonly string  EuropeParis = "Europe/Paris"; 
+        public static readonly string  EuropePrague = "Europe/Prague"; 
+        public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  EuropeDublin = "Europe/Dublin"; 
+        public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
+        public static readonly string  EuropeLondon = "Europe/London"; 
+        public static readonly string  GMT = "GMT"; 
+        public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
+        public static readonly string  AmericaSaoPaulo = "America/Sao_Paulo"; 
+        public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
+        public static readonly string  AmericaArgentinaBuenosAires = "America/Argentina/Buenos_Aires"; 
+        public static readonly string  AmericaSantiago = "America/Santiago"; 
+        public static readonly string  AmericaStJohns = "America/St_Johns"; 
+        public static readonly string  AmericaCaracas = "America/Caracas"; 
+        public static readonly string  AmericaHalifax = "America/Halifax"; 
+        public static readonly string  AmericaPuertoRico = "America/Puerto_Rico"; 
+        public static readonly string  AtlanticBermuda = "Atlantic/Bermuda"; 
+        public static readonly string  AmericaBogota = "America/Bogota"; 
+        public static readonly string  AmericaIndianaIndianapolis = "America/Indiana/Indianapolis"; 
+        public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaNewYork = "America/New_York"; 
+        public static readonly string  AmericaPanama = "America/Panama"; 
+        public static readonly string  AmericaChicago = "America/Chicago"; 
+        public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
+        public static readonly string  AmericaDenver = "America/Denver"; 
+        public static readonly string  AmericaPhoenix = "America/Phoenix"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
+        public static readonly string  AmericaTijuana = "America/Tijuana"; 
+        public static readonly string  AmericaAnchorage = "America/Anchorage"; 
+        public static readonly string  PacificHonolulu = "Pacific/Honolulu"; 
+        public static readonly string  PacificNiue = "Pacific/Niue"; 
+        public static readonly string  PacificPagoPago = "Pacific/Pago_Pago"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickBusinessHoursTimeZoneSidKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickBusinessHoursTimeZoneSidKey(string s)
+        {
+            return new PickBusinessHoursTimeZoneSidKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserEmailEncodingKey
+    public class PickBusinessProcessTableEnumOrId
     {
-        [EnumMember(Value = "UTF-8")]
-        UTF8,
-        [EnumMember(Value = "ISO-8859-1")]
-        ISO88591,
-        [EnumMember(Value = "Shift_JIS")]
-        ShiftJIS,
-        [EnumMember(Value = "ISO-2022-JP")]
-        ISO2022JP,
-        [EnumMember(Value = "EUC-JP")]
-        EUCJP,
-        [EnumMember(Value = "ks_c_5601-1987")]
-        ksc56011987,
-        [EnumMember(Value = "Big5")]
-        Big5,
-        [EnumMember(Value = "GB2312")]
-        GB2312
+        public static readonly string  Case = "Case"; 
+        public static readonly string  Lead = "Lead"; 
+        public static readonly string  Opportunity = "Opportunity"; 
+        public static readonly string  Solution = "Solution"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickBusinessProcessTableEnumOrId o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickBusinessProcessTableEnumOrId(string s)
+        {
+            return new PickBusinessProcessTableEnumOrId {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserUserType
+    public class PickCampaignType
     {
-        [EnumMember(Value = "Standard")]
-        Standard,
-        [EnumMember(Value = "PowerPartner")]
-        PowerPartner,
-        [EnumMember(Value = "PowerCustomerSuccess")]
-        PowerCustomerSuccess,
-        [EnumMember(Value = "CustomerSuccess")]
-        CustomerSuccess,
-        [EnumMember(Value = "Guest")]
-        Guest,
-        [EnumMember(Value = "CSPLitePortal")]
-        CSPLitePortal,
-        [EnumMember(Value = "CSNOnly")]
-        CSNOnly,
-        [EnumMember(Value = "SelfService")]
-        SelfService
+        public static readonly string  Conference = "Conference"; 
+        public static readonly string  Webinar = "Webinar"; 
+        public static readonly string  TradeShow = "Trade Show"; 
+        public static readonly string  PublicRelations = "Public Relations"; 
+        public static readonly string  Partners = "Partners"; 
+        public static readonly string  ReferralProgram = "Referral Program"; 
+        public static readonly string  Advertisement = "Advertisement"; 
+        public static readonly string  BannerAds = "Banner Ads"; 
+        public static readonly string  DirectMail = "Direct Mail"; 
+        public static readonly string  Email = "Email"; 
+        public static readonly string  Telemarketing = "Telemarketing"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCampaignType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCampaignType(string s)
+        {
+            return new PickCampaignType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserLanguageLocaleKey
+    public class PickCampaignStatus
     {
-        [EnumMember(Value = "en_US")]
-        enUS,
-        [EnumMember(Value = "de")]
-        de,
-        [EnumMember(Value = "es")]
-        es,
-        [EnumMember(Value = "fr")]
-        fr,
-        [EnumMember(Value = "it")]
-        it,
-        [EnumMember(Value = "ja")]
-        ja,
-        [EnumMember(Value = "sv")]
-        sv,
-        [EnumMember(Value = "ko")]
-        ko,
-        [EnumMember(Value = "zh_TW")]
-        zhTW,
-        [EnumMember(Value = "zh_CN")]
-        zhCN,
-        [EnumMember(Value = "pt_BR")]
-        ptBR,
-        [EnumMember(Value = "nl_NL")]
-        nlNL,
-        [EnumMember(Value = "da")]
-        da,
-        [EnumMember(Value = "th")]
-        th,
-        [EnumMember(Value = "fi")]
-        fi,
-        [EnumMember(Value = "ru")]
-        ru,
-        [EnumMember(Value = "es_MX")]
-        esMX,
-        [EnumMember(Value = "no")]
-        no
+        public static readonly string  Planned = "Planned"; 
+        public static readonly string  InProgress = "In Progress"; 
+        public static readonly string  Completed = "Completed"; 
+        public static readonly string  Aborted = "Aborted"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCampaignStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCampaignStatus(string s)
+        {
+            return new PickCampaignStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserDigestFrequency
+    public class PickCampaignFeedType
     {
-        [EnumMember(Value = "D")]
-        D,
-        [EnumMember(Value = "W")]
-        W,
-        [EnumMember(Value = "N")]
-        N
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCampaignFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCampaignFeedType(string s)
+        {
+            return new PickCampaignFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserFeedType
+    public class PickCampaignMemberStatus
     {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
+        public static readonly string  Planned = "Planned"; 
+        public static readonly string  Received = "Received"; 
+        public static readonly string  Responded = "Responded"; 
+        public static readonly string  Sent = "Sent"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCampaignMemberStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCampaignMemberStatus(string s)
+        {
+            return new PickCampaignMemberStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserPreferencePreference
+    public class PickCampaignShareCampaignAccessLevel
     {
-        [EnumMember(Value = "57")]
-        _57,
-        [EnumMember(Value = "58")]
-        _58,
-        [EnumMember(Value = "91")]
-        _91,
-        [EnumMember(Value = "92")]
-        _92,
-        [EnumMember(Value = "93")]
-        _93,
-        [EnumMember(Value = "94")]
-        _94,
-        [EnumMember(Value = "96")]
-        _96,
-        [EnumMember(Value = "97")]
-        _97,
-        [EnumMember(Value = "98")]
-        _98,
-        [EnumMember(Value = "99")]
-        _99,
-        [EnumMember(Value = "100")]
-        _100,
-        [EnumMember(Value = "101")]
-        _101
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  All = "All"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCampaignShareCampaignAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCampaignShareCampaignAccessLevel(string s)
+        {
+            return new PickCampaignShareCampaignAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserProfileFeedType
+    public class PickCampaignShareRowCause
     {
-        [EnumMember(Value = "TrackedChange")]
-        TrackedChange,
-        [EnumMember(Value = "UserStatus")]
-        UserStatus,
-        [EnumMember(Value = "TextPost")]
-        TextPost,
-        [EnumMember(Value = "AdvancedTextPost")]
-        AdvancedTextPost,
-        [EnumMember(Value = "LinkPost")]
-        LinkPost,
-        [EnumMember(Value = "ContentPost")]
-        ContentPost,
-        [EnumMember(Value = "PollPost")]
-        PollPost,
-        [EnumMember(Value = "RypplePost")]
-        RypplePost,
-        [EnumMember(Value = "ProfileSkillPost")]
-        ProfileSkillPost,
-        [EnumMember(Value = "DashboardComponentSnapshot")]
-        DashboardComponentSnapshot,
-        [EnumMember(Value = "ApprovalPost")]
-        ApprovalPost,
-        [EnumMember(Value = "CaseCommentPost")]
-        CaseCommentPost,
-        [EnumMember(Value = "ReplyPost")]
-        ReplyPost,
-        [EnumMember(Value = "EmailMessageEvent")]
-        EmailMessageEvent,
-        [EnumMember(Value = "CallLogPost")]
-        CallLogPost,
-        [EnumMember(Value = "ChangeStatusPost")]
-        ChangeStatusPost,
-        [EnumMember(Value = "AttachArticleEvent")]
-        AttachArticleEvent,
-        [EnumMember(Value = "MilestoneEvent")]
-        MilestoneEvent,
-        [EnumMember(Value = "ActivityEvent")]
-        ActivityEvent,
-        [EnumMember(Value = "ChatTranscriptPost")]
-        ChatTranscriptPost,
-        [EnumMember(Value = "CollaborationGroupCreated")]
-        CollaborationGroupCreated,
-        [EnumMember(Value = "CollaborationGroupUnarchived")]
-        CollaborationGroupUnarchived,
-        [EnumMember(Value = "SocialPost")]
-        SocialPost,
-        [EnumMember(Value = "QuestionPost")]
-        QuestionPost,
-        [EnumMember(Value = "FacebookPost")]
-        FacebookPost,
-        [EnumMember(Value = "BasicTemplateFeedItem")]
-        BasicTemplateFeedItem,
-        [EnumMember(Value = "CreateRecordEvent")]
-        CreateRecordEvent,
-        [EnumMember(Value = "CanvasPost")]
-        CanvasPost,
-        [EnumMember(Value = "AnnouncementPost")]
-        AnnouncementPost
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  Manual = "Manual"; 
+        public static readonly string  Rule = "Rule"; 
+        public static readonly string  ImplicitChild = "ImplicitChild"; 
+        public static readonly string  ImplicitParent = "ImplicitParent"; 
+        public static readonly string  ImplicitPerson = "ImplicitPerson"; 
+        public static readonly string  Team = "Team"; 
+        public static readonly string  Territory = "Territory"; 
+        public static readonly string  TerritoryManual = "TerritoryManual"; 
+        public static readonly string  TerritoryRule = "TerritoryRule"; 
+        public static readonly string  Territory2Forecast = "Territory2Forecast"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCampaignShareRowCause o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCampaignShareRowCause(string s)
+        {
+            return new PickCampaignShareRowCause {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserRoleOpportunityAccessForAccountOwner
+    public class PickCaseType
     {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit
+        public static readonly string  Mechanical = "Mechanical"; 
+        public static readonly string  Electrical = "Electrical"; 
+        public static readonly string  Electronic = "Electronic"; 
+        public static readonly string  Structural = "Structural"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseType(string s)
+        {
+            return new PickCaseType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserRoleCaseAccessForAccountOwner
+    public class PickCaseStatus
     {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit
+        public static readonly string  New = "New"; 
+        public static readonly string  Working = "Working"; 
+        public static readonly string  Escalated = "Escalated"; 
+        public static readonly string  Closed = "Closed"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseStatus(string s)
+        {
+            return new PickCaseStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserRoleContactAccessForAccountOwner
+    public class PickCaseReason
     {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "Read")]
-        Read,
-        [EnumMember(Value = "Edit")]
-        Edit
+        public static readonly string  Installation = "Installation"; 
+        public static readonly string  EquipmentComplexity = "Equipment Complexity"; 
+        public static readonly string  Performance = "Performance"; 
+        public static readonly string  Breakdown = "Breakdown"; 
+        public static readonly string  EquipmentDesign = "Equipment Design"; 
+        public static readonly string  Feedback = "Feedback"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseReason o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseReason(string s)
+        {
+            return new PickCaseReason {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickUserRolePortalType
+    public class PickCaseOrigin
     {
-        [EnumMember(Value = "None")]
-        None,
-        [EnumMember(Value = "CustomerPortal")]
-        CustomerPortal,
-        [EnumMember(Value = "Partner")]
-        Partner
+        public static readonly string  Phone = "Phone"; 
+        public static readonly string  Email = "Email"; 
+        public static readonly string  Web = "Web"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseOrigin o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseOrigin(string s)
+        {
+            return new PickCaseOrigin {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickVoteType
+    public class PickCasePriority
     {
-        [EnumMember(Value = "Up")]
-        Up,
-        [EnumMember(Value = "Down")]
-        Down,
-        [EnumMember(Value = "1")]
-        _1,
-        [EnumMember(Value = "2")]
-        _2,
-        [EnumMember(Value = "3")]
-        _3,
-        [EnumMember(Value = "4")]
-        _4,
-        [EnumMember(Value = "5")]
-        _5
+        public static readonly string  High = "High"; 
+        public static readonly string  Medium = "Medium"; 
+        public static readonly string  Low = "Low"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCasePriority o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCasePriority(string s)
+        {
+            return new PickCasePriority {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickWebLinkPageOrSobjectType
+    public class PickCaseSLAViolation__c
     {
-        [EnumMember(Value = "Account")]
-        Account,
-        [EnumMember(Value = "Activity")]
-        Activity,
-        [EnumMember(Value = "Asset")]
-        Asset,
-        [EnumMember(Value = "Campaign")]
-        Campaign,
-        [EnumMember(Value = "CampaignMember")]
-        CampaignMember,
-        [EnumMember(Value = "Case")]
-        Case,
-        [EnumMember(Value = "Contact")]
-        Contact,
-        [EnumMember(Value = "ContentVersion")]
-        ContentVersion,
-        [EnumMember(Value = "Contract")]
-        Contract,
-        [EnumMember(Value = "CustomPageItem")]
-        CustomPageItem,
-        [EnumMember(Value = "DandBCompany")]
-        DandBCompany,
-        [EnumMember(Value = "DashboardComponent")]
-        DashboardComponent,
-        [EnumMember(Value = "DuplicateRecordItem")]
-        DuplicateRecordItem,
-        [EnumMember(Value = "DuplicateRecordSet")]
-        DuplicateRecordSet,
-        [EnumMember(Value = "EmailMessage")]
-        EmailMessage,
-        [EnumMember(Value = "Event")]
-        Event,
-        [EnumMember(Value = "Goal")]
-        Goal,
-        [EnumMember(Value = "GoalLink")]
-        GoalLink,
-        [EnumMember(Value = "Idea")]
-        Idea,
-        [EnumMember(Value = "Lead")]
-        Lead,
-        [EnumMember(Value = "Macro")]
-        Macro,
-        [EnumMember(Value = "Metric")]
-        Metric,
-        [EnumMember(Value = "Opportunity")]
-        Opportunity,
-        [EnumMember(Value = "OpportunityLineItem")]
-        OpportunityLineItem,
-        [EnumMember(Value = "Order")]
-        Order,
-        [EnumMember(Value = "OrderItem")]
-        OrderItem,
-        [EnumMember(Value = "Product2")]
-        Product2,
-        [EnumMember(Value = "SocialPersona")]
-        SocialPersona,
-        [EnumMember(Value = "Solution")]
-        Solution,
-        [EnumMember(Value = "Task")]
-        Task,
-        [EnumMember(Value = "User")]
-        User,
-        [EnumMember(Value = "UserProvisioningRequest")]
-        UserProvisioningRequest,
-        [EnumMember(Value = "WorkCoaching")]
-        WorkCoaching,
-        [EnumMember(Value = "WorkFeedback")]
-        WorkFeedback,
-        [EnumMember(Value = "WorkFeedbackQuestion")]
-        WorkFeedbackQuestion,
-        [EnumMember(Value = "WorkFeedbackQuestionSet")]
-        WorkFeedbackQuestionSet,
-        [EnumMember(Value = "WorkFeedbackRequest")]
-        WorkFeedbackRequest,
-        [EnumMember(Value = "WorkFeedbackTemplate")]
-        WorkFeedbackTemplate,
-        [EnumMember(Value = "WorkPerformanceCycle")]
-        WorkPerformanceCycle
+        public static readonly string  No = "No"; 
+        public static readonly string  Yes = "Yes"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseSLAViolation__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseSLAViolation__c(string s)
+        {
+            return new PickCaseSLAViolation__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickWebLinkEncodingKey
+    public class PickCaseProduct__c
     {
-        [EnumMember(Value = "UTF-8")]
-        UTF8,
-        [EnumMember(Value = "ISO-8859-1")]
-        ISO88591,
-        [EnumMember(Value = "Shift_JIS")]
-        ShiftJIS,
-        [EnumMember(Value = "ISO-2022-JP")]
-        ISO2022JP,
-        [EnumMember(Value = "EUC-JP")]
-        EUCJP,
-        [EnumMember(Value = "ks_c_5601-1987")]
-        ksc56011987,
-        [EnumMember(Value = "Big5")]
-        Big5,
-        [EnumMember(Value = "GB2312")]
-        GB2312
+        public static readonly string  GC1040 = "GC1040"; 
+        public static readonly string  GC1060 = "GC1060"; 
+        public static readonly string  GC3020 = "GC3020"; 
+        public static readonly string  GC3040 = "GC3040"; 
+        public static readonly string  GC3060 = "GC3060"; 
+        public static readonly string  GC5020 = "GC5020"; 
+        public static readonly string  GC5040 = "GC5040"; 
+        public static readonly string  GC5060 = "GC5060"; 
+        public static readonly string  GC1020 = "GC1020"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseProduct__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseProduct__c(string s)
+        {
+            return new PickCaseProduct__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickWebLinkLinkType
+    public class PickCasePotentialLiability__c
     {
-        [EnumMember(Value = "url")]
-        url,
-        [EnumMember(Value = "sControl")]
-        sControl,
-        [EnumMember(Value = "javascript")]
-        javascript,
-        [EnumMember(Value = "page")]
-        page,
-        [EnumMember(Value = "flow")]
-        flow
+        public static readonly string  No = "No"; 
+        public static readonly string  Yes = "Yes"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCasePotentialLiability__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCasePotentialLiability__c(string s)
+        {
+            return new PickCasePotentialLiability__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickWebLinkOpenType
+    public class PickCaseContactRoleRole
     {
-        [EnumMember(Value = "newWindow")]
-        newWindow,
-        [EnumMember(Value = "sidebar")]
-        sidebar,
-        [EnumMember(Value = "noSidebar")]
-        noSidebar,
-        [EnumMember(Value = "replace")]
-        replace,
-        [EnumMember(Value = "onClickJavaScript")]
-        onClickJavaScript
+        public static readonly string  TechnicalContact = "Technical Contact"; 
+        public static readonly string  BusinessContact = "Business Contact"; 
+        public static readonly string  DecisionMaker = "Decision Maker"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseContactRoleRole o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseContactRoleRole(string s)
+        {
+            return new PickCaseContactRoleRole {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickWebLinkPosition
+    public class PickCaseFeedType
     {
-        [EnumMember(Value = "fullScreen")]
-        fullScreen,
-        [EnumMember(Value = "none")]
-        none,
-        [EnumMember(Value = "topLeft")]
-        topLeft
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseFeedType(string s)
+        {
+            return new PickCaseFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum PickWebLinkDisplayType
+    public class PickCaseHistoryField
     {
-        [EnumMember(Value = "L")]
-        L,
-        [EnumMember(Value = "B")]
-        B,
-        [EnumMember(Value = "M")]
-        M
+        public static readonly string  Account = "Account"; 
+        public static readonly string  Asset = "Asset"; 
+        public static readonly string  BusinessHours = "BusinessHours"; 
+        public static readonly string  closed = "closed"; 
+        public static readonly string  Contact = "Contact"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  EngineeringReqNumberc = "EngineeringReqNumber__c"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  IsClosedOnCreate = "IsClosedOnCreate"; 
+        public static readonly string  IsEscalated = "IsEscalated"; 
+        public static readonly string  Origin = "Origin"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  ownerEscalated = "ownerEscalated"; 
+        public static readonly string  Parent = "Parent"; 
+        public static readonly string  PotentialLiabilityc = "PotentialLiability__c"; 
+        public static readonly string  Priority = "Priority"; 
+        public static readonly string  Productc = "Product__c"; 
+        public static readonly string  Reason = "Reason"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  SLAViolationc = "SLAViolation__c"; 
+        public static readonly string  Status = "Status"; 
+        public static readonly string  Subject = "Subject"; 
+        public static readonly string  Type = "Type"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseHistoryField(string s)
+        {
+            return new PickCaseHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickCaseShareCaseAccessLevel
+    {
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  All = "All"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseShareCaseAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseShareCaseAccessLevel(string s)
+        {
+            return new PickCaseShareCaseAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickCaseShareRowCause
+    {
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  Manual = "Manual"; 
+        public static readonly string  Rule = "Rule"; 
+        public static readonly string  ImplicitChild = "ImplicitChild"; 
+        public static readonly string  ImplicitParent = "ImplicitParent"; 
+        public static readonly string  ImplicitPerson = "ImplicitPerson"; 
+        public static readonly string  Team = "Team"; 
+        public static readonly string  Territory = "Territory"; 
+        public static readonly string  TerritoryManual = "TerritoryManual"; 
+        public static readonly string  TerritoryRule = "TerritoryRule"; 
+        public static readonly string  Territory2Forecast = "Territory2Forecast"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseShareRowCause o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseShareRowCause(string s)
+        {
+            return new PickCaseShareRowCause {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickCaseTeamRoleAccessLevel
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCaseTeamRoleAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCaseTeamRoleAccessLevel(string s)
+        {
+            return new PickCaseTeamRoleAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickCategoryNodeSortStyle
+    {
+        public static readonly string  custom = "custom"; 
+        public static readonly string  alphabetical = "alphabetical"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCategoryNodeSortStyle o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCategoryNodeSortStyle(string s)
+        {
+            return new PickCategoryNodeSortStyle {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickCollaborationGroupCollaborationType
+    {
+        public static readonly string  Public = "Public"; 
+        public static readonly string  Private = "Private"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCollaborationGroupCollaborationType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCollaborationGroupCollaborationType(string s)
+        {
+            return new PickCollaborationGroupCollaborationType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickCollaborationGroupFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCollaborationGroupFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCollaborationGroupFeedType(string s)
+        {
+            return new PickCollaborationGroupFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickCollaborationGroupMemberNotificationFrequency
+    {
+        public static readonly string  P = "P"; 
+        public static readonly string  D = "D"; 
+        public static readonly string  W = "W"; 
+        public static readonly string  N = "N"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCollaborationGroupMemberNotificationFrequency o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCollaborationGroupMemberNotificationFrequency(string s)
+        {
+            return new PickCollaborationGroupMemberNotificationFrequency {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickCollaborationInvitationStatus
+    {
+        public static readonly string  Sent = "Sent"; 
+        public static readonly string  Accepted = "Accepted"; 
+        public static readonly string  Canceled = "Canceled"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCollaborationInvitationStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCollaborationInvitationStatus(string s)
+        {
+            return new PickCollaborationInvitationStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContactSalutation
+    {
+        public static readonly string  Mr = "Mr."; 
+        public static readonly string  Ms = "Ms."; 
+        public static readonly string  Mrs = "Mrs."; 
+        public static readonly string  Dr = "Dr."; 
+        public static readonly string  Prof = "Prof."; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContactSalutation o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContactSalutation(string s)
+        {
+            return new PickContactSalutation {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContactLeadSource
+    {
+        public static readonly string  Web = "Web"; 
+        public static readonly string  PhoneInquiry = "Phone Inquiry"; 
+        public static readonly string  PartnerReferral = "Partner Referral"; 
+        public static readonly string  PurchasedList = "Purchased List"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContactLeadSource o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContactLeadSource(string s)
+        {
+            return new PickContactLeadSource {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContactLevel__c
+    {
+        public static readonly string  Secondary = "Secondary"; 
+        public static readonly string  Tertiary = "Tertiary"; 
+        public static readonly string  Primary = "Primary"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContactLevel__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContactLevel__c(string s)
+        {
+            return new PickContactLevel__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContactFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContactFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContactFeedType(string s)
+        {
+            return new PickContactFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContactHistoryField
+    {
+        public static readonly string  Account = "Account"; 
+        public static readonly string  AssistantName = "AssistantName"; 
+        public static readonly string  AssistantPhone = "AssistantPhone"; 
+        public static readonly string  Birthdate = "Birthdate"; 
+        public static readonly string  CleanStatus = "CleanStatus"; 
+        public static readonly string  contactMerged = "contactMerged"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  contactCreatedFromLead = "contactCreatedFromLead"; 
+        public static readonly string  Department = "Department"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  DoNotCall = "DoNotCall"; 
+        public static readonly string  Email = "Email"; 
+        public static readonly string  EmailBouncedDate = "EmailBouncedDate"; 
+        public static readonly string  EmailBouncedReason = "EmailBouncedReason"; 
+        public static readonly string  Fax = "Fax"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  FirstName = "FirstName"; 
+        public static readonly string  HasOptedOutOfEmail = "HasOptedOutOfEmail"; 
+        public static readonly string  HasOptedOutOfFax = "HasOptedOutOfFax"; 
+        public static readonly string  HomePhone = "HomePhone"; 
+        public static readonly string  Jigsaw = "Jigsaw"; 
+        public static readonly string  Languagesc = "Languages__c"; 
+        public static readonly string  LastName = "LastName"; 
+        public static readonly string  contactUpdatedByLead = "contactUpdatedByLead"; 
+        public static readonly string  LeadSource = "LeadSource"; 
+        public static readonly string  Levelc = "Level__c"; 
+        public static readonly string  MailingAddress = "MailingAddress"; 
+        public static readonly string  MailingCity = "MailingCity"; 
+        public static readonly string  MailingCountry = "MailingCountry"; 
+        public static readonly string  MailingGeocodeAccuracy = "MailingGeocodeAccuracy"; 
+        public static readonly string  MailingLatitude = "MailingLatitude"; 
+        public static readonly string  MailingLongitude = "MailingLongitude"; 
+        public static readonly string  MailingPostalCode = "MailingPostalCode"; 
+        public static readonly string  MailingState = "MailingState"; 
+        public static readonly string  MailingStreet = "MailingStreet"; 
+        public static readonly string  MobilePhone = "MobilePhone"; 
+        public static readonly string  Name = "Name"; 
+        public static readonly string  OtherAddress = "OtherAddress"; 
+        public static readonly string  OtherCity = "OtherCity"; 
+        public static readonly string  OtherCountry = "OtherCountry"; 
+        public static readonly string  OtherGeocodeAccuracy = "OtherGeocodeAccuracy"; 
+        public static readonly string  OtherLatitude = "OtherLatitude"; 
+        public static readonly string  OtherLongitude = "OtherLongitude"; 
+        public static readonly string  OtherPhone = "OtherPhone"; 
+        public static readonly string  OtherPostalCode = "OtherPostalCode"; 
+        public static readonly string  OtherState = "OtherState"; 
+        public static readonly string  OtherStreet = "OtherStreet"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  Phone = "Phone"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  ReportsTo = "ReportsTo"; 
+        public static readonly string  Salutation = "Salutation"; 
+        public static readonly string  Title = "Title"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContactHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContactHistoryField(string s)
+        {
+            return new PickContactHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContactShareContactAccessLevel
+    {
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  All = "All"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContactShareContactAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContactShareContactAccessLevel(string s)
+        {
+            return new PickContactShareContactAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContactShareRowCause
+    {
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  Manual = "Manual"; 
+        public static readonly string  Rule = "Rule"; 
+        public static readonly string  ImplicitChild = "ImplicitChild"; 
+        public static readonly string  ImplicitParent = "ImplicitParent"; 
+        public static readonly string  ImplicitPerson = "ImplicitPerson"; 
+        public static readonly string  Team = "Team"; 
+        public static readonly string  Territory = "Territory"; 
+        public static readonly string  TerritoryManual = "TerritoryManual"; 
+        public static readonly string  TerritoryRule = "TerritoryRule"; 
+        public static readonly string  Territory2Forecast = "Territory2Forecast"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContactShareRowCause o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContactShareRowCause(string s)
+        {
+            return new PickContactShareRowCause {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContentDocumentPublishStatus
+    {
+        public static readonly string  U = "U"; 
+        public static readonly string  P = "P"; 
+        public static readonly string  R = "R"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContentDocumentPublishStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContentDocumentPublishStatus(string s)
+        {
+            return new PickContentDocumentPublishStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContentDocumentFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContentDocumentFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContentDocumentFeedType(string s)
+        {
+            return new PickContentDocumentFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContentDocumentHistoryField
+    {
+        public static readonly string  ArchivedBy = "ArchivedBy"; 
+        public static readonly string  ArchivedDate = "ArchivedDate"; 
+        public static readonly string  ContentAsset = "ContentAsset"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  DeletedBy = "DeletedBy"; 
+        public static readonly string  DeletedDate = "DeletedDate"; 
+        public static readonly string  contentDocPublished = "contentDocPublished"; 
+        public static readonly string  contentDocFeatured = "contentDocFeatured"; 
+        public static readonly string  contentDocRepublished = "contentDocRepublished"; 
+        public static readonly string  contentDocUnpublished = "contentDocUnpublished"; 
+        public static readonly string  contentDocSubscribed = "contentDocSubscribed"; 
+        public static readonly string  contentDocUnsubscribed = "contentDocUnsubscribed"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  IsArchived = "IsArchived"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  Parent = "Parent"; 
+        public static readonly string  PublishStatus = "PublishStatus"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  Title = "Title"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContentDocumentHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContentDocumentHistoryField(string s)
+        {
+            return new PickContentDocumentHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContentVersionPublishStatus
+    {
+        public static readonly string  U = "U"; 
+        public static readonly string  P = "P"; 
+        public static readonly string  R = "R"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContentVersionPublishStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContentVersionPublishStatus(string s)
+        {
+            return new PickContentVersionPublishStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContentVersionOrigin
+    {
+        public static readonly string  C = "C"; 
+        public static readonly string  H = "H"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContentVersionOrigin o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContentVersionOrigin(string s)
+        {
+            return new PickContentVersionOrigin {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContentVersionHistoryField
+    {
+        public static readonly string  ContentUrl = "ContentUrl"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  ExternalDataSource = "ExternalDataSource"; 
+        public static readonly string  ExternalDocumentInfo1 = "ExternalDocumentInfo1"; 
+        public static readonly string  ExternalDocumentInfo2 = "ExternalDocumentInfo2"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  IsMajorVersion = "IsMajorVersion"; 
+        public static readonly string  Language = "Language"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  ReasonForChange = "ReasonForChange"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  SharingOption = "SharingOption"; 
+        public static readonly string  Title = "Title"; 
+        public static readonly string  contentVersionCommented = "contentVersionCommented"; 
+        public static readonly string  contentVersionCreated = "contentVersionCreated"; 
+        public static readonly string  contentVersionDataReplaced = "contentVersionDataReplaced"; 
+        public static readonly string  contentVersionDeleted = "contentVersionDeleted"; 
+        public static readonly string  contentVersionDownloaded = "contentVersionDownloaded"; 
+        public static readonly string  contentVersionRated = "contentVersionRated"; 
+        public static readonly string  contentVersionUpdated = "contentVersionUpdated"; 
+        public static readonly string  contentVersionViewed = "contentVersionViewed"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContentVersionHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContentVersionHistoryField(string s)
+        {
+            return new PickContentVersionHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContentWorkspaceTagModel
+    {
+        public static readonly string  U = "U"; 
+        public static readonly string  G = "G"; 
+        public static readonly string  R = "R"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContentWorkspaceTagModel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContentWorkspaceTagModel(string s)
+        {
+            return new PickContentWorkspaceTagModel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContractOwnerExpirationNotice
+    {
+        public static readonly string _15 = "15"; 
+        public static readonly string _30 = "30"; 
+        public static readonly string _45 = "45"; 
+        public static readonly string _60 = "60"; 
+        public static readonly string _90 = "90"; 
+        public static readonly string _120 = "120"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContractOwnerExpirationNotice o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContractOwnerExpirationNotice(string s)
+        {
+            return new PickContractOwnerExpirationNotice {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContractStatus
+    {
+        public static readonly string  InApprovalProcess = "In Approval Process"; 
+        public static readonly string  Activated = "Activated"; 
+        public static readonly string  Draft = "Draft"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContractStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContractStatus(string s)
+        {
+            return new PickContractStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContractStatusCode
+    {
+        public static readonly string  Draft = "Draft"; 
+        public static readonly string  InApproval = "InApproval"; 
+        public static readonly string  Activated = "Activated"; 
+        public static readonly string  Terminated = "Terminated"; 
+        public static readonly string  Expired = "Expired"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContractStatusCode o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContractStatusCode(string s)
+        {
+            return new PickContractStatusCode {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContractContactRoleRole
+    {
+        public static readonly string  BusinessUser = "Business User"; 
+        public static readonly string  DecisionMaker = "Decision Maker"; 
+        public static readonly string  EconomicBuyer = "Economic Buyer"; 
+        public static readonly string  EconomicDecisionMaker = "Economic Decision Maker"; 
+        public static readonly string  Evaluator = "Evaluator"; 
+        public static readonly string  ExecutiveSponsor = "Executive Sponsor"; 
+        public static readonly string  Influencer = "Influencer"; 
+        public static readonly string  TechnicalBuyer = "Technical Buyer"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContractContactRoleRole o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContractContactRoleRole(string s)
+        {
+            return new PickContractContactRoleRole {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContractFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContractFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContractFeedType(string s)
+        {
+            return new PickContractFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContractHistoryField
+    {
+        public static readonly string  Account = "Account"; 
+        public static readonly string  ActivatedBy = "ActivatedBy"; 
+        public static readonly string  ActivatedDate = "ActivatedDate"; 
+        public static readonly string  BillingAddress = "BillingAddress"; 
+        public static readonly string  BillingCity = "BillingCity"; 
+        public static readonly string  BillingCountry = "BillingCountry"; 
+        public static readonly string  BillingGeocodeAccuracy = "BillingGeocodeAccuracy"; 
+        public static readonly string  BillingLatitude = "BillingLatitude"; 
+        public static readonly string  BillingLongitude = "BillingLongitude"; 
+        public static readonly string  BillingPostalCode = "BillingPostalCode"; 
+        public static readonly string  BillingState = "BillingState"; 
+        public static readonly string  BillingStreet = "BillingStreet"; 
+        public static readonly string  CompanySigned = "CompanySigned"; 
+        public static readonly string  CompanySignedDate = "CompanySignedDate"; 
+        public static readonly string  contractActivation = "contractActivation"; 
+        public static readonly string  contractApproval = "contractApproval"; 
+        public static readonly string  contractConversion = "contractConversion"; 
+        public static readonly string  contractDraft = "contractDraft"; 
+        public static readonly string  contractExpiration = "contractExpiration"; 
+        public static readonly string  ContractTerm = "ContractTerm"; 
+        public static readonly string  contractTermination = "contractTermination"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  CustomerSigned = "CustomerSigned"; 
+        public static readonly string  CustomerSignedDate = "CustomerSignedDate"; 
+        public static readonly string  CustomerSignedTitle = "CustomerSignedTitle"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  EndDate = "EndDate"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  Name = "Name"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  OwnerExpirationNotice = "OwnerExpirationNotice"; 
+        public static readonly string  Pricebook2 = "Pricebook2"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  ShippingAddress = "ShippingAddress"; 
+        public static readonly string  ShippingCity = "ShippingCity"; 
+        public static readonly string  ShippingCountry = "ShippingCountry"; 
+        public static readonly string  ShippingGeocodeAccuracy = "ShippingGeocodeAccuracy"; 
+        public static readonly string  ShippingLatitude = "ShippingLatitude"; 
+        public static readonly string  ShippingLongitude = "ShippingLongitude"; 
+        public static readonly string  ShippingPostalCode = "ShippingPostalCode"; 
+        public static readonly string  ShippingState = "ShippingState"; 
+        public static readonly string  ShippingStreet = "ShippingStreet"; 
+        public static readonly string  SpecialTerms = "SpecialTerms"; 
+        public static readonly string  StartDate = "StartDate"; 
+        public static readonly string  Status = "Status"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContractHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContractHistoryField(string s)
+        {
+            return new PickContractHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickContractStatusStatusCode
+    {
+        public static readonly string  Draft = "Draft"; 
+        public static readonly string  InApproval = "InApproval"; 
+        public static readonly string  Activated = "Activated"; 
+        public static readonly string  Terminated = "Terminated"; 
+        public static readonly string  Expired = "Expired"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickContractStatusStatusCode o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickContractStatusStatusCode(string s)
+        {
+            return new PickContractStatusStatusCode {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickCronTriggerTimeZoneSidKey
+    {
+        public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
+        public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
+        public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
+        public static readonly string  AsiaSeoul = "Asia/Seoul"; 
+        public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
+        public static readonly string  AsiaHongKong = "Asia/Hong_Kong"; 
+        public static readonly string  AsiaKualaLumpur = "Asia/Kuala_Lumpur"; 
+        public static readonly string  AsiaManila = "Asia/Manila"; 
+        public static readonly string  AsiaShanghai = "Asia/Shanghai"; 
+        public static readonly string  AsiaSingapore = "Asia/Singapore"; 
+        public static readonly string  AsiaTaipei = "Asia/Taipei"; 
+        public static readonly string  AustraliaPerth = "Australia/Perth"; 
+        public static readonly string  AsiaBangkok = "Asia/Bangkok"; 
+        public static readonly string  AsiaHoChiMinh = "Asia/Ho_Chi_Minh"; 
+        public static readonly string  AsiaJakarta = "Asia/Jakarta"; 
+        public static readonly string  AsiaRangoon = "Asia/Rangoon"; 
+        public static readonly string  AsiaDhaka = "Asia/Dhaka"; 
+        public static readonly string  AsiaKathmandu = "Asia/Kathmandu"; 
+        public static readonly string  AsiaColombo = "Asia/Colombo"; 
+        public static readonly string  AsiaKolkata = "Asia/Kolkata"; 
+        public static readonly string  AsiaKarachi = "Asia/Karachi"; 
+        public static readonly string  AsiaTashkent = "Asia/Tashkent"; 
+        public static readonly string  AsiaYekaterinburg = "Asia/Yekaterinburg"; 
+        public static readonly string  AsiaKabul = "Asia/Kabul"; 
+        public static readonly string  AsiaDubai = "Asia/Dubai"; 
+        public static readonly string  AsiaTbilisi = "Asia/Tbilisi"; 
+        public static readonly string  AsiaTehran = "Asia/Tehran"; 
+        public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
+        public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
+        public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
+        public static readonly string  EuropeMinsk = "Europe/Minsk"; 
+        public static readonly string  EuropeMoscow = "Europe/Moscow"; 
+        public static readonly string  AfricaCairo = "Africa/Cairo"; 
+        public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
+        public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
+        public static readonly string  EuropeBerlin = "Europe/Berlin"; 
+        public static readonly string  EuropeBrussels = "Europe/Brussels"; 
+        public static readonly string  EuropeParis = "Europe/Paris"; 
+        public static readonly string  EuropePrague = "Europe/Prague"; 
+        public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  EuropeDublin = "Europe/Dublin"; 
+        public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
+        public static readonly string  EuropeLondon = "Europe/London"; 
+        public static readonly string  GMT = "GMT"; 
+        public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
+        public static readonly string  AmericaSaoPaulo = "America/Sao_Paulo"; 
+        public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
+        public static readonly string  AmericaArgentinaBuenosAires = "America/Argentina/Buenos_Aires"; 
+        public static readonly string  AmericaSantiago = "America/Santiago"; 
+        public static readonly string  AmericaStJohns = "America/St_Johns"; 
+        public static readonly string  AmericaCaracas = "America/Caracas"; 
+        public static readonly string  AmericaHalifax = "America/Halifax"; 
+        public static readonly string  AmericaPuertoRico = "America/Puerto_Rico"; 
+        public static readonly string  AtlanticBermuda = "Atlantic/Bermuda"; 
+        public static readonly string  AmericaBogota = "America/Bogota"; 
+        public static readonly string  AmericaIndianaIndianapolis = "America/Indiana/Indianapolis"; 
+        public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaNewYork = "America/New_York"; 
+        public static readonly string  AmericaPanama = "America/Panama"; 
+        public static readonly string  AmericaChicago = "America/Chicago"; 
+        public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
+        public static readonly string  AmericaDenver = "America/Denver"; 
+        public static readonly string  AmericaPhoenix = "America/Phoenix"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
+        public static readonly string  AmericaTijuana = "America/Tijuana"; 
+        public static readonly string  AmericaAnchorage = "America/Anchorage"; 
+        public static readonly string  PacificHonolulu = "Pacific/Honolulu"; 
+        public static readonly string  PacificNiue = "Pacific/Niue"; 
+        public static readonly string  PacificPagoPago = "Pacific/Pago_Pago"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickCronTriggerTimeZoneSidKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickCronTriggerTimeZoneSidKey(string s)
+        {
+            return new PickCronTriggerTimeZoneSidKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickDashboardLeftSize
+    {
+        public static readonly string  Narrow = "Narrow"; 
+        public static readonly string  Medium = "Medium"; 
+        public static readonly string  Wide = "Wide"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickDashboardLeftSize o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickDashboardLeftSize(string s)
+        {
+            return new PickDashboardLeftSize {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickDashboardMiddleSize
+    {
+        public static readonly string  Narrow = "Narrow"; 
+        public static readonly string  Medium = "Medium"; 
+        public static readonly string  Wide = "Wide"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickDashboardMiddleSize o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickDashboardMiddleSize(string s)
+        {
+            return new PickDashboardMiddleSize {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickDashboardRightSize
+    {
+        public static readonly string  Narrow = "Narrow"; 
+        public static readonly string  Medium = "Medium"; 
+        public static readonly string  Wide = "Wide"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickDashboardRightSize o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickDashboardRightSize(string s)
+        {
+            return new PickDashboardRightSize {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickDashboardBackgroundDirection
+    {
+        public static readonly string  TopToBottom = "TopToBottom"; 
+        public static readonly string  LeftToRight = "LeftToRight"; 
+        public static readonly string  Diagonal = "Diagonal"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickDashboardBackgroundDirection o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickDashboardBackgroundDirection(string s)
+        {
+            return new PickDashboardBackgroundDirection {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickDashboardType
+    {
+        public static readonly string  SpecifiedUser = "SpecifiedUser"; 
+        public static readonly string  LoggedInUser = "LoggedInUser"; 
+        public static readonly string  MyTeamUser = "MyTeamUser"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickDashboardType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickDashboardType(string s)
+        {
+            return new PickDashboardType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickDashboardFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickDashboardFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickDashboardFeedType(string s)
+        {
+            return new PickDashboardFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailMessageStatus
+    {
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+        public static readonly string _4 = "4"; 
+        public static readonly string _5 = "5"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailMessageStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailMessageStatus(string s)
+        {
+            return new PickEmailMessageStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailServicesFunctionAttachmentOption
+    {
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+        public static readonly string _4 = "4"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailServicesFunctionAttachmentOption o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailServicesFunctionAttachmentOption(string s)
+        {
+            return new PickEmailServicesFunctionAttachmentOption {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailServicesFunctionOverLimitAction
+    {
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailServicesFunctionOverLimitAction o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailServicesFunctionOverLimitAction(string s)
+        {
+            return new PickEmailServicesFunctionOverLimitAction {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailServicesFunctionFunctionInactiveAction
+    {
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailServicesFunctionFunctionInactiveAction o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailServicesFunctionFunctionInactiveAction(string s)
+        {
+            return new PickEmailServicesFunctionFunctionInactiveAction {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailServicesFunctionAddressInactiveAction
+    {
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailServicesFunctionAddressInactiveAction o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailServicesFunctionAddressInactiveAction(string s)
+        {
+            return new PickEmailServicesFunctionAddressInactiveAction {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailServicesFunctionAuthenticationFailureAction
+    {
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailServicesFunctionAuthenticationFailureAction o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailServicesFunctionAuthenticationFailureAction(string s)
+        {
+            return new PickEmailServicesFunctionAuthenticationFailureAction {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailServicesFunctionAuthorizationFailureAction
+    {
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailServicesFunctionAuthorizationFailureAction o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailServicesFunctionAuthorizationFailureAction(string s)
+        {
+            return new PickEmailServicesFunctionAuthorizationFailureAction {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailTemplateTemplateStyle
+    {
+        public static readonly string  none = "none"; 
+        public static readonly string  freeForm = "freeForm"; 
+        public static readonly string  formalLetter = "formalLetter"; 
+        public static readonly string  promotionRight = "promotionRight"; 
+        public static readonly string  promotionLeft = "promotionLeft"; 
+        public static readonly string  newsletter = "newsletter"; 
+        public static readonly string  products = "products"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailTemplateTemplateStyle o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailTemplateTemplateStyle(string s)
+        {
+            return new PickEmailTemplateTemplateStyle {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailTemplateTemplateType
+    {
+        public static readonly string  text = "text"; 
+        public static readonly string  html = "html"; 
+        public static readonly string  custom = "custom"; 
+        public static readonly string  visualforce = "visualforce"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailTemplateTemplateType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailTemplateTemplateType(string s)
+        {
+            return new PickEmailTemplateTemplateType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEmailTemplateEncoding
+    {
+        public static readonly string  UTF8 = "UTF-8"; 
+        public static readonly string  ISO88591 = "ISO-8859-1"; 
+        public static readonly string  ShiftJIS = "Shift_JIS"; 
+        public static readonly string  ISO2022JP = "ISO-2022-JP"; 
+        public static readonly string  EUCJP = "EUC-JP"; 
+        public static readonly string  ksc56011987 = "ks_c_5601-1987"; 
+        public static readonly string  Big5 = "Big5"; 
+        public static readonly string  GB2312 = "GB2312"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEmailTemplateEncoding o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEmailTemplateEncoding(string s)
+        {
+            return new PickEmailTemplateEncoding {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEventShowAs
+    {
+        public static readonly string  Busy = "Busy"; 
+        public static readonly string  OutOfOffice = "OutOfOffice"; 
+        public static readonly string  Free = "Free"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEventShowAs o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEventShowAs(string s)
+        {
+            return new PickEventShowAs {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEventGroupEventType
+    {
+        public static readonly string _0 = "0"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _2 = "2"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEventGroupEventType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEventGroupEventType(string s)
+        {
+            return new PickEventGroupEventType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEventRecurrenceTimeZoneSidKey
+    {
+        public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
+        public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
+        public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
+        public static readonly string  AsiaSeoul = "Asia/Seoul"; 
+        public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
+        public static readonly string  AsiaHongKong = "Asia/Hong_Kong"; 
+        public static readonly string  AsiaKualaLumpur = "Asia/Kuala_Lumpur"; 
+        public static readonly string  AsiaManila = "Asia/Manila"; 
+        public static readonly string  AsiaShanghai = "Asia/Shanghai"; 
+        public static readonly string  AsiaSingapore = "Asia/Singapore"; 
+        public static readonly string  AsiaTaipei = "Asia/Taipei"; 
+        public static readonly string  AustraliaPerth = "Australia/Perth"; 
+        public static readonly string  AsiaBangkok = "Asia/Bangkok"; 
+        public static readonly string  AsiaHoChiMinh = "Asia/Ho_Chi_Minh"; 
+        public static readonly string  AsiaJakarta = "Asia/Jakarta"; 
+        public static readonly string  AsiaRangoon = "Asia/Rangoon"; 
+        public static readonly string  AsiaDhaka = "Asia/Dhaka"; 
+        public static readonly string  AsiaKathmandu = "Asia/Kathmandu"; 
+        public static readonly string  AsiaColombo = "Asia/Colombo"; 
+        public static readonly string  AsiaKolkata = "Asia/Kolkata"; 
+        public static readonly string  AsiaKarachi = "Asia/Karachi"; 
+        public static readonly string  AsiaTashkent = "Asia/Tashkent"; 
+        public static readonly string  AsiaYekaterinburg = "Asia/Yekaterinburg"; 
+        public static readonly string  AsiaKabul = "Asia/Kabul"; 
+        public static readonly string  AsiaDubai = "Asia/Dubai"; 
+        public static readonly string  AsiaTbilisi = "Asia/Tbilisi"; 
+        public static readonly string  AsiaTehran = "Asia/Tehran"; 
+        public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
+        public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
+        public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
+        public static readonly string  EuropeMinsk = "Europe/Minsk"; 
+        public static readonly string  EuropeMoscow = "Europe/Moscow"; 
+        public static readonly string  AfricaCairo = "Africa/Cairo"; 
+        public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
+        public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
+        public static readonly string  EuropeBerlin = "Europe/Berlin"; 
+        public static readonly string  EuropeBrussels = "Europe/Brussels"; 
+        public static readonly string  EuropeParis = "Europe/Paris"; 
+        public static readonly string  EuropePrague = "Europe/Prague"; 
+        public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  EuropeDublin = "Europe/Dublin"; 
+        public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
+        public static readonly string  EuropeLondon = "Europe/London"; 
+        public static readonly string  GMT = "GMT"; 
+        public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
+        public static readonly string  AmericaSaoPaulo = "America/Sao_Paulo"; 
+        public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
+        public static readonly string  AmericaArgentinaBuenosAires = "America/Argentina/Buenos_Aires"; 
+        public static readonly string  AmericaSantiago = "America/Santiago"; 
+        public static readonly string  AmericaStJohns = "America/St_Johns"; 
+        public static readonly string  AmericaCaracas = "America/Caracas"; 
+        public static readonly string  AmericaHalifax = "America/Halifax"; 
+        public static readonly string  AmericaPuertoRico = "America/Puerto_Rico"; 
+        public static readonly string  AtlanticBermuda = "Atlantic/Bermuda"; 
+        public static readonly string  AmericaBogota = "America/Bogota"; 
+        public static readonly string  AmericaIndianaIndianapolis = "America/Indiana/Indianapolis"; 
+        public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaNewYork = "America/New_York"; 
+        public static readonly string  AmericaPanama = "America/Panama"; 
+        public static readonly string  AmericaChicago = "America/Chicago"; 
+        public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
+        public static readonly string  AmericaDenver = "America/Denver"; 
+        public static readonly string  AmericaPhoenix = "America/Phoenix"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
+        public static readonly string  AmericaTijuana = "America/Tijuana"; 
+        public static readonly string  AmericaAnchorage = "America/Anchorage"; 
+        public static readonly string  PacificHonolulu = "Pacific/Honolulu"; 
+        public static readonly string  PacificNiue = "Pacific/Niue"; 
+        public static readonly string  PacificPagoPago = "Pacific/Pago_Pago"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEventRecurrenceTimeZoneSidKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEventRecurrenceTimeZoneSidKey(string s)
+        {
+            return new PickEventRecurrenceTimeZoneSidKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEventRecurrenceType
+    {
+        public static readonly string  RecursDaily = "RecursDaily"; 
+        public static readonly string  RecursEveryWeekday = "RecursEveryWeekday"; 
+        public static readonly string  RecursMonthly = "RecursMonthly"; 
+        public static readonly string  RecursMonthlyNth = "RecursMonthlyNth"; 
+        public static readonly string  RecursWeekly = "RecursWeekly"; 
+        public static readonly string  RecursYearly = "RecursYearly"; 
+        public static readonly string  RecursYearlyNth = "RecursYearlyNth"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEventRecurrenceType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEventRecurrenceType(string s)
+        {
+            return new PickEventRecurrenceType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEventRecurrenceInstance
+    {
+        public static readonly string  First = "First"; 
+        public static readonly string  Second = "Second"; 
+        public static readonly string  Third = "Third"; 
+        public static readonly string  Fourth = "Fourth"; 
+        public static readonly string  Last = "Last"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEventRecurrenceInstance o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEventRecurrenceInstance(string s)
+        {
+            return new PickEventRecurrenceInstance {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEventRecurrenceMonthOfYear
+    {
+        public static readonly string  January = "January"; 
+        public static readonly string  February = "February"; 
+        public static readonly string  March = "March"; 
+        public static readonly string  April = "April"; 
+        public static readonly string  May = "May"; 
+        public static readonly string  June = "June"; 
+        public static readonly string  July = "July"; 
+        public static readonly string  August = "August"; 
+        public static readonly string  September = "September"; 
+        public static readonly string  October = "October"; 
+        public static readonly string  November = "November"; 
+        public static readonly string  December = "December"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEventRecurrenceMonthOfYear o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEventRecurrenceMonthOfYear(string s)
+        {
+            return new PickEventRecurrenceMonthOfYear {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEventAttendeeStatus
+    {
+        public static readonly string  New = "New"; 
+        public static readonly string  Declined = "Declined"; 
+        public static readonly string  Accepted = "Accepted"; 
+        public static readonly string  Uninvited = "Uninvited"; 
+        public static readonly string  Maybe = "Maybe"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEventAttendeeStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEventAttendeeStatus(string s)
+        {
+            return new PickEventAttendeeStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickEventFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickEventFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickEventFeedType(string s)
+        {
+            return new PickEventFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickFeedPostType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickFeedPostType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickFeedPostType(string s)
+        {
+            return new PickFeedPostType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickFiscalYearSettingsYearType
+    {
+        public static readonly string  Standard = "Standard"; 
+        public static readonly string  Custom = "Custom"; 
+        public static readonly string  Placeholder = "Placeholder"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickFiscalYearSettingsYearType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickFiscalYearSettingsYearType(string s)
+        {
+            return new PickFiscalYearSettingsYearType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickFiscalYearSettingsQuarterLabelScheme
+    {
+        public static readonly string  NumberByYear = "NumberByYear"; 
+        public static readonly string  Custom = "Custom"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickFiscalYearSettingsQuarterLabelScheme o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickFiscalYearSettingsQuarterLabelScheme(string s)
+        {
+            return new PickFiscalYearSettingsQuarterLabelScheme {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickFiscalYearSettingsPeriodLabelScheme
+    {
+        public static readonly string  NumberByYear = "NumberByYear"; 
+        public static readonly string  NumberByQuarter = "NumberByQuarter"; 
+        public static readonly string  StandardMonths = "StandardMonths"; 
+        public static readonly string  Custom = "Custom"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickFiscalYearSettingsPeriodLabelScheme o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickFiscalYearSettingsPeriodLabelScheme(string s)
+        {
+            return new PickFiscalYearSettingsPeriodLabelScheme {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickFiscalYearSettingsWeekLabelScheme
+    {
+        public static readonly string  NumberByYear = "NumberByYear"; 
+        public static readonly string  NumberByQuarter = "NumberByQuarter"; 
+        public static readonly string  NumberByPeriod = "NumberByPeriod"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickFiscalYearSettingsWeekLabelScheme o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickFiscalYearSettingsWeekLabelScheme(string s)
+        {
+            return new PickFiscalYearSettingsWeekLabelScheme {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickFiscalYearSettingsQuarterPrefix
+    {
+        public static readonly string  Quarter = "Quarter"; 
+        public static readonly string  FQ = "FQ"; 
+        public static readonly string  Q = "Q"; 
+        public static readonly string  Trimester = "Trimester"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickFiscalYearSettingsQuarterPrefix o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickFiscalYearSettingsQuarterPrefix(string s)
+        {
+            return new PickFiscalYearSettingsQuarterPrefix {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickFiscalYearSettingsPeriodPrefix
+    {
+        public static readonly string  Period = "Period"; 
+        public static readonly string  FP = "FP"; 
+        public static readonly string  P = "P"; 
+        public static readonly string  Month = "Month"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickFiscalYearSettingsPeriodPrefix o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickFiscalYearSettingsPeriodPrefix(string s)
+        {
+            return new PickFiscalYearSettingsPeriodPrefix {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickFolderAccessType
+    {
+        public static readonly string  Shared = "Shared"; 
+        public static readonly string  Public = "Public"; 
+        public static readonly string  Hidden = "Hidden"; 
+        public static readonly string  PublicInternal = "PublicInternal"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickFolderAccessType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickFolderAccessType(string s)
+        {
+            return new PickFolderAccessType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickFolderType
+    {
+        public static readonly string  Document = "Document"; 
+        public static readonly string  Email = "Email"; 
+        public static readonly string  Report = "Report"; 
+        public static readonly string  Dashboard = "Dashboard"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickFolderType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickFolderType(string s)
+        {
+            return new PickFolderType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickForecastShareAccessLevel
+    {
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  All = "All"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickForecastShareAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickForecastShareAccessLevel(string s)
+        {
+            return new PickForecastShareAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickForecastShareRowCause
+    {
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  Manual = "Manual"; 
+        public static readonly string  Rule = "Rule"; 
+        public static readonly string  ImplicitChild = "ImplicitChild"; 
+        public static readonly string  ImplicitParent = "ImplicitParent"; 
+        public static readonly string  ImplicitPerson = "ImplicitPerson"; 
+        public static readonly string  Team = "Team"; 
+        public static readonly string  Territory = "Territory"; 
+        public static readonly string  TerritoryManual = "TerritoryManual"; 
+        public static readonly string  TerritoryRule = "TerritoryRule"; 
+        public static readonly string  Territory2Forecast = "Territory2Forecast"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickForecastShareRowCause o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickForecastShareRowCause(string s)
+        {
+            return new PickForecastShareRowCause {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickGroupType
+    {
+        public static readonly string  AllCustomerPortal = "AllCustomerPortal"; 
+        public static readonly string  CollaborationGroup = "CollaborationGroup"; 
+        public static readonly string  Manager = "Manager"; 
+        public static readonly string  ManagerAndSubordinatesInternal = "ManagerAndSubordinatesInternal"; 
+        public static readonly string  Organization = "Organization"; 
+        public static readonly string  PRMOrganization = "PRMOrganization"; 
+        public static readonly string  Queue = "Queue"; 
+        public static readonly string  Regular = "Regular"; 
+        public static readonly string  Role = "Role"; 
+        public static readonly string  RoleAndSubordinates = "RoleAndSubordinates"; 
+        public static readonly string  RoleAndSubordinatesInternal = "RoleAndSubordinatesInternal"; 
+        public static readonly string  SharingRuleGroup = "SharingRuleGroup"; 
+        public static readonly string  Territory = "Territory"; 
+        public static readonly string  TerritoryAndSubordinates = "TerritoryAndSubordinates"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickGroupType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickGroupType(string s)
+        {
+            return new PickGroupType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickHolidayRecurrenceType
+    {
+        public static readonly string  RecursDaily = "RecursDaily"; 
+        public static readonly string  RecursEveryWeekday = "RecursEveryWeekday"; 
+        public static readonly string  RecursMonthly = "RecursMonthly"; 
+        public static readonly string  RecursMonthlyNth = "RecursMonthlyNth"; 
+        public static readonly string  RecursWeekly = "RecursWeekly"; 
+        public static readonly string  RecursYearly = "RecursYearly"; 
+        public static readonly string  RecursYearlyNth = "RecursYearlyNth"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickHolidayRecurrenceType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickHolidayRecurrenceType(string s)
+        {
+            return new PickHolidayRecurrenceType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickHolidayRecurrenceInstance
+    {
+        public static readonly string  First = "First"; 
+        public static readonly string  Second = "Second"; 
+        public static readonly string  Third = "Third"; 
+        public static readonly string  Fourth = "Fourth"; 
+        public static readonly string  Last = "Last"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickHolidayRecurrenceInstance o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickHolidayRecurrenceInstance(string s)
+        {
+            return new PickHolidayRecurrenceInstance {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickHolidayRecurrenceMonthOfYear
+    {
+        public static readonly string  January = "January"; 
+        public static readonly string  February = "February"; 
+        public static readonly string  March = "March"; 
+        public static readonly string  April = "April"; 
+        public static readonly string  May = "May"; 
+        public static readonly string  June = "June"; 
+        public static readonly string  July = "July"; 
+        public static readonly string  August = "August"; 
+        public static readonly string  September = "September"; 
+        public static readonly string  October = "October"; 
+        public static readonly string  November = "November"; 
+        public static readonly string  December = "December"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickHolidayRecurrenceMonthOfYear o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickHolidayRecurrenceMonthOfYear(string s)
+        {
+            return new PickHolidayRecurrenceMonthOfYear {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickIdeaStatus
+    {
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickIdeaStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickIdeaStatus(string s)
+        {
+            return new PickIdeaStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadSalutation
+    {
+        public static readonly string  Mr = "Mr."; 
+        public static readonly string  Ms = "Ms."; 
+        public static readonly string  Mrs = "Mrs."; 
+        public static readonly string  Dr = "Dr."; 
+        public static readonly string  Prof = "Prof."; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadSalutation o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadSalutation(string s)
+        {
+            return new PickLeadSalutation {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadLeadSource
+    {
+        public static readonly string  Web = "Web"; 
+        public static readonly string  PhoneInquiry = "Phone Inquiry"; 
+        public static readonly string  PartnerReferral = "Partner Referral"; 
+        public static readonly string  PurchasedList = "Purchased List"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadLeadSource o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadLeadSource(string s)
+        {
+            return new PickLeadLeadSource {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadStatus
+    {
+        public static readonly string  OpenNotContacted = "Open - Not Contacted"; 
+        public static readonly string  WorkingContacted = "Working - Contacted"; 
+        public static readonly string  ClosedConverted = "Closed - Converted"; 
+        public static readonly string  ClosedNotConverted = "Closed - Not Converted"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadStatus(string s)
+        {
+            return new PickLeadStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadIndustry
+    {
+        public static readonly string  Agriculture = "Agriculture"; 
+        public static readonly string  Apparel = "Apparel"; 
+        public static readonly string  Banking = "Banking"; 
+        public static readonly string  Biotechnology = "Biotechnology"; 
+        public static readonly string  Chemicals = "Chemicals"; 
+        public static readonly string  Communications = "Communications"; 
+        public static readonly string  Construction = "Construction"; 
+        public static readonly string  Consulting = "Consulting"; 
+        public static readonly string  Education = "Education"; 
+        public static readonly string  Electronics = "Electronics"; 
+        public static readonly string  Energy = "Energy"; 
+        public static readonly string  Engineering = "Engineering"; 
+        public static readonly string  Entertainment = "Entertainment"; 
+        public static readonly string  Environmental = "Environmental"; 
+        public static readonly string  Finance = "Finance"; 
+        public static readonly string  FoodBeverage = "Food & Beverage"; 
+        public static readonly string  Government = "Government"; 
+        public static readonly string  Healthcare = "Healthcare"; 
+        public static readonly string  Hospitality = "Hospitality"; 
+        public static readonly string  Insurance = "Insurance"; 
+        public static readonly string  Machinery = "Machinery"; 
+        public static readonly string  Manufacturing = "Manufacturing"; 
+        public static readonly string  Media = "Media"; 
+        public static readonly string  NotForProfit = "Not For Profit"; 
+        public static readonly string  Recreation = "Recreation"; 
+        public static readonly string  Retail = "Retail"; 
+        public static readonly string  Shipping = "Shipping"; 
+        public static readonly string  Technology = "Technology"; 
+        public static readonly string  Telecommunications = "Telecommunications"; 
+        public static readonly string  Transportation = "Transportation"; 
+        public static readonly string  Utilities = "Utilities"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadIndustry o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadIndustry(string s)
+        {
+            return new PickLeadIndustry {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadRating
+    {
+        public static readonly string  Hot = "Hot"; 
+        public static readonly string  Warm = "Warm"; 
+        public static readonly string  Cold = "Cold"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadRating o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadRating(string s)
+        {
+            return new PickLeadRating {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadProductInterest__c
+    {
+        public static readonly string  GC1000series = "GC1000 series"; 
+        public static readonly string  GC5000series = "GC5000 series"; 
+        public static readonly string  GC3000series = "GC3000 series"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadProductInterest__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadProductInterest__c(string s)
+        {
+            return new PickLeadProductInterest__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadPrimary__c
+    {
+        public static readonly string  No = "No"; 
+        public static readonly string  Yes = "Yes"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadPrimary__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadPrimary__c(string s)
+        {
+            return new PickLeadPrimary__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadFeedType(string s)
+        {
+            return new PickLeadFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadHistoryField
+    {
+        public static readonly string  Address = "Address"; 
+        public static readonly string  AnnualRevenue = "AnnualRevenue"; 
+        public static readonly string  City = "City"; 
+        public static readonly string  CleanStatus = "CleanStatus"; 
+        public static readonly string  Company = "Company"; 
+        public static readonly string  CompanyDunsNumber = "CompanyDunsNumber"; 
+        public static readonly string  Country = "Country"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  CurrentGeneratorsc = "CurrentGenerators__c"; 
+        public static readonly string  DandbCompany = "DandbCompany"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  DoNotCall = "DoNotCall"; 
+        public static readonly string  Email = "Email"; 
+        public static readonly string  EmailBouncedDate = "EmailBouncedDate"; 
+        public static readonly string  EmailBouncedReason = "EmailBouncedReason"; 
+        public static readonly string  Fax = "Fax"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  FirstName = "FirstName"; 
+        public static readonly string  GeocodeAccuracy = "GeocodeAccuracy"; 
+        public static readonly string  HasOptedOutOfEmail = "HasOptedOutOfEmail"; 
+        public static readonly string  HasOptedOutOfFax = "HasOptedOutOfFax"; 
+        public static readonly string  Industry = "Industry"; 
+        public static readonly string  IsUnreadByOwner = "IsUnreadByOwner"; 
+        public static readonly string  Jigsaw = "Jigsaw"; 
+        public static readonly string  LastName = "LastName"; 
+        public static readonly string  Latitude = "Latitude"; 
+        public static readonly string  leadConverted = "leadConverted"; 
+        public static readonly string  leadMerged = "leadMerged"; 
+        public static readonly string  LeadSource = "LeadSource"; 
+        public static readonly string  Longitude = "Longitude"; 
+        public static readonly string  MobilePhone = "MobilePhone"; 
+        public static readonly string  Name = "Name"; 
+        public static readonly string  NumberOfEmployees = "NumberOfEmployees"; 
+        public static readonly string  NumberofLocationsc = "NumberofLocations__c"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  Phone = "Phone"; 
+        public static readonly string  PostalCode = "PostalCode"; 
+        public static readonly string  Primaryc = "Primary__c"; 
+        public static readonly string  ProductInterestc = "ProductInterest__c"; 
+        public static readonly string  Rating = "Rating"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  Salutation = "Salutation"; 
+        public static readonly string  SICCodec = "SICCode__c"; 
+        public static readonly string  State = "State"; 
+        public static readonly string  Status = "Status"; 
+        public static readonly string  Street = "Street"; 
+        public static readonly string  Title = "Title"; 
+        public static readonly string  Website = "Website"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadHistoryField(string s)
+        {
+            return new PickLeadHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadShareLeadAccessLevel
+    {
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  All = "All"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadShareLeadAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadShareLeadAccessLevel(string s)
+        {
+            return new PickLeadShareLeadAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickLeadShareRowCause
+    {
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  Manual = "Manual"; 
+        public static readonly string  Rule = "Rule"; 
+        public static readonly string  ImplicitChild = "ImplicitChild"; 
+        public static readonly string  ImplicitParent = "ImplicitParent"; 
+        public static readonly string  ImplicitPerson = "ImplicitPerson"; 
+        public static readonly string  Team = "Team"; 
+        public static readonly string  Territory = "Territory"; 
+        public static readonly string  TerritoryManual = "TerritoryManual"; 
+        public static readonly string  TerritoryRule = "TerritoryRule"; 
+        public static readonly string  Territory2Forecast = "Territory2Forecast"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickLeadShareRowCause o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickLeadShareRowCause(string s)
+        {
+            return new PickLeadShareRowCause {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickNameType
+    {
+        public static readonly string  Account = "Account"; 
+        public static readonly string  AccountContactRole = "AccountContactRole"; 
+        public static readonly string  Asset = "Asset"; 
+        public static readonly string  Campaign = "Campaign"; 
+        public static readonly string  Case = "Case"; 
+        public static readonly string  CollaborationGroup = "CollaborationGroup"; 
+        public static readonly string  Contact = "Contact"; 
+        public static readonly string  ContentDocument = "ContentDocument"; 
+        public static readonly string  ContentVersion = "ContentVersion"; 
+        public static readonly string  Contract = "Contract"; 
+        public static readonly string  Dashboard = "Dashboard"; 
+        public static readonly string  Document = "Document"; 
+        public static readonly string  EmailMessage = "EmailMessage"; 
+        public static readonly string  Event = "Event"; 
+        public static readonly string  Idea = "Idea"; 
+        public static readonly string  IdeaComment = "IdeaComment"; 
+        public static readonly string  Lead = "Lead"; 
+        public static readonly string  Opportunity = "Opportunity"; 
+        public static readonly string  Order = "Order"; 
+        public static readonly string  OrderItem = "OrderItem"; 
+        public static readonly string  Pricebook2 = "Pricebook2"; 
+        public static readonly string  Product2 = "Product2"; 
+        public static readonly string  Queue = "Queue"; 
+        public static readonly string  Report = "Report"; 
+        public static readonly string  SelfServiceUser = "SelfServiceUser"; 
+        public static readonly string  Solution = "Solution"; 
+        public static readonly string  Task = "Task"; 
+        public static readonly string  User = "User"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickNameType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickNameType(string s)
+        {
+            return new PickNameType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickNewsFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickNewsFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickNewsFeedType(string s)
+        {
+            return new PickNewsFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpenActivityStatus
+    {
+        public static readonly string  NotStarted = "Not Started"; 
+        public static readonly string  InProgress = "In Progress"; 
+        public static readonly string  Completed = "Completed"; 
+        public static readonly string  Waitingonsomeoneelse = "Waiting on someone else"; 
+        public static readonly string  Deferred = "Deferred"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpenActivityStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpenActivityStatus(string s)
+        {
+            return new PickOpenActivityStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpenActivityPriority
+    {
+        public static readonly string  High = "High"; 
+        public static readonly string  Normal = "Normal"; 
+        public static readonly string  Low = "Low"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpenActivityPriority o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpenActivityPriority(string s)
+        {
+            return new PickOpenActivityPriority {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpenActivityActivityType
+    {
+        public static readonly string  Call = "Call"; 
+        public static readonly string  Email = "Email"; 
+        public static readonly string  Meeting = "Meeting"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpenActivityActivityType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpenActivityActivityType(string s)
+        {
+            return new PickOpenActivityActivityType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpenActivityCallType
+    {
+        public static readonly string  Internal = "Internal"; 
+        public static readonly string  Inbound = "Inbound"; 
+        public static readonly string  Outbound = "Outbound"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpenActivityCallType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpenActivityCallType(string s)
+        {
+            return new PickOpenActivityCallType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityStageName
+    {
+        public static readonly string  Prospecting = "Prospecting"; 
+        public static readonly string  Qualification = "Qualification"; 
+        public static readonly string  NeedsAnalysis = "Needs Analysis"; 
+        public static readonly string  ValueProposition = "Value Proposition"; 
+        public static readonly string  IdDecisionMakers = "Id. Decision Makers"; 
+        public static readonly string  PerceptionAnalysis = "Perception Analysis"; 
+        public static readonly string  ProposalPriceQuote = "Proposal/Price Quote"; 
+        public static readonly string  NegotiationReview = "Negotiation/Review"; 
+        public static readonly string  ClosedWon = "Closed Won"; 
+        public static readonly string  ClosedLost = "Closed Lost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityStageName o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityStageName(string s)
+        {
+            return new PickOpportunityStageName {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityType
+    {
+        public static readonly string  ExistingCustomerUpgrade = "Existing Customer - Upgrade"; 
+        public static readonly string  ExistingCustomerReplacement = "Existing Customer - Replacement"; 
+        public static readonly string  ExistingCustomerDowngrade = "Existing Customer - Downgrade"; 
+        public static readonly string  NewCustomer = "New Customer"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityType(string s)
+        {
+            return new PickOpportunityType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityLeadSource
+    {
+        public static readonly string  Web = "Web"; 
+        public static readonly string  PhoneInquiry = "Phone Inquiry"; 
+        public static readonly string  PartnerReferral = "Partner Referral"; 
+        public static readonly string  PurchasedList = "Purchased List"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityLeadSource o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityLeadSource(string s)
+        {
+            return new PickOpportunityLeadSource {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityForecastCategory
+    {
+        public static readonly string  Omitted = "Omitted"; 
+        public static readonly string  Pipeline = "Pipeline"; 
+        public static readonly string  BestCase = "BestCase"; 
+        public static readonly string  Forecast = "Forecast"; 
+        public static readonly string  Closed = "Closed"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityForecastCategory o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityForecastCategory(string s)
+        {
+            return new PickOpportunityForecastCategory {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityForecastCategoryName
+    {
+        public static readonly string  Omitted = "Omitted"; 
+        public static readonly string  Pipeline = "Pipeline"; 
+        public static readonly string  BestCase = "Best Case"; 
+        public static readonly string  Commit = "Commit"; 
+        public static readonly string  Closed = "Closed"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityForecastCategoryName o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityForecastCategoryName(string s)
+        {
+            return new PickOpportunityForecastCategoryName {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityDeliveryInstallationStatus__c
+    {
+        public static readonly string  Inprogress = "In progress"; 
+        public static readonly string  Yettobegin = "Yet to begin"; 
+        public static readonly string  Completed = "Completed"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityDeliveryInstallationStatus__c o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityDeliveryInstallationStatus__c(string s)
+        {
+            return new PickOpportunityDeliveryInstallationStatus__c {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityContactRoleRole
+    {
+        public static readonly string  BusinessUser = "Business User"; 
+        public static readonly string  DecisionMaker = "Decision Maker"; 
+        public static readonly string  EconomicBuyer = "Economic Buyer"; 
+        public static readonly string  EconomicDecisionMaker = "Economic Decision Maker"; 
+        public static readonly string  Evaluator = "Evaluator"; 
+        public static readonly string  ExecutiveSponsor = "Executive Sponsor"; 
+        public static readonly string  Influencer = "Influencer"; 
+        public static readonly string  TechnicalBuyer = "Technical Buyer"; 
+        public static readonly string  Other = "Other"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityContactRoleRole o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityContactRoleRole(string s)
+        {
+            return new PickOpportunityContactRoleRole {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityFeedType(string s)
+        {
+            return new PickOpportunityFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityFieldHistoryField
+    {
+        public static readonly string  Account = "Account"; 
+        public static readonly string  Amount = "Amount"; 
+        public static readonly string  Campaign = "Campaign"; 
+        public static readonly string  CloseDate = "CloseDate"; 
+        public static readonly string  Contract = "Contract"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  opportunityCreatedFromLead = "opportunityCreatedFromLead"; 
+        public static readonly string  CurrentGeneratorsc = "CurrentGenerators__c"; 
+        public static readonly string  DeliveryInstallationStatusc = "DeliveryInstallationStatus__c"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  ForecastCategoryName = "ForecastCategoryName"; 
+        public static readonly string  IsPrivate = "IsPrivate"; 
+        public static readonly string  LeadSource = "LeadSource"; 
+        public static readonly string  MainCompetitorsc = "MainCompetitors__c"; 
+        public static readonly string  Name = "Name"; 
+        public static readonly string  NextStep = "NextStep"; 
+        public static readonly string  OrderNumberc = "OrderNumber__c"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  Probability = "Probability"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  StageName = "StageName"; 
+        public static readonly string  TotalOpportunityQuantity = "TotalOpportunityQuantity"; 
+        public static readonly string  TrackingNumberc = "TrackingNumber__c"; 
+        public static readonly string  Type = "Type"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityFieldHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityFieldHistoryField(string s)
+        {
+            return new PickOpportunityFieldHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityHistoryStageName
+    {
+        public static readonly string  Prospecting = "Prospecting"; 
+        public static readonly string  Qualification = "Qualification"; 
+        public static readonly string  NeedsAnalysis = "Needs Analysis"; 
+        public static readonly string  ValueProposition = "Value Proposition"; 
+        public static readonly string  IdDecisionMakers = "Id. Decision Makers"; 
+        public static readonly string  PerceptionAnalysis = "Perception Analysis"; 
+        public static readonly string  ProposalPriceQuote = "Proposal/Price Quote"; 
+        public static readonly string  NegotiationReview = "Negotiation/Review"; 
+        public static readonly string  ClosedWon = "Closed Won"; 
+        public static readonly string  ClosedLost = "Closed Lost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityHistoryStageName o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityHistoryStageName(string s)
+        {
+            return new PickOpportunityHistoryStageName {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityHistoryForecastCategory
+    {
+        public static readonly string  Omitted = "Omitted"; 
+        public static readonly string  Pipeline = "Pipeline"; 
+        public static readonly string  BestCase = "BestCase"; 
+        public static readonly string  Forecast = "Forecast"; 
+        public static readonly string  Closed = "Closed"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityHistoryForecastCategory o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityHistoryForecastCategory(string s)
+        {
+            return new PickOpportunityHistoryForecastCategory {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityPartnerRole
+    {
+        public static readonly string  SystemIntegrator = "System Integrator"; 
+        public static readonly string  Agency = "Agency"; 
+        public static readonly string  Advertiser = "Advertiser"; 
+        public static readonly string  VARReseller = "VAR/Reseller"; 
+        public static readonly string  Distributor = "Distributor"; 
+        public static readonly string  Developer = "Developer"; 
+        public static readonly string  Broker = "Broker"; 
+        public static readonly string  Lender = "Lender"; 
+        public static readonly string  Supplier = "Supplier"; 
+        public static readonly string  Institution = "Institution"; 
+        public static readonly string  Contractor = "Contractor"; 
+        public static readonly string  Dealer = "Dealer"; 
+        public static readonly string  Consultant = "Consultant"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityPartnerRole o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityPartnerRole(string s)
+        {
+            return new PickOpportunityPartnerRole {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityShareOpportunityAccessLevel
+    {
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  All = "All"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityShareOpportunityAccessLevel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityShareOpportunityAccessLevel(string s)
+        {
+            return new PickOpportunityShareOpportunityAccessLevel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityShareRowCause
+    {
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  Manual = "Manual"; 
+        public static readonly string  Rule = "Rule"; 
+        public static readonly string  ImplicitChild = "ImplicitChild"; 
+        public static readonly string  ImplicitParent = "ImplicitParent"; 
+        public static readonly string  ImplicitPerson = "ImplicitPerson"; 
+        public static readonly string  Team = "Team"; 
+        public static readonly string  Territory = "Territory"; 
+        public static readonly string  TerritoryManual = "TerritoryManual"; 
+        public static readonly string  TerritoryRule = "TerritoryRule"; 
+        public static readonly string  Territory2Forecast = "Territory2Forecast"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityShareRowCause o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityShareRowCause(string s)
+        {
+            return new PickOpportunityShareRowCause {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityStageForecastCategory
+    {
+        public static readonly string  Omitted = "Omitted"; 
+        public static readonly string  Pipeline = "Pipeline"; 
+        public static readonly string  BestCase = "BestCase"; 
+        public static readonly string  Forecast = "Forecast"; 
+        public static readonly string  Closed = "Closed"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityStageForecastCategory o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityStageForecastCategory(string s)
+        {
+            return new PickOpportunityStageForecastCategory {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOpportunityStageForecastCategoryName
+    {
+        public static readonly string  Omitted = "Omitted"; 
+        public static readonly string  Pipeline = "Pipeline"; 
+        public static readonly string  BestCase = "Best Case"; 
+        public static readonly string  Commit = "Commit"; 
+        public static readonly string  Closed = "Closed"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOpportunityStageForecastCategoryName o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOpportunityStageForecastCategoryName(string s)
+        {
+            return new PickOpportunityStageForecastCategoryName {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrderStatus
+    {
+        public static readonly string  Draft = "Draft"; 
+        public static readonly string  Activated = "Activated"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrderStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrderStatus(string s)
+        {
+            return new PickOrderStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrderType
+    {
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrderType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrderType(string s)
+        {
+            return new PickOrderType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrderStatusCode
+    {
+        public static readonly string  D = "D"; 
+        public static readonly string  A = "A"; 
+        public static readonly string  C = "C"; 
+        public static readonly string  E = "E"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrderStatusCode o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrderStatusCode(string s)
+        {
+            return new PickOrderStatusCode {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrderHistoryField
+    {
+        public static readonly string  Account = "Account"; 
+        public static readonly string  ActivatedBy = "ActivatedBy"; 
+        public static readonly string  ActivatedDate = "ActivatedDate"; 
+        public static readonly string  BillingAddress = "BillingAddress"; 
+        public static readonly string  BillingCity = "BillingCity"; 
+        public static readonly string  BillingCountry = "BillingCountry"; 
+        public static readonly string  BillingGeocodeAccuracy = "BillingGeocodeAccuracy"; 
+        public static readonly string  BillingLatitude = "BillingLatitude"; 
+        public static readonly string  BillingLongitude = "BillingLongitude"; 
+        public static readonly string  BillingPostalCode = "BillingPostalCode"; 
+        public static readonly string  BillingState = "BillingState"; 
+        public static readonly string  BillingStreet = "BillingStreet"; 
+        public static readonly string  BillToContact = "BillToContact"; 
+        public static readonly string  CompanyAuthorizedBy = "CompanyAuthorizedBy"; 
+        public static readonly string  CompanyAuthorizedDate = "CompanyAuthorizedDate"; 
+        public static readonly string  Contract = "Contract"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  CustomerAuthorizedBy = "CustomerAuthorizedBy"; 
+        public static readonly string  CustomerAuthorizedDate = "CustomerAuthorizedDate"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  EffectiveDate = "EffectiveDate"; 
+        public static readonly string  EndDate = "EndDate"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  Name = "Name"; 
+        public static readonly string  Opportunity = "Opportunity"; 
+        public static readonly string  orderActivated = "orderActivated"; 
+        public static readonly string  orderApproved = "orderApproved"; 
+        public static readonly string  orderCancelled = "orderCancelled"; 
+        public static readonly string  orderDeactivated = "orderDeactivated"; 
+        public static readonly string  orderExpired = "orderExpired"; 
+        public static readonly string  OrderReferenceNumber = "OrderReferenceNumber"; 
+        public static readonly string  orderSubmitted = "orderSubmitted"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  PoDate = "PoDate"; 
+        public static readonly string  PoNumber = "PoNumber"; 
+        public static readonly string  Pricebook2 = "Pricebook2"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  ShippingAddress = "ShippingAddress"; 
+        public static readonly string  ShippingCity = "ShippingCity"; 
+        public static readonly string  ShippingCountry = "ShippingCountry"; 
+        public static readonly string  ShippingGeocodeAccuracy = "ShippingGeocodeAccuracy"; 
+        public static readonly string  ShippingLatitude = "ShippingLatitude"; 
+        public static readonly string  ShippingLongitude = "ShippingLongitude"; 
+        public static readonly string  ShippingPostalCode = "ShippingPostalCode"; 
+        public static readonly string  ShippingState = "ShippingState"; 
+        public static readonly string  ShippingStreet = "ShippingStreet"; 
+        public static readonly string  ShipToContact = "ShipToContact"; 
+        public static readonly string  Status = "Status"; 
+        public static readonly string  StatusCode = "StatusCode"; 
+        public static readonly string  Type = "Type"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrderHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrderHistoryField(string s)
+        {
+            return new PickOrderHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationDefaultLocaleSidKey
+    {
+        public static readonly string  arBH = "ar_BH"; 
+        public static readonly string  arEG = "ar_EG"; 
+        public static readonly string  arJO = "ar_JO"; 
+        public static readonly string  arKW = "ar_KW"; 
+        public static readonly string  arLB = "ar_LB"; 
+        public static readonly string  arSA = "ar_SA"; 
+        public static readonly string  arAE = "ar_AE"; 
+        public static readonly string  hyAM = "hy_AM"; 
+        public static readonly string  bgBG = "bg_BG"; 
+        public static readonly string  caES = "ca_ES"; 
+        public static readonly string  zhCN = "zh_CN"; 
+        public static readonly string  zhHK = "zh_HK"; 
+        public static readonly string  zhTW = "zh_TW"; 
+        public static readonly string  hrHR = "hr_HR"; 
+        public static readonly string  csCZ = "cs_CZ"; 
+        public static readonly string  daDK = "da_DK"; 
+        public static readonly string  nlBE = "nl_BE"; 
+        public static readonly string  nlNL = "nl_NL"; 
+        public static readonly string  nlSR = "nl_SR"; 
+        public static readonly string  enAU = "en_AU"; 
+        public static readonly string  enBB = "en_BB"; 
+        public static readonly string  enBM = "en_BM"; 
+        public static readonly string  enCA = "en_CA"; 
+        public static readonly string  enGH = "en_GH"; 
+        public static readonly string  enIN = "en_IN"; 
+        public static readonly string  enID = "en_ID"; 
+        public static readonly string  enIE = "en_IE"; 
+        public static readonly string  enMY = "en_MY"; 
+        public static readonly string  enNZ = "en_NZ"; 
+        public static readonly string  enNG = "en_NG"; 
+        public static readonly string  enPH = "en_PH"; 
+        public static readonly string  enSG = "en_SG"; 
+        public static readonly string  enZA = "en_ZA"; 
+        public static readonly string  enGB = "en_GB"; 
+        public static readonly string  enUS = "en_US"; 
+        public static readonly string  etEE = "et_EE"; 
+        public static readonly string  fiFI = "fi_FI"; 
+        public static readonly string  frBE = "fr_BE"; 
+        public static readonly string  frCA = "fr_CA"; 
+        public static readonly string  frFR = "fr_FR"; 
+        public static readonly string  frLU = "fr_LU"; 
+        public static readonly string  frMC = "fr_MC"; 
+        public static readonly string  frCH = "fr_CH"; 
+        public static readonly string  kaGE = "ka_GE"; 
+        public static readonly string  deAT = "de_AT"; 
+        public static readonly string  deDE = "de_DE"; 
+        public static readonly string  deLU = "de_LU"; 
+        public static readonly string  deCH = "de_CH"; 
+        public static readonly string  elGR = "el_GR"; 
+        public static readonly string  iwIL = "iw_IL"; 
+        public static readonly string  isIS = "is_IS"; 
+        public static readonly string  itIT = "it_IT"; 
+        public static readonly string  itCH = "it_CH"; 
+        public static readonly string  jaJP = "ja_JP"; 
+        public static readonly string  kkKZ = "kk_KZ"; 
+        public static readonly string  kmKH = "km_KH"; 
+        public static readonly string  koKR = "ko_KR"; 
+        public static readonly string  lvLV = "lv_LV"; 
+        public static readonly string  ltLT = "lt_LT"; 
+        public static readonly string  msMY = "ms_MY"; 
+        public static readonly string  noNO = "no_NO"; 
+        public static readonly string  ptAO = "pt_AO"; 
+        public static readonly string  ptBR = "pt_BR"; 
+        public static readonly string  ptPT = "pt_PT"; 
+        public static readonly string  roRO = "ro_RO"; 
+        public static readonly string  ruRU = "ru_RU"; 
+        public static readonly string  srBA = "sr_BA"; 
+        public static readonly string  shBA = "sh_BA"; 
+        public static readonly string  shCS = "sh_CS"; 
+        public static readonly string  srCS = "sr_CS"; 
+        public static readonly string  skSK = "sk_SK"; 
+        public static readonly string  slSI = "sl_SI"; 
+        public static readonly string  esAR = "es_AR"; 
+        public static readonly string  esBO = "es_BO"; 
+        public static readonly string  esCL = "es_CL"; 
+        public static readonly string  esCO = "es_CO"; 
+        public static readonly string  esCR = "es_CR"; 
+        public static readonly string  esDO = "es_DO"; 
+        public static readonly string  esEC = "es_EC"; 
+        public static readonly string  esSV = "es_SV"; 
+        public static readonly string  esGT = "es_GT"; 
+        public static readonly string  esHN = "es_HN"; 
+        public static readonly string  esMX = "es_MX"; 
+        public static readonly string  esPA = "es_PA"; 
+        public static readonly string  esPY = "es_PY"; 
+        public static readonly string  esPE = "es_PE"; 
+        public static readonly string  esPR = "es_PR"; 
+        public static readonly string  esES = "es_ES"; 
+        public static readonly string  esUY = "es_UY"; 
+        public static readonly string  esVE = "es_VE"; 
+        public static readonly string  svSE = "sv_SE"; 
+        public static readonly string  tlPH = "tl_PH"; 
+        public static readonly string  thTH = "th_TH"; 
+        public static readonly string  ukUA = "uk_UA"; 
+        public static readonly string  urPK = "ur_PK"; 
+        public static readonly string  viVN = "vi_VN"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationDefaultLocaleSidKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationDefaultLocaleSidKey(string s)
+        {
+            return new PickOrganizationDefaultLocaleSidKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationLanguageLocaleKey
+    {
+        public static readonly string  enUS = "en_US"; 
+        public static readonly string  de = "de"; 
+        public static readonly string  es = "es"; 
+        public static readonly string  fr = "fr"; 
+        public static readonly string  it = "it"; 
+        public static readonly string  ja = "ja"; 
+        public static readonly string  sv = "sv"; 
+        public static readonly string  ko = "ko"; 
+        public static readonly string  zhTW = "zh_TW"; 
+        public static readonly string  zhCN = "zh_CN"; 
+        public static readonly string  ptBR = "pt_BR"; 
+        public static readonly string  nlNL = "nl_NL"; 
+        public static readonly string  da = "da"; 
+        public static readonly string  th = "th"; 
+        public static readonly string  fi = "fi"; 
+        public static readonly string  ru = "ru"; 
+        public static readonly string  esMX = "es_MX"; 
+        public static readonly string  no = "no"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationLanguageLocaleKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationLanguageLocaleKey(string s)
+        {
+            return new PickOrganizationLanguageLocaleKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationDefaultAccountAccess
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationDefaultAccountAccess o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationDefaultAccountAccess(string s)
+        {
+            return new PickOrganizationDefaultAccountAccess {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationDefaultContactAccess
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  ControlledByParent = "ControlledByParent"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationDefaultContactAccess o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationDefaultContactAccess(string s)
+        {
+            return new PickOrganizationDefaultContactAccess {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationDefaultOpportunityAccess
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationDefaultOpportunityAccess o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationDefaultOpportunityAccess(string s)
+        {
+            return new PickOrganizationDefaultOpportunityAccess {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationDefaultLeadAccess
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  ReadEditTransfer = "ReadEditTransfer"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationDefaultLeadAccess o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationDefaultLeadAccess(string s)
+        {
+            return new PickOrganizationDefaultLeadAccess {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationDefaultCaseAccess
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  ReadEditTransfer = "ReadEditTransfer"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationDefaultCaseAccess o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationDefaultCaseAccess(string s)
+        {
+            return new PickOrganizationDefaultCaseAccess {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationDefaultCalendarAccess
+    {
+        public static readonly string  HideDetails = "HideDetails"; 
+        public static readonly string  HideDetailsInsert = "HideDetailsInsert"; 
+        public static readonly string  ShowDetails = "ShowDetails"; 
+        public static readonly string  ShowDetailsInsert = "ShowDetailsInsert"; 
+        public static readonly string  AllowEdits = "AllowEdits"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationDefaultCalendarAccess o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationDefaultCalendarAccess(string s)
+        {
+            return new PickOrganizationDefaultCalendarAccess {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationDefaultPricebookAccess
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  ReadSelect = "ReadSelect"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationDefaultPricebookAccess o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationDefaultPricebookAccess(string s)
+        {
+            return new PickOrganizationDefaultPricebookAccess {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationDefaultCampaignAccess
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+        public static readonly string  All = "All"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationDefaultCampaignAccess o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationDefaultCampaignAccess(string s)
+        {
+            return new PickOrganizationDefaultCampaignAccess {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationUiSkin
+    {
+        public static readonly string  Theme1 = "Theme1"; 
+        public static readonly string  Theme2 = "Theme2"; 
+        public static readonly string  PortalDefault = "PortalDefault"; 
+        public static readonly string  Webstore = "Webstore"; 
+        public static readonly string  Theme3 = "Theme3"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationUiSkin o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationUiSkin(string s)
+        {
+            return new PickOrganizationUiSkin {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickOrganizationOrganizationType
+    {
+        public static readonly string  TeamEdition = "Team Edition"; 
+        public static readonly string  ProfessionalEdition = "Professional Edition"; 
+        public static readonly string  EnterpriseEdition = "Enterprise Edition"; 
+        public static readonly string  DeveloperEdition = "Developer Edition"; 
+        public static readonly string  PersonalEdition = "Personal Edition"; 
+        public static readonly string  UnlimitedEdition = "Unlimited Edition"; 
+        public static readonly string  ContactManagerEdition = "Contact Manager Edition"; 
+        public static readonly string  BaseEdition = "Base Edition"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickOrganizationOrganizationType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickOrganizationOrganizationType(string s)
+        {
+            return new PickOrganizationOrganizationType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickPartnerRole
+    {
+        public static readonly string  SystemIntegrator = "System Integrator"; 
+        public static readonly string  Agency = "Agency"; 
+        public static readonly string  Advertiser = "Advertiser"; 
+        public static readonly string  VARReseller = "VAR/Reseller"; 
+        public static readonly string  Distributor = "Distributor"; 
+        public static readonly string  Developer = "Developer"; 
+        public static readonly string  Broker = "Broker"; 
+        public static readonly string  Lender = "Lender"; 
+        public static readonly string  Supplier = "Supplier"; 
+        public static readonly string  Institution = "Institution"; 
+        public static readonly string  Contractor = "Contractor"; 
+        public static readonly string  Dealer = "Dealer"; 
+        public static readonly string  Consultant = "Consultant"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickPartnerRole o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickPartnerRole(string s)
+        {
+            return new PickPartnerRole {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickPartnerRoleReverseRole
+    {
+        public static readonly string  SystemIntegrator = "System Integrator"; 
+        public static readonly string  Agency = "Agency"; 
+        public static readonly string  Advertiser = "Advertiser"; 
+        public static readonly string  VARReseller = "VAR/Reseller"; 
+        public static readonly string  Distributor = "Distributor"; 
+        public static readonly string  Developer = "Developer"; 
+        public static readonly string  Broker = "Broker"; 
+        public static readonly string  Lender = "Lender"; 
+        public static readonly string  Supplier = "Supplier"; 
+        public static readonly string  Institution = "Institution"; 
+        public static readonly string  Contractor = "Contractor"; 
+        public static readonly string  Dealer = "Dealer"; 
+        public static readonly string  Consultant = "Consultant"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickPartnerRoleReverseRole o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickPartnerRoleReverseRole(string s)
+        {
+            return new PickPartnerRoleReverseRole {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickPeriodType
+    {
+        public static readonly string  Month = "Month"; 
+        public static readonly string  Quarter = "Quarter"; 
+        public static readonly string  Week = "Week"; 
+        public static readonly string  Year = "Year"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickPeriodType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickPeriodType(string s)
+        {
+            return new PickPeriodType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickPeriodQuarterLabel
+    {
+        public static readonly string  Spring = "Spring"; 
+        public static readonly string  Summer = "Summer"; 
+        public static readonly string  Fall = "Fall"; 
+        public static readonly string  Winter = "Winter"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickPeriodQuarterLabel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickPeriodQuarterLabel(string s)
+        {
+            return new PickPeriodQuarterLabel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickPeriodPeriodLabel
+    {
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickPeriodPeriodLabel o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickPeriodPeriodLabel(string s)
+        {
+            return new PickPeriodPeriodLabel {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickPricebook2HistoryField
+    {
+        public static readonly string  created = "created"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  IsActive = "IsActive"; 
+        public static readonly string  IsArchived = "IsArchived"; 
+        public static readonly string  IsStandard = "IsStandard"; 
+        public static readonly string  Name = "Name"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickPricebook2HistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickPricebook2HistoryField(string s)
+        {
+            return new PickPricebook2HistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProcessDefinitionType
+    {
+        public static readonly string  Approval = "Approval"; 
+        public static readonly string  State = "State"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProcessDefinitionType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProcessDefinitionType(string s)
+        {
+            return new PickProcessDefinitionType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProcessDefinitionTableEnumOrId
+    {
+        public static readonly string  Account = "Account"; 
+        public static readonly string  Asset = "Asset"; 
+        public static readonly string  AssistantProgress = "AssistantProgress"; 
+        public static readonly string  Campaign = "Campaign"; 
+        public static readonly string  Case = "Case"; 
+        public static readonly string  Contact = "Contact"; 
+        public static readonly string  Contract = "Contract"; 
+        public static readonly string  DuplicateRecordItem = "DuplicateRecordItem"; 
+        public static readonly string  DuplicateRecordSet = "DuplicateRecordSet"; 
+        public static readonly string  EmailMessage = "EmailMessage"; 
+        public static readonly string  ExchangeUserMapping = "ExchangeUserMapping"; 
+        public static readonly string  Goal = "Goal"; 
+        public static readonly string  KnowledgeArticle = "KnowledgeArticle"; 
+        public static readonly string  KnowledgeArticleVersion = "KnowledgeArticleVersion"; 
+        public static readonly string  Lead = "Lead"; 
+        public static readonly string  Metric = "Metric"; 
+        public static readonly string  Opportunity = "Opportunity"; 
+        public static readonly string  Order = "Order"; 
+        public static readonly string  Product2 = "Product2"; 
+        public static readonly string  Solution = "Solution"; 
+        public static readonly string  StreamingChannel = "StreamingChannel"; 
+        public static readonly string  UserProvisioningRequest = "UserProvisioningRequest"; 
+        public static readonly string  WorkCoaching = "WorkCoaching"; 
+        public static readonly string  WorkFeedback = "WorkFeedback"; 
+        public static readonly string  WorkFeedbackQuestion = "WorkFeedbackQuestion"; 
+        public static readonly string  WorkFeedbackQuestionSet = "WorkFeedbackQuestionSet"; 
+        public static readonly string  WorkFeedbackRequest = "WorkFeedbackRequest"; 
+        public static readonly string  WorkFeedbackTemplate = "WorkFeedbackTemplate"; 
+        public static readonly string  WorkPerformanceCycle = "WorkPerformanceCycle"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProcessDefinitionTableEnumOrId o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProcessDefinitionTableEnumOrId(string s)
+        {
+            return new PickProcessDefinitionTableEnumOrId {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProcessDefinitionLockType
+    {
+        public static readonly string  Total = "Total"; 
+        public static readonly string  Admin = "Admin"; 
+        public static readonly string  Owner = "Owner"; 
+        public static readonly string  Workitem = "Workitem"; 
+        public static readonly string  Node = "Node"; 
+        public static readonly string  none = "none"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProcessDefinitionLockType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProcessDefinitionLockType(string s)
+        {
+            return new PickProcessDefinitionLockType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProcessDefinitionState
+    {
+        public static readonly string  Active = "Active"; 
+        public static readonly string  Inactive = "Inactive"; 
+        public static readonly string  Obsolete = "Obsolete"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProcessDefinitionState o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProcessDefinitionState(string s)
+        {
+            return new PickProcessDefinitionState {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProcessInstanceStatus
+    {
+        public static readonly string  Approved = "Approved"; 
+        public static readonly string  Rejected = "Rejected"; 
+        public static readonly string  Removed = "Removed"; 
+        public static readonly string  Fault = "Fault"; 
+        public static readonly string  Pending = "Pending"; 
+        public static readonly string  Held = "Held"; 
+        public static readonly string  Reassigned = "Reassigned"; 
+        public static readonly string  Started = "Started"; 
+        public static readonly string  NoResponse = "NoResponse"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProcessInstanceStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProcessInstanceStatus(string s)
+        {
+            return new PickProcessInstanceStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProcessInstanceHistoryStepStatus
+    {
+        public static readonly string  Approved = "Approved"; 
+        public static readonly string  Rejected = "Rejected"; 
+        public static readonly string  Removed = "Removed"; 
+        public static readonly string  Fault = "Fault"; 
+        public static readonly string  Pending = "Pending"; 
+        public static readonly string  Held = "Held"; 
+        public static readonly string  Reassigned = "Reassigned"; 
+        public static readonly string  Started = "Started"; 
+        public static readonly string  NoResponse = "NoResponse"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProcessInstanceHistoryStepStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProcessInstanceHistoryStepStatus(string s)
+        {
+            return new PickProcessInstanceHistoryStepStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProcessInstanceStepStepStatus
+    {
+        public static readonly string  Approved = "Approved"; 
+        public static readonly string  Rejected = "Rejected"; 
+        public static readonly string  Removed = "Removed"; 
+        public static readonly string  Fault = "Fault"; 
+        public static readonly string  Pending = "Pending"; 
+        public static readonly string  Held = "Held"; 
+        public static readonly string  Reassigned = "Reassigned"; 
+        public static readonly string  Started = "Started"; 
+        public static readonly string  NoResponse = "NoResponse"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProcessInstanceStepStepStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProcessInstanceStepStepStatus(string s)
+        {
+            return new PickProcessInstanceStepStepStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProduct2Family
+    {
+        public static readonly string  None = "None"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProduct2Family o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProduct2Family(string s)
+        {
+            return new PickProduct2Family {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProduct2FeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProduct2FeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProduct2FeedType(string s)
+        {
+            return new PickProduct2FeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickProfileUserType
+    {
+        public static readonly string  Standard = "Standard"; 
+        public static readonly string  PowerPartner = "PowerPartner"; 
+        public static readonly string  PowerCustomerSuccess = "PowerCustomerSuccess"; 
+        public static readonly string  CustomerSuccess = "CustomerSuccess"; 
+        public static readonly string  Guest = "Guest"; 
+        public static readonly string  CSPLitePortal = "CSPLitePortal"; 
+        public static readonly string  CSNOnly = "CSNOnly"; 
+        public static readonly string  SelfService = "SelfService"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickProfileUserType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickProfileUserType(string s)
+        {
+            return new PickProfileUserType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickQueueSobjectSobjectType
+    {
+        public static readonly string  Case = "Case"; 
+        public static readonly string  Goal = "Goal"; 
+        public static readonly string  Lead = "Lead"; 
+        public static readonly string  Macro = "Macro"; 
+        public static readonly string  Metric = "Metric"; 
+        public static readonly string  Order = "Order"; 
+        public static readonly string  UserProvisioningRequest = "UserProvisioningRequest"; 
+        public static readonly string  WorkCoaching = "WorkCoaching"; 
+        public static readonly string  WorkFeedback = "WorkFeedback"; 
+        public static readonly string  WorkFeedbackQuestion = "WorkFeedbackQuestion"; 
+        public static readonly string  WorkFeedbackQuestionSet = "WorkFeedbackQuestionSet"; 
+        public static readonly string  WorkFeedbackRequest = "WorkFeedbackRequest"; 
+        public static readonly string  WorkFeedbackTemplate = "WorkFeedbackTemplate"; 
+        public static readonly string  WorkPerformanceCycle = "WorkPerformanceCycle"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickQueueSobjectSobjectType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickQueueSobjectSobjectType(string s)
+        {
+            return new PickQueueSobjectSobjectType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickRecordTypeSobjectType
+    {
+        public static readonly string  Account = "Account"; 
+        public static readonly string  Announcement = "Announcement"; 
+        public static readonly string  AssistantProgress = "AssistantProgress"; 
+        public static readonly string  Campaign = "Campaign"; 
+        public static readonly string  CampaignMember = "CampaignMember"; 
+        public static readonly string  Case = "Case"; 
+        public static readonly string  CollaborationGroupRecord = "CollaborationGroupRecord"; 
+        public static readonly string  Contact = "Contact"; 
+        public static readonly string  ContentVersion = "ContentVersion"; 
+        public static readonly string  Contract = "Contract"; 
+        public static readonly string  DuplicateErrorLog = "DuplicateErrorLog"; 
+        public static readonly string  DuplicateRecordItem = "DuplicateRecordItem"; 
+        public static readonly string  DuplicateRecordSet = "DuplicateRecordSet"; 
+        public static readonly string  Event = "Event"; 
+        public static readonly string  FileSearchActivity = "FileSearchActivity"; 
+        public static readonly string  Goal = "Goal"; 
+        public static readonly string  GoalLink = "GoalLink"; 
+        public static readonly string  Idea = "Idea"; 
+        public static readonly string  InboundSocialPost = "InboundSocialPost"; 
+        public static readonly string  Lead = "Lead"; 
+        public static readonly string  Macro = "Macro"; 
+        public static readonly string  MacroAction = "MacroAction"; 
+        public static readonly string  MacroInstruction = "MacroInstruction"; 
+        public static readonly string  Metric = "Metric"; 
+        public static readonly string  MetricDataLink = "MetricDataLink"; 
+        public static readonly string  Opportunity = "Opportunity"; 
+        public static readonly string  Order = "Order"; 
+        public static readonly string  Pricebook2 = "Pricebook2"; 
+        public static readonly string  Product2 = "Product2"; 
+        public static readonly string  RecordOrigin = "RecordOrigin"; 
+        public static readonly string  SearchActivity = "SearchActivity"; 
+        public static readonly string  SearchPromotionRule = "SearchPromotionRule"; 
+        public static readonly string  SetupAssistantAnswer = "SetupAssistantAnswer"; 
+        public static readonly string  Solution = "Solution"; 
+        public static readonly string  Task = "Task"; 
+        public static readonly string  TransactionSecurityAction = "TransactionSecurityAction"; 
+        public static readonly string  TransactionSecurityActionEvent = "TransactionSecurityActionEvent"; 
+        public static readonly string  WorkCoaching = "WorkCoaching"; 
+        public static readonly string  WorkFeedback = "WorkFeedback"; 
+        public static readonly string  WorkFeedbackQuestion = "WorkFeedbackQuestion"; 
+        public static readonly string  WorkFeedbackQuestionSet = "WorkFeedbackQuestionSet"; 
+        public static readonly string  WorkFeedbackRequest = "WorkFeedbackRequest"; 
+        public static readonly string  WorkFeedbackTemplate = "WorkFeedbackTemplate"; 
+        public static readonly string  WorkPerformanceCycle = "WorkPerformanceCycle"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickRecordTypeSobjectType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickRecordTypeSobjectType(string s)
+        {
+            return new PickRecordTypeSobjectType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickReportFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickReportFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickReportFeedType(string s)
+        {
+            return new PickReportFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickSiteStatus
+    {
+        public static readonly string  Active = "Active"; 
+        public static readonly string  Inactive = "Inactive"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickSiteStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickSiteStatus(string s)
+        {
+            return new PickSiteStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickSiteFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickSiteFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickSiteFeedType(string s)
+        {
+            return new PickSiteFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickSiteHistoryField
+    {
+        public static readonly string  siteActive = "siteActive"; 
+        public static readonly string  Admin = "Admin"; 
+        public static readonly string  AnalyticsTrackingCode = "AnalyticsTrackingCode"; 
+        public static readonly string  siteOverride401 = "siteOverride401"; 
+        public static readonly string  siteOverrideChangePassword = "siteOverrideChangePassword"; 
+        public static readonly string  ClickjackProtectionLevel = "ClickjackProtectionLevel"; 
+        public static readonly string  created = "created"; 
+        public static readonly string  SiteDeleteDomain = "SiteDeleteDomain"; 
+        public static readonly string  siteNewDomain = "siteNewDomain"; 
+        public static readonly string  DefaultDomain = "DefaultDomain"; 
+        public static readonly string  siteSetPrimaryDomain = "siteSetPrimaryDomain"; 
+        public static readonly string  Description = "Description"; 
+        public static readonly string  siteBTDisabled = "siteBTDisabled"; 
+        public static readonly string  siteEnableFeeds = "siteEnableFeeds"; 
+        public static readonly string  siteAllowStandardAnswersPages = "siteAllowStandardAnswersPages"; 
+        public static readonly string  siteAllowHomePage = "siteAllowHomePage"; 
+        public static readonly string  siteAllowStandardIdeasPages = "siteAllowStandardIdeasPages"; 
+        public static readonly string  siteAllowStandardSearch = "siteAllowStandardSearch"; 
+        public static readonly string  siteAllowStandardLookups = "siteAllowStandardLookups"; 
+        public static readonly string  FavoriteIcon = "FavoriteIcon"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  siteOverrideForgotPassword = "siteOverrideForgotPassword"; 
+        public static readonly string  siteOverride500 = "siteOverride500"; 
+        public static readonly string  GuestUser = "GuestUser"; 
+        public static readonly string  Guid = "Guid"; 
+        public static readonly string  siteOverrideInactive = "siteOverrideInactive"; 
+        public static readonly string  IndexPage = "IndexPage"; 
+        public static readonly string  Language = "Language"; 
+        public static readonly string  siteOverride509 = "siteOverride509"; 
+        public static readonly string  siteOverride503 = "siteOverride503"; 
+        public static readonly string  MasterLabel = "MasterLabel"; 
+        public static readonly string  sitePageLimitExceeded = "sitePageLimitExceeded"; 
+        public static readonly string  siteOverrideMyProfile = "siteOverrideMyProfile"; 
+        public static readonly string  Name = "Name"; 
+        public static readonly string  NewPassTemplate = "NewPassTemplate"; 
+        public static readonly string  NewUserTemplate = "NewUserTemplate"; 
+        public static readonly string  Options = "Options"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  siteOverride404 = "siteOverride404"; 
+        public static readonly string  Portal = "Portal"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  siteNewRedirect = "siteNewRedirect"; 
+        public static readonly string  siteDeleteRedirect = "siteDeleteRedirect"; 
+        public static readonly string  siteChangeRedirect = "siteChangeRedirect"; 
+        public static readonly string  siteRequireInsecurePortalAccess = "siteRequireInsecurePortalAccess"; 
+        public static readonly string  siteRequireHttps = "siteRequireHttps"; 
+        public static readonly string  siteOverrideSelfReg = "siteOverrideSelfReg"; 
+        public static readonly string  ServerIsDown = "ServerIsDown"; 
+        public static readonly string  siteOverrideRobotsTxt = "siteOverrideRobotsTxt"; 
+        public static readonly string  siteOverrideTemplate = "siteOverrideTemplate"; 
+        public static readonly string  SiteType = "SiteType"; 
+        public static readonly string  Status = "Status"; 
+        public static readonly string  Subdomain = "Subdomain"; 
+        public static readonly string  TopLevelDomain = "TopLevelDomain"; 
+        public static readonly string  UrlPathPrefix = "UrlPathPrefix"; 
+        public static readonly string  UrlRewriterClass = "UrlRewriterClass"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickSiteHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickSiteHistoryField(string s)
+        {
+            return new PickSiteHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickSolutionStatus
+    {
+        public static readonly string  Draft = "Draft"; 
+        public static readonly string  Reviewed = "Reviewed"; 
+        public static readonly string  Duplicate = "Duplicate"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickSolutionStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickSolutionStatus(string s)
+        {
+            return new PickSolutionStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickSolutionFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickSolutionFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickSolutionFeedType(string s)
+        {
+            return new PickSolutionFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickSolutionHistoryField
+    {
+        public static readonly string  created = "created"; 
+        public static readonly string  feedEvent = "feedEvent"; 
+        public static readonly string  IsPublished = "IsPublished"; 
+        public static readonly string  IsPublishedInPublicKb = "IsPublishedInPublicKb"; 
+        public static readonly string  ownerAccepted = "ownerAccepted"; 
+        public static readonly string  ownerAssignment = "ownerAssignment"; 
+        public static readonly string  locked = "locked"; 
+        public static readonly string  unlocked = "unlocked"; 
+        public static readonly string  SolutionName = "SolutionName"; 
+        public static readonly string  SolutionNote = "SolutionNote"; 
+        public static readonly string  Status = "Status"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickSolutionHistoryField o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickSolutionHistoryField(string s)
+        {
+            return new PickSolutionHistoryField {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickStaticResourceCacheControl
+    {
+        public static readonly string  Private = "Private"; 
+        public static readonly string  Public = "Public"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickStaticResourceCacheControl o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickStaticResourceCacheControl(string s)
+        {
+            return new PickStaticResourceCacheControl {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickTaskStatus
+    {
+        public static readonly string  NotStarted = "Not Started"; 
+        public static readonly string  InProgress = "In Progress"; 
+        public static readonly string  Completed = "Completed"; 
+        public static readonly string  Waitingonsomeoneelse = "Waiting on someone else"; 
+        public static readonly string  Deferred = "Deferred"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickTaskStatus o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickTaskStatus(string s)
+        {
+            return new PickTaskStatus {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickTaskPriority
+    {
+        public static readonly string  High = "High"; 
+        public static readonly string  Normal = "Normal"; 
+        public static readonly string  Low = "Low"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickTaskPriority o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickTaskPriority(string s)
+        {
+            return new PickTaskPriority {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickTaskCallType
+    {
+        public static readonly string  Internal = "Internal"; 
+        public static readonly string  Inbound = "Inbound"; 
+        public static readonly string  Outbound = "Outbound"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickTaskCallType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickTaskCallType(string s)
+        {
+            return new PickTaskCallType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickTaskRecurrenceTimeZoneSidKey
+    {
+        public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
+        public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
+        public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
+        public static readonly string  AsiaSeoul = "Asia/Seoul"; 
+        public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
+        public static readonly string  AsiaHongKong = "Asia/Hong_Kong"; 
+        public static readonly string  AsiaKualaLumpur = "Asia/Kuala_Lumpur"; 
+        public static readonly string  AsiaManila = "Asia/Manila"; 
+        public static readonly string  AsiaShanghai = "Asia/Shanghai"; 
+        public static readonly string  AsiaSingapore = "Asia/Singapore"; 
+        public static readonly string  AsiaTaipei = "Asia/Taipei"; 
+        public static readonly string  AustraliaPerth = "Australia/Perth"; 
+        public static readonly string  AsiaBangkok = "Asia/Bangkok"; 
+        public static readonly string  AsiaHoChiMinh = "Asia/Ho_Chi_Minh"; 
+        public static readonly string  AsiaJakarta = "Asia/Jakarta"; 
+        public static readonly string  AsiaRangoon = "Asia/Rangoon"; 
+        public static readonly string  AsiaDhaka = "Asia/Dhaka"; 
+        public static readonly string  AsiaKathmandu = "Asia/Kathmandu"; 
+        public static readonly string  AsiaColombo = "Asia/Colombo"; 
+        public static readonly string  AsiaKolkata = "Asia/Kolkata"; 
+        public static readonly string  AsiaKarachi = "Asia/Karachi"; 
+        public static readonly string  AsiaTashkent = "Asia/Tashkent"; 
+        public static readonly string  AsiaYekaterinburg = "Asia/Yekaterinburg"; 
+        public static readonly string  AsiaKabul = "Asia/Kabul"; 
+        public static readonly string  AsiaDubai = "Asia/Dubai"; 
+        public static readonly string  AsiaTbilisi = "Asia/Tbilisi"; 
+        public static readonly string  AsiaTehran = "Asia/Tehran"; 
+        public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
+        public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
+        public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
+        public static readonly string  EuropeMinsk = "Europe/Minsk"; 
+        public static readonly string  EuropeMoscow = "Europe/Moscow"; 
+        public static readonly string  AfricaCairo = "Africa/Cairo"; 
+        public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
+        public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
+        public static readonly string  EuropeBerlin = "Europe/Berlin"; 
+        public static readonly string  EuropeBrussels = "Europe/Brussels"; 
+        public static readonly string  EuropeParis = "Europe/Paris"; 
+        public static readonly string  EuropePrague = "Europe/Prague"; 
+        public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  EuropeDublin = "Europe/Dublin"; 
+        public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
+        public static readonly string  EuropeLondon = "Europe/London"; 
+        public static readonly string  GMT = "GMT"; 
+        public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
+        public static readonly string  AmericaSaoPaulo = "America/Sao_Paulo"; 
+        public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
+        public static readonly string  AmericaArgentinaBuenosAires = "America/Argentina/Buenos_Aires"; 
+        public static readonly string  AmericaSantiago = "America/Santiago"; 
+        public static readonly string  AmericaStJohns = "America/St_Johns"; 
+        public static readonly string  AmericaCaracas = "America/Caracas"; 
+        public static readonly string  AmericaHalifax = "America/Halifax"; 
+        public static readonly string  AmericaPuertoRico = "America/Puerto_Rico"; 
+        public static readonly string  AtlanticBermuda = "Atlantic/Bermuda"; 
+        public static readonly string  AmericaBogota = "America/Bogota"; 
+        public static readonly string  AmericaIndianaIndianapolis = "America/Indiana/Indianapolis"; 
+        public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaNewYork = "America/New_York"; 
+        public static readonly string  AmericaPanama = "America/Panama"; 
+        public static readonly string  AmericaChicago = "America/Chicago"; 
+        public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
+        public static readonly string  AmericaDenver = "America/Denver"; 
+        public static readonly string  AmericaPhoenix = "America/Phoenix"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
+        public static readonly string  AmericaTijuana = "America/Tijuana"; 
+        public static readonly string  AmericaAnchorage = "America/Anchorage"; 
+        public static readonly string  PacificHonolulu = "Pacific/Honolulu"; 
+        public static readonly string  PacificNiue = "Pacific/Niue"; 
+        public static readonly string  PacificPagoPago = "Pacific/Pago_Pago"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickTaskRecurrenceTimeZoneSidKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickTaskRecurrenceTimeZoneSidKey(string s)
+        {
+            return new PickTaskRecurrenceTimeZoneSidKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickTaskRecurrenceType
+    {
+        public static readonly string  RecursDaily = "RecursDaily"; 
+        public static readonly string  RecursEveryWeekday = "RecursEveryWeekday"; 
+        public static readonly string  RecursMonthly = "RecursMonthly"; 
+        public static readonly string  RecursMonthlyNth = "RecursMonthlyNth"; 
+        public static readonly string  RecursWeekly = "RecursWeekly"; 
+        public static readonly string  RecursYearly = "RecursYearly"; 
+        public static readonly string  RecursYearlyNth = "RecursYearlyNth"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickTaskRecurrenceType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickTaskRecurrenceType(string s)
+        {
+            return new PickTaskRecurrenceType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickTaskRecurrenceInstance
+    {
+        public static readonly string  First = "First"; 
+        public static readonly string  Second = "Second"; 
+        public static readonly string  Third = "Third"; 
+        public static readonly string  Fourth = "Fourth"; 
+        public static readonly string  Last = "Last"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickTaskRecurrenceInstance o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickTaskRecurrenceInstance(string s)
+        {
+            return new PickTaskRecurrenceInstance {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickTaskRecurrenceMonthOfYear
+    {
+        public static readonly string  January = "January"; 
+        public static readonly string  February = "February"; 
+        public static readonly string  March = "March"; 
+        public static readonly string  April = "April"; 
+        public static readonly string  May = "May"; 
+        public static readonly string  June = "June"; 
+        public static readonly string  July = "July"; 
+        public static readonly string  August = "August"; 
+        public static readonly string  September = "September"; 
+        public static readonly string  October = "October"; 
+        public static readonly string  November = "November"; 
+        public static readonly string  December = "December"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickTaskRecurrenceMonthOfYear o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickTaskRecurrenceMonthOfYear(string s)
+        {
+            return new PickTaskRecurrenceMonthOfYear {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickTaskFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickTaskFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickTaskFeedType(string s)
+        {
+            return new PickTaskFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserTimeZoneSidKey
+    {
+        public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
+        public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
+        public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
+        public static readonly string  AsiaSeoul = "Asia/Seoul"; 
+        public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
+        public static readonly string  AsiaHongKong = "Asia/Hong_Kong"; 
+        public static readonly string  AsiaKualaLumpur = "Asia/Kuala_Lumpur"; 
+        public static readonly string  AsiaManila = "Asia/Manila"; 
+        public static readonly string  AsiaShanghai = "Asia/Shanghai"; 
+        public static readonly string  AsiaSingapore = "Asia/Singapore"; 
+        public static readonly string  AsiaTaipei = "Asia/Taipei"; 
+        public static readonly string  AustraliaPerth = "Australia/Perth"; 
+        public static readonly string  AsiaBangkok = "Asia/Bangkok"; 
+        public static readonly string  AsiaHoChiMinh = "Asia/Ho_Chi_Minh"; 
+        public static readonly string  AsiaJakarta = "Asia/Jakarta"; 
+        public static readonly string  AsiaRangoon = "Asia/Rangoon"; 
+        public static readonly string  AsiaDhaka = "Asia/Dhaka"; 
+        public static readonly string  AsiaKathmandu = "Asia/Kathmandu"; 
+        public static readonly string  AsiaColombo = "Asia/Colombo"; 
+        public static readonly string  AsiaKolkata = "Asia/Kolkata"; 
+        public static readonly string  AsiaKarachi = "Asia/Karachi"; 
+        public static readonly string  AsiaTashkent = "Asia/Tashkent"; 
+        public static readonly string  AsiaYekaterinburg = "Asia/Yekaterinburg"; 
+        public static readonly string  AsiaKabul = "Asia/Kabul"; 
+        public static readonly string  AsiaDubai = "Asia/Dubai"; 
+        public static readonly string  AsiaTbilisi = "Asia/Tbilisi"; 
+        public static readonly string  AsiaTehran = "Asia/Tehran"; 
+        public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
+        public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
+        public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
+        public static readonly string  EuropeMinsk = "Europe/Minsk"; 
+        public static readonly string  EuropeMoscow = "Europe/Moscow"; 
+        public static readonly string  AfricaCairo = "Africa/Cairo"; 
+        public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
+        public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
+        public static readonly string  EuropeBerlin = "Europe/Berlin"; 
+        public static readonly string  EuropeBrussels = "Europe/Brussels"; 
+        public static readonly string  EuropeParis = "Europe/Paris"; 
+        public static readonly string  EuropePrague = "Europe/Prague"; 
+        public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  EuropeDublin = "Europe/Dublin"; 
+        public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
+        public static readonly string  EuropeLondon = "Europe/London"; 
+        public static readonly string  GMT = "GMT"; 
+        public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
+        public static readonly string  AmericaSaoPaulo = "America/Sao_Paulo"; 
+        public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
+        public static readonly string  AmericaArgentinaBuenosAires = "America/Argentina/Buenos_Aires"; 
+        public static readonly string  AmericaSantiago = "America/Santiago"; 
+        public static readonly string  AmericaStJohns = "America/St_Johns"; 
+        public static readonly string  AmericaCaracas = "America/Caracas"; 
+        public static readonly string  AmericaHalifax = "America/Halifax"; 
+        public static readonly string  AmericaPuertoRico = "America/Puerto_Rico"; 
+        public static readonly string  AtlanticBermuda = "Atlantic/Bermuda"; 
+        public static readonly string  AmericaBogota = "America/Bogota"; 
+        public static readonly string  AmericaIndianaIndianapolis = "America/Indiana/Indianapolis"; 
+        public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaNewYork = "America/New_York"; 
+        public static readonly string  AmericaPanama = "America/Panama"; 
+        public static readonly string  AmericaChicago = "America/Chicago"; 
+        public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
+        public static readonly string  AmericaDenver = "America/Denver"; 
+        public static readonly string  AmericaPhoenix = "America/Phoenix"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
+        public static readonly string  AmericaTijuana = "America/Tijuana"; 
+        public static readonly string  AmericaAnchorage = "America/Anchorage"; 
+        public static readonly string  PacificHonolulu = "Pacific/Honolulu"; 
+        public static readonly string  PacificNiue = "Pacific/Niue"; 
+        public static readonly string  PacificPagoPago = "Pacific/Pago_Pago"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserTimeZoneSidKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserTimeZoneSidKey(string s)
+        {
+            return new PickUserTimeZoneSidKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserLocaleSidKey
+    {
+        public static readonly string  arBH = "ar_BH"; 
+        public static readonly string  arEG = "ar_EG"; 
+        public static readonly string  arJO = "ar_JO"; 
+        public static readonly string  arKW = "ar_KW"; 
+        public static readonly string  arLB = "ar_LB"; 
+        public static readonly string  arSA = "ar_SA"; 
+        public static readonly string  arAE = "ar_AE"; 
+        public static readonly string  hyAM = "hy_AM"; 
+        public static readonly string  bgBG = "bg_BG"; 
+        public static readonly string  caES = "ca_ES"; 
+        public static readonly string  zhCN = "zh_CN"; 
+        public static readonly string  zhHK = "zh_HK"; 
+        public static readonly string  zhTW = "zh_TW"; 
+        public static readonly string  hrHR = "hr_HR"; 
+        public static readonly string  csCZ = "cs_CZ"; 
+        public static readonly string  daDK = "da_DK"; 
+        public static readonly string  nlBE = "nl_BE"; 
+        public static readonly string  nlNL = "nl_NL"; 
+        public static readonly string  nlSR = "nl_SR"; 
+        public static readonly string  enAU = "en_AU"; 
+        public static readonly string  enBB = "en_BB"; 
+        public static readonly string  enBM = "en_BM"; 
+        public static readonly string  enCA = "en_CA"; 
+        public static readonly string  enGH = "en_GH"; 
+        public static readonly string  enIN = "en_IN"; 
+        public static readonly string  enID = "en_ID"; 
+        public static readonly string  enIE = "en_IE"; 
+        public static readonly string  enMY = "en_MY"; 
+        public static readonly string  enNZ = "en_NZ"; 
+        public static readonly string  enNG = "en_NG"; 
+        public static readonly string  enPH = "en_PH"; 
+        public static readonly string  enSG = "en_SG"; 
+        public static readonly string  enZA = "en_ZA"; 
+        public static readonly string  enGB = "en_GB"; 
+        public static readonly string  enUS = "en_US"; 
+        public static readonly string  etEE = "et_EE"; 
+        public static readonly string  fiFI = "fi_FI"; 
+        public static readonly string  frBE = "fr_BE"; 
+        public static readonly string  frCA = "fr_CA"; 
+        public static readonly string  frFR = "fr_FR"; 
+        public static readonly string  frLU = "fr_LU"; 
+        public static readonly string  frMC = "fr_MC"; 
+        public static readonly string  frCH = "fr_CH"; 
+        public static readonly string  kaGE = "ka_GE"; 
+        public static readonly string  deAT = "de_AT"; 
+        public static readonly string  deDE = "de_DE"; 
+        public static readonly string  deLU = "de_LU"; 
+        public static readonly string  deCH = "de_CH"; 
+        public static readonly string  elGR = "el_GR"; 
+        public static readonly string  iwIL = "iw_IL"; 
+        public static readonly string  isIS = "is_IS"; 
+        public static readonly string  itIT = "it_IT"; 
+        public static readonly string  itCH = "it_CH"; 
+        public static readonly string  jaJP = "ja_JP"; 
+        public static readonly string  kkKZ = "kk_KZ"; 
+        public static readonly string  kmKH = "km_KH"; 
+        public static readonly string  koKR = "ko_KR"; 
+        public static readonly string  lvLV = "lv_LV"; 
+        public static readonly string  ltLT = "lt_LT"; 
+        public static readonly string  msMY = "ms_MY"; 
+        public static readonly string  noNO = "no_NO"; 
+        public static readonly string  ptAO = "pt_AO"; 
+        public static readonly string  ptBR = "pt_BR"; 
+        public static readonly string  ptPT = "pt_PT"; 
+        public static readonly string  roRO = "ro_RO"; 
+        public static readonly string  ruRU = "ru_RU"; 
+        public static readonly string  srBA = "sr_BA"; 
+        public static readonly string  shBA = "sh_BA"; 
+        public static readonly string  shCS = "sh_CS"; 
+        public static readonly string  srCS = "sr_CS"; 
+        public static readonly string  skSK = "sk_SK"; 
+        public static readonly string  slSI = "sl_SI"; 
+        public static readonly string  esAR = "es_AR"; 
+        public static readonly string  esBO = "es_BO"; 
+        public static readonly string  esCL = "es_CL"; 
+        public static readonly string  esCO = "es_CO"; 
+        public static readonly string  esCR = "es_CR"; 
+        public static readonly string  esDO = "es_DO"; 
+        public static readonly string  esEC = "es_EC"; 
+        public static readonly string  esSV = "es_SV"; 
+        public static readonly string  esGT = "es_GT"; 
+        public static readonly string  esHN = "es_HN"; 
+        public static readonly string  esMX = "es_MX"; 
+        public static readonly string  esPA = "es_PA"; 
+        public static readonly string  esPY = "es_PY"; 
+        public static readonly string  esPE = "es_PE"; 
+        public static readonly string  esPR = "es_PR"; 
+        public static readonly string  esES = "es_ES"; 
+        public static readonly string  esUY = "es_UY"; 
+        public static readonly string  esVE = "es_VE"; 
+        public static readonly string  svSE = "sv_SE"; 
+        public static readonly string  tlPH = "tl_PH"; 
+        public static readonly string  thTH = "th_TH"; 
+        public static readonly string  ukUA = "uk_UA"; 
+        public static readonly string  urPK = "ur_PK"; 
+        public static readonly string  viVN = "vi_VN"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserLocaleSidKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserLocaleSidKey(string s)
+        {
+            return new PickUserLocaleSidKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserEmailEncodingKey
+    {
+        public static readonly string  UTF8 = "UTF-8"; 
+        public static readonly string  ISO88591 = "ISO-8859-1"; 
+        public static readonly string  ShiftJIS = "Shift_JIS"; 
+        public static readonly string  ISO2022JP = "ISO-2022-JP"; 
+        public static readonly string  EUCJP = "EUC-JP"; 
+        public static readonly string  ksc56011987 = "ks_c_5601-1987"; 
+        public static readonly string  Big5 = "Big5"; 
+        public static readonly string  GB2312 = "GB2312"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserEmailEncodingKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserEmailEncodingKey(string s)
+        {
+            return new PickUserEmailEncodingKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserUserType
+    {
+        public static readonly string  Standard = "Standard"; 
+        public static readonly string  PowerPartner = "PowerPartner"; 
+        public static readonly string  PowerCustomerSuccess = "PowerCustomerSuccess"; 
+        public static readonly string  CustomerSuccess = "CustomerSuccess"; 
+        public static readonly string  Guest = "Guest"; 
+        public static readonly string  CSPLitePortal = "CSPLitePortal"; 
+        public static readonly string  CSNOnly = "CSNOnly"; 
+        public static readonly string  SelfService = "SelfService"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserUserType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserUserType(string s)
+        {
+            return new PickUserUserType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserLanguageLocaleKey
+    {
+        public static readonly string  enUS = "en_US"; 
+        public static readonly string  de = "de"; 
+        public static readonly string  es = "es"; 
+        public static readonly string  fr = "fr"; 
+        public static readonly string  it = "it"; 
+        public static readonly string  ja = "ja"; 
+        public static readonly string  sv = "sv"; 
+        public static readonly string  ko = "ko"; 
+        public static readonly string  zhTW = "zh_TW"; 
+        public static readonly string  zhCN = "zh_CN"; 
+        public static readonly string  ptBR = "pt_BR"; 
+        public static readonly string  nlNL = "nl_NL"; 
+        public static readonly string  da = "da"; 
+        public static readonly string  th = "th"; 
+        public static readonly string  fi = "fi"; 
+        public static readonly string  ru = "ru"; 
+        public static readonly string  esMX = "es_MX"; 
+        public static readonly string  no = "no"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserLanguageLocaleKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserLanguageLocaleKey(string s)
+        {
+            return new PickUserLanguageLocaleKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserDigestFrequency
+    {
+        public static readonly string  D = "D"; 
+        public static readonly string  W = "W"; 
+        public static readonly string  N = "N"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserDigestFrequency o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserDigestFrequency(string s)
+        {
+            return new PickUserDigestFrequency {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserFeedType(string s)
+        {
+            return new PickUserFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserPreferencePreference
+    {
+        public static readonly string _57 = "57"; 
+        public static readonly string _58 = "58"; 
+        public static readonly string _91 = "91"; 
+        public static readonly string _92 = "92"; 
+        public static readonly string _93 = "93"; 
+        public static readonly string _94 = "94"; 
+        public static readonly string _96 = "96"; 
+        public static readonly string _97 = "97"; 
+        public static readonly string _98 = "98"; 
+        public static readonly string _99 = "99"; 
+        public static readonly string _100 = "100"; 
+        public static readonly string _101 = "101"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserPreferencePreference o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserPreferencePreference(string s)
+        {
+            return new PickUserPreferencePreference {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserProfileFeedType
+    {
+        public static readonly string  TrackedChange = "TrackedChange"; 
+        public static readonly string  UserStatus = "UserStatus"; 
+        public static readonly string  TextPost = "TextPost"; 
+        public static readonly string  AdvancedTextPost = "AdvancedTextPost"; 
+        public static readonly string  LinkPost = "LinkPost"; 
+        public static readonly string  ContentPost = "ContentPost"; 
+        public static readonly string  PollPost = "PollPost"; 
+        public static readonly string  RypplePost = "RypplePost"; 
+        public static readonly string  ProfileSkillPost = "ProfileSkillPost"; 
+        public static readonly string  DashboardComponentSnapshot = "DashboardComponentSnapshot"; 
+        public static readonly string  ApprovalPost = "ApprovalPost"; 
+        public static readonly string  CaseCommentPost = "CaseCommentPost"; 
+        public static readonly string  ReplyPost = "ReplyPost"; 
+        public static readonly string  EmailMessageEvent = "EmailMessageEvent"; 
+        public static readonly string  CallLogPost = "CallLogPost"; 
+        public static readonly string  ChangeStatusPost = "ChangeStatusPost"; 
+        public static readonly string  AttachArticleEvent = "AttachArticleEvent"; 
+        public static readonly string  MilestoneEvent = "MilestoneEvent"; 
+        public static readonly string  ActivityEvent = "ActivityEvent"; 
+        public static readonly string  ChatTranscriptPost = "ChatTranscriptPost"; 
+        public static readonly string  CollaborationGroupCreated = "CollaborationGroupCreated"; 
+        public static readonly string  CollaborationGroupUnarchived = "CollaborationGroupUnarchived"; 
+        public static readonly string  SocialPost = "SocialPost"; 
+        public static readonly string  QuestionPost = "QuestionPost"; 
+        public static readonly string  FacebookPost = "FacebookPost"; 
+        public static readonly string  BasicTemplateFeedItem = "BasicTemplateFeedItem"; 
+        public static readonly string  CreateRecordEvent = "CreateRecordEvent"; 
+        public static readonly string  CanvasPost = "CanvasPost"; 
+        public static readonly string  AnnouncementPost = "AnnouncementPost"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserProfileFeedType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserProfileFeedType(string s)
+        {
+            return new PickUserProfileFeedType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserRoleOpportunityAccessForAccountOwner
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserRoleOpportunityAccessForAccountOwner o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserRoleOpportunityAccessForAccountOwner(string s)
+        {
+            return new PickUserRoleOpportunityAccessForAccountOwner {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserRoleCaseAccessForAccountOwner
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserRoleCaseAccessForAccountOwner o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserRoleCaseAccessForAccountOwner(string s)
+        {
+            return new PickUserRoleCaseAccessForAccountOwner {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserRoleContactAccessForAccountOwner
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  Read = "Read"; 
+        public static readonly string  Edit = "Edit"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserRoleContactAccessForAccountOwner o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserRoleContactAccessForAccountOwner(string s)
+        {
+            return new PickUserRoleContactAccessForAccountOwner {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickUserRolePortalType
+    {
+        public static readonly string  None = "None"; 
+        public static readonly string  CustomerPortal = "CustomerPortal"; 
+        public static readonly string  Partner = "Partner"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickUserRolePortalType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickUserRolePortalType(string s)
+        {
+            return new PickUserRolePortalType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickVoteType
+    {
+        public static readonly string  Up = "Up"; 
+        public static readonly string  Down = "Down"; 
+        public static readonly string _1 = "1"; 
+        public static readonly string _2 = "2"; 
+        public static readonly string _3 = "3"; 
+        public static readonly string _4 = "4"; 
+        public static readonly string _5 = "5"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickVoteType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickVoteType(string s)
+        {
+            return new PickVoteType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickWebLinkPageOrSobjectType
+    {
+        public static readonly string  Account = "Account"; 
+        public static readonly string  Activity = "Activity"; 
+        public static readonly string  Asset = "Asset"; 
+        public static readonly string  Campaign = "Campaign"; 
+        public static readonly string  CampaignMember = "CampaignMember"; 
+        public static readonly string  Case = "Case"; 
+        public static readonly string  Contact = "Contact"; 
+        public static readonly string  ContentVersion = "ContentVersion"; 
+        public static readonly string  Contract = "Contract"; 
+        public static readonly string  CustomPageItem = "CustomPageItem"; 
+        public static readonly string  DandBCompany = "DandBCompany"; 
+        public static readonly string  DashboardComponent = "DashboardComponent"; 
+        public static readonly string  DuplicateRecordItem = "DuplicateRecordItem"; 
+        public static readonly string  DuplicateRecordSet = "DuplicateRecordSet"; 
+        public static readonly string  EmailMessage = "EmailMessage"; 
+        public static readonly string  Event = "Event"; 
+        public static readonly string  Goal = "Goal"; 
+        public static readonly string  GoalLink = "GoalLink"; 
+        public static readonly string  Idea = "Idea"; 
+        public static readonly string  Lead = "Lead"; 
+        public static readonly string  Macro = "Macro"; 
+        public static readonly string  Metric = "Metric"; 
+        public static readonly string  Opportunity = "Opportunity"; 
+        public static readonly string  OpportunityLineItem = "OpportunityLineItem"; 
+        public static readonly string  Order = "Order"; 
+        public static readonly string  OrderItem = "OrderItem"; 
+        public static readonly string  Product2 = "Product2"; 
+        public static readonly string  SocialPersona = "SocialPersona"; 
+        public static readonly string  Solution = "Solution"; 
+        public static readonly string  Task = "Task"; 
+        public static readonly string  User = "User"; 
+        public static readonly string  UserProvisioningRequest = "UserProvisioningRequest"; 
+        public static readonly string  WorkCoaching = "WorkCoaching"; 
+        public static readonly string  WorkFeedback = "WorkFeedback"; 
+        public static readonly string  WorkFeedbackQuestion = "WorkFeedbackQuestion"; 
+        public static readonly string  WorkFeedbackQuestionSet = "WorkFeedbackQuestionSet"; 
+        public static readonly string  WorkFeedbackRequest = "WorkFeedbackRequest"; 
+        public static readonly string  WorkFeedbackTemplate = "WorkFeedbackTemplate"; 
+        public static readonly string  WorkPerformanceCycle = "WorkPerformanceCycle"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickWebLinkPageOrSobjectType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickWebLinkPageOrSobjectType(string s)
+        {
+            return new PickWebLinkPageOrSobjectType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickWebLinkEncodingKey
+    {
+        public static readonly string  UTF8 = "UTF-8"; 
+        public static readonly string  ISO88591 = "ISO-8859-1"; 
+        public static readonly string  ShiftJIS = "Shift_JIS"; 
+        public static readonly string  ISO2022JP = "ISO-2022-JP"; 
+        public static readonly string  EUCJP = "EUC-JP"; 
+        public static readonly string  ksc56011987 = "ks_c_5601-1987"; 
+        public static readonly string  Big5 = "Big5"; 
+        public static readonly string  GB2312 = "GB2312"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickWebLinkEncodingKey o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickWebLinkEncodingKey(string s)
+        {
+            return new PickWebLinkEncodingKey {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickWebLinkLinkType
+    {
+        public static readonly string  url = "url"; 
+        public static readonly string  sControl = "sControl"; 
+        public static readonly string  javascript = "javascript"; 
+        public static readonly string  page = "page"; 
+        public static readonly string  flow = "flow"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickWebLinkLinkType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickWebLinkLinkType(string s)
+        {
+            return new PickWebLinkLinkType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickWebLinkOpenType
+    {
+        public static readonly string  newWindow = "newWindow"; 
+        public static readonly string  sidebar = "sidebar"; 
+        public static readonly string  noSidebar = "noSidebar"; 
+        public static readonly string  replace = "replace"; 
+        public static readonly string  onClickJavaScript = "onClickJavaScript"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickWebLinkOpenType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickWebLinkOpenType(string s)
+        {
+            return new PickWebLinkOpenType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickWebLinkPosition
+    {
+        public static readonly string  fullScreen = "fullScreen"; 
+        public static readonly string  none = "none"; 
+        public static readonly string  topLeft = "topLeft"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickWebLinkPosition o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickWebLinkPosition(string s)
+        {
+            return new PickWebLinkPosition {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
+    }
+    public class PickWebLinkDisplayType
+    {
+        public static readonly string  L = "L"; 
+        public static readonly string  B = "B"; 
+        public static readonly string  M = "M"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickWebLinkDisplayType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickWebLinkDisplayType(string s)
+        {
+            return new PickWebLinkDisplayType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        
+
     }
     public class Account : ISalesforceEntity
     {
@@ -6764,9 +7907,9 @@ namespace LinqToSalesforce
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
-        private PickAccountType? __Type;
+        private PickAccountType __Type;
         [EntityField]
-        public PickAccountType? Type
+        public PickAccountType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -6883,9 +8026,9 @@ namespace LinqToSalesforce
             get { return __Sic; }
             set { SetField(ref __Sic, value); }
         }
-        private PickAccountIndustry? __Industry;
+        private PickAccountIndustry __Industry;
         [EntityField]
-        public PickAccountIndustry? Industry
+        public PickAccountIndustry Industry
         {
             get { return __Industry; }
             set { SetField(ref __Industry, value); }
@@ -6904,9 +8047,9 @@ namespace LinqToSalesforce
             get { return __NumberOfEmployees; }
             set { SetField(ref __NumberOfEmployees, value); }
         }
-        private PickAccountOwnership? __Ownership;
+        private PickAccountOwnership __Ownership;
         [EntityField]
-        public PickAccountOwnership? Ownership
+        public PickAccountOwnership Ownership
         {
             get { return __Ownership; }
             set { SetField(ref __Ownership, value); }
@@ -6925,9 +8068,9 @@ namespace LinqToSalesforce
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
-        private PickAccountRating? __Rating;
+        private PickAccountRating __Rating;
         [EntityField]
-        public PickAccountRating? Rating
+        public PickAccountRating Rating
         {
             get { return __Rating; }
             set { SetField(ref __Rating, value); }
@@ -6988,26 +8131,26 @@ namespace LinqToSalesforce
             get { return __LastActivityDate; }
             set { SetField(ref __LastActivityDate, value); }
         }
-        private PickAccountCustomerPriority__c? __CustomerPriorityc;
+        private PickAccountCustomerPriority__c __CustomerPriorityc;
         [JsonProperty(PropertyName = "CustomerPriority__c")]
         [EntityField]
-        public PickAccountCustomerPriority__c? CustomerPriorityc
+        public PickAccountCustomerPriority__c CustomerPriorityc
         {
             get { return __CustomerPriorityc; }
             set { SetField(ref __CustomerPriorityc, value); }
         }
-        private PickAccountSLA__c? __SLAc;
+        private PickAccountSLA__c __SLAc;
         [JsonProperty(PropertyName = "SLA__c")]
         [EntityField]
-        public PickAccountSLA__c? SLAc
+        public PickAccountSLA__c SLAc
         {
             get { return __SLAc; }
             set { SetField(ref __SLAc, value); }
         }
-        private PickAccountActive__c? __Activec;
+        private PickAccountActive__c __Activec;
         [JsonProperty(PropertyName = "Active__c")]
         [EntityField]
-        public PickAccountActive__c? Activec
+        public PickAccountActive__c Activec
         {
             get { return __Activec; }
             set { SetField(ref __Activec, value); }
@@ -7020,10 +8163,10 @@ namespace LinqToSalesforce
             get { return __NumberofLocationsc; }
             set { SetField(ref __NumberofLocationsc, value); }
         }
-        private PickAccountUpsellOpportunity__c? __UpsellOpportunityc;
+        private PickAccountUpsellOpportunity__c __UpsellOpportunityc;
         [JsonProperty(PropertyName = "UpsellOpportunity__c")]
         [EntityField]
-        public PickAccountUpsellOpportunity__c? UpsellOpportunityc
+        public PickAccountUpsellOpportunity__c UpsellOpportunityc
         {
             get { return __UpsellOpportunityc; }
             set { SetField(ref __UpsellOpportunityc, value); }
@@ -7281,9 +8424,9 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
-        private PickAccountContactRoleRole? __Role;
+        private PickAccountContactRoleRole __Role;
         [EntityField]
-        public PickAccountContactRoleRole? Role
+        public PickAccountContactRoleRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
@@ -7334,9 +8477,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickAccountFeedType? __Type;
+        private PickAccountFeedType __Type;
         [EntityField]
-        public PickAccountFeedType? Type
+        public PickAccountFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -7501,9 +8644,9 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
-        private PickAccountPartnerRole? __Role;
+        private PickAccountPartnerRole __Role;
         [EntityField]
-        public PickAccountPartnerRole? Role
+        public PickAccountPartnerRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
@@ -7624,16 +8767,16 @@ namespace LinqToSalesforce
             get { return __CaseAccessLevel; }
             set { SetField(ref __CaseAccessLevel, value); }
         }
-        private PickAccountShareContactAccessLevel? __ContactAccessLevel;
+        private PickAccountShareContactAccessLevel __ContactAccessLevel;
         [EntityField]
-        public PickAccountShareContactAccessLevel? ContactAccessLevel
+        public PickAccountShareContactAccessLevel ContactAccessLevel
         {
             get { return __ContactAccessLevel; }
             set { SetField(ref __ContactAccessLevel, value); }
         }
-        private PickAccountShareRowCause? __RowCause;
+        private PickAccountShareRowCause __RowCause;
         [EntityField]
-        public PickAccountShareRowCause? RowCause
+        public PickAccountShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
@@ -7733,23 +8876,23 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
-        private PickActivityHistoryStatus? __Status;
+        private PickActivityHistoryStatus __Status;
         [EntityField]
-        public PickActivityHistoryStatus? Status
+        public PickActivityHistoryStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
-        private PickActivityHistoryPriority? __Priority;
+        private PickActivityHistoryPriority __Priority;
         [EntityField]
-        public PickActivityHistoryPriority? Priority
+        public PickActivityHistoryPriority Priority
         {
             get { return __Priority; }
             set { SetField(ref __Priority, value); }
         }
-        private PickActivityHistoryActivityType? __ActivityType;
+        private PickActivityHistoryActivityType __ActivityType;
         [EntityField]
-        public PickActivityHistoryActivityType? ActivityType
+        public PickActivityHistoryActivityType ActivityType
         {
             get { return __ActivityType; }
             set { SetField(ref __ActivityType, value); }
@@ -7845,9 +8988,9 @@ namespace LinqToSalesforce
             get { return __CallDurationInSeconds; }
             set { SetField(ref __CallDurationInSeconds, value); }
         }
-        private PickActivityHistoryCallType? __CallType;
+        private PickActivityHistoryCallType __CallType;
         [EntityField]
-        public PickActivityHistoryCallType? CallType
+        public PickActivityHistoryCallType CallType
         {
             get { return __CallType; }
             set { SetField(ref __CallType, value); }
@@ -8327,9 +9470,9 @@ namespace LinqToSalesforce
             get { return __StartTime; }
             set { SetField(ref __StartTime, value); }
         }
-        private PickApexLogLocation? __Location;
+        private PickApexLogLocation __Location;
         [EntityField]
-        public PickApexLogLocation? Location
+        public PickApexLogLocation Location
         {
             get { return __Location; }
             set { SetField(ref __Location, value); }
@@ -8489,9 +9632,9 @@ namespace LinqToSalesforce
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
-        private PickApexTriggerTableEnumOrId? __TableEnumOrId;
+        private PickApexTriggerTableEnumOrId __TableEnumOrId;
         [EntityField]
-        public PickApexTriggerTableEnumOrId? TableEnumOrId
+        public PickApexTriggerTableEnumOrId TableEnumOrId
         {
             get { return __TableEnumOrId; }
             set { SetField(ref __TableEnumOrId, value); }
@@ -8759,9 +9902,9 @@ namespace LinqToSalesforce
             get { return __UsageEndDate; }
             set { SetField(ref __UsageEndDate, value); }
         }
-        private PickAssetStatus? __Status;
+        private PickAssetStatus __Status;
         [EntityField]
-        public PickAssetStatus? Status
+        public PickAssetStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
@@ -8904,9 +10047,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickAssetFeedType? __Type;
+        private PickAssetFeedType __Type;
         [EntityField]
-        public PickAssetFeedType? Type
+        public PickAssetFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -9057,9 +10200,9 @@ namespace LinqToSalesforce
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
-        private PickAssignmentRuleSobjectType? __SobjectType;
+        private PickAssignmentRuleSobjectType __SobjectType;
         [EntityField]
-        public PickAssignmentRuleSobjectType? SobjectType
+        public PickAssignmentRuleSobjectType SobjectType
         {
             get { return __SobjectType; }
             set { SetField(ref __SobjectType, value); }
@@ -9862,16 +11005,16 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
-        private PickCampaignType? __Type;
+        private PickCampaignType __Type;
         [EntityField]
-        public PickCampaignType? Type
+        public PickCampaignType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
-        private PickCampaignStatus? __Status;
+        private PickCampaignStatus __Status;
         [EntityField]
-        public PickCampaignStatus? Status
+        public PickCampaignStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
@@ -10168,9 +11311,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickCampaignFeedType? __Type;
+        private PickCampaignFeedType __Type;
         [EntityField]
-        public PickCampaignFeedType? Type
+        public PickCampaignFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -10268,9 +11411,9 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
-        private PickCampaignMemberStatus? __Status;
+        private PickCampaignMemberStatus __Status;
         [EntityField]
-        public PickCampaignMemberStatus? Status
+        public PickCampaignMemberStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
@@ -10472,9 +11615,9 @@ namespace LinqToSalesforce
             get { return __CampaignAccessLevel; }
             set { SetField(ref __CampaignAccessLevel, value); }
         }
-        private PickCampaignShareRowCause? __RowCause;
+        private PickCampaignShareRowCause __RowCause;
         [EntityField]
-        public PickCampaignShareRowCause? RowCause
+        public PickCampaignShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
@@ -10595,30 +11738,30 @@ namespace LinqToSalesforce
             get { return __SuppliedCompany; }
             set { SetField(ref __SuppliedCompany, value); }
         }
-        private PickCaseType? __Type;
+        private PickCaseType __Type;
         [EntityField]
-        public PickCaseType? Type
+        public PickCaseType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
-        private PickCaseStatus? __Status;
+        private PickCaseStatus __Status;
         [EntityField]
-        public PickCaseStatus? Status
+        public PickCaseStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
-        private PickCaseReason? __Reason;
+        private PickCaseReason __Reason;
         [EntityField]
-        public PickCaseReason? Reason
+        public PickCaseReason Reason
         {
             get { return __Reason; }
             set { SetField(ref __Reason, value); }
         }
-        private PickCaseOrigin? __Origin;
+        private PickCaseOrigin __Origin;
         [EntityField]
-        public PickCaseOrigin? Origin
+        public PickCaseOrigin Origin
         {
             get { return __Origin; }
             set { SetField(ref __Origin, value); }
@@ -10630,9 +11773,9 @@ namespace LinqToSalesforce
             get { return __Subject; }
             set { SetField(ref __Subject, value); }
         }
-        private PickCasePriority? __Priority;
+        private PickCasePriority __Priority;
         [EntityField]
-        public PickCasePriority? Priority
+        public PickCasePriority Priority
         {
             get { return __Priority; }
             set { SetField(ref __Priority, value); }
@@ -10715,26 +11858,26 @@ namespace LinqToSalesforce
             get { return __EngineeringReqNumberc; }
             set { SetField(ref __EngineeringReqNumberc, value); }
         }
-        private PickCaseSLAViolation__c? __SLAViolationc;
+        private PickCaseSLAViolation__c __SLAViolationc;
         [JsonProperty(PropertyName = "SLAViolation__c")]
         [EntityField]
-        public PickCaseSLAViolation__c? SLAViolationc
+        public PickCaseSLAViolation__c SLAViolationc
         {
             get { return __SLAViolationc; }
             set { SetField(ref __SLAViolationc, value); }
         }
-        private PickCaseProduct__c? __Productc;
+        private PickCaseProduct__c __Productc;
         [JsonProperty(PropertyName = "Product__c")]
         [EntityField]
-        public PickCaseProduct__c? Productc
+        public PickCaseProduct__c Productc
         {
             get { return __Productc; }
             set { SetField(ref __Productc, value); }
         }
-        private PickCasePotentialLiability__c? __PotentialLiabilityc;
+        private PickCasePotentialLiability__c __PotentialLiabilityc;
         [JsonProperty(PropertyName = "PotentialLiability__c")]
         [EntityField]
-        public PickCasePotentialLiability__c? PotentialLiabilityc
+        public PickCasePotentialLiability__c PotentialLiabilityc
         {
             get { return __PotentialLiabilityc; }
             set { SetField(ref __PotentialLiabilityc, value); }
@@ -10974,9 +12117,9 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
-        private PickCaseContactRoleRole? __Role;
+        private PickCaseContactRoleRole __Role;
         [EntityField]
-        public PickCaseContactRoleRole? Role
+        public PickCaseContactRoleRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
@@ -11062,9 +12205,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickCaseFeedType? __Type;
+        private PickCaseFeedType __Type;
         [EntityField]
-        public PickCaseFeedType? Type
+        public PickCaseFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -11229,9 +12372,9 @@ namespace LinqToSalesforce
             get { return __CaseAccessLevel; }
             set { SetField(ref __CaseAccessLevel, value); }
         }
-        private PickCaseShareRowCause? __RowCause;
+        private PickCaseShareRowCause __RowCause;
         [EntityField]
-        public PickCaseShareRowCause? RowCause
+        public PickCaseShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
@@ -12191,9 +13334,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickCollaborationGroupFeedType? __Type;
+        private PickCollaborationGroupFeedType __Type;
         [EntityField]
-        public PickCollaborationGroupFeedType? Type
+        public PickCollaborationGroupFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -12277,9 +13420,9 @@ namespace LinqToSalesforce
             get { return __MemberId; }
             set { SetField(ref __MemberId, value); }
         }
-        private PickCollaborationGroupMemberNotificationFrequency? __NotificationFrequency;
+        private PickCollaborationGroupMemberNotificationFrequency __NotificationFrequency;
         [EntityField]
-        public PickCollaborationGroupMemberNotificationFrequency? NotificationFrequency
+        public PickCollaborationGroupMemberNotificationFrequency NotificationFrequency
         {
             get { return __NotificationFrequency; }
             set { SetField(ref __NotificationFrequency, value); }
@@ -12569,9 +13712,9 @@ namespace LinqToSalesforce
             get { return __FirstName; }
             set { SetField(ref __FirstName, value); }
         }
-        private PickContactSalutation? __Salutation;
+        private PickContactSalutation __Salutation;
         [EntityField]
-        public PickContactSalutation? Salutation
+        public PickContactSalutation Salutation
         {
             get { return __Salutation; }
             set { SetField(ref __Salutation, value); }
@@ -12730,9 +13873,9 @@ namespace LinqToSalesforce
             get { return __AssistantName; }
             set { SetField(ref __AssistantName, value); }
         }
-        private PickContactLeadSource? __LeadSource;
+        private PickContactLeadSource __LeadSource;
         [EntityField]
-        public PickContactLeadSource? LeadSource
+        public PickContactLeadSource LeadSource
         {
             get { return __LeadSource; }
             set { SetField(ref __LeadSource, value); }
@@ -12828,10 +13971,10 @@ namespace LinqToSalesforce
             get { return __EmailBouncedDate; }
             set { SetField(ref __EmailBouncedDate, value); }
         }
-        private PickContactLevel__c? __Levelc;
+        private PickContactLevel__c __Levelc;
         [JsonProperty(PropertyName = "Level__c")]
         [EntityField]
-        public PickContactLevel__c? Levelc
+        public PickContactLevel__c Levelc
         {
             get { return __Levelc; }
             set { SetField(ref __Levelc, value); }
@@ -13015,9 +14158,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickContactFeedType? __Type;
+        private PickContactFeedType __Type;
         [EntityField]
-        public PickContactFeedType? Type
+        public PickContactFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -13182,9 +14325,9 @@ namespace LinqToSalesforce
             get { return __ContactAccessLevel; }
             set { SetField(ref __ContactAccessLevel, value); }
         }
-        private PickContactShareRowCause? __RowCause;
+        private PickContactShareRowCause __RowCause;
         [EntityField]
-        public PickContactShareRowCause? RowCause
+        public PickContactShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
@@ -13368,9 +14511,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickContentDocumentFeedType? __Type;
+        private PickContentDocumentFeedType __Type;
         [EntityField]
-        public PickContentDocumentFeedType? Type
+        public PickContentDocumentFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -13836,9 +14979,9 @@ namespace LinqToSalesforce
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
-        private PickContentWorkspaceTagModel? __TagModel;
+        private PickContentWorkspaceTagModel __TagModel;
         [EntityField]
-        public PickContentWorkspaceTagModel? TagModel
+        public PickContentWorkspaceTagModel TagModel
         {
             get { return __TagModel; }
             set { SetField(ref __TagModel, value); }
@@ -14005,9 +15148,9 @@ namespace LinqToSalesforce
             get { return __Pricebook2Id; }
             set { SetField(ref __Pricebook2Id, value); }
         }
-        private PickContractOwnerExpirationNotice? __OwnerExpirationNotice;
+        private PickContractOwnerExpirationNotice __OwnerExpirationNotice;
         [EntityField]
-        public PickContractOwnerExpirationNotice? OwnerExpirationNotice
+        public PickContractOwnerExpirationNotice OwnerExpirationNotice
         {
             get { return __OwnerExpirationNotice; }
             set { SetField(ref __OwnerExpirationNotice, value); }
@@ -14338,9 +15481,9 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
-        private PickContractContactRoleRole? __Role;
+        private PickContractContactRoleRole __Role;
         [EntityField]
-        public PickContractContactRoleRole? Role
+        public PickContractContactRoleRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
@@ -14433,9 +15576,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickContractFeedType? __Type;
+        private PickContractFeedType __Type;
         [EntityField]
-        public PickContractFeedType? Type
+        public PickContractFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -14600,9 +15743,9 @@ namespace LinqToSalesforce
             get { return __IsDefault; }
             set { SetField(ref __IsDefault, value); }
         }
-        private PickContractStatusStatusCode? __StatusCode;
+        private PickContractStatusStatusCode __StatusCode;
         [EntityField]
-        public PickContractStatusStatusCode? StatusCode
+        public PickContractStatusStatusCode StatusCode
         {
             get { return __StatusCode; }
             set { SetField(ref __StatusCode, value); }
@@ -14709,9 +15852,9 @@ namespace LinqToSalesforce
             get { return __CronExpression; }
             set { SetField(ref __CronExpression, value); }
         }
-        private PickCronTriggerTimeZoneSidKey? __TimeZoneSidKey;
+        private PickCronTriggerTimeZoneSidKey __TimeZoneSidKey;
         [EntityField]
-        public PickCronTriggerTimeZoneSidKey? TimeZoneSidKey
+        public PickCronTriggerTimeZoneSidKey TimeZoneSidKey
         {
             get { return __TimeZoneSidKey; }
             set { SetField(ref __TimeZoneSidKey, value); }
@@ -14825,9 +15968,9 @@ namespace LinqToSalesforce
             get { return __LeftSize; }
             set { SetField(ref __LeftSize, value); }
         }
-        private PickDashboardMiddleSize? __MiddleSize;
+        private PickDashboardMiddleSize __MiddleSize;
         [EntityField]
-        public PickDashboardMiddleSize? MiddleSize
+        public PickDashboardMiddleSize MiddleSize
         {
             get { return __MiddleSize; }
             set { SetField(ref __MiddleSize, value); }
@@ -14981,9 +16124,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickDashboardFeedType? __Type;
+        private PickDashboardFeedType __Type;
         [EntityField]
-        public PickDashboardFeedType? Type
+        public PickDashboardFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -15626,37 +16769,37 @@ namespace LinqToSalesforce
             get { return __ApexClassId; }
             set { SetField(ref __ApexClassId, value); }
         }
-        private PickEmailServicesFunctionOverLimitAction? __OverLimitAction;
+        private PickEmailServicesFunctionOverLimitAction __OverLimitAction;
         [EntityField]
-        public PickEmailServicesFunctionOverLimitAction? OverLimitAction
+        public PickEmailServicesFunctionOverLimitAction OverLimitAction
         {
             get { return __OverLimitAction; }
             set { SetField(ref __OverLimitAction, value); }
         }
-        private PickEmailServicesFunctionFunctionInactiveAction? __FunctionInactiveAction;
+        private PickEmailServicesFunctionFunctionInactiveAction __FunctionInactiveAction;
         [EntityField]
-        public PickEmailServicesFunctionFunctionInactiveAction? FunctionInactiveAction
+        public PickEmailServicesFunctionFunctionInactiveAction FunctionInactiveAction
         {
             get { return __FunctionInactiveAction; }
             set { SetField(ref __FunctionInactiveAction, value); }
         }
-        private PickEmailServicesFunctionAddressInactiveAction? __AddressInactiveAction;
+        private PickEmailServicesFunctionAddressInactiveAction __AddressInactiveAction;
         [EntityField]
-        public PickEmailServicesFunctionAddressInactiveAction? AddressInactiveAction
+        public PickEmailServicesFunctionAddressInactiveAction AddressInactiveAction
         {
             get { return __AddressInactiveAction; }
             set { SetField(ref __AddressInactiveAction, value); }
         }
-        private PickEmailServicesFunctionAuthenticationFailureAction? __AuthenticationFailureAction;
+        private PickEmailServicesFunctionAuthenticationFailureAction __AuthenticationFailureAction;
         [EntityField]
-        public PickEmailServicesFunctionAuthenticationFailureAction? AuthenticationFailureAction
+        public PickEmailServicesFunctionAuthenticationFailureAction AuthenticationFailureAction
         {
             get { return __AuthenticationFailureAction; }
             set { SetField(ref __AuthenticationFailureAction, value); }
         }
-        private PickEmailServicesFunctionAuthorizationFailureAction? __AuthorizationFailureAction;
+        private PickEmailServicesFunctionAuthorizationFailureAction __AuthorizationFailureAction;
         [EntityField]
-        public PickEmailServicesFunctionAuthorizationFailureAction? AuthorizationFailureAction
+        public PickEmailServicesFunctionAuthorizationFailureAction AuthorizationFailureAction
         {
             get { return __AuthorizationFailureAction; }
             set { SetField(ref __AuthorizationFailureAction, value); }
@@ -15913,9 +17056,9 @@ namespace LinqToSalesforce
             get { return __TemplateType; }
             set { SetField(ref __TemplateType, value); }
         }
-        private PickEmailTemplateEncoding? __Encoding;
+        private PickEmailTemplateEncoding __Encoding;
         [EntityField]
-        public PickEmailTemplateEncoding? Encoding
+        public PickEmailTemplateEncoding Encoding
         {
             get { return __Encoding; }
             set { SetField(ref __Encoding, value); }
@@ -16200,9 +17343,9 @@ namespace LinqToSalesforce
             get { return __IsPrivate; }
             set { SetField(ref __IsPrivate, value); }
         }
-        private PickEventShowAs? __ShowAs;
+        private PickEventShowAs __ShowAs;
         [EntityField]
-        public PickEventShowAs? ShowAs
+        public PickEventShowAs ShowAs
         {
             get { return __ShowAs; }
             set { SetField(ref __ShowAs, value); }
@@ -16228,9 +17371,9 @@ namespace LinqToSalesforce
             get { return __IsGroupEvent; }
             set { SetField(ref __IsGroupEvent, value); }
         }
-        private PickEventGroupEventType? __GroupEventType;
+        private PickEventGroupEventType __GroupEventType;
         [EntityField]
-        public PickEventGroupEventType? GroupEventType
+        public PickEventGroupEventType GroupEventType
         {
             get { return __GroupEventType; }
             set { SetField(ref __GroupEventType, value); }
@@ -16305,16 +17448,16 @@ namespace LinqToSalesforce
             get { return __RecurrenceEndDateOnly; }
             set { SetField(ref __RecurrenceEndDateOnly, value); }
         }
-        private PickEventRecurrenceTimeZoneSidKey? __RecurrenceTimeZoneSidKey;
+        private PickEventRecurrenceTimeZoneSidKey __RecurrenceTimeZoneSidKey;
         [EntityField]
-        public PickEventRecurrenceTimeZoneSidKey? RecurrenceTimeZoneSidKey
+        public PickEventRecurrenceTimeZoneSidKey RecurrenceTimeZoneSidKey
         {
             get { return __RecurrenceTimeZoneSidKey; }
             set { SetField(ref __RecurrenceTimeZoneSidKey, value); }
         }
-        private PickEventRecurrenceType? __RecurrenceType;
+        private PickEventRecurrenceType __RecurrenceType;
         [EntityField]
-        public PickEventRecurrenceType? RecurrenceType
+        public PickEventRecurrenceType RecurrenceType
         {
             get { return __RecurrenceType; }
             set { SetField(ref __RecurrenceType, value); }
@@ -16340,16 +17483,16 @@ namespace LinqToSalesforce
             get { return __RecurrenceDayOfMonth; }
             set { SetField(ref __RecurrenceDayOfMonth, value); }
         }
-        private PickEventRecurrenceInstance? __RecurrenceInstance;
+        private PickEventRecurrenceInstance __RecurrenceInstance;
         [EntityField]
-        public PickEventRecurrenceInstance? RecurrenceInstance
+        public PickEventRecurrenceInstance RecurrenceInstance
         {
             get { return __RecurrenceInstance; }
             set { SetField(ref __RecurrenceInstance, value); }
         }
-        private PickEventRecurrenceMonthOfYear? __RecurrenceMonthOfYear;
+        private PickEventRecurrenceMonthOfYear __RecurrenceMonthOfYear;
         [EntityField]
-        public PickEventRecurrenceMonthOfYear? RecurrenceMonthOfYear
+        public PickEventRecurrenceMonthOfYear RecurrenceMonthOfYear
         {
             get { return __RecurrenceMonthOfYear; }
             set { SetField(ref __RecurrenceMonthOfYear, value); }
@@ -16539,9 +17682,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickEventFeedType? __Type;
+        private PickEventFeedType __Type;
         [EntityField]
-        public PickEventFeedType? Type
+        public PickEventFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -16896,44 +18039,44 @@ namespace LinqToSalesforce
             get { return __IsStandardYear; }
             set { SetField(ref __IsStandardYear, value); }
         }
-        private PickFiscalYearSettingsYearType? __YearType;
+        private PickFiscalYearSettingsYearType __YearType;
         [EntityField]
-        public PickFiscalYearSettingsYearType? YearType
+        public PickFiscalYearSettingsYearType YearType
         {
             get { return __YearType; }
             set { SetField(ref __YearType, value); }
         }
-        private PickFiscalYearSettingsQuarterLabelScheme? __QuarterLabelScheme;
+        private PickFiscalYearSettingsQuarterLabelScheme __QuarterLabelScheme;
         [EntityField]
-        public PickFiscalYearSettingsQuarterLabelScheme? QuarterLabelScheme
+        public PickFiscalYearSettingsQuarterLabelScheme QuarterLabelScheme
         {
             get { return __QuarterLabelScheme; }
             set { SetField(ref __QuarterLabelScheme, value); }
         }
-        private PickFiscalYearSettingsPeriodLabelScheme? __PeriodLabelScheme;
+        private PickFiscalYearSettingsPeriodLabelScheme __PeriodLabelScheme;
         [EntityField]
-        public PickFiscalYearSettingsPeriodLabelScheme? PeriodLabelScheme
+        public PickFiscalYearSettingsPeriodLabelScheme PeriodLabelScheme
         {
             get { return __PeriodLabelScheme; }
             set { SetField(ref __PeriodLabelScheme, value); }
         }
-        private PickFiscalYearSettingsWeekLabelScheme? __WeekLabelScheme;
+        private PickFiscalYearSettingsWeekLabelScheme __WeekLabelScheme;
         [EntityField]
-        public PickFiscalYearSettingsWeekLabelScheme? WeekLabelScheme
+        public PickFiscalYearSettingsWeekLabelScheme WeekLabelScheme
         {
             get { return __WeekLabelScheme; }
             set { SetField(ref __WeekLabelScheme, value); }
         }
-        private PickFiscalYearSettingsQuarterPrefix? __QuarterPrefix;
+        private PickFiscalYearSettingsQuarterPrefix __QuarterPrefix;
         [EntityField]
-        public PickFiscalYearSettingsQuarterPrefix? QuarterPrefix
+        public PickFiscalYearSettingsQuarterPrefix QuarterPrefix
         {
             get { return __QuarterPrefix; }
             set { SetField(ref __QuarterPrefix, value); }
         }
-        private PickFiscalYearSettingsPeriodPrefix? __PeriodPrefix;
+        private PickFiscalYearSettingsPeriodPrefix __PeriodPrefix;
         [EntityField]
-        public PickFiscalYearSettingsPeriodPrefix? PeriodPrefix
+        public PickFiscalYearSettingsPeriodPrefix PeriodPrefix
         {
             get { return __PeriodPrefix; }
             set { SetField(ref __PeriodPrefix, value); }
@@ -17437,9 +18580,9 @@ namespace LinqToSalesforce
             get { return __RecurrenceEndDateOnly; }
             set { SetField(ref __RecurrenceEndDateOnly, value); }
         }
-        private PickHolidayRecurrenceType? __RecurrenceType;
+        private PickHolidayRecurrenceType __RecurrenceType;
         [EntityField]
-        public PickHolidayRecurrenceType? RecurrenceType
+        public PickHolidayRecurrenceType RecurrenceType
         {
             get { return __RecurrenceType; }
             set { SetField(ref __RecurrenceType, value); }
@@ -17465,16 +18608,16 @@ namespace LinqToSalesforce
             get { return __RecurrenceDayOfMonth; }
             set { SetField(ref __RecurrenceDayOfMonth, value); }
         }
-        private PickHolidayRecurrenceInstance? __RecurrenceInstance;
+        private PickHolidayRecurrenceInstance __RecurrenceInstance;
         [EntityField]
-        public PickHolidayRecurrenceInstance? RecurrenceInstance
+        public PickHolidayRecurrenceInstance RecurrenceInstance
         {
             get { return __RecurrenceInstance; }
             set { SetField(ref __RecurrenceInstance, value); }
         }
-        private PickHolidayRecurrenceMonthOfYear? __RecurrenceMonthOfYear;
+        private PickHolidayRecurrenceMonthOfYear __RecurrenceMonthOfYear;
         [EntityField]
-        public PickHolidayRecurrenceMonthOfYear? RecurrenceMonthOfYear
+        public PickHolidayRecurrenceMonthOfYear RecurrenceMonthOfYear
         {
             get { return __RecurrenceMonthOfYear; }
             set { SetField(ref __RecurrenceMonthOfYear, value); }
@@ -17609,9 +18752,9 @@ namespace LinqToSalesforce
             get { return __Categories; }
             set { SetField(ref __Categories, value); }
         }
-        private PickIdeaStatus? __Status;
+        private PickIdeaStatus __Status;
         [EntityField]
-        public PickIdeaStatus? Status
+        public PickIdeaStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
@@ -17789,9 +18932,9 @@ namespace LinqToSalesforce
             get { return __FirstName; }
             set { SetField(ref __FirstName, value); }
         }
-        private PickLeadSalutation? __Salutation;
+        private PickLeadSalutation __Salutation;
         [EntityField]
-        public PickLeadSalutation? Salutation
+        public PickLeadSalutation Salutation
         {
             get { return __Salutation; }
             set { SetField(ref __Salutation, value); }
@@ -17894,9 +19037,9 @@ namespace LinqToSalesforce
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
-        private PickLeadLeadSource? __LeadSource;
+        private PickLeadLeadSource __LeadSource;
         [EntityField]
-        public PickLeadLeadSource? LeadSource
+        public PickLeadLeadSource LeadSource
         {
             get { return __LeadSource; }
             set { SetField(ref __LeadSource, value); }
@@ -17908,16 +19051,16 @@ namespace LinqToSalesforce
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
-        private PickLeadIndustry? __Industry;
+        private PickLeadIndustry __Industry;
         [EntityField]
-        public PickLeadIndustry? Industry
+        public PickLeadIndustry Industry
         {
             get { return __Industry; }
             set { SetField(ref __Industry, value); }
         }
-        private PickLeadRating? __Rating;
+        private PickLeadRating __Rating;
         [EntityField]
-        public PickLeadRating? Rating
+        public PickLeadRating Rating
         {
             get { return __Rating; }
             set { SetField(ref __Rating, value); }
@@ -18049,18 +19192,18 @@ namespace LinqToSalesforce
             get { return __SICCodec; }
             set { SetField(ref __SICCodec, value); }
         }
-        private PickLeadProductInterest__c? __ProductInterestc;
+        private PickLeadProductInterest__c __ProductInterestc;
         [JsonProperty(PropertyName = "ProductInterest__c")]
         [EntityField]
-        public PickLeadProductInterest__c? ProductInterestc
+        public PickLeadProductInterest__c ProductInterestc
         {
             get { return __ProductInterestc; }
             set { SetField(ref __ProductInterestc, value); }
         }
-        private PickLeadPrimary__c? __Primaryc;
+        private PickLeadPrimary__c __Primaryc;
         [JsonProperty(PropertyName = "Primary__c")]
         [EntityField]
-        public PickLeadPrimary__c? Primaryc
+        public PickLeadPrimary__c Primaryc
         {
             get { return __Primaryc; }
             set { SetField(ref __Primaryc, value); }
@@ -18210,9 +19353,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickLeadFeedType? __Type;
+        private PickLeadFeedType __Type;
         [EntityField]
-        public PickLeadFeedType? Type
+        public PickLeadFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -18377,9 +19520,9 @@ namespace LinqToSalesforce
             get { return __LeadAccessLevel; }
             set { SetField(ref __LeadAccessLevel, value); }
         }
-        private PickLeadShareRowCause? __RowCause;
+        private PickLeadShareRowCause __RowCause;
         [EntityField]
-        public PickLeadShareRowCause? RowCause
+        public PickLeadShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
@@ -18737,9 +19880,9 @@ namespace LinqToSalesforce
             get { return __FirstName; }
             set { SetField(ref __FirstName, value); }
         }
-        private PickNameType? __Type;
+        private PickNameType __Type;
         [EntityField]
-        public PickNameType? Type
+        public PickNameType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -18839,9 +19982,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickNewsFeedType? __Type;
+        private PickNewsFeedType __Type;
         [EntityField]
-        public PickNewsFeedType? Type
+        public PickNewsFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -19164,23 +20307,23 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
-        private PickOpenActivityStatus? __Status;
+        private PickOpenActivityStatus __Status;
         [EntityField]
-        public PickOpenActivityStatus? Status
+        public PickOpenActivityStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
-        private PickOpenActivityPriority? __Priority;
+        private PickOpenActivityPriority __Priority;
         [EntityField]
-        public PickOpenActivityPriority? Priority
+        public PickOpenActivityPriority Priority
         {
             get { return __Priority; }
             set { SetField(ref __Priority, value); }
         }
-        private PickOpenActivityActivityType? __ActivityType;
+        private PickOpenActivityActivityType __ActivityType;
         [EntityField]
-        public PickOpenActivityActivityType? ActivityType
+        public PickOpenActivityActivityType ActivityType
         {
             get { return __ActivityType; }
             set { SetField(ref __ActivityType, value); }
@@ -19276,9 +20419,9 @@ namespace LinqToSalesforce
             get { return __CallDurationInSeconds; }
             set { SetField(ref __CallDurationInSeconds, value); }
         }
-        private PickOpenActivityCallType? __CallType;
+        private PickOpenActivityCallType __CallType;
         [EntityField]
-        public PickOpenActivityCallType? CallType
+        public PickOpenActivityCallType CallType
         {
             get { return __CallType; }
             set { SetField(ref __CallType, value); }
@@ -19413,9 +20556,9 @@ namespace LinqToSalesforce
             get { return __CloseDate; }
             set { SetField(ref __CloseDate, value); }
         }
-        private PickOpportunityType? __Type;
+        private PickOpportunityType __Type;
         [EntityField]
-        public PickOpportunityType? Type
+        public PickOpportunityType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -19427,9 +20570,9 @@ namespace LinqToSalesforce
             get { return __NextStep; }
             set { SetField(ref __NextStep, value); }
         }
-        private PickOpportunityLeadSource? __LeadSource;
+        private PickOpportunityLeadSource __LeadSource;
         [EntityField]
-        public PickOpportunityLeadSource? LeadSource
+        public PickOpportunityLeadSource LeadSource
         {
             get { return __LeadSource; }
             set { SetField(ref __LeadSource, value); }
@@ -19455,9 +20598,9 @@ namespace LinqToSalesforce
             get { return __ForecastCategory; }
             set { SetField(ref __ForecastCategory, value); }
         }
-        private PickOpportunityForecastCategoryName? __ForecastCategoryName;
+        private PickOpportunityForecastCategoryName __ForecastCategoryName;
         [EntityField]
-        public PickOpportunityForecastCategoryName? ForecastCategoryName
+        public PickOpportunityForecastCategoryName ForecastCategoryName
         {
             get { return __ForecastCategoryName; }
             set { SetField(ref __ForecastCategoryName, value); }
@@ -19553,10 +20696,10 @@ namespace LinqToSalesforce
             get { return __Fiscal; }
             set { SetField(ref __Fiscal, value); }
         }
-        private PickOpportunityDeliveryInstallationStatus__c? __DeliveryInstallationStatusc;
+        private PickOpportunityDeliveryInstallationStatus__c __DeliveryInstallationStatusc;
         [JsonProperty(PropertyName = "DeliveryInstallationStatus__c")]
         [EntityField]
-        public PickOpportunityDeliveryInstallationStatus__c? DeliveryInstallationStatusc
+        public PickOpportunityDeliveryInstallationStatus__c DeliveryInstallationStatusc
         {
             get { return __DeliveryInstallationStatusc; }
             set { SetField(ref __DeliveryInstallationStatusc, value); }
@@ -19847,9 +20990,9 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
-        private PickOpportunityContactRoleRole? __Role;
+        private PickOpportunityContactRoleRole __Role;
         [EntityField]
-        public PickOpportunityContactRoleRole? Role
+        public PickOpportunityContactRoleRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
@@ -19942,9 +21085,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickOpportunityFeedType? __Type;
+        private PickOpportunityFeedType __Type;
         [EntityField]
-        public PickOpportunityFeedType? Type
+        public PickOpportunityFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -20144,9 +21287,9 @@ namespace LinqToSalesforce
             get { return __Probability; }
             set { SetField(ref __Probability, value); }
         }
-        private PickOpportunityHistoryForecastCategory? __ForecastCategory;
+        private PickOpportunityHistoryForecastCategory __ForecastCategory;
         [EntityField]
-        public PickOpportunityHistoryForecastCategory? ForecastCategory
+        public PickOpportunityHistoryForecastCategory ForecastCategory
         {
             get { return __ForecastCategory; }
             set { SetField(ref __ForecastCategory, value); }
@@ -20334,9 +21477,9 @@ namespace LinqToSalesforce
             get { return __AccountToId; }
             set { SetField(ref __AccountToId, value); }
         }
-        private PickOpportunityPartnerRole? __Role;
+        private PickOpportunityPartnerRole __Role;
         [EntityField]
-        public PickOpportunityPartnerRole? Role
+        public PickOpportunityPartnerRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
@@ -20443,9 +21586,9 @@ namespace LinqToSalesforce
             get { return __OpportunityAccessLevel; }
             set { SetField(ref __OpportunityAccessLevel, value); }
         }
-        private PickOpportunityShareRowCause? __RowCause;
+        private PickOpportunityShareRowCause __RowCause;
         [EntityField]
-        public PickOpportunityShareRowCause? RowCause
+        public PickOpportunityShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
@@ -20689,9 +21832,9 @@ namespace LinqToSalesforce
             get { return __CompanyAuthorizedDate; }
             set { SetField(ref __CompanyAuthorizedDate, value); }
         }
-        private PickOrderType? __Type;
+        private PickOrderType __Type;
         [EntityField]
-        public PickOrderType? Type
+        public PickOrderType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -21419,58 +22562,58 @@ namespace LinqToSalesforce
             get { return __UsesStartDateAsFiscalYearName; }
             set { SetField(ref __UsesStartDateAsFiscalYearName, value); }
         }
-        private PickOrganizationDefaultAccountAccess? __DefaultAccountAccess;
+        private PickOrganizationDefaultAccountAccess __DefaultAccountAccess;
         [EntityField]
-        public PickOrganizationDefaultAccountAccess? DefaultAccountAccess
+        public PickOrganizationDefaultAccountAccess DefaultAccountAccess
         {
             get { return __DefaultAccountAccess; }
             set { SetField(ref __DefaultAccountAccess, value); }
         }
-        private PickOrganizationDefaultContactAccess? __DefaultContactAccess;
+        private PickOrganizationDefaultContactAccess __DefaultContactAccess;
         [EntityField]
-        public PickOrganizationDefaultContactAccess? DefaultContactAccess
+        public PickOrganizationDefaultContactAccess DefaultContactAccess
         {
             get { return __DefaultContactAccess; }
             set { SetField(ref __DefaultContactAccess, value); }
         }
-        private PickOrganizationDefaultOpportunityAccess? __DefaultOpportunityAccess;
+        private PickOrganizationDefaultOpportunityAccess __DefaultOpportunityAccess;
         [EntityField]
-        public PickOrganizationDefaultOpportunityAccess? DefaultOpportunityAccess
+        public PickOrganizationDefaultOpportunityAccess DefaultOpportunityAccess
         {
             get { return __DefaultOpportunityAccess; }
             set { SetField(ref __DefaultOpportunityAccess, value); }
         }
-        private PickOrganizationDefaultLeadAccess? __DefaultLeadAccess;
+        private PickOrganizationDefaultLeadAccess __DefaultLeadAccess;
         [EntityField]
-        public PickOrganizationDefaultLeadAccess? DefaultLeadAccess
+        public PickOrganizationDefaultLeadAccess DefaultLeadAccess
         {
             get { return __DefaultLeadAccess; }
             set { SetField(ref __DefaultLeadAccess, value); }
         }
-        private PickOrganizationDefaultCaseAccess? __DefaultCaseAccess;
+        private PickOrganizationDefaultCaseAccess __DefaultCaseAccess;
         [EntityField]
-        public PickOrganizationDefaultCaseAccess? DefaultCaseAccess
+        public PickOrganizationDefaultCaseAccess DefaultCaseAccess
         {
             get { return __DefaultCaseAccess; }
             set { SetField(ref __DefaultCaseAccess, value); }
         }
-        private PickOrganizationDefaultCalendarAccess? __DefaultCalendarAccess;
+        private PickOrganizationDefaultCalendarAccess __DefaultCalendarAccess;
         [EntityField]
-        public PickOrganizationDefaultCalendarAccess? DefaultCalendarAccess
+        public PickOrganizationDefaultCalendarAccess DefaultCalendarAccess
         {
             get { return __DefaultCalendarAccess; }
             set { SetField(ref __DefaultCalendarAccess, value); }
         }
-        private PickOrganizationDefaultPricebookAccess? __DefaultPricebookAccess;
+        private PickOrganizationDefaultPricebookAccess __DefaultPricebookAccess;
         [EntityField]
-        public PickOrganizationDefaultPricebookAccess? DefaultPricebookAccess
+        public PickOrganizationDefaultPricebookAccess DefaultPricebookAccess
         {
             get { return __DefaultPricebookAccess; }
             set { SetField(ref __DefaultPricebookAccess, value); }
         }
-        private PickOrganizationDefaultCampaignAccess? __DefaultCampaignAccess;
+        private PickOrganizationDefaultCampaignAccess __DefaultCampaignAccess;
         [EntityField]
-        public PickOrganizationDefaultCampaignAccess? DefaultCampaignAccess
+        public PickOrganizationDefaultCampaignAccess DefaultCampaignAccess
         {
             get { return __DefaultCampaignAccess; }
             set { SetField(ref __DefaultCampaignAccess, value); }
@@ -21489,9 +22632,9 @@ namespace LinqToSalesforce
             get { return __ComplianceBccEmail; }
             set { SetField(ref __ComplianceBccEmail, value); }
         }
-        private PickOrganizationUiSkin? __UiSkin;
+        private PickOrganizationUiSkin __UiSkin;
         [EntityField]
-        public PickOrganizationUiSkin? UiSkin
+        public PickOrganizationUiSkin UiSkin
         {
             get { return __UiSkin; }
             set { SetField(ref __UiSkin, value); }
@@ -21510,9 +22653,9 @@ namespace LinqToSalesforce
             get { return __TrialExpirationDate; }
             set { SetField(ref __TrialExpirationDate, value); }
         }
-        private PickOrganizationOrganizationType? __OrganizationType;
+        private PickOrganizationOrganizationType __OrganizationType;
         [EntityField]
-        public PickOrganizationOrganizationType? OrganizationType
+        public PickOrganizationOrganizationType OrganizationType
         {
             get { return __OrganizationType; }
             set { SetField(ref __OrganizationType, value); }
@@ -21612,9 +22755,9 @@ namespace LinqToSalesforce
             get { return __AccountToId; }
             set { SetField(ref __AccountToId, value); }
         }
-        private PickPartnerRole? __Role;
+        private PickPartnerRole __Role;
         [EntityField]
-        public PickPartnerRole? Role
+        public PickPartnerRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
@@ -21714,9 +22857,9 @@ namespace LinqToSalesforce
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
-        private PickPartnerRoleReverseRole? __ReverseRole;
+        private PickPartnerRoleReverseRole __ReverseRole;
         [EntityField]
-        public PickPartnerRoleReverseRole? ReverseRole
+        public PickPartnerRoleReverseRole ReverseRole
         {
             get { return __ReverseRole; }
             set { SetField(ref __ReverseRole, value); }
@@ -21788,9 +22931,9 @@ namespace LinqToSalesforce
             get { return __FiscalYearSettingsId; }
             set { SetField(ref __FiscalYearSettingsId, value); }
         }
-        private PickPeriodType? __Type;
+        private PickPeriodType __Type;
         [EntityField]
-        public PickPeriodType? Type
+        public PickPeriodType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -21823,16 +22966,16 @@ namespace LinqToSalesforce
             get { return __IsForecastPeriod; }
             set { SetField(ref __IsForecastPeriod, value); }
         }
-        private PickPeriodQuarterLabel? __QuarterLabel;
+        private PickPeriodQuarterLabel __QuarterLabel;
         [EntityField]
-        public PickPeriodQuarterLabel? QuarterLabel
+        public PickPeriodQuarterLabel QuarterLabel
         {
             get { return __QuarterLabel; }
             set { SetField(ref __QuarterLabel, value); }
         }
-        private PickPeriodPeriodLabel? __PeriodLabel;
+        private PickPeriodPeriodLabel __PeriodLabel;
         [EntityField]
-        public PickPeriodPeriodLabel? PeriodLabel
+        public PickPeriodPeriodLabel PeriodLabel
         {
             get { return __PeriodLabel; }
             set { SetField(ref __PeriodLabel, value); }
@@ -22426,9 +23569,9 @@ namespace LinqToSalesforce
             get { return __TargetObjectId; }
             set { SetField(ref __TargetObjectId, value); }
         }
-        private PickProcessInstanceHistoryStepStatus? __StepStatus;
+        private PickProcessInstanceHistoryStepStatus __StepStatus;
         [EntityField]
-        public PickProcessInstanceHistoryStepStatus? StepStatus
+        public PickProcessInstanceHistoryStepStatus StepStatus
         {
             get { return __StepStatus; }
             set { SetField(ref __StepStatus, value); }
@@ -22521,9 +23664,9 @@ namespace LinqToSalesforce
             get { return __ProcessInstanceId; }
             set { SetField(ref __ProcessInstanceId, value); }
         }
-        private PickProcessInstanceStepStepStatus? __StepStatus;
+        private PickProcessInstanceStepStepStatus __StepStatus;
         [EntityField]
-        public PickProcessInstanceStepStepStatus? StepStatus
+        public PickProcessInstanceStepStepStatus StepStatus
         {
             get { return __StepStatus; }
             set { SetField(ref __StepStatus, value); }
@@ -22792,9 +23935,9 @@ namespace LinqToSalesforce
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
-        private PickProduct2Family? __Family;
+        private PickProduct2Family __Family;
         [EntityField]
-        public PickProduct2Family? Family
+        public PickProduct2Family Family
         {
             get { return __Family; }
             set { SetField(ref __Family, value); }
@@ -22923,9 +24066,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickProduct2FeedType? __Type;
+        private PickProduct2FeedType __Type;
         [EntityField]
-        public PickProduct2FeedType? Type
+        public PickProduct2FeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -23534,9 +24677,9 @@ namespace LinqToSalesforce
             get { return __UserLicenseId; }
             set { SetField(ref __UserLicenseId, value); }
         }
-        private PickProfileUserType? __UserType;
+        private PickProfileUserType __UserType;
         [EntityField]
-        public PickProfileUserType? UserType
+        public PickProfileUserType UserType
         {
             get { return __UserType; }
             set { SetField(ref __UserType, value); }
@@ -23911,9 +25054,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickReportFeedType? __Type;
+        private PickReportFeedType __Type;
         [EntityField]
-        public PickReportFeedType? Type
+        public PickReportFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -24275,9 +25418,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickSiteFeedType? __Type;
+        private PickSiteFeedType __Type;
         [EntityField]
-        public PickSiteFeedType? Type
+        public PickSiteFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -24644,9 +25787,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickSolutionFeedType? __Type;
+        private PickSolutionFeedType __Type;
         [EntityField]
-        public PickSolutionFeedType? Type
+        public PickSolutionFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -25113,9 +26256,9 @@ namespace LinqToSalesforce
             get { return __CallDurationInSeconds; }
             set { SetField(ref __CallDurationInSeconds, value); }
         }
-        private PickTaskCallType? __CallType;
+        private PickTaskCallType __CallType;
         [EntityField]
-        public PickTaskCallType? CallType
+        public PickTaskCallType CallType
         {
             get { return __CallType; }
             set { SetField(ref __CallType, value); }
@@ -25176,16 +26319,16 @@ namespace LinqToSalesforce
             get { return __RecurrenceEndDateOnly; }
             set { SetField(ref __RecurrenceEndDateOnly, value); }
         }
-        private PickTaskRecurrenceTimeZoneSidKey? __RecurrenceTimeZoneSidKey;
+        private PickTaskRecurrenceTimeZoneSidKey __RecurrenceTimeZoneSidKey;
         [EntityField]
-        public PickTaskRecurrenceTimeZoneSidKey? RecurrenceTimeZoneSidKey
+        public PickTaskRecurrenceTimeZoneSidKey RecurrenceTimeZoneSidKey
         {
             get { return __RecurrenceTimeZoneSidKey; }
             set { SetField(ref __RecurrenceTimeZoneSidKey, value); }
         }
-        private PickTaskRecurrenceType? __RecurrenceType;
+        private PickTaskRecurrenceType __RecurrenceType;
         [EntityField]
-        public PickTaskRecurrenceType? RecurrenceType
+        public PickTaskRecurrenceType RecurrenceType
         {
             get { return __RecurrenceType; }
             set { SetField(ref __RecurrenceType, value); }
@@ -25211,16 +26354,16 @@ namespace LinqToSalesforce
             get { return __RecurrenceDayOfMonth; }
             set { SetField(ref __RecurrenceDayOfMonth, value); }
         }
-        private PickTaskRecurrenceInstance? __RecurrenceInstance;
+        private PickTaskRecurrenceInstance __RecurrenceInstance;
         [EntityField]
-        public PickTaskRecurrenceInstance? RecurrenceInstance
+        public PickTaskRecurrenceInstance RecurrenceInstance
         {
             get { return __RecurrenceInstance; }
             set { SetField(ref __RecurrenceInstance, value); }
         }
-        private PickTaskRecurrenceMonthOfYear? __RecurrenceMonthOfYear;
+        private PickTaskRecurrenceMonthOfYear __RecurrenceMonthOfYear;
         [EntityField]
-        public PickTaskRecurrenceMonthOfYear? RecurrenceMonthOfYear
+        public PickTaskRecurrenceMonthOfYear RecurrenceMonthOfYear
         {
             get { return __RecurrenceMonthOfYear; }
             set { SetField(ref __RecurrenceMonthOfYear, value); }
@@ -25288,9 +26431,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickTaskFeedType? __Type;
+        private PickTaskFeedType __Type;
         [EntityField]
-        public PickTaskFeedType? Type
+        public PickTaskFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -25725,9 +26868,9 @@ namespace LinqToSalesforce
             get { return __ProfileId; }
             set { SetField(ref __ProfileId, value); }
         }
-        private PickUserUserType? __UserType;
+        private PickUserUserType __UserType;
         [EntityField]
-        public PickUserUserType? UserType
+        public PickUserUserType UserType
         {
             get { return __UserType; }
             set { SetField(ref __UserType, value); }
@@ -26126,9 +27269,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickUserFeedType? __Type;
+        private PickUserFeedType __Type;
         [EntityField]
-        public PickUserFeedType? Type
+        public PickUserFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -26325,9 +27468,9 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
-        private PickUserProfileFeedType? __Type;
+        private PickUserProfileFeedType __Type;
         [EntityField]
-        public PickUserProfileFeedType? Type
+        public PickUserProfileFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
@@ -26425,16 +27568,16 @@ namespace LinqToSalesforce
             get { return __OpportunityAccessForAccountOwner; }
             set { SetField(ref __OpportunityAccessForAccountOwner, value); }
         }
-        private PickUserRoleCaseAccessForAccountOwner? __CaseAccessForAccountOwner;
+        private PickUserRoleCaseAccessForAccountOwner __CaseAccessForAccountOwner;
         [EntityField]
-        public PickUserRoleCaseAccessForAccountOwner? CaseAccessForAccountOwner
+        public PickUserRoleCaseAccessForAccountOwner CaseAccessForAccountOwner
         {
             get { return __CaseAccessForAccountOwner; }
             set { SetField(ref __CaseAccessForAccountOwner, value); }
         }
-        private PickUserRoleContactAccessForAccountOwner? __ContactAccessForAccountOwner;
+        private PickUserRoleContactAccessForAccountOwner __ContactAccessForAccountOwner;
         [EntityField]
-        public PickUserRoleContactAccessForAccountOwner? ContactAccessForAccountOwner
+        public PickUserRoleContactAccessForAccountOwner ContactAccessForAccountOwner
         {
             get { return __ContactAccessForAccountOwner; }
             set { SetField(ref __ContactAccessForAccountOwner, value); }
@@ -26481,9 +27624,9 @@ namespace LinqToSalesforce
             get { return __PortalAccountId; }
             set { SetField(ref __PortalAccountId, value); }
         }
-        private PickUserRolePortalType? __PortalType;
+        private PickUserRolePortalType __PortalType;
         [EntityField]
-        public PickUserRolePortalType? PortalType
+        public PickUserRolePortalType PortalType
         {
             get { return __PortalType; }
             set { SetField(ref __PortalType, value); }
@@ -26698,9 +27841,9 @@ namespace LinqToSalesforce
             get { return __IsResizable; }
             set { SetField(ref __IsResizable, value); }
         }
-        private PickWebLinkPosition? __Position;
+        private PickWebLinkPosition __Position;
         [EntityField]
-        public PickWebLinkPosition? Position
+        public PickWebLinkPosition Position
         {
             get { return __Position; }
             set { SetField(ref __Position, value); }
