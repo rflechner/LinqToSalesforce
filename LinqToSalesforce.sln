@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 	ProjectSection(SolutionItems) = preProject
 		docs\content\getting_started_with_salesforce.fsx = docs\content\getting_started_with_salesforce.fsx
 		docs\content\index.fsx = docs\content\index.fsx
+		docs\content\salesforce_api.fsx = docs\content\salesforce_api.fsx
 		docs\content\tutorial.fsx = docs\content\tutorial.fsx
 	EndProjectSection
 EndProject
