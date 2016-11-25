@@ -26,7 +26,15 @@ namespace LinqToSalesforce.Example1
             var context = new SoqlContext("eu11", impersonationParam);
             try
             {
+                for (var i = 0; i < 100; i++)
+                {
+                    var account = new Account { Name = $"Company {i}" };
+                    context.Insert(account);
+                }
+
                 RenameAccountsStartingWithCompany(context);
+
+                DeleteAccountsStartingWithCompany(context);
 
                 DisplayAccountsWithTheirContactsAndCases(context);
             }
@@ -43,6 +51,20 @@ namespace LinqToSalesforce.Example1
 
             WriteLine("Press any key to continue ...");
             ReadKey(true);
+        }
+
+        static void DeleteAccountsStartingWithCompany(SoqlContext context)
+        {
+            var accounts = from a in context.GetTable<Account>()
+                           where a.Name.StartsWith("Company")
+                           select a;
+
+            foreach (var account in accounts)
+            {
+                context.Delete(account);
+            }
+
+            context.Save();
         }
 
         static void RenameAccountsStartingWithCompany(SoqlContext context)

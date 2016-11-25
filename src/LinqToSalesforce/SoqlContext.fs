@@ -97,10 +97,22 @@ type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
     new Queryable<'t>(queryProvider, tableName)
 
   member x.Insert entity =
-    client.Insert entity |> ignore
-    entity.PropertyChanged.Add
-      <| fun _ -> tracker.Track entity
+    match client.Insert entity with
+    | Success _ ->
+        entity.PropertyChanged.Add
+          <| fun _ -> tracker.Track entity
+    | Failure [e] -> e.ToException() |> raise
+    | Failure errors -> 
+        errors 
+          |> List.map (fun e -> e.ToException() :> Exception) 
+          |> List.toArray
+          |> AggregateException
+          |> raise
   
+  //Note: writing 'member x.Delete = client.Delete' is causing C# interop difficulties because it wants FSharp.Core ref
+  member x.Delete entity =
+    client.Delete entity
+
   member x.Save() =
     let entities = tracker.GetTrackedEntities()
     for e in entities do

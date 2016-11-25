@@ -112,7 +112,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
       then
         let attr = sprintf """[JsonProperty(PropertyName = "%s")]""" field.Name
         addLine (indent+1) attr
-      addLine (indent+1) "[EntityField]"
+      addLine (indent+1) (sprintf "[EntityField(%b)]" field.Nillable)
       writeIndent (indent+1)
       writeProperty typeName fieldName false
     

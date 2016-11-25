@@ -7880,252 +7880,252 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __MasterRecordId;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterRecordId
         {
             get { return __MasterRecordId; }
             set { SetField(ref __MasterRecordId, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private PickAccountType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickAccountType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __BillingStreet;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingStreet
         {
             get { return __BillingStreet; }
             set { SetField(ref __BillingStreet, value); }
         }
         private System.String __BillingCity;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingCity
         {
             get { return __BillingCity; }
             set { SetField(ref __BillingCity, value); }
         }
         private System.String __BillingState;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingState
         {
             get { return __BillingState; }
             set { SetField(ref __BillingState, value); }
         }
         private System.String __BillingPostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingPostalCode
         {
             get { return __BillingPostalCode; }
             set { SetField(ref __BillingPostalCode, value); }
         }
         private System.String __BillingCountry;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingCountry
         {
             get { return __BillingCountry; }
             set { SetField(ref __BillingCountry, value); }
         }
         private System.String __ShippingStreet;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingStreet
         {
             get { return __ShippingStreet; }
             set { SetField(ref __ShippingStreet, value); }
         }
         private System.String __ShippingCity;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingCity
         {
             get { return __ShippingCity; }
             set { SetField(ref __ShippingCity, value); }
         }
         private System.String __ShippingState;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingState
         {
             get { return __ShippingState; }
             set { SetField(ref __ShippingState, value); }
         }
         private System.String __ShippingPostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingPostalCode
         {
             get { return __ShippingPostalCode; }
             set { SetField(ref __ShippingPostalCode, value); }
         }
         private System.String __ShippingCountry;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingCountry
         {
             get { return __ShippingCountry; }
             set { SetField(ref __ShippingCountry, value); }
         }
         private System.String __Phone;
-        [EntityField]
+        [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
             set { SetField(ref __Phone, value); }
         }
         private System.String __Fax;
-        [EntityField]
+        [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
             set { SetField(ref __Fax, value); }
         }
         private System.String __AccountNumber;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountNumber
         {
             get { return __AccountNumber; }
             set { SetField(ref __AccountNumber, value); }
         }
         private System.String __Website;
-        [EntityField]
+        [EntityField(true)]
         public System.String Website
         {
             get { return __Website; }
             set { SetField(ref __Website, value); }
         }
         private System.String __Sic;
-        [EntityField]
+        [EntityField(true)]
         public System.String Sic
         {
             get { return __Sic; }
             set { SetField(ref __Sic, value); }
         }
         private PickAccountIndustry __Industry;
-        [EntityField]
+        [EntityField(true)]
         public PickAccountIndustry Industry
         {
             get { return __Industry; }
             set { SetField(ref __Industry, value); }
         }
         private System.String __AnnualRevenue;
-        [EntityField]
+        [EntityField(true)]
         public System.String AnnualRevenue
         {
             get { return __AnnualRevenue; }
             set { SetField(ref __AnnualRevenue, value); }
         }
         private System.String __NumberOfEmployees;
-        [EntityField]
+        [EntityField(true)]
         public System.String NumberOfEmployees
         {
             get { return __NumberOfEmployees; }
             set { SetField(ref __NumberOfEmployees, value); }
         }
         private PickAccountOwnership __Ownership;
-        [EntityField]
+        [EntityField(true)]
         public PickAccountOwnership Ownership
         {
             get { return __Ownership; }
             set { SetField(ref __Ownership, value); }
         }
         private System.String __TickerSymbol;
-        [EntityField]
+        [EntityField(true)]
         public System.String TickerSymbol
         {
             get { return __TickerSymbol; }
             set { SetField(ref __TickerSymbol, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickAccountRating __Rating;
-        [EntityField]
+        [EntityField(true)]
         public PickAccountRating Rating
         {
             get { return __Rating; }
             set { SetField(ref __Rating, value); }
         }
         private System.String __Site;
-        [EntityField]
+        [EntityField(true)]
         public System.String Site
         {
             get { return __Site; }
             set { SetField(ref __Site, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime? __LastActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
@@ -8133,7 +8133,7 @@ namespace LinqToSalesforce
         }
         private PickAccountCustomerPriority__c __CustomerPriorityc;
         [JsonProperty(PropertyName = "CustomerPriority__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickAccountCustomerPriority__c CustomerPriorityc
         {
             get { return __CustomerPriorityc; }
@@ -8141,7 +8141,7 @@ namespace LinqToSalesforce
         }
         private PickAccountSLA__c __SLAc;
         [JsonProperty(PropertyName = "SLA__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickAccountSLA__c SLAc
         {
             get { return __SLAc; }
@@ -8149,7 +8149,7 @@ namespace LinqToSalesforce
         }
         private PickAccountActive__c __Activec;
         [JsonProperty(PropertyName = "Active__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickAccountActive__c Activec
         {
             get { return __Activec; }
@@ -8157,7 +8157,7 @@ namespace LinqToSalesforce
         }
         private System.String __NumberofLocationsc;
         [JsonProperty(PropertyName = "NumberofLocations__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String NumberofLocationsc
         {
             get { return __NumberofLocationsc; }
@@ -8165,7 +8165,7 @@ namespace LinqToSalesforce
         }
         private PickAccountUpsellOpportunity__c __UpsellOpportunityc;
         [JsonProperty(PropertyName = "UpsellOpportunity__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickAccountUpsellOpportunity__c UpsellOpportunityc
         {
             get { return __UpsellOpportunityc; }
@@ -8173,7 +8173,7 @@ namespace LinqToSalesforce
         }
         private System.String __SLASerialNumberc;
         [JsonProperty(PropertyName = "SLASerialNumber__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String SLASerialNumberc
         {
             get { return __SLASerialNumberc; }
@@ -8181,7 +8181,7 @@ namespace LinqToSalesforce
         }
         private System.DateTime? __SLAExpirationDatec;
         [JsonProperty(PropertyName = "SLAExpirationDate__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? SLAExpirationDatec
         {
             get { return __SLAExpirationDatec; }
@@ -8362,77 +8362,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private PickAccountContactRoleRole __Role;
-        [EntityField]
+        [EntityField(true)]
         public PickAccountContactRoleRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
         }
         private System.Boolean __IsPrimary;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
@@ -8457,56 +8457,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickAccountFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickAccountFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -8543,56 +8543,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickAccountHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickAccountHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -8617,91 +8617,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __AccountFromId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AccountFromId
         {
             get { return __AccountFromId; }
             set { SetField(ref __AccountFromId, value); }
         }
         private System.String __AccountToId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountToId
         {
             get { return __AccountToId; }
             set { SetField(ref __AccountToId, value); }
         }
         private System.String __OpportunityId;
-        [EntityField]
+        [EntityField(true)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
         private PickAccountPartnerRole __Role;
-        [EntityField]
+        [EntityField(true)]
         public PickAccountPartnerRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
         }
         private System.Boolean __IsPrimary;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
             set { SetField(ref __IsPrimary, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ReversePartnerId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ReversePartnerId
         {
             get { return __ReversePartnerId; }
@@ -8726,77 +8726,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __UserOrGroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value); }
         }
         private PickAccountShareAccountAccessLevel __AccountAccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickAccountShareAccountAccessLevel AccountAccessLevel
         {
             get { return __AccountAccessLevel; }
             set { SetField(ref __AccountAccessLevel, value); }
         }
         private PickAccountShareOpportunityAccessLevel __OpportunityAccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickAccountShareOpportunityAccessLevel OpportunityAccessLevel
         {
             get { return __OpportunityAccessLevel; }
             set { SetField(ref __OpportunityAccessLevel, value); }
         }
         private PickAccountShareCaseAccessLevel __CaseAccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickAccountShareCaseAccessLevel CaseAccessLevel
         {
             get { return __CaseAccessLevel; }
             set { SetField(ref __CaseAccessLevel, value); }
         }
         private PickAccountShareContactAccessLevel __ContactAccessLevel;
-        [EntityField]
+        [EntityField(true)]
         public PickAccountShareContactAccessLevel ContactAccessLevel
         {
             get { return __ContactAccessLevel; }
             set { SetField(ref __ContactAccessLevel, value); }
         }
         private PickAccountShareRowCause __RowCause;
-        [EntityField]
+        [EntityField(true)]
         public PickAccountShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -8821,203 +8821,203 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __WhoId;
-        [EntityField]
+        [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
             set { SetField(ref __WhoId, value); }
         }
         private System.String __WhatId;
-        [EntityField]
+        [EntityField(true)]
         public System.String WhatId
         {
             get { return __WhatId; }
             set { SetField(ref __WhatId, value); }
         }
         private System.String __Subject;
-        [EntityField]
+        [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
             set { SetField(ref __Subject, value); }
         }
         private System.Boolean __IsTask;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsTask
         {
             get { return __IsTask; }
             set { SetField(ref __IsTask, value); }
         }
         private System.DateTime? __ActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
             set { SetField(ref __ActivityDate, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(true)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private PickActivityHistoryStatus __Status;
-        [EntityField]
+        [EntityField(true)]
         public PickActivityHistoryStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private PickActivityHistoryPriority __Priority;
-        [EntityField]
+        [EntityField(true)]
         public PickActivityHistoryPriority Priority
         {
             get { return __Priority; }
             set { SetField(ref __Priority, value); }
         }
         private PickActivityHistoryActivityType __ActivityType;
-        [EntityField]
+        [EntityField(true)]
         public PickActivityHistoryActivityType ActivityType
         {
             get { return __ActivityType; }
             set { SetField(ref __ActivityType, value); }
         }
         private System.Boolean __IsClosed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
             set { SetField(ref __IsClosed, value); }
         }
         private System.Boolean __IsAllDayEvent;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsAllDayEvent
         {
             get { return __IsAllDayEvent; }
             set { SetField(ref __IsAllDayEvent, value); }
         }
         private System.Boolean __IsVisibleInSelfService;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsVisibleInSelfService
         {
             get { return __IsVisibleInSelfService; }
             set { SetField(ref __IsVisibleInSelfService, value); }
         }
         private System.String __DurationInMinutes;
-        [EntityField]
+        [EntityField(true)]
         public System.String DurationInMinutes
         {
             get { return __DurationInMinutes; }
             set { SetField(ref __DurationInMinutes, value); }
         }
         private System.String __Location;
-        [EntityField]
+        [EntityField(true)]
         public System.String Location
         {
             get { return __Location; }
             set { SetField(ref __Location, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __CallDurationInSeconds;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallDurationInSeconds
         {
             get { return __CallDurationInSeconds; }
             set { SetField(ref __CallDurationInSeconds, value); }
         }
         private PickActivityHistoryCallType __CallType;
-        [EntityField]
+        [EntityField(true)]
         public PickActivityHistoryCallType CallType
         {
             get { return __CallType; }
             set { SetField(ref __CallType, value); }
         }
         private System.String __CallDisposition;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallDisposition
         {
             get { return __CallDisposition; }
             set { SetField(ref __CallDisposition, value); }
         }
         private System.String __CallObject;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallObject
         {
             get { return __CallObject; }
             set { SetField(ref __CallObject, value); }
         }
         private System.DateTime? __ReminderDateTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ReminderDateTime
         {
             get { return __ReminderDateTime; }
             set { SetField(ref __ReminderDateTime, value); }
         }
         private System.Boolean __IsReminderSet;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsReminderSet
         {
             get { return __IsReminderSet; }
@@ -9042,77 +9042,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __CallCenterId;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallCenterId
         {
             get { return __CallCenterId; }
             set { SetField(ref __CallCenterId, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __Phone;
-        [EntityField]
+        [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
             set { SetField(ref __Phone, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -9137,7 +9137,7 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
@@ -9162,98 +9162,98 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __ApiVersion;
-        [EntityField]
+        [EntityField(false)]
         public System.String ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
         }
         private PickApexClassStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickApexClassStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.Boolean __IsValid;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsValid
         {
             get { return __IsValid; }
             set { SetField(ref __IsValid, value); }
         }
         private System.String __BodyCrc;
-        [EntityField]
+        [EntityField(true)]
         public System.String BodyCrc
         {
             get { return __BodyCrc; }
             set { SetField(ref __BodyCrc, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.String __LengthWithoutComments;
-        [EntityField]
+        [EntityField(false)]
         public System.String LengthWithoutComments
         {
             get { return __LengthWithoutComments; }
             set { SetField(ref __LengthWithoutComments, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -9278,98 +9278,98 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __ApiVersion;
-        [EntityField]
+        [EntityField(false)]
         public System.String ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(false)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickApexComponentControllerType __ControllerType;
-        [EntityField]
+        [EntityField(false)]
         public PickApexComponentControllerType ControllerType
         {
             get { return __ControllerType; }
             set { SetField(ref __ControllerType, value); }
         }
         private System.String __ControllerKey;
-        [EntityField]
+        [EntityField(true)]
         public System.String ControllerKey
         {
             get { return __ControllerKey; }
             set { SetField(ref __ControllerKey, value); }
         }
         private System.String __Markup;
-        [EntityField]
+        [EntityField(false)]
         public System.String Markup
         {
             get { return __Markup; }
             set { SetField(ref __Markup, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -9394,84 +9394,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __LogUserId;
-        [EntityField]
+        [EntityField(true)]
         public System.String LogUserId
         {
             get { return __LogUserId; }
             set { SetField(ref __LogUserId, value); }
         }
         private System.String __LogLength;
-        [EntityField]
+        [EntityField(false)]
         public System.String LogLength
         {
             get { return __LogLength; }
             set { SetField(ref __LogLength, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __Request;
-        [EntityField]
+        [EntityField(false)]
         public System.String Request
         {
             get { return __Request; }
             set { SetField(ref __Request, value); }
         }
         private System.String __Operation;
-        [EntityField]
+        [EntityField(false)]
         public System.String Operation
         {
             get { return __Operation; }
             set { SetField(ref __Operation, value); }
         }
         private System.String __Application;
-        [EntityField]
+        [EntityField(false)]
         public System.String Application
         {
             get { return __Application; }
             set { SetField(ref __Application, value); }
         }
         private System.String __Status;
-        [EntityField]
+        [EntityField(false)]
         public System.String Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.String __DurationMilliseconds;
-        [EntityField]
+        [EntityField(false)]
         public System.String DurationMilliseconds
         {
             get { return __DurationMilliseconds; }
             set { SetField(ref __DurationMilliseconds, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime __StartTime;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime StartTime
         {
             get { return __StartTime; }
             set { SetField(ref __StartTime, value); }
         }
         private PickApexLogLocation __Location;
-        [EntityField]
+        [EntityField(true)]
         public PickApexLogLocation Location
         {
             get { return __Location; }
@@ -9496,98 +9496,98 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __ApiVersion;
-        [EntityField]
+        [EntityField(false)]
         public System.String ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(false)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickApexPageControllerType __ControllerType;
-        [EntityField]
+        [EntityField(false)]
         public PickApexPageControllerType ControllerType
         {
             get { return __ControllerType; }
             set { SetField(ref __ControllerType, value); }
         }
         private System.String __ControllerKey;
-        [EntityField]
+        [EntityField(true)]
         public System.String ControllerKey
         {
             get { return __ControllerKey; }
             set { SetField(ref __ControllerKey, value); }
         }
         private System.String __Markup;
-        [EntityField]
+        [EntityField(false)]
         public System.String Markup
         {
             get { return __Markup; }
             set { SetField(ref __Markup, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -9612,161 +9612,161 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private PickApexTriggerTableEnumOrId __TableEnumOrId;
-        [EntityField]
+        [EntityField(true)]
         public PickApexTriggerTableEnumOrId TableEnumOrId
         {
             get { return __TableEnumOrId; }
             set { SetField(ref __TableEnumOrId, value); }
         }
         private System.Boolean __UsageBeforeInsert;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UsageBeforeInsert
         {
             get { return __UsageBeforeInsert; }
             set { SetField(ref __UsageBeforeInsert, value); }
         }
         private System.Boolean __UsageAfterInsert;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UsageAfterInsert
         {
             get { return __UsageAfterInsert; }
             set { SetField(ref __UsageAfterInsert, value); }
         }
         private System.Boolean __UsageBeforeUpdate;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UsageBeforeUpdate
         {
             get { return __UsageBeforeUpdate; }
             set { SetField(ref __UsageBeforeUpdate, value); }
         }
         private System.Boolean __UsageAfterUpdate;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UsageAfterUpdate
         {
             get { return __UsageAfterUpdate; }
             set { SetField(ref __UsageAfterUpdate, value); }
         }
         private System.Boolean __UsageBeforeDelete;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UsageBeforeDelete
         {
             get { return __UsageBeforeDelete; }
             set { SetField(ref __UsageBeforeDelete, value); }
         }
         private System.Boolean __UsageAfterDelete;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UsageAfterDelete
         {
             get { return __UsageAfterDelete; }
             set { SetField(ref __UsageAfterDelete, value); }
         }
         private System.Boolean __UsageIsBulk;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UsageIsBulk
         {
             get { return __UsageIsBulk; }
             set { SetField(ref __UsageIsBulk, value); }
         }
         private System.Boolean __UsageAfterUndelete;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UsageAfterUndelete
         {
             get { return __UsageAfterUndelete; }
             set { SetField(ref __UsageAfterUndelete, value); }
         }
         private System.String __ApiVersion;
-        [EntityField]
+        [EntityField(false)]
         public System.String ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
         }
         private PickApexTriggerStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickApexTriggerStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.Boolean __IsValid;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsValid
         {
             get { return __IsValid; }
             set { SetField(ref __IsValid, value); }
         }
         private System.String __BodyCrc;
-        [EntityField]
+        [EntityField(true)]
         public System.String BodyCrc
         {
             get { return __BodyCrc; }
             set { SetField(ref __BodyCrc, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.String __LengthWithoutComments;
-        [EntityField]
+        [EntityField(false)]
         public System.String LengthWithoutComments
         {
             get { return __LengthWithoutComments; }
             set { SetField(ref __LengthWithoutComments, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -9791,140 +9791,140 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __Product2Id;
-        [EntityField]
+        [EntityField(true)]
         public System.String Product2Id
         {
             get { return __Product2Id; }
             set { SetField(ref __Product2Id, value); }
         }
         private System.Boolean __IsCompetitorProduct;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsCompetitorProduct
         {
             get { return __IsCompetitorProduct; }
             set { SetField(ref __IsCompetitorProduct, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __SerialNumber;
-        [EntityField]
+        [EntityField(true)]
         public System.String SerialNumber
         {
             get { return __SerialNumber; }
             set { SetField(ref __SerialNumber, value); }
         }
         private System.DateTime? __InstallDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? InstallDate
         {
             get { return __InstallDate; }
             set { SetField(ref __InstallDate, value); }
         }
         private System.DateTime? __PurchaseDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? PurchaseDate
         {
             get { return __PurchaseDate; }
             set { SetField(ref __PurchaseDate, value); }
         }
         private System.DateTime? __UsageEndDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? UsageEndDate
         {
             get { return __UsageEndDate; }
             set { SetField(ref __UsageEndDate, value); }
         }
         private PickAssetStatus __Status;
-        [EntityField]
+        [EntityField(true)]
         public PickAssetStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.String __Price;
-        [EntityField]
+        [EntityField(true)]
         public System.String Price
         {
             get { return __Price; }
             set { SetField(ref __Price, value); }
         }
         private System.String __Quantity;
-        [EntityField]
+        [EntityField(true)]
         public System.String Quantity
         {
             get { return __Quantity; }
             set { SetField(ref __Quantity, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
@@ -10027,56 +10027,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickAssetFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickAssetFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -10113,56 +10113,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __AssetId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AssetId
         {
             get { return __AssetId; }
             set { SetField(ref __AssetId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickAssetHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickAssetHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -10187,63 +10187,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(true)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private PickAssignmentRuleSobjectType __SobjectType;
-        [EntityField]
+        [EntityField(true)]
         public PickAssignmentRuleSobjectType SobjectType
         {
             get { return __SobjectType; }
             set { SetField(ref __SobjectType, value); }
         }
         private System.Boolean __Active;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean Active
         {
             get { return __Active; }
             set { SetField(ref __Active, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -10268,105 +10268,105 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private PickAsyncApexJobJobType __JobType;
-        [EntityField]
+        [EntityField(false)]
         public PickAsyncApexJobJobType JobType
         {
             get { return __JobType; }
             set { SetField(ref __JobType, value); }
         }
         private System.String __ApexClassId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ApexClassId
         {
             get { return __ApexClassId; }
             set { SetField(ref __ApexClassId, value); }
         }
         private PickAsyncApexJobStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickAsyncApexJobStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.String __JobItemsProcessed;
-        [EntityField]
+        [EntityField(false)]
         public System.String JobItemsProcessed
         {
             get { return __JobItemsProcessed; }
             set { SetField(ref __JobItemsProcessed, value); }
         }
         private System.String __TotalJobItems;
-        [EntityField]
+        [EntityField(true)]
         public System.String TotalJobItems
         {
             get { return __TotalJobItems; }
             set { SetField(ref __TotalJobItems, value); }
         }
         private System.String __NumberOfErrors;
-        [EntityField]
+        [EntityField(true)]
         public System.String NumberOfErrors
         {
             get { return __NumberOfErrors; }
             set { SetField(ref __NumberOfErrors, value); }
         }
         private System.DateTime? __CompletedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? CompletedDate
         {
             get { return __CompletedDate; }
             set { SetField(ref __CompletedDate, value); }
         }
         private System.String __MethodName;
-        [EntityField]
+        [EntityField(true)]
         public System.String MethodName
         {
             get { return __MethodName; }
             set { SetField(ref __MethodName, value); }
         }
         private System.String __ExtendedStatus;
-        [EntityField]
+        [EntityField(true)]
         public System.String ExtendedStatus
         {
             get { return __ExtendedStatus; }
             set { SetField(ref __ExtendedStatus, value); }
         }
         private System.String __ParentJobId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentJobId
         {
             get { return __ParentJobId; }
             set { SetField(ref __ParentJobId, value); }
         }
         private System.String __LastProcessed;
-        [EntityField]
+        [EntityField(true)]
         public System.String LastProcessed
         {
             get { return __LastProcessed; }
             set { SetField(ref __LastProcessed, value); }
         }
         private System.String __LastProcessedOffset;
-        [EntityField]
+        [EntityField(true)]
         public System.String LastProcessedOffset
         {
             get { return __LastProcessedOffset; }
@@ -10391,105 +10391,105 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.Boolean __IsPrivate;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
             set { SetField(ref __IsPrivate, value); }
         }
         private System.String __ContentType;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentType
         {
             get { return __ContentType; }
             set { SetField(ref __ContentType, value); }
         }
         private System.String __BodyLength;
-        [EntityField]
+        [EntityField(true)]
         public System.String BodyLength
         {
             get { return __BodyLength; }
             set { SetField(ref __BodyLength, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(false)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
@@ -10514,84 +10514,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __DeveloperName;
-        [EntityField]
+        [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
             set { SetField(ref __DeveloperName, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __Value;
-        [EntityField]
+        [EntityField(false)]
         public System.String Value
         {
             get { return __Value; }
             set { SetField(ref __Value, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -10616,168 +10616,168 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.Boolean __IsDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
             set { SetField(ref __IsDefault, value); }
         }
         private System.String __SundayStartTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String SundayStartTime
         {
             get { return __SundayStartTime; }
             set { SetField(ref __SundayStartTime, value); }
         }
         private System.String __SundayEndTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String SundayEndTime
         {
             get { return __SundayEndTime; }
             set { SetField(ref __SundayEndTime, value); }
         }
         private System.String __MondayStartTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String MondayStartTime
         {
             get { return __MondayStartTime; }
             set { SetField(ref __MondayStartTime, value); }
         }
         private System.String __MondayEndTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String MondayEndTime
         {
             get { return __MondayEndTime; }
             set { SetField(ref __MondayEndTime, value); }
         }
         private System.String __TuesdayStartTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String TuesdayStartTime
         {
             get { return __TuesdayStartTime; }
             set { SetField(ref __TuesdayStartTime, value); }
         }
         private System.String __TuesdayEndTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String TuesdayEndTime
         {
             get { return __TuesdayEndTime; }
             set { SetField(ref __TuesdayEndTime, value); }
         }
         private System.String __WednesdayStartTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String WednesdayStartTime
         {
             get { return __WednesdayStartTime; }
             set { SetField(ref __WednesdayStartTime, value); }
         }
         private System.String __WednesdayEndTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String WednesdayEndTime
         {
             get { return __WednesdayEndTime; }
             set { SetField(ref __WednesdayEndTime, value); }
         }
         private System.String __ThursdayStartTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String ThursdayStartTime
         {
             get { return __ThursdayStartTime; }
             set { SetField(ref __ThursdayStartTime, value); }
         }
         private System.String __ThursdayEndTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String ThursdayEndTime
         {
             get { return __ThursdayEndTime; }
             set { SetField(ref __ThursdayEndTime, value); }
         }
         private System.String __FridayStartTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String FridayStartTime
         {
             get { return __FridayStartTime; }
             set { SetField(ref __FridayStartTime, value); }
         }
         private System.String __FridayEndTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String FridayEndTime
         {
             get { return __FridayEndTime; }
             set { SetField(ref __FridayEndTime, value); }
         }
         private System.String __SaturdayStartTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String SaturdayStartTime
         {
             get { return __SaturdayStartTime; }
             set { SetField(ref __SaturdayStartTime, value); }
         }
         private System.String __SaturdayEndTime;
-        [EntityField]
+        [EntityField(true)]
         public System.String SaturdayEndTime
         {
             get { return __SaturdayEndTime; }
             set { SetField(ref __SaturdayEndTime, value); }
         }
         private PickBusinessHoursTimeZoneSidKey __TimeZoneSidKey;
-        [EntityField]
+        [EntityField(false)]
         public PickBusinessHoursTimeZoneSidKey TimeZoneSidKey
         {
             get { return __TimeZoneSidKey; }
             set { SetField(ref __TimeZoneSidKey, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
@@ -10802,77 +10802,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickBusinessProcessTableEnumOrId __TableEnumOrId;
-        [EntityField]
+        [EntityField(false)]
         public PickBusinessProcessTableEnumOrId TableEnumOrId
         {
             get { return __TableEnumOrId; }
             set { SetField(ref __TableEnumOrId, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -10897,63 +10897,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __InternalName;
-        [EntityField]
+        [EntityField(false)]
         public System.String InternalName
         {
             get { return __InternalName; }
             set { SetField(ref __InternalName, value); }
         }
         private System.String __Version;
-        [EntityField]
+        [EntityField(true)]
         public System.String Version
         {
             get { return __Version; }
             set { SetField(ref __Version, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
@@ -10978,217 +10978,217 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private PickCampaignType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickCampaignType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private PickCampaignStatus __Status;
-        [EntityField]
+        [EntityField(true)]
         public PickCampaignStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.DateTime? __StartDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? StartDate
         {
             get { return __StartDate; }
             set { SetField(ref __StartDate, value); }
         }
         private System.DateTime? __EndDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? EndDate
         {
             get { return __EndDate; }
             set { SetField(ref __EndDate, value); }
         }
         private System.String __ExpectedRevenue;
-        [EntityField]
+        [EntityField(true)]
         public System.String ExpectedRevenue
         {
             get { return __ExpectedRevenue; }
             set { SetField(ref __ExpectedRevenue, value); }
         }
         private System.String __BudgetedCost;
-        [EntityField]
+        [EntityField(true)]
         public System.String BudgetedCost
         {
             get { return __BudgetedCost; }
             set { SetField(ref __BudgetedCost, value); }
         }
         private System.String __ActualCost;
-        [EntityField]
+        [EntityField(true)]
         public System.String ActualCost
         {
             get { return __ActualCost; }
             set { SetField(ref __ActualCost, value); }
         }
         private System.String __ExpectedResponse;
-        [EntityField]
+        [EntityField(true)]
         public System.String ExpectedResponse
         {
             get { return __ExpectedResponse; }
             set { SetField(ref __ExpectedResponse, value); }
         }
         private System.String __NumberSent;
-        [EntityField]
+        [EntityField(true)]
         public System.String NumberSent
         {
             get { return __NumberSent; }
             set { SetField(ref __NumberSent, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __NumberOfLeads;
-        [EntityField]
+        [EntityField(false)]
         public System.String NumberOfLeads
         {
             get { return __NumberOfLeads; }
             set { SetField(ref __NumberOfLeads, value); }
         }
         private System.String __NumberOfConvertedLeads;
-        [EntityField]
+        [EntityField(false)]
         public System.String NumberOfConvertedLeads
         {
             get { return __NumberOfConvertedLeads; }
             set { SetField(ref __NumberOfConvertedLeads, value); }
         }
         private System.String __NumberOfContacts;
-        [EntityField]
+        [EntityField(false)]
         public System.String NumberOfContacts
         {
             get { return __NumberOfContacts; }
             set { SetField(ref __NumberOfContacts, value); }
         }
         private System.String __NumberOfResponses;
-        [EntityField]
+        [EntityField(false)]
         public System.String NumberOfResponses
         {
             get { return __NumberOfResponses; }
             set { SetField(ref __NumberOfResponses, value); }
         }
         private System.String __NumberOfOpportunities;
-        [EntityField]
+        [EntityField(false)]
         public System.String NumberOfOpportunities
         {
             get { return __NumberOfOpportunities; }
             set { SetField(ref __NumberOfOpportunities, value); }
         }
         private System.String __NumberOfWonOpportunities;
-        [EntityField]
+        [EntityField(false)]
         public System.String NumberOfWonOpportunities
         {
             get { return __NumberOfWonOpportunities; }
             set { SetField(ref __NumberOfWonOpportunities, value); }
         }
         private System.String __AmountAllOpportunities;
-        [EntityField]
+        [EntityField(false)]
         public System.String AmountAllOpportunities
         {
             get { return __AmountAllOpportunities; }
             set { SetField(ref __AmountAllOpportunities, value); }
         }
         private System.String __AmountWonOpportunities;
-        [EntityField]
+        [EntityField(false)]
         public System.String AmountWonOpportunities
         {
             get { return __AmountWonOpportunities; }
             set { SetField(ref __AmountWonOpportunities, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime? __LastActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
             set { SetField(ref __LastActivityDate, value); }
         }
         private System.String __CampaignMemberRecordTypeId;
-        [EntityField]
+        [EntityField(true)]
         public System.String CampaignMemberRecordTypeId
         {
             get { return __CampaignMemberRecordTypeId; }
@@ -11291,56 +11291,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickCampaignFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickCampaignFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -11377,91 +11377,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __CampaignId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CampaignId
         {
             get { return __CampaignId; }
             set { SetField(ref __CampaignId, value); }
         }
         private System.String __LeadId;
-        [EntityField]
+        [EntityField(true)]
         public System.String LeadId
         {
             get { return __LeadId; }
             set { SetField(ref __LeadId, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private PickCampaignMemberStatus __Status;
-        [EntityField]
+        [EntityField(true)]
         public PickCampaignMemberStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.Boolean __HasResponded;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean HasResponded
         {
             get { return __HasResponded; }
             set { SetField(ref __HasResponded, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime? __FirstRespondedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? FirstRespondedDate
         {
             get { return __FirstRespondedDate; }
@@ -11486,84 +11486,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __CampaignId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CampaignId
         {
             get { return __CampaignId; }
             set { SetField(ref __CampaignId, value); }
         }
         private System.String __Label;
-        [EntityField]
+        [EntityField(false)]
         public System.String Label
         {
             get { return __Label; }
             set { SetField(ref __Label, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(false)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private System.Boolean __IsDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
             set { SetField(ref __IsDefault, value); }
         }
         private System.Boolean __HasResponded;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean HasResponded
         {
             get { return __HasResponded; }
             set { SetField(ref __HasResponded, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -11588,56 +11588,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __CampaignId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CampaignId
         {
             get { return __CampaignId; }
             set { SetField(ref __CampaignId, value); }
         }
         private System.String __UserOrGroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value); }
         }
         private PickCampaignShareCampaignAccessLevel __CampaignAccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickCampaignShareCampaignAccessLevel CampaignAccessLevel
         {
             get { return __CampaignAccessLevel; }
             set { SetField(ref __CampaignAccessLevel, value); }
         }
         private PickCampaignShareRowCause __RowCause;
-        [EntityField]
+        [EntityField(true)]
         public PickCampaignShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -11662,189 +11662,189 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __CaseNumber;
-        [EntityField]
+        [EntityField(false)]
         public System.String CaseNumber
         {
             get { return __CaseNumber; }
             set { SetField(ref __CaseNumber, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __AssetId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AssetId
         {
             get { return __AssetId; }
             set { SetField(ref __AssetId, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __SuppliedName;
-        [EntityField]
+        [EntityField(true)]
         public System.String SuppliedName
         {
             get { return __SuppliedName; }
             set { SetField(ref __SuppliedName, value); }
         }
         private System.String __SuppliedEmail;
-        [EntityField]
+        [EntityField(true)]
         public System.String SuppliedEmail
         {
             get { return __SuppliedEmail; }
             set { SetField(ref __SuppliedEmail, value); }
         }
         private System.String __SuppliedPhone;
-        [EntityField]
+        [EntityField(true)]
         public System.String SuppliedPhone
         {
             get { return __SuppliedPhone; }
             set { SetField(ref __SuppliedPhone, value); }
         }
         private System.String __SuppliedCompany;
-        [EntityField]
+        [EntityField(true)]
         public System.String SuppliedCompany
         {
             get { return __SuppliedCompany; }
             set { SetField(ref __SuppliedCompany, value); }
         }
         private PickCaseType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickCaseType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private PickCaseStatus __Status;
-        [EntityField]
+        [EntityField(true)]
         public PickCaseStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private PickCaseReason __Reason;
-        [EntityField]
+        [EntityField(true)]
         public PickCaseReason Reason
         {
             get { return __Reason; }
             set { SetField(ref __Reason, value); }
         }
         private PickCaseOrigin __Origin;
-        [EntityField]
+        [EntityField(true)]
         public PickCaseOrigin Origin
         {
             get { return __Origin; }
             set { SetField(ref __Origin, value); }
         }
         private System.String __Subject;
-        [EntityField]
+        [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
             set { SetField(ref __Subject, value); }
         }
         private PickCasePriority __Priority;
-        [EntityField]
+        [EntityField(true)]
         public PickCasePriority Priority
         {
             get { return __Priority; }
             set { SetField(ref __Priority, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.Boolean __IsClosed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
             set { SetField(ref __IsClosed, value); }
         }
         private System.DateTime? __ClosedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ClosedDate
         {
             get { return __ClosedDate; }
             set { SetField(ref __ClosedDate, value); }
         }
         private System.Boolean __IsEscalated;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsEscalated
         {
             get { return __IsEscalated; }
             set { SetField(ref __IsEscalated, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -11852,7 +11852,7 @@ namespace LinqToSalesforce
         }
         private System.String __EngineeringReqNumberc;
         [JsonProperty(PropertyName = "EngineeringReqNumber__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String EngineeringReqNumberc
         {
             get { return __EngineeringReqNumberc; }
@@ -11860,7 +11860,7 @@ namespace LinqToSalesforce
         }
         private PickCaseSLAViolation__c __SLAViolationc;
         [JsonProperty(PropertyName = "SLAViolation__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickCaseSLAViolation__c SLAViolationc
         {
             get { return __SLAViolationc; }
@@ -11868,7 +11868,7 @@ namespace LinqToSalesforce
         }
         private PickCaseProduct__c __Productc;
         [JsonProperty(PropertyName = "Product__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickCaseProduct__c Productc
         {
             get { return __Productc; }
@@ -11876,7 +11876,7 @@ namespace LinqToSalesforce
         }
         private PickCasePotentialLiability__c __PotentialLiabilityc;
         [JsonProperty(PropertyName = "PotentialLiability__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickCasePotentialLiability__c PotentialLiabilityc
         {
             get { return __PotentialLiabilityc; }
@@ -12009,70 +12009,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.Boolean __IsPublished;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPublished
         {
             get { return __IsPublished; }
             set { SetField(ref __IsPublished, value); }
         }
         private System.String __CommentBody;
-        [EntityField]
+        [EntityField(true)]
         public System.String CommentBody
         {
             get { return __CommentBody; }
             set { SetField(ref __CommentBody, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -12097,70 +12097,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __CasesId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CasesId
         {
             get { return __CasesId; }
             set { SetField(ref __CasesId, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private PickCaseContactRoleRole __Role;
-        [EntityField]
+        [EntityField(true)]
         public PickCaseContactRoleRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -12185,56 +12185,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickCaseFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickCaseFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -12271,56 +12271,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __CaseId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CaseId
         {
             get { return __CaseId; }
             set { SetField(ref __CaseId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickCaseHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickCaseHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -12345,56 +12345,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __CaseId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CaseId
         {
             get { return __CaseId; }
             set { SetField(ref __CaseId, value); }
         }
         private System.String __UserOrGroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value); }
         }
         private PickCaseShareCaseAccessLevel __CaseAccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickCaseShareCaseAccessLevel CaseAccessLevel
         {
             get { return __CaseAccessLevel; }
             set { SetField(ref __CaseAccessLevel, value); }
         }
         private PickCaseShareRowCause __RowCause;
-        [EntityField]
+        [EntityField(true)]
         public PickCaseShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -12419,49 +12419,49 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __CaseId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CaseId
         {
             get { return __CaseId; }
             set { SetField(ref __CaseId, value); }
         }
         private System.String __SolutionId;
-        [EntityField]
+        [EntityField(false)]
         public System.String SolutionId
         {
             get { return __SolutionId; }
             set { SetField(ref __SolutionId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -12486,70 +12486,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private System.Boolean __IsDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
             set { SetField(ref __IsDefault, value); }
         }
         private System.Boolean __IsClosed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
             set { SetField(ref __IsClosed, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -12574,70 +12574,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __MemberId;
-        [EntityField]
+        [EntityField(false)]
         public System.String MemberId
         {
             get { return __MemberId; }
             set { SetField(ref __MemberId, value); }
         }
         private System.String __TeamTemplateMemberId;
-        [EntityField]
+        [EntityField(true)]
         public System.String TeamTemplateMemberId
         {
             get { return __TeamTemplateMemberId; }
             set { SetField(ref __TeamTemplateMemberId, value); }
         }
         private System.String __TeamRoleId;
-        [EntityField]
+        [EntityField(false)]
         public System.String TeamRoleId
         {
             get { return __TeamRoleId; }
             set { SetField(ref __TeamRoleId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -12662,63 +12662,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private PickCaseTeamRoleAccessLevel __AccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickCaseTeamRoleAccessLevel AccessLevel
         {
             get { return __AccessLevel; }
             set { SetField(ref __AccessLevel, value); }
         }
         private System.Boolean __PreferencesVisibleInCSP;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PreferencesVisibleInCSP
         {
             get { return __PreferencesVisibleInCSP; }
             set { SetField(ref __PreferencesVisibleInCSP, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -12743,56 +12743,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -12817,63 +12817,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __TeamTemplateId;
-        [EntityField]
+        [EntityField(false)]
         public System.String TeamTemplateId
         {
             get { return __TeamTemplateId; }
             set { SetField(ref __TeamTemplateId, value); }
         }
         private System.String __MemberId;
-        [EntityField]
+        [EntityField(false)]
         public System.String MemberId
         {
             get { return __MemberId; }
             set { SetField(ref __MemberId, value); }
         }
         private System.String __TeamRoleId;
-        [EntityField]
+        [EntityField(true)]
         public System.String TeamRoleId
         {
             get { return __TeamRoleId; }
             set { SetField(ref __TeamRoleId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -12898,42 +12898,42 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __TeamTemplateId;
-        [EntityField]
+        [EntityField(false)]
         public System.String TeamTemplateId
         {
             get { return __TeamTemplateId; }
             set { SetField(ref __TeamTemplateId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -12958,63 +12958,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __CategoryNodeId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CategoryNodeId
         {
             get { return __CategoryNodeId; }
             set { SetField(ref __CategoryNodeId, value); }
         }
         private System.String __RelatedSobjectId;
-        [EntityField]
+        [EntityField(false)]
         public System.String RelatedSobjectId
         {
             get { return __RelatedSobjectId; }
             set { SetField(ref __RelatedSobjectId, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -13039,70 +13039,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(false)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private PickCategoryNodeSortStyle __SortStyle;
-        [EntityField]
+        [EntityField(false)]
         public PickCategoryNodeSortStyle SortStyle
         {
             get { return __SortStyle; }
             set { SetField(ref __SortStyle, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -13127,42 +13127,42 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __UsersId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UsersId
         {
             get { return __UsersId; }
             set { SetField(ref __UsersId, value); }
         }
         private System.String __FullUserAgent;
-        [EntityField]
+        [EntityField(true)]
         public System.String FullUserAgent
         {
             get { return __FullUserAgent; }
             set { SetField(ref __FullUserAgent, value); }
         }
         private System.String __ProxyInfo;
-        [EntityField]
+        [EntityField(true)]
         public System.String ProxyInfo
         {
             get { return __ProxyInfo; }
             set { SetField(ref __ProxyInfo, value); }
         }
         private System.DateTime? __LastUpdate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastUpdate
         {
             get { return __LastUpdate; }
             set { SetField(ref __LastUpdate, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
@@ -13187,91 +13187,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __MemberCount;
-        [EntityField]
+        [EntityField(true)]
         public System.String MemberCount
         {
             get { return __MemberCount; }
             set { SetField(ref __MemberCount, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private PickCollaborationGroupCollaborationType __CollaborationType;
-        [EntityField]
+        [EntityField(false)]
         public PickCollaborationGroupCollaborationType CollaborationType
         {
             get { return __CollaborationType; }
             set { SetField(ref __CollaborationType, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __FullPhotoUrl;
-        [EntityField]
+        [EntityField(true)]
         public System.String FullPhotoUrl
         {
             get { return __FullPhotoUrl; }
             set { SetField(ref __FullPhotoUrl, value); }
         }
         private System.String __SmallPhotoUrl;
-        [EntityField]
+        [EntityField(true)]
         public System.String SmallPhotoUrl
         {
             get { return __SmallPhotoUrl; }
@@ -13314,56 +13314,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickCollaborationGroupFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickCollaborationGroupFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -13400,63 +13400,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __CollaborationGroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CollaborationGroupId
         {
             get { return __CollaborationGroupId; }
             set { SetField(ref __CollaborationGroupId, value); }
         }
         private System.String __MemberId;
-        [EntityField]
+        [EntityField(false)]
         public System.String MemberId
         {
             get { return __MemberId; }
             set { SetField(ref __MemberId, value); }
         }
         private PickCollaborationGroupMemberNotificationFrequency __NotificationFrequency;
-        [EntityField]
+        [EntityField(true)]
         public PickCollaborationGroupMemberNotificationFrequency NotificationFrequency
         {
             get { return __NotificationFrequency; }
             set { SetField(ref __NotificationFrequency, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -13481,91 +13481,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __SharedEntityId;
-        [EntityField]
+        [EntityField(false)]
         public System.String SharedEntityId
         {
             get { return __SharedEntityId; }
             set { SetField(ref __SharedEntityId, value); }
         }
         private System.String __InviterId;
-        [EntityField]
+        [EntityField(false)]
         public System.String InviterId
         {
             get { return __InviterId; }
             set { SetField(ref __InviterId, value); }
         }
         private System.String __InvitedUserEmail;
-        [EntityField]
+        [EntityField(false)]
         public System.String InvitedUserEmail
         {
             get { return __InvitedUserEmail; }
             set { SetField(ref __InvitedUserEmail, value); }
         }
         private System.String __InvitedUserEmailNormalized;
-        [EntityField]
+        [EntityField(false)]
         public System.String InvitedUserEmailNormalized
         {
             get { return __InvitedUserEmailNormalized; }
             set { SetField(ref __InvitedUserEmailNormalized, value); }
         }
         private PickCollaborationInvitationStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickCollaborationInvitationStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.String __OptionalMessage;
-        [EntityField]
+        [EntityField(true)]
         public System.String OptionalMessage
         {
             get { return __OptionalMessage; }
             set { SetField(ref __OptionalMessage, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -13590,63 +13590,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
@@ -13671,301 +13671,301 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __MasterRecordId;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterRecordId
         {
             get { return __MasterRecordId; }
             set { SetField(ref __MasterRecordId, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __LastName;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastName
         {
             get { return __LastName; }
             set { SetField(ref __LastName, value); }
         }
         private System.String __FirstName;
-        [EntityField]
+        [EntityField(true)]
         public System.String FirstName
         {
             get { return __FirstName; }
             set { SetField(ref __FirstName, value); }
         }
         private PickContactSalutation __Salutation;
-        [EntityField]
+        [EntityField(true)]
         public PickContactSalutation Salutation
         {
             get { return __Salutation; }
             set { SetField(ref __Salutation, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __OtherStreet;
-        [EntityField]
+        [EntityField(true)]
         public System.String OtherStreet
         {
             get { return __OtherStreet; }
             set { SetField(ref __OtherStreet, value); }
         }
         private System.String __OtherCity;
-        [EntityField]
+        [EntityField(true)]
         public System.String OtherCity
         {
             get { return __OtherCity; }
             set { SetField(ref __OtherCity, value); }
         }
         private System.String __OtherState;
-        [EntityField]
+        [EntityField(true)]
         public System.String OtherState
         {
             get { return __OtherState; }
             set { SetField(ref __OtherState, value); }
         }
         private System.String __OtherPostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String OtherPostalCode
         {
             get { return __OtherPostalCode; }
             set { SetField(ref __OtherPostalCode, value); }
         }
         private System.String __OtherCountry;
-        [EntityField]
+        [EntityField(true)]
         public System.String OtherCountry
         {
             get { return __OtherCountry; }
             set { SetField(ref __OtherCountry, value); }
         }
         private System.String __MailingStreet;
-        [EntityField]
+        [EntityField(true)]
         public System.String MailingStreet
         {
             get { return __MailingStreet; }
             set { SetField(ref __MailingStreet, value); }
         }
         private System.String __MailingCity;
-        [EntityField]
+        [EntityField(true)]
         public System.String MailingCity
         {
             get { return __MailingCity; }
             set { SetField(ref __MailingCity, value); }
         }
         private System.String __MailingState;
-        [EntityField]
+        [EntityField(true)]
         public System.String MailingState
         {
             get { return __MailingState; }
             set { SetField(ref __MailingState, value); }
         }
         private System.String __MailingPostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String MailingPostalCode
         {
             get { return __MailingPostalCode; }
             set { SetField(ref __MailingPostalCode, value); }
         }
         private System.String __MailingCountry;
-        [EntityField]
+        [EntityField(true)]
         public System.String MailingCountry
         {
             get { return __MailingCountry; }
             set { SetField(ref __MailingCountry, value); }
         }
         private System.String __Phone;
-        [EntityField]
+        [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
             set { SetField(ref __Phone, value); }
         }
         private System.String __Fax;
-        [EntityField]
+        [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
             set { SetField(ref __Fax, value); }
         }
         private System.String __MobilePhone;
-        [EntityField]
+        [EntityField(true)]
         public System.String MobilePhone
         {
             get { return __MobilePhone; }
             set { SetField(ref __MobilePhone, value); }
         }
         private System.String __HomePhone;
-        [EntityField]
+        [EntityField(true)]
         public System.String HomePhone
         {
             get { return __HomePhone; }
             set { SetField(ref __HomePhone, value); }
         }
         private System.String __OtherPhone;
-        [EntityField]
+        [EntityField(true)]
         public System.String OtherPhone
         {
             get { return __OtherPhone; }
             set { SetField(ref __OtherPhone, value); }
         }
         private System.String __AssistantPhone;
-        [EntityField]
+        [EntityField(true)]
         public System.String AssistantPhone
         {
             get { return __AssistantPhone; }
             set { SetField(ref __AssistantPhone, value); }
         }
         private System.String __ReportsToId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ReportsToId
         {
             get { return __ReportsToId; }
             set { SetField(ref __ReportsToId, value); }
         }
         private System.String __Email;
-        [EntityField]
+        [EntityField(true)]
         public System.String Email
         {
             get { return __Email; }
             set { SetField(ref __Email, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.String __Department;
-        [EntityField]
+        [EntityField(true)]
         public System.String Department
         {
             get { return __Department; }
             set { SetField(ref __Department, value); }
         }
         private System.String __AssistantName;
-        [EntityField]
+        [EntityField(true)]
         public System.String AssistantName
         {
             get { return __AssistantName; }
             set { SetField(ref __AssistantName, value); }
         }
         private PickContactLeadSource __LeadSource;
-        [EntityField]
+        [EntityField(true)]
         public PickContactLeadSource LeadSource
         {
             get { return __LeadSource; }
             set { SetField(ref __LeadSource, value); }
         }
         private System.DateTime? __Birthdate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? Birthdate
         {
             get { return __Birthdate; }
             set { SetField(ref __Birthdate, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime? __LastActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
             set { SetField(ref __LastActivityDate, value); }
         }
         private System.DateTime? __LastCURequestDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastCURequestDate
         {
             get { return __LastCURequestDate; }
             set { SetField(ref __LastCURequestDate, value); }
         }
         private System.DateTime? __LastCUUpdateDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastCUUpdateDate
         {
             get { return __LastCUUpdateDate; }
             set { SetField(ref __LastCUUpdateDate, value); }
         }
         private System.String __EmailBouncedReason;
-        [EntityField]
+        [EntityField(true)]
         public System.String EmailBouncedReason
         {
             get { return __EmailBouncedReason; }
             set { SetField(ref __EmailBouncedReason, value); }
         }
         private System.DateTime? __EmailBouncedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? EmailBouncedDate
         {
             get { return __EmailBouncedDate; }
@@ -13973,7 +13973,7 @@ namespace LinqToSalesforce
         }
         private PickContactLevel__c __Levelc;
         [JsonProperty(PropertyName = "Level__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickContactLevel__c Levelc
         {
             get { return __Levelc; }
@@ -13981,7 +13981,7 @@ namespace LinqToSalesforce
         }
         private System.String __Languagesc;
         [JsonProperty(PropertyName = "Languages__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String Languagesc
         {
             get { return __Languagesc; }
@@ -14138,56 +14138,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickContactFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickContactFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -14224,56 +14224,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickContactHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickContactHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -14298,56 +14298,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private System.String __UserOrGroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value); }
         }
         private PickContactShareContactAccessLevel __ContactAccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickContactShareContactAccessLevel ContactAccessLevel
         {
             get { return __ContactAccessLevel; }
             set { SetField(ref __ContactAccessLevel, value); }
         }
         private PickContactShareRowCause __RowCause;
-        [EntityField]
+        [EntityField(true)]
         public PickContactShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -14372,77 +14372,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private PickContentDocumentPublishStatus __PublishStatus;
-        [EntityField]
+        [EntityField(false)]
         public PickContentDocumentPublishStatus PublishStatus
         {
             get { return __PublishStatus; }
             set { SetField(ref __PublishStatus, value); }
         }
         private System.String __LatestPublishedVersionId;
-        [EntityField]
+        [EntityField(true)]
         public System.String LatestPublishedVersionId
         {
             get { return __LatestPublishedVersionId; }
@@ -14491,56 +14491,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickContentDocumentFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickContentDocumentFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -14577,56 +14577,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ContentDocumentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContentDocumentId
         {
             get { return __ContentDocumentId; }
             set { SetField(ref __ContentDocumentId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickContentDocumentHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickContentDocumentHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -14651,210 +14651,210 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ContentDocumentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContentDocumentId
         {
             get { return __ContentDocumentId; }
             set { SetField(ref __ContentDocumentId, value); }
         }
         private System.Boolean __IsLatest;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsLatest
         {
             get { return __IsLatest; }
             set { SetField(ref __IsLatest, value); }
         }
         private System.String __ContentUrl;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentUrl
         {
             get { return __ContentUrl; }
             set { SetField(ref __ContentUrl, value); }
         }
         private System.String __VersionNumber;
-        [EntityField]
+        [EntityField(true)]
         public System.String VersionNumber
         {
             get { return __VersionNumber; }
             set { SetField(ref __VersionNumber, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __ReasonForChange;
-        [EntityField]
+        [EntityField(true)]
         public System.String ReasonForChange
         {
             get { return __ReasonForChange; }
             set { SetField(ref __ReasonForChange, value); }
         }
         private System.String __PathOnClient;
-        [EntityField]
+        [EntityField(true)]
         public System.String PathOnClient
         {
             get { return __PathOnClient; }
             set { SetField(ref __PathOnClient, value); }
         }
         private System.String __RatingCount;
-        [EntityField]
+        [EntityField(true)]
         public System.String RatingCount
         {
             get { return __RatingCount; }
             set { SetField(ref __RatingCount, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime? __ContentModifiedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ContentModifiedDate
         {
             get { return __ContentModifiedDate; }
             set { SetField(ref __ContentModifiedDate, value); }
         }
         private System.String __ContentModifiedById;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentModifiedById
         {
             get { return __ContentModifiedById; }
             set { SetField(ref __ContentModifiedById, value); }
         }
         private System.String __PositiveRatingCount;
-        [EntityField]
+        [EntityField(true)]
         public System.String PositiveRatingCount
         {
             get { return __PositiveRatingCount; }
             set { SetField(ref __PositiveRatingCount, value); }
         }
         private System.String __NegativeRatingCount;
-        [EntityField]
+        [EntityField(true)]
         public System.String NegativeRatingCount
         {
             get { return __NegativeRatingCount; }
             set { SetField(ref __NegativeRatingCount, value); }
         }
         private System.String __FeaturedContentBoost;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeaturedContentBoost
         {
             get { return __FeaturedContentBoost; }
             set { SetField(ref __FeaturedContentBoost, value); }
         }
         private System.DateTime? __FeaturedContentDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? FeaturedContentDate
         {
             get { return __FeaturedContentDate; }
             set { SetField(ref __FeaturedContentDate, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __TagCsv;
-        [EntityField]
+        [EntityField(true)]
         public System.String TagCsv
         {
             get { return __TagCsv; }
             set { SetField(ref __TagCsv, value); }
         }
         private System.String __FileType;
-        [EntityField]
+        [EntityField(false)]
         public System.String FileType
         {
             get { return __FileType; }
             set { SetField(ref __FileType, value); }
         }
         private PickContentVersionPublishStatus __PublishStatus;
-        [EntityField]
+        [EntityField(false)]
         public PickContentVersionPublishStatus PublishStatus
         {
             get { return __PublishStatus; }
             set { SetField(ref __PublishStatus, value); }
         }
         private System.String __VersionData;
-        [EntityField]
+        [EntityField(true)]
         public System.String VersionData
         {
             get { return __VersionData; }
             set { SetField(ref __VersionData, value); }
         }
         private System.String __ContentSize;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentSize
         {
             get { return __ContentSize; }
             set { SetField(ref __ContentSize, value); }
         }
         private System.String __FirstPublishLocationId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FirstPublishLocationId
         {
             get { return __FirstPublishLocationId; }
             set { SetField(ref __FirstPublishLocationId, value); }
         }
         private PickContentVersionOrigin __Origin;
-        [EntityField]
+        [EntityField(false)]
         public PickContentVersionOrigin Origin
         {
             get { return __Origin; }
@@ -14885,56 +14885,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ContentVersionId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContentVersionId
         {
             get { return __ContentVersionId; }
             set { SetField(ref __ContentVersionId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickContentVersionHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickContentVersionHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -14959,84 +14959,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickContentWorkspaceTagModel __TagModel;
-        [EntityField]
+        [EntityField(true)]
         public PickContentWorkspaceTagModel TagModel
         {
             get { return __TagModel; }
             set { SetField(ref __TagModel, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __DefaultRecordTypeId;
-        [EntityField]
+        [EntityField(true)]
         public System.String DefaultRecordTypeId
         {
             get { return __DefaultRecordTypeId; }
             set { SetField(ref __DefaultRecordTypeId, value); }
         }
         private System.Boolean __IsRestrictContentTypes;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsRestrictContentTypes
         {
             get { return __IsRestrictContentTypes; }
             set { SetField(ref __IsRestrictContentTypes, value); }
         }
         private System.Boolean __IsRestrictLinkedContentTypes;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsRestrictLinkedContentTypes
         {
             get { return __IsRestrictLinkedContentTypes; }
@@ -15061,49 +15061,49 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ContentWorkspaceId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContentWorkspaceId
         {
             get { return __ContentWorkspaceId; }
             set { SetField(ref __ContentWorkspaceId, value); }
         }
         private System.String __ContentDocumentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContentDocumentId
         {
             get { return __ContentDocumentId; }
             set { SetField(ref __ContentDocumentId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsOwner;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsOwner
         {
             get { return __IsOwner; }
             set { SetField(ref __IsOwner, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -15128,231 +15128,231 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __Pricebook2Id;
-        [EntityField]
+        [EntityField(true)]
         public System.String Pricebook2Id
         {
             get { return __Pricebook2Id; }
             set { SetField(ref __Pricebook2Id, value); }
         }
         private PickContractOwnerExpirationNotice __OwnerExpirationNotice;
-        [EntityField]
+        [EntityField(true)]
         public PickContractOwnerExpirationNotice OwnerExpirationNotice
         {
             get { return __OwnerExpirationNotice; }
             set { SetField(ref __OwnerExpirationNotice, value); }
         }
         private System.DateTime? __StartDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? StartDate
         {
             get { return __StartDate; }
             set { SetField(ref __StartDate, value); }
         }
         private System.DateTime? __EndDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? EndDate
         {
             get { return __EndDate; }
             set { SetField(ref __EndDate, value); }
         }
         private System.String __BillingStreet;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingStreet
         {
             get { return __BillingStreet; }
             set { SetField(ref __BillingStreet, value); }
         }
         private System.String __BillingCity;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingCity
         {
             get { return __BillingCity; }
             set { SetField(ref __BillingCity, value); }
         }
         private System.String __BillingState;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingState
         {
             get { return __BillingState; }
             set { SetField(ref __BillingState, value); }
         }
         private System.String __BillingPostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingPostalCode
         {
             get { return __BillingPostalCode; }
             set { SetField(ref __BillingPostalCode, value); }
         }
         private System.String __BillingCountry;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingCountry
         {
             get { return __BillingCountry; }
             set { SetField(ref __BillingCountry, value); }
         }
         private System.String __ContractTerm;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContractTerm
         {
             get { return __ContractTerm; }
             set { SetField(ref __ContractTerm, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private PickContractStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickContractStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.String __CompanySignedId;
-        [EntityField]
+        [EntityField(true)]
         public System.String CompanySignedId
         {
             get { return __CompanySignedId; }
             set { SetField(ref __CompanySignedId, value); }
         }
         private System.DateTime? __CompanySignedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? CompanySignedDate
         {
             get { return __CompanySignedDate; }
             set { SetField(ref __CompanySignedDate, value); }
         }
         private System.String __CustomerSignedId;
-        [EntityField]
+        [EntityField(true)]
         public System.String CustomerSignedId
         {
             get { return __CustomerSignedId; }
             set { SetField(ref __CustomerSignedId, value); }
         }
         private System.String __CustomerSignedTitle;
-        [EntityField]
+        [EntityField(true)]
         public System.String CustomerSignedTitle
         {
             get { return __CustomerSignedTitle; }
             set { SetField(ref __CustomerSignedTitle, value); }
         }
         private System.DateTime? __CustomerSignedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? CustomerSignedDate
         {
             get { return __CustomerSignedDate; }
             set { SetField(ref __CustomerSignedDate, value); }
         }
         private System.String __SpecialTerms;
-        [EntityField]
+        [EntityField(true)]
         public System.String SpecialTerms
         {
             get { return __SpecialTerms; }
             set { SetField(ref __SpecialTerms, value); }
         }
         private System.String __ActivatedById;
-        [EntityField]
+        [EntityField(true)]
         public System.String ActivatedById
         {
             get { return __ActivatedById; }
             set { SetField(ref __ActivatedById, value); }
         }
         private System.DateTime? __ActivatedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ActivatedDate
         {
             get { return __ActivatedDate; }
             set { SetField(ref __ActivatedDate, value); }
         }
         private PickContractStatusCode __StatusCode;
-        [EntityField]
+        [EntityField(false)]
         public PickContractStatusCode StatusCode
         {
             get { return __StatusCode; }
             set { SetField(ref __StatusCode, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ContractNumber;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContractNumber
         {
             get { return __ContractNumber; }
             set { SetField(ref __ContractNumber, value); }
         }
         private System.DateTime? __LastApprovedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastApprovedDate
         {
             get { return __LastApprovedDate; }
             set { SetField(ref __LastApprovedDate, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime? __LastActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
@@ -15461,77 +15461,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ContractId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContractId
         {
             get { return __ContractId; }
             set { SetField(ref __ContractId, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private PickContractContactRoleRole __Role;
-        [EntityField]
+        [EntityField(true)]
         public PickContractContactRoleRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
         }
         private System.Boolean __IsPrimary;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
             set { SetField(ref __IsPrimary, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -15556,56 +15556,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickContractFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickContractFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -15642,56 +15642,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ContractId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContractId
         {
             get { return __ContractId; }
             set { SetField(ref __ContractId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickContractHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickContractHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -15716,70 +15716,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private System.Boolean __IsDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
             set { SetField(ref __IsDefault, value); }
         }
         private PickContractStatusStatusCode __StatusCode;
-        [EntityField]
+        [EntityField(true)]
         public PickContractStatusStatusCode StatusCode
         {
             get { return __StatusCode; }
             set { SetField(ref __StatusCode, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -15804,91 +15804,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.DateTime? __NextFireTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? NextFireTime
         {
             get { return __NextFireTime; }
             set { SetField(ref __NextFireTime, value); }
         }
         private System.DateTime? __PreviousFireTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? PreviousFireTime
         {
             get { return __PreviousFireTime; }
             set { SetField(ref __PreviousFireTime, value); }
         }
         private System.String __State;
-        [EntityField]
+        [EntityField(true)]
         public System.String State
         {
             get { return __State; }
             set { SetField(ref __State, value); }
         }
         private System.DateTime? __StartTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? StartTime
         {
             get { return __StartTime; }
             set { SetField(ref __StartTime, value); }
         }
         private System.DateTime? __EndTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? EndTime
         {
             get { return __EndTime; }
             set { SetField(ref __EndTime, value); }
         }
         private System.String __CronExpression;
-        [EntityField]
+        [EntityField(true)]
         public System.String CronExpression
         {
             get { return __CronExpression; }
             set { SetField(ref __CronExpression, value); }
         }
         private PickCronTriggerTimeZoneSidKey __TimeZoneSidKey;
-        [EntityField]
+        [EntityField(true)]
         public PickCronTriggerTimeZoneSidKey TimeZoneSidKey
         {
             get { return __TimeZoneSidKey; }
             set { SetField(ref __TimeZoneSidKey, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(true)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __TimesTriggered;
-        [EntityField]
+        [EntityField(true)]
         public System.String TimesTriggered
         {
             get { return __TimesTriggered; }
@@ -15913,161 +15913,161 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __FolderId;
-        [EntityField]
+        [EntityField(false)]
         public System.String FolderId
         {
             get { return __FolderId; }
             set { SetField(ref __FolderId, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.String __DeveloperName;
-        [EntityField]
+        [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
             set { SetField(ref __DeveloperName, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickDashboardLeftSize __LeftSize;
-        [EntityField]
+        [EntityField(false)]
         public PickDashboardLeftSize LeftSize
         {
             get { return __LeftSize; }
             set { SetField(ref __LeftSize, value); }
         }
         private PickDashboardMiddleSize __MiddleSize;
-        [EntityField]
+        [EntityField(true)]
         public PickDashboardMiddleSize MiddleSize
         {
             get { return __MiddleSize; }
             set { SetField(ref __MiddleSize, value); }
         }
         private PickDashboardRightSize __RightSize;
-        [EntityField]
+        [EntityField(false)]
         public PickDashboardRightSize RightSize
         {
             get { return __RightSize; }
             set { SetField(ref __RightSize, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __RunningUserId;
-        [EntityField]
+        [EntityField(false)]
         public System.String RunningUserId
         {
             get { return __RunningUserId; }
             set { SetField(ref __RunningUserId, value); }
         }
         private System.String __TitleColor;
-        [EntityField]
+        [EntityField(false)]
         public System.String TitleColor
         {
             get { return __TitleColor; }
             set { SetField(ref __TitleColor, value); }
         }
         private System.String __TitleSize;
-        [EntityField]
+        [EntityField(false)]
         public System.String TitleSize
         {
             get { return __TitleSize; }
             set { SetField(ref __TitleSize, value); }
         }
         private System.String __TextColor;
-        [EntityField]
+        [EntityField(false)]
         public System.String TextColor
         {
             get { return __TextColor; }
             set { SetField(ref __TextColor, value); }
         }
         private System.String __BackgroundStart;
-        [EntityField]
+        [EntityField(false)]
         public System.String BackgroundStart
         {
             get { return __BackgroundStart; }
             set { SetField(ref __BackgroundStart, value); }
         }
         private System.String __BackgroundEnd;
-        [EntityField]
+        [EntityField(false)]
         public System.String BackgroundEnd
         {
             get { return __BackgroundEnd; }
             set { SetField(ref __BackgroundEnd, value); }
         }
         private PickDashboardBackgroundDirection __BackgroundDirection;
-        [EntityField]
+        [EntityField(false)]
         public PickDashboardBackgroundDirection BackgroundDirection
         {
             get { return __BackgroundDirection; }
             set { SetField(ref __BackgroundDirection, value); }
         }
         private PickDashboardType __Type;
-        [EntityField]
+        [EntityField(false)]
         public PickDashboardType Type
         {
             get { return __Type; }
@@ -16104,56 +16104,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickDashboardFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickDashboardFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -16190,154 +16190,154 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __FolderId;
-        [EntityField]
+        [EntityField(false)]
         public System.String FolderId
         {
             get { return __FolderId; }
             set { SetField(ref __FolderId, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __DeveloperName;
-        [EntityField]
+        [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
             set { SetField(ref __DeveloperName, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __ContentType;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentType
         {
             get { return __ContentType; }
             set { SetField(ref __ContentType, value); }
         }
         private System.String __Type;
-        [EntityField]
+        [EntityField(true)]
         public System.String Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.Boolean __IsPublic;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPublic
         {
             get { return __IsPublic; }
             set { SetField(ref __IsPublic, value); }
         }
         private System.String __BodyLength;
-        [EntityField]
+        [EntityField(false)]
         public System.String BodyLength
         {
             get { return __BodyLength; }
             set { SetField(ref __BodyLength, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.String __Url;
-        [EntityField]
+        [EntityField(true)]
         public System.String Url
         {
             get { return __Url; }
             set { SetField(ref __Url, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __Keywords;
-        [EntityField]
+        [EntityField(true)]
         public System.String Keywords
         {
             get { return __Keywords; }
             set { SetField(ref __Keywords, value); }
         }
         private System.Boolean __IsInternalUseOnly;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsInternalUseOnly
         {
             get { return __IsInternalUseOnly; }
             set { SetField(ref __IsInternalUseOnly, value); }
         }
         private System.String __AuthorId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AuthorId
         {
             get { return __AuthorId; }
             set { SetField(ref __AuthorId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsBodySearchable;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsBodySearchable
         {
             get { return __IsBodySearchable; }
@@ -16362,42 +16362,42 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __DocumentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String DocumentId
         {
             get { return __DocumentId; }
             set { SetField(ref __DocumentId, value); }
         }
         private System.String __DocumentSequence;
-        [EntityField]
+        [EntityField(false)]
         public System.String DocumentSequence
         {
             get { return __DocumentSequence; }
             set { SetField(ref __DocumentSequence, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
@@ -16422,154 +16422,154 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __ActivityId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ActivityId
         {
             get { return __ActivityId; }
             set { SetField(ref __ActivityId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __TextBody;
-        [EntityField]
+        [EntityField(true)]
         public System.String TextBody
         {
             get { return __TextBody; }
             set { SetField(ref __TextBody, value); }
         }
         private System.String __HtmlBody;
-        [EntityField]
+        [EntityField(true)]
         public System.String HtmlBody
         {
             get { return __HtmlBody; }
             set { SetField(ref __HtmlBody, value); }
         }
         private System.String __Headers;
-        [EntityField]
+        [EntityField(true)]
         public System.String Headers
         {
             get { return __Headers; }
             set { SetField(ref __Headers, value); }
         }
         private System.String __Subject;
-        [EntityField]
+        [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
             set { SetField(ref __Subject, value); }
         }
         private System.String __FromName;
-        [EntityField]
+        [EntityField(true)]
         public System.String FromName
         {
             get { return __FromName; }
             set { SetField(ref __FromName, value); }
         }
         private System.String __FromAddress;
-        [EntityField]
+        [EntityField(true)]
         public System.String FromAddress
         {
             get { return __FromAddress; }
             set { SetField(ref __FromAddress, value); }
         }
         private System.String __ToAddress;
-        [EntityField]
+        [EntityField(true)]
         public System.String ToAddress
         {
             get { return __ToAddress; }
             set { SetField(ref __ToAddress, value); }
         }
         private System.String __CcAddress;
-        [EntityField]
+        [EntityField(true)]
         public System.String CcAddress
         {
             get { return __CcAddress; }
             set { SetField(ref __CcAddress, value); }
         }
         private System.String __BccAddress;
-        [EntityField]
+        [EntityField(true)]
         public System.String BccAddress
         {
             get { return __BccAddress; }
             set { SetField(ref __BccAddress, value); }
         }
         private System.Boolean __Incoming;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean Incoming
         {
             get { return __Incoming; }
             set { SetField(ref __Incoming, value); }
         }
         private System.Boolean __HasAttachment;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean HasAttachment
         {
             get { return __HasAttachment; }
             set { SetField(ref __HasAttachment, value); }
         }
         private PickEmailMessageStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickEmailMessageStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.DateTime? __MessageDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? MessageDate
         {
             get { return __MessageDate; }
             set { SetField(ref __MessageDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -16612,84 +16612,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.String __LocalPart;
-        [EntityField]
+        [EntityField(false)]
         public System.String LocalPart
         {
             get { return __LocalPart; }
             set { SetField(ref __LocalPart, value); }
         }
         private System.String __EmailDomainName;
-        [EntityField]
+        [EntityField(true)]
         public System.String EmailDomainName
         {
             get { return __EmailDomainName; }
             set { SetField(ref __EmailDomainName, value); }
         }
         private System.String __AuthorizedSenders;
-        [EntityField]
+        [EntityField(true)]
         public System.String AuthorizedSenders
         {
             get { return __AuthorizedSenders; }
             set { SetField(ref __AuthorizedSenders, value); }
         }
         private System.String __RunAsUserId;
-        [EntityField]
+        [EntityField(false)]
         public System.String RunAsUserId
         {
             get { return __RunAsUserId; }
             set { SetField(ref __RunAsUserId, value); }
         }
         private System.String __FunctionId;
-        [EntityField]
+        [EntityField(false)]
         public System.String FunctionId
         {
             get { return __FunctionId; }
             set { SetField(ref __FunctionId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -16714,154 +16714,154 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.String __FunctionName;
-        [EntityField]
+        [EntityField(false)]
         public System.String FunctionName
         {
             get { return __FunctionName; }
             set { SetField(ref __FunctionName, value); }
         }
         private System.String __AuthorizedSenders;
-        [EntityField]
+        [EntityField(true)]
         public System.String AuthorizedSenders
         {
             get { return __AuthorizedSenders; }
             set { SetField(ref __AuthorizedSenders, value); }
         }
         private System.Boolean __IsAuthenticationRequired;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsAuthenticationRequired
         {
             get { return __IsAuthenticationRequired; }
             set { SetField(ref __IsAuthenticationRequired, value); }
         }
         private System.Boolean __IsTlsRequired;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsTlsRequired
         {
             get { return __IsTlsRequired; }
             set { SetField(ref __IsTlsRequired, value); }
         }
         private PickEmailServicesFunctionAttachmentOption __AttachmentOption;
-        [EntityField]
+        [EntityField(false)]
         public PickEmailServicesFunctionAttachmentOption AttachmentOption
         {
             get { return __AttachmentOption; }
             set { SetField(ref __AttachmentOption, value); }
         }
         private System.String __ApexClassId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ApexClassId
         {
             get { return __ApexClassId; }
             set { SetField(ref __ApexClassId, value); }
         }
         private PickEmailServicesFunctionOverLimitAction __OverLimitAction;
-        [EntityField]
+        [EntityField(true)]
         public PickEmailServicesFunctionOverLimitAction OverLimitAction
         {
             get { return __OverLimitAction; }
             set { SetField(ref __OverLimitAction, value); }
         }
         private PickEmailServicesFunctionFunctionInactiveAction __FunctionInactiveAction;
-        [EntityField]
+        [EntityField(true)]
         public PickEmailServicesFunctionFunctionInactiveAction FunctionInactiveAction
         {
             get { return __FunctionInactiveAction; }
             set { SetField(ref __FunctionInactiveAction, value); }
         }
         private PickEmailServicesFunctionAddressInactiveAction __AddressInactiveAction;
-        [EntityField]
+        [EntityField(true)]
         public PickEmailServicesFunctionAddressInactiveAction AddressInactiveAction
         {
             get { return __AddressInactiveAction; }
             set { SetField(ref __AddressInactiveAction, value); }
         }
         private PickEmailServicesFunctionAuthenticationFailureAction __AuthenticationFailureAction;
-        [EntityField]
+        [EntityField(true)]
         public PickEmailServicesFunctionAuthenticationFailureAction AuthenticationFailureAction
         {
             get { return __AuthenticationFailureAction; }
             set { SetField(ref __AuthenticationFailureAction, value); }
         }
         private PickEmailServicesFunctionAuthorizationFailureAction __AuthorizationFailureAction;
-        [EntityField]
+        [EntityField(true)]
         public PickEmailServicesFunctionAuthorizationFailureAction AuthorizationFailureAction
         {
             get { return __AuthorizationFailureAction; }
             set { SetField(ref __AuthorizationFailureAction, value); }
         }
         private System.Boolean __IsTextTruncated;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsTextTruncated
         {
             get { return __IsTextTruncated; }
             set { SetField(ref __IsTextTruncated, value); }
         }
         private System.Boolean __IsErrorRoutingEnabled;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsErrorRoutingEnabled
         {
             get { return __IsErrorRoutingEnabled; }
             set { SetField(ref __IsErrorRoutingEnabled, value); }
         }
         private System.String __ErrorRoutingAddress;
-        [EntityField]
+        [EntityField(true)]
         public System.String ErrorRoutingAddress
         {
             get { return __ErrorRoutingAddress; }
             set { SetField(ref __ErrorRoutingAddress, value); }
         }
         private System.Boolean __IsTextAttachmentsAsBinary;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsTextAttachmentsAsBinary
         {
             get { return __IsTextAttachmentsAsBinary; }
             set { SetField(ref __IsTextAttachmentsAsBinary, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -16892,77 +16892,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __TaskId;
-        [EntityField]
+        [EntityField(false)]
         public System.String TaskId
         {
             get { return __TaskId; }
             set { SetField(ref __TaskId, value); }
         }
         private System.String __WhoId;
-        [EntityField]
+        [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
             set { SetField(ref __WhoId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.String __TimesOpened;
-        [EntityField]
+        [EntityField(false)]
         public System.String TimesOpened
         {
             get { return __TimesOpened; }
             set { SetField(ref __TimesOpened, value); }
         }
         private System.DateTime? __FirstOpenDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? FirstOpenDate
         {
             get { return __FirstOpenDate; }
             set { SetField(ref __FirstOpenDate, value); }
         }
         private System.DateTime? __LastOpenDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastOpenDate
         {
             get { return __LastOpenDate; }
             set { SetField(ref __LastOpenDate, value); }
         }
         private System.String __EmailTemplateName;
-        [EntityField]
+        [EntityField(true)]
         public System.String EmailTemplateName
         {
             get { return __EmailTemplateName; }
@@ -16987,168 +16987,168 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __DeveloperName;
-        [EntityField]
+        [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
             set { SetField(ref __DeveloperName, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.String __FolderId;
-        [EntityField]
+        [EntityField(false)]
         public System.String FolderId
         {
             get { return __FolderId; }
             set { SetField(ref __FolderId, value); }
         }
         private System.String __BrandTemplateId;
-        [EntityField]
+        [EntityField(true)]
         public System.String BrandTemplateId
         {
             get { return __BrandTemplateId; }
             set { SetField(ref __BrandTemplateId, value); }
         }
         private PickEmailTemplateTemplateStyle __TemplateStyle;
-        [EntityField]
+        [EntityField(false)]
         public PickEmailTemplateTemplateStyle TemplateStyle
         {
             get { return __TemplateStyle; }
             set { SetField(ref __TemplateStyle, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private PickEmailTemplateTemplateType __TemplateType;
-        [EntityField]
+        [EntityField(false)]
         public PickEmailTemplateTemplateType TemplateType
         {
             get { return __TemplateType; }
             set { SetField(ref __TemplateType, value); }
         }
         private PickEmailTemplateEncoding __Encoding;
-        [EntityField]
+        [EntityField(true)]
         public PickEmailTemplateEncoding Encoding
         {
             get { return __Encoding; }
             set { SetField(ref __Encoding, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __Subject;
-        [EntityField]
+        [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
             set { SetField(ref __Subject, value); }
         }
         private System.String __HtmlValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String HtmlValue
         {
             get { return __HtmlValue; }
             set { SetField(ref __HtmlValue, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.String __TimesUsed;
-        [EntityField]
+        [EntityField(true)]
         public System.String TimesUsed
         {
             get { return __TimesUsed; }
             set { SetField(ref __TimesUsed, value); }
         }
         private System.DateTime? __LastUsedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastUsedDate
         {
             get { return __LastUsedDate; }
             set { SetField(ref __LastUsedDate, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __ApiVersion;
-        [EntityField]
+        [EntityField(true)]
         public System.String ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
         }
         private System.String __Markup;
-        [EntityField]
+        [EntityField(true)]
         public System.String Markup
         {
             get { return __Markup; }
@@ -17179,42 +17179,42 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __SubscriberId;
-        [EntityField]
+        [EntityField(false)]
         public System.String SubscriberId
         {
             get { return __SubscriberId; }
             set { SetField(ref __SubscriberId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -17239,273 +17239,273 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __WhoId;
-        [EntityField]
+        [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
             set { SetField(ref __WhoId, value); }
         }
         private System.String __WhatId;
-        [EntityField]
+        [EntityField(true)]
         public System.String WhatId
         {
             get { return __WhatId; }
             set { SetField(ref __WhatId, value); }
         }
         private System.String __Subject;
-        [EntityField]
+        [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
             set { SetField(ref __Subject, value); }
         }
         private System.String __Location;
-        [EntityField]
+        [EntityField(true)]
         public System.String Location
         {
             get { return __Location; }
             set { SetField(ref __Location, value); }
         }
         private System.Boolean __IsAllDayEvent;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsAllDayEvent
         {
             get { return __IsAllDayEvent; }
             set { SetField(ref __IsAllDayEvent, value); }
         }
         private System.DateTime? __ActivityDateTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ActivityDateTime
         {
             get { return __ActivityDateTime; }
             set { SetField(ref __ActivityDateTime, value); }
         }
         private System.DateTime? __ActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
             set { SetField(ref __ActivityDate, value); }
         }
         private System.String __DurationInMinutes;
-        [EntityField]
+        [EntityField(true)]
         public System.String DurationInMinutes
         {
             get { return __DurationInMinutes; }
             set { SetField(ref __DurationInMinutes, value); }
         }
         private System.DateTime? __StartDateTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? StartDateTime
         {
             get { return __StartDateTime; }
             set { SetField(ref __StartDateTime, value); }
         }
         private System.DateTime? __EndDateTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? EndDateTime
         {
             get { return __EndDateTime; }
             set { SetField(ref __EndDateTime, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.Boolean __IsPrivate;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
             set { SetField(ref __IsPrivate, value); }
         }
         private PickEventShowAs __ShowAs;
-        [EntityField]
+        [EntityField(true)]
         public PickEventShowAs ShowAs
         {
             get { return __ShowAs; }
             set { SetField(ref __ShowAs, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.Boolean __IsChild;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsChild
         {
             get { return __IsChild; }
             set { SetField(ref __IsChild, value); }
         }
         private System.Boolean __IsGroupEvent;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsGroupEvent
         {
             get { return __IsGroupEvent; }
             set { SetField(ref __IsGroupEvent, value); }
         }
         private PickEventGroupEventType __GroupEventType;
-        [EntityField]
+        [EntityField(true)]
         public PickEventGroupEventType GroupEventType
         {
             get { return __GroupEventType; }
             set { SetField(ref __GroupEventType, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsArchived;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsArchived
         {
             get { return __IsArchived; }
             set { SetField(ref __IsArchived, value); }
         }
         private System.String __RecurrenceActivityId;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceActivityId
         {
             get { return __RecurrenceActivityId; }
             set { SetField(ref __RecurrenceActivityId, value); }
         }
         private System.Boolean __IsRecurrence;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsRecurrence
         {
             get { return __IsRecurrence; }
             set { SetField(ref __IsRecurrence, value); }
         }
         private System.DateTime? __RecurrenceStartDateTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? RecurrenceStartDateTime
         {
             get { return __RecurrenceStartDateTime; }
             set { SetField(ref __RecurrenceStartDateTime, value); }
         }
         private System.DateTime? __RecurrenceEndDateOnly;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? RecurrenceEndDateOnly
         {
             get { return __RecurrenceEndDateOnly; }
             set { SetField(ref __RecurrenceEndDateOnly, value); }
         }
         private PickEventRecurrenceTimeZoneSidKey __RecurrenceTimeZoneSidKey;
-        [EntityField]
+        [EntityField(true)]
         public PickEventRecurrenceTimeZoneSidKey RecurrenceTimeZoneSidKey
         {
             get { return __RecurrenceTimeZoneSidKey; }
             set { SetField(ref __RecurrenceTimeZoneSidKey, value); }
         }
         private PickEventRecurrenceType __RecurrenceType;
-        [EntityField]
+        [EntityField(true)]
         public PickEventRecurrenceType RecurrenceType
         {
             get { return __RecurrenceType; }
             set { SetField(ref __RecurrenceType, value); }
         }
         private System.String __RecurrenceInterval;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceInterval
         {
             get { return __RecurrenceInterval; }
             set { SetField(ref __RecurrenceInterval, value); }
         }
         private System.String __RecurrenceDayOfWeekMask;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceDayOfWeekMask
         {
             get { return __RecurrenceDayOfWeekMask; }
             set { SetField(ref __RecurrenceDayOfWeekMask, value); }
         }
         private System.String __RecurrenceDayOfMonth;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceDayOfMonth
         {
             get { return __RecurrenceDayOfMonth; }
             set { SetField(ref __RecurrenceDayOfMonth, value); }
         }
         private PickEventRecurrenceInstance __RecurrenceInstance;
-        [EntityField]
+        [EntityField(true)]
         public PickEventRecurrenceInstance RecurrenceInstance
         {
             get { return __RecurrenceInstance; }
             set { SetField(ref __RecurrenceInstance, value); }
         }
         private PickEventRecurrenceMonthOfYear __RecurrenceMonthOfYear;
-        [EntityField]
+        [EntityField(true)]
         public PickEventRecurrenceMonthOfYear RecurrenceMonthOfYear
         {
             get { return __RecurrenceMonthOfYear; }
             set { SetField(ref __RecurrenceMonthOfYear, value); }
         }
         private System.DateTime? __ReminderDateTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ReminderDateTime
         {
             get { return __ReminderDateTime; }
             set { SetField(ref __ReminderDateTime, value); }
         }
         private System.Boolean __IsReminderSet;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsReminderSet
         {
             get { return __IsReminderSet; }
@@ -17560,84 +17560,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __EventId;
-        [EntityField]
+        [EntityField(false)]
         public System.String EventId
         {
             get { return __EventId; }
             set { SetField(ref __EventId, value); }
         }
         private System.String __AttendeeId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AttendeeId
         {
             get { return __AttendeeId; }
             set { SetField(ref __AttendeeId, value); }
         }
         private PickEventAttendeeStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickEventAttendeeStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.DateTime? __RespondedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? RespondedDate
         {
             get { return __RespondedDate; }
             set { SetField(ref __RespondedDate, value); }
         }
         private System.String __Response;
-        [EntityField]
+        [EntityField(true)]
         public System.String Response
         {
             get { return __Response; }
             set { SetField(ref __Response, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -17662,56 +17662,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickEventFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickEventFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -17748,49 +17748,49 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __FeedItemId;
-        [EntityField]
+        [EntityField(false)]
         public System.String FeedItemId
         {
             get { return __FeedItemId; }
             set { SetField(ref __FeedItemId, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CommentBody;
-        [EntityField]
+        [EntityField(false)]
         public System.String CommentBody
         {
             get { return __CommentBody; }
             set { SetField(ref __CommentBody, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -17815,112 +17815,112 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __FeedItemId;
-        [EntityField]
+        [EntityField(false)]
         public System.String FeedItemId
         {
             get { return __FeedItemId; }
             set { SetField(ref __FeedItemId, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private PickFeedPostType __Type;
-        [EntityField]
+        [EntityField(false)]
         public PickFeedPostType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.String __LinkUrl;
-        [EntityField]
+        [EntityField(true)]
         public System.String LinkUrl
         {
             get { return __LinkUrl; }
             set { SetField(ref __LinkUrl, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ContentData;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentData
         {
             get { return __ContentData; }
             set { SetField(ref __ContentData, value); }
         }
         private System.String __ContentFileName;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentFileName
         {
             get { return __ContentFileName; }
             set { SetField(ref __ContentFileName, value); }
         }
         private System.String __ContentDescription;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentDescription
         {
             get { return __ContentDescription; }
             set { SetField(ref __ContentDescription, value); }
         }
         private System.String __ContentType;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentType
         {
             get { return __ContentType; }
             set { SetField(ref __ContentType, value); }
         }
         private System.String __ContentSize;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContentSize
         {
             get { return __ContentSize; }
@@ -17945,35 +17945,35 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __FeedItemId;
-        [EntityField]
+        [EntityField(false)]
         public System.String FeedItemId
         {
             get { return __FeedItemId; }
             set { SetField(ref __FeedItemId, value); }
         }
         private System.String __FieldName;
-        [EntityField]
+        [EntityField(false)]
         public System.String FieldName
         {
             get { return __FieldName; }
             set { SetField(ref __FieldName, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -17998,105 +17998,105 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __PeriodId;
-        [EntityField]
+        [EntityField(true)]
         public System.String PeriodId
         {
             get { return __PeriodId; }
             set { SetField(ref __PeriodId, value); }
         }
         private System.DateTime? __StartDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? StartDate
         {
             get { return __StartDate; }
             set { SetField(ref __StartDate, value); }
         }
         private System.DateTime? __EndDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? EndDate
         {
             get { return __EndDate; }
             set { SetField(ref __EndDate, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.Boolean __IsStandardYear;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsStandardYear
         {
             get { return __IsStandardYear; }
             set { SetField(ref __IsStandardYear, value); }
         }
         private PickFiscalYearSettingsYearType __YearType;
-        [EntityField]
+        [EntityField(true)]
         public PickFiscalYearSettingsYearType YearType
         {
             get { return __YearType; }
             set { SetField(ref __YearType, value); }
         }
         private PickFiscalYearSettingsQuarterLabelScheme __QuarterLabelScheme;
-        [EntityField]
+        [EntityField(true)]
         public PickFiscalYearSettingsQuarterLabelScheme QuarterLabelScheme
         {
             get { return __QuarterLabelScheme; }
             set { SetField(ref __QuarterLabelScheme, value); }
         }
         private PickFiscalYearSettingsPeriodLabelScheme __PeriodLabelScheme;
-        [EntityField]
+        [EntityField(true)]
         public PickFiscalYearSettingsPeriodLabelScheme PeriodLabelScheme
         {
             get { return __PeriodLabelScheme; }
             set { SetField(ref __PeriodLabelScheme, value); }
         }
         private PickFiscalYearSettingsWeekLabelScheme __WeekLabelScheme;
-        [EntityField]
+        [EntityField(true)]
         public PickFiscalYearSettingsWeekLabelScheme WeekLabelScheme
         {
             get { return __WeekLabelScheme; }
             set { SetField(ref __WeekLabelScheme, value); }
         }
         private PickFiscalYearSettingsQuarterPrefix __QuarterPrefix;
-        [EntityField]
+        [EntityField(true)]
         public PickFiscalYearSettingsQuarterPrefix QuarterPrefix
         {
             get { return __QuarterPrefix; }
             set { SetField(ref __QuarterPrefix, value); }
         }
         private PickFiscalYearSettingsPeriodPrefix __PeriodPrefix;
-        [EntityField]
+        [EntityField(true)]
         public PickFiscalYearSettingsPeriodPrefix PeriodPrefix
         {
             get { return __PeriodPrefix; }
             set { SetField(ref __PeriodPrefix, value); }
         }
         private System.String __WeekStartDay;
-        [EntityField]
+        [EntityField(true)]
         public System.String WeekStartDay
         {
             get { return __WeekStartDay; }
             set { SetField(ref __WeekStartDay, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -18127,84 +18127,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __DeveloperName;
-        [EntityField]
+        [EntityField(true)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
             set { SetField(ref __DeveloperName, value); }
         }
         private PickFolderAccessType __AccessType;
-        [EntityField]
+        [EntityField(false)]
         public PickFolderAccessType AccessType
         {
             get { return __AccessType; }
             set { SetField(ref __AccessType, value); }
         }
         private System.Boolean __IsReadonly;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsReadonly
         {
             get { return __IsReadonly; }
             set { SetField(ref __IsReadonly, value); }
         }
         private PickFolderType __Type;
-        [EntityField]
+        [EntityField(false)]
         public PickFolderType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -18229,56 +18229,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __UserRoleId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserRoleId
         {
             get { return __UserRoleId; }
             set { SetField(ref __UserRoleId, value); }
         }
         private System.String __UserOrGroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value); }
         }
         private PickForecastShareAccessLevel __AccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickForecastShareAccessLevel AccessLevel
         {
             get { return __AccessLevel; }
             set { SetField(ref __AccessLevel, value); }
         }
         private System.Boolean __CanSubmit;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean CanSubmit
         {
             get { return __CanSubmit; }
             set { SetField(ref __CanSubmit, value); }
         }
         private PickForecastShareRowCause __RowCause;
-        [EntityField]
+        [EntityField(false)]
         public PickForecastShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
@@ -18303,91 +18303,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __RelatedId;
-        [EntityField]
+        [EntityField(true)]
         public System.String RelatedId
         {
             get { return __RelatedId; }
             set { SetField(ref __RelatedId, value); }
         }
         private PickGroupType __Type;
-        [EntityField]
+        [EntityField(false)]
         public PickGroupType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __Email;
-        [EntityField]
+        [EntityField(true)]
         public System.String Email
         {
             get { return __Email; }
             set { SetField(ref __Email, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.Boolean __DoesSendEmailToMembers;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean DoesSendEmailToMembers
         {
             get { return __DoesSendEmailToMembers; }
             set { SetField(ref __DoesSendEmailToMembers, value); }
         }
         private System.Boolean __DoesIncludeBosses;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean DoesIncludeBosses
         {
             get { return __DoesIncludeBosses; }
             set { SetField(ref __DoesIncludeBosses, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -18430,28 +18430,28 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __GroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String GroupId
         {
             get { return __GroupId; }
             set { SetField(ref __GroupId, value); }
         }
         private System.String __UserOrGroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -18476,147 +18476,147 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.Boolean __IsAllDay;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsAllDay
         {
             get { return __IsAllDay; }
             set { SetField(ref __IsAllDay, value); }
         }
         private System.DateTime? __ActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
             set { SetField(ref __ActivityDate, value); }
         }
         private System.String __StartTimeInMinutes;
-        [EntityField]
+        [EntityField(true)]
         public System.String StartTimeInMinutes
         {
             get { return __StartTimeInMinutes; }
             set { SetField(ref __StartTimeInMinutes, value); }
         }
         private System.String __EndTimeInMinutes;
-        [EntityField]
+        [EntityField(true)]
         public System.String EndTimeInMinutes
         {
             get { return __EndTimeInMinutes; }
             set { SetField(ref __EndTimeInMinutes, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsRecurrence;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsRecurrence
         {
             get { return __IsRecurrence; }
             set { SetField(ref __IsRecurrence, value); }
         }
         private System.DateTime? __RecurrenceStartDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? RecurrenceStartDate
         {
             get { return __RecurrenceStartDate; }
             set { SetField(ref __RecurrenceStartDate, value); }
         }
         private System.DateTime? __RecurrenceEndDateOnly;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? RecurrenceEndDateOnly
         {
             get { return __RecurrenceEndDateOnly; }
             set { SetField(ref __RecurrenceEndDateOnly, value); }
         }
         private PickHolidayRecurrenceType __RecurrenceType;
-        [EntityField]
+        [EntityField(true)]
         public PickHolidayRecurrenceType RecurrenceType
         {
             get { return __RecurrenceType; }
             set { SetField(ref __RecurrenceType, value); }
         }
         private System.String __RecurrenceInterval;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceInterval
         {
             get { return __RecurrenceInterval; }
             set { SetField(ref __RecurrenceInterval, value); }
         }
         private System.String __RecurrenceDayOfWeekMask;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceDayOfWeekMask
         {
             get { return __RecurrenceDayOfWeekMask; }
             set { SetField(ref __RecurrenceDayOfWeekMask, value); }
         }
         private System.String __RecurrenceDayOfMonth;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceDayOfMonth
         {
             get { return __RecurrenceDayOfMonth; }
             set { SetField(ref __RecurrenceDayOfMonth, value); }
         }
         private PickHolidayRecurrenceInstance __RecurrenceInstance;
-        [EntityField]
+        [EntityField(true)]
         public PickHolidayRecurrenceInstance RecurrenceInstance
         {
             get { return __RecurrenceInstance; }
             set { SetField(ref __RecurrenceInstance, value); }
         }
         private PickHolidayRecurrenceMonthOfYear __RecurrenceMonthOfYear;
-        [EntityField]
+        [EntityField(true)]
         public PickHolidayRecurrenceMonthOfYear RecurrenceMonthOfYear
         {
             get { return __RecurrenceMonthOfYear; }
@@ -18641,147 +18641,147 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.String __RecordTypeId;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecordTypeId
         {
             get { return __RecordTypeId; }
             set { SetField(ref __RecordTypeId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsLocked;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsLocked
         {
             get { return __IsLocked; }
             set { SetField(ref __IsLocked, value); }
         }
         private System.String __CommunityId;
-        [EntityField]
+        [EntityField(false)]
         public System.String CommunityId
         {
             get { return __CommunityId; }
             set { SetField(ref __CommunityId, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.String __NumComments;
-        [EntityField]
+        [EntityField(true)]
         public System.String NumComments
         {
             get { return __NumComments; }
             set { SetField(ref __NumComments, value); }
         }
         private System.String __VoteScore;
-        [EntityField]
+        [EntityField(true)]
         public System.String VoteScore
         {
             get { return __VoteScore; }
             set { SetField(ref __VoteScore, value); }
         }
         private System.String __VoteTotal;
-        [EntityField]
+        [EntityField(true)]
         public System.String VoteTotal
         {
             get { return __VoteTotal; }
             set { SetField(ref __VoteTotal, value); }
         }
         private System.String __Categories;
-        [EntityField]
+        [EntityField(true)]
         public System.String Categories
         {
             get { return __Categories; }
             set { SetField(ref __Categories, value); }
         }
         private PickIdeaStatus __Status;
-        [EntityField]
+        [EntityField(true)]
         public PickIdeaStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.DateTime? __LastCommentDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastCommentDate
         {
             get { return __LastCommentDate; }
             set { SetField(ref __LastCommentDate, value); }
         }
         private System.String __LastCommentId;
-        [EntityField]
+        [EntityField(true)]
         public System.String LastCommentId
         {
             get { return __LastCommentId; }
             set { SetField(ref __LastCommentId, value); }
         }
         private System.String __ParentIdeaId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentIdeaId
         {
             get { return __ParentIdeaId; }
             set { SetField(ref __ParentIdeaId, value); }
         }
         private System.Boolean __IsHtml;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsHtml
         {
             get { return __IsHtml; }
@@ -18818,56 +18818,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __IdeaId;
-        [EntityField]
+        [EntityField(false)]
         public System.String IdeaId
         {
             get { return __IdeaId; }
             set { SetField(ref __IdeaId, value); }
         }
         private System.String __CommentBody;
-        [EntityField]
+        [EntityField(true)]
         public System.String CommentBody
         {
             get { return __CommentBody; }
             set { SetField(ref __CommentBody, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.Boolean __IsHtml;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsHtml
         {
             get { return __IsHtml; }
@@ -18898,287 +18898,287 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __MasterRecordId;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterRecordId
         {
             get { return __MasterRecordId; }
             set { SetField(ref __MasterRecordId, value); }
         }
         private System.String __LastName;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastName
         {
             get { return __LastName; }
             set { SetField(ref __LastName, value); }
         }
         private System.String __FirstName;
-        [EntityField]
+        [EntityField(true)]
         public System.String FirstName
         {
             get { return __FirstName; }
             set { SetField(ref __FirstName, value); }
         }
         private PickLeadSalutation __Salutation;
-        [EntityField]
+        [EntityField(true)]
         public PickLeadSalutation Salutation
         {
             get { return __Salutation; }
             set { SetField(ref __Salutation, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.String __Company;
-        [EntityField]
+        [EntityField(false)]
         public System.String Company
         {
             get { return __Company; }
             set { SetField(ref __Company, value); }
         }
         private System.String __Street;
-        [EntityField]
+        [EntityField(true)]
         public System.String Street
         {
             get { return __Street; }
             set { SetField(ref __Street, value); }
         }
         private System.String __City;
-        [EntityField]
+        [EntityField(true)]
         public System.String City
         {
             get { return __City; }
             set { SetField(ref __City, value); }
         }
         private System.String __State;
-        [EntityField]
+        [EntityField(true)]
         public System.String State
         {
             get { return __State; }
             set { SetField(ref __State, value); }
         }
         private System.String __PostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String PostalCode
         {
             get { return __PostalCode; }
             set { SetField(ref __PostalCode, value); }
         }
         private System.String __Country;
-        [EntityField]
+        [EntityField(true)]
         public System.String Country
         {
             get { return __Country; }
             set { SetField(ref __Country, value); }
         }
         private System.String __Phone;
-        [EntityField]
+        [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
             set { SetField(ref __Phone, value); }
         }
         private System.String __MobilePhone;
-        [EntityField]
+        [EntityField(true)]
         public System.String MobilePhone
         {
             get { return __MobilePhone; }
             set { SetField(ref __MobilePhone, value); }
         }
         private System.String __Fax;
-        [EntityField]
+        [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
             set { SetField(ref __Fax, value); }
         }
         private System.String __Email;
-        [EntityField]
+        [EntityField(true)]
         public System.String Email
         {
             get { return __Email; }
             set { SetField(ref __Email, value); }
         }
         private System.String __Website;
-        [EntityField]
+        [EntityField(true)]
         public System.String Website
         {
             get { return __Website; }
             set { SetField(ref __Website, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickLeadLeadSource __LeadSource;
-        [EntityField]
+        [EntityField(true)]
         public PickLeadLeadSource LeadSource
         {
             get { return __LeadSource; }
             set { SetField(ref __LeadSource, value); }
         }
         private PickLeadStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickLeadStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private PickLeadIndustry __Industry;
-        [EntityField]
+        [EntityField(true)]
         public PickLeadIndustry Industry
         {
             get { return __Industry; }
             set { SetField(ref __Industry, value); }
         }
         private PickLeadRating __Rating;
-        [EntityField]
+        [EntityField(true)]
         public PickLeadRating Rating
         {
             get { return __Rating; }
             set { SetField(ref __Rating, value); }
         }
         private System.String __AnnualRevenue;
-        [EntityField]
+        [EntityField(true)]
         public System.String AnnualRevenue
         {
             get { return __AnnualRevenue; }
             set { SetField(ref __AnnualRevenue, value); }
         }
         private System.String __NumberOfEmployees;
-        [EntityField]
+        [EntityField(true)]
         public System.String NumberOfEmployees
         {
             get { return __NumberOfEmployees; }
             set { SetField(ref __NumberOfEmployees, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.Boolean __IsConverted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsConverted
         {
             get { return __IsConverted; }
             set { SetField(ref __IsConverted, value); }
         }
         private System.DateTime? __ConvertedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ConvertedDate
         {
             get { return __ConvertedDate; }
             set { SetField(ref __ConvertedDate, value); }
         }
         private System.String __ConvertedAccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ConvertedAccountId
         {
             get { return __ConvertedAccountId; }
             set { SetField(ref __ConvertedAccountId, value); }
         }
         private System.String __ConvertedContactId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ConvertedContactId
         {
             get { return __ConvertedContactId; }
             set { SetField(ref __ConvertedContactId, value); }
         }
         private System.String __ConvertedOpportunityId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ConvertedOpportunityId
         {
             get { return __ConvertedOpportunityId; }
             set { SetField(ref __ConvertedOpportunityId, value); }
         }
         private System.Boolean __IsUnreadByOwner;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsUnreadByOwner
         {
             get { return __IsUnreadByOwner; }
             set { SetField(ref __IsUnreadByOwner, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime? __LastActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
             set { SetField(ref __LastActivityDate, value); }
         }
         private System.String __EmailBouncedReason;
-        [EntityField]
+        [EntityField(true)]
         public System.String EmailBouncedReason
         {
             get { return __EmailBouncedReason; }
             set { SetField(ref __EmailBouncedReason, value); }
         }
         private System.DateTime? __EmailBouncedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? EmailBouncedDate
         {
             get { return __EmailBouncedDate; }
@@ -19186,7 +19186,7 @@ namespace LinqToSalesforce
         }
         private System.String __SICCodec;
         [JsonProperty(PropertyName = "SICCode__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String SICCodec
         {
             get { return __SICCodec; }
@@ -19194,7 +19194,7 @@ namespace LinqToSalesforce
         }
         private PickLeadProductInterest__c __ProductInterestc;
         [JsonProperty(PropertyName = "ProductInterest__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickLeadProductInterest__c ProductInterestc
         {
             get { return __ProductInterestc; }
@@ -19202,7 +19202,7 @@ namespace LinqToSalesforce
         }
         private PickLeadPrimary__c __Primaryc;
         [JsonProperty(PropertyName = "Primary__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickLeadPrimary__c Primaryc
         {
             get { return __Primaryc; }
@@ -19210,7 +19210,7 @@ namespace LinqToSalesforce
         }
         private System.String __CurrentGeneratorsc;
         [JsonProperty(PropertyName = "CurrentGenerators__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String CurrentGeneratorsc
         {
             get { return __CurrentGeneratorsc; }
@@ -19218,7 +19218,7 @@ namespace LinqToSalesforce
         }
         private System.String __NumberofLocationsc;
         [JsonProperty(PropertyName = "NumberofLocations__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String NumberofLocationsc
         {
             get { return __NumberofLocationsc; }
@@ -19333,56 +19333,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickLeadFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickLeadFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -19419,56 +19419,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __LeadId;
-        [EntityField]
+        [EntityField(false)]
         public System.String LeadId
         {
             get { return __LeadId; }
             set { SetField(ref __LeadId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickLeadHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickLeadHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -19493,56 +19493,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __LeadId;
-        [EntityField]
+        [EntityField(false)]
         public System.String LeadId
         {
             get { return __LeadId; }
             set { SetField(ref __LeadId, value); }
         }
         private System.String __UserOrGroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value); }
         }
         private PickLeadShareLeadAccessLevel __LeadAccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickLeadShareLeadAccessLevel LeadAccessLevel
         {
             get { return __LeadAccessLevel; }
             set { SetField(ref __LeadAccessLevel, value); }
         }
         private PickLeadShareRowCause __RowCause;
-        [EntityField]
+        [EntityField(true)]
         public PickLeadShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -19567,70 +19567,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private System.Boolean __IsDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
             set { SetField(ref __IsDefault, value); }
         }
         private System.Boolean __IsConverted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsConverted
         {
             get { return __IsConverted; }
             set { SetField(ref __IsConverted, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -19655,42 +19655,42 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __UsersId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UsersId
         {
             get { return __UsersId; }
             set { SetField(ref __UsersId, value); }
         }
         private System.String __SourceIp;
-        [EntityField]
+        [EntityField(true)]
         public System.String SourceIp
         {
             get { return __SourceIp; }
             set { SetField(ref __SourceIp, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsAuthenticated;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsAuthenticated
         {
             get { return __IsAuthenticated; }
             set { SetField(ref __IsAuthenticated, value); }
         }
         private System.DateTime? __ChallengeSentDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ChallengeSentDate
         {
             get { return __ChallengeSentDate; }
@@ -19715,119 +19715,119 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __Filename;
-        [EntityField]
+        [EntityField(false)]
         public System.String Filename
         {
             get { return __Filename; }
             set { SetField(ref __Filename, value); }
         }
         private System.String __BodyLength;
-        [EntityField]
+        [EntityField(true)]
         public System.String BodyLength
         {
             get { return __BodyLength; }
             set { SetField(ref __BodyLength, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(false)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.DateTime? __LastUsedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastUsedDate
         {
             get { return __LastUsedDate; }
             set { SetField(ref __LastUsedDate, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __SecurityOptionsAttachmentScannedForXSS;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean SecurityOptionsAttachmentScannedForXSS
         {
             get { return __SecurityOptionsAttachmentScannedForXSS; }
             set { SetField(ref __SecurityOptionsAttachmentScannedForXSS, value); }
         }
         private System.Boolean __SecurityOptionsAttachmentHasXSSThreat;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean SecurityOptionsAttachmentHasXSSThreat
         {
             get { return __SecurityOptionsAttachmentHasXSSThreat; }
             set { SetField(ref __SecurityOptionsAttachmentHasXSSThreat, value); }
         }
         private System.Boolean __SecurityOptionsAttachmentScannedforFlash;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean SecurityOptionsAttachmentScannedforFlash
         {
             get { return __SecurityOptionsAttachmentScannedforFlash; }
             set { SetField(ref __SecurityOptionsAttachmentScannedforFlash, value); }
         }
         private System.Boolean __SecurityOptionsAttachmentHasFlash;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean SecurityOptionsAttachmentHasFlash
         {
             get { return __SecurityOptionsAttachmentHasFlash; }
@@ -19852,7 +19852,7 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
@@ -19860,84 +19860,84 @@ namespace LinqToSalesforce
         }
         private System.String ___Name;
         [JsonProperty(PropertyName = "Name")]
-        [EntityField]
+        [EntityField(true)]
         public System.String _Name
         {
             get { return ___Name; }
             set { SetField(ref ___Name, value); }
         }
         private System.String __LastName;
-        [EntityField]
+        [EntityField(true)]
         public System.String LastName
         {
             get { return __LastName; }
             set { SetField(ref __LastName, value); }
         }
         private System.String __FirstName;
-        [EntityField]
+        [EntityField(true)]
         public System.String FirstName
         {
             get { return __FirstName; }
             set { SetField(ref __FirstName, value); }
         }
         private PickNameType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickNameType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __Alias;
-        [EntityField]
+        [EntityField(true)]
         public System.String Alias
         {
             get { return __Alias; }
             set { SetField(ref __Alias, value); }
         }
         private System.String __UserRoleId;
-        [EntityField]
+        [EntityField(true)]
         public System.String UserRoleId
         {
             get { return __UserRoleId; }
             set { SetField(ref __UserRoleId, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.String __ProfileId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ProfileId
         {
             get { return __ProfileId; }
             set { SetField(ref __ProfileId, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.String __Email;
-        [EntityField]
+        [EntityField(true)]
         public System.String Email
         {
             get { return __Email; }
             set { SetField(ref __Email, value); }
         }
         private System.String __Phone;
-        [EntityField]
+        [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
             set { SetField(ref __Phone, value); }
         }
         private System.String __Username;
-        [EntityField]
+        [EntityField(true)]
         public System.String Username
         {
             get { return __Username; }
@@ -19962,56 +19962,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickNewsFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickNewsFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -20048,84 +20048,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.Boolean __IsPrivate;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
             set { SetField(ref __IsPrivate, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -20150,84 +20150,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.Boolean __IsNote;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsNote
         {
             get { return __IsNote; }
             set { SetField(ref __IsNote, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.Boolean __IsPrivate;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
             set { SetField(ref __IsPrivate, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -20252,203 +20252,203 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __WhoId;
-        [EntityField]
+        [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
             set { SetField(ref __WhoId, value); }
         }
         private System.String __WhatId;
-        [EntityField]
+        [EntityField(true)]
         public System.String WhatId
         {
             get { return __WhatId; }
             set { SetField(ref __WhatId, value); }
         }
         private System.String __Subject;
-        [EntityField]
+        [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
             set { SetField(ref __Subject, value); }
         }
         private System.Boolean __IsTask;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsTask
         {
             get { return __IsTask; }
             set { SetField(ref __IsTask, value); }
         }
         private System.DateTime? __ActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
             set { SetField(ref __ActivityDate, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(true)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private PickOpenActivityStatus __Status;
-        [EntityField]
+        [EntityField(true)]
         public PickOpenActivityStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private PickOpenActivityPriority __Priority;
-        [EntityField]
+        [EntityField(true)]
         public PickOpenActivityPriority Priority
         {
             get { return __Priority; }
             set { SetField(ref __Priority, value); }
         }
         private PickOpenActivityActivityType __ActivityType;
-        [EntityField]
+        [EntityField(true)]
         public PickOpenActivityActivityType ActivityType
         {
             get { return __ActivityType; }
             set { SetField(ref __ActivityType, value); }
         }
         private System.Boolean __IsClosed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
             set { SetField(ref __IsClosed, value); }
         }
         private System.Boolean __IsAllDayEvent;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsAllDayEvent
         {
             get { return __IsAllDayEvent; }
             set { SetField(ref __IsAllDayEvent, value); }
         }
         private System.Boolean __IsVisibleInSelfService;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsVisibleInSelfService
         {
             get { return __IsVisibleInSelfService; }
             set { SetField(ref __IsVisibleInSelfService, value); }
         }
         private System.String __DurationInMinutes;
-        [EntityField]
+        [EntityField(true)]
         public System.String DurationInMinutes
         {
             get { return __DurationInMinutes; }
             set { SetField(ref __DurationInMinutes, value); }
         }
         private System.String __Location;
-        [EntityField]
+        [EntityField(true)]
         public System.String Location
         {
             get { return __Location; }
             set { SetField(ref __Location, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __CallDurationInSeconds;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallDurationInSeconds
         {
             get { return __CallDurationInSeconds; }
             set { SetField(ref __CallDurationInSeconds, value); }
         }
         private PickOpenActivityCallType __CallType;
-        [EntityField]
+        [EntityField(true)]
         public PickOpenActivityCallType CallType
         {
             get { return __CallType; }
             set { SetField(ref __CallType, value); }
         }
         private System.String __CallDisposition;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallDisposition
         {
             get { return __CallDisposition; }
             set { SetField(ref __CallDisposition, value); }
         }
         private System.String __CallObject;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallObject
         {
             get { return __CallObject; }
             set { SetField(ref __CallObject, value); }
         }
         private System.DateTime? __ReminderDateTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ReminderDateTime
         {
             get { return __ReminderDateTime; }
             set { SetField(ref __ReminderDateTime, value); }
         }
         private System.Boolean __IsReminderSet;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsReminderSet
         {
             get { return __IsReminderSet; }
@@ -20473,224 +20473,224 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.Boolean __IsPrivate;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
             set { SetField(ref __IsPrivate, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickOpportunityStageName __StageName;
-        [EntityField]
+        [EntityField(false)]
         public PickOpportunityStageName StageName
         {
             get { return __StageName; }
             set { SetField(ref __StageName, value); }
         }
         private System.String __Amount;
-        [EntityField]
+        [EntityField(true)]
         public System.String Amount
         {
             get { return __Amount; }
             set { SetField(ref __Amount, value); }
         }
         private System.String __Probability;
-        [EntityField]
+        [EntityField(true)]
         public System.String Probability
         {
             get { return __Probability; }
             set { SetField(ref __Probability, value); }
         }
         private System.String __ExpectedRevenue;
-        [EntityField]
+        [EntityField(true)]
         public System.String ExpectedRevenue
         {
             get { return __ExpectedRevenue; }
             set { SetField(ref __ExpectedRevenue, value); }
         }
         private System.String __TotalOpportunityQuantity;
-        [EntityField]
+        [EntityField(true)]
         public System.String TotalOpportunityQuantity
         {
             get { return __TotalOpportunityQuantity; }
             set { SetField(ref __TotalOpportunityQuantity, value); }
         }
         private System.DateTime __CloseDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CloseDate
         {
             get { return __CloseDate; }
             set { SetField(ref __CloseDate, value); }
         }
         private PickOpportunityType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickOpportunityType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __NextStep;
-        [EntityField]
+        [EntityField(true)]
         public System.String NextStep
         {
             get { return __NextStep; }
             set { SetField(ref __NextStep, value); }
         }
         private PickOpportunityLeadSource __LeadSource;
-        [EntityField]
+        [EntityField(true)]
         public PickOpportunityLeadSource LeadSource
         {
             get { return __LeadSource; }
             set { SetField(ref __LeadSource, value); }
         }
         private System.Boolean __IsClosed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
             set { SetField(ref __IsClosed, value); }
         }
         private System.Boolean __IsWon;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsWon
         {
             get { return __IsWon; }
             set { SetField(ref __IsWon, value); }
         }
         private PickOpportunityForecastCategory __ForecastCategory;
-        [EntityField]
+        [EntityField(false)]
         public PickOpportunityForecastCategory ForecastCategory
         {
             get { return __ForecastCategory; }
             set { SetField(ref __ForecastCategory, value); }
         }
         private PickOpportunityForecastCategoryName __ForecastCategoryName;
-        [EntityField]
+        [EntityField(true)]
         public PickOpportunityForecastCategoryName ForecastCategoryName
         {
             get { return __ForecastCategoryName; }
             set { SetField(ref __ForecastCategoryName, value); }
         }
         private System.String __CampaignId;
-        [EntityField]
+        [EntityField(true)]
         public System.String CampaignId
         {
             get { return __CampaignId; }
             set { SetField(ref __CampaignId, value); }
         }
         private System.Boolean __HasOpportunityLineItem;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean HasOpportunityLineItem
         {
             get { return __HasOpportunityLineItem; }
             set { SetField(ref __HasOpportunityLineItem, value); }
         }
         private System.String __Pricebook2Id;
-        [EntityField]
+        [EntityField(true)]
         public System.String Pricebook2Id
         {
             get { return __Pricebook2Id; }
             set { SetField(ref __Pricebook2Id, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime? __LastActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
             set { SetField(ref __LastActivityDate, value); }
         }
         private System.String __FiscalQuarter;
-        [EntityField]
+        [EntityField(true)]
         public System.String FiscalQuarter
         {
             get { return __FiscalQuarter; }
             set { SetField(ref __FiscalQuarter, value); }
         }
         private System.String __FiscalYear;
-        [EntityField]
+        [EntityField(true)]
         public System.String FiscalYear
         {
             get { return __FiscalYear; }
             set { SetField(ref __FiscalYear, value); }
         }
         private System.String __Fiscal;
-        [EntityField]
+        [EntityField(true)]
         public System.String Fiscal
         {
             get { return __Fiscal; }
@@ -20698,7 +20698,7 @@ namespace LinqToSalesforce
         }
         private PickOpportunityDeliveryInstallationStatus__c __DeliveryInstallationStatusc;
         [JsonProperty(PropertyName = "DeliveryInstallationStatus__c")]
-        [EntityField]
+        [EntityField(true)]
         public PickOpportunityDeliveryInstallationStatus__c DeliveryInstallationStatusc
         {
             get { return __DeliveryInstallationStatusc; }
@@ -20706,7 +20706,7 @@ namespace LinqToSalesforce
         }
         private System.String __TrackingNumberc;
         [JsonProperty(PropertyName = "TrackingNumber__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String TrackingNumberc
         {
             get { return __TrackingNumberc; }
@@ -20714,7 +20714,7 @@ namespace LinqToSalesforce
         }
         private System.String __OrderNumberc;
         [JsonProperty(PropertyName = "OrderNumber__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String OrderNumberc
         {
             get { return __OrderNumberc; }
@@ -20722,7 +20722,7 @@ namespace LinqToSalesforce
         }
         private System.String __CurrentGeneratorsc;
         [JsonProperty(PropertyName = "CurrentGenerators__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String CurrentGeneratorsc
         {
             get { return __CurrentGeneratorsc; }
@@ -20730,7 +20730,7 @@ namespace LinqToSalesforce
         }
         private System.String __MainCompetitorsc;
         [JsonProperty(PropertyName = "MainCompetitors__c")]
-        [EntityField]
+        [EntityField(true)]
         public System.String MainCompetitorsc
         {
             get { return __MainCompetitorsc; }
@@ -20875,77 +20875,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __OpportunityId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
         private System.String __CompetitorName;
-        [EntityField]
+        [EntityField(true)]
         public System.String CompetitorName
         {
             get { return __CompetitorName; }
             set { SetField(ref __CompetitorName, value); }
         }
         private System.String __Strengths;
-        [EntityField]
+        [EntityField(true)]
         public System.String Strengths
         {
             get { return __Strengths; }
             set { SetField(ref __Strengths, value); }
         }
         private System.String __Weaknesses;
-        [EntityField]
+        [EntityField(true)]
         public System.String Weaknesses
         {
             get { return __Weaknesses; }
             set { SetField(ref __Weaknesses, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -20970,77 +20970,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __OpportunityId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private PickOpportunityContactRoleRole __Role;
-        [EntityField]
+        [EntityField(true)]
         public PickOpportunityContactRoleRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
         }
         private System.Boolean __IsPrimary;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
             set { SetField(ref __IsPrimary, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -21065,56 +21065,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickOpportunityFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickOpportunityFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -21151,56 +21151,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __OpportunityId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickOpportunityFieldHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickOpportunityFieldHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -21225,84 +21225,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __OpportunityId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickOpportunityHistoryStageName __StageName;
-        [EntityField]
+        [EntityField(false)]
         public PickOpportunityHistoryStageName StageName
         {
             get { return __StageName; }
             set { SetField(ref __StageName, value); }
         }
         private System.String __Amount;
-        [EntityField]
+        [EntityField(true)]
         public System.String Amount
         {
             get { return __Amount; }
             set { SetField(ref __Amount, value); }
         }
         private System.String __ExpectedRevenue;
-        [EntityField]
+        [EntityField(true)]
         public System.String ExpectedRevenue
         {
             get { return __ExpectedRevenue; }
             set { SetField(ref __ExpectedRevenue, value); }
         }
         private System.DateTime? __CloseDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? CloseDate
         {
             get { return __CloseDate; }
             set { SetField(ref __CloseDate, value); }
         }
         private System.String __Probability;
-        [EntityField]
+        [EntityField(true)]
         public System.String Probability
         {
             get { return __Probability; }
             set { SetField(ref __Probability, value); }
         }
         private PickOpportunityHistoryForecastCategory __ForecastCategory;
-        [EntityField]
+        [EntityField(true)]
         public PickOpportunityHistoryForecastCategory ForecastCategory
         {
             get { return __ForecastCategory; }
             set { SetField(ref __ForecastCategory, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -21327,112 +21327,112 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __OpportunityId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private System.String __PricebookEntryId;
-        [EntityField]
+        [EntityField(true)]
         public System.String PricebookEntryId
         {
             get { return __PricebookEntryId; }
             set { SetField(ref __PricebookEntryId, value); }
         }
         private System.String __Quantity;
-        [EntityField]
+        [EntityField(false)]
         public System.String Quantity
         {
             get { return __Quantity; }
             set { SetField(ref __Quantity, value); }
         }
         private System.String __TotalPrice;
-        [EntityField]
+        [EntityField(true)]
         public System.String TotalPrice
         {
             get { return __TotalPrice; }
             set { SetField(ref __TotalPrice, value); }
         }
         private System.String __UnitPrice;
-        [EntityField]
+        [EntityField(true)]
         public System.String UnitPrice
         {
             get { return __UnitPrice; }
             set { SetField(ref __UnitPrice, value); }
         }
         private System.String __ListPrice;
-        [EntityField]
+        [EntityField(true)]
         public System.String ListPrice
         {
             get { return __ListPrice; }
             set { SetField(ref __ListPrice, value); }
         }
         private System.DateTime? __ServiceDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ServiceDate
         {
             get { return __ServiceDate; }
             set { SetField(ref __ServiceDate, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -21457,84 +21457,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __OpportunityId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
         private System.String __AccountToId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AccountToId
         {
             get { return __AccountToId; }
             set { SetField(ref __AccountToId, value); }
         }
         private PickOpportunityPartnerRole __Role;
-        [EntityField]
+        [EntityField(true)]
         public PickOpportunityPartnerRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
         }
         private System.Boolean __IsPrimary;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
             set { SetField(ref __IsPrimary, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ReversePartnerId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ReversePartnerId
         {
             get { return __ReversePartnerId; }
@@ -21559,56 +21559,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __OpportunityId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
         private System.String __UserOrGroupId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value); }
         }
         private PickOpportunityShareOpportunityAccessLevel __OpportunityAccessLevel;
-        [EntityField]
+        [EntityField(false)]
         public PickOpportunityShareOpportunityAccessLevel OpportunityAccessLevel
         {
             get { return __OpportunityAccessLevel; }
             set { SetField(ref __OpportunityAccessLevel, value); }
         }
         private PickOpportunityShareRowCause __RowCause;
-        [EntityField]
+        [EntityField(true)]
         public PickOpportunityShareRowCause RowCause
         {
             get { return __RowCause; }
             set { SetField(ref __RowCause, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -21633,105 +21633,105 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private System.Boolean __IsClosed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
             set { SetField(ref __IsClosed, value); }
         }
         private System.Boolean __IsWon;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsWon
         {
             get { return __IsWon; }
             set { SetField(ref __IsWon, value); }
         }
         private PickOpportunityStageForecastCategory __ForecastCategory;
-        [EntityField]
+        [EntityField(false)]
         public PickOpportunityStageForecastCategory ForecastCategory
         {
             get { return __ForecastCategory; }
             set { SetField(ref __ForecastCategory, value); }
         }
         private PickOpportunityStageForecastCategoryName __ForecastCategoryName;
-        [EntityField]
+        [EntityField(false)]
         public PickOpportunityStageForecastCategoryName ForecastCategoryName
         {
             get { return __ForecastCategoryName; }
             set { SetField(ref __ForecastCategoryName, value); }
         }
         private System.String __DefaultProbability;
-        [EntityField]
+        [EntityField(true)]
         public System.String DefaultProbability
         {
             get { return __DefaultProbability; }
             set { SetField(ref __DefaultProbability, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -21756,273 +21756,273 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ContractId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContractId
         {
             get { return __ContractId; }
             set { SetField(ref __ContractId, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.DateTime __EffectiveDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime EffectiveDate
         {
             get { return __EffectiveDate; }
             set { SetField(ref __EffectiveDate, value); }
         }
         private System.Boolean __IsReductionOrder;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsReductionOrder
         {
             get { return __IsReductionOrder; }
             set { SetField(ref __IsReductionOrder, value); }
         }
         private PickOrderStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickOrderStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __CustomerAuthorizedById;
-        [EntityField]
+        [EntityField(true)]
         public System.String CustomerAuthorizedById
         {
             get { return __CustomerAuthorizedById; }
             set { SetField(ref __CustomerAuthorizedById, value); }
         }
         private System.DateTime? __CustomerAuthorizedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? CustomerAuthorizedDate
         {
             get { return __CustomerAuthorizedDate; }
             set { SetField(ref __CustomerAuthorizedDate, value); }
         }
         private System.String __CompanyAuthorizedById;
-        [EntityField]
+        [EntityField(true)]
         public System.String CompanyAuthorizedById
         {
             get { return __CompanyAuthorizedById; }
             set { SetField(ref __CompanyAuthorizedById, value); }
         }
         private System.DateTime? __CompanyAuthorizedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? CompanyAuthorizedDate
         {
             get { return __CompanyAuthorizedDate; }
             set { SetField(ref __CompanyAuthorizedDate, value); }
         }
         private PickOrderType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickOrderType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __BillingStreet;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingStreet
         {
             get { return __BillingStreet; }
             set { SetField(ref __BillingStreet, value); }
         }
         private System.String __BillingCity;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingCity
         {
             get { return __BillingCity; }
             set { SetField(ref __BillingCity, value); }
         }
         private System.String __BillingState;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingState
         {
             get { return __BillingState; }
             set { SetField(ref __BillingState, value); }
         }
         private System.String __BillingPostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingPostalCode
         {
             get { return __BillingPostalCode; }
             set { SetField(ref __BillingPostalCode, value); }
         }
         private System.String __BillingCountry;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillingCountry
         {
             get { return __BillingCountry; }
             set { SetField(ref __BillingCountry, value); }
         }
         private System.String __ShippingStreet;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingStreet
         {
             get { return __ShippingStreet; }
             set { SetField(ref __ShippingStreet, value); }
         }
         private System.String __ShippingCity;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingCity
         {
             get { return __ShippingCity; }
             set { SetField(ref __ShippingCity, value); }
         }
         private System.String __ShippingState;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingState
         {
             get { return __ShippingState; }
             set { SetField(ref __ShippingState, value); }
         }
         private System.String __ShippingPostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingPostalCode
         {
             get { return __ShippingPostalCode; }
             set { SetField(ref __ShippingPostalCode, value); }
         }
         private System.String __ShippingCountry;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShippingCountry
         {
             get { return __ShippingCountry; }
             set { SetField(ref __ShippingCountry, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(true)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.DateTime? __PoDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? PoDate
         {
             get { return __PoDate; }
             set { SetField(ref __PoDate, value); }
         }
         private System.String __PoNumber;
-        [EntityField]
+        [EntityField(true)]
         public System.String PoNumber
         {
             get { return __PoNumber; }
             set { SetField(ref __PoNumber, value); }
         }
         private System.String __OrderReferenceNumber;
-        [EntityField]
+        [EntityField(true)]
         public System.String OrderReferenceNumber
         {
             get { return __OrderReferenceNumber; }
             set { SetField(ref __OrderReferenceNumber, value); }
         }
         private System.String __BillToContactId;
-        [EntityField]
+        [EntityField(true)]
         public System.String BillToContactId
         {
             get { return __BillToContactId; }
             set { SetField(ref __BillToContactId, value); }
         }
         private System.String __ShipToContactId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ShipToContactId
         {
             get { return __ShipToContactId; }
             set { SetField(ref __ShipToContactId, value); }
         }
         private System.DateTime? __ActivatedDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ActivatedDate
         {
             get { return __ActivatedDate; }
             set { SetField(ref __ActivatedDate, value); }
         }
         private System.String __ActivatedById;
-        [EntityField]
+        [EntityField(true)]
         public System.String ActivatedById
         {
             get { return __ActivatedById; }
             set { SetField(ref __ActivatedById, value); }
         }
         private PickOrderStatusCode __StatusCode;
-        [EntityField]
+        [EntityField(false)]
         public PickOrderStatusCode StatusCode
         {
             get { return __StatusCode; }
             set { SetField(ref __StatusCode, value); }
         }
         private System.String __OrderNumber;
-        [EntityField]
+        [EntityField(false)]
         public System.String OrderNumber
         {
             get { return __OrderNumber; }
             set { SetField(ref __OrderNumber, value); }
         }
         private System.String __TotalAmount;
-        [EntityField]
+        [EntityField(false)]
         public System.String TotalAmount
         {
             get { return __TotalAmount; }
             set { SetField(ref __TotalAmount, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -22119,56 +22119,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __OrderId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OrderId
         {
             get { return __OrderId; }
             set { SetField(ref __OrderId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickOrderHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickOrderHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -22193,119 +22193,119 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __OrderId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OrderId
         {
             get { return __OrderId; }
             set { SetField(ref __OrderId, value); }
         }
         private System.String __PricebookEntryId;
-        [EntityField]
+        [EntityField(false)]
         public System.String PricebookEntryId
         {
             get { return __PricebookEntryId; }
             set { SetField(ref __PricebookEntryId, value); }
         }
         private System.String __OriginalOrderItemId;
-        [EntityField]
+        [EntityField(true)]
         public System.String OriginalOrderItemId
         {
             get { return __OriginalOrderItemId; }
             set { SetField(ref __OriginalOrderItemId, value); }
         }
         private System.String __Quantity;
-        [EntityField]
+        [EntityField(false)]
         public System.String Quantity
         {
             get { return __Quantity; }
             set { SetField(ref __Quantity, value); }
         }
         private System.String __UnitPrice;
-        [EntityField]
+        [EntityField(true)]
         public System.String UnitPrice
         {
             get { return __UnitPrice; }
             set { SetField(ref __UnitPrice, value); }
         }
         private System.String __ListPrice;
-        [EntityField]
+        [EntityField(true)]
         public System.String ListPrice
         {
             get { return __ListPrice; }
             set { SetField(ref __ListPrice, value); }
         }
         private System.DateTime? __ServiceDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ServiceDate
         {
             get { return __ServiceDate; }
             set { SetField(ref __ServiceDate, value); }
         }
         private System.DateTime? __EndDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? EndDate
         {
             get { return __EndDate; }
             set { SetField(ref __EndDate, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __OrderItemNumber;
-        [EntityField]
+        [EntityField(false)]
         public System.String OrderItemNumber
         {
             get { return __OrderItemNumber; }
@@ -22342,63 +22342,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __Address;
-        [EntityField]
+        [EntityField(false)]
         public System.String Address
         {
             get { return __Address; }
             set { SetField(ref __Address, value); }
         }
         private System.String __DisplayName;
-        [EntityField]
+        [EntityField(false)]
         public System.String DisplayName
         {
             get { return __DisplayName; }
             set { SetField(ref __DisplayName, value); }
         }
         private System.Boolean __IsAllowAllProfiles;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsAllowAllProfiles
         {
             get { return __IsAllowAllProfiles; }
@@ -22423,287 +22423,287 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Division;
-        [EntityField]
+        [EntityField(true)]
         public System.String Division
         {
             get { return __Division; }
             set { SetField(ref __Division, value); }
         }
         private System.String __Street;
-        [EntityField]
+        [EntityField(true)]
         public System.String Street
         {
             get { return __Street; }
             set { SetField(ref __Street, value); }
         }
         private System.String __City;
-        [EntityField]
+        [EntityField(true)]
         public System.String City
         {
             get { return __City; }
             set { SetField(ref __City, value); }
         }
         private System.String __State;
-        [EntityField]
+        [EntityField(true)]
         public System.String State
         {
             get { return __State; }
             set { SetField(ref __State, value); }
         }
         private System.String __PostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String PostalCode
         {
             get { return __PostalCode; }
             set { SetField(ref __PostalCode, value); }
         }
         private System.String __Country;
-        [EntityField]
+        [EntityField(true)]
         public System.String Country
         {
             get { return __Country; }
             set { SetField(ref __Country, value); }
         }
         private System.String __Phone;
-        [EntityField]
+        [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
             set { SetField(ref __Phone, value); }
         }
         private System.String __Fax;
-        [EntityField]
+        [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
             set { SetField(ref __Fax, value); }
         }
         private System.String __PrimaryContact;
-        [EntityField]
+        [EntityField(true)]
         public System.String PrimaryContact
         {
             get { return __PrimaryContact; }
             set { SetField(ref __PrimaryContact, value); }
         }
         private PickOrganizationDefaultLocaleSidKey __DefaultLocaleSidKey;
-        [EntityField]
+        [EntityField(false)]
         public PickOrganizationDefaultLocaleSidKey DefaultLocaleSidKey
         {
             get { return __DefaultLocaleSidKey; }
             set { SetField(ref __DefaultLocaleSidKey, value); }
         }
         private PickOrganizationLanguageLocaleKey __LanguageLocaleKey;
-        [EntityField]
+        [EntityField(false)]
         public PickOrganizationLanguageLocaleKey LanguageLocaleKey
         {
             get { return __LanguageLocaleKey; }
             set { SetField(ref __LanguageLocaleKey, value); }
         }
         private System.Boolean __ReceivesInfoEmails;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean ReceivesInfoEmails
         {
             get { return __ReceivesInfoEmails; }
             set { SetField(ref __ReceivesInfoEmails, value); }
         }
         private System.Boolean __ReceivesAdminInfoEmails;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean ReceivesAdminInfoEmails
         {
             get { return __ReceivesAdminInfoEmails; }
             set { SetField(ref __ReceivesAdminInfoEmails, value); }
         }
         private System.Boolean __PreferencesRequireOpportunityProducts;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PreferencesRequireOpportunityProducts
         {
             get { return __PreferencesRequireOpportunityProducts; }
             set { SetField(ref __PreferencesRequireOpportunityProducts, value); }
         }
         private System.Boolean __PreferencesTransactionSecurityPolicy;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PreferencesTransactionSecurityPolicy
         {
             get { return __PreferencesTransactionSecurityPolicy; }
             set { SetField(ref __PreferencesTransactionSecurityPolicy, value); }
         }
         private System.Boolean __PreferencesTerminateOldestSession;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PreferencesTerminateOldestSession
         {
             get { return __PreferencesTerminateOldestSession; }
             set { SetField(ref __PreferencesTerminateOldestSession, value); }
         }
         private System.String __FiscalYearStartMonth;
-        [EntityField]
+        [EntityField(true)]
         public System.String FiscalYearStartMonth
         {
             get { return __FiscalYearStartMonth; }
             set { SetField(ref __FiscalYearStartMonth, value); }
         }
         private System.Boolean __UsesStartDateAsFiscalYearName;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UsesStartDateAsFiscalYearName
         {
             get { return __UsesStartDateAsFiscalYearName; }
             set { SetField(ref __UsesStartDateAsFiscalYearName, value); }
         }
         private PickOrganizationDefaultAccountAccess __DefaultAccountAccess;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationDefaultAccountAccess DefaultAccountAccess
         {
             get { return __DefaultAccountAccess; }
             set { SetField(ref __DefaultAccountAccess, value); }
         }
         private PickOrganizationDefaultContactAccess __DefaultContactAccess;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationDefaultContactAccess DefaultContactAccess
         {
             get { return __DefaultContactAccess; }
             set { SetField(ref __DefaultContactAccess, value); }
         }
         private PickOrganizationDefaultOpportunityAccess __DefaultOpportunityAccess;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationDefaultOpportunityAccess DefaultOpportunityAccess
         {
             get { return __DefaultOpportunityAccess; }
             set { SetField(ref __DefaultOpportunityAccess, value); }
         }
         private PickOrganizationDefaultLeadAccess __DefaultLeadAccess;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationDefaultLeadAccess DefaultLeadAccess
         {
             get { return __DefaultLeadAccess; }
             set { SetField(ref __DefaultLeadAccess, value); }
         }
         private PickOrganizationDefaultCaseAccess __DefaultCaseAccess;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationDefaultCaseAccess DefaultCaseAccess
         {
             get { return __DefaultCaseAccess; }
             set { SetField(ref __DefaultCaseAccess, value); }
         }
         private PickOrganizationDefaultCalendarAccess __DefaultCalendarAccess;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationDefaultCalendarAccess DefaultCalendarAccess
         {
             get { return __DefaultCalendarAccess; }
             set { SetField(ref __DefaultCalendarAccess, value); }
         }
         private PickOrganizationDefaultPricebookAccess __DefaultPricebookAccess;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationDefaultPricebookAccess DefaultPricebookAccess
         {
             get { return __DefaultPricebookAccess; }
             set { SetField(ref __DefaultPricebookAccess, value); }
         }
         private PickOrganizationDefaultCampaignAccess __DefaultCampaignAccess;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationDefaultCampaignAccess DefaultCampaignAccess
         {
             get { return __DefaultCampaignAccess; }
             set { SetField(ref __DefaultCampaignAccess, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __ComplianceBccEmail;
-        [EntityField]
+        [EntityField(true)]
         public System.String ComplianceBccEmail
         {
             get { return __ComplianceBccEmail; }
             set { SetField(ref __ComplianceBccEmail, value); }
         }
         private PickOrganizationUiSkin __UiSkin;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationUiSkin UiSkin
         {
             get { return __UiSkin; }
             set { SetField(ref __UiSkin, value); }
         }
         private System.String __SignupCountryIsoCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String SignupCountryIsoCode
         {
             get { return __SignupCountryIsoCode; }
             set { SetField(ref __SignupCountryIsoCode, value); }
         }
         private System.DateTime? __TrialExpirationDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? TrialExpirationDate
         {
             get { return __TrialExpirationDate; }
             set { SetField(ref __TrialExpirationDate, value); }
         }
         private PickOrganizationOrganizationType __OrganizationType;
-        [EntityField]
+        [EntityField(true)]
         public PickOrganizationOrganizationType OrganizationType
         {
             get { return __OrganizationType; }
             set { SetField(ref __OrganizationType, value); }
         }
         private System.String __WebToCaseDefaultOrigin;
-        [EntityField]
+        [EntityField(true)]
         public System.String WebToCaseDefaultOrigin
         {
             get { return __WebToCaseDefaultOrigin; }
             set { SetField(ref __WebToCaseDefaultOrigin, value); }
         }
         private System.String __MonthlyPageViewsUsed;
-        [EntityField]
+        [EntityField(true)]
         public System.String MonthlyPageViewsUsed
         {
             get { return __MonthlyPageViewsUsed; }
             set { SetField(ref __MonthlyPageViewsUsed, value); }
         }
         private System.String __MonthlyPageViewsEntitlement;
-        [EntityField]
+        [EntityField(true)]
         public System.String MonthlyPageViewsEntitlement
         {
             get { return __MonthlyPageViewsEntitlement; }
             set { SetField(ref __MonthlyPageViewsEntitlement, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
@@ -22728,91 +22728,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __OpportunityId;
-        [EntityField]
+        [EntityField(true)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
         private System.String __AccountFromId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountFromId
         {
             get { return __AccountFromId; }
             set { SetField(ref __AccountFromId, value); }
         }
         private System.String __AccountToId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AccountToId
         {
             get { return __AccountToId; }
             set { SetField(ref __AccountToId, value); }
         }
         private PickPartnerRole __Role;
-        [EntityField]
+        [EntityField(true)]
         public PickPartnerRole Role
         {
             get { return __Role; }
             set { SetField(ref __Role, value); }
         }
         private System.Boolean __IsPrimary;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
             set { SetField(ref __IsPrimary, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ReversePartnerId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ReversePartnerId
         {
             get { return __ReversePartnerId; }
@@ -22837,63 +22837,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private PickPartnerRoleReverseRole __ReverseRole;
-        [EntityField]
+        [EntityField(true)]
         public PickPartnerRoleReverseRole ReverseRole
         {
             get { return __ReverseRole; }
             set { SetField(ref __ReverseRole, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -22918,70 +22918,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __FiscalYearSettingsId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FiscalYearSettingsId
         {
             get { return __FiscalYearSettingsId; }
             set { SetField(ref __FiscalYearSettingsId, value); }
         }
         private PickPeriodType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickPeriodType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.DateTime __StartDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime StartDate
         {
             get { return __StartDate; }
             set { SetField(ref __StartDate, value); }
         }
         private System.DateTime __EndDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime EndDate
         {
             get { return __EndDate; }
             set { SetField(ref __EndDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsForecastPeriod;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsForecastPeriod
         {
             get { return __IsForecastPeriod; }
             set { SetField(ref __IsForecastPeriod, value); }
         }
         private PickPeriodQuarterLabel __QuarterLabel;
-        [EntityField]
+        [EntityField(true)]
         public PickPeriodQuarterLabel QuarterLabel
         {
             get { return __QuarterLabel; }
             set { SetField(ref __QuarterLabel, value); }
         }
         private PickPeriodPeriodLabel __PeriodLabel;
-        [EntityField]
+        [EntityField(true)]
         public PickPeriodPeriodLabel PeriodLabel
         {
             get { return __PeriodLabel; }
             set { SetField(ref __PeriodLabel, value); }
         }
         private System.String __Number;
-        [EntityField]
+        [EntityField(true)]
         public System.String Number
         {
             get { return __Number; }
@@ -23006,77 +23006,77 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.Boolean __IsStandard;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsStandard
         {
             get { return __IsStandard; }
@@ -23125,56 +23125,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __Pricebook2Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Pricebook2Id
         {
             get { return __Pricebook2Id; }
             set { SetField(ref __Pricebook2Id, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickPricebook2HistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickPricebook2HistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -23199,98 +23199,98 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(true)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Pricebook2Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Pricebook2Id
         {
             get { return __Pricebook2Id; }
             set { SetField(ref __Pricebook2Id, value); }
         }
         private System.String __Product2Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Product2Id
         {
             get { return __Product2Id; }
             set { SetField(ref __Product2Id, value); }
         }
         private System.String __UnitPrice;
-        [EntityField]
+        [EntityField(false)]
         public System.String UnitPrice
         {
             get { return __UnitPrice; }
             set { SetField(ref __UnitPrice, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.Boolean __UseStandardPrice;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UseStandardPrice
         {
             get { return __UseStandardPrice; }
             set { SetField(ref __UseStandardPrice, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __ProductCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String ProductCode
         {
             get { return __ProductCode; }
             set { SetField(ref __ProductCode, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -23327,91 +23327,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __DeveloperName;
-        [EntityField]
+        [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
             set { SetField(ref __DeveloperName, value); }
         }
         private PickProcessDefinitionType __Type;
-        [EntityField]
+        [EntityField(false)]
         public PickProcessDefinitionType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickProcessDefinitionTableEnumOrId __TableEnumOrId;
-        [EntityField]
+        [EntityField(false)]
         public PickProcessDefinitionTableEnumOrId TableEnumOrId
         {
             get { return __TableEnumOrId; }
             set { SetField(ref __TableEnumOrId, value); }
         }
         private PickProcessDefinitionLockType __LockType;
-        [EntityField]
+        [EntityField(false)]
         public PickProcessDefinitionLockType LockType
         {
             get { return __LockType; }
             set { SetField(ref __LockType, value); }
         }
         private PickProcessDefinitionState __State;
-        [EntityField]
+        [EntityField(false)]
         public PickProcessDefinitionState State
         {
             get { return __State; }
             set { SetField(ref __State, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -23436,70 +23436,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ProcessDefinitionId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ProcessDefinitionId
         {
             get { return __ProcessDefinitionId; }
             set { SetField(ref __ProcessDefinitionId, value); }
         }
         private System.String __TargetObjectId;
-        [EntityField]
+        [EntityField(false)]
         public System.String TargetObjectId
         {
             get { return __TargetObjectId; }
             set { SetField(ref __TargetObjectId, value); }
         }
         private PickProcessInstanceStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickProcessInstanceStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -23542,91 +23542,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsPending;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPending
         {
             get { return __IsPending; }
             set { SetField(ref __IsPending, value); }
         }
         private System.String __ProcessInstanceId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ProcessInstanceId
         {
             get { return __ProcessInstanceId; }
             set { SetField(ref __ProcessInstanceId, value); }
         }
         private System.String __TargetObjectId;
-        [EntityField]
+        [EntityField(true)]
         public System.String TargetObjectId
         {
             get { return __TargetObjectId; }
             set { SetField(ref __TargetObjectId, value); }
         }
         private PickProcessInstanceHistoryStepStatus __StepStatus;
-        [EntityField]
+        [EntityField(true)]
         public PickProcessInstanceHistoryStepStatus StepStatus
         {
             get { return __StepStatus; }
             set { SetField(ref __StepStatus, value); }
         }
         private System.String __OriginalActorId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OriginalActorId
         {
             get { return __OriginalActorId; }
             set { SetField(ref __OriginalActorId, value); }
         }
         private System.String __ActorId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ActorId
         {
             get { return __ActorId; }
             set { SetField(ref __ActorId, value); }
         }
         private System.String __RemindersSent;
-        [EntityField]
+        [EntityField(true)]
         public System.String RemindersSent
         {
             get { return __RemindersSent; }
             set { SetField(ref __RemindersSent, value); }
         }
         private System.String __Comments;
-        [EntityField]
+        [EntityField(true)]
         public System.String Comments
         {
             get { return __Comments; }
             set { SetField(ref __Comments, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -23651,63 +23651,63 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ProcessInstanceId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ProcessInstanceId
         {
             get { return __ProcessInstanceId; }
             set { SetField(ref __ProcessInstanceId, value); }
         }
         private PickProcessInstanceStepStepStatus __StepStatus;
-        [EntityField]
+        [EntityField(true)]
         public PickProcessInstanceStepStepStatus StepStatus
         {
             get { return __StepStatus; }
             set { SetField(ref __StepStatus, value); }
         }
         private System.String __OriginalActorId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OriginalActorId
         {
             get { return __OriginalActorId; }
             set { SetField(ref __OriginalActorId, value); }
         }
         private System.String __ActorId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ActorId
         {
             get { return __ActorId; }
             set { SetField(ref __ActorId, value); }
         }
         private System.String __Comments;
-        [EntityField]
+        [EntityField(true)]
         public System.String Comments
         {
             get { return __Comments; }
             set { SetField(ref __Comments, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -23732,56 +23732,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ProcessInstanceId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ProcessInstanceId
         {
             get { return __ProcessInstanceId; }
             set { SetField(ref __ProcessInstanceId, value); }
         }
         private System.String __OriginalActorId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OriginalActorId
         {
             get { return __OriginalActorId; }
             set { SetField(ref __OriginalActorId, value); }
         }
         private System.String __ActorId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ActorId
         {
             get { return __ActorId; }
             set { SetField(ref __ActorId, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -23806,42 +23806,42 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __DeveloperName;
-        [EntityField]
+        [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
             set { SetField(ref __DeveloperName, value); }
         }
         private System.String __ProcessDefinitionId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ProcessDefinitionId
         {
             get { return __ProcessDefinitionId; }
             set { SetField(ref __ProcessDefinitionId, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -23866,84 +23866,84 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __ProductCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String ProductCode
         {
             get { return __ProductCode; }
             set { SetField(ref __ProductCode, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private PickProduct2Family __Family;
-        [EntityField]
+        [EntityField(true)]
         public PickProduct2Family Family
         {
             get { return __Family; }
             set { SetField(ref __Family, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
@@ -24046,56 +24046,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickProduct2FeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickProduct2FeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -24132,595 +24132,595 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.Boolean __PermissionsEmailSingle;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEmailSingle
         {
             get { return __PermissionsEmailSingle; }
             set { SetField(ref __PermissionsEmailSingle, value); }
         }
         private System.Boolean __PermissionsEmailMass;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEmailMass
         {
             get { return __PermissionsEmailMass; }
             set { SetField(ref __PermissionsEmailMass, value); }
         }
         private System.Boolean __PermissionsEditTask;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditTask
         {
             get { return __PermissionsEditTask; }
             set { SetField(ref __PermissionsEditTask, value); }
         }
         private System.Boolean __PermissionsEditEvent;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditEvent
         {
             get { return __PermissionsEditEvent; }
             set { SetField(ref __PermissionsEditEvent, value); }
         }
         private System.Boolean __PermissionsExportReport;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsExportReport
         {
             get { return __PermissionsExportReport; }
             set { SetField(ref __PermissionsExportReport, value); }
         }
         private System.Boolean __PermissionsImportPersonal;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsImportPersonal
         {
             get { return __PermissionsImportPersonal; }
             set { SetField(ref __PermissionsImportPersonal, value); }
         }
         private System.Boolean __PermissionsManageUsers;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageUsers
         {
             get { return __PermissionsManageUsers; }
             set { SetField(ref __PermissionsManageUsers, value); }
         }
         private System.Boolean __PermissionsEditPublicTemplates;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditPublicTemplates
         {
             get { return __PermissionsEditPublicTemplates; }
             set { SetField(ref __PermissionsEditPublicTemplates, value); }
         }
         private System.Boolean __PermissionsModifyAllData;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsModifyAllData
         {
             get { return __PermissionsModifyAllData; }
             set { SetField(ref __PermissionsModifyAllData, value); }
         }
         private System.Boolean __PermissionsManageCases;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageCases
         {
             get { return __PermissionsManageCases; }
             set { SetField(ref __PermissionsManageCases, value); }
         }
         private System.Boolean __PermissionsMassInlineEdit;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsMassInlineEdit
         {
             get { return __PermissionsMassInlineEdit; }
             set { SetField(ref __PermissionsMassInlineEdit, value); }
         }
         private System.Boolean __PermissionsViewKnowledge;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsViewKnowledge
         {
             get { return __PermissionsViewKnowledge; }
             set { SetField(ref __PermissionsViewKnowledge, value); }
         }
         private System.Boolean __PermissionsEditKnowledge;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditKnowledge
         {
             get { return __PermissionsEditKnowledge; }
             set { SetField(ref __PermissionsEditKnowledge, value); }
         }
         private System.Boolean __PermissionsManageKnowledge;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageKnowledge
         {
             get { return __PermissionsManageKnowledge; }
             set { SetField(ref __PermissionsManageKnowledge, value); }
         }
         private System.Boolean __PermissionsManageSolutions;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageSolutions
         {
             get { return __PermissionsManageSolutions; }
             set { SetField(ref __PermissionsManageSolutions, value); }
         }
         private System.Boolean __PermissionsCustomizeApplication;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsCustomizeApplication
         {
             get { return __PermissionsCustomizeApplication; }
             set { SetField(ref __PermissionsCustomizeApplication, value); }
         }
         private System.Boolean __PermissionsEditReadonlyFields;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditReadonlyFields
         {
             get { return __PermissionsEditReadonlyFields; }
             set { SetField(ref __PermissionsEditReadonlyFields, value); }
         }
         private System.Boolean __PermissionsRunReports;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsRunReports
         {
             get { return __PermissionsRunReports; }
             set { SetField(ref __PermissionsRunReports, value); }
         }
         private System.Boolean __PermissionsViewSetup;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsViewSetup
         {
             get { return __PermissionsViewSetup; }
             set { SetField(ref __PermissionsViewSetup, value); }
         }
         private System.Boolean __PermissionsTransferAnyEntity;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsTransferAnyEntity
         {
             get { return __PermissionsTransferAnyEntity; }
             set { SetField(ref __PermissionsTransferAnyEntity, value); }
         }
         private System.Boolean __PermissionsNewReportBuilder;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsNewReportBuilder
         {
             get { return __PermissionsNewReportBuilder; }
             set { SetField(ref __PermissionsNewReportBuilder, value); }
         }
         private System.Boolean __PermissionsActivateContract;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsActivateContract
         {
             get { return __PermissionsActivateContract; }
             set { SetField(ref __PermissionsActivateContract, value); }
         }
         private System.Boolean __PermissionsActivateOrder;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsActivateOrder
         {
             get { return __PermissionsActivateOrder; }
             set { SetField(ref __PermissionsActivateOrder, value); }
         }
         private System.Boolean __PermissionsImportLeads;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsImportLeads
         {
             get { return __PermissionsImportLeads; }
             set { SetField(ref __PermissionsImportLeads, value); }
         }
         private System.Boolean __PermissionsManageLeads;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageLeads
         {
             get { return __PermissionsManageLeads; }
             set { SetField(ref __PermissionsManageLeads, value); }
         }
         private System.Boolean __PermissionsTransferAnyLead;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsTransferAnyLead
         {
             get { return __PermissionsTransferAnyLead; }
             set { SetField(ref __PermissionsTransferAnyLead, value); }
         }
         private System.Boolean __PermissionsViewAllData;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsViewAllData
         {
             get { return __PermissionsViewAllData; }
             set { SetField(ref __PermissionsViewAllData, value); }
         }
         private System.Boolean __PermissionsEditPublicDocuments;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditPublicDocuments
         {
             get { return __PermissionsEditPublicDocuments; }
             set { SetField(ref __PermissionsEditPublicDocuments, value); }
         }
         private System.Boolean __PermissionsViewEncryptedData;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsViewEncryptedData
         {
             get { return __PermissionsViewEncryptedData; }
             set { SetField(ref __PermissionsViewEncryptedData, value); }
         }
         private System.Boolean __PermissionsEditBrandTemplates;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditBrandTemplates
         {
             get { return __PermissionsEditBrandTemplates; }
             set { SetField(ref __PermissionsEditBrandTemplates, value); }
         }
         private System.Boolean __PermissionsEditHtmlTemplates;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditHtmlTemplates
         {
             get { return __PermissionsEditHtmlTemplates; }
             set { SetField(ref __PermissionsEditHtmlTemplates, value); }
         }
         private System.Boolean __PermissionsDeleteActivatedContract;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsDeleteActivatedContract
         {
             get { return __PermissionsDeleteActivatedContract; }
             set { SetField(ref __PermissionsDeleteActivatedContract, value); }
         }
         private System.Boolean __PermissionsSendSitRequests;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsSendSitRequests
         {
             get { return __PermissionsSendSitRequests; }
             set { SetField(ref __PermissionsSendSitRequests, value); }
         }
         private System.Boolean __PermissionsManageRemoteAccess;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageRemoteAccess
         {
             get { return __PermissionsManageRemoteAccess; }
             set { SetField(ref __PermissionsManageRemoteAccess, value); }
         }
         private System.Boolean __PermissionsCanUseNewDashboardBuilder;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsCanUseNewDashboardBuilder
         {
             get { return __PermissionsCanUseNewDashboardBuilder; }
             set { SetField(ref __PermissionsCanUseNewDashboardBuilder, value); }
         }
         private System.Boolean __PermissionsManageCategories;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageCategories
         {
             get { return __PermissionsManageCategories; }
             set { SetField(ref __PermissionsManageCategories, value); }
         }
         private System.Boolean __PermissionsConvertLeads;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsConvertLeads
         {
             get { return __PermissionsConvertLeads; }
             set { SetField(ref __PermissionsConvertLeads, value); }
         }
         private System.Boolean __PermissionsPasswordNeverExpires;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsPasswordNeverExpires
         {
             get { return __PermissionsPasswordNeverExpires; }
             set { SetField(ref __PermissionsPasswordNeverExpires, value); }
         }
         private System.Boolean __PermissionsUseTeamReassignWizards;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsUseTeamReassignWizards
         {
             get { return __PermissionsUseTeamReassignWizards; }
             set { SetField(ref __PermissionsUseTeamReassignWizards, value); }
         }
         private System.Boolean __PermissionsEditActivatedOrders;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditActivatedOrders
         {
             get { return __PermissionsEditActivatedOrders; }
             set { SetField(ref __PermissionsEditActivatedOrders, value); }
         }
         private System.Boolean __PermissionsInstallMultiforce;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsInstallMultiforce
         {
             get { return __PermissionsInstallMultiforce; }
             set { SetField(ref __PermissionsInstallMultiforce, value); }
         }
         private System.Boolean __PermissionsPublishMultiforce;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsPublishMultiforce
         {
             get { return __PermissionsPublishMultiforce; }
             set { SetField(ref __PermissionsPublishMultiforce, value); }
         }
         private System.Boolean __PermissionsEditOppLineItemUnitPrice;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditOppLineItemUnitPrice
         {
             get { return __PermissionsEditOppLineItemUnitPrice; }
             set { SetField(ref __PermissionsEditOppLineItemUnitPrice, value); }
         }
         private System.Boolean __PermissionsCreateMultiforce;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsCreateMultiforce
         {
             get { return __PermissionsCreateMultiforce; }
             set { SetField(ref __PermissionsCreateMultiforce, value); }
         }
         private System.Boolean __PermissionsBulkApiHardDelete;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsBulkApiHardDelete
         {
             get { return __PermissionsBulkApiHardDelete; }
             set { SetField(ref __PermissionsBulkApiHardDelete, value); }
         }
         private System.Boolean __PermissionsSolutionImport;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsSolutionImport
         {
             get { return __PermissionsSolutionImport; }
             set { SetField(ref __PermissionsSolutionImport, value); }
         }
         private System.Boolean __PermissionsManageCallCenters;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageCallCenters
         {
             get { return __PermissionsManageCallCenters; }
             set { SetField(ref __PermissionsManageCallCenters, value); }
         }
         private System.Boolean __PermissionsManageSynonyms;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageSynonyms
         {
             get { return __PermissionsManageSynonyms; }
             set { SetField(ref __PermissionsManageSynonyms, value); }
         }
         private System.Boolean __PermissionsViewContent;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsViewContent
         {
             get { return __PermissionsViewContent; }
             set { SetField(ref __PermissionsViewContent, value); }
         }
         private System.Boolean __PermissionsManageEmailClientConfig;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageEmailClientConfig
         {
             get { return __PermissionsManageEmailClientConfig; }
             set { SetField(ref __PermissionsManageEmailClientConfig, value); }
         }
         private System.Boolean __PermissionsEnableNotifications;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEnableNotifications
         {
             get { return __PermissionsEnableNotifications; }
             set { SetField(ref __PermissionsEnableNotifications, value); }
         }
         private System.Boolean __PermissionsManageDataIntegrations;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageDataIntegrations
         {
             get { return __PermissionsManageDataIntegrations; }
             set { SetField(ref __PermissionsManageDataIntegrations, value); }
         }
         private System.Boolean __PermissionsDistributeFromPersWksp;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsDistributeFromPersWksp
         {
             get { return __PermissionsDistributeFromPersWksp; }
             set { SetField(ref __PermissionsDistributeFromPersWksp, value); }
         }
         private System.Boolean __PermissionsViewDataCategories;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsViewDataCategories
         {
             get { return __PermissionsViewDataCategories; }
             set { SetField(ref __PermissionsViewDataCategories, value); }
         }
         private System.Boolean __PermissionsManageDataCategories;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageDataCategories
         {
             get { return __PermissionsManageDataCategories; }
             set { SetField(ref __PermissionsManageDataCategories, value); }
         }
         private System.Boolean __PermissionsAuthorApex;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsAuthorApex
         {
             get { return __PermissionsAuthorApex; }
             set { SetField(ref __PermissionsAuthorApex, value); }
         }
         private System.Boolean __PermissionsManageMobile;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageMobile
         {
             get { return __PermissionsManageMobile; }
             set { SetField(ref __PermissionsManageMobile, value); }
         }
         private System.Boolean __PermissionsApiEnabled;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsApiEnabled
         {
             get { return __PermissionsApiEnabled; }
             set { SetField(ref __PermissionsApiEnabled, value); }
         }
         private System.Boolean __PermissionsManageCustomReportTypes;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageCustomReportTypes
         {
             get { return __PermissionsManageCustomReportTypes; }
             set { SetField(ref __PermissionsManageCustomReportTypes, value); }
         }
         private System.Boolean __PermissionsEditCaseComments;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsEditCaseComments
         {
             get { return __PermissionsEditCaseComments; }
             set { SetField(ref __PermissionsEditCaseComments, value); }
         }
         private System.Boolean __PermissionsTransferAnyCase;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsTransferAnyCase
         {
             get { return __PermissionsTransferAnyCase; }
             set { SetField(ref __PermissionsTransferAnyCase, value); }
         }
         private System.Boolean __PermissionsContentAdministrator;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsContentAdministrator
         {
             get { return __PermissionsContentAdministrator; }
             set { SetField(ref __PermissionsContentAdministrator, value); }
         }
         private System.Boolean __PermissionsCreateWorkspaces;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsCreateWorkspaces
         {
             get { return __PermissionsCreateWorkspaces; }
             set { SetField(ref __PermissionsCreateWorkspaces, value); }
         }
         private System.Boolean __PermissionsManageContentPermissions;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageContentPermissions
         {
             get { return __PermissionsManageContentPermissions; }
             set { SetField(ref __PermissionsManageContentPermissions, value); }
         }
         private System.Boolean __PermissionsManageContentProperties;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageContentProperties
         {
             get { return __PermissionsManageContentProperties; }
             set { SetField(ref __PermissionsManageContentProperties, value); }
         }
         private System.Boolean __PermissionsManageContentTypes;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageContentTypes
         {
             get { return __PermissionsManageContentTypes; }
             set { SetField(ref __PermissionsManageContentTypes, value); }
         }
         private System.Boolean __PermissionsManageAnalyticSnapshots;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageAnalyticSnapshots
         {
             get { return __PermissionsManageAnalyticSnapshots; }
             set { SetField(ref __PermissionsManageAnalyticSnapshots, value); }
         }
         private System.Boolean __PermissionsScheduleReports;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsScheduleReports
         {
             get { return __PermissionsScheduleReports; }
             set { SetField(ref __PermissionsScheduleReports, value); }
         }
         private System.Boolean __PermissionsManageBusinessHourHolidays;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageBusinessHourHolidays
         {
             get { return __PermissionsManageBusinessHourHolidays; }
             set { SetField(ref __PermissionsManageBusinessHourHolidays, value); }
         }
         private System.Boolean __PermissionsManageDynamicDashboards;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageDynamicDashboards
         {
             get { return __PermissionsManageDynamicDashboards; }
             set { SetField(ref __PermissionsManageDynamicDashboards, value); }
         }
         private System.Boolean __PermissionsCustomSidebarOnAllPages;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsCustomSidebarOnAllPages
         {
             get { return __PermissionsCustomSidebarOnAllPages; }
             set { SetField(ref __PermissionsCustomSidebarOnAllPages, value); }
         }
         private System.Boolean __PermissionsManageInteraction;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageInteraction
         {
             get { return __PermissionsManageInteraction; }
             set { SetField(ref __PermissionsManageInteraction, value); }
         }
         private System.Boolean __PermissionsViewMyTeamsDashboards;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsViewMyTeamsDashboards
         {
             get { return __PermissionsViewMyTeamsDashboards; }
             set { SetField(ref __PermissionsViewMyTeamsDashboards, value); }
         }
         private System.Boolean __PermissionsModerateChatter;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsModerateChatter
         {
             get { return __PermissionsModerateChatter; }
             set { SetField(ref __PermissionsModerateChatter, value); }
         }
         private System.Boolean __PermissionsManageNetworks;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean PermissionsManageNetworks
         {
             get { return __PermissionsManageNetworks; }
             set { SetField(ref __PermissionsManageNetworks, value); }
         }
         private System.String __UserLicenseId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserLicenseId
         {
             get { return __UserLicenseId; }
             set { SetField(ref __UserLicenseId, value); }
         }
         private PickProfileUserType __UserType;
-        [EntityField]
+        [EntityField(true)]
         public PickProfileUserType UserType
         {
             get { return __UserType; }
             set { SetField(ref __UserType, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
@@ -24751,35 +24751,35 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __QueueId;
-        [EntityField]
+        [EntityField(false)]
         public System.String QueueId
         {
             get { return __QueueId; }
             set { SetField(ref __QueueId, value); }
         }
         private PickQueueSobjectSobjectType __SobjectType;
-        [EntityField]
+        [EntityField(false)]
         public PickQueueSobjectSobjectType SobjectType
         {
             get { return __SobjectType; }
             set { SetField(ref __SobjectType, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -24804,91 +24804,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __DeveloperName;
-        [EntityField]
+        [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
             set { SetField(ref __DeveloperName, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __BusinessProcessId;
-        [EntityField]
+        [EntityField(true)]
         public System.String BusinessProcessId
         {
             get { return __BusinessProcessId; }
             set { SetField(ref __BusinessProcessId, value); }
         }
         private PickRecordTypeSobjectType __SobjectType;
-        [EntityField]
+        [EntityField(false)]
         public PickRecordTypeSobjectType SobjectType
         {
             get { return __SobjectType; }
             set { SetField(ref __SobjectType, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -24913,91 +24913,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __DeveloperName;
-        [EntityField]
+        [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
             set { SetField(ref __DeveloperName, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.DateTime? __LastRunDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastRunDate
         {
             get { return __LastRunDate; }
             set { SetField(ref __LastRunDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -25034,56 +25034,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickReportFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickReportFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -25120,42 +25120,42 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Action;
-        [EntityField]
+        [EntityField(false)]
         public System.String Action
         {
             get { return __Action; }
             set { SetField(ref __Action, value); }
         }
         private System.String __Section;
-        [EntityField]
+        [EntityField(true)]
         public System.String Section
         {
             get { return __Section; }
             set { SetField(ref __Section, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.String __Display;
-        [EntityField]
+        [EntityField(true)]
         public System.String Display
         {
             get { return __Display; }
@@ -25180,182 +25180,182 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __Subdomain;
-        [EntityField]
+        [EntityField(true)]
         public System.String Subdomain
         {
             get { return __Subdomain; }
             set { SetField(ref __Subdomain, value); }
         }
         private System.String __TopLevelDomain;
-        [EntityField]
+        [EntityField(true)]
         public System.String TopLevelDomain
         {
             get { return __TopLevelDomain; }
             set { SetField(ref __TopLevelDomain, value); }
         }
         private System.String __UrlPathPrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String UrlPathPrefix
         {
             get { return __UrlPathPrefix; }
             set { SetField(ref __UrlPathPrefix, value); }
         }
         private PickSiteStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickSiteStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.String __AdminId;
-        [EntityField]
+        [EntityField(false)]
         public System.String AdminId
         {
             get { return __AdminId; }
             set { SetField(ref __AdminId, value); }
         }
         private System.Boolean __OptionsEnableFeeds;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean OptionsEnableFeeds
         {
             get { return __OptionsEnableFeeds; }
             set { SetField(ref __OptionsEnableFeeds, value); }
         }
         private System.Boolean __OptionsAllowHomePage;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean OptionsAllowHomePage
         {
             get { return __OptionsAllowHomePage; }
             set { SetField(ref __OptionsAllowHomePage, value); }
         }
         private System.Boolean __OptionsAllowStandardIdeasPages;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean OptionsAllowStandardIdeasPages
         {
             get { return __OptionsAllowStandardIdeasPages; }
             set { SetField(ref __OptionsAllowStandardIdeasPages, value); }
         }
         private System.Boolean __OptionsAllowStandardSearch;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean OptionsAllowStandardSearch
         {
             get { return __OptionsAllowStandardSearch; }
             set { SetField(ref __OptionsAllowStandardSearch, value); }
         }
         private System.Boolean __OptionsAllowStandardLookups;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean OptionsAllowStandardLookups
         {
             get { return __OptionsAllowStandardLookups; }
             set { SetField(ref __OptionsAllowStandardLookups, value); }
         }
         private System.Boolean __OptionsAllowStandardAnswersPages;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean OptionsAllowStandardAnswersPages
         {
             get { return __OptionsAllowStandardAnswersPages; }
             set { SetField(ref __OptionsAllowStandardAnswersPages, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(false)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __AnalyticsTrackingCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String AnalyticsTrackingCode
         {
             get { return __AnalyticsTrackingCode; }
             set { SetField(ref __AnalyticsTrackingCode, value); }
         }
         private System.String __DailyBandwidthLimit;
-        [EntityField]
+        [EntityField(true)]
         public System.String DailyBandwidthLimit
         {
             get { return __DailyBandwidthLimit; }
             set { SetField(ref __DailyBandwidthLimit, value); }
         }
         private System.String __DailyBandwidthUsed;
-        [EntityField]
+        [EntityField(true)]
         public System.String DailyBandwidthUsed
         {
             get { return __DailyBandwidthUsed; }
             set { SetField(ref __DailyBandwidthUsed, value); }
         }
         private System.String __DailyRequestTimeLimit;
-        [EntityField]
+        [EntityField(true)]
         public System.String DailyRequestTimeLimit
         {
             get { return __DailyRequestTimeLimit; }
             set { SetField(ref __DailyRequestTimeLimit, value); }
         }
         private System.String __DailyRequestTimeUsed;
-        [EntityField]
+        [EntityField(true)]
         public System.String DailyRequestTimeUsed
         {
             get { return __DailyRequestTimeUsed; }
             set { SetField(ref __DailyRequestTimeUsed, value); }
         }
         private System.String __MonthlyPageViewsEntitlement;
-        [EntityField]
+        [EntityField(true)]
         public System.String MonthlyPageViewsEntitlement
         {
             get { return __MonthlyPageViewsEntitlement; }
             set { SetField(ref __MonthlyPageViewsEntitlement, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -25398,56 +25398,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickSiteFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickSiteFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -25484,56 +25484,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __SiteId;
-        [EntityField]
+        [EntityField(false)]
         public System.String SiteId
         {
             get { return __SiteId; }
             set { SetField(ref __SiteId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickSiteHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickSiteHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -25558,119 +25558,119 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __SolutionNumber;
-        [EntityField]
+        [EntityField(false)]
         public System.String SolutionNumber
         {
             get { return __SolutionNumber; }
             set { SetField(ref __SolutionNumber, value); }
         }
         private System.String __SolutionName;
-        [EntityField]
+        [EntityField(false)]
         public System.String SolutionName
         {
             get { return __SolutionName; }
             set { SetField(ref __SolutionName, value); }
         }
         private System.Boolean __IsPublished;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPublished
         {
             get { return __IsPublished; }
             set { SetField(ref __IsPublished, value); }
         }
         private System.Boolean __IsPublishedInPublicKb;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsPublishedInPublicKb
         {
             get { return __IsPublishedInPublicKb; }
             set { SetField(ref __IsPublishedInPublicKb, value); }
         }
         private PickSolutionStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickSolutionStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private System.Boolean __IsReviewed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsReviewed
         {
             get { return __IsReviewed; }
             set { SetField(ref __IsReviewed, value); }
         }
         private System.String __SolutionNote;
-        [EntityField]
+        [EntityField(true)]
         public System.String SolutionNote
         {
             get { return __SolutionNote; }
             set { SetField(ref __SolutionNote, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __TimesUsed;
-        [EntityField]
+        [EntityField(false)]
         public System.String TimesUsed
         {
             get { return __TimesUsed; }
             set { SetField(ref __TimesUsed, value); }
         }
         private System.Boolean __IsHtml;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsHtml
         {
             get { return __IsHtml; }
@@ -25767,56 +25767,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickSolutionFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickSolutionFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -25853,56 +25853,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __SolutionId;
-        [EntityField]
+        [EntityField(false)]
         public System.String SolutionId
         {
             get { return __SolutionId; }
             set { SetField(ref __SolutionId, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private PickSolutionHistoryField __Field;
-        [EntityField]
+        [EntityField(false)]
         public PickSolutionHistoryField Field
         {
             get { return __Field; }
             set { SetField(ref __Field, value); }
         }
         private System.String __OldValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
             set { SetField(ref __OldValue, value); }
         }
         private System.String __NewValue;
-        [EntityField]
+        [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
@@ -25927,70 +25927,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private System.Boolean __IsDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
             set { SetField(ref __IsDefault, value); }
         }
         private System.Boolean __IsReviewed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsReviewed
         {
             get { return __IsReviewed; }
             set { SetField(ref __IsReviewed, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -26015,91 +26015,91 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __ContentType;
-        [EntityField]
+        [EntityField(false)]
         public System.String ContentType
         {
             get { return __ContentType; }
             set { SetField(ref __ContentType, value); }
         }
         private System.String __BodyLength;
-        [EntityField]
+        [EntityField(false)]
         public System.String BodyLength
         {
             get { return __BodyLength; }
             set { SetField(ref __BodyLength, value); }
         }
         private System.String __Body;
-        [EntityField]
+        [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private PickStaticResourceCacheControl __CacheControl;
-        [EntityField]
+        [EntityField(false)]
         public PickStaticResourceCacheControl CacheControl
         {
             get { return __CacheControl; }
@@ -26124,245 +26124,245 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __WhoId;
-        [EntityField]
+        [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
             set { SetField(ref __WhoId, value); }
         }
         private System.String __WhatId;
-        [EntityField]
+        [EntityField(true)]
         public System.String WhatId
         {
             get { return __WhatId; }
             set { SetField(ref __WhatId, value); }
         }
         private System.String __Subject;
-        [EntityField]
+        [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
             set { SetField(ref __Subject, value); }
         }
         private System.DateTime? __ActivityDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
             set { SetField(ref __ActivityDate, value); }
         }
         private PickTaskStatus __Status;
-        [EntityField]
+        [EntityField(false)]
         public PickTaskStatus Status
         {
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
         private PickTaskPriority __Priority;
-        [EntityField]
+        [EntityField(false)]
         public PickTaskPriority Priority
         {
             get { return __Priority; }
             set { SetField(ref __Priority, value); }
         }
         private System.String __OwnerId;
-        [EntityField]
+        [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.Boolean __IsClosed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
             set { SetField(ref __IsClosed, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.Boolean __IsArchived;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsArchived
         {
             get { return __IsArchived; }
             set { SetField(ref __IsArchived, value); }
         }
         private System.String __CallDurationInSeconds;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallDurationInSeconds
         {
             get { return __CallDurationInSeconds; }
             set { SetField(ref __CallDurationInSeconds, value); }
         }
         private PickTaskCallType __CallType;
-        [EntityField]
+        [EntityField(true)]
         public PickTaskCallType CallType
         {
             get { return __CallType; }
             set { SetField(ref __CallType, value); }
         }
         private System.String __CallDisposition;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallDisposition
         {
             get { return __CallDisposition; }
             set { SetField(ref __CallDisposition, value); }
         }
         private System.String __CallObject;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallObject
         {
             get { return __CallObject; }
             set { SetField(ref __CallObject, value); }
         }
         private System.DateTime? __ReminderDateTime;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? ReminderDateTime
         {
             get { return __ReminderDateTime; }
             set { SetField(ref __ReminderDateTime, value); }
         }
         private System.Boolean __IsReminderSet;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsReminderSet
         {
             get { return __IsReminderSet; }
             set { SetField(ref __IsReminderSet, value); }
         }
         private System.String __RecurrenceActivityId;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceActivityId
         {
             get { return __RecurrenceActivityId; }
             set { SetField(ref __RecurrenceActivityId, value); }
         }
         private System.Boolean __IsRecurrence;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsRecurrence
         {
             get { return __IsRecurrence; }
             set { SetField(ref __IsRecurrence, value); }
         }
         private System.DateTime? __RecurrenceStartDateOnly;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? RecurrenceStartDateOnly
         {
             get { return __RecurrenceStartDateOnly; }
             set { SetField(ref __RecurrenceStartDateOnly, value); }
         }
         private System.DateTime? __RecurrenceEndDateOnly;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? RecurrenceEndDateOnly
         {
             get { return __RecurrenceEndDateOnly; }
             set { SetField(ref __RecurrenceEndDateOnly, value); }
         }
         private PickTaskRecurrenceTimeZoneSidKey __RecurrenceTimeZoneSidKey;
-        [EntityField]
+        [EntityField(true)]
         public PickTaskRecurrenceTimeZoneSidKey RecurrenceTimeZoneSidKey
         {
             get { return __RecurrenceTimeZoneSidKey; }
             set { SetField(ref __RecurrenceTimeZoneSidKey, value); }
         }
         private PickTaskRecurrenceType __RecurrenceType;
-        [EntityField]
+        [EntityField(true)]
         public PickTaskRecurrenceType RecurrenceType
         {
             get { return __RecurrenceType; }
             set { SetField(ref __RecurrenceType, value); }
         }
         private System.String __RecurrenceInterval;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceInterval
         {
             get { return __RecurrenceInterval; }
             set { SetField(ref __RecurrenceInterval, value); }
         }
         private System.String __RecurrenceDayOfWeekMask;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceDayOfWeekMask
         {
             get { return __RecurrenceDayOfWeekMask; }
             set { SetField(ref __RecurrenceDayOfWeekMask, value); }
         }
         private System.String __RecurrenceDayOfMonth;
-        [EntityField]
+        [EntityField(true)]
         public System.String RecurrenceDayOfMonth
         {
             get { return __RecurrenceDayOfMonth; }
             set { SetField(ref __RecurrenceDayOfMonth, value); }
         }
         private PickTaskRecurrenceInstance __RecurrenceInstance;
-        [EntityField]
+        [EntityField(true)]
         public PickTaskRecurrenceInstance RecurrenceInstance
         {
             get { return __RecurrenceInstance; }
             set { SetField(ref __RecurrenceInstance, value); }
         }
         private PickTaskRecurrenceMonthOfYear __RecurrenceMonthOfYear;
-        [EntityField]
+        [EntityField(true)]
         public PickTaskRecurrenceMonthOfYear RecurrenceMonthOfYear
         {
             get { return __RecurrenceMonthOfYear; }
@@ -26411,56 +26411,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickTaskFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickTaskFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -26497,70 +26497,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private System.Boolean __IsDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
             set { SetField(ref __IsDefault, value); }
         }
         private System.Boolean __IsHighPriority;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsHighPriority
         {
             get { return __IsHighPriority; }
             set { SetField(ref __IsHighPriority, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -26585,70 +26585,70 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __SortOrder;
-        [EntityField]
+        [EntityField(true)]
         public System.String SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
         }
         private System.Boolean __IsDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
             set { SetField(ref __IsDefault, value); }
         }
         private System.Boolean __IsClosed;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
             set { SetField(ref __IsClosed, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -26673,504 +26673,504 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Username;
-        [EntityField]
+        [EntityField(false)]
         public System.String Username
         {
             get { return __Username; }
             set { SetField(ref __Username, value); }
         }
         private System.String __LastName;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastName
         {
             get { return __LastName; }
             set { SetField(ref __LastName, value); }
         }
         private System.String __FirstName;
-        [EntityField]
+        [EntityField(true)]
         public System.String FirstName
         {
             get { return __FirstName; }
             set { SetField(ref __FirstName, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __CompanyName;
-        [EntityField]
+        [EntityField(true)]
         public System.String CompanyName
         {
             get { return __CompanyName; }
             set { SetField(ref __CompanyName, value); }
         }
         private System.String __Division;
-        [EntityField]
+        [EntityField(true)]
         public System.String Division
         {
             get { return __Division; }
             set { SetField(ref __Division, value); }
         }
         private System.String __Department;
-        [EntityField]
+        [EntityField(true)]
         public System.String Department
         {
             get { return __Department; }
             set { SetField(ref __Department, value); }
         }
         private System.String __Title;
-        [EntityField]
+        [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
             set { SetField(ref __Title, value); }
         }
         private System.String __Street;
-        [EntityField]
+        [EntityField(true)]
         public System.String Street
         {
             get { return __Street; }
             set { SetField(ref __Street, value); }
         }
         private System.String __City;
-        [EntityField]
+        [EntityField(true)]
         public System.String City
         {
             get { return __City; }
             set { SetField(ref __City, value); }
         }
         private System.String __State;
-        [EntityField]
+        [EntityField(true)]
         public System.String State
         {
             get { return __State; }
             set { SetField(ref __State, value); }
         }
         private System.String __PostalCode;
-        [EntityField]
+        [EntityField(true)]
         public System.String PostalCode
         {
             get { return __PostalCode; }
             set { SetField(ref __PostalCode, value); }
         }
         private System.String __Country;
-        [EntityField]
+        [EntityField(true)]
         public System.String Country
         {
             get { return __Country; }
             set { SetField(ref __Country, value); }
         }
         private System.String __Email;
-        [EntityField]
+        [EntityField(false)]
         public System.String Email
         {
             get { return __Email; }
             set { SetField(ref __Email, value); }
         }
         private System.String __Phone;
-        [EntityField]
+        [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
             set { SetField(ref __Phone, value); }
         }
         private System.String __Fax;
-        [EntityField]
+        [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
             set { SetField(ref __Fax, value); }
         }
         private System.String __MobilePhone;
-        [EntityField]
+        [EntityField(true)]
         public System.String MobilePhone
         {
             get { return __MobilePhone; }
             set { SetField(ref __MobilePhone, value); }
         }
         private System.String __Alias;
-        [EntityField]
+        [EntityField(false)]
         public System.String Alias
         {
             get { return __Alias; }
             set { SetField(ref __Alias, value); }
         }
         private System.String __CommunityNickname;
-        [EntityField]
+        [EntityField(false)]
         public System.String CommunityNickname
         {
             get { return __CommunityNickname; }
             set { SetField(ref __CommunityNickname, value); }
         }
         private System.Boolean __IsActive;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
         private PickUserTimeZoneSidKey __TimeZoneSidKey;
-        [EntityField]
+        [EntityField(false)]
         public PickUserTimeZoneSidKey TimeZoneSidKey
         {
             get { return __TimeZoneSidKey; }
             set { SetField(ref __TimeZoneSidKey, value); }
         }
         private System.String __UserRoleId;
-        [EntityField]
+        [EntityField(true)]
         public System.String UserRoleId
         {
             get { return __UserRoleId; }
             set { SetField(ref __UserRoleId, value); }
         }
         private PickUserLocaleSidKey __LocaleSidKey;
-        [EntityField]
+        [EntityField(false)]
         public PickUserLocaleSidKey LocaleSidKey
         {
             get { return __LocaleSidKey; }
             set { SetField(ref __LocaleSidKey, value); }
         }
         private System.Boolean __ReceivesInfoEmails;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean ReceivesInfoEmails
         {
             get { return __ReceivesInfoEmails; }
             set { SetField(ref __ReceivesInfoEmails, value); }
         }
         private System.Boolean __ReceivesAdminInfoEmails;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean ReceivesAdminInfoEmails
         {
             get { return __ReceivesAdminInfoEmails; }
             set { SetField(ref __ReceivesAdminInfoEmails, value); }
         }
         private PickUserEmailEncodingKey __EmailEncodingKey;
-        [EntityField]
+        [EntityField(false)]
         public PickUserEmailEncodingKey EmailEncodingKey
         {
             get { return __EmailEncodingKey; }
             set { SetField(ref __EmailEncodingKey, value); }
         }
         private System.String __ProfileId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ProfileId
         {
             get { return __ProfileId; }
             set { SetField(ref __ProfileId, value); }
         }
         private PickUserUserType __UserType;
-        [EntityField]
+        [EntityField(true)]
         public PickUserUserType UserType
         {
             get { return __UserType; }
             set { SetField(ref __UserType, value); }
         }
         private PickUserLanguageLocaleKey __LanguageLocaleKey;
-        [EntityField]
+        [EntityField(false)]
         public PickUserLanguageLocaleKey LanguageLocaleKey
         {
             get { return __LanguageLocaleKey; }
             set { SetField(ref __LanguageLocaleKey, value); }
         }
         private System.String __EmployeeNumber;
-        [EntityField]
+        [EntityField(true)]
         public System.String EmployeeNumber
         {
             get { return __EmployeeNumber; }
             set { SetField(ref __EmployeeNumber, value); }
         }
         private System.String __DelegatedApproverId;
-        [EntityField]
+        [EntityField(true)]
         public System.String DelegatedApproverId
         {
             get { return __DelegatedApproverId; }
             set { SetField(ref __DelegatedApproverId, value); }
         }
         private System.String __ManagerId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ManagerId
         {
             get { return __ManagerId; }
             set { SetField(ref __ManagerId, value); }
         }
         private System.DateTime? __LastLoginDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastLoginDate
         {
             get { return __LastLoginDate; }
             set { SetField(ref __LastLoginDate, value); }
         }
         private System.DateTime? __LastPasswordChangeDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? LastPasswordChangeDate
         {
             get { return __LastPasswordChangeDate; }
             set { SetField(ref __LastPasswordChangeDate, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.DateTime? __OfflineTrialExpirationDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? OfflineTrialExpirationDate
         {
             get { return __OfflineTrialExpirationDate; }
             set { SetField(ref __OfflineTrialExpirationDate, value); }
         }
         private System.DateTime? __OfflinePdaTrialExpirationDate;
-        [EntityField]
+        [EntityField(true)]
         public System.DateTime? OfflinePdaTrialExpirationDate
         {
             get { return __OfflinePdaTrialExpirationDate; }
             set { SetField(ref __OfflinePdaTrialExpirationDate, value); }
         }
         private System.Boolean __UserPermissionsMarketingUser;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPermissionsMarketingUser
         {
             get { return __UserPermissionsMarketingUser; }
             set { SetField(ref __UserPermissionsMarketingUser, value); }
         }
         private System.Boolean __UserPermissionsOfflineUser;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPermissionsOfflineUser
         {
             get { return __UserPermissionsOfflineUser; }
             set { SetField(ref __UserPermissionsOfflineUser, value); }
         }
         private System.Boolean __UserPermissionsCallCenterAutoLogin;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPermissionsCallCenterAutoLogin
         {
             get { return __UserPermissionsCallCenterAutoLogin; }
             set { SetField(ref __UserPermissionsCallCenterAutoLogin, value); }
         }
         private System.Boolean __UserPermissionsMobileUser;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPermissionsMobileUser
         {
             get { return __UserPermissionsMobileUser; }
             set { SetField(ref __UserPermissionsMobileUser, value); }
         }
         private System.Boolean __UserPermissionsSFContentUser;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPermissionsSFContentUser
         {
             get { return __UserPermissionsSFContentUser; }
             set { SetField(ref __UserPermissionsSFContentUser, value); }
         }
         private System.Boolean __UserPermissionsKnowledgeUser;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPermissionsKnowledgeUser
         {
             get { return __UserPermissionsKnowledgeUser; }
             set { SetField(ref __UserPermissionsKnowledgeUser, value); }
         }
         private System.Boolean __UserPermissionsInteractionUser;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPermissionsInteractionUser
         {
             get { return __UserPermissionsInteractionUser; }
             set { SetField(ref __UserPermissionsInteractionUser, value); }
         }
         private System.Boolean __UserPermissionsSupportUser;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPermissionsSupportUser
         {
             get { return __UserPermissionsSupportUser; }
             set { SetField(ref __UserPermissionsSupportUser, value); }
         }
         private System.Boolean __ForecastEnabled;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean ForecastEnabled
         {
             get { return __ForecastEnabled; }
             set { SetField(ref __ForecastEnabled, value); }
         }
         private System.Boolean __UserPreferencesActivityRemindersPopup;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesActivityRemindersPopup
         {
             get { return __UserPreferencesActivityRemindersPopup; }
             set { SetField(ref __UserPreferencesActivityRemindersPopup, value); }
         }
         private System.Boolean __UserPreferencesEventRemindersCheckboxDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesEventRemindersCheckboxDefault
         {
             get { return __UserPreferencesEventRemindersCheckboxDefault; }
             set { SetField(ref __UserPreferencesEventRemindersCheckboxDefault, value); }
         }
         private System.Boolean __UserPreferencesTaskRemindersCheckboxDefault;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesTaskRemindersCheckboxDefault
         {
             get { return __UserPreferencesTaskRemindersCheckboxDefault; }
             set { SetField(ref __UserPreferencesTaskRemindersCheckboxDefault, value); }
         }
         private System.Boolean __UserPreferencesReminderSoundOff;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesReminderSoundOff
         {
             get { return __UserPreferencesReminderSoundOff; }
             set { SetField(ref __UserPreferencesReminderSoundOff, value); }
         }
         private System.Boolean __UserPreferencesDisableAutoSubForFeeds;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesDisableAutoSubForFeeds
         {
             get { return __UserPreferencesDisableAutoSubForFeeds; }
             set { SetField(ref __UserPreferencesDisableAutoSubForFeeds, value); }
         }
         private System.Boolean __UserPreferencesApexPagesDeveloperMode;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesApexPagesDeveloperMode
         {
             get { return __UserPreferencesApexPagesDeveloperMode; }
             set { SetField(ref __UserPreferencesApexPagesDeveloperMode, value); }
         }
         private System.Boolean __UserPreferencesHideCSNGetChatterMobileTask;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesHideCSNGetChatterMobileTask
         {
             get { return __UserPreferencesHideCSNGetChatterMobileTask; }
             set { SetField(ref __UserPreferencesHideCSNGetChatterMobileTask, value); }
         }
         private System.Boolean __UserPreferencesHideCSNDesktopTask;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesHideCSNDesktopTask
         {
             get { return __UserPreferencesHideCSNDesktopTask; }
             set { SetField(ref __UserPreferencesHideCSNDesktopTask, value); }
         }
         private System.Boolean __UserPreferencesSortFeedByComment;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesSortFeedByComment
         {
             get { return __UserPreferencesSortFeedByComment; }
             set { SetField(ref __UserPreferencesSortFeedByComment, value); }
         }
         private System.Boolean __UserPreferencesOptOutOfTouch;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesOptOutOfTouch
         {
             get { return __UserPreferencesOptOutOfTouch; }
             set { SetField(ref __UserPreferencesOptOutOfTouch, value); }
         }
         private System.Boolean __UserPreferencesLightningExperiencePreferred;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean UserPreferencesLightningExperiencePreferred
         {
             get { return __UserPreferencesLightningExperiencePreferred; }
             set { SetField(ref __UserPreferencesLightningExperiencePreferred, value); }
         }
         private System.String __ContactId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ContactId
         {
             get { return __ContactId; }
             set { SetField(ref __ContactId, value); }
         }
         private System.String __AccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
             set { SetField(ref __AccountId, value); }
         }
         private System.String __CallCenterId;
-        [EntityField]
+        [EntityField(true)]
         public System.String CallCenterId
         {
             get { return __CallCenterId; }
             set { SetField(ref __CallCenterId, value); }
         }
         private System.String __Extension;
-        [EntityField]
+        [EntityField(true)]
         public System.String Extension
         {
             get { return __Extension; }
             set { SetField(ref __Extension, value); }
         }
         private System.String __FederationIdentifier;
-        [EntityField]
+        [EntityField(true)]
         public System.String FederationIdentifier
         {
             get { return __FederationIdentifier; }
             set { SetField(ref __FederationIdentifier, value); }
         }
         private System.String __AboutMe;
-        [EntityField]
+        [EntityField(true)]
         public System.String AboutMe
         {
             get { return __AboutMe; }
             set { SetField(ref __AboutMe, value); }
         }
         private System.String __CurrentStatus;
-        [EntityField]
+        [EntityField(true)]
         public System.String CurrentStatus
         {
             get { return __CurrentStatus; }
             set { SetField(ref __CurrentStatus, value); }
         }
         private System.String __FullPhotoUrl;
-        [EntityField]
+        [EntityField(true)]
         public System.String FullPhotoUrl
         {
             get { return __FullPhotoUrl; }
             set { SetField(ref __FullPhotoUrl, value); }
         }
         private System.String __SmallPhotoUrl;
-        [EntityField]
+        [EntityField(true)]
         public System.String SmallPhotoUrl
         {
             get { return __SmallPhotoUrl; }
             set { SetField(ref __SmallPhotoUrl, value); }
         }
         private PickUserDigestFrequency __DigestFrequency;
-        [EntityField]
+        [EntityField(false)]
         public PickUserDigestFrequency DigestFrequency
         {
             get { return __DigestFrequency; }
@@ -27249,56 +27249,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickUserFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickUserFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -27335,42 +27335,42 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __LicenseDefinitionKey;
-        [EntityField]
+        [EntityField(false)]
         public System.String LicenseDefinitionKey
         {
             get { return __LicenseDefinitionKey; }
             set { SetField(ref __LicenseDefinitionKey, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __MonthlyLoginsUsed;
-        [EntityField]
+        [EntityField(true)]
         public System.String MonthlyLoginsUsed
         {
             get { return __MonthlyLoginsUsed; }
             set { SetField(ref __MonthlyLoginsUsed, value); }
         }
         private System.String __MonthlyLoginsEntitlement;
-        [EntityField]
+        [EntityField(true)]
         public System.String MonthlyLoginsEntitlement
         {
             get { return __MonthlyLoginsEntitlement; }
             set { SetField(ref __MonthlyLoginsEntitlement, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -27395,35 +27395,35 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __UserId;
-        [EntityField]
+        [EntityField(false)]
         public System.String UserId
         {
             get { return __UserId; }
             set { SetField(ref __UserId, value); }
         }
         private PickUserPreferencePreference __Preference;
-        [EntityField]
+        [EntityField(false)]
         public PickUserPreferencePreference Preference
         {
             get { return __Preference; }
             set { SetField(ref __Preference, value); }
         }
         private System.String __Value;
-        [EntityField]
+        [EntityField(true)]
         public System.String Value
         {
             get { return __Value; }
             set { SetField(ref __Value, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -27448,56 +27448,56 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private System.String __FeedPostId;
-        [EntityField]
+        [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value); }
         }
         private PickUserProfileFeedType __Type;
-        [EntityField]
+        [EntityField(true)]
         public PickUserProfileFeedType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -27534,105 +27534,105 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.String __ParentRoleId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ParentRoleId
         {
             get { return __ParentRoleId; }
             set { SetField(ref __ParentRoleId, value); }
         }
         private System.String __RollupDescription;
-        [EntityField]
+        [EntityField(true)]
         public System.String RollupDescription
         {
             get { return __RollupDescription; }
             set { SetField(ref __RollupDescription, value); }
         }
         private PickUserRoleOpportunityAccessForAccountOwner __OpportunityAccessForAccountOwner;
-        [EntityField]
+        [EntityField(false)]
         public PickUserRoleOpportunityAccessForAccountOwner OpportunityAccessForAccountOwner
         {
             get { return __OpportunityAccessForAccountOwner; }
             set { SetField(ref __OpportunityAccessForAccountOwner, value); }
         }
         private PickUserRoleCaseAccessForAccountOwner __CaseAccessForAccountOwner;
-        [EntityField]
+        [EntityField(true)]
         public PickUserRoleCaseAccessForAccountOwner CaseAccessForAccountOwner
         {
             get { return __CaseAccessForAccountOwner; }
             set { SetField(ref __CaseAccessForAccountOwner, value); }
         }
         private PickUserRoleContactAccessForAccountOwner __ContactAccessForAccountOwner;
-        [EntityField]
+        [EntityField(true)]
         public PickUserRoleContactAccessForAccountOwner ContactAccessForAccountOwner
         {
             get { return __ContactAccessForAccountOwner; }
             set { SetField(ref __ContactAccessForAccountOwner, value); }
         }
         private System.String __ForecastUserId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ForecastUserId
         {
             get { return __ForecastUserId; }
             set { SetField(ref __ForecastUserId, value); }
         }
         private System.Boolean __MayForecastManagerShare;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean MayForecastManagerShare
         {
             get { return __MayForecastManagerShare; }
             set { SetField(ref __MayForecastManagerShare, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
         private System.String __PortalAccountId;
-        [EntityField]
+        [EntityField(true)]
         public System.String PortalAccountId
         {
             get { return __PortalAccountId; }
             set { SetField(ref __PortalAccountId, value); }
         }
         private PickUserRolePortalType __PortalType;
-        [EntityField]
+        [EntityField(true)]
         public PickUserRolePortalType PortalType
         {
             get { return __PortalType; }
             set { SetField(ref __PortalType, value); }
         }
         private System.String __PortalAccountOwnerId;
-        [EntityField]
+        [EntityField(true)]
         public System.String PortalAccountOwnerId
         {
             get { return __PortalAccountOwnerId; }
@@ -27663,49 +27663,49 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private System.Boolean __IsDeleted;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
             set { SetField(ref __IsDeleted, value); }
         }
         private System.String __ParentId;
-        [EntityField]
+        [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
             set { SetField(ref __ParentId, value); }
         }
         private PickVoteType __Type;
-        [EntityField]
+        [EntityField(false)]
         public PickVoteType Type
         {
             get { return __Type; }
             set { SetField(ref __Type, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
@@ -27730,196 +27730,196 @@ namespace LinqToSalesforce
             return true;
         }
         private System.String __Id;
-        [EntityField]
+        [EntityField(false)]
         public System.String Id
         {
             get { return __Id; }
             set { SetField(ref __Id, value); }
         }
         private PickWebLinkPageOrSobjectType __PageOrSobjectType;
-        [EntityField]
+        [EntityField(false)]
         public PickWebLinkPageOrSobjectType PageOrSobjectType
         {
             get { return __PageOrSobjectType; }
             set { SetField(ref __PageOrSobjectType, value); }
         }
         private System.String __Name;
-        [EntityField]
+        [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
         private System.Boolean __IsProtected;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsProtected
         {
             get { return __IsProtected; }
             set { SetField(ref __IsProtected, value); }
         }
         private System.String __Url;
-        [EntityField]
+        [EntityField(true)]
         public System.String Url
         {
             get { return __Url; }
             set { SetField(ref __Url, value); }
         }
         private PickWebLinkEncodingKey __EncodingKey;
-        [EntityField]
+        [EntityField(false)]
         public PickWebLinkEncodingKey EncodingKey
         {
             get { return __EncodingKey; }
             set { SetField(ref __EncodingKey, value); }
         }
         private PickWebLinkLinkType __LinkType;
-        [EntityField]
+        [EntityField(false)]
         public PickWebLinkLinkType LinkType
         {
             get { return __LinkType; }
             set { SetField(ref __LinkType, value); }
         }
         private PickWebLinkOpenType __OpenType;
-        [EntityField]
+        [EntityField(false)]
         public PickWebLinkOpenType OpenType
         {
             get { return __OpenType; }
             set { SetField(ref __OpenType, value); }
         }
         private System.String __Height;
-        [EntityField]
+        [EntityField(true)]
         public System.String Height
         {
             get { return __Height; }
             set { SetField(ref __Height, value); }
         }
         private System.String __Width;
-        [EntityField]
+        [EntityField(true)]
         public System.String Width
         {
             get { return __Width; }
             set { SetField(ref __Width, value); }
         }
         private System.Boolean __ShowsLocation;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean ShowsLocation
         {
             get { return __ShowsLocation; }
             set { SetField(ref __ShowsLocation, value); }
         }
         private System.Boolean __HasScrollbars;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean HasScrollbars
         {
             get { return __HasScrollbars; }
             set { SetField(ref __HasScrollbars, value); }
         }
         private System.Boolean __HasToolbar;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean HasToolbar
         {
             get { return __HasToolbar; }
             set { SetField(ref __HasToolbar, value); }
         }
         private System.Boolean __HasMenubar;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean HasMenubar
         {
             get { return __HasMenubar; }
             set { SetField(ref __HasMenubar, value); }
         }
         private System.Boolean __ShowsStatus;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean ShowsStatus
         {
             get { return __ShowsStatus; }
             set { SetField(ref __ShowsStatus, value); }
         }
         private System.Boolean __IsResizable;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean IsResizable
         {
             get { return __IsResizable; }
             set { SetField(ref __IsResizable, value); }
         }
         private PickWebLinkPosition __Position;
-        [EntityField]
+        [EntityField(true)]
         public PickWebLinkPosition Position
         {
             get { return __Position; }
             set { SetField(ref __Position, value); }
         }
         private System.String __ScontrolId;
-        [EntityField]
+        [EntityField(true)]
         public System.String ScontrolId
         {
             get { return __ScontrolId; }
             set { SetField(ref __ScontrolId, value); }
         }
         private System.String __MasterLabel;
-        [EntityField]
+        [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
         private System.String __Description;
-        [EntityField]
+        [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
         private PickWebLinkDisplayType __DisplayType;
-        [EntityField]
+        [EntityField(false)]
         public PickWebLinkDisplayType DisplayType
         {
             get { return __DisplayType; }
             set { SetField(ref __DisplayType, value); }
         }
         private System.Boolean __RequireRowSelection;
-        [EntityField]
+        [EntityField(false)]
         public System.Boolean RequireRowSelection
         {
             get { return __RequireRowSelection; }
             set { SetField(ref __RequireRowSelection, value); }
         }
         private System.String __NamespacePrefix;
-        [EntityField]
+        [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
             set { SetField(ref __NamespacePrefix, value); }
         }
         private System.DateTime __CreatedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
         private System.String __CreatedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value); }
         }
         private System.DateTime __LastModifiedDate;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
             set { SetField(ref __LastModifiedDate, value); }
         }
         private System.String __LastModifiedById;
-        [EntityField]
+        [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
         private System.DateTime __SystemModstamp;
-        [EntityField]
+        [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }

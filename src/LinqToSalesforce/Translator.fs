@@ -17,8 +17,10 @@ open Newtonsoft.Json.Serialization
 open Newtonsoft.Json.Converters
 open LinqToSalesforce.Visitor
 
-type EntityFieldAttribute () =
+type EntityFieldAttribute (nullable:bool) =
   inherit Attribute ()
+  member __.Nullable
+    with get () = nullable
 
 type ReferencedByFieldAttribute (name:string) =
   inherit Attribute ()
