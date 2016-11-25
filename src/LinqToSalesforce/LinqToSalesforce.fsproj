@@ -68,7 +68,6 @@
     <Compile Include="Rest.fs" />
     <Compile Include="SoqlContext.fs" />
     <Compile Include="CodeGeneration.fs" />
-    <None Include="Script.fsx" />
     <None Include="paket.references" />
     <None Include="paket.template" />
     <Content Include="App.config" />
