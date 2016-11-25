@@ -30,13 +30,13 @@ namespace LinqToSalesforce.CsharpTests
 
         public class Entity1
         {
-            [EntityField]
+            [EntityField(false)]
             public int Id { get; set; }
 
-            [EntityField]
+            [EntityField(false)]
             public string Name { get; set; }
 
-            [EntityField]
+            [EntityField(false)]
             [JsonProperty("Cost")]
             public string Price { get; set; }
         }
