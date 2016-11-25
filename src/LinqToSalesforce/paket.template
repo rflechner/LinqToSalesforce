@@ -1,4 +1,6 @@
-type project
+type file
+id
+    LinqToSalesforce
 title
     LinqToSalesforce
 owners
@@ -14,12 +16,21 @@ licenseUrl
 requireLicenseAcceptance
     false
 copyright
-    Copyright 2015
+    Copyright 2016
 tags
     salesforce SOQL linq
 summary
     Linq provider for Salesforce SOQL REST API
 description
     Linq provider for Salesforce SOQL REST API
-
+files
+    ../../bin/LinqToSalesforce/LinqToSalesforce.dll ==> lib
+    ../../bin/LinqToSalesforce/LinqToSalesforce.pdb ==> lib
+    ../../bin/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.exe ==> tools
+    ../../bin/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.pdb ==> tools
+    ../../bin/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.exe.config ==> tools
+dependencies
+    FSharp.Core >= 4.45.3
+    Newtonsoft.Json >= 9.0.1
+    Microsoft.Net.Http >= 2.2.29
 
