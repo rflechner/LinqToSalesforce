@@ -13,7 +13,7 @@ let referenceBinaries = []
 // Web site location for the generated documentation
 let website = "/LinqToSalesforce"
 
-let githubLink = "https://github.com/rflechner/LinqToSalesforce/rflechner/LinqToSalesforce"
+let githubLink = "https://github.com/rflechner/LinqToSalesforce"
 
 // Specify more information about your project
 let info =
