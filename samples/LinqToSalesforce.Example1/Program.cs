@@ -10,6 +10,17 @@ namespace LinqToSalesforce.Example1
         static void Main(string[] args)
         {
             var json = File.ReadAllText("../../../../src/Files/OAuth.config.json");
+            /*
+             This json contains something like:
+            {
+                "Clientid":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                "Clientsecret":"xxxxxxxxxxxxxxxxxxxx",
+                "Securitytoken":"xxxxxxxxxxxx",
+                "Username":"login@mail.com",
+                "Password":"xxxxxxxxxxxxx",
+                "Instacename":"eu11" // or "login" or "test"
+            }
+             */
             var impersonationParam = Rest.OAuth.ImpersonationParam.FromJson(json);
 
             var context = new SoqlContext("eu11", impersonationParam);
@@ -55,6 +66,7 @@ namespace LinqToSalesforce.Example1
             var accounts = (from a in context.GetTable<Account>()
                             where !a.Name.StartsWith("Company")
                                 && a.Industry == PickAccountIndustry.Biotechnology
+                                && PickAccountIndustry.Biotechnology == a.Industry
                             select a)
                 //.Skip(1) // not implemented on all REST API versions
                 .Take(10)
@@ -63,7 +75,7 @@ namespace LinqToSalesforce.Example1
             foreach (var account in accounts)
             {
                 WriteLine($"Account {account.Name} Industry: {account.Industry}");
-                var contacts = account.Contacts.ToList();
+                var contacts = account.Contacts;
                 foreach (var contact in contacts)
                 {
                     WriteLine($"contact: {contact.Name} - {contact.Phone} - {contact.LeadSource}");
