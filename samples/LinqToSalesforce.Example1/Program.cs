@@ -53,8 +53,9 @@ namespace LinqToSalesforce.Example1
         private static void DisplayAccountsWithTheirContactsAndCases(SoqlContext context)
         {
             var accounts = (from a in context.GetTable<Account>()
-                where !a.Name.StartsWith("Company") // && a.Industry == PickAccountIndustry.Biotechnology
-                select a)
+                            where !a.Name.StartsWith("Company")
+                                && a.Industry == PickAccountIndustry.Biotechnology
+                            select a)
                 //.Skip(1) // not implemented on all REST API versions
                 .Take(10)
                 .ToList();

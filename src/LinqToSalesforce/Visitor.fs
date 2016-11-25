@@ -108,9 +108,21 @@ module Visitor =
         match e.Member, e.Expression with
         | :? FieldInfo as f, ConstantExp v -> Some (f.GetValue v)
         | :? PropertyInfo as f, ConstantExp v -> Some (f.GetValue v)
+        | :? FieldInfo as f, null -> Some (f.GetValue null)
+        | :? PropertyInfo as f, null -> Some (f.GetValue null)
         | _ -> None
     | _ -> None
-    
+  
+  let (|ConvertMethod|_|) (exp:Expression) =
+    match exp with
+    | :? UnaryExpression as e when e.NodeType = ExpressionType.Convert ->
+        match e.Operand with
+        | :? MemberExpression as x ->
+          let d = findDecorationName x.Member
+          Some (x.Member.Name, d, e.Method)
+        | _ -> None
+    | _ -> None
+  
   let parseSelectArgs (node:Expression) =
     match node with
     | :? LambdaExpression as e ->
@@ -202,7 +214,14 @@ module Visitor =
             let subLeft = parseWhereArgs left
             let subRight = parseWhereArgs right
             BinaryComparison(subLeft, kind, subRight)
-        // TODO: handle Convert ...
+        | Comparison kind, ConvertMethod (name, d, _), ConstantExp value ->
+            let f = { Type=exp.Left.Type; Name=name; DecorationName=d }
+            let c = { Field=f; Kind=kind; Target= Constant value }
+            UnaryComparison c
+        | Comparison kind, ConstantExp value, ConvertMethod (name, d, _) ->
+            let f = { Type=exp.Left.Type; Name=name; DecorationName=d }
+            let c = { Field=f; Kind=kind; Target= Constant value }
+            UnaryComparison c
         | _ -> failwithf "Cannot translate %A" exp
     | :? UnaryExpression as e ->
         match e.Operand with
