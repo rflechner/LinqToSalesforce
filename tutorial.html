@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Introducing your project
+    <title>LinqToSalesforce tutorial
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Linq provider for Salesforce SOQL REST API"/>
@@ -13,12 +13,15 @@
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
 
-    <link type="text/css" rel="stylesheet" href="/LinqToSalesforce/content/style.css" />
-    <script type="text/javascript" src="/LinqToSalesforce/content/tips.js"></script>
+    <link type="text/css" rel="stylesheet" href="file://C:\prog\LinqToSalesforce\docs\tools\../output/content/style.css" />
+    <script type="text/javascript" src="file://C:\prog\LinqToSalesforce\docs\tools\../output/content/tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <![endif]-->
+
+    <link type="text/css" rel="stylesheet" href="file://C:\prog\LinqToSalesforce\docs\tools\../output/romcyber.css" />
+
   </head>
   <body>
     <div class="container">
@@ -27,52 +30,236 @@
           <li><a href="http://fsharp.org">fsharp.org</a></li>
           <li><a href="https://github.com/rflechner/LinqToSalesforce">github page</a></li>
         </ul>
-        <h3 class="muted"><a href="/LinqToSalesforce/index.html">LinqToSalesforce</a></h3>
+        <h3 class="muted"><a href="file://C:\prog\LinqToSalesforce\docs\tools\../output/index.html">LinqToSalesforce</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
           
-<h1><a name="Introducing-your-project" class="anchor" href="#Introducing-your-project">Introducing your project</a></h1>
-<p>Say more</p>
+<h1><a name="LinqToSalesforce-tutorial" class="anchor" href="#LinqToSalesforce-tutorial">LinqToSalesforce tutorial</a></h1>
+<h2><a name="Generating-your-entities" class="anchor" href="#Generating-your-entities">Generating your entities</a></h2>
+<p>Developing with Salesforce SOQL Linq provider is like a "DB First" entity framework using.</p>
+<p>NuGet packages contains 'LinqToSalesforce.ModelGenerator.exe' in tools folder</p>
+<p><img src="img/nuget1.png" alt="nuget1" /></p>
+<p>Run it with your credentials in command line:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="schell"> &gt; LinqToSalesforce.ModelGenerator.exe --clientid ... --clientsecret ... --securitytoken ... --login ... 
+    \ --password ... --instacename ... --outputfile "absolute_path_to\Models.cs"
+</code></pre></td></tr></table>
+<p>Your 'Model.cs' should have things like:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+<span class="l">29: </span>
+<span class="l">30: </span>
+<span class="l">31: </span>
+<span class="l">32: </span>
+<span class="l">33: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">public</span> <span class="k">class</span> Account <span class="o">:</span> ISalesforceEntity
+{
+    
+    <span class="k">public</span> <span class="k">event</span> PropertyChangedEventHandler PropertyChanged;
+    <span class="k">protected</span> <span class="k">void</span> OnPropertyChanged([CallerMemberName] <span class="k">string</span> propertyName <span class="o">=</span> <span class="k">null</span>)
+    {
+        PropertyChanged?.Invoke(<span class="k">this</span>, <span class="k">new</span> PropertyChangedEventArgs(propertyName));
+    }
+
+    <span class="k">protected</span> <span class="k">bool</span> SetField&lt;T&gt;(<span class="k">ref</span> T field, T <span class="k">value</span>, [CallerMemberName] <span class="k">string</span> propertyName <span class="o">=</span> <span class="k">null</span>)
+    {
+        <span class="k">if</span> (EqualityComparer&lt;T&gt;.Default.Equals(field, <span class="k">value</span>))
+            <span class="k">return</span> <span class="k">false</span>;
+        field <span class="o">=</span> <span class="k">value</span>;
+        OnPropertyChanged(propertyName);
+        <span class="k">return</span> <span class="k">true</span>;
+    }
+    <span class="k">private</span> System.String __Id;
+    [EntityField(<span class="k">false</span>)]
+    <span class="k">public</span> System.String Id
+    {
+        get { <span class="k">return</span> __Id; }
+        set { SetField(<span class="k">ref</span> __Id, <span class="k">value</span>); }
+    }
+    <span class="k">private</span> System.String __Name;
+    [EntityField(<span class="k">false</span>)]
+    <span class="k">public</span> System.String Name
+    {
+        get { <span class="k">return</span> __Name; }
+        set { SetField(<span class="k">ref</span> __Name, <span class="k">value</span>); }
+    }
+}
+<span class="c">// etc ...</span>
+</code></pre></td></tr></table>
+<h2><a name="Reading-the-database" class="anchor" href="#Reading-the-database">Reading the database</a></h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">
+<span class="k">using</span> LinqToSalesforce;
+<span class="k">using</span> <span class="k">static</span> System.Console;
+
+<span class="k">var</span> impersonationParam <span class="o">=</span> <span class="k">new</span> Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
+<span class="k">var</span> context <span class="o">=</span> <span class="k">new</span> SoqlContext(<span class="s">"eu11"</span>, impersonationParam);
+
+<span class="k">var</span> accounts <span class="o">=</span> (<span class="k">from</span> a <span class="k">in</span> context.GetTable&lt;Account&gt;()
+                <span class="k">where</span> !a.Name.StartsWith(<span class="s">"Company"</span>)
+                <span class="k">select</span> a).Take(<span class="n">10</span>);
+<span class="k">foreach</span> (<span class="k">var</span> account <span class="k">in</span> accounts)
+{
+    WriteLine($<span class="s">"Account {account.Name} Industry: {account.Industry}"</span>);
+    <span class="k">foreach</span> (<span class="k">var</span> contact <span class="k">in</span> account.Contacts) <span class="c">// lazy load contacts</span>
+    {
+        WriteLine($<span class="s">"contact: {contact.Name} - {contact.Phone} - {contact.LeadSource}"</span>);
+
+        <span class="k">foreach</span> (<span class="k">var</span> @<span class="k">case</span> <span class="k">in</span> contact.Cases) <span class="c">// lazy load contact's cases</span>
+            WriteLine($<span class="s">"case: {@case.Id}"</span>);
+    }
+}
+</code></pre></td></tr></table>
+<h2><a name="Updating-the-database" class="anchor" href="#Updating-the-database">Updating the database</a></h2>
+<p>SoqlContext contains an entity tracker.
+So you can update your entities with:</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">
+<span class="k">var</span> accounts <span class="o">=</span> <span class="k">from</span> a <span class="k">in</span> context.GetTable&lt;Account&gt;()
+                <span class="k">where</span> a.Name.StartsWith(<span class="s">"Company"</span>)
+                <span class="k">select</span> a;
+
+<span class="k">foreach</span> (<span class="k">var</span> account <span class="k">in</span> accounts)
+{
+    <span class="k">var</span> newName <span class="o">=</span> $<span class="s">"{account.Name}_{DateTime.Now.Ticks}"</span>;
+    WriteLine($<span class="s">"Account {account.Name} renamed to {newName}"</span>);
+    account.Name <span class="o">=</span> newName;
+}
+
+context.Save(); <span class="c">// entities are detached from the tracker and saved on the server</span>
+
+</code></pre></td></tr></table>
+<h2><a name="Inserting-the-database" class="anchor" href="#Inserting-the-database">Inserting the database</a></h2>
+<p>SoqlContext contains an "Insert" method.
+When you use it, the entity is directly sent to Salesforce and attached to the tracker.
+So you can change properties after inserts.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 <span class="l">4: </span>
+<span class="l">5: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="prep">#r</span> <span class="s">&quot;LinqToSalesforce.dll&quot;</span>
-<span class="k">open</span> <span class="i">LinqToSalesforce</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">
+<span class="k">for</span> (<span class="k">var</span> i <span class="o">=</span> <span class="n">0</span>; i <span class="o">&lt;</span> <span class="n">100</span>; i+<span class="o">+</span>)
+{
+    <span class="k">var</span> account <span class="o">=</span> <span class="k">new</span> Account { Name <span class="o">=</span> $<span class="s">"Company {i}"</span> };
+    context.Insert(account);
+}
 
-<span class="i">Library</span><span class="o">.</span><span class="i">hello</span> <span class="n">0</span>
-</code></pre></td>
-</tr>
-</table>
-<p>Some more info</p>
+</code></pre></td></tr></table>
+<h2><a name="Deleting-entities" class="anchor" href="#Deleting-entities">Deleting entities</a></h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">
+<span class="k">var</span> accounts <span class="o">=</span> <span class="k">from</span> a <span class="k">in</span> context.GetTable&lt;Account&gt;()
+               <span class="k">where</span> a.Name.StartsWith(<span class="s">"Company"</span>)
+               <span class="k">select</span> a;
+
+<span class="k">foreach</span> (<span class="k">var</span> account <span class="k">in</span> accounts)
+{
+    context.Delete(account);
+}
+
+context.Save();
+
+</code></pre></td></tr></table>
 
 
         </div>
         <div class="span3">
-          <img src="/LinqToSalesforce/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <img src="file://C:\prog\LinqToSalesforce\docs\tools\../output/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
           <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
             <li class="nav-header">LinqToSalesforce</li>
-            <li><a href="/LinqToSalesforce/index.html">Home page</a></li>
+            <li><a href="file://C:\prog\LinqToSalesforce\docs\tools\../output/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="http://nuget.org/packages/LinqToSalesforce">Get Library via NuGet</a></li>
             <li><a href="https://github.com/rflechner/LinqToSalesforce">Source Code on GitHub</a></li>
-            <li><a href="/LinqToSalesforce/license.html">License</a></li>
-            <li><a href="/LinqToSalesforce/release-notes.html">Release Notes</a></li>
+            <li><a href="file://C:\prog\LinqToSalesforce\docs\tools\../output/license.html">License</a></li>
+            <li><a href="file://C:\prog\LinqToSalesforce\docs\tools\../output/release-notes.html">Release Notes</a></li>
             
             <li class="nav-header">Getting started</li>
-            <li><a href="/LinqToSalesforce/getting_started_with_salesforce.html">Getting started with salesforce</a></li>
-            <li><a href="/LinqToSalesforce/salesforce_api.html">Salesforce API</a></li>
-            <li><a href="/LinqToSalesforce/tutorial.html">Sample tutorial</a></li>
+            <li><a href="file://C:\prog\LinqToSalesforce\docs\tools\../output/getting_started_with_salesforce.html">Getting started with salesforce</a></li>
+            <li><a href="file://C:\prog\LinqToSalesforce\docs\tools\../output/salesforce_api.html">Salesforce API</a></li>
+            <li><a href="file://C:\prog\LinqToSalesforce\docs\tools\../output/tutorial.html">Sample tutorial</a></li>
 
             <li class="nav-header">Documentation</li>
-            <li><a href="/LinqToSalesforce/reference/index.html">API Reference</a></li>
+            <li><a href="file://C:\prog\LinqToSalesforce\docs\tools\../output/reference/index.html">API Reference</a></li>
           </ul>
         </div>
       </div>
     </div>
-    <a href="https://github.com/rflechner/LinqToSalesforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+    <a href="https://github.com/rflechner/LinqToSalesforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"/></a>
   </body>
   </html>
