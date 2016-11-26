@@ -19,7 +19,6 @@ type Result<'ts,'te> =
   | Success of 'ts
   | Failure of 'te
 
-
 module Rest =
 
   type HttpMethod with
@@ -51,9 +50,28 @@ module Rest =
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
     let j = JObject.FromObject o
-    //(j.Item "Id").Parent.Remove()
-    for f in invalidFields do
-      (j.Item f).Parent.Remove()
+        
+    let toRemove =
+      o.GetType().GetProperties()
+        |> Seq.choose (
+            fun p -> 
+              match p.GetCustomAttribute<EntityFieldAttribute>() with
+              | a when isNull (box a) -> None
+              | a when not a.Nullable -> 
+                  let v = p.GetValue o
+                  if isNull v
+                  then Some (p.Name)
+                  else None
+              | _ -> None
+           )
+        |> Seq.toList
+    let l = invalidFields @ toRemove
+    for f in l do
+      match (j.Item f) with
+      | t when isNull t -> ()
+      | t -> t.Parent.Remove()
+
+    //printfn "%A" toRemove
     JsonConvert.SerializeObject(j, settings)
   
   module Config =
@@ -272,9 +290,10 @@ module Rest =
   let readResponse<'ts,'te> (rs:HttpResponseMessage) =
     async {
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
-      if rs.StatusCode <> HttpStatusCode.OK
-      then return json |> fromJson<'te> |> Failure
-      else return json |> fromJson<'ts> |> Success
+      match rs.StatusCode with
+      | HttpStatusCode.Created
+      | HttpStatusCode.OK -> return json |> fromJson<'ts> |> Success
+      | _ -> return json |> fromJson<'te> |> Failure
     }
   let readRestResponse<'t> =
     readResponse<'t, RemoteError list>
@@ -345,4 +364,6 @@ module Rest =
     member __.Update<'t when 't :> ISalesforceEntity> (entity:'t) =
       checkSession()
       update (getIdentity()) entity.Id entity |> Async.RunSynchronously
-      
+    member __.Delete<'t when 't :> ISalesforceEntity> (entity:'t) =
+      checkSession()
+      delete (getIdentity()) entity.Id entity |> Async.RunSynchronously

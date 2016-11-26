@@ -1,0 +1,19 @@
+
+body {
+    color: #364042;
+    background-color: #b7d6dd;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #127890;
+}
+
+
+.masthead .muted a {
+    color: #127890;
+}
+
+.nav>li>a {
+    color: #0C5464;
+    font-weight: bold;
+}

@@ -2,6 +2,9 @@
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
 #I "../../bin"
+#I "../../bin/LinqToSalesforce"
+#r "LinqToSalesforce.dll"
+#r "Newtonsoft.Json.dll"
 
 (**
 LinqToSalesforce
@@ -23,29 +26,71 @@ Documentation
 Example
 -------
 
-This example demonstrates using a function defined in this sample library.
+This example demonstrates how to use LINQ to SOQL.
+In this example, we search 10 accounts where name starts with "Company" and industry is "Biotechnology".
 
-*)
-#r "LinqToSalesforce.dll"
-open LinqToSalesforce
+Then we can iterate their contacts and cases using lazy loading.
 
-printfn "hello = %i" <| Library.hello 0
+This Linq provider is written in FSharp but is originally made to use in CSharp
 
-(**
+In csharp
+---------
+
+```csharp
+
+var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
+var context = new SoqlContext("eu11", impersonationParam);
+
+var accounts = (from a in context.GetTable<Account>()
+                where !a.Name.StartsWith("Company")
+                    && a.Industry == PickAccountIndustry.Biotechnology
+                select a).Take(10);
+foreach (var account in accounts)
+{
+    WriteLine($"Account {account.Name} Industry: {account.Industry}");
+    var contacts = account.Contacts;
+    foreach (var contact in contacts)
+    {
+        WriteLine($"contact: {contact.Name} - {contact.Phone} - {contact.LeadSource}");
+
+        var cases = contact.Cases;
+        foreach (var @case in cases)
+        {
+            WriteLine($"case: {@case.Id}");
+        }
+    }
+}
+```
+
+Futur developments
+==================
+
+For MONO users
+--------------
+
+Salesforce deactivate old SSL protocol versions.
+
+So we need to use something difficult to use with MONO:
+
+```csharp
+
+ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
+
+```
+
+Solutions will be proposed next.
+
+For FSHARP developpers
+----------------------
+
+Code generator is currently generating C# only.
+But a type provider will be developed soon because F# type providers are magic.
+
+![giphy1](img/giphy1.gif)
+
+
+
 Some more info
-
-Samples & documentation
------------------------
-
-The library comes with comprehensible documentation. 
-It can include tutorials automatically generated from `*.fsx` files in [the content folder][content]. 
-The API reference is automatically generated from Markdown comments in the library implementation.
-
- * [Tutorial](tutorial.html) contains a further explanation of this sample library.
-
- * [API Reference](reference/index.html) contains automatically generated documentation for all types, modules
-   and functions in the library. This includes additional brief samples on using most of the
-   functions.
  
 Contributing and copyright
 --------------------------
@@ -59,9 +104,9 @@ The library is available under Public Domain license, which allows modification 
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: https://github.com/fsprojects/LinqToSalesforce/tree/master/docs/content
-  [gh]: https://github.com/fsprojects/LinqToSalesforce
-  [issues]: https://github.com/fsprojects/LinqToSalesforce/issues
-  [readme]: https://github.com/fsprojects/LinqToSalesforce/blob/master/README.md
-  [license]: https://github.com/fsprojects/LinqToSalesforce/blob/master/LICENSE.txt
+  [content]: https://github.com/rflechner/LinqToSalesforce/tree/master/docs/content
+  [gh]: https://github.com/rflechner/LinqToSalesforce
+  [issues]: https://github.com/rflechner/LinqToSalesforce/issues
+  [readme]: https://github.com/rflechner/LinqToSalesforce/blob/master/README.md
+  [license]: https://github.com/rflechner/LinqToSalesforce/blob/master/LICENSE.txt
 *)

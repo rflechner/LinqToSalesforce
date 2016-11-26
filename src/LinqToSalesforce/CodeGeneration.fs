@@ -30,25 +30,35 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
   let addLine indent text =
     writeIndent indent
     text |> b.AppendLine |> ignore
-      
-  let generateEnumCsharp (name:string) (values:string list) (indent:int) =
-    addLine indent """[JsonConverter(typeof(StringEnumConverter))]"""
-    sprintf "public enum Pick%s" name |> addLine indent
+
+  let generatePickList (name:string) (values:string list) (indent:int) =
+    let typeName = sprintf "Pick%s" name
+    sprintf "public class %s" typeName |> addLine indent
     addLine indent "{"
-    for i in 0..values.Length-1 do
-      match values.Item i with
-      | value when value.First() |> Char.IsDigit ->
-          let attr = sprintf """[EnumMember(Value = "%s")]""" value
-          addLine (indent+1) attr
-          writeIndent (indent+1)
-          add ("_" + (removeNonLetterDigit value))
-      | value -> 
-          let attr = sprintf """[EnumMember(Value = "%s")]""" value
-          addLine (indent+1) attr
-          writeIndent (indent+1)
-          add (removeNonLetterDigit value)
-      if i < values.Length-1
-      then add ",\n"
+    for value in values do
+      let prefix = if value.FirstOrDefault() |> Char.IsDigit then '_' else ' '
+      let line = sprintf """public static readonly string %c%s = "%s"; """ prefix (removeNonLetterDigit value) value
+      addLine (indent+1) line
+    let operators = 
+      sprintf """
+        public string Value { get; set; }
+
+        public static implicit operator string(%s o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator %s(string s)
+        {
+            return new %s {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+        """ typeName typeName typeName
+    addLine indent operators
     addLine 0 ""
     addLine indent "}"
 
@@ -94,10 +104,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
           if field.Nillable && t <> typeof<string> 
           then sprintf "%s?" t.FullName
           else t.FullName
-        | Picklist _ ->
-          if field.Nillable
-          then sprintf "Pick%s%s?" table.Name field.Name
-          else sprintf "Pick%s%s" table.Name field.Name
+        | Picklist _ -> sprintf "Pick%s%s" table.Name field.Name
       
       let backingField = sprintf "private %s __%s;" typeName fieldName
       addLine (indent+1) backingField
@@ -105,7 +112,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
       then
         let attr = sprintf """[JsonProperty(PropertyName = "%s")]""" field.Name
         addLine (indent+1) attr
-      addLine (indent+1) "[EntityField]"
+      addLine (indent+1) (sprintf "[EntityField(%b)]" field.Nillable)
       writeIndent (indent+1)
       writeProperty typeName fieldName false
     
@@ -150,7 +157,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
 
   for (name, values) in enums do
     let vs = values |> List.distinct
-    generateEnumCsharp name vs 1
+    generatePickList name vs 1
 
   for table in tables do
     generateTableCsharp table 1

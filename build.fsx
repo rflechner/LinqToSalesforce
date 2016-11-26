@@ -53,7 +53,7 @@ let testAssemblies = "tests/**/bin/Release/*Tests*.dll"
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
 let gitOwner = "rflechner"
-let gitHome = sprintf "%s/%s" "https://github.com/rflechner/LinqToSalesforce" gitOwner
+let gitHome = sprintf "%s/%s" "https://github.com" gitOwner
 
 // The name of the project on GitHub
 let gitName = "LinqToSalesforce"
@@ -173,6 +173,7 @@ Target "NuGet" (fun _ ->
     Paket.Pack(fun p ->
         { p with
             OutputPath = "bin"
+            LockDependencies = true
             Version = release.NugetVersion
             ReleaseNotes = toLines release.Notes})
 )
