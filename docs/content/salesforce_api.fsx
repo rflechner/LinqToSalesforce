@@ -21,6 +21,8 @@ Existing .Net api simply give possibility to send strings containing your SOQL.
 
 Then it was really frustrating not to have Linq provider :)
 
+So this project provides a LINQ to SOQL and a code generator to scaffold your entities
+
 
 *)
 

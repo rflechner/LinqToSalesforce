@@ -1,19 +1,146 @@
-(*** hide ***)
-// This block of code is omitted in the generated HTML documentation. Use 
-// it to define helpers that you do not want to show in the documentation.
-#I "../../bin"
-
 (**
-Introducing your project
-========================
+LinqToSalesforce tutorial
+=========================
 
-Say more
+Generating your entities
+------------------------
+
+Developing with Salesforce SOQL Linq provider is like a "DB First" entity framework using.
+
+NuGet packages contains 'LinqToSalesforce.ModelGenerator.exe' in tools folder
+
+![nuget1](img/nuget1.png)
+
+Run it with your credentials in command line:
+
+```schell
+ > LinqToSalesforce.ModelGenerator.exe --clientid ... --clientsecret ... --securitytoken ... --login ... 
+    \ --password ... --instacename ... --outputfile "absolute_path_to\Models.cs"
+```
+
+Your 'Model.cs' should have things like:
+
+```csharp
+public class Account : ISalesforceEntity
+{
+    
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+    {
+        if (EqualityComparer<T>.Default.Equals(field, value))
+            return false;
+        field = value;
+        OnPropertyChanged(propertyName);
+        return true;
+    }
+    private System.String __Id;
+    [EntityField(false)]
+    public System.String Id
+    {
+        get { return __Id; }
+        set { SetField(ref __Id, value); }
+    }
+    private System.String __Name;
+    [EntityField(false)]
+    public System.String Name
+    {
+        get { return __Name; }
+        set { SetField(ref __Name, value); }
+    }
+}
+// etc ...
+```
+
+Reading the database
+--------------------
+
+```csharp
+
+using LinqToSalesforce;
+using static System.Console;
+
+var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
+var context = new SoqlContext("eu11", impersonationParam);
+
+var accounts = (from a in context.GetTable<Account>()
+                where !a.Name.StartsWith("Company")
+                select a).Take(10);
+foreach (var account in accounts)
+{
+    WriteLine($"Account {account.Name} Industry: {account.Industry}");
+    foreach (var contact in account.Contacts) // lazy load contacts
+    {
+        WriteLine($"contact: {contact.Name} - {contact.Phone} - {contact.LeadSource}");
+
+        foreach (var @case in contact.Cases) // lazy load contact's cases
+            WriteLine($"case: {@case.Id}");
+    }
+}
+```
+
+Updating the database
+---------------------
+
+SoqlContext contains an entity tracker.
+So you can update your entities with:
+
+```csharp
+
+var accounts = from a in context.GetTable<Account>()
+                where a.Name.StartsWith("Company")
+                select a;
+
+foreach (var account in accounts)
+{
+    var newName = $"{account.Name}_{DateTime.Now.Ticks}";
+    WriteLine($"Account {account.Name} renamed to {newName}");
+    account.Name = newName;
+}
+
+context.Save(); // entities are detached from the tracker and saved on the server
+
+```
+
+Inserting the database
+---------------------
+
+SoqlContext contains an "Insert" method.
+When you use it, the entity is directly sent to Salesforce and attached to the tracker.
+So you can change properties after inserts.
+
+```csharp
+
+for (var i = 0; i < 100; i++)
+{
+    var account = new Account { Name = $"Company {i}" };
+    context.Insert(account);
+}
+
+```
+
+Deleting entities
+-----------------
+
+```csharp
+
+var accounts = from a in context.GetTable<Account>()
+               where a.Name.StartsWith("Company")
+               select a;
+
+foreach (var account in accounts)
+{
+    context.Delete(account);
+}
+
+context.Save();
+
+```
+
 
 *)
-#r "LinqToSalesforce.dll"
-open LinqToSalesforce
 
-Library.hello 0
-(**
-Some more info
-*)
