@@ -8,11 +8,11 @@ owners
 authors 
     rflechner
 projectUrl
-    https://github.com/rflechner/LinqToSalesforce/rflechner/LinqToSalesforce
+    https://github.com/rflechner/LinqToSalesforce
 iconUrl
     https://raw.githubusercontent.com/rflechner/LinqToSalesforce/master/docs/files/img/logo.png
 licenseUrl
-    https://github.com/rflechner/LinqToSalesforce/rflechner/LinqToSalesforce/blob/master/LICENSE.txt
+    https://github.com/rflechner/LinqToSalesforce/blob/master/LICENSE.txt
 requireLicenseAcceptance
     false
 copyright
