@@ -74,26 +74,26 @@ In this example, we search 10 accounts where name starts with "Company" and indu
 <span class="l">21: </span>
 <span class="l">22: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="Csharp">
-var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
-var context = new SoqlContext("eu11", impersonationParam);
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">
+<span class="k">var</span> impersonationParam <span class="o">=</span> <span class="k">new</span> Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
+<span class="k">var</span> context <span class="o">=</span> <span class="k">new</span> SoqlContext(<span class="s">"eu11"</span>, impersonationParam);
 
-var accounts = (from a in context.GetTable&lt;Account&gt;()
-                where !a.Name.StartsWith("Company")
-                    &amp;&amp; a.Industry == PickAccountIndustry.Biotechnology
-                select a).Take(10);
-foreach (var account in accounts)
+<span class="k">var</span> accounts <span class="o">=</span> (<span class="k">from</span> a <span class="k">in</span> context.GetTable&lt;Account&gt;()
+                <span class="k">where</span> !a.Name.StartsWith(<span class="s">"Company"</span>)
+                    <span class="o">&amp;</span><span class="o">&amp;</span> a.Industry <span class="o">=</span><span class="o">=</span> PickAccountIndustry.Biotechnology
+                <span class="k">select</span> a).Take(<span class="n">10</span>);
+<span class="k">foreach</span> (<span class="k">var</span> account <span class="k">in</span> accounts)
 {
-    WriteLine($"Account {account.Name} Industry: {account.Industry}");
-    var contacts = account.Contacts;
-    foreach (var contact in contacts)
+    WriteLine($<span class="s">"Account {account.Name} Industry: {account.Industry}"</span>);
+    <span class="k">var</span> contacts <span class="o">=</span> account.Contacts;
+    <span class="k">foreach</span> (<span class="k">var</span> contact <span class="k">in</span> contacts)
     {
-        WriteLine($"contact: {contact.Name} - {contact.Phone} - {contact.LeadSource}");
+        WriteLine($<span class="s">"contact: {contact.Name} - {contact.Phone} - {contact.LeadSource}"</span>);
 
-        var cases = contact.Cases;
-        foreach (var @case in cases)
+        <span class="k">var</span> cases <span class="o">=</span> contact.Cases;
+        <span class="k">foreach</span> (<span class="k">var</span> @<span class="k">case</span> <span class="k">in</span> cases)
         {
-            WriteLine($"case: {@case.Id}");
+            WriteLine($<span class="s">"case: {@case.Id}"</span>);
         }
     }
 }
@@ -104,8 +104,8 @@ foreach (var account in accounts)
 <p>So we need to use something difficult to use with MONO:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="Csharp">
-ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">
+ServicePointManager.SecurityProtocol <span class="o">=</span> SecurityProtocolType.Tls<span class="n">12</span> <span class="o">|</span> SecurityProtocolType.Tls<span class="n">11</span>;
 
 </code></pre></td></tr></table>
 <p>Solutions will be proposed next.</p>
