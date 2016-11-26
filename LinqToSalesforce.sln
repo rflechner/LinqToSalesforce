@@ -27,7 +27,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{83F16175
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D5255-776D-4B61-85F9-73C37AA1FB9A}"
 	ProjectSection(SolutionItems) = preProject
+		docs\content\getting_started_with_salesforce.fsx = docs\content\getting_started_with_salesforce.fsx
 		docs\content\index.fsx = docs\content\index.fsx
+		docs\content\salesforce_api.fsx = docs\content\salesforce_api.fsx
 		docs\content\tutorial.fsx = docs\content\tutorial.fsx
 	EndProjectSection
 EndProject
@@ -48,6 +50,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0BF79E32-6A85-4B46-801F-F67D9FDF5D70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqToSalesforce.Example1", "samples\LinqToSalesforce.Example1\LinqToSalesforce.Example1.csproj", "{C8971E7A-C89D-4140-979F-A0A8363CBB1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{6BCB0D08-BD68-4897-BAA8-3A67CBF64C6D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\files\romcyber.css = docs\files\romcyber.css
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,5 +92,6 @@ Global
 		{07C592DC-C999-495C-AE35-216207A5DD34} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
 		{D1EE7407-9CD7-4DF3-BFAF-A398BD2357E5} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
 		{C8971E7A-C89D-4140-979F-A0A8363CBB1E} = {0BF79E32-6A85-4B46-801F-F67D9FDF5D70}
+		{6BCB0D08-BD68-4897-BAA8-3A67CBF64C6D} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
 	EndGlobalSection
 EndGlobal

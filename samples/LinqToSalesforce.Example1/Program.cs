@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using static System.Console;
 
 namespace LinqToSalesforce.Example1
@@ -9,6 +10,8 @@ namespace LinqToSalesforce.Example1
     {
         static void Main(string[] args)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
+
             var json = File.ReadAllText("../../../../src/Files/OAuth.config.json");
             /*
              This json contains something like:
@@ -21,8 +24,8 @@ namespace LinqToSalesforce.Example1
                 "Instacename":"eu11" // or "login" or "test"
             }
              */
+            //var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
             var impersonationParam = Rest.OAuth.ImpersonationParam.FromJson(json);
-
             var context = new SoqlContext("eu11", impersonationParam);
             try
             {
