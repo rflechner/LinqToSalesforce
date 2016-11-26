@@ -74,7 +74,7 @@ In this example, we search 10 accounts where name starts with "Company" and indu
 <span class="l">21: </span>
 <span class="l">22: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="CSHARP">
+<td class="snippet"><pre class="fssnip"><code lang="Csharp">
 var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
 var context = new SoqlContext("eu11", impersonationParam);
 
@@ -104,7 +104,7 @@ foreach (var account in accounts)
 <p>So we need to use something difficult to use with MONO:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="CSHARP">
+<td class="snippet"><pre class="fssnip"><code lang="Csharp">
 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
 
 </code></pre></td></tr></table>
