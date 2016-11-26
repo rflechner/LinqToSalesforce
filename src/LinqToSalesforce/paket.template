@@ -30,7 +30,7 @@ files
     ../../bin/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.pdb ==> tools
     ../../bin/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.exe.config ==> tools
 dependencies
-    FSharp.Core >= 4.45.3
+    FSharp.Core >= 4.0.0.1
     Newtonsoft.Json >= 9.0.1
     Microsoft.Net.Http >= 2.2.29
 
