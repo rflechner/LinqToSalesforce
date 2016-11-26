@@ -103,8 +103,6 @@ But a type provider will be developed soon because F# type providers are magic.
 ![giphy1](img/giphy1.gif)
 
 
-
-Some more info
  
 Contributing and copyright
 --------------------------
