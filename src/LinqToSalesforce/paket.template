@@ -26,9 +26,7 @@ description
 files
     ../../bin/LinqToSalesforce/LinqToSalesforce.dll ==> lib
     ../../bin/LinqToSalesforce/LinqToSalesforce.pdb ==> lib
-    ../../bin/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.exe ==> tools
-    ../../bin/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.pdb ==> tools
-    ../../bin/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.exe.config ==> tools
+    ../../bin/LinqToSalesforce.ModelGenerator/* ==> tools
 dependencies
     FSharp.Core >= 4.0.0.1
     Newtonsoft.Json >= 9.0.1
