@@ -29,7 +29,16 @@ namespace LinqToSalesforce.Example1
             var context = new SoqlContext("eu11", impersonationParam);
             try
             {
-                for (var i = 0; i < 100; i++)
+                var accounts = from a in context.GetTable<Account>()
+                                   //where a.CreatedDate >= DateTime.Today
+                               where a.NumberBugc > 0.1
+                               select a;
+
+                var accountCreatedToday = accounts.ToList();
+
+                WriteLine($"{accountCreatedToday.Count}");
+
+                for (var i = 0; i < 10; i++)
                 {
                     var account = new Account { Name = $"Company {i}" };
                     context.Insert(account);

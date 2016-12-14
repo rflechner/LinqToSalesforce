@@ -122,6 +122,16 @@ module Visitor =
           Some (x.Member.Name, d, e.Method)
         | _ -> None
     | _ -> None
+
+  let (|ConvertExp|_|) (exp:Expression) =
+    match exp with
+    | :? UnaryExpression as e when e.NodeType = ExpressionType.Convert ->
+        match e.Operand with
+        | :? ConstantExpression as e ->
+          let f = (Expression.Lambda e).Compile()
+          f.DynamicInvoke() |> Some
+        | _ -> None
+    | _ -> None
   
   let parseSelectArgs (node:Expression) =
     match node with
@@ -219,6 +229,10 @@ module Visitor =
             let c = { Field=f; Kind=kind; Target= Constant value }
             UnaryComparison c
         | Comparison kind, ConstantExp value, ConvertMethod (name, d, _) ->
+            let f = { Type=exp.Left.Type; Name=name; DecorationName=d }
+            let c = { Field=f; Kind=kind; Target= Constant value }
+            UnaryComparison c
+        | Comparison kind, MemberDecorationName (name,d), ConvertExp value ->
             let f = { Type=exp.Left.Type; Name=name; DecorationName=d }
             let c = { Field=f; Kind=kind; Target= Constant value }
             UnaryComparison c
