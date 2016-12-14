@@ -356,6 +356,7 @@ namespace LinqToSalesforce
         public static readonly string  NaicsCode = "NaicsCode"; 
         public static readonly string  NaicsDesc = "NaicsDesc"; 
         public static readonly string  Name = "Name"; 
+        public static readonly string  NumberBugc = "NumberBug__c"; 
         public static readonly string  NumberOfEmployees = "NumberOfEmployees"; 
         public static readonly string  NumberofLocationsc = "NumberofLocations__c"; 
         public static readonly string  Owner = "Owner"; 
@@ -8040,9 +8041,9 @@ namespace LinqToSalesforce
             get { return __AnnualRevenue; }
             set { SetField(ref __AnnualRevenue, value); }
         }
-        private System.String __NumberOfEmployees;
+        private System.Int32? __NumberOfEmployees;
         [EntityField(true)]
-        public System.String NumberOfEmployees
+        public System.Int32? NumberOfEmployees
         {
             get { return __NumberOfEmployees; }
             set { SetField(ref __NumberOfEmployees, value); }
@@ -8155,10 +8156,10 @@ namespace LinqToSalesforce
             get { return __Activec; }
             set { SetField(ref __Activec, value); }
         }
-        private System.String __NumberofLocationsc;
+        private System.Double? __NumberofLocationsc;
         [JsonProperty(PropertyName = "NumberofLocations__c")]
         [EntityField(true)]
-        public System.String NumberofLocationsc
+        public System.Double? NumberofLocationsc
         {
             get { return __NumberofLocationsc; }
             set { SetField(ref __NumberofLocationsc, value); }
@@ -8186,6 +8187,14 @@ namespace LinqToSalesforce
         {
             get { return __SLAExpirationDatec; }
             set { SetField(ref __SLAExpirationDatec, value); }
+        }
+        private System.Double? __NumberBugc;
+        [JsonProperty(PropertyName = "NumberBug__c")]
+        [EntityField(true)]
+        public System.Double? NumberBugc
+        {
+            get { return __NumberBugc; }
+            set { SetField(ref __NumberBugc, value); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -8918,9 +8927,9 @@ namespace LinqToSalesforce
             get { return __IsVisibleInSelfService; }
             set { SetField(ref __IsVisibleInSelfService, value); }
         }
-        private System.String __DurationInMinutes;
+        private System.Int32? __DurationInMinutes;
         [EntityField(true)]
-        public System.String DurationInMinutes
+        public System.Int32? DurationInMinutes
         {
             get { return __DurationInMinutes; }
             set { SetField(ref __DurationInMinutes, value); }
@@ -8981,9 +8990,9 @@ namespace LinqToSalesforce
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
-        private System.String __CallDurationInSeconds;
+        private System.Int32? __CallDurationInSeconds;
         [EntityField(true)]
-        public System.String CallDurationInSeconds
+        public System.Int32? CallDurationInSeconds
         {
             get { return __CallDurationInSeconds; }
             set { SetField(ref __CallDurationInSeconds, value); }
@@ -9182,9 +9191,9 @@ namespace LinqToSalesforce
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
-        private System.String __ApiVersion;
+        private System.Double __ApiVersion;
         [EntityField(false)]
-        public System.String ApiVersion
+        public System.Double ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
@@ -9203,9 +9212,9 @@ namespace LinqToSalesforce
             get { return __IsValid; }
             set { SetField(ref __IsValid, value); }
         }
-        private System.String __BodyCrc;
+        private System.Double? __BodyCrc;
         [EntityField(true)]
-        public System.String BodyCrc
+        public System.Double? BodyCrc
         {
             get { return __BodyCrc; }
             set { SetField(ref __BodyCrc, value); }
@@ -9217,9 +9226,9 @@ namespace LinqToSalesforce
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
-        private System.String __LengthWithoutComments;
+        private System.Int32 __LengthWithoutComments;
         [EntityField(false)]
-        public System.String LengthWithoutComments
+        public System.Int32 LengthWithoutComments
         {
             get { return __LengthWithoutComments; }
             set { SetField(ref __LengthWithoutComments, value); }
@@ -9298,9 +9307,9 @@ namespace LinqToSalesforce
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
-        private System.String __ApiVersion;
+        private System.Double __ApiVersion;
         [EntityField(false)]
-        public System.String ApiVersion
+        public System.Double ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
@@ -9407,9 +9416,9 @@ namespace LinqToSalesforce
             get { return __LogUserId; }
             set { SetField(ref __LogUserId, value); }
         }
-        private System.String __LogLength;
+        private System.Int32 __LogLength;
         [EntityField(false)]
-        public System.String LogLength
+        public System.Int32 LogLength
         {
             get { return __LogLength; }
             set { SetField(ref __LogLength, value); }
@@ -9449,9 +9458,9 @@ namespace LinqToSalesforce
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
-        private System.String __DurationMilliseconds;
+        private System.Int32 __DurationMilliseconds;
         [EntityField(false)]
-        public System.String DurationMilliseconds
+        public System.Int32 DurationMilliseconds
         {
             get { return __DurationMilliseconds; }
             set { SetField(ref __DurationMilliseconds, value); }
@@ -9516,9 +9525,9 @@ namespace LinqToSalesforce
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
-        private System.String __ApiVersion;
+        private System.Double __ApiVersion;
         [EntityField(false)]
-        public System.String ApiVersion
+        public System.Double ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
@@ -9695,9 +9704,9 @@ namespace LinqToSalesforce
             get { return __UsageAfterUndelete; }
             set { SetField(ref __UsageAfterUndelete, value); }
         }
-        private System.String __ApiVersion;
+        private System.Double __ApiVersion;
         [EntityField(false)]
-        public System.String ApiVersion
+        public System.Double ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
@@ -9716,9 +9725,9 @@ namespace LinqToSalesforce
             get { return __IsValid; }
             set { SetField(ref __IsValid, value); }
         }
-        private System.String __BodyCrc;
+        private System.Double? __BodyCrc;
         [EntityField(true)]
-        public System.String BodyCrc
+        public System.Double? BodyCrc
         {
             get { return __BodyCrc; }
             set { SetField(ref __BodyCrc, value); }
@@ -9730,9 +9739,9 @@ namespace LinqToSalesforce
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
-        private System.String __LengthWithoutComments;
+        private System.Int32 __LengthWithoutComments;
         [EntityField(false)]
-        public System.String LengthWithoutComments
+        public System.Int32 LengthWithoutComments
         {
             get { return __LengthWithoutComments; }
             set { SetField(ref __LengthWithoutComments, value); }
@@ -9916,9 +9925,9 @@ namespace LinqToSalesforce
             get { return __Price; }
             set { SetField(ref __Price, value); }
         }
-        private System.String __Quantity;
+        private System.Double? __Quantity;
         [EntityField(true)]
-        public System.String Quantity
+        public System.Double? Quantity
         {
             get { return __Quantity; }
             set { SetField(ref __Quantity, value); }
@@ -10309,23 +10318,23 @@ namespace LinqToSalesforce
             get { return __Status; }
             set { SetField(ref __Status, value); }
         }
-        private System.String __JobItemsProcessed;
+        private System.Int32 __JobItemsProcessed;
         [EntityField(false)]
-        public System.String JobItemsProcessed
+        public System.Int32 JobItemsProcessed
         {
             get { return __JobItemsProcessed; }
             set { SetField(ref __JobItemsProcessed, value); }
         }
-        private System.String __TotalJobItems;
+        private System.Int32? __TotalJobItems;
         [EntityField(true)]
-        public System.String TotalJobItems
+        public System.Int32? TotalJobItems
         {
             get { return __TotalJobItems; }
             set { SetField(ref __TotalJobItems, value); }
         }
-        private System.String __NumberOfErrors;
+        private System.Int32? __NumberOfErrors;
         [EntityField(true)]
-        public System.String NumberOfErrors
+        public System.Int32? NumberOfErrors
         {
             get { return __NumberOfErrors; }
             set { SetField(ref __NumberOfErrors, value); }
@@ -10365,9 +10374,9 @@ namespace LinqToSalesforce
             get { return __LastProcessed; }
             set { SetField(ref __LastProcessed, value); }
         }
-        private System.String __LastProcessedOffset;
+        private System.Int32? __LastProcessedOffset;
         [EntityField(true)]
-        public System.String LastProcessedOffset
+        public System.Int32? LastProcessedOffset
         {
             get { return __LastProcessedOffset; }
             set { SetField(ref __LastProcessedOffset, value); }
@@ -10432,9 +10441,9 @@ namespace LinqToSalesforce
             get { return __ContentType; }
             set { SetField(ref __ContentType, value); }
         }
-        private System.String __BodyLength;
+        private System.Int32? __BodyLength;
         [EntityField(true)]
-        public System.String BodyLength
+        public System.Int32? BodyLength
         {
             get { return __BodyLength; }
             set { SetField(ref __BodyLength, value); }
@@ -10917,9 +10926,9 @@ namespace LinqToSalesforce
             get { return __InternalName; }
             set { SetField(ref __InternalName, value); }
         }
-        private System.String __Version;
+        private System.Double? __Version;
         [EntityField(true)]
-        public System.String Version
+        public System.Double? Version
         {
             get { return __Version; }
             set { SetField(ref __Version, value); }
@@ -11061,9 +11070,9 @@ namespace LinqToSalesforce
             get { return __ExpectedResponse; }
             set { SetField(ref __ExpectedResponse, value); }
         }
-        private System.String __NumberSent;
+        private System.Double? __NumberSent;
         [EntityField(true)]
-        public System.String NumberSent
+        public System.Double? NumberSent
         {
             get { return __NumberSent; }
             set { SetField(ref __NumberSent, value); }
@@ -11082,44 +11091,44 @@ namespace LinqToSalesforce
             get { return __Description; }
             set { SetField(ref __Description, value); }
         }
-        private System.String __NumberOfLeads;
+        private System.Int32 __NumberOfLeads;
         [EntityField(false)]
-        public System.String NumberOfLeads
+        public System.Int32 NumberOfLeads
         {
             get { return __NumberOfLeads; }
             set { SetField(ref __NumberOfLeads, value); }
         }
-        private System.String __NumberOfConvertedLeads;
+        private System.Int32 __NumberOfConvertedLeads;
         [EntityField(false)]
-        public System.String NumberOfConvertedLeads
+        public System.Int32 NumberOfConvertedLeads
         {
             get { return __NumberOfConvertedLeads; }
             set { SetField(ref __NumberOfConvertedLeads, value); }
         }
-        private System.String __NumberOfContacts;
+        private System.Int32 __NumberOfContacts;
         [EntityField(false)]
-        public System.String NumberOfContacts
+        public System.Int32 NumberOfContacts
         {
             get { return __NumberOfContacts; }
             set { SetField(ref __NumberOfContacts, value); }
         }
-        private System.String __NumberOfResponses;
+        private System.Int32 __NumberOfResponses;
         [EntityField(false)]
-        public System.String NumberOfResponses
+        public System.Int32 NumberOfResponses
         {
             get { return __NumberOfResponses; }
             set { SetField(ref __NumberOfResponses, value); }
         }
-        private System.String __NumberOfOpportunities;
+        private System.Int32 __NumberOfOpportunities;
         [EntityField(false)]
-        public System.String NumberOfOpportunities
+        public System.Int32 NumberOfOpportunities
         {
             get { return __NumberOfOpportunities; }
             set { SetField(ref __NumberOfOpportunities, value); }
         }
-        private System.String __NumberOfWonOpportunities;
+        private System.Int32 __NumberOfWonOpportunities;
         [EntityField(false)]
-        public System.String NumberOfWonOpportunities
+        public System.Int32 NumberOfWonOpportunities
         {
             get { return __NumberOfWonOpportunities; }
             set { SetField(ref __NumberOfWonOpportunities, value); }
@@ -11513,9 +11522,9 @@ namespace LinqToSalesforce
             get { return __Label; }
             set { SetField(ref __Label, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32 __SortOrder;
         [EntityField(false)]
-        public System.String SortOrder
+        public System.Int32 SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -12499,9 +12508,9 @@ namespace LinqToSalesforce
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -13059,9 +13068,9 @@ namespace LinqToSalesforce
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -13200,9 +13209,9 @@ namespace LinqToSalesforce
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
-        private System.String __MemberCount;
+        private System.Int32? __MemberCount;
         [EntityField(true)]
-        public System.String MemberCount
+        public System.Int32? MemberCount
         {
             get { return __MemberCount; }
             set { SetField(ref __MemberCount, value); }
@@ -14713,9 +14722,9 @@ namespace LinqToSalesforce
             get { return __PathOnClient; }
             set { SetField(ref __PathOnClient, value); }
         }
-        private System.String __RatingCount;
+        private System.Int32? __RatingCount;
         [EntityField(true)]
-        public System.String RatingCount
+        public System.Int32? RatingCount
         {
             get { return __RatingCount; }
             set { SetField(ref __RatingCount, value); }
@@ -14741,23 +14750,23 @@ namespace LinqToSalesforce
             get { return __ContentModifiedById; }
             set { SetField(ref __ContentModifiedById, value); }
         }
-        private System.String __PositiveRatingCount;
+        private System.Int32? __PositiveRatingCount;
         [EntityField(true)]
-        public System.String PositiveRatingCount
+        public System.Int32? PositiveRatingCount
         {
             get { return __PositiveRatingCount; }
             set { SetField(ref __PositiveRatingCount, value); }
         }
-        private System.String __NegativeRatingCount;
+        private System.Int32? __NegativeRatingCount;
         [EntityField(true)]
-        public System.String NegativeRatingCount
+        public System.Int32? NegativeRatingCount
         {
             get { return __NegativeRatingCount; }
             set { SetField(ref __NegativeRatingCount, value); }
         }
-        private System.String __FeaturedContentBoost;
+        private System.Int32? __FeaturedContentBoost;
         [EntityField(true)]
-        public System.String FeaturedContentBoost
+        public System.Int32? FeaturedContentBoost
         {
             get { return __FeaturedContentBoost; }
             set { SetField(ref __FeaturedContentBoost, value); }
@@ -14839,9 +14848,9 @@ namespace LinqToSalesforce
             get { return __VersionData; }
             set { SetField(ref __VersionData, value); }
         }
-        private System.String __ContentSize;
+        private System.Int32? __ContentSize;
         [EntityField(true)]
-        public System.String ContentSize
+        public System.Int32? ContentSize
         {
             get { return __ContentSize; }
             set { SetField(ref __ContentSize, value); }
@@ -15204,9 +15213,9 @@ namespace LinqToSalesforce
             get { return __BillingCountry; }
             set { SetField(ref __BillingCountry, value); }
         }
-        private System.String __ContractTerm;
+        private System.Int32? __ContractTerm;
         [EntityField(true)]
-        public System.String ContractTerm
+        public System.Int32? ContractTerm
         {
             get { return __ContractTerm; }
             set { SetField(ref __ContractTerm, value); }
@@ -15729,9 +15738,9 @@ namespace LinqToSalesforce
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -15887,9 +15896,9 @@ namespace LinqToSalesforce
             get { return __CreatedDate; }
             set { SetField(ref __CreatedDate, value); }
         }
-        private System.String __TimesTriggered;
+        private System.Int32? __TimesTriggered;
         [EntityField(true)]
-        public System.String TimesTriggered
+        public System.Int32? TimesTriggered
         {
             get { return __TimesTriggered; }
             set { SetField(ref __TimesTriggered, value); }
@@ -16024,37 +16033,37 @@ namespace LinqToSalesforce
             get { return __RunningUserId; }
             set { SetField(ref __RunningUserId, value); }
         }
-        private System.String __TitleColor;
+        private System.Int32 __TitleColor;
         [EntityField(false)]
-        public System.String TitleColor
+        public System.Int32 TitleColor
         {
             get { return __TitleColor; }
             set { SetField(ref __TitleColor, value); }
         }
-        private System.String __TitleSize;
+        private System.Int32 __TitleSize;
         [EntityField(false)]
-        public System.String TitleSize
+        public System.Int32 TitleSize
         {
             get { return __TitleSize; }
             set { SetField(ref __TitleSize, value); }
         }
-        private System.String __TextColor;
+        private System.Int32 __TextColor;
         [EntityField(false)]
-        public System.String TextColor
+        public System.Int32 TextColor
         {
             get { return __TextColor; }
             set { SetField(ref __TextColor, value); }
         }
-        private System.String __BackgroundStart;
+        private System.Int32 __BackgroundStart;
         [EntityField(false)]
-        public System.String BackgroundStart
+        public System.Int32 BackgroundStart
         {
             get { return __BackgroundStart; }
             set { SetField(ref __BackgroundStart, value); }
         }
-        private System.String __BackgroundEnd;
+        private System.Int32 __BackgroundEnd;
         [EntityField(false)]
-        public System.String BackgroundEnd
+        public System.Int32 BackgroundEnd
         {
             get { return __BackgroundEnd; }
             set { SetField(ref __BackgroundEnd, value); }
@@ -16252,9 +16261,9 @@ namespace LinqToSalesforce
             get { return __IsPublic; }
             set { SetField(ref __IsPublic, value); }
         }
-        private System.String __BodyLength;
+        private System.Int32 __BodyLength;
         [EntityField(false)]
-        public System.String BodyLength
+        public System.Int32 BodyLength
         {
             get { return __BodyLength; }
             set { SetField(ref __BodyLength, value); }
@@ -16382,9 +16391,9 @@ namespace LinqToSalesforce
             get { return __DocumentId; }
             set { SetField(ref __DocumentId, value); }
         }
-        private System.String __DocumentSequence;
+        private System.Int32 __DocumentSequence;
         [EntityField(false)]
-        public System.String DocumentSequence
+        public System.Int32 DocumentSequence
         {
             get { return __DocumentSequence; }
             set { SetField(ref __DocumentSequence, value); }
@@ -16940,9 +16949,9 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value); }
         }
-        private System.String __TimesOpened;
+        private System.Int32 __TimesOpened;
         [EntityField(false)]
-        public System.String TimesOpened
+        public System.Int32 TimesOpened
         {
             get { return __TimesOpened; }
             set { SetField(ref __TimesOpened, value); }
@@ -17091,9 +17100,9 @@ namespace LinqToSalesforce
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
-        private System.String __TimesUsed;
+        private System.Int32? __TimesUsed;
         [EntityField(true)]
-        public System.String TimesUsed
+        public System.Int32? TimesUsed
         {
             get { return __TimesUsed; }
             set { SetField(ref __TimesUsed, value); }
@@ -17140,9 +17149,9 @@ namespace LinqToSalesforce
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
-        private System.String __ApiVersion;
+        private System.Double? __ApiVersion;
         [EntityField(true)]
-        public System.String ApiVersion
+        public System.Double? ApiVersion
         {
             get { return __ApiVersion; }
             set { SetField(ref __ApiVersion, value); }
@@ -17294,9 +17303,9 @@ namespace LinqToSalesforce
             get { return __ActivityDate; }
             set { SetField(ref __ActivityDate, value); }
         }
-        private System.String __DurationInMinutes;
+        private System.Int32? __DurationInMinutes;
         [EntityField(true)]
-        public System.String DurationInMinutes
+        public System.Int32? DurationInMinutes
         {
             get { return __DurationInMinutes; }
             set { SetField(ref __DurationInMinutes, value); }
@@ -17462,23 +17471,23 @@ namespace LinqToSalesforce
             get { return __RecurrenceType; }
             set { SetField(ref __RecurrenceType, value); }
         }
-        private System.String __RecurrenceInterval;
+        private System.Int32? __RecurrenceInterval;
         [EntityField(true)]
-        public System.String RecurrenceInterval
+        public System.Int32? RecurrenceInterval
         {
             get { return __RecurrenceInterval; }
             set { SetField(ref __RecurrenceInterval, value); }
         }
-        private System.String __RecurrenceDayOfWeekMask;
+        private System.Int32? __RecurrenceDayOfWeekMask;
         [EntityField(true)]
-        public System.String RecurrenceDayOfWeekMask
+        public System.Int32? RecurrenceDayOfWeekMask
         {
             get { return __RecurrenceDayOfWeekMask; }
             set { SetField(ref __RecurrenceDayOfWeekMask, value); }
         }
-        private System.String __RecurrenceDayOfMonth;
+        private System.Int32? __RecurrenceDayOfMonth;
         [EntityField(true)]
-        public System.String RecurrenceDayOfMonth
+        public System.Int32? RecurrenceDayOfMonth
         {
             get { return __RecurrenceDayOfMonth; }
             set { SetField(ref __RecurrenceDayOfMonth, value); }
@@ -17919,9 +17928,9 @@ namespace LinqToSalesforce
             get { return __ContentType; }
             set { SetField(ref __ContentType, value); }
         }
-        private System.String __ContentSize;
+        private System.Int32? __ContentSize;
         [EntityField(true)]
-        public System.String ContentSize
+        public System.Int32? ContentSize
         {
             get { return __ContentSize; }
             set { SetField(ref __ContentSize, value); }
@@ -18081,9 +18090,9 @@ namespace LinqToSalesforce
             get { return __PeriodPrefix; }
             set { SetField(ref __PeriodPrefix, value); }
         }
-        private System.String __WeekStartDay;
+        private System.Int32? __WeekStartDay;
         [EntityField(true)]
-        public System.String WeekStartDay
+        public System.Int32? WeekStartDay
         {
             get { return __WeekStartDay; }
             set { SetField(ref __WeekStartDay, value); }
@@ -18510,16 +18519,16 @@ namespace LinqToSalesforce
             get { return __ActivityDate; }
             set { SetField(ref __ActivityDate, value); }
         }
-        private System.String __StartTimeInMinutes;
+        private System.Int32? __StartTimeInMinutes;
         [EntityField(true)]
-        public System.String StartTimeInMinutes
+        public System.Int32? StartTimeInMinutes
         {
             get { return __StartTimeInMinutes; }
             set { SetField(ref __StartTimeInMinutes, value); }
         }
-        private System.String __EndTimeInMinutes;
+        private System.Int32? __EndTimeInMinutes;
         [EntityField(true)]
-        public System.String EndTimeInMinutes
+        public System.Int32? EndTimeInMinutes
         {
             get { return __EndTimeInMinutes; }
             set { SetField(ref __EndTimeInMinutes, value); }
@@ -18587,23 +18596,23 @@ namespace LinqToSalesforce
             get { return __RecurrenceType; }
             set { SetField(ref __RecurrenceType, value); }
         }
-        private System.String __RecurrenceInterval;
+        private System.Int32? __RecurrenceInterval;
         [EntityField(true)]
-        public System.String RecurrenceInterval
+        public System.Int32? RecurrenceInterval
         {
             get { return __RecurrenceInterval; }
             set { SetField(ref __RecurrenceInterval, value); }
         }
-        private System.String __RecurrenceDayOfWeekMask;
+        private System.Int32? __RecurrenceDayOfWeekMask;
         [EntityField(true)]
-        public System.String RecurrenceDayOfWeekMask
+        public System.Int32? RecurrenceDayOfWeekMask
         {
             get { return __RecurrenceDayOfWeekMask; }
             set { SetField(ref __RecurrenceDayOfWeekMask, value); }
         }
-        private System.String __RecurrenceDayOfMonth;
+        private System.Int32? __RecurrenceDayOfMonth;
         [EntityField(true)]
-        public System.String RecurrenceDayOfMonth
+        public System.Int32? RecurrenceDayOfMonth
         {
             get { return __RecurrenceDayOfMonth; }
             set { SetField(ref __RecurrenceDayOfMonth, value); }
@@ -18724,23 +18733,23 @@ namespace LinqToSalesforce
             get { return __Body; }
             set { SetField(ref __Body, value); }
         }
-        private System.String __NumComments;
+        private System.Int32? __NumComments;
         [EntityField(true)]
-        public System.String NumComments
+        public System.Int32? NumComments
         {
             get { return __NumComments; }
             set { SetField(ref __NumComments, value); }
         }
-        private System.String __VoteScore;
+        private System.Double? __VoteScore;
         [EntityField(true)]
-        public System.String VoteScore
+        public System.Double? VoteScore
         {
             get { return __VoteScore; }
             set { SetField(ref __VoteScore, value); }
         }
-        private System.String __VoteTotal;
+        private System.Double? __VoteTotal;
         [EntityField(true)]
-        public System.String VoteTotal
+        public System.Double? VoteTotal
         {
             get { return __VoteTotal; }
             set { SetField(ref __VoteTotal, value); }
@@ -19072,9 +19081,9 @@ namespace LinqToSalesforce
             get { return __AnnualRevenue; }
             set { SetField(ref __AnnualRevenue, value); }
         }
-        private System.String __NumberOfEmployees;
+        private System.Int32? __NumberOfEmployees;
         [EntityField(true)]
-        public System.String NumberOfEmployees
+        public System.Int32? NumberOfEmployees
         {
             get { return __NumberOfEmployees; }
             set { SetField(ref __NumberOfEmployees, value); }
@@ -19216,10 +19225,10 @@ namespace LinqToSalesforce
             get { return __CurrentGeneratorsc; }
             set { SetField(ref __CurrentGeneratorsc, value); }
         }
-        private System.String __NumberofLocationsc;
+        private System.Double? __NumberofLocationsc;
         [JsonProperty(PropertyName = "NumberofLocations__c")]
         [EntityField(true)]
-        public System.String NumberofLocationsc
+        public System.Double? NumberofLocationsc
         {
             get { return __NumberofLocationsc; }
             set { SetField(ref __NumberofLocationsc, value); }
@@ -19580,9 +19589,9 @@ namespace LinqToSalesforce
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -19749,9 +19758,9 @@ namespace LinqToSalesforce
             get { return __Filename; }
             set { SetField(ref __Filename, value); }
         }
-        private System.String __BodyLength;
+        private System.Int32? __BodyLength;
         [EntityField(true)]
-        public System.String BodyLength
+        public System.Int32? BodyLength
         {
             get { return __BodyLength; }
             set { SetField(ref __BodyLength, value); }
@@ -20349,9 +20358,9 @@ namespace LinqToSalesforce
             get { return __IsVisibleInSelfService; }
             set { SetField(ref __IsVisibleInSelfService, value); }
         }
-        private System.String __DurationInMinutes;
+        private System.Int32? __DurationInMinutes;
         [EntityField(true)]
-        public System.String DurationInMinutes
+        public System.Int32? DurationInMinutes
         {
             get { return __DurationInMinutes; }
             set { SetField(ref __DurationInMinutes, value); }
@@ -20412,9 +20421,9 @@ namespace LinqToSalesforce
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
-        private System.String __CallDurationInSeconds;
+        private System.Int32? __CallDurationInSeconds;
         [EntityField(true)]
-        public System.String CallDurationInSeconds
+        public System.Int32? CallDurationInSeconds
         {
             get { return __CallDurationInSeconds; }
             set { SetField(ref __CallDurationInSeconds, value); }
@@ -20542,9 +20551,9 @@ namespace LinqToSalesforce
             get { return __ExpectedRevenue; }
             set { SetField(ref __ExpectedRevenue, value); }
         }
-        private System.String __TotalOpportunityQuantity;
+        private System.Double? __TotalOpportunityQuantity;
         [EntityField(true)]
-        public System.String TotalOpportunityQuantity
+        public System.Double? TotalOpportunityQuantity
         {
             get { return __TotalOpportunityQuantity; }
             set { SetField(ref __TotalOpportunityQuantity, value); }
@@ -20675,16 +20684,16 @@ namespace LinqToSalesforce
             get { return __LastActivityDate; }
             set { SetField(ref __LastActivityDate, value); }
         }
-        private System.String __FiscalQuarter;
+        private System.Int32? __FiscalQuarter;
         [EntityField(true)]
-        public System.String FiscalQuarter
+        public System.Int32? FiscalQuarter
         {
             get { return __FiscalQuarter; }
             set { SetField(ref __FiscalQuarter, value); }
         }
-        private System.String __FiscalYear;
+        private System.Int32? __FiscalYear;
         [EntityField(true)]
-        public System.String FiscalYear
+        public System.Int32? FiscalYear
         {
             get { return __FiscalYear; }
             set { SetField(ref __FiscalYear, value); }
@@ -21340,9 +21349,9 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -21354,9 +21363,9 @@ namespace LinqToSalesforce
             get { return __PricebookEntryId; }
             set { SetField(ref __PricebookEntryId, value); }
         }
-        private System.String __Quantity;
+        private System.Double __Quantity;
         [EntityField(false)]
-        public System.String Quantity
+        public System.Double Quantity
         {
             get { return __Quantity; }
             set { SetField(ref __Quantity, value); }
@@ -21653,9 +21662,9 @@ namespace LinqToSalesforce
             get { return __IsActive; }
             set { SetField(ref __IsActive, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -22227,9 +22236,9 @@ namespace LinqToSalesforce
             get { return __OriginalOrderItemId; }
             set { SetField(ref __OriginalOrderItemId, value); }
         }
-        private System.String __Quantity;
+        private System.Double __Quantity;
         [EntityField(false)]
-        public System.String Quantity
+        public System.Double Quantity
         {
             get { return __Quantity; }
             set { SetField(ref __Quantity, value); }
@@ -22548,9 +22557,9 @@ namespace LinqToSalesforce
             get { return __PreferencesTerminateOldestSession; }
             set { SetField(ref __PreferencesTerminateOldestSession, value); }
         }
-        private System.String __FiscalYearStartMonth;
+        private System.Int32? __FiscalYearStartMonth;
         [EntityField(true)]
-        public System.String FiscalYearStartMonth
+        public System.Int32? FiscalYearStartMonth
         {
             get { return __FiscalYearStartMonth; }
             set { SetField(ref __FiscalYearStartMonth, value); }
@@ -22667,16 +22676,16 @@ namespace LinqToSalesforce
             get { return __WebToCaseDefaultOrigin; }
             set { SetField(ref __WebToCaseDefaultOrigin, value); }
         }
-        private System.String __MonthlyPageViewsUsed;
+        private System.Int32? __MonthlyPageViewsUsed;
         [EntityField(true)]
-        public System.String MonthlyPageViewsUsed
+        public System.Int32? MonthlyPageViewsUsed
         {
             get { return __MonthlyPageViewsUsed; }
             set { SetField(ref __MonthlyPageViewsUsed, value); }
         }
-        private System.String __MonthlyPageViewsEntitlement;
+        private System.Int32? __MonthlyPageViewsEntitlement;
         [EntityField(true)]
-        public System.String MonthlyPageViewsEntitlement
+        public System.Int32? MonthlyPageViewsEntitlement
         {
             get { return __MonthlyPageViewsEntitlement; }
             set { SetField(ref __MonthlyPageViewsEntitlement, value); }
@@ -22850,9 +22859,9 @@ namespace LinqToSalesforce
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -22980,9 +22989,9 @@ namespace LinqToSalesforce
             get { return __PeriodLabel; }
             set { SetField(ref __PeriodLabel, value); }
         }
-        private System.String __Number;
+        private System.Int32? __Number;
         [EntityField(true)]
-        public System.String Number
+        public System.Int32? Number
         {
             get { return __Number; }
             set { SetField(ref __Number, value); }
@@ -23590,9 +23599,9 @@ namespace LinqToSalesforce
             get { return __ActorId; }
             set { SetField(ref __ActorId, value); }
         }
-        private System.String __RemindersSent;
+        private System.Int32? __RemindersSent;
         [EntityField(true)]
-        public System.String RemindersSent
+        public System.Int32? RemindersSent
         {
             get { return __RemindersSent; }
             set { SetField(ref __RemindersSent, value); }
@@ -25291,37 +25300,37 @@ namespace LinqToSalesforce
             get { return __AnalyticsTrackingCode; }
             set { SetField(ref __AnalyticsTrackingCode, value); }
         }
-        private System.String __DailyBandwidthLimit;
+        private System.Int32? __DailyBandwidthLimit;
         [EntityField(true)]
-        public System.String DailyBandwidthLimit
+        public System.Int32? DailyBandwidthLimit
         {
             get { return __DailyBandwidthLimit; }
             set { SetField(ref __DailyBandwidthLimit, value); }
         }
-        private System.String __DailyBandwidthUsed;
+        private System.Int32? __DailyBandwidthUsed;
         [EntityField(true)]
-        public System.String DailyBandwidthUsed
+        public System.Int32? DailyBandwidthUsed
         {
             get { return __DailyBandwidthUsed; }
             set { SetField(ref __DailyBandwidthUsed, value); }
         }
-        private System.String __DailyRequestTimeLimit;
+        private System.Int32? __DailyRequestTimeLimit;
         [EntityField(true)]
-        public System.String DailyRequestTimeLimit
+        public System.Int32? DailyRequestTimeLimit
         {
             get { return __DailyRequestTimeLimit; }
             set { SetField(ref __DailyRequestTimeLimit, value); }
         }
-        private System.String __DailyRequestTimeUsed;
+        private System.Int32? __DailyRequestTimeUsed;
         [EntityField(true)]
-        public System.String DailyRequestTimeUsed
+        public System.Int32? DailyRequestTimeUsed
         {
             get { return __DailyRequestTimeUsed; }
             set { SetField(ref __DailyRequestTimeUsed, value); }
         }
-        private System.String __MonthlyPageViewsEntitlement;
+        private System.Int32? __MonthlyPageViewsEntitlement;
         [EntityField(true)]
-        public System.String MonthlyPageViewsEntitlement
+        public System.Int32? MonthlyPageViewsEntitlement
         {
             get { return __MonthlyPageViewsEntitlement; }
             set { SetField(ref __MonthlyPageViewsEntitlement, value); }
@@ -25662,9 +25671,9 @@ namespace LinqToSalesforce
             get { return __SystemModstamp; }
             set { SetField(ref __SystemModstamp, value); }
         }
-        private System.String __TimesUsed;
+        private System.Int32 __TimesUsed;
         [EntityField(false)]
-        public System.String TimesUsed
+        public System.Int32 TimesUsed
         {
             get { return __TimesUsed; }
             set { SetField(ref __TimesUsed, value); }
@@ -25940,9 +25949,9 @@ namespace LinqToSalesforce
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -26042,9 +26051,9 @@ namespace LinqToSalesforce
             get { return __ContentType; }
             set { SetField(ref __ContentType, value); }
         }
-        private System.String __BodyLength;
+        private System.Int32 __BodyLength;
         [EntityField(false)]
-        public System.String BodyLength
+        public System.Int32 BodyLength
         {
             get { return __BodyLength; }
             set { SetField(ref __BodyLength, value); }
@@ -26249,9 +26258,9 @@ namespace LinqToSalesforce
             get { return __IsArchived; }
             set { SetField(ref __IsArchived, value); }
         }
-        private System.String __CallDurationInSeconds;
+        private System.Int32? __CallDurationInSeconds;
         [EntityField(true)]
-        public System.String CallDurationInSeconds
+        public System.Int32? CallDurationInSeconds
         {
             get { return __CallDurationInSeconds; }
             set { SetField(ref __CallDurationInSeconds, value); }
@@ -26333,23 +26342,23 @@ namespace LinqToSalesforce
             get { return __RecurrenceType; }
             set { SetField(ref __RecurrenceType, value); }
         }
-        private System.String __RecurrenceInterval;
+        private System.Int32? __RecurrenceInterval;
         [EntityField(true)]
-        public System.String RecurrenceInterval
+        public System.Int32? RecurrenceInterval
         {
             get { return __RecurrenceInterval; }
             set { SetField(ref __RecurrenceInterval, value); }
         }
-        private System.String __RecurrenceDayOfWeekMask;
+        private System.Int32? __RecurrenceDayOfWeekMask;
         [EntityField(true)]
-        public System.String RecurrenceDayOfWeekMask
+        public System.Int32? RecurrenceDayOfWeekMask
         {
             get { return __RecurrenceDayOfWeekMask; }
             set { SetField(ref __RecurrenceDayOfWeekMask, value); }
         }
-        private System.String __RecurrenceDayOfMonth;
+        private System.Int32? __RecurrenceDayOfMonth;
         [EntityField(true)]
-        public System.String RecurrenceDayOfMonth
+        public System.Int32? RecurrenceDayOfMonth
         {
             get { return __RecurrenceDayOfMonth; }
             set { SetField(ref __RecurrenceDayOfMonth, value); }
@@ -26510,9 +26519,9 @@ namespace LinqToSalesforce
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -26598,9 +26607,9 @@ namespace LinqToSalesforce
             get { return __MasterLabel; }
             set { SetField(ref __MasterLabel, value); }
         }
-        private System.String __SortOrder;
+        private System.Int32? __SortOrder;
         [EntityField(true)]
-        public System.String SortOrder
+        public System.Int32? SortOrder
         {
             get { return __SortOrder; }
             set { SetField(ref __SortOrder, value); }
@@ -27355,16 +27364,16 @@ namespace LinqToSalesforce
             get { return __Name; }
             set { SetField(ref __Name, value); }
         }
-        private System.String __MonthlyLoginsUsed;
+        private System.Int32? __MonthlyLoginsUsed;
         [EntityField(true)]
-        public System.String MonthlyLoginsUsed
+        public System.Int32? MonthlyLoginsUsed
         {
             get { return __MonthlyLoginsUsed; }
             set { SetField(ref __MonthlyLoginsUsed, value); }
         }
-        private System.String __MonthlyLoginsEntitlement;
+        private System.Int32? __MonthlyLoginsEntitlement;
         [EntityField(true)]
-        public System.String MonthlyLoginsEntitlement
+        public System.Int32? MonthlyLoginsEntitlement
         {
             get { return __MonthlyLoginsEntitlement; }
             set { SetField(ref __MonthlyLoginsEntitlement, value); }
@@ -27785,16 +27794,16 @@ namespace LinqToSalesforce
             get { return __OpenType; }
             set { SetField(ref __OpenType, value); }
         }
-        private System.String __Height;
+        private System.Int32? __Height;
         [EntityField(true)]
-        public System.String Height
+        public System.Int32? Height
         {
             get { return __Height; }
             set { SetField(ref __Height, value); }
         }
-        private System.String __Width;
+        private System.Int32? __Width;
         [EntityField(true)]
-        public System.String Width
+        public System.Int32? Width
         {
             get { return __Width; }
             set { SetField(ref __Width, value); }

@@ -215,6 +215,9 @@ module Rest =
     | "date"
     | "datetime" -> typeof<DateTime>
     | "boolean" -> typeof<Boolean>
+    | "int" -> typeof<int32>
+    | "long" -> typeof<int64>
+    | "double" -> typeof<double>
     | _ -> typeof<String>
 
   let getObjectsList (i:Identity) =
