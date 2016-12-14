@@ -87,7 +87,7 @@ module Translator =
         match o with
         | _ when isNull o -> "NULL"
         | :? string as s -> sprintf "'%s'" s
-        | :? DateTime as d -> sprintf "'%s'" (d.ToString("yyyy-MM-dd"))
+        | :? DateTime as d -> sprintf "%s" (d.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ssZ"))
         | _ -> o.ToString()
     | OtherField f -> f.Name
 
