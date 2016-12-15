@@ -1,4 +1,7 @@
 
+#### 0.0.5-beta - December 13 2016
+* Fix casting int to double in where clause
+
 #### 0.0.4-beta - December 13 2016
 * Fix double serialization (was not in invariant culture)
 
