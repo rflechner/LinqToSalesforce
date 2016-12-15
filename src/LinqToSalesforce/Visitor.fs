@@ -123,13 +123,14 @@ module Visitor =
         | _ -> None
     | _ -> None
 
-  let (|ConvertExp|_|) (exp:Expression) =
+  let rec (|ConvertExp|_|) (exp:Expression) =
     match exp with
     | :? UnaryExpression as e when e.NodeType = ExpressionType.Convert ->
         match e.Operand with
         | :? ConstantExpression as e ->
           let f = (Expression.Lambda e).Compile()
           f.DynamicInvoke() |> Some
+        | :? UnaryExpression as e -> (|ConvertExp|_|) e
         | _ -> None
     | _ -> None
   
