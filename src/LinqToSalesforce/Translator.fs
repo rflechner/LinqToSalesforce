@@ -16,6 +16,7 @@ open Newtonsoft.Json
 open Newtonsoft.Json.Serialization
 open Newtonsoft.Json.Converters
 open LinqToSalesforce.Visitor
+open System.Globalization
 
 type EntityFieldAttribute (nullable:bool) =
   inherit Attribute ()
@@ -88,6 +89,7 @@ module Translator =
         | _ when isNull o -> "NULL"
         | :? string as s -> sprintf "'%s'" s
         | :? DateTime as d -> sprintf "%s" (d.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ssZ"))
+        | :? double as d -> d.ToString(CultureInfo.InvariantCulture)
         | _ -> o.ToString()
     | OtherField f -> f.Name
 
