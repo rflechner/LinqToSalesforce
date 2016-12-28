@@ -228,8 +228,9 @@ module Rest =
       let! rs = get i uri
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
       let o = JObject.Parse json
-      return
+      return!
         o.SelectTokens("sobjects[*].urls.describe")
+          |> Seq.take 5
           |> Seq.map (
               fun t -> 
                 let u = t.ToString()
@@ -278,8 +279,6 @@ module Rest =
                 }
               )
           |> Async.Parallel
-          |> Async.RunSynchronously
-          |> Seq.toList
     }
 
   type SoqlResult<'t> =
@@ -371,3 +370,6 @@ module Rest =
     member __.Delete<'t when 't :> ISalesforceEntity> (entity:'t) =
       checkSession()
       delete (getIdentity()) entity.Id entity |> Async.RunSynchronously
+    member __.GetTablesList() =
+      checkSession()
+      getObjectsList (getIdentity()) |> Async.StartAsTask

@@ -49,7 +49,7 @@ let main argv =
           Password=password }
       Config.ProductionInstance <- instaceName
       let oauth = authenticateWithCredentials authparams |> Async.RunSynchronously
-      let tables = getObjectsList oauth |> Async.RunSynchronously
+      let tables = getObjectsList oauth |> Async.RunSynchronously |> Seq.toList
       let cs = CodeGeneration.generateCsharp tables ns
       if String.IsNullOrWhiteSpace outputFile
       then printfn "%s" cs
