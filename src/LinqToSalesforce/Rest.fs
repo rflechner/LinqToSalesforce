@@ -46,7 +46,8 @@ module Rest =
   let private toInsertJson (o:obj) =
     let invalidFields = 
       [ "Id"; "LastModifiedDate";"CreatedById"; "MasterRecordId";
-        "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";"LastModifiedById"]
+        "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";
+        "LastModifiedById"; "IsClosed"; "ClosedDate"]
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
     let j = JObject.FromObject o
