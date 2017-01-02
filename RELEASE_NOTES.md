@@ -1,4 +1,7 @@
 
+#### 0.0.7-beta - December 13 2016
+* Plurialize tables and fix a wording in generator arguments
+
 #### 0.0.6-beta - December 13 2016
 * Fix cases inserting
 
