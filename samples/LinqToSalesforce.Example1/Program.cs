@@ -26,15 +26,15 @@ namespace LinqToSalesforce.Example1
              */
             //var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
             var impersonationParam = Rest.OAuth.ImpersonationParam.FromJson(json);
-            var context = new SoqlContext("eu11", impersonationParam);
+            var context = new SalesforceDataContext("eu11", impersonationParam);
             try
             {
-                var accounts = from a in context.GetTable<Account>()
+                var accounts = from a in context.Accounts
                                    //where a.CreatedDate >= DateTime.Today
-                               where a.NumberBugc > 0.1
+                              // where a.NumberBugc > 0.1
                                select a;
 
-                var accountCreatedToday = accounts.ToList();
+                var accountCreatedToday = accounts.Take(5).ToList();
 
                 WriteLine($"{accountCreatedToday.Count}");
 
