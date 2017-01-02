@@ -53,9 +53,9 @@ In csharp
 ```csharp
 
 var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
-var context = new SoqlContext("eu11", impersonationParam);
+var context = new SalesforceDataContext("eu11", impersonationParam);
 
-var accounts = (from a in context.GetTable<Account>()
+var accounts = (from a in context.Accounts
                 where !a.Name.StartsWith("Company")
                     && a.Industry == PickAccountIndustry.Biotechnology
                 select a).Take(10);

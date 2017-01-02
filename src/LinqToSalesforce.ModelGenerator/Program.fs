@@ -4,6 +4,11 @@ open System.IO
 open LinqToSalesforce
 open Rest
 open Rest.OAuth
+open System.Data.Entity.Design.PluralizationServices
+open System.Globalization
+
+let c = CultureInfo "en-us"
+let ps = PluralizationService.CreateService c
 
 type Arguments =
     | [<Mandatory>] Login of string
@@ -11,7 +16,7 @@ type Arguments =
     | [<Mandatory>] ClientId of string
     | [<Mandatory>] ClientSecret of string
     | [<Mandatory>] SecurityToken of string
-    | InstaceName of string
+    | [<Mandatory>] InstanceName of string
     | Namespace of string
     | OutputFile of string
 with
@@ -23,7 +28,7 @@ with
       | ClientId _ -> "specify application client id."
       | ClientSecret _ -> "specify application client secret."
       | SecurityToken _ -> "specify security token sent by mail."
-      | InstaceName _ -> "instance name 'test' or 'login', etc ..."
+      | InstanceName _ -> "instance name 'test' or 'login', etc ..."
       | Namespace _ -> "namespace of generated C#."
       | OutputFile _ -> "output file (stdout by default)."
 
@@ -37,7 +42,7 @@ let main argv =
       let clientId = args.GetResult(<@ ClientId @>)
       let clientSecret = args.GetResult(<@ ClientSecret @>)
       let securityToken = args.GetResult(<@ SecurityToken @>)
-      let instaceName = args.GetResult(<@ InstaceName @>, defaultValue="login")
+      let instaceName = args.GetResult(<@ InstanceName @>, defaultValue="login")
       let ns = args.GetResult(<@ Namespace @>, defaultValue="LinqToSalesforce")
       let outputFile = args.GetResult(<@ OutputFile @>, defaultValue="")
 

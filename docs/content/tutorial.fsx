@@ -15,7 +15,7 @@ Run it with your credentials in command line:
 
 ```schell
  > LinqToSalesforce.ModelGenerator.exe --clientid ... --clientsecret ... --securitytoken ... --login ... 
-    \ --password ... --instacename ... --outputfile "absolute_path_to\Models.cs"
+    \ --password ... --instancename ... --outputfile "absolute_path_to\Models.cs"
 ```
 
 Your 'Model.cs' should have things like:
@@ -65,9 +65,9 @@ using LinqToSalesforce;
 using static System.Console;
 
 var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
-var context = new SoqlContext("eu11", impersonationParam);
+var context = new SalesforceDataContext("eu11", impersonationParam);
 
-var accounts = (from a in context.GetTable<Account>()
+var accounts = (from a in context.Accounts
                 where !a.Name.StartsWith("Company")
                 select a).Take(10);
 foreach (var account in accounts)
@@ -91,7 +91,7 @@ So you can update your entities with:
 
 ```csharp
 
-var accounts = from a in context.GetTable<Account>()
+var accounts = from a in context.Accounts
                 where a.Name.StartsWith("Company")
                 select a;
 
@@ -128,7 +128,7 @@ Deleting entities
 
 ```csharp
 
-var accounts = from a in context.GetTable<Account>()
+var accounts = from a in context.Accounts
                where a.Name.StartsWith("Company")
                select a;
 
