@@ -91,9 +91,9 @@ In this example, we search 10 accounts where name starts with "Company" and indu
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">
 <span class="k">var</span> impersonationParam <span class="o">=</span> <span class="k">new</span> Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
-<span class="k">var</span> context <span class="o">=</span> <span class="k">new</span> SoqlContext(<span class="s">"eu11"</span>, impersonationParam);
+<span class="k">var</span> context <span class="o">=</span> <span class="k">new</span> SalesforceDataContext(<span class="s">"eu11"</span>, impersonationParam);
 
-<span class="k">var</span> accounts <span class="o">=</span> (<span class="k">from</span> a <span class="k">in</span> context.GetTable&lt;Account&gt;()
+<span class="k">var</span> accounts <span class="o">=</span> (<span class="k">from</span> a <span class="k">in</span> context.Accounts
                 <span class="k">where</span> !a.Name.StartsWith(<span class="s">"Company"</span>)
                     <span class="o">&amp;</span><span class="o">&amp;</span> a.Industry <span class="o">=</span><span class="o">=</span> PickAccountIndustry.Biotechnology
                 <span class="k">select</span> a).Take(<span class="n">10</span>);
@@ -128,7 +128,6 @@ ServicePointManager.SecurityProtocol <span class="o">=</span> SecurityProtocolTy
 <p>Code generator is currently generating C# only.
 But a type provider will be developed soon because F# type providers are magic.</p>
 <p><img src="img/giphy1.gif" alt="giphy1" /></p>
-<p>Some more info</p>
 <h2><a name="Contributing-and-copyright" class="anchor" href="#Contributing-and-copyright">Contributing and copyright</a></h2>
 <p>The project is hosted on <a href="https://github.com/rflechner/LinqToSalesforce">GitHub</a> where you can <a href="https://github.com/rflechner/LinqToSalesforce/issues">report issues</a>, fork
 the project and submit pull requests. If you're adding a new public API, please also

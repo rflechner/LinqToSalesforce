@@ -47,7 +47,7 @@
 <span class="l">2: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip"><code lang="schell"> &gt; LinqToSalesforce.ModelGenerator.exe --clientid ... --clientsecret ... --securitytoken ... --login ... 
-    \ --password ... --instacename ... --outputfile "absolute_path_to\Models.cs"
+    \ --password ... --instancename ... --outputfile "absolute_path_to\Models.cs"
 </code></pre></td></tr></table>
 <p>Your 'Model.cs' should have things like:</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
@@ -145,9 +145,9 @@
 <span class="k">using</span> <span class="k">static</span> System.Console;
 
 <span class="k">var</span> impersonationParam <span class="o">=</span> <span class="k">new</span> Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
-<span class="k">var</span> context <span class="o">=</span> <span class="k">new</span> SoqlContext(<span class="s">"eu11"</span>, impersonationParam);
+<span class="k">var</span> context <span class="o">=</span> <span class="k">new</span> SalesforceDataContext(<span class="s">"eu11"</span>, impersonationParam);
 
-<span class="k">var</span> accounts <span class="o">=</span> (<span class="k">from</span> a <span class="k">in</span> context.GetTable&lt;Account&gt;()
+<span class="k">var</span> accounts <span class="o">=</span> (<span class="k">from</span> a <span class="k">in</span> context.Accounts
                 <span class="k">where</span> !a.Name.StartsWith(<span class="s">"Company"</span>)
                 <span class="k">select</span> a).Take(<span class="n">10</span>);
 <span class="k">foreach</span> (<span class="k">var</span> account <span class="k">in</span> accounts)
@@ -179,7 +179,7 @@ So you can update your entities with:</p>
 <span class="l">12: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">
-<span class="k">var</span> accounts <span class="o">=</span> <span class="k">from</span> a <span class="k">in</span> context.GetTable&lt;Account&gt;()
+<span class="k">var</span> accounts <span class="o">=</span> <span class="k">from</span> a <span class="k">in</span> context.Accounts
                 <span class="k">where</span> a.Name.StartsWith(<span class="s">"Company"</span>)
                 <span class="k">select</span> a;
 
@@ -224,7 +224,7 @@ So you can change properties after inserts.</p>
 <span class="l">10: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">
-<span class="k">var</span> accounts <span class="o">=</span> <span class="k">from</span> a <span class="k">in</span> context.GetTable&lt;Account&gt;()
+<span class="k">var</span> accounts <span class="o">=</span> <span class="k">from</span> a <span class="k">in</span> context.Accounts
                <span class="k">where</span> a.Name.StartsWith(<span class="s">"Company"</span>)
                <span class="k">select</span> a;
 
