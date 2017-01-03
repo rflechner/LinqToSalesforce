@@ -221,63 +221,70 @@ module Rest =
     | "double" -> typeof<double>
     | _ -> typeof<String>
 
-  let getObjectsList (i:Identity) =
-    let baseUrl = Config.BuildUri "https://%s.salesforce.com"
+  let getObjectsDescUrls (i:Identity) =
     let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/"
     async {
       let! rs = get i uri
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
       let o = JObject.Parse json
+      return o.SelectTokens("sobjects[*].urls.describe")
+              |> Seq.map (fun d -> d.ToString())
+              |> Seq.toList
+    }
+
+  let getTableFromUrl (i:Identity) name =
+    let baseUrl = Config.BuildUri "https://%s.salesforce.com"
+    let url = baseUrl.AbsoluteUri + name
+    async {
+      let! rs = get i (Uri url)
+      let! c = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
+      let j = JObject.Parse c
+      let name = (j.Item "name").ToString()
+      let labelPlural = (j.Item "labelPlural").ToString()
+      let label = (j.Item "label").ToString()
+      let fields =
+        j.Item "fields"
+        |> Seq.map (
+          fun f -> 
+            let autoNumber = f.Item "autoNumber" |> Convert.ToBoolean
+            let fname = f.Item "name" |> Convert.ToString
+            let fLabel = f.Item "label" |> Convert.ToString
+            let typ = f.Item "type" |> Convert.ToString
+            let length = f.Item "length" |> Convert.ToInt32
+            let calculated = f.Item "calculated" |> Convert.ToBoolean
+            let nillable = f.Item "nillable" |> Convert.ToBoolean
+            let ft = 
+              match typ with
+              | "picklist" -> 
+                let picklistValues = 
+                  f.SelectTokens("picklistValues[*].value")
+                  |> Seq.map (fun token -> token.ToString())
+                  |> Seq.toList
+                Picklist picklistValues
+              | _ -> typ |> parseType |> Native
+            { Name=fname; Label=fLabel; Type=ft; Length=length;
+              AutoNumber=autoNumber; Calculated=calculated; Nillable=nillable }
+          )
+        |> Seq.toList
+      let childRelationships =
+        j.Item "childRelationships"
+        |> Seq.map (
+          fun r -> 
+            let o = r.Item "childSObject" |> Convert.ToString
+            let name = r.Item "relationshipName" |> Convert.ToString
+            let field = r.Item "field" |> Convert.ToString
+            { RelationshipName=name; ChildSObject=o; Field=field }
+        ) |> Seq.toList
+      return { Name=name; Label=label; LabelPlural=labelPlural; Fields=fields; RelationShips=childRelationships; }
+    }
+
+  let getObjectsList (i:Identity) =
+    async {
+      let! names = getObjectsDescUrls i
       return!
-        o.SelectTokens("sobjects[*].urls.describe")
-          |> Seq.take 5
-          |> Seq.map (
-              fun t -> 
-                let u = t.ToString()
-                let url = baseUrl.AbsoluteUri + u
-                async {
-                  let! rs = get i (Uri url)
-                  let! c = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
-                  let j = JObject.Parse c
-                  let name = (j.Item "name").ToString()
-                  let labelPlural = (j.Item "labelPlural").ToString()
-                  let label = (j.Item "label").ToString()
-                  let fields =
-                    j.Item "fields"
-                    |> Seq.map (
-                      fun f -> 
-                        let autoNumber = f.Item "autoNumber" |> Convert.ToBoolean
-                        let fname = f.Item "name" |> Convert.ToString
-                        let fLabel = f.Item "label" |> Convert.ToString
-                        let typ = f.Item "type" |> Convert.ToString
-                        let length = f.Item "length" |> Convert.ToInt32
-                        let calculated = f.Item "calculated" |> Convert.ToBoolean
-                        let nillable = f.Item "nillable" |> Convert.ToBoolean
-                        let ft = 
-                          match typ with
-                          | "picklist" -> 
-                            let picklistValues = 
-                              f.SelectTokens("picklistValues[*].value")
-                              |> Seq.map (fun token -> token.ToString())
-                              |> Seq.toList
-                            Picklist picklistValues
-                          | _ -> typ |> parseType |> Native
-                        { Name=fname; Label=fLabel; Type=ft; Length=length;
-                          AutoNumber=autoNumber; Calculated=calculated; Nillable=nillable }
-                      )
-                    |> Seq.toList
-                  let childRelationships =
-                    j.Item "childRelationships"
-                    |> Seq.map (
-                      fun r -> 
-                        let o = r.Item "childSObject" |> Convert.ToString
-                        let name = r.Item "relationshipName" |> Convert.ToString
-                        let field = r.Item "field" |> Convert.ToString
-                        { RelationshipName=name; ChildSObject=o; Field=field }
-                    ) |> Seq.toList
-                  return { Name=name; Label=label; LabelPlural=labelPlural; Fields=fields; RelationShips=childRelationships; }
-                }
-              )
+        names
+//          |> Seq.take 5
+          |> Seq.map (getTableFromUrl i)
           |> Async.Parallel
     }
 

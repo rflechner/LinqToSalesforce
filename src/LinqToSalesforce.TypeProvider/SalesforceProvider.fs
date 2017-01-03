@@ -83,35 +83,35 @@ type SalesforceProvider () as this =
                 @@>) |> ty.AddMember
 
       async {
-        let! tables = getObjectsList oauth // |> Seq.take 5 // |> Async.RunSynchronously
-        for table in tables do
-          let entityType = ProvidedTypeDefinition(
-                              sprintf "%sEntity" table.Name,
-                              baseType = Some typeof<BaseEntity>,
-                              HideObjectMethods = false)
-          for field in table.Fields do
-            let fn = field.Name
-            ProvidedProperty(field.Name, typeof<string>,
-              GetterCode=fun args -> 
-                <@@
-//                  let id = (%%args.[0]:>obj) :?> Identity
-//                  (id,name)
-                  fn
-                @@>) |> entityType.AddMember
-          
-          let tableType = ProvidedTypeDefinition(
-                              sprintf "%sTable" table.Name,
-                              baseType = Some typeof<TableContext>,
-                              HideObjectMethods = true)
-          ProvidedConstructor([],
-              InvokeCode=
-                  fun [c]-> 
-                      <@@
-                          let ctx = %%c:TableContext
-                          ctx
-                      @@>
-              ) |> tableType.AddMember
-          do ty.AddMember tableType
+        let! tableNames = getObjectsDescUrls oauth // |> Seq.take 5 // |> Async.RunSynchronously
+        for name in tableNames do
+//          let entityType = ProvidedTypeDefinition(
+//                              sprintf "%sEntity" name,
+//                              baseType = Some typeof<BaseEntity>,
+//                              HideObjectMethods = false)
+//          for field in table.Fields do
+//            let fn = field.Name
+//            ProvidedProperty(field.Name, typeof<string>,
+//              GetterCode=fun args -> 
+//                <@@
+////                  let id = (%%args.[0]:>obj) :?> Identity
+////                  (id,name)
+//                  fn
+//                @@>) |> entityType.AddMember
+//          
+//          let tableType = ProvidedTypeDefinition(
+//                              sprintf "%sTable" table.Name,
+//                              baseType = Some typeof<TableContext>,
+//                              HideObjectMethods = true)
+//          ProvidedConstructor([],
+//              InvokeCode=
+//                  fun [c]-> 
+//                      <@@
+//                          let ctx = %%c:TableContext
+//                          ctx
+//                      @@>
+//              ) |> tableType.AddMember
+//          do ty.AddMember tableType
 
 //          ProvidedProperty("Query", typeof<TableContext>,
 //            GetterCode=fun args -> 
@@ -122,8 +122,8 @@ type SalesforceProvider () as this =
 //              ) |> tableType.AddMember
           //Queryable
 
-          let name = table.Name
-          ProvidedProperty(table.Name, tableType,
+//          let name = table.Name
+          ProvidedProperty(CodeGeneration.pluralize name, typeof<obj>, //tableType,
             GetterCode=fun args -> 
               <@@
                 let ctx = (%%args.[0]:>obj) :?> SoqlContext

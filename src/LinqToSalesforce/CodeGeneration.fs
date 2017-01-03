@@ -18,8 +18,9 @@ open LinqToSalesforce.Rest
 open System.Data.Entity.Design.PluralizationServices
 open System.Globalization
 
-let c = CultureInfo "en-us"
-let ps = PluralizationService.CreateService c
+let private c = CultureInfo "en-us"
+let private ps = PluralizationService.CreateService c
+let pluralize = ps.Pluralize
 
 let removeNonLetterDigit (s:string) =
   s.ToCharArray()
@@ -173,7 +174,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
   addLine 2 "\npublic SalesforceDataContext(string instanceName, Rest.OAuth.ImpersonationParam authparams) : base(instanceName, authparams) { }"
   
   for table in tables do
-    let name = ps.Pluralize table.Name
+    let name = pluralize table.Name
     let line = sprintf "public IQueryable<%s> %s => GetTable<%s>();" table.Name name table.Name
     addLine 2 line
 

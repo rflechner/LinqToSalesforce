@@ -36,5 +36,5 @@ type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11">
 
 let sf = TS()
 //sf.Tables.Account.Name
-sf.Tables.Account.Query
+sf.Tables
 
