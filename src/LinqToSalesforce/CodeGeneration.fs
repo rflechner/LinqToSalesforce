@@ -15,6 +15,11 @@ open Newtonsoft.Json.Serialization
 open Newtonsoft.Json.Converters
 open Newtonsoft.Json.Linq
 open LinqToSalesforce.Rest
+open System.Data.Entity.Design.PluralizationServices
+open System.Globalization
+
+let c = CultureInfo "en-us"
+let ps = PluralizationService.CreateService c
 
 let removeNonLetterDigit (s:string) =
   s.ToCharArray()
@@ -134,6 +139,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
   addLine 0 "using LinqToSalesforce;"
   addLine 0 "using System.Runtime.CompilerServices;"
   addLine 0 "using System.ComponentModel;"
+  addLine 0 "using System.Linq;"
 
   addLine 0 ""
   add "namespace "
@@ -161,8 +167,20 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
 
   for table in tables do
     generateTableCsharp table 1
-      
+  
+  addLine 1 "\nclass SalesforceDataContext : SoqlContext"
+  addLine 1 "{"
+  addLine 2 "\npublic SalesforceDataContext(string instanceName, Rest.OAuth.ImpersonationParam authparams) : base(instanceName, authparams) { }"
+  
+  for table in tables do
+    let name = ps.Pluralize table.Name
+    let line = sprintf "public IQueryable<%s> %s => GetTable<%s>();" table.Name name table.Name
+    addLine 2 line
+
+  addLine 1 "\n}"
+  
   addLine 0 "\n}"
+
   b.AppendLine() |> ignore
   b.ToString()
 
