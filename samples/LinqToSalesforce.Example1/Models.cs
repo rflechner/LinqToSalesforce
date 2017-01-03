@@ -143,7 +143,7 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickAccountCustomerPriority__c
+    public class PickAccountCustomerPriority
     {
         public static readonly string  High = "High"; 
         public static readonly string  Low = "Low"; 
@@ -151,14 +151,14 @@ namespace LinqToSalesforce
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickAccountCustomerPriority__c o)
+        public static implicit operator string(PickAccountCustomerPriority o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickAccountCustomerPriority__c(string s)
+        public static implicit operator PickAccountCustomerPriority(string s)
         {
-            return new PickAccountCustomerPriority__c {Value = s};
+            return new PickAccountCustomerPriority {Value = s};
         }
 
         public override string ToString()
@@ -168,7 +168,7 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickAccountSLA__c
+    public class PickAccountSLA
     {
         public static readonly string  Gold = "Gold"; 
         public static readonly string  Silver = "Silver"; 
@@ -177,14 +177,14 @@ namespace LinqToSalesforce
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickAccountSLA__c o)
+        public static implicit operator string(PickAccountSLA o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickAccountSLA__c(string s)
+        public static implicit operator PickAccountSLA(string s)
         {
-            return new PickAccountSLA__c {Value = s};
+            return new PickAccountSLA {Value = s};
         }
 
         public override string ToString()
@@ -194,21 +194,21 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickAccountActive__c
+    public class PickAccountActive
     {
         public static readonly string  No = "No"; 
         public static readonly string  Yes = "Yes"; 
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickAccountActive__c o)
+        public static implicit operator string(PickAccountActive o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickAccountActive__c(string s)
+        public static implicit operator PickAccountActive(string s)
         {
-            return new PickAccountActive__c {Value = s};
+            return new PickAccountActive {Value = s};
         }
 
         public override string ToString()
@@ -218,7 +218,7 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickAccountUpsellOpportunity__c
+    public class PickAccountUpsellOpportunity
     {
         public static readonly string  Maybe = "Maybe"; 
         public static readonly string  No = "No"; 
@@ -226,14 +226,14 @@ namespace LinqToSalesforce
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickAccountUpsellOpportunity__c o)
+        public static implicit operator string(PickAccountUpsellOpportunity o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickAccountUpsellOpportunity__c(string s)
+        public static implicit operator PickAccountUpsellOpportunity(string s)
         {
-            return new PickAccountUpsellOpportunity__c {Value = s};
+            return new PickAccountUpsellOpportunity {Value = s};
         }
 
         public override string ToString()
@@ -1567,21 +1567,21 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickCaseSLAViolation__c
+    public class PickCaseSLAViolation
     {
         public static readonly string  No = "No"; 
         public static readonly string  Yes = "Yes"; 
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickCaseSLAViolation__c o)
+        public static implicit operator string(PickCaseSLAViolation o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickCaseSLAViolation__c(string s)
+        public static implicit operator PickCaseSLAViolation(string s)
         {
-            return new PickCaseSLAViolation__c {Value = s};
+            return new PickCaseSLAViolation {Value = s};
         }
 
         public override string ToString()
@@ -1591,7 +1591,7 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickCaseProduct__c
+    public class PickCaseProduct
     {
         public static readonly string  GC1040 = "GC1040"; 
         public static readonly string  GC1060 = "GC1060"; 
@@ -1605,14 +1605,14 @@ namespace LinqToSalesforce
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickCaseProduct__c o)
+        public static implicit operator string(PickCaseProduct o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickCaseProduct__c(string s)
+        public static implicit operator PickCaseProduct(string s)
         {
-            return new PickCaseProduct__c {Value = s};
+            return new PickCaseProduct {Value = s};
         }
 
         public override string ToString()
@@ -1622,21 +1622,21 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickCasePotentialLiability__c
+    public class PickCasePotentialLiability
     {
         public static readonly string  No = "No"; 
         public static readonly string  Yes = "Yes"; 
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickCasePotentialLiability__c o)
+        public static implicit operator string(PickCasePotentialLiability o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickCasePotentialLiability__c(string s)
+        public static implicit operator PickCasePotentialLiability(string s)
         {
-            return new PickCasePotentialLiability__c {Value = s};
+            return new PickCasePotentialLiability {Value = s};
         }
 
         public override string ToString()
@@ -2059,7 +2059,7 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickContactLevel__c
+    public class PickContactLevel
     {
         public static readonly string  Secondary = "Secondary"; 
         public static readonly string  Tertiary = "Tertiary"; 
@@ -2067,14 +2067,14 @@ namespace LinqToSalesforce
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickContactLevel__c o)
+        public static implicit operator string(PickContactLevel o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickContactLevel__c(string s)
+        public static implicit operator PickContactLevel(string s)
         {
-            return new PickContactLevel__c {Value = s};
+            return new PickContactLevel {Value = s};
         }
 
         public override string ToString()
@@ -4275,7 +4275,7 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickLeadProductInterest__c
+    public class PickLeadProductInterest
     {
         public static readonly string  GC1000series = "GC1000 series"; 
         public static readonly string  GC5000series = "GC5000 series"; 
@@ -4283,14 +4283,14 @@ namespace LinqToSalesforce
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickLeadProductInterest__c o)
+        public static implicit operator string(PickLeadProductInterest o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickLeadProductInterest__c(string s)
+        public static implicit operator PickLeadProductInterest(string s)
         {
-            return new PickLeadProductInterest__c {Value = s};
+            return new PickLeadProductInterest {Value = s};
         }
 
         public override string ToString()
@@ -4300,21 +4300,21 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickLeadPrimary__c
+    public class PickLeadPrimary
     {
         public static readonly string  No = "No"; 
         public static readonly string  Yes = "Yes"; 
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickLeadPrimary__c o)
+        public static implicit operator string(PickLeadPrimary o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickLeadPrimary__c(string s)
+        public static implicit operator PickLeadPrimary(string s)
         {
-            return new PickLeadPrimary__c {Value = s};
+            return new PickLeadPrimary {Value = s};
         }
 
         public override string ToString()
@@ -4849,7 +4849,7 @@ namespace LinqToSalesforce
         
 
     }
-    public class PickOpportunityDeliveryInstallationStatus__c
+    public class PickOpportunityDeliveryInstallationStatus
     {
         public static readonly string  Inprogress = "In progress"; 
         public static readonly string  Yettobegin = "Yet to begin"; 
@@ -4857,14 +4857,14 @@ namespace LinqToSalesforce
     
         public string Value { get; set; }
 
-        public static implicit operator string(PickOpportunityDeliveryInstallationStatus__c o)
+        public static implicit operator string(PickOpportunityDeliveryInstallationStatus o)
         {
             return o.Value;
         }
 
-        public static implicit operator PickOpportunityDeliveryInstallationStatus__c(string s)
+        public static implicit operator PickOpportunityDeliveryInstallationStatus(string s)
         {
-            return new PickOpportunityDeliveryInstallationStatus__c {Value = s};
+            return new PickOpportunityDeliveryInstallationStatus {Value = s};
         }
 
         public override string ToString()
@@ -8133,26 +8133,26 @@ namespace LinqToSalesforce
             get { return __LastActivityDate; }
             set { SetField(ref __LastActivityDate, value); }
         }
-        private PickAccountCustomerPriority__c __CustomerPriorityc;
+        private PickAccountCustomerPriority __CustomerPriorityc;
         [JsonProperty(PropertyName = "CustomerPriority__c")]
         [EntityField(true)]
-        public PickAccountCustomerPriority__c CustomerPriorityc
+        public PickAccountCustomerPriority CustomerPriorityc
         {
             get { return __CustomerPriorityc; }
             set { SetField(ref __CustomerPriorityc, value); }
         }
-        private PickAccountSLA__c __SLAc;
+        private PickAccountSLA __SLAc;
         [JsonProperty(PropertyName = "SLA__c")]
         [EntityField(true)]
-        public PickAccountSLA__c SLAc
+        public PickAccountSLA SLAc
         {
             get { return __SLAc; }
             set { SetField(ref __SLAc, value); }
         }
-        private PickAccountActive__c __Activec;
+        private PickAccountActive __Activec;
         [JsonProperty(PropertyName = "Active__c")]
         [EntityField(true)]
-        public PickAccountActive__c Activec
+        public PickAccountActive Activec
         {
             get { return __Activec; }
             set { SetField(ref __Activec, value); }
@@ -8165,10 +8165,10 @@ namespace LinqToSalesforce
             get { return __NumberofLocationsc; }
             set { SetField(ref __NumberofLocationsc, value); }
         }
-        private PickAccountUpsellOpportunity__c __UpsellOpportunityc;
+        private PickAccountUpsellOpportunity __UpsellOpportunityc;
         [JsonProperty(PropertyName = "UpsellOpportunity__c")]
         [EntityField(true)]
-        public PickAccountUpsellOpportunity__c UpsellOpportunityc
+        public PickAccountUpsellOpportunity UpsellOpportunityc
         {
             get { return __UpsellOpportunityc; }
             set { SetField(ref __UpsellOpportunityc, value); }
@@ -8199,157 +8199,157 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account, Account> ChildAccounts
+        public RelationShip<Account,Account> ChildAccounts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, AccountContactRole> AccountContactRoles
+        public RelationShip<Account,AccountContactRole> AccountContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account, AccountFeed> Feeds
+        public RelationShip<Account,AccountFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, AccountHistory> Histories
+        public RelationShip<Account,AccountHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountFromId")]
-        public RelationShip<Account, AccountPartner> AccountPartnersFrom
+        public RelationShip<Account,AccountPartner> AccountPartnersFrom
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountToId")]
-        public RelationShip<Account, AccountPartner> AccountPartnersTo
+        public RelationShip<Account,AccountPartner> AccountPartnersTo
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, AccountShare> Shares
+        public RelationShip<Account,AccountShare> Shares
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, ActivityHistory> ActivityHistories
+        public RelationShip<Account,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, Asset> Assets
+        public RelationShip<Account,Asset> Assets
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account, Attachment> Attachments
+        public RelationShip<Account,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, Case> Cases
+        public RelationShip<Account,Case> Cases
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, Contact> Contacts
+        public RelationShip<Account,Contact> Contacts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, Contract> Contracts
+        public RelationShip<Account,Contract> Contracts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Account,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Account, Event> Events
+        public RelationShip<Account,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account, Note> Notes
+        public RelationShip<Account,Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account, NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Account,NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, OpenActivity> OpenActivities
+        public RelationShip<Account,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, Opportunity> Opportunities
+        public RelationShip<Account,Opportunity> Opportunities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountToId")]
-        public RelationShip<Account, OpportunityPartner> OpportunityPartnersTo
+        public RelationShip<Account,OpportunityPartner> OpportunityPartnersTo
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account, Order> Orders
+        public RelationShip<Account,Order> Orders
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountFromId")]
-        public RelationShip<Account, Partner> PartnersFrom
+        public RelationShip<Account,Partner> PartnersFrom
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountToId")]
-        public RelationShip<Account, Partner> PartnersTo
+        public RelationShip<Account,Partner> PartnersTo
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Account, ProcessInstance> ProcessInstances
+        public RelationShip<Account,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Account, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Account,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Account, Task> Tasks
+        public RelationShip<Account,Task> Tasks
         {
             get;set;
         }
@@ -8524,13 +8524,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<AccountFeed, FeedComment> FeedComments
+        public RelationShip<AccountFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<AccountFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<AccountFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -9942,79 +9942,79 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Asset, ActivityHistory> ActivityHistories
+        public RelationShip<Asset,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Asset, AssetFeed> Feeds
+        public RelationShip<Asset,AssetFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AssetId")]
-        public RelationShip<Asset, AssetHistory> Histories
+        public RelationShip<Asset,AssetHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Asset, Attachment> Attachments
+        public RelationShip<Asset,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AssetId")]
-        public RelationShip<Asset, Case> Cases
+        public RelationShip<Asset,Case> Cases
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Asset, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Asset,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Asset, Event> Events
+        public RelationShip<Asset,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Asset, Note> Notes
+        public RelationShip<Asset,Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Asset, NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Asset,NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Asset, OpenActivity> OpenActivities
+        public RelationShip<Asset,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Asset, ProcessInstance> ProcessInstances
+        public RelationShip<Asset,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Asset, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Asset,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Asset, Task> Tasks
+        public RelationShip<Asset,Task> Tasks
         {
             get;set;
         }
@@ -10094,13 +10094,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<AssetFeed, FeedComment> FeedComments
+        public RelationShip<AssetFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<AssetFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<AssetFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -11206,79 +11206,79 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Campaign, ActivityHistory> ActivityHistories
+        public RelationShip<Campaign,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Campaign, Attachment> Attachments
+        public RelationShip<Campaign,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Campaign, Campaign> ChildCampaigns
+        public RelationShip<Campaign,Campaign> ChildCampaigns
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Campaign, CampaignFeed> Feeds
+        public RelationShip<Campaign,CampaignFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CampaignId")]
-        public RelationShip<Campaign, CampaignMember> CampaignMembers
+        public RelationShip<Campaign,CampaignMember> CampaignMembers
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CampaignId")]
-        public RelationShip<Campaign, CampaignShare> Shares
+        public RelationShip<Campaign,CampaignShare> Shares
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Campaign, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Campaign,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Campaign, Event> Events
+        public RelationShip<Campaign,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Campaign, OpenActivity> OpenActivities
+        public RelationShip<Campaign,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CampaignId")]
-        public RelationShip<Campaign, Opportunity> Opportunities
+        public RelationShip<Campaign,Opportunity> Opportunities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Campaign, ProcessInstance> ProcessInstances
+        public RelationShip<Campaign,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Campaign, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Campaign,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Campaign, Task> Tasks
+        public RelationShip<Campaign,Task> Tasks
         {
             get;set;
         }
@@ -11358,13 +11358,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<CampaignFeed, FeedComment> FeedComments
+        public RelationShip<CampaignFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<CampaignFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<CampaignFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -11868,135 +11868,135 @@ namespace LinqToSalesforce
             get { return __EngineeringReqNumberc; }
             set { SetField(ref __EngineeringReqNumberc, value); }
         }
-        private PickCaseSLAViolation__c __SLAViolationc;
+        private PickCaseSLAViolation __SLAViolationc;
         [JsonProperty(PropertyName = "SLAViolation__c")]
         [EntityField(true)]
-        public PickCaseSLAViolation__c SLAViolationc
+        public PickCaseSLAViolation SLAViolationc
         {
             get { return __SLAViolationc; }
             set { SetField(ref __SLAViolationc, value); }
         }
-        private PickCaseProduct__c __Productc;
+        private PickCaseProduct __Productc;
         [JsonProperty(PropertyName = "Product__c")]
         [EntityField(true)]
-        public PickCaseProduct__c Productc
+        public PickCaseProduct Productc
         {
             get { return __Productc; }
             set { SetField(ref __Productc, value); }
         }
-        private PickCasePotentialLiability__c __PotentialLiabilityc;
+        private PickCasePotentialLiability __PotentialLiabilityc;
         [JsonProperty(PropertyName = "PotentialLiability__c")]
         [EntityField(true)]
-        public PickCasePotentialLiability__c PotentialLiabilityc
+        public PickCasePotentialLiability PotentialLiabilityc
         {
             get { return __PotentialLiabilityc; }
             set { SetField(ref __PotentialLiabilityc, value); }
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Case, ActivityHistory> ActivityHistories
+        public RelationShip<Case,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Case, Attachment> Attachments
+        public RelationShip<Case,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Case, Case> Cases
+        public RelationShip<Case,Case> Cases
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Case, CaseComment> CaseComments
+        public RelationShip<Case,CaseComment> CaseComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CasesId")]
-        public RelationShip<Case, CaseContactRole> CaseContactRoles
+        public RelationShip<Case,CaseContactRole> CaseContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Case, CaseFeed> Feeds
+        public RelationShip<Case,CaseFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CaseId")]
-        public RelationShip<Case, CaseHistory> Histories
+        public RelationShip<Case,CaseHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CaseId")]
-        public RelationShip<Case, CaseShare> Shares
+        public RelationShip<Case,CaseShare> Shares
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CaseId")]
-        public RelationShip<Case, CaseSolution> CaseSolutions
+        public RelationShip<Case,CaseSolution> CaseSolutions
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Case, CaseTeamMember> TeamMembers
+        public RelationShip<Case,CaseTeamMember> TeamMembers
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Case, CaseTeamTemplateRecord> TeamTemplateRecords
+        public RelationShip<Case,CaseTeamTemplateRecord> TeamTemplateRecords
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Case, EmailMessage> EmailMessages
+        public RelationShip<Case,EmailMessage> EmailMessages
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Case, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Case,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Case, Event> Events
+        public RelationShip<Case,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Case, OpenActivity> OpenActivities
+        public RelationShip<Case,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Case, ProcessInstance> ProcessInstances
+        public RelationShip<Case,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Case, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Case,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Case, Task> Tasks
+        public RelationShip<Case,Task> Tasks
         {
             get;set;
         }
@@ -12252,13 +12252,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<CaseFeed, FeedComment> FeedComments
+        public RelationShip<CaseFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<CaseFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<CaseFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -13289,19 +13289,19 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<CollaborationGroup, CollaborationGroupFeed> Feeds
+        public RelationShip<CollaborationGroup,CollaborationGroupFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CollaborationGroupId")]
-        public RelationShip<CollaborationGroup, CollaborationGroupMember> GroupMembers
+        public RelationShip<CollaborationGroup,CollaborationGroupMember> GroupMembers
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<CollaborationGroup, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<CollaborationGroup,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
@@ -13381,13 +13381,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<CollaborationGroupFeed, FeedComment> FeedComments
+        public RelationShip<CollaborationGroupFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<CollaborationGroupFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<CollaborationGroupFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -13981,10 +13981,10 @@ namespace LinqToSalesforce
             get { return __EmailBouncedDate; }
             set { SetField(ref __EmailBouncedDate, value); }
         }
-        private PickContactLevel__c __Levelc;
+        private PickContactLevel __Levelc;
         [JsonProperty(PropertyName = "Level__c")]
         [EntityField(true)]
-        public PickContactLevel__c Levelc
+        public PickContactLevel Levelc
         {
             get { return __Levelc; }
             set { SetField(ref __Levelc, value); }
@@ -13999,133 +13999,133 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
-        public RelationShip<Contact, AccountContactRole> AccountContactRoles
+        public RelationShip<Contact,AccountContactRole> AccountContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Contact, ActivityHistory> ActivityHistories
+        public RelationShip<Contact,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
-        public RelationShip<Contact, Asset> Assets
+        public RelationShip<Contact,Asset> Assets
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contact, Attachment> Attachments
+        public RelationShip<Contact,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
-        public RelationShip<Contact, CampaignMember> CampaignMembers
+        public RelationShip<Contact,CampaignMember> CampaignMembers
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
-        public RelationShip<Contact, Case> Cases
+        public RelationShip<Contact,Case> Cases
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
-        public RelationShip<Contact, CaseContactRole> CaseContactRoles
+        public RelationShip<Contact,CaseContactRole> CaseContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contact, ContactFeed> Feeds
+        public RelationShip<Contact,ContactFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
-        public RelationShip<Contact, ContactHistory> Histories
+        public RelationShip<Contact,ContactHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
-        public RelationShip<Contact, ContactShare> Shares
+        public RelationShip<Contact,ContactShare> Shares
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CustomerSignedId")]
-        public RelationShip<Contact, Contract> ContractsSigned
+        public RelationShip<Contact,Contract> ContractsSigned
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
-        public RelationShip<Contact, ContractContactRole> ContractContactRoles
+        public RelationShip<Contact,ContractContactRole> ContractContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Contact, EmailStatus> EmailStatuses
+        public RelationShip<Contact,EmailStatus> EmailStatuses
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contact, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Contact,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Contact, Event> Events
+        public RelationShip<Contact,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contact, Note> Notes
+        public RelationShip<Contact,Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contact, NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Contact,NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Contact, OpenActivity> OpenActivities
+        public RelationShip<Contact,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
-        public RelationShip<Contact, OpportunityContactRole> OpportunityContactRoles
+        public RelationShip<Contact,OpportunityContactRole> OpportunityContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Contact, ProcessInstance> ProcessInstances
+        public RelationShip<Contact,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Contact, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Contact,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Contact, Task> Tasks
+        public RelationShip<Contact,Task> Tasks
         {
             get;set;
         }
@@ -14205,13 +14205,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<ContactFeed, FeedComment> FeedComments
+        public RelationShip<ContactFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<ContactFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<ContactFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -14460,25 +14460,25 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<ContentDocument, ContentDocumentFeed> Feeds
+        public RelationShip<ContentDocument,ContentDocumentFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContentDocumentId")]
-        public RelationShip<ContentDocument, ContentDocumentHistory> Histories
+        public RelationShip<ContentDocument,ContentDocumentHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContentDocumentId")]
-        public RelationShip<ContentDocument, ContentVersion> ContentVersions
+        public RelationShip<ContentDocument,ContentVersion> ContentVersions
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<ContentDocument, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<ContentDocument,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
@@ -14558,13 +14558,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<ContentDocumentFeed, FeedComment> FeedComments
+        public RelationShip<ContentDocumentFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<ContentDocumentFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<ContentDocumentFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -14872,7 +14872,7 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ContentVersionId")]
-        public RelationShip<ContentVersion, ContentVersionHistory> Histories
+        public RelationShip<ContentVersion,ContentVersionHistory> Histories
         {
             get;set;
         }
@@ -15370,85 +15370,85 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Contract, ActivityHistory> ActivityHistories
+        public RelationShip<Contract,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contract, Attachment> Attachments
+        public RelationShip<Contract,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContractId")]
-        public RelationShip<Contract, ContractContactRole> ContractContactRoles
+        public RelationShip<Contract,ContractContactRole> ContractContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contract, ContractFeed> Feeds
+        public RelationShip<Contract,ContractFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContractId")]
-        public RelationShip<Contract, ContractHistory> Histories
+        public RelationShip<Contract,ContractHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contract, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Contract,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Contract, Event> Events
+        public RelationShip<Contract,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contract, Note> Notes
+        public RelationShip<Contract,Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Contract, NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Contract,NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Contract, OpenActivity> OpenActivities
+        public RelationShip<Contract,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ContractId")]
-        public RelationShip<Contract, Order> Orders
+        public RelationShip<Contract,Order> Orders
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Contract, ProcessInstance> ProcessInstances
+        public RelationShip<Contract,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Contract, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Contract,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Contract, Task> Tasks
+        public RelationShip<Contract,Task> Tasks
         {
             get;set;
         }
@@ -15623,13 +15623,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<ContractFeed, FeedComment> FeedComments
+        public RelationShip<ContractFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<ContractFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<ContractFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -16085,13 +16085,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Dashboard, DashboardFeed> Feeds
+        public RelationShip<Dashboard,DashboardFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Dashboard, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Dashboard,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
@@ -16171,13 +16171,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<DashboardFeed, FeedComment> FeedComments
+        public RelationShip<DashboardFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<DashboardFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<DashboardFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -16587,19 +16587,19 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<EmailMessage, Attachment> Attachments
+        public RelationShip<EmailMessage,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<EmailMessage, ProcessInstance> ProcessInstances
+        public RelationShip<EmailMessage,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<EmailMessage, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<EmailMessage,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
@@ -16879,7 +16879,7 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FunctionId")]
-        public RelationShip<EmailServicesFunction, EmailServicesAddress> Addresses
+        public RelationShip<EmailServicesFunction,EmailServicesAddress> Addresses
         {
             get;set;
         }
@@ -17166,7 +17166,7 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<EmailTemplate, Attachment> Attachments
+        public RelationShip<EmailTemplate,Attachment> Attachments
         {
             get;set;
         }
@@ -17523,31 +17523,31 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Event, Attachment> Attachments
+        public RelationShip<Event,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Event, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Event,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("RecurrenceActivityId")]
-        public RelationShip<Event, Event> RecurringEvents
+        public RelationShip<Event,Event> RecurringEvents
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("EventId")]
-        public RelationShip<Event, EventAttendee> EventAttendees
+        public RelationShip<Event,EventAttendee> EventAttendees
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Event, EventFeed> Feeds
+        public RelationShip<Event,EventFeed> Feeds
         {
             get;set;
         }
@@ -17729,13 +17729,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<EventFeed, FeedComment> FeedComments
+        public RelationShip<EventFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<EventFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<EventFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -18114,7 +18114,7 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FiscalYearSettingsId")]
-        public RelationShip<FiscalYearSettings, Period> Periods
+        public RelationShip<FiscalYearSettings,Period> Periods
         {
             get;set;
         }
@@ -18405,19 +18405,19 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("GroupId")]
-        public RelationShip<Group, GroupMember> GroupMembers
+        public RelationShip<Group,GroupMember> GroupMembers
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("QueueId")]
-        public RelationShip<Group, QueueSobject> QueueSobjects
+        public RelationShip<Group,QueueSobject> QueueSobjects
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("DelegatedApproverId")]
-        public RelationShip<Group, User> DelegatedUsers
+        public RelationShip<Group,User> DelegatedUsers
         {
             get;set;
         }
@@ -18799,13 +18799,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("IdeaId")]
-        public RelationShip<Idea, IdeaComment> Comments
+        public RelationShip<Idea,IdeaComment> Comments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Idea, Vote> Votes
+        public RelationShip<Idea,Vote> Votes
         {
             get;set;
         }
@@ -18885,7 +18885,7 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<IdeaComment, Vote> Votes
+        public RelationShip<IdeaComment,Vote> Votes
         {
             get;set;
         }
@@ -19202,18 +19202,18 @@ namespace LinqToSalesforce
             get { return __SICCodec; }
             set { SetField(ref __SICCodec, value); }
         }
-        private PickLeadProductInterest__c __ProductInterestc;
+        private PickLeadProductInterest __ProductInterestc;
         [JsonProperty(PropertyName = "ProductInterest__c")]
         [EntityField(true)]
-        public PickLeadProductInterest__c ProductInterestc
+        public PickLeadProductInterest ProductInterestc
         {
             get { return __ProductInterestc; }
             set { SetField(ref __ProductInterestc, value); }
         }
-        private PickLeadPrimary__c __Primaryc;
+        private PickLeadPrimary __Primaryc;
         [JsonProperty(PropertyName = "Primary__c")]
         [EntityField(true)]
-        public PickLeadPrimary__c Primaryc
+        public PickLeadPrimary Primaryc
         {
             get { return __Primaryc; }
             set { SetField(ref __Primaryc, value); }
@@ -19236,91 +19236,91 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Lead, ActivityHistory> ActivityHistories
+        public RelationShip<Lead,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Lead, Attachment> Attachments
+        public RelationShip<Lead,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("LeadId")]
-        public RelationShip<Lead, CampaignMember> CampaignMembers
+        public RelationShip<Lead,CampaignMember> CampaignMembers
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Lead, EmailStatus> EmailStatuses
+        public RelationShip<Lead,EmailStatus> EmailStatuses
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Lead, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Lead,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Lead, Event> Events
+        public RelationShip<Lead,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Lead, LeadFeed> Feeds
+        public RelationShip<Lead,LeadFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("LeadId")]
-        public RelationShip<Lead, LeadHistory> Histories
+        public RelationShip<Lead,LeadHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("LeadId")]
-        public RelationShip<Lead, LeadShare> Shares
+        public RelationShip<Lead,LeadShare> Shares
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Lead, Note> Notes
+        public RelationShip<Lead,Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Lead, NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Lead,NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Lead, OpenActivity> OpenActivities
+        public RelationShip<Lead,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Lead, ProcessInstance> ProcessInstances
+        public RelationShip<Lead,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Lead, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Lead,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
-        public RelationShip<Lead, Task> Tasks
+        public RelationShip<Lead,Task> Tasks
         {
             get;set;
         }
@@ -19400,13 +19400,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<LeadFeed, FeedComment> FeedComments
+        public RelationShip<LeadFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<LeadFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<LeadFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -20029,13 +20029,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<NewsFeed, FeedComment> FeedComments
+        public RelationShip<NewsFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<NewsFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<NewsFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -20706,10 +20706,10 @@ namespace LinqToSalesforce
             get { return __Fiscal; }
             set { SetField(ref __Fiscal, value); }
         }
-        private PickOpportunityDeliveryInstallationStatus__c __DeliveryInstallationStatusc;
+        private PickOpportunityDeliveryInstallationStatus __DeliveryInstallationStatusc;
         [JsonProperty(PropertyName = "DeliveryInstallationStatus__c")]
         [EntityField(true)]
-        public PickOpportunityDeliveryInstallationStatus__c DeliveryInstallationStatusc
+        public PickOpportunityDeliveryInstallationStatus DeliveryInstallationStatusc
         {
             get { return __DeliveryInstallationStatusc; }
             set { SetField(ref __DeliveryInstallationStatusc, value); }
@@ -20748,121 +20748,121 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
-        public RelationShip<Opportunity, AccountPartner> AccountPartners
+        public RelationShip<Opportunity,AccountPartner> AccountPartners
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Opportunity, ActivityHistory> ActivityHistories
+        public RelationShip<Opportunity,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Opportunity, Attachment> Attachments
+        public RelationShip<Opportunity,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Opportunity, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Opportunity,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Opportunity, Event> Events
+        public RelationShip<Opportunity,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Opportunity, Note> Notes
+        public RelationShip<Opportunity,Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Opportunity, NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Opportunity,NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Opportunity, OpenActivity> OpenActivities
+        public RelationShip<Opportunity,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
-        public RelationShip<Opportunity, OpportunityCompetitor> OpportunityCompetitors
+        public RelationShip<Opportunity,OpportunityCompetitor> OpportunityCompetitors
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
-        public RelationShip<Opportunity, OpportunityContactRole> OpportunityContactRoles
+        public RelationShip<Opportunity,OpportunityContactRole> OpportunityContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Opportunity, OpportunityFeed> Feeds
+        public RelationShip<Opportunity,OpportunityFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
-        public RelationShip<Opportunity, OpportunityFieldHistory> Histories
+        public RelationShip<Opportunity,OpportunityFieldHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
-        public RelationShip<Opportunity, OpportunityHistory> OpportunityHistories
+        public RelationShip<Opportunity,OpportunityHistory> OpportunityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
-        public RelationShip<Opportunity, OpportunityLineItem> OpportunityLineItems
+        public RelationShip<Opportunity,OpportunityLineItem> OpportunityLineItems
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
-        public RelationShip<Opportunity, OpportunityPartner> OpportunityPartnersFrom
+        public RelationShip<Opportunity,OpportunityPartner> OpportunityPartnersFrom
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
-        public RelationShip<Opportunity, OpportunityShare> Shares
+        public RelationShip<Opportunity,OpportunityShare> Shares
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
-        public RelationShip<Opportunity, Partner> Partners
+        public RelationShip<Opportunity,Partner> Partners
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Opportunity, ProcessInstance> ProcessInstances
+        public RelationShip<Opportunity,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Opportunity, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Opportunity,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Opportunity, Task> Tasks
+        public RelationShip<Opportunity,Task> Tasks
         {
             get;set;
         }
@@ -21132,13 +21132,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<OpportunityFeed, FeedComment> FeedComments
+        public RelationShip<OpportunityFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<OpportunityFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<OpportunityFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -22040,73 +22040,73 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Order, ActivityHistory> ActivityHistories
+        public RelationShip<Order,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Order, Attachment> Attachments
+        public RelationShip<Order,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Order, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Order,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Order, Event> Events
+        public RelationShip<Order,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Order, Note> Notes
+        public RelationShip<Order,Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Order, NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Order,NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Order, OpenActivity> OpenActivities
+        public RelationShip<Order,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OrderId")]
-        public RelationShip<Order, OrderHistory> Histories
+        public RelationShip<Order,OrderHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OrderId")]
-        public RelationShip<Order, OrderItem> OrderItems
+        public RelationShip<Order,OrderItem> OrderItems
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Order, ProcessInstance> ProcessInstances
+        public RelationShip<Order,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Order, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Order,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Order, Task> Tasks
+        public RelationShip<Order,Task> Tasks
         {
             get;set;
         }
@@ -22323,13 +22323,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<OrderItem, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<OrderItem,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("OriginalOrderItemId")]
-        public RelationShip<OrderItem, OrderItem> ChildOrderItems
+        public RelationShip<OrderItem,OrderItem> ChildOrderItems
         {
             get;set;
         }
@@ -23094,25 +23094,25 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("Pricebook2Id")]
-        public RelationShip<Pricebook2, Contract> Contracts
+        public RelationShip<Pricebook2,Contract> Contracts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("Pricebook2Id")]
-        public RelationShip<Pricebook2, Opportunity> Opportunities
+        public RelationShip<Pricebook2,Opportunity> Opportunities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("Pricebook2Id")]
-        public RelationShip<Pricebook2, Pricebook2History> Histories
+        public RelationShip<Pricebook2,Pricebook2History> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("Pricebook2Id")]
-        public RelationShip<Pricebook2, PricebookEntry> PricebookEntries
+        public RelationShip<Pricebook2,PricebookEntry> PricebookEntries
         {
             get;set;
         }
@@ -23308,13 +23308,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("PricebookEntryId")]
-        public RelationShip<PricebookEntry, OpportunityLineItem> OpportunityLineItems
+        public RelationShip<PricebookEntry,OpportunityLineItem> OpportunityLineItems
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("PricebookEntryId")]
-        public RelationShip<PricebookEntry, OrderItem> OrderItems
+        public RelationShip<PricebookEntry,OrderItem> OrderItems
         {
             get;set;
         }
@@ -23517,19 +23517,19 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ProcessInstanceId")]
-        public RelationShip<ProcessInstance, ProcessInstanceHistory> StepsAndWorkitems
+        public RelationShip<ProcessInstance,ProcessInstanceHistory> StepsAndWorkitems
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ProcessInstanceId")]
-        public RelationShip<ProcessInstance, ProcessInstanceStep> Steps
+        public RelationShip<ProcessInstance,ProcessInstanceStep> Steps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ProcessInstanceId")]
-        public RelationShip<ProcessInstance, ProcessInstanceWorkitem> Workitems
+        public RelationShip<ProcessInstance,ProcessInstanceWorkitem> Workitems
         {
             get;set;
         }
@@ -23961,79 +23961,79 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Product2, ActivityHistory> ActivityHistories
+        public RelationShip<Product2,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("Product2Id")]
-        public RelationShip<Product2, Asset> Assets
+        public RelationShip<Product2,Asset> Assets
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Product2, Attachment> Attachments
+        public RelationShip<Product2,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Product2, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Product2,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Product2, Event> Events
+        public RelationShip<Product2,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Product2, Note> Notes
+        public RelationShip<Product2,Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Product2, NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Product2,NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Product2, OpenActivity> OpenActivities
+        public RelationShip<Product2,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("Product2Id")]
-        public RelationShip<Product2, PricebookEntry> PricebookEntries
+        public RelationShip<Product2,PricebookEntry> PricebookEntries
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Product2, ProcessInstance> ProcessInstances
+        public RelationShip<Product2,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Product2, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Product2,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Product2, Product2Feed> Feeds
+        public RelationShip<Product2,Product2Feed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Product2, Task> Tasks
+        public RelationShip<Product2,Task> Tasks
         {
             get;set;
         }
@@ -24113,13 +24113,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<Product2Feed, FeedComment> FeedComments
+        public RelationShip<Product2Feed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<Product2Feed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<Product2Feed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -24738,7 +24738,7 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ProfileId")]
-        public RelationShip<Profile, User> Users
+        public RelationShip<Profile,User> Users
         {
             get;set;
         }
@@ -25015,13 +25015,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Report, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Report,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Report, ReportFeed> Feeds
+        public RelationShip<Report,ReportFeed> Feeds
         {
             get;set;
         }
@@ -25101,13 +25101,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<ReportFeed, FeedComment> FeedComments
+        public RelationShip<ReportFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<ReportFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<ReportFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -25373,19 +25373,19 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Site, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Site,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Site, SiteFeed> Feeds
+        public RelationShip<Site,SiteFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("SiteId")]
-        public RelationShip<Site, SiteHistory> Histories
+        public RelationShip<Site,SiteHistory> Histories
         {
             get;set;
         }
@@ -25465,13 +25465,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<SiteFeed, FeedComment> FeedComments
+        public RelationShip<SiteFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<SiteFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<SiteFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -25688,73 +25688,73 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Solution, ActivityHistory> ActivityHistories
+        public RelationShip<Solution,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Solution, Attachment> Attachments
+        public RelationShip<Solution,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("SolutionId")]
-        public RelationShip<Solution, CaseSolution> CaseSolutions
+        public RelationShip<Solution,CaseSolution> CaseSolutions
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Solution, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Solution,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Solution, Event> Events
+        public RelationShip<Solution,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Solution, OpenActivity> OpenActivities
+        public RelationShip<Solution,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Solution, ProcessInstance> ProcessInstances
+        public RelationShip<Solution,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Solution, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Solution,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Solution, SolutionFeed> Feeds
+        public RelationShip<Solution,SolutionFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("SolutionId")]
-        public RelationShip<Solution, SolutionHistory> Histories
+        public RelationShip<Solution,SolutionHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Solution, Task> Tasks
+        public RelationShip<Solution,Task> Tasks
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Solution, Vote> Votes
+        public RelationShip<Solution,Vote> Votes
         {
             get;set;
         }
@@ -25834,13 +25834,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<SolutionFeed, FeedComment> FeedComments
+        public RelationShip<SolutionFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<SolutionFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<SolutionFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -26380,25 +26380,25 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Task, Attachment> Attachments
+        public RelationShip<Task,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Task, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Task,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("RecurrenceActivityId")]
-        public RelationShip<Task, Task> RecurringTasks
+        public RelationShip<Task,Task> RecurringTasks
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Task, TaskFeed> Feeds
+        public RelationShip<Task,TaskFeed> Feeds
         {
             get;set;
         }
@@ -26478,13 +26478,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<TaskFeed, FeedComment> FeedComments
+        public RelationShip<TaskFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<TaskFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<TaskFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -27188,55 +27188,55 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("MemberId")]
-        public RelationShip<User, CollaborationGroupMember> GroupMemberships
+        public RelationShip<User,CollaborationGroupMember> GroupMemberships
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("CompanySignedId")]
-        public RelationShip<User, Contract> ContractsSigned
+        public RelationShip<User,Contract> ContractsSigned
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<User, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<User,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("SubscriberId")]
-        public RelationShip<User, EntitySubscription> FeedSubscriptions
+        public RelationShip<User,EntitySubscription> FeedSubscriptions
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AdminId")]
-        public RelationShip<User, Site> UserSites
+        public RelationShip<User,Site> UserSites
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("DelegatedApproverId")]
-        public RelationShip<User, User> DelegatedUsers
+        public RelationShip<User,User> DelegatedUsers
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ManagerId")]
-        public RelationShip<User, User> ManagedUsers
+        public RelationShip<User,User> ManagedUsers
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<User, UserFeed> Feeds
+        public RelationShip<User,UserFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("UserId")]
-        public RelationShip<User, UserPreference> UserPreferences
+        public RelationShip<User,UserPreference> UserPreferences
         {
             get;set;
         }
@@ -27316,13 +27316,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<UserFeed, FeedComment> FeedComments
+        public RelationShip<UserFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<UserFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<UserFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -27515,13 +27515,13 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<UserProfileFeed, FeedComment> FeedComments
+        public RelationShip<UserProfileFeed,FeedComment> FeedComments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
-        public RelationShip<UserProfileFeed, FeedTrackedChange> FeedTrackedChanges
+        public RelationShip<UserProfileFeed,FeedTrackedChange> FeedTrackedChanges
         {
             get;set;
         }
@@ -27650,7 +27650,7 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("UserRoleId")]
-        public RelationShip<UserRole, User> Users
+        public RelationShip<UserRole,User> Users
         {
             get;set;
         }
@@ -27936,11 +27936,9 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
-    
-class SalesforceDataContext : SoqlContext
+    public class SalesforceDataContext : SoqlContext
     {
-        
-public SalesforceDataContext(string instanceName, Rest.OAuth.ImpersonationParam authparams) : base(instanceName, authparams) { }
+        public SalesforceDataContext(string instanceName, Rest.OAuth.ImpersonationParam authparams) : base(instanceName, authparams) { }
         public IQueryable<Account> Accounts => GetTable<Account>();
         public IQueryable<AccountContactRole> AccountContactRoles => GetTable<AccountContactRole>();
         public IQueryable<AccountFeed> AccountFeeds => GetTable<AccountFeed>();
@@ -28099,8 +28097,6 @@ public SalesforceDataContext(string instanceName, Rest.OAuth.ImpersonationParam 
         public IQueryable<UserRole> UserRoles => GetTable<UserRole>();
         public IQueryable<Vote> Votes => GetTable<Vote>();
         public IQueryable<WebLink> WebLinks => GetTable<WebLink>();
-    
-}
-
+    }
 }
 
