@@ -7864,7 +7864,8 @@ namespace LinqToSalesforce
         
 
     }
-    public class Account : ISalesforceEntity
+    [EntityName("Account")]
+    public class Account_popo : ISalesforceEntity
     {
     
         public event PropertyChangedEventHandler PropertyChanged;
@@ -8199,161 +8200,162 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account,Account> ChildAccounts
+        public RelationShip<Account_popo, Account_popo> ChildAccounts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,AccountContactRole> AccountContactRoles
+        public RelationShip<Account_popo, AccountContactRole> AccountContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account,AccountFeed> Feeds
+        public RelationShip<Account_popo, AccountFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,AccountHistory> Histories
+        public RelationShip<Account_popo, AccountHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountFromId")]
-        public RelationShip<Account,AccountPartner> AccountPartnersFrom
+        public RelationShip<Account_popo, AccountPartner> AccountPartnersFrom
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountToId")]
-        public RelationShip<Account,AccountPartner> AccountPartnersTo
+        public RelationShip<Account_popo, AccountPartner> AccountPartnersTo
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,AccountShare> Shares
+        public RelationShip<Account_popo, AccountShare> Shares
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,ActivityHistory> ActivityHistories
+        public RelationShip<Account_popo, ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,Asset> Assets
+        public RelationShip<Account_popo, Asset> Assets
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account,Attachment> Attachments
+        public RelationShip<Account_popo, Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,Case> Cases
+        public RelationShip<Account_popo, Case> Cases
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,Contact> Contacts
+        public RelationShip<Account_popo, Contact> Contacts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,Contract> Contracts
+        public RelationShip<Account_popo, Contract> Contracts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account,EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Account_popo, EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Account,Event> Events
+        public RelationShip<Account_popo, Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account,Note> Notes
+        public RelationShip<Account_popo, Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account,NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Account_popo, NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,OpenActivity> OpenActivities
+        public RelationShip<Account_popo, OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,Opportunity> Opportunities
+        public RelationShip<Account_popo, Opportunity> Opportunities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountToId")]
-        public RelationShip<Account,OpportunityPartner> OpportunityPartnersTo
+        public RelationShip<Account_popo, OpportunityPartner> OpportunityPartnersTo
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account,Order> Orders
+        public RelationShip<Account_popo, Order> Orders
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountFromId")]
-        public RelationShip<Account,Partner> PartnersFrom
+        public RelationShip<Account_popo, Partner> PartnersFrom
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountToId")]
-        public RelationShip<Account,Partner> PartnersTo
+        public RelationShip<Account_popo, Partner> PartnersTo
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Account,ProcessInstance> ProcessInstances
+        public RelationShip<Account_popo, ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Account,ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Account_popo, ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Account,Task> Tasks
+        public RelationShip<Account_popo, Task> Tasks
         {
             get;set;
         }
     }
+    [EntityName("AccountContactRole")]
     public class AccountContactRole : ISalesforceEntity
     {
     
@@ -8449,6 +8451,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsPrimary, value); }
         }
     }
+    [EntityName("AccountFeed")]
     public class AccountFeed : ISalesforceEntity
     {
     
@@ -8535,6 +8538,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("AccountHistory")]
     public class AccountHistory : ISalesforceEntity
     {
     
@@ -8609,6 +8613,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("AccountPartner")]
     public class AccountPartner : ISalesforceEntity
     {
     
@@ -8718,6 +8723,7 @@ namespace LinqToSalesforce
             set { SetField(ref __ReversePartnerId, value); }
         }
     }
+    [EntityName("AccountShare")]
     public class AccountShare : ISalesforceEntity
     {
     
@@ -8813,6 +8819,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("ActivityHistory")]
     public class ActivityHistory : ISalesforceEntity
     {
     
@@ -9034,6 +9041,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsReminderSet, value); }
         }
     }
+    [EntityName("AdditionalNumber")]
     public class AdditionalNumber : ISalesforceEntity
     {
     
@@ -9129,6 +9137,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("AggregateResult")]
     public class AggregateResult : ISalesforceEntity
     {
     
@@ -9154,6 +9163,7 @@ namespace LinqToSalesforce
             set { SetField(ref __Id, value); }
         }
     }
+    [EntityName("ApexClass")]
     public class ApexClass : ISalesforceEntity
     {
     
@@ -9270,6 +9280,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("ApexComponent")]
     public class ApexComponent : ISalesforceEntity
     {
     
@@ -9386,6 +9397,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("ApexLog")]
     public class ApexLog : ISalesforceEntity
     {
     
@@ -9488,6 +9500,7 @@ namespace LinqToSalesforce
             set { SetField(ref __Location, value); }
         }
     }
+    [EntityName("ApexPage")]
     public class ApexPage : ISalesforceEntity
     {
     
@@ -9604,6 +9617,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("ApexTrigger")]
     public class ApexTrigger : ISalesforceEntity
     {
     
@@ -9783,6 +9797,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("Asset")]
     public class Asset : ISalesforceEntity
     {
     
@@ -10019,6 +10034,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("AssetFeed")]
     public class AssetFeed : ISalesforceEntity
     {
     
@@ -10105,6 +10121,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("AssetHistory")]
     public class AssetHistory : ISalesforceEntity
     {
     
@@ -10179,6 +10196,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("AssignmentRule")]
     public class AssignmentRule : ISalesforceEntity
     {
     
@@ -10260,6 +10278,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("AsyncApexJob")]
     public class AsyncApexJob : ISalesforceEntity
     {
     
@@ -10383,6 +10402,7 @@ namespace LinqToSalesforce
             set { SetField(ref __LastProcessedOffset, value); }
         }
     }
+    [EntityName("Attachment")]
     public class Attachment : ISalesforceEntity
     {
     
@@ -10506,6 +10526,7 @@ namespace LinqToSalesforce
             set { SetField(ref __Description, value); }
         }
     }
+    [EntityName("BrandTemplate")]
     public class BrandTemplate : ISalesforceEntity
     {
     
@@ -10608,6 +10629,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("BusinessHours")]
     public class BusinessHours : ISalesforceEntity
     {
     
@@ -10794,6 +10816,7 @@ namespace LinqToSalesforce
             set { SetField(ref __LastModifiedById, value); }
         }
     }
+    [EntityName("BusinessProcess")]
     public class BusinessProcess : ISalesforceEntity
     {
     
@@ -10889,6 +10912,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CallCenter")]
     public class CallCenter : ISalesforceEntity
     {
     
@@ -10970,6 +10994,7 @@ namespace LinqToSalesforce
             set { SetField(ref __LastModifiedById, value); }
         }
     }
+    [EntityName("Campaign")]
     public class Campaign : ISalesforceEntity
     {
     
@@ -11283,6 +11308,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("CampaignFeed")]
     public class CampaignFeed : ISalesforceEntity
     {
     
@@ -11369,6 +11395,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("CampaignMember")]
     public class CampaignMember : ISalesforceEntity
     {
     
@@ -11478,6 +11505,7 @@ namespace LinqToSalesforce
             set { SetField(ref __FirstRespondedDate, value); }
         }
     }
+    [EntityName("CampaignMemberStatus")]
     public class CampaignMemberStatus : ISalesforceEntity
     {
     
@@ -11580,6 +11608,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CampaignShare")]
     public class CampaignShare : ISalesforceEntity
     {
     
@@ -11654,6 +11683,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("Case")]
     public class Case : ISalesforceEntity
     {
     
@@ -12001,6 +12031,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("CaseComment")]
     public class CaseComment : ISalesforceEntity
     {
     
@@ -12089,6 +12120,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("CaseContactRole")]
     public class CaseContactRole : ISalesforceEntity
     {
     
@@ -12177,6 +12209,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("CaseFeed")]
     public class CaseFeed : ISalesforceEntity
     {
     
@@ -12263,6 +12296,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("CaseHistory")]
     public class CaseHistory : ISalesforceEntity
     {
     
@@ -12337,6 +12371,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("CaseShare")]
     public class CaseShare : ISalesforceEntity
     {
     
@@ -12411,6 +12446,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("CaseSolution")]
     public class CaseSolution : ISalesforceEntity
     {
     
@@ -12478,6 +12514,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("CaseStatus")]
     public class CaseStatus : ISalesforceEntity
     {
     
@@ -12566,6 +12603,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CaseTeamMember")]
     public class CaseTeamMember : ISalesforceEntity
     {
     
@@ -12654,6 +12692,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CaseTeamRole")]
     public class CaseTeamRole : ISalesforceEntity
     {
     
@@ -12735,6 +12774,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CaseTeamTemplate")]
     public class CaseTeamTemplate : ISalesforceEntity
     {
     
@@ -12809,6 +12849,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CaseTeamTemplateMember")]
     public class CaseTeamTemplateMember : ISalesforceEntity
     {
     
@@ -12890,6 +12931,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CaseTeamTemplateRecord")]
     public class CaseTeamTemplateRecord : ISalesforceEntity
     {
     
@@ -12950,6 +12992,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CategoryData")]
     public class CategoryData : ISalesforceEntity
     {
     
@@ -13031,6 +13074,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CategoryNode")]
     public class CategoryNode : ISalesforceEntity
     {
     
@@ -13119,6 +13163,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("ClientBrowser")]
     public class ClientBrowser : ISalesforceEntity
     {
     
@@ -13179,6 +13224,7 @@ namespace LinqToSalesforce
             set { SetField(ref __CreatedDate, value); }
         }
     }
+    [EntityName("CollaborationGroup")]
     public class CollaborationGroup : ISalesforceEntity
     {
     
@@ -13306,6 +13352,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("CollaborationGroupFeed")]
     public class CollaborationGroupFeed : ISalesforceEntity
     {
     
@@ -13392,6 +13439,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("CollaborationGroupMember")]
     public class CollaborationGroupMember : ISalesforceEntity
     {
     
@@ -13473,6 +13521,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CollaborationInvitation")]
     public class CollaborationInvitation : ISalesforceEntity
     {
     
@@ -13582,6 +13631,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("Community")]
     public class Community : ISalesforceEntity
     {
     
@@ -13663,6 +13713,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsActive, value); }
         }
     }
+    [EntityName("Contact")]
     public class Contact : ISalesforceEntity
     {
     
@@ -14130,6 +14181,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ContactFeed")]
     public class ContactFeed : ISalesforceEntity
     {
     
@@ -14216,6 +14268,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ContactHistory")]
     public class ContactHistory : ISalesforceEntity
     {
     
@@ -14290,6 +14343,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("ContactShare")]
     public class ContactShare : ISalesforceEntity
     {
     
@@ -14364,6 +14418,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("ContentDocument")]
     public class ContentDocument : ISalesforceEntity
     {
     
@@ -14483,6 +14538,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ContentDocumentFeed")]
     public class ContentDocumentFeed : ISalesforceEntity
     {
     
@@ -14569,6 +14625,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ContentDocumentHistory")]
     public class ContentDocumentHistory : ISalesforceEntity
     {
     
@@ -14643,6 +14700,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("ContentVersion")]
     public class ContentVersion : ISalesforceEntity
     {
     
@@ -14877,6 +14935,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ContentVersionHistory")]
     public class ContentVersionHistory : ISalesforceEntity
     {
     
@@ -14951,6 +15010,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("ContentWorkspace")]
     public class ContentWorkspace : ISalesforceEntity
     {
     
@@ -15053,6 +15113,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsRestrictLinkedContentTypes, value); }
         }
     }
+    [EntityName("ContentWorkspaceDoc")]
     public class ContentWorkspaceDoc : ISalesforceEntity
     {
     
@@ -15120,6 +15181,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("Contract")]
     public class Contract : ISalesforceEntity
     {
     
@@ -15453,6 +15515,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ContractContactRole")]
     public class ContractContactRole : ISalesforceEntity
     {
     
@@ -15548,6 +15611,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("ContractFeed")]
     public class ContractFeed : ISalesforceEntity
     {
     
@@ -15634,6 +15698,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ContractHistory")]
     public class ContractHistory : ISalesforceEntity
     {
     
@@ -15708,6 +15773,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("ContractStatus")]
     public class ContractStatus : ISalesforceEntity
     {
     
@@ -15796,6 +15862,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("CronTrigger")]
     public class CronTrigger : ISalesforceEntity
     {
     
@@ -15905,6 +15972,7 @@ namespace LinqToSalesforce
             set { SetField(ref __TimesTriggered, value); }
         }
     }
+    [EntityName("Dashboard")]
     public class Dashboard : ISalesforceEntity
     {
     
@@ -16096,6 +16164,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("DashboardFeed")]
     public class DashboardFeed : ISalesforceEntity
     {
     
@@ -16182,6 +16251,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("Document")]
     public class Document : ISalesforceEntity
     {
     
@@ -16354,6 +16424,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsBodySearchable, value); }
         }
     }
+    [EntityName("DocumentAttachmentMap")]
     public class DocumentAttachmentMap : ISalesforceEntity
     {
     
@@ -16414,6 +16485,7 @@ namespace LinqToSalesforce
             set { SetField(ref __CreatedById, value); }
         }
     }
+    [EntityName("EmailMessage")]
     public class EmailMessage : ISalesforceEntity
     {
     
@@ -16604,6 +16676,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("EmailServicesAddress")]
     public class EmailServicesAddress : ISalesforceEntity
     {
     
@@ -16706,6 +16779,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("EmailServicesFunction")]
     public class EmailServicesFunction : ISalesforceEntity
     {
     
@@ -16884,6 +16958,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("EmailStatus")]
     public class EmailStatus : ISalesforceEntity
     {
     
@@ -16979,6 +17054,7 @@ namespace LinqToSalesforce
             set { SetField(ref __EmailTemplateName, value); }
         }
     }
+    [EntityName("EmailTemplate")]
     public class EmailTemplate : ISalesforceEntity
     {
     
@@ -17171,6 +17247,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("EntitySubscription")]
     public class EntitySubscription : ISalesforceEntity
     {
     
@@ -17231,6 +17308,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("Event")]
     public class Event : ISalesforceEntity
     {
     
@@ -17552,6 +17630,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("EventAttendee")]
     public class EventAttendee : ISalesforceEntity
     {
     
@@ -17654,6 +17733,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("EventFeed")]
     public class EventFeed : ISalesforceEntity
     {
     
@@ -17740,6 +17820,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("FeedComment")]
     public class FeedComment : ISalesforceEntity
     {
     
@@ -17807,6 +17888,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("FeedPost")]
     public class FeedPost : ISalesforceEntity
     {
     
@@ -17937,6 +18019,7 @@ namespace LinqToSalesforce
             set { SetField(ref __ContentSize, value); }
         }
     }
+    [EntityName("FeedTrackedChange")]
     public class FeedTrackedChange : ISalesforceEntity
     {
     
@@ -17990,6 +18073,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("FiscalYearSettings")]
     public class FiscalYearSettings : ISalesforceEntity
     {
     
@@ -18119,6 +18203,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("Folder")]
     public class Folder : ISalesforceEntity
     {
     
@@ -18221,6 +18306,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("ForecastShare")]
     public class ForecastShare : ISalesforceEntity
     {
     
@@ -18295,6 +18381,7 @@ namespace LinqToSalesforce
             set { SetField(ref __LastModifiedById, value); }
         }
     }
+    [EntityName("Group")]
     public class Group : ISalesforceEntity
     {
     
@@ -18422,6 +18509,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("GroupMember")]
     public class GroupMember : ISalesforceEntity
     {
     
@@ -18468,6 +18556,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("Holiday")]
     public class Holiday : ISalesforceEntity
     {
     
@@ -18633,6 +18722,7 @@ namespace LinqToSalesforce
             set { SetField(ref __RecurrenceMonthOfYear, value); }
         }
     }
+    [EntityName("Idea")]
     public class Idea : ISalesforceEntity
     {
     
@@ -18810,6 +18900,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("IdeaComment")]
     public class IdeaComment : ISalesforceEntity
     {
     
@@ -18890,6 +18981,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("Lead")]
     public class Lead : ISalesforceEntity
     {
     
@@ -19325,6 +19417,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("LeadFeed")]
     public class LeadFeed : ISalesforceEntity
     {
     
@@ -19411,6 +19504,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("LeadHistory")]
     public class LeadHistory : ISalesforceEntity
     {
     
@@ -19485,6 +19579,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("LeadShare")]
     public class LeadShare : ISalesforceEntity
     {
     
@@ -19559,6 +19654,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("LeadStatus")]
     public class LeadStatus : ISalesforceEntity
     {
     
@@ -19647,6 +19743,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("LoginIp")]
     public class LoginIp : ISalesforceEntity
     {
     
@@ -19707,6 +19804,7 @@ namespace LinqToSalesforce
             set { SetField(ref __ChallengeSentDate, value); }
         }
     }
+    [EntityName("MailmergeTemplate")]
     public class MailmergeTemplate : ISalesforceEntity
     {
     
@@ -19844,6 +19942,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SecurityOptionsAttachmentHasFlash, value); }
         }
     }
+    [EntityName("Name")]
     public class Name : ISalesforceEntity
     {
     
@@ -19954,6 +20053,7 @@ namespace LinqToSalesforce
             set { SetField(ref __Username, value); }
         }
     }
+    [EntityName("NewsFeed")]
     public class NewsFeed : ISalesforceEntity
     {
     
@@ -20040,6 +20140,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("Note")]
     public class Note : ISalesforceEntity
     {
     
@@ -20142,6 +20243,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("NoteAndAttachment")]
     public class NoteAndAttachment : ISalesforceEntity
     {
     
@@ -20244,6 +20346,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("OpenActivity")]
     public class OpenActivity : ISalesforceEntity
     {
     
@@ -20465,6 +20568,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsReminderSet, value); }
         }
     }
+    [EntityName("Opportunity")]
     public class Opportunity : ISalesforceEntity
     {
     
@@ -20867,6 +20971,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("OpportunityCompetitor")]
     public class OpportunityCompetitor : ISalesforceEntity
     {
     
@@ -20962,6 +21067,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("OpportunityContactRole")]
     public class OpportunityContactRole : ISalesforceEntity
     {
     
@@ -21057,6 +21163,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("OpportunityFeed")]
     public class OpportunityFeed : ISalesforceEntity
     {
     
@@ -21143,6 +21250,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("OpportunityFieldHistory")]
     public class OpportunityFieldHistory : ISalesforceEntity
     {
     
@@ -21217,6 +21325,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("OpportunityHistory")]
     public class OpportunityHistory : ISalesforceEntity
     {
     
@@ -21319,6 +21428,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("OpportunityLineItem")]
     public class OpportunityLineItem : ISalesforceEntity
     {
     
@@ -21449,6 +21559,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("OpportunityPartner")]
     public class OpportunityPartner : ISalesforceEntity
     {
     
@@ -21551,6 +21662,7 @@ namespace LinqToSalesforce
             set { SetField(ref __ReversePartnerId, value); }
         }
     }
+    [EntityName("OpportunityShare")]
     public class OpportunityShare : ISalesforceEntity
     {
     
@@ -21625,6 +21737,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsDeleted, value); }
         }
     }
+    [EntityName("OpportunityStage")]
     public class OpportunityStage : ISalesforceEntity
     {
     
@@ -21748,6 +21861,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("Order")]
     public class Order : ISalesforceEntity
     {
     
@@ -22111,6 +22225,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("OrderHistory")]
     public class OrderHistory : ISalesforceEntity
     {
     
@@ -22185,6 +22300,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("OrderItem")]
     public class OrderItem : ISalesforceEntity
     {
     
@@ -22334,6 +22450,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("OrgWideEmailAddress")]
     public class OrgWideEmailAddress : ISalesforceEntity
     {
     
@@ -22415,6 +22532,7 @@ namespace LinqToSalesforce
             set { SetField(ref __IsAllowAllProfiles, value); }
         }
     }
+    [EntityName("Organization")]
     public class Organization : ISalesforceEntity
     {
     
@@ -22720,6 +22838,7 @@ namespace LinqToSalesforce
             set { SetField(ref __LastModifiedById, value); }
         }
     }
+    [EntityName("Partner")]
     public class Partner : ISalesforceEntity
     {
     
@@ -22829,6 +22948,7 @@ namespace LinqToSalesforce
             set { SetField(ref __ReversePartnerId, value); }
         }
     }
+    [EntityName("PartnerRole")]
     public class PartnerRole : ISalesforceEntity
     {
     
@@ -22910,6 +23030,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("Period")]
     public class Period : ISalesforceEntity
     {
     
@@ -22998,6 +23119,7 @@ namespace LinqToSalesforce
             set { SetField(ref __Number, value); }
         }
     }
+    [EntityName("Pricebook2")]
     public class Pricebook2 : ISalesforceEntity
     {
     
@@ -23117,6 +23239,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("Pricebook2History")]
     public class Pricebook2History : ISalesforceEntity
     {
     
@@ -23191,6 +23314,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("PricebookEntry")]
     public class PricebookEntry : ISalesforceEntity
     {
     
@@ -23319,6 +23443,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ProcessDefinition")]
     public class ProcessDefinition : ISalesforceEntity
     {
     
@@ -23428,6 +23553,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("ProcessInstance")]
     public class ProcessInstance : ISalesforceEntity
     {
     
@@ -23534,6 +23660,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ProcessInstanceHistory")]
     public class ProcessInstanceHistory : ISalesforceEntity
     {
     
@@ -23643,6 +23770,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("ProcessInstanceStep")]
     public class ProcessInstanceStep : ISalesforceEntity
     {
     
@@ -23724,6 +23852,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("ProcessInstanceWorkitem")]
     public class ProcessInstanceWorkitem : ISalesforceEntity
     {
     
@@ -23798,6 +23927,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("ProcessNode")]
     public class ProcessNode : ISalesforceEntity
     {
     
@@ -23858,6 +23988,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("Product2")]
     public class Product2 : ISalesforceEntity
     {
     
@@ -24038,6 +24169,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("Product2Feed")]
     public class Product2Feed : ISalesforceEntity
     {
     
@@ -24124,6 +24256,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("Profile")]
     public class Profile : ISalesforceEntity
     {
     
@@ -24743,6 +24876,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("QueueSobject")]
     public class QueueSobject : ISalesforceEntity
     {
     
@@ -24796,6 +24930,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("RecordType")]
     public class RecordType : ISalesforceEntity
     {
     
@@ -24905,6 +25040,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("Report")]
     public class Report : ISalesforceEntity
     {
     
@@ -25026,6 +25162,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("ReportFeed")]
     public class ReportFeed : ISalesforceEntity
     {
     
@@ -25112,6 +25249,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("SetupAuditTrail")]
     public class SetupAuditTrail : ISalesforceEntity
     {
     
@@ -25172,6 +25310,7 @@ namespace LinqToSalesforce
             set { SetField(ref __Display, value); }
         }
     }
+    [EntityName("Site")]
     public class Site : ISalesforceEntity
     {
     
@@ -25390,6 +25529,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("SiteFeed")]
     public class SiteFeed : ISalesforceEntity
     {
     
@@ -25476,6 +25616,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("SiteHistory")]
     public class SiteHistory : ISalesforceEntity
     {
     
@@ -25550,6 +25691,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("Solution")]
     public class Solution : ISalesforceEntity
     {
     
@@ -25759,6 +25901,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("SolutionFeed")]
     public class SolutionFeed : ISalesforceEntity
     {
     
@@ -25845,6 +25988,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("SolutionHistory")]
     public class SolutionHistory : ISalesforceEntity
     {
     
@@ -25919,6 +26063,7 @@ namespace LinqToSalesforce
             set { SetField(ref __NewValue, value); }
         }
     }
+    [EntityName("SolutionStatus")]
     public class SolutionStatus : ISalesforceEntity
     {
     
@@ -26007,6 +26152,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("StaticResource")]
     public class StaticResource : ISalesforceEntity
     {
     
@@ -26116,6 +26262,7 @@ namespace LinqToSalesforce
             set { SetField(ref __CacheControl, value); }
         }
     }
+    [EntityName("Task")]
     public class Task : ISalesforceEntity
     {
     
@@ -26403,6 +26550,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("TaskFeed")]
     public class TaskFeed : ISalesforceEntity
     {
     
@@ -26489,6 +26637,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("TaskPriority")]
     public class TaskPriority : ISalesforceEntity
     {
     
@@ -26577,6 +26726,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("TaskStatus")]
     public class TaskStatus : ISalesforceEntity
     {
     
@@ -26665,6 +26815,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("User")]
     public class User : ISalesforceEntity
     {
     
@@ -27241,6 +27392,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("UserFeed")]
     public class UserFeed : ISalesforceEntity
     {
     
@@ -27327,6 +27479,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("UserLicense")]
     public class UserLicense : ISalesforceEntity
     {
     
@@ -27387,6 +27540,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("UserPreference")]
     public class UserPreference : ISalesforceEntity
     {
     
@@ -27440,6 +27594,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("UserProfileFeed")]
     public class UserProfileFeed : ISalesforceEntity
     {
     
@@ -27526,6 +27681,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("UserRole")]
     public class UserRole : ISalesforceEntity
     {
     
@@ -27655,6 +27811,7 @@ namespace LinqToSalesforce
             get;set;
         }
     }
+    [EntityName("Vote")]
     public class Vote : ISalesforceEntity
     {
     
@@ -27722,6 +27879,7 @@ namespace LinqToSalesforce
             set { SetField(ref __SystemModstamp, value); }
         }
     }
+    [EntityName("WebLink")]
     public class WebLink : ISalesforceEntity
     {
     
@@ -27939,7 +28097,7 @@ namespace LinqToSalesforce
     public class SalesforceDataContext : SoqlContext
     {
         public SalesforceDataContext(string instanceName, Rest.OAuth.ImpersonationParam authparams) : base(instanceName, authparams) { }
-        public IQueryable<Account> Accounts => GetTable<Account>();
+        public IQueryable<Account_popo> Accounts => GetTable<Account_popo>();
         public IQueryable<AccountContactRole> AccountContactRoles => GetTable<AccountContactRole>();
         public IQueryable<AccountFeed> AccountFeeds => GetTable<AccountFeed>();
         public IQueryable<AccountHistory> AccountHistories => GetTable<AccountHistory>();

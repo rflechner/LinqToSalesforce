@@ -82,6 +82,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
     addLine indent "}"
 
   let generateTableCsharp (table:TableDesc) (indent:int) =
+    sprintf """[EntityName("%s")]""" table.Name |> addLine indent
     sprintf "public class %s : ISalesforceEntity" (table.Name |> fixName) |> addLine indent
     addLine indent "{"
     addLine indent """
