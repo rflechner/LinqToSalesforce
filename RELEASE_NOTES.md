@@ -1,5 +1,8 @@
 
-#### 0.0.7-beta - December 13 2016
+#### 0.0.8-beta - January 04 2017
+* Can specify table names using EntityNameAttribute on entities
+
+#### 0.0.7-beta - January 02 2017
 * Plurialize tables and fix a wording in generator arguments
 
 #### 0.0.6-beta - December 13 2016
