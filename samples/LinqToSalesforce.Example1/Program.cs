@@ -26,21 +26,21 @@ namespace LinqToSalesforce.Example1
              */
             //var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
             var impersonationParam = Rest.OAuth.ImpersonationParam.FromJson(json);
-            var context = new SoqlContext("eu11", impersonationParam);
+            var context = new SalesforceDataContext("eu11", impersonationParam);
             try
             {
-                var accounts = from a in context.GetTable<Account>()
+                var accounts = from a in context.Accounts
                                    //where a.CreatedDate >= DateTime.Today
-                               where a.NumberBugc > 0.1
+                              // where a.NumberBugc > 0.1
                                select a;
 
-                var accountCreatedToday = accounts.ToList();
+                var accountCreatedToday = accounts.Take(5).ToList();
 
                 WriteLine($"{accountCreatedToday.Count}");
 
                 for (var i = 0; i < 10; i++)
                 {
-                    var account = new Account { Name = $"Company {i}" };
+                    var account = new Account_popo { Name = $"Company {i}" };
                     context.Insert(account);
                 }
 
@@ -67,7 +67,7 @@ namespace LinqToSalesforce.Example1
 
         static void DeleteAccountsStartingWithCompany(SoqlContext context)
         {
-            var accounts = from a in context.GetTable<Account>()
+            var accounts = from a in context.GetTable<Account_popo>()
                            where a.Name.StartsWith("Company")
                            select a;
 
@@ -81,7 +81,7 @@ namespace LinqToSalesforce.Example1
 
         static void RenameAccountsStartingWithCompany(SoqlContext context)
         {
-            var accounts = from a in context.GetTable<Account>()
+            var accounts = from a in context.GetTable<Account_popo>()
                            where a.Name.StartsWith("Company")
                            select a;
 
@@ -97,7 +97,7 @@ namespace LinqToSalesforce.Example1
 
         private static void DisplayAccountsWithTheirContactsAndCases(SoqlContext context)
         {
-            var accounts = (from a in context.GetTable<Account>()
+            var accounts = (from a in context.GetTable<Account_popo>()
                             where !a.Name.StartsWith("Company")
                                 && a.Industry == PickAccountIndustry.Biotechnology
                                 && PickAccountIndustry.Biotechnology == a.Industry
