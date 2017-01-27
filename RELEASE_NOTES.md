@@ -1,4 +1,8 @@
 
+#### 0.0.9-beta - January 27 2017
+* Add types converters for pick list
+* Calculated fields are readonly
+
 #### 0.0.8-beta - January 04 2017
 * Can specify table names using EntityNameAttribute on entities
 
