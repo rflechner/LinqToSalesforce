@@ -131,17 +131,22 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
             return true;
         }"""
 
-    let writeProperty typeName fieldName auto =
+    let writeProperty typeName fieldName auto isReadonly =
       add "public "; add (fixName typeName); add " "
       addLine 0 fieldName
       addLine (indent+1) "{"
       if not auto
       then
         addLine (indent+2) (sprintf "get { return __%s; }" fieldName)
-        addLine (indent+2) (sprintf "set { SetField(ref __%s, value); }" fieldName)
+        if not isReadonly
+        then addLine (indent+2) (sprintf "set { SetField(ref __%s, value); }" fieldName)
       else
         addLine (indent+2) "get;set;"
       addLine (indent+1) "}"
+      if isReadonly
+      then 
+        let l = sprintf "public bool ShouldSerialize%s() => false;" fieldName
+        addLine indent l
 
     for field in table.Fields do
       let fieldName =
@@ -164,7 +169,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) attr
       addLine (indent+1) (sprintf "[EntityField(%b)]" field.Nillable)
       writeIndent (indent+1)
-      writeProperty typeName fieldName false
+      writeProperty typeName fieldName false field.Calculated
     
     for relation in table.RelationShips do
       if relation.RelationshipName |> String.IsNullOrWhiteSpace |> not
@@ -173,7 +178,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) <| sprintf """[ReferencedByField("%s")]""" relation.Field
         writeIndent (indent+1)
         let tname = sprintf "RelationShip<%s, %s>" (fixName table.Name) (fixName relation.ChildSObject)
-        writeProperty tname relation.RelationshipName true
+        writeProperty tname relation.RelationshipName true false
 
     addLine indent "}"
       
