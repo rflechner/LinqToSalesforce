@@ -50,8 +50,38 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
     writeIndent indent
     text |> b.AppendLine |> ignore
 
+  let generatePickTypeConverter (name:string)  (indent:int) =
+    let converterName = sprintf "Pick%sConverter" name
+    let typeName = sprintf "Pick%s" name
+    let tmpl = """public class {name} : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = ({type})value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new {type} {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }"""
+    let c = tmpl.Replace("{type}", typeName).Replace("{name}", converterName)
+    addLine indent c
+
+
   let generatePickList (name:string) (values:string list) (indent:int) =
     let typeName = sprintf "Pick%s" name
+    generatePickTypeConverter name indent
+    sprintf "[TypeConverter(typeof(%sConverter))]" typeName |> addLine indent
     sprintf "public class %s" typeName |> addLine indent
     addLine indent "{"
     for value in values do
@@ -147,6 +177,8 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
 
     addLine indent "}"
       
+  addLine 0 "using System;"
+  addLine 0 "using System.Globalization;"
   addLine 0 "using System.Collections.Generic;"
   addLine 0 "using System.Runtime.Serialization;"
   addLine 0 "using Newtonsoft.Json;"
