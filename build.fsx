@@ -66,8 +66,8 @@ let gitRaw = environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/rfl
 // --------------------------------------------------------------------------------------
 
 // Read additional information from the release notes document
-//let release = LoadReleaseNotes "RELEASE_NOTES.md"
-let release = LoadReleaseNotes @"C:\dev\LinqToSalesforce\RELEASE_NOTES.md"
+let release = LoadReleaseNotes "RELEASE_NOTES.md"
+//let release = LoadReleaseNotes @"C:\dev\LinqToSalesforce\RELEASE_NOTES.md"
 let svgTemplateName =
   match release.SemVer.PreRelease with
   | None -> "nuget_badge.svg.template"
