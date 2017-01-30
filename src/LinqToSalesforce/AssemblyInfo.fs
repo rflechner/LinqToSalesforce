@@ -5,13 +5,13 @@ open System.Reflection
 [<assembly: AssemblyTitleAttribute("LinqToSalesforce")>]
 [<assembly: AssemblyProductAttribute("LinqToSalesforce")>]
 [<assembly: AssemblyDescriptionAttribute("Linq provider for Salesforce SOQL REST API")>]
-[<assembly: AssemblyVersionAttribute("0.0.7")>]
-[<assembly: AssemblyFileVersionAttribute("0.0.7")>]
+[<assembly: AssemblyVersionAttribute("0.0.8")>]
+[<assembly: AssemblyFileVersionAttribute("0.0.8")>]
 do ()
 
 module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyTitle = "LinqToSalesforce"
     let [<Literal>] AssemblyProduct = "LinqToSalesforce"
     let [<Literal>] AssemblyDescription = "Linq provider for Salesforce SOQL REST API"
-    let [<Literal>] AssemblyVersion = "0.0.7"
-    let [<Literal>] AssemblyFileVersion = "0.0.7"
+    let [<Literal>] AssemblyVersion = "0.0.8"
+    let [<Literal>] AssemblyFileVersion = "0.0.8"

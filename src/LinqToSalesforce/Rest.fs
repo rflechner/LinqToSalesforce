@@ -166,6 +166,7 @@ module Rest =
       }
 
   open OAuth
+  open Translator
 
   let get (i:Identity) (uri:Uri) =
     async {
@@ -311,7 +312,7 @@ module Rest =
     }
     
   let insert (i:Identity) (entity:'q) =
-    let name = entity.GetType().Name
+    let name = entity.GetType() |> findEntityName
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/"
     async {
       let f = 
@@ -322,7 +323,7 @@ module Rest =
     }
 
   let update (i:Identity) (id:string) (entity:'q) =
-    let name = entity.GetType().Name
+    let name = entity.GetType() |> findEntityName
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
@@ -336,7 +337,7 @@ module Rest =
     }
 
   let delete (i:Identity) (id:string) (entity:'q) =
-    let name = entity.GetType().Name
+    let name = entity.GetType() |> findEntityName
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
