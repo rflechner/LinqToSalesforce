@@ -50,8 +50,38 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
     writeIndent indent
     text |> b.AppendLine |> ignore
 
+  let generatePickTypeConverter (name:string)  (indent:int) =
+    let converterName = sprintf "Pick%sConverter" name
+    let typeName = sprintf "Pick%s" name
+    let tmpl = """public class {name} : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = ({type})value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new {type} {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }"""
+    let c = tmpl.Replace("{type}", typeName).Replace("{name}", converterName)
+    addLine indent c
+
+
   let generatePickList (name:string) (values:string list) (indent:int) =
     let typeName = sprintf "Pick%s" name
+    generatePickTypeConverter name indent
+    sprintf "[TypeConverter(typeof(%sConverter))]" typeName |> addLine indent
     sprintf "public class %s" typeName |> addLine indent
     addLine indent "{"
     for value in values do
@@ -101,17 +131,22 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
             return true;
         }"""
 
-    let writeProperty typeName fieldName auto =
+    let writeProperty typeName fieldName auto isReadonly =
       add "public "; add (fixName typeName); add " "
       addLine 0 fieldName
       addLine (indent+1) "{"
       if not auto
       then
         addLine (indent+2) (sprintf "get { return __%s; }" fieldName)
-        addLine (indent+2) (sprintf "set { SetField(ref __%s, value); }" fieldName)
+        if not isReadonly
+        then addLine (indent+2) (sprintf "set { SetField(ref __%s, value); }" fieldName)
       else
         addLine (indent+2) "get;set;"
       addLine (indent+1) "}"
+      if isReadonly
+      then 
+        let l = sprintf "public bool ShouldSerialize%s() => false;" fieldName
+        addLine indent l
 
     for field in table.Fields do
       let fieldName =
@@ -134,7 +169,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) attr
       addLine (indent+1) (sprintf "[EntityField(%b)]" field.Nillable)
       writeIndent (indent+1)
-      writeProperty typeName fieldName false
+      writeProperty typeName fieldName false field.Calculated
     
     for relation in table.RelationShips do
       if relation.RelationshipName |> String.IsNullOrWhiteSpace |> not
@@ -143,10 +178,12 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) <| sprintf """[ReferencedByField("%s")]""" relation.Field
         writeIndent (indent+1)
         let tname = sprintf "RelationShip<%s, %s>" (fixName table.Name) (fixName relation.ChildSObject)
-        writeProperty tname relation.RelationshipName true
+        writeProperty tname relation.RelationshipName true false
 
     addLine indent "}"
       
+  addLine 0 "using System;"
+  addLine 0 "using System.Globalization;"
   addLine 0 "using System.Collections.Generic;"
   addLine 0 "using System.Runtime.Serialization;"
   addLine 0 "using Newtonsoft.Json;"
