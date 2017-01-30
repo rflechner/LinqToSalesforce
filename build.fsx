@@ -74,7 +74,9 @@ let svgTemplateName =
   | Some _ -> "nuget_badge_pre.svg.template"
 
 let svg = File.ReadAllText(__SOURCE_DIRECTORY__ @@ "docs" @@ "files" @@ "img" @@ svgTemplateName).Replace ("%version%", release.NugetVersion)
-File.WriteAllText(__SOURCE_DIRECTORY__ @@ "docs" @@ "output" @@ "img" @@ "nuget_badge.svg", svg)
+let svgDir = __SOURCE_DIRECTORY__ @@ "docs" @@ "output" @@ "img"
+ensureDirectory svgDir
+File.WriteAllText(svgDir @@ "nuget_badge.svg", svg)
 
 // Helper active pattern for project types
 let (|Fsproj|Csproj|Vbproj|Shproj|) (projFileName:string) =
