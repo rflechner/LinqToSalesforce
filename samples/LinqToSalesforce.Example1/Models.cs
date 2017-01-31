@@ -1,3 +1,5 @@
+using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
@@ -9,6 +11,28 @@ using System.Linq;
 
 namespace LinqToSalesforce
 {
+    public class PickAccountTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountTypeConverter))]
     public class PickAccountType
     {
         public static readonly string  Prospect = "Prospect"; 
@@ -38,6 +62,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountIndustryConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountIndustry)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountIndustry {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountIndustryConverter))]
     public class PickAccountIndustry
     {
         public static readonly string  Agriculture = "Agriculture"; 
@@ -92,6 +138,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountOwnershipConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountOwnership)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountOwnership {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountOwnershipConverter))]
     public class PickAccountOwnership
     {
         public static readonly string  Public = "Public"; 
@@ -118,6 +186,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountRatingConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountRating)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountRating {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountRatingConverter))]
     public class PickAccountRating
     {
         public static readonly string  Hot = "Hot"; 
@@ -143,6 +233,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountCustomerPriorityConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountCustomerPriority)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountCustomerPriority {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountCustomerPriorityConverter))]
     public class PickAccountCustomerPriority
     {
         public static readonly string  High = "High"; 
@@ -168,6 +280,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountSLAConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountSLA)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountSLA {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountSLAConverter))]
     public class PickAccountSLA
     {
         public static readonly string  Gold = "Gold"; 
@@ -194,6 +328,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountActiveConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountActive)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountActive {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountActiveConverter))]
     public class PickAccountActive
     {
         public static readonly string  No = "No"; 
@@ -218,6 +374,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountUpsellOpportunityConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountUpsellOpportunity)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountUpsellOpportunity {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountUpsellOpportunityConverter))]
     public class PickAccountUpsellOpportunity
     {
         public static readonly string  Maybe = "Maybe"; 
@@ -243,6 +421,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountContactRoleRoleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountContactRoleRole)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountContactRoleRole {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountContactRoleRoleConverter))]
     public class PickAccountContactRoleRole
     {
         public static readonly string  BusinessUser = "Business User"; 
@@ -274,6 +474,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountFeedTypeConverter))]
     public class PickAccountFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -325,6 +547,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountHistoryFieldConverter))]
     public class PickAccountHistoryField
     {
         public static readonly string  accountMerged = "accountMerged"; 
@@ -411,6 +655,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountPartnerRoleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountPartnerRole)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountPartnerRole {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountPartnerRoleConverter))]
     public class PickAccountPartnerRole
     {
         public static readonly string  SystemIntegrator = "System Integrator"; 
@@ -446,6 +712,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountShareAccountAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountShareAccountAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountShareAccountAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountShareAccountAccessLevelConverter))]
     public class PickAccountShareAccountAccessLevel
     {
         public static readonly string  Read = "Read"; 
@@ -471,6 +759,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountShareOpportunityAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountShareOpportunityAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountShareOpportunityAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountShareOpportunityAccessLevelConverter))]
     public class PickAccountShareOpportunityAccessLevel
     {
         public static readonly string  None = "None"; 
@@ -496,6 +806,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountShareCaseAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountShareCaseAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountShareCaseAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountShareCaseAccessLevelConverter))]
     public class PickAccountShareCaseAccessLevel
     {
         public static readonly string  None = "None"; 
@@ -521,6 +853,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountShareContactAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountShareContactAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountShareContactAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountShareContactAccessLevelConverter))]
     public class PickAccountShareContactAccessLevel
     {
         public static readonly string  None = "None"; 
@@ -546,6 +900,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAccountShareRowCauseConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountShareRowCause)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountShareRowCause {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountShareRowCauseConverter))]
     public class PickAccountShareRowCause
     {
         public static readonly string  Owner = "Owner"; 
@@ -579,6 +955,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickActivityHistoryStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickActivityHistoryStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickActivityHistoryStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickActivityHistoryStatusConverter))]
     public class PickActivityHistoryStatus
     {
         public static readonly string  NotStarted = "Not Started"; 
@@ -606,6 +1004,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickActivityHistoryPriorityConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickActivityHistoryPriority)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickActivityHistoryPriority {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickActivityHistoryPriorityConverter))]
     public class PickActivityHistoryPriority
     {
         public static readonly string  High = "High"; 
@@ -631,6 +1051,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickActivityHistoryActivityTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickActivityHistoryActivityType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickActivityHistoryActivityType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickActivityHistoryActivityTypeConverter))]
     public class PickActivityHistoryActivityType
     {
         public static readonly string  Call = "Call"; 
@@ -657,6 +1099,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickActivityHistoryCallTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickActivityHistoryCallType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickActivityHistoryCallType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickActivityHistoryCallTypeConverter))]
     public class PickActivityHistoryCallType
     {
         public static readonly string  Internal = "Internal"; 
@@ -682,6 +1146,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickApexClassStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickApexClassStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickApexClassStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickApexClassStatusConverter))]
     public class PickApexClassStatus
     {
         public static readonly string  Inactive = "Inactive"; 
@@ -707,6 +1193,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickApexComponentControllerTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickApexComponentControllerType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickApexComponentControllerType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickApexComponentControllerTypeConverter))]
     public class PickApexComponentControllerType
     {
         public static readonly string _0 = "0"; 
@@ -735,6 +1243,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickApexLogLocationConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickApexLogLocation)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickApexLogLocation {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickApexLogLocationConverter))]
     public class PickApexLogLocation
     {
         public static readonly string  Monitoring = "Monitoring"; 
@@ -762,6 +1292,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickApexPageControllerTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickApexPageControllerType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickApexPageControllerType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickApexPageControllerTypeConverter))]
     public class PickApexPageControllerType
     {
         public static readonly string _0 = "0"; 
@@ -790,6 +1342,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickApexTriggerTableEnumOrIdConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickApexTriggerTableEnumOrId)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickApexTriggerTableEnumOrId {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickApexTriggerTableEnumOrIdConverter))]
     public class PickApexTriggerTableEnumOrId
     {
         public static readonly string  Account = "Account"; 
@@ -873,6 +1447,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickApexTriggerStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickApexTriggerStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickApexTriggerStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickApexTriggerStatusConverter))]
     public class PickApexTriggerStatus
     {
         public static readonly string  Inactive = "Inactive"; 
@@ -898,6 +1494,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAssetStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAssetStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAssetStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAssetStatusConverter))]
     public class PickAssetStatus
     {
         public static readonly string  Shipped = "Shipped"; 
@@ -925,6 +1543,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAssetFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAssetFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAssetFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAssetFeedTypeConverter))]
     public class PickAssetFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -976,6 +1616,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAssetHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAssetHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAssetHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAssetHistoryFieldConverter))]
     public class PickAssetHistoryField
     {
         public static readonly string  Account = "Account"; 
@@ -1020,6 +1682,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAssignmentRuleSobjectTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAssignmentRuleSobjectType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAssignmentRuleSobjectType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAssignmentRuleSobjectTypeConverter))]
     public class PickAssignmentRuleSobjectType
     {
         public static readonly string  Case = "Case"; 
@@ -1044,6 +1728,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAsyncApexJobJobTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAsyncApexJobJobType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAsyncApexJobJobType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAsyncApexJobJobTypeConverter))]
     public class PickAsyncApexJobJobType
     {
         public static readonly string  Future = "Future"; 
@@ -1075,6 +1781,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickAsyncApexJobStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAsyncApexJobStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAsyncApexJobStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAsyncApexJobStatusConverter))]
     public class PickAsyncApexJobStatus
     {
         public static readonly string  Queued = "Queued"; 
@@ -1104,15 +1832,37 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickBusinessHoursTimeZoneSidKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickBusinessHoursTimeZoneSidKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickBusinessHoursTimeZoneSidKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickBusinessHoursTimeZoneSidKeyConverter))]
     public class PickBusinessHoursTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
-        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
         public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
@@ -1214,6 +1964,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickBusinessProcessTableEnumOrIdConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickBusinessProcessTableEnumOrId)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickBusinessProcessTableEnumOrId {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickBusinessProcessTableEnumOrIdConverter))]
     public class PickBusinessProcessTableEnumOrId
     {
         public static readonly string  Case = "Case"; 
@@ -1240,6 +2012,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCampaignTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCampaignType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCampaignType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCampaignTypeConverter))]
     public class PickCampaignType
     {
         public static readonly string  Conference = "Conference"; 
@@ -1274,6 +2068,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCampaignStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCampaignStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCampaignStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCampaignStatusConverter))]
     public class PickCampaignStatus
     {
         public static readonly string  Planned = "Planned"; 
@@ -1300,6 +2116,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCampaignFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCampaignFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCampaignFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCampaignFeedTypeConverter))]
     public class PickCampaignFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -1351,6 +2189,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCampaignMemberStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCampaignMemberStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCampaignMemberStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCampaignMemberStatusConverter))]
     public class PickCampaignMemberStatus
     {
         public static readonly string  Planned = "Planned"; 
@@ -1377,6 +2237,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCampaignShareCampaignAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCampaignShareCampaignAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCampaignShareCampaignAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCampaignShareCampaignAccessLevelConverter))]
     public class PickCampaignShareCampaignAccessLevel
     {
         public static readonly string  Read = "Read"; 
@@ -1402,6 +2284,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCampaignShareRowCauseConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCampaignShareRowCause)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCampaignShareRowCause {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCampaignShareRowCauseConverter))]
     public class PickCampaignShareRowCause
     {
         public static readonly string  Owner = "Owner"; 
@@ -1435,6 +2339,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseTypeConverter))]
     public class PickCaseType
     {
         public static readonly string  Mechanical = "Mechanical"; 
@@ -1462,6 +2388,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseStatusConverter))]
     public class PickCaseStatus
     {
         public static readonly string  New = "New"; 
@@ -1488,6 +2436,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseReasonConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseReason)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseReason {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseReasonConverter))]
     public class PickCaseReason
     {
         public static readonly string  Installation = "Installation"; 
@@ -1517,6 +2487,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseOriginConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseOrigin)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseOrigin {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseOriginConverter))]
     public class PickCaseOrigin
     {
         public static readonly string  Phone = "Phone"; 
@@ -1542,6 +2534,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCasePriorityConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCasePriority)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCasePriority {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCasePriorityConverter))]
     public class PickCasePriority
     {
         public static readonly string  High = "High"; 
@@ -1567,6 +2581,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseSLAViolationConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseSLAViolation)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseSLAViolation {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseSLAViolationConverter))]
     public class PickCaseSLAViolation
     {
         public static readonly string  No = "No"; 
@@ -1591,6 +2627,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseProductConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseProduct)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseProduct {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseProductConverter))]
     public class PickCaseProduct
     {
         public static readonly string  GC1040 = "GC1040"; 
@@ -1622,6 +2680,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCasePotentialLiabilityConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCasePotentialLiability)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCasePotentialLiability {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCasePotentialLiabilityConverter))]
     public class PickCasePotentialLiability
     {
         public static readonly string  No = "No"; 
@@ -1646,6 +2726,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseContactRoleRoleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseContactRoleRole)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseContactRoleRole {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseContactRoleRoleConverter))]
     public class PickCaseContactRoleRole
     {
         public static readonly string  TechnicalContact = "Technical Contact"; 
@@ -1672,6 +2774,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseFeedTypeConverter))]
     public class PickCaseFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -1723,6 +2847,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseHistoryFieldConverter))]
     public class PickCaseHistoryField
     {
         public static readonly string  Account = "Account"; 
@@ -1772,6 +2918,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseShareCaseAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseShareCaseAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseShareCaseAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseShareCaseAccessLevelConverter))]
     public class PickCaseShareCaseAccessLevel
     {
         public static readonly string  Read = "Read"; 
@@ -1797,6 +2965,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseShareRowCauseConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseShareRowCause)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseShareRowCause {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseShareRowCauseConverter))]
     public class PickCaseShareRowCause
     {
         public static readonly string  Owner = "Owner"; 
@@ -1830,6 +3020,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCaseTeamRoleAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCaseTeamRoleAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCaseTeamRoleAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCaseTeamRoleAccessLevelConverter))]
     public class PickCaseTeamRoleAccessLevel
     {
         public static readonly string  None = "None"; 
@@ -1855,6 +3067,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCategoryNodeSortStyleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCategoryNodeSortStyle)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCategoryNodeSortStyle {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCategoryNodeSortStyleConverter))]
     public class PickCategoryNodeSortStyle
     {
         public static readonly string  custom = "custom"; 
@@ -1879,6 +3113,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCollaborationGroupCollaborationTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCollaborationGroupCollaborationType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCollaborationGroupCollaborationType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCollaborationGroupCollaborationTypeConverter))]
     public class PickCollaborationGroupCollaborationType
     {
         public static readonly string  Public = "Public"; 
@@ -1903,6 +3159,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCollaborationGroupFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCollaborationGroupFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCollaborationGroupFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCollaborationGroupFeedTypeConverter))]
     public class PickCollaborationGroupFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -1954,6 +3232,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCollaborationGroupMemberNotificationFrequencyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCollaborationGroupMemberNotificationFrequency)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCollaborationGroupMemberNotificationFrequency {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCollaborationGroupMemberNotificationFrequencyConverter))]
     public class PickCollaborationGroupMemberNotificationFrequency
     {
         public static readonly string  P = "P"; 
@@ -1980,6 +3280,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCollaborationInvitationStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCollaborationInvitationStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCollaborationInvitationStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCollaborationInvitationStatusConverter))]
     public class PickCollaborationInvitationStatus
     {
         public static readonly string  Sent = "Sent"; 
@@ -2005,6 +3327,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContactSalutationConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContactSalutation)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContactSalutation {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContactSalutationConverter))]
     public class PickContactSalutation
     {
         public static readonly string  Mr = "Mr."; 
@@ -2032,6 +3376,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContactLeadSourceConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContactLeadSource)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContactLeadSource {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContactLeadSourceConverter))]
     public class PickContactLeadSource
     {
         public static readonly string  Web = "Web"; 
@@ -2059,6 +3425,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContactLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContactLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContactLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContactLevelConverter))]
     public class PickContactLevel
     {
         public static readonly string  Secondary = "Secondary"; 
@@ -2084,6 +3472,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContactFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContactFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContactFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContactFeedTypeConverter))]
     public class PickContactFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -2135,6 +3545,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContactHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContactHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContactHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContactHistoryFieldConverter))]
     public class PickContactHistoryField
     {
         public static readonly string  Account = "Account"; 
@@ -2213,6 +3645,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContactShareContactAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContactShareContactAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContactShareContactAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContactShareContactAccessLevelConverter))]
     public class PickContactShareContactAccessLevel
     {
         public static readonly string  Read = "Read"; 
@@ -2238,6 +3692,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContactShareRowCauseConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContactShareRowCause)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContactShareRowCause {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContactShareRowCauseConverter))]
     public class PickContactShareRowCause
     {
         public static readonly string  Owner = "Owner"; 
@@ -2271,6 +3747,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContentDocumentPublishStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContentDocumentPublishStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContentDocumentPublishStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContentDocumentPublishStatusConverter))]
     public class PickContentDocumentPublishStatus
     {
         public static readonly string  U = "U"; 
@@ -2296,6 +3794,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContentDocumentFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContentDocumentFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContentDocumentFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContentDocumentFeedTypeConverter))]
     public class PickContentDocumentFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -2347,6 +3867,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContentDocumentHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContentDocumentHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContentDocumentHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContentDocumentHistoryFieldConverter))]
     public class PickContentDocumentHistoryField
     {
         public static readonly string  ArchivedBy = "ArchivedBy"; 
@@ -2391,6 +3933,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContentVersionPublishStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContentVersionPublishStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContentVersionPublishStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContentVersionPublishStatusConverter))]
     public class PickContentVersionPublishStatus
     {
         public static readonly string  U = "U"; 
@@ -2416,6 +3980,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContentVersionOriginConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContentVersionOrigin)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContentVersionOrigin {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContentVersionOriginConverter))]
     public class PickContentVersionOrigin
     {
         public static readonly string  C = "C"; 
@@ -2440,6 +4026,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContentVersionHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContentVersionHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContentVersionHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContentVersionHistoryFieldConverter))]
     public class PickContentVersionHistoryField
     {
         public static readonly string  ContentUrl = "ContentUrl"; 
@@ -2487,6 +4095,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContentWorkspaceTagModelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContentWorkspaceTagModel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContentWorkspaceTagModel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContentWorkspaceTagModelConverter))]
     public class PickContentWorkspaceTagModel
     {
         public static readonly string  U = "U"; 
@@ -2512,6 +4142,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContractOwnerExpirationNoticeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContractOwnerExpirationNotice)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContractOwnerExpirationNotice {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContractOwnerExpirationNoticeConverter))]
     public class PickContractOwnerExpirationNotice
     {
         public static readonly string _15 = "15"; 
@@ -2540,6 +4192,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContractStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContractStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContractStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContractStatusConverter))]
     public class PickContractStatus
     {
         public static readonly string  InApprovalProcess = "In Approval Process"; 
@@ -2565,6 +4239,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContractStatusCodeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContractStatusCode)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContractStatusCode {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContractStatusCodeConverter))]
     public class PickContractStatusCode
     {
         public static readonly string  Draft = "Draft"; 
@@ -2592,6 +4288,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContractContactRoleRoleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContractContactRoleRole)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContractContactRoleRole {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContractContactRoleRoleConverter))]
     public class PickContractContactRoleRole
     {
         public static readonly string  BusinessUser = "Business User"; 
@@ -2623,6 +4341,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContractFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContractFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContractFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContractFeedTypeConverter))]
     public class PickContractFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -2674,6 +4414,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContractHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContractHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContractHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContractHistoryFieldConverter))]
     public class PickContractHistoryField
     {
         public static readonly string  Account = "Account"; 
@@ -2744,6 +4506,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickContractStatusStatusCodeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickContractStatusStatusCode)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickContractStatusStatusCode {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickContractStatusStatusCodeConverter))]
     public class PickContractStatusStatusCode
     {
         public static readonly string  Draft = "Draft"; 
@@ -2771,15 +4555,37 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickCronTriggerTimeZoneSidKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickCronTriggerTimeZoneSidKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickCronTriggerTimeZoneSidKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickCronTriggerTimeZoneSidKeyConverter))]
     public class PickCronTriggerTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
-        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
         public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
@@ -2881,6 +4687,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickDashboardLeftSizeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickDashboardLeftSize)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickDashboardLeftSize {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickDashboardLeftSizeConverter))]
     public class PickDashboardLeftSize
     {
         public static readonly string  Narrow = "Narrow"; 
@@ -2906,6 +4734,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickDashboardMiddleSizeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickDashboardMiddleSize)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickDashboardMiddleSize {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickDashboardMiddleSizeConverter))]
     public class PickDashboardMiddleSize
     {
         public static readonly string  Narrow = "Narrow"; 
@@ -2931,6 +4781,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickDashboardRightSizeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickDashboardRightSize)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickDashboardRightSize {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickDashboardRightSizeConverter))]
     public class PickDashboardRightSize
     {
         public static readonly string  Narrow = "Narrow"; 
@@ -2956,6 +4828,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickDashboardBackgroundDirectionConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickDashboardBackgroundDirection)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickDashboardBackgroundDirection {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickDashboardBackgroundDirectionConverter))]
     public class PickDashboardBackgroundDirection
     {
         public static readonly string  TopToBottom = "TopToBottom"; 
@@ -2981,6 +4875,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickDashboardTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickDashboardType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickDashboardType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickDashboardTypeConverter))]
     public class PickDashboardType
     {
         public static readonly string  SpecifiedUser = "SpecifiedUser"; 
@@ -3006,6 +4922,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickDashboardFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickDashboardFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickDashboardFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickDashboardFeedTypeConverter))]
     public class PickDashboardFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -3057,6 +4995,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailMessageStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailMessageStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailMessageStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailMessageStatusConverter))]
     public class PickEmailMessageStatus
     {
         public static readonly string _0 = "0"; 
@@ -3085,6 +5045,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailServicesFunctionAttachmentOptionConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailServicesFunctionAttachmentOption)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailServicesFunctionAttachmentOption {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailServicesFunctionAttachmentOptionConverter))]
     public class PickEmailServicesFunctionAttachmentOption
     {
         public static readonly string _0 = "0"; 
@@ -3112,6 +5094,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailServicesFunctionOverLimitActionConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailServicesFunctionOverLimitAction)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailServicesFunctionOverLimitAction {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailServicesFunctionOverLimitActionConverter))]
     public class PickEmailServicesFunctionOverLimitAction
     {
         public static readonly string _0 = "0"; 
@@ -3138,6 +5142,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailServicesFunctionFunctionInactiveActionConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailServicesFunctionFunctionInactiveAction)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailServicesFunctionFunctionInactiveAction {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailServicesFunctionFunctionInactiveActionConverter))]
     public class PickEmailServicesFunctionFunctionInactiveAction
     {
         public static readonly string _0 = "0"; 
@@ -3164,6 +5190,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailServicesFunctionAddressInactiveActionConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailServicesFunctionAddressInactiveAction)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailServicesFunctionAddressInactiveAction {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailServicesFunctionAddressInactiveActionConverter))]
     public class PickEmailServicesFunctionAddressInactiveAction
     {
         public static readonly string _0 = "0"; 
@@ -3190,6 +5238,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailServicesFunctionAuthenticationFailureActionConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailServicesFunctionAuthenticationFailureAction)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailServicesFunctionAuthenticationFailureAction {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailServicesFunctionAuthenticationFailureActionConverter))]
     public class PickEmailServicesFunctionAuthenticationFailureAction
     {
         public static readonly string _0 = "0"; 
@@ -3216,6 +5286,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailServicesFunctionAuthorizationFailureActionConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailServicesFunctionAuthorizationFailureAction)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailServicesFunctionAuthorizationFailureAction {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailServicesFunctionAuthorizationFailureActionConverter))]
     public class PickEmailServicesFunctionAuthorizationFailureAction
     {
         public static readonly string _0 = "0"; 
@@ -3242,6 +5334,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailTemplateTemplateStyleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailTemplateTemplateStyle)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailTemplateTemplateStyle {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailTemplateTemplateStyleConverter))]
     public class PickEmailTemplateTemplateStyle
     {
         public static readonly string  none = "none"; 
@@ -3271,6 +5385,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailTemplateTemplateTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailTemplateTemplateType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailTemplateTemplateType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailTemplateTemplateTypeConverter))]
     public class PickEmailTemplateTemplateType
     {
         public static readonly string  text = "text"; 
@@ -3297,6 +5433,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEmailTemplateEncodingConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEmailTemplateEncoding)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEmailTemplateEncoding {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEmailTemplateEncodingConverter))]
     public class PickEmailTemplateEncoding
     {
         public static readonly string  UTF8 = "UTF-8"; 
@@ -3327,6 +5485,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEventShowAsConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEventShowAs)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEventShowAs {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEventShowAsConverter))]
     public class PickEventShowAs
     {
         public static readonly string  Busy = "Busy"; 
@@ -3352,6 +5532,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEventGroupEventTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEventGroupEventType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEventGroupEventType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEventGroupEventTypeConverter))]
     public class PickEventGroupEventType
     {
         public static readonly string _0 = "0"; 
@@ -3377,15 +5579,37 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEventRecurrenceTimeZoneSidKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEventRecurrenceTimeZoneSidKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEventRecurrenceTimeZoneSidKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEventRecurrenceTimeZoneSidKeyConverter))]
     public class PickEventRecurrenceTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
-        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
         public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
@@ -3487,6 +5711,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEventRecurrenceTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEventRecurrenceType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEventRecurrenceType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEventRecurrenceTypeConverter))]
     public class PickEventRecurrenceType
     {
         public static readonly string  RecursDaily = "RecursDaily"; 
@@ -3516,6 +5762,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEventRecurrenceInstanceConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEventRecurrenceInstance)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEventRecurrenceInstance {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEventRecurrenceInstanceConverter))]
     public class PickEventRecurrenceInstance
     {
         public static readonly string  First = "First"; 
@@ -3543,6 +5811,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEventRecurrenceMonthOfYearConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEventRecurrenceMonthOfYear)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEventRecurrenceMonthOfYear {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEventRecurrenceMonthOfYearConverter))]
     public class PickEventRecurrenceMonthOfYear
     {
         public static readonly string  January = "January"; 
@@ -3577,6 +5867,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEventAttendeeStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEventAttendeeStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEventAttendeeStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEventAttendeeStatusConverter))]
     public class PickEventAttendeeStatus
     {
         public static readonly string  New = "New"; 
@@ -3604,6 +5916,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickEventFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickEventFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickEventFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickEventFeedTypeConverter))]
     public class PickEventFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -3655,6 +5989,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickFeedPostTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickFeedPostType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickFeedPostType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickFeedPostTypeConverter))]
     public class PickFeedPostType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -3706,6 +6062,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickFiscalYearSettingsYearTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickFiscalYearSettingsYearType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickFiscalYearSettingsYearType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickFiscalYearSettingsYearTypeConverter))]
     public class PickFiscalYearSettingsYearType
     {
         public static readonly string  Standard = "Standard"; 
@@ -3731,6 +6109,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickFiscalYearSettingsQuarterLabelSchemeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickFiscalYearSettingsQuarterLabelScheme)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickFiscalYearSettingsQuarterLabelScheme {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickFiscalYearSettingsQuarterLabelSchemeConverter))]
     public class PickFiscalYearSettingsQuarterLabelScheme
     {
         public static readonly string  NumberByYear = "NumberByYear"; 
@@ -3755,6 +6155,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickFiscalYearSettingsPeriodLabelSchemeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickFiscalYearSettingsPeriodLabelScheme)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickFiscalYearSettingsPeriodLabelScheme {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickFiscalYearSettingsPeriodLabelSchemeConverter))]
     public class PickFiscalYearSettingsPeriodLabelScheme
     {
         public static readonly string  NumberByYear = "NumberByYear"; 
@@ -3781,6 +6203,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickFiscalYearSettingsWeekLabelSchemeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickFiscalYearSettingsWeekLabelScheme)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickFiscalYearSettingsWeekLabelScheme {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickFiscalYearSettingsWeekLabelSchemeConverter))]
     public class PickFiscalYearSettingsWeekLabelScheme
     {
         public static readonly string  NumberByYear = "NumberByYear"; 
@@ -3806,6 +6250,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickFiscalYearSettingsQuarterPrefixConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickFiscalYearSettingsQuarterPrefix)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickFiscalYearSettingsQuarterPrefix {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickFiscalYearSettingsQuarterPrefixConverter))]
     public class PickFiscalYearSettingsQuarterPrefix
     {
         public static readonly string  Quarter = "Quarter"; 
@@ -3832,6 +6298,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickFiscalYearSettingsPeriodPrefixConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickFiscalYearSettingsPeriodPrefix)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickFiscalYearSettingsPeriodPrefix {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickFiscalYearSettingsPeriodPrefixConverter))]
     public class PickFiscalYearSettingsPeriodPrefix
     {
         public static readonly string  Period = "Period"; 
@@ -3858,6 +6346,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickFolderAccessTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickFolderAccessType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickFolderAccessType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickFolderAccessTypeConverter))]
     public class PickFolderAccessType
     {
         public static readonly string  Shared = "Shared"; 
@@ -3884,6 +6394,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickFolderTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickFolderType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickFolderType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickFolderTypeConverter))]
     public class PickFolderType
     {
         public static readonly string  Document = "Document"; 
@@ -3910,6 +6442,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickForecastShareAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickForecastShareAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickForecastShareAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickForecastShareAccessLevelConverter))]
     public class PickForecastShareAccessLevel
     {
         public static readonly string  Read = "Read"; 
@@ -3935,6 +6489,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickForecastShareRowCauseConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickForecastShareRowCause)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickForecastShareRowCause {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickForecastShareRowCauseConverter))]
     public class PickForecastShareRowCause
     {
         public static readonly string  Owner = "Owner"; 
@@ -3968,6 +6544,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickGroupTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickGroupType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickGroupType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickGroupTypeConverter))]
     public class PickGroupType
     {
         public static readonly string  AllCustomerPortal = "AllCustomerPortal"; 
@@ -4004,6 +6602,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickHolidayRecurrenceTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickHolidayRecurrenceType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickHolidayRecurrenceType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickHolidayRecurrenceTypeConverter))]
     public class PickHolidayRecurrenceType
     {
         public static readonly string  RecursDaily = "RecursDaily"; 
@@ -4033,6 +6653,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickHolidayRecurrenceInstanceConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickHolidayRecurrenceInstance)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickHolidayRecurrenceInstance {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickHolidayRecurrenceInstanceConverter))]
     public class PickHolidayRecurrenceInstance
     {
         public static readonly string  First = "First"; 
@@ -4060,6 +6702,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickHolidayRecurrenceMonthOfYearConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickHolidayRecurrenceMonthOfYear)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickHolidayRecurrenceMonthOfYear {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickHolidayRecurrenceMonthOfYearConverter))]
     public class PickHolidayRecurrenceMonthOfYear
     {
         public static readonly string  January = "January"; 
@@ -4094,6 +6758,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickIdeaStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickIdeaStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickIdeaStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickIdeaStatusConverter))]
     public class PickIdeaStatus
     {
     
@@ -4116,6 +6802,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadSalutationConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadSalutation)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadSalutation {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadSalutationConverter))]
     public class PickLeadSalutation
     {
         public static readonly string  Mr = "Mr."; 
@@ -4143,6 +6851,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadLeadSourceConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadLeadSource)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadLeadSource {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadLeadSourceConverter))]
     public class PickLeadLeadSource
     {
         public static readonly string  Web = "Web"; 
@@ -4170,6 +6900,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadStatusConverter))]
     public class PickLeadStatus
     {
         public static readonly string  OpenNotContacted = "Open - Not Contacted"; 
@@ -4196,6 +6948,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadIndustryConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadIndustry)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadIndustry {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadIndustryConverter))]
     public class PickLeadIndustry
     {
         public static readonly string  Agriculture = "Agriculture"; 
@@ -4250,6 +7024,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadRatingConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadRating)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadRating {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadRatingConverter))]
     public class PickLeadRating
     {
         public static readonly string  Hot = "Hot"; 
@@ -4275,6 +7071,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadProductInterestConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadProductInterest)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadProductInterest {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadProductInterestConverter))]
     public class PickLeadProductInterest
     {
         public static readonly string  GC1000series = "GC1000 series"; 
@@ -4300,6 +7118,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadPrimaryConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadPrimary)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadPrimary {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadPrimaryConverter))]
     public class PickLeadPrimary
     {
         public static readonly string  No = "No"; 
@@ -4324,6 +7164,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadFeedTypeConverter))]
     public class PickLeadFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -4375,6 +7237,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadHistoryFieldConverter))]
     public class PickLeadHistoryField
     {
         public static readonly string  Address = "Address"; 
@@ -4448,6 +7332,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadShareLeadAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadShareLeadAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadShareLeadAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadShareLeadAccessLevelConverter))]
     public class PickLeadShareLeadAccessLevel
     {
         public static readonly string  Read = "Read"; 
@@ -4473,6 +7379,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickLeadShareRowCauseConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickLeadShareRowCause)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickLeadShareRowCause {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickLeadShareRowCauseConverter))]
     public class PickLeadShareRowCause
     {
         public static readonly string  Owner = "Owner"; 
@@ -4506,6 +7434,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickNameTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickNameType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickNameType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickNameTypeConverter))]
     public class PickNameType
     {
         public static readonly string  Account = "Account"; 
@@ -4556,6 +7506,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickNewsFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickNewsFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickNewsFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickNewsFeedTypeConverter))]
     public class PickNewsFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -4607,6 +7579,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpenActivityStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpenActivityStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpenActivityStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpenActivityStatusConverter))]
     public class PickOpenActivityStatus
     {
         public static readonly string  NotStarted = "Not Started"; 
@@ -4634,6 +7628,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpenActivityPriorityConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpenActivityPriority)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpenActivityPriority {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpenActivityPriorityConverter))]
     public class PickOpenActivityPriority
     {
         public static readonly string  High = "High"; 
@@ -4659,6 +7675,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpenActivityActivityTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpenActivityActivityType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpenActivityActivityType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpenActivityActivityTypeConverter))]
     public class PickOpenActivityActivityType
     {
         public static readonly string  Call = "Call"; 
@@ -4685,6 +7723,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpenActivityCallTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpenActivityCallType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpenActivityCallType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpenActivityCallTypeConverter))]
     public class PickOpenActivityCallType
     {
         public static readonly string  Internal = "Internal"; 
@@ -4710,6 +7770,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityStageNameConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityStageName)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityStageName {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityStageNameConverter))]
     public class PickOpportunityStageName
     {
         public static readonly string  Prospecting = "Prospecting"; 
@@ -4742,6 +7824,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityTypeConverter))]
     public class PickOpportunityType
     {
         public static readonly string  ExistingCustomerUpgrade = "Existing Customer - Upgrade"; 
@@ -4768,6 +7872,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityLeadSourceConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityLeadSource)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityLeadSource {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityLeadSourceConverter))]
     public class PickOpportunityLeadSource
     {
         public static readonly string  Web = "Web"; 
@@ -4795,6 +7921,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityForecastCategoryConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityForecastCategory)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityForecastCategory {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityForecastCategoryConverter))]
     public class PickOpportunityForecastCategory
     {
         public static readonly string  Omitted = "Omitted"; 
@@ -4822,6 +7970,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityForecastCategoryNameConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityForecastCategoryName)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityForecastCategoryName {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityForecastCategoryNameConverter))]
     public class PickOpportunityForecastCategoryName
     {
         public static readonly string  Omitted = "Omitted"; 
@@ -4849,6 +8019,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityDeliveryInstallationStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityDeliveryInstallationStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityDeliveryInstallationStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityDeliveryInstallationStatusConverter))]
     public class PickOpportunityDeliveryInstallationStatus
     {
         public static readonly string  Inprogress = "In progress"; 
@@ -4874,6 +8066,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityContactRoleRoleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityContactRoleRole)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityContactRoleRole {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityContactRoleRoleConverter))]
     public class PickOpportunityContactRoleRole
     {
         public static readonly string  BusinessUser = "Business User"; 
@@ -4905,6 +8119,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityFeedTypeConverter))]
     public class PickOpportunityFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -4956,6 +8192,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityFieldHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityFieldHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityFieldHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityFieldHistoryFieldConverter))]
     public class PickOpportunityFieldHistoryField
     {
         public static readonly string  Account = "Account"; 
@@ -5006,6 +8264,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityHistoryStageNameConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityHistoryStageName)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityHistoryStageName {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityHistoryStageNameConverter))]
     public class PickOpportunityHistoryStageName
     {
         public static readonly string  Prospecting = "Prospecting"; 
@@ -5038,6 +8318,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityHistoryForecastCategoryConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityHistoryForecastCategory)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityHistoryForecastCategory {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityHistoryForecastCategoryConverter))]
     public class PickOpportunityHistoryForecastCategory
     {
         public static readonly string  Omitted = "Omitted"; 
@@ -5065,6 +8367,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityPartnerRoleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityPartnerRole)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityPartnerRole {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityPartnerRoleConverter))]
     public class PickOpportunityPartnerRole
     {
         public static readonly string  SystemIntegrator = "System Integrator"; 
@@ -5100,6 +8424,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityShareOpportunityAccessLevelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityShareOpportunityAccessLevel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityShareOpportunityAccessLevel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityShareOpportunityAccessLevelConverter))]
     public class PickOpportunityShareOpportunityAccessLevel
     {
         public static readonly string  Read = "Read"; 
@@ -5125,6 +8471,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityShareRowCauseConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityShareRowCause)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityShareRowCause {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityShareRowCauseConverter))]
     public class PickOpportunityShareRowCause
     {
         public static readonly string  Owner = "Owner"; 
@@ -5158,6 +8526,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityStageForecastCategoryConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityStageForecastCategory)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityStageForecastCategory {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityStageForecastCategoryConverter))]
     public class PickOpportunityStageForecastCategory
     {
         public static readonly string  Omitted = "Omitted"; 
@@ -5185,6 +8575,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOpportunityStageForecastCategoryNameConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOpportunityStageForecastCategoryName)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOpportunityStageForecastCategoryName {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOpportunityStageForecastCategoryNameConverter))]
     public class PickOpportunityStageForecastCategoryName
     {
         public static readonly string  Omitted = "Omitted"; 
@@ -5212,6 +8624,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrderStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrderStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrderStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrderStatusConverter))]
     public class PickOrderStatus
     {
         public static readonly string  Draft = "Draft"; 
@@ -5236,6 +8670,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrderTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrderType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrderType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrderTypeConverter))]
     public class PickOrderType
     {
     
@@ -5258,6 +8714,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrderStatusCodeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrderStatusCode)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrderStatusCode {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrderStatusCodeConverter))]
     public class PickOrderStatusCode
     {
         public static readonly string  D = "D"; 
@@ -5284,6 +8762,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrderHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrderHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrderHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrderHistoryFieldConverter))]
     public class PickOrderHistoryField
     {
         public static readonly string  Account = "Account"; 
@@ -5359,6 +8859,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationDefaultLocaleSidKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationDefaultLocaleSidKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationDefaultLocaleSidKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationDefaultLocaleSidKeyConverter))]
     public class PickOrganizationDefaultLocaleSidKey
     {
         public static readonly string  arBH = "ar_BH"; 
@@ -5477,6 +8999,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationLanguageLocaleKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationLanguageLocaleKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationLanguageLocaleKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationLanguageLocaleKeyConverter))]
     public class PickOrganizationLanguageLocaleKey
     {
         public static readonly string  enUS = "en_US"; 
@@ -5517,6 +9061,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationDefaultAccountAccessConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationDefaultAccountAccess)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationDefaultAccountAccess {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationDefaultAccountAccessConverter))]
     public class PickOrganizationDefaultAccountAccess
     {
         public static readonly string  None = "None"; 
@@ -5542,6 +9108,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationDefaultContactAccessConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationDefaultContactAccess)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationDefaultContactAccess {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationDefaultContactAccessConverter))]
     public class PickOrganizationDefaultContactAccess
     {
         public static readonly string  None = "None"; 
@@ -5568,6 +9156,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationDefaultOpportunityAccessConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationDefaultOpportunityAccess)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationDefaultOpportunityAccess {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationDefaultOpportunityAccessConverter))]
     public class PickOrganizationDefaultOpportunityAccess
     {
         public static readonly string  None = "None"; 
@@ -5593,6 +9203,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationDefaultLeadAccessConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationDefaultLeadAccess)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationDefaultLeadAccess {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationDefaultLeadAccessConverter))]
     public class PickOrganizationDefaultLeadAccess
     {
         public static readonly string  None = "None"; 
@@ -5619,6 +9251,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationDefaultCaseAccessConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationDefaultCaseAccess)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationDefaultCaseAccess {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationDefaultCaseAccessConverter))]
     public class PickOrganizationDefaultCaseAccess
     {
         public static readonly string  None = "None"; 
@@ -5645,6 +9299,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationDefaultCalendarAccessConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationDefaultCalendarAccess)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationDefaultCalendarAccess {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationDefaultCalendarAccessConverter))]
     public class PickOrganizationDefaultCalendarAccess
     {
         public static readonly string  HideDetails = "HideDetails"; 
@@ -5672,6 +9348,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationDefaultPricebookAccessConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationDefaultPricebookAccess)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationDefaultPricebookAccess {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationDefaultPricebookAccessConverter))]
     public class PickOrganizationDefaultPricebookAccess
     {
         public static readonly string  None = "None"; 
@@ -5697,6 +9395,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationDefaultCampaignAccessConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationDefaultCampaignAccess)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationDefaultCampaignAccess {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationDefaultCampaignAccessConverter))]
     public class PickOrganizationDefaultCampaignAccess
     {
         public static readonly string  None = "None"; 
@@ -5723,6 +9443,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationUiSkinConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationUiSkin)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationUiSkin {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationUiSkinConverter))]
     public class PickOrganizationUiSkin
     {
         public static readonly string  Theme1 = "Theme1"; 
@@ -5750,6 +9492,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickOrganizationOrganizationTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickOrganizationOrganizationType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickOrganizationOrganizationType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickOrganizationOrganizationTypeConverter))]
     public class PickOrganizationOrganizationType
     {
         public static readonly string  TeamEdition = "Team Edition"; 
@@ -5780,6 +9544,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickPartnerRoleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickPartnerRole)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickPartnerRole {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickPartnerRoleConverter))]
     public class PickPartnerRole
     {
         public static readonly string  SystemIntegrator = "System Integrator"; 
@@ -5815,6 +9601,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickPartnerRoleReverseRoleConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickPartnerRoleReverseRole)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickPartnerRoleReverseRole {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickPartnerRoleReverseRoleConverter))]
     public class PickPartnerRoleReverseRole
     {
         public static readonly string  SystemIntegrator = "System Integrator"; 
@@ -5850,6 +9658,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickPeriodTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickPeriodType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickPeriodType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickPeriodTypeConverter))]
     public class PickPeriodType
     {
         public static readonly string  Month = "Month"; 
@@ -5876,6 +9706,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickPeriodQuarterLabelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickPeriodQuarterLabel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickPeriodQuarterLabel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickPeriodQuarterLabelConverter))]
     public class PickPeriodQuarterLabel
     {
         public static readonly string  Spring = "Spring"; 
@@ -5902,6 +9754,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickPeriodPeriodLabelConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickPeriodPeriodLabel)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickPeriodPeriodLabel {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickPeriodPeriodLabelConverter))]
     public class PickPeriodPeriodLabel
     {
     
@@ -5924,6 +9798,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickPricebook2HistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickPricebook2HistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickPricebook2HistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickPricebook2HistoryFieldConverter))]
     public class PickPricebook2HistoryField
     {
         public static readonly string  created = "created"; 
@@ -5957,6 +9853,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProcessDefinitionTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProcessDefinitionType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProcessDefinitionType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProcessDefinitionTypeConverter))]
     public class PickProcessDefinitionType
     {
         public static readonly string  Approval = "Approval"; 
@@ -5981,6 +9899,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProcessDefinitionTableEnumOrIdConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProcessDefinitionTableEnumOrId)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProcessDefinitionTableEnumOrId {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProcessDefinitionTableEnumOrIdConverter))]
     public class PickProcessDefinitionTableEnumOrId
     {
         public static readonly string  Account = "Account"; 
@@ -6032,6 +9972,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProcessDefinitionLockTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProcessDefinitionLockType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProcessDefinitionLockType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProcessDefinitionLockTypeConverter))]
     public class PickProcessDefinitionLockType
     {
         public static readonly string  Total = "Total"; 
@@ -6060,6 +10022,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProcessDefinitionStateConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProcessDefinitionState)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProcessDefinitionState {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProcessDefinitionStateConverter))]
     public class PickProcessDefinitionState
     {
         public static readonly string  Active = "Active"; 
@@ -6085,6 +10069,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProcessInstanceStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProcessInstanceStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProcessInstanceStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProcessInstanceStatusConverter))]
     public class PickProcessInstanceStatus
     {
         public static readonly string  Approved = "Approved"; 
@@ -6116,6 +10122,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProcessInstanceHistoryStepStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProcessInstanceHistoryStepStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProcessInstanceHistoryStepStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProcessInstanceHistoryStepStatusConverter))]
     public class PickProcessInstanceHistoryStepStatus
     {
         public static readonly string  Approved = "Approved"; 
@@ -6147,6 +10175,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProcessInstanceStepStepStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProcessInstanceStepStepStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProcessInstanceStepStepStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProcessInstanceStepStepStatusConverter))]
     public class PickProcessInstanceStepStepStatus
     {
         public static readonly string  Approved = "Approved"; 
@@ -6178,6 +10228,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProduct2FamilyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProduct2Family)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProduct2Family {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProduct2FamilyConverter))]
     public class PickProduct2Family
     {
         public static readonly string  None = "None"; 
@@ -6201,6 +10273,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProduct2FeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProduct2FeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProduct2FeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProduct2FeedTypeConverter))]
     public class PickProduct2FeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -6252,6 +10346,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickProfileUserTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickProfileUserType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickProfileUserType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickProfileUserTypeConverter))]
     public class PickProfileUserType
     {
         public static readonly string  Standard = "Standard"; 
@@ -6282,6 +10398,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickQueueSobjectSobjectTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickQueueSobjectSobjectType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickQueueSobjectSobjectType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickQueueSobjectSobjectTypeConverter))]
     public class PickQueueSobjectSobjectType
     {
         public static readonly string  Case = "Case"; 
@@ -6318,6 +10456,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickRecordTypeSobjectTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickRecordTypeSobjectType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickRecordTypeSobjectType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickRecordTypeSobjectTypeConverter))]
     public class PickRecordTypeSobjectType
     {
         public static readonly string  Account = "Account"; 
@@ -6384,6 +10544,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickReportFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickReportFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickReportFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickReportFeedTypeConverter))]
     public class PickReportFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -6435,6 +10617,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickSiteStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickSiteStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickSiteStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickSiteStatusConverter))]
     public class PickSiteStatus
     {
         public static readonly string  Active = "Active"; 
@@ -6459,6 +10663,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickSiteFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickSiteFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickSiteFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickSiteFeedTypeConverter))]
     public class PickSiteFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -6510,6 +10736,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickSiteHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickSiteHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickSiteHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickSiteHistoryFieldConverter))]
     public class PickSiteHistoryField
     {
         public static readonly string  siteActive = "siteActive"; 
@@ -6590,6 +10838,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickSolutionStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickSolutionStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickSolutionStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickSolutionStatusConverter))]
     public class PickSolutionStatus
     {
         public static readonly string  Draft = "Draft"; 
@@ -6615,6 +10885,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickSolutionFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickSolutionFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickSolutionFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickSolutionFeedTypeConverter))]
     public class PickSolutionFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -6666,6 +10958,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickSolutionHistoryFieldConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickSolutionHistoryField)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickSolutionHistoryField {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickSolutionHistoryFieldConverter))]
     public class PickSolutionHistoryField
     {
         public static readonly string  created = "created"; 
@@ -6699,6 +11013,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickStaticResourceCacheControlConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickStaticResourceCacheControl)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickStaticResourceCacheControl {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickStaticResourceCacheControlConverter))]
     public class PickStaticResourceCacheControl
     {
         public static readonly string  Private = "Private"; 
@@ -6723,6 +11059,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickTaskStatusConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickTaskStatus)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickTaskStatus {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickTaskStatusConverter))]
     public class PickTaskStatus
     {
         public static readonly string  NotStarted = "Not Started"; 
@@ -6750,6 +11108,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickTaskPriorityConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickTaskPriority)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickTaskPriority {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickTaskPriorityConverter))]
     public class PickTaskPriority
     {
         public static readonly string  High = "High"; 
@@ -6775,6 +11155,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickTaskCallTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickTaskCallType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickTaskCallType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickTaskCallTypeConverter))]
     public class PickTaskCallType
     {
         public static readonly string  Internal = "Internal"; 
@@ -6800,15 +11202,37 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickTaskRecurrenceTimeZoneSidKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickTaskRecurrenceTimeZoneSidKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickTaskRecurrenceTimeZoneSidKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickTaskRecurrenceTimeZoneSidKeyConverter))]
     public class PickTaskRecurrenceTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
-        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
         public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
@@ -6910,6 +11334,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickTaskRecurrenceTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickTaskRecurrenceType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickTaskRecurrenceType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickTaskRecurrenceTypeConverter))]
     public class PickTaskRecurrenceType
     {
         public static readonly string  RecursDaily = "RecursDaily"; 
@@ -6939,6 +11385,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickTaskRecurrenceInstanceConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickTaskRecurrenceInstance)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickTaskRecurrenceInstance {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickTaskRecurrenceInstanceConverter))]
     public class PickTaskRecurrenceInstance
     {
         public static readonly string  First = "First"; 
@@ -6966,6 +11434,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickTaskRecurrenceMonthOfYearConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickTaskRecurrenceMonthOfYear)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickTaskRecurrenceMonthOfYear {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickTaskRecurrenceMonthOfYearConverter))]
     public class PickTaskRecurrenceMonthOfYear
     {
         public static readonly string  January = "January"; 
@@ -7000,6 +11490,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickTaskFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickTaskFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickTaskFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickTaskFeedTypeConverter))]
     public class PickTaskFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -7051,15 +11563,37 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserTimeZoneSidKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserTimeZoneSidKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserTimeZoneSidKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserTimeZoneSidKeyConverter))]
     public class PickUserTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
-        public static readonly string  PacificFiji = "Pacific/Fiji"; 
+        public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificFiji = "Pacific/Fiji"; 
         public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
@@ -7161,6 +11695,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserLocaleSidKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserLocaleSidKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserLocaleSidKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserLocaleSidKeyConverter))]
     public class PickUserLocaleSidKey
     {
         public static readonly string  arBH = "ar_BH"; 
@@ -7279,6 +11835,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserEmailEncodingKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserEmailEncodingKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserEmailEncodingKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserEmailEncodingKeyConverter))]
     public class PickUserEmailEncodingKey
     {
         public static readonly string  UTF8 = "UTF-8"; 
@@ -7309,6 +11887,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserUserTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserUserType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserUserType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserUserTypeConverter))]
     public class PickUserUserType
     {
         public static readonly string  Standard = "Standard"; 
@@ -7339,6 +11939,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserLanguageLocaleKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserLanguageLocaleKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserLanguageLocaleKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserLanguageLocaleKeyConverter))]
     public class PickUserLanguageLocaleKey
     {
         public static readonly string  enUS = "en_US"; 
@@ -7379,6 +12001,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserDigestFrequencyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserDigestFrequency)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserDigestFrequency {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserDigestFrequencyConverter))]
     public class PickUserDigestFrequency
     {
         public static readonly string  D = "D"; 
@@ -7404,6 +12048,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserFeedTypeConverter))]
     public class PickUserFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -7455,6 +12121,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserPreferencePreferenceConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserPreferencePreference)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserPreferencePreference {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserPreferencePreferenceConverter))]
     public class PickUserPreferencePreference
     {
         public static readonly string _57 = "57"; 
@@ -7489,6 +12177,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserProfileFeedTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserProfileFeedType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserProfileFeedType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserProfileFeedTypeConverter))]
     public class PickUserProfileFeedType
     {
         public static readonly string  TrackedChange = "TrackedChange"; 
@@ -7540,6 +12250,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserRoleOpportunityAccessForAccountOwnerConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserRoleOpportunityAccessForAccountOwner)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserRoleOpportunityAccessForAccountOwner {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserRoleOpportunityAccessForAccountOwnerConverter))]
     public class PickUserRoleOpportunityAccessForAccountOwner
     {
         public static readonly string  None = "None"; 
@@ -7565,6 +12297,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserRoleCaseAccessForAccountOwnerConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserRoleCaseAccessForAccountOwner)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserRoleCaseAccessForAccountOwner {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserRoleCaseAccessForAccountOwnerConverter))]
     public class PickUserRoleCaseAccessForAccountOwner
     {
         public static readonly string  None = "None"; 
@@ -7590,6 +12344,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserRoleContactAccessForAccountOwnerConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserRoleContactAccessForAccountOwner)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserRoleContactAccessForAccountOwner {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserRoleContactAccessForAccountOwnerConverter))]
     public class PickUserRoleContactAccessForAccountOwner
     {
         public static readonly string  None = "None"; 
@@ -7615,6 +12391,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickUserRolePortalTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickUserRolePortalType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickUserRolePortalType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickUserRolePortalTypeConverter))]
     public class PickUserRolePortalType
     {
         public static readonly string  None = "None"; 
@@ -7640,6 +12438,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickVoteTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickVoteType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickVoteType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickVoteTypeConverter))]
     public class PickVoteType
     {
         public static readonly string  Up = "Up"; 
@@ -7669,6 +12489,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickWebLinkPageOrSobjectTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickWebLinkPageOrSobjectType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickWebLinkPageOrSobjectType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickWebLinkPageOrSobjectTypeConverter))]
     public class PickWebLinkPageOrSobjectType
     {
         public static readonly string  Account = "Account"; 
@@ -7730,6 +12572,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickWebLinkEncodingKeyConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickWebLinkEncodingKey)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickWebLinkEncodingKey {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickWebLinkEncodingKeyConverter))]
     public class PickWebLinkEncodingKey
     {
         public static readonly string  UTF8 = "UTF-8"; 
@@ -7760,6 +12624,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickWebLinkLinkTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickWebLinkLinkType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickWebLinkLinkType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickWebLinkLinkTypeConverter))]
     public class PickWebLinkLinkType
     {
         public static readonly string  url = "url"; 
@@ -7787,6 +12673,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickWebLinkOpenTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickWebLinkOpenType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickWebLinkOpenType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickWebLinkOpenTypeConverter))]
     public class PickWebLinkOpenType
     {
         public static readonly string  newWindow = "newWindow"; 
@@ -7814,6 +12722,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickWebLinkPositionConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickWebLinkPosition)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickWebLinkPosition {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickWebLinkPositionConverter))]
     public class PickWebLinkPosition
     {
         public static readonly string  fullScreen = "fullScreen"; 
@@ -7839,6 +12769,28 @@ namespace LinqToSalesforce
         
 
     }
+    public class PickWebLinkDisplayTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickWebLinkDisplayType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickWebLinkDisplayType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickWebLinkDisplayTypeConverter))]
     public class PickWebLinkDisplayType
     {
         public static readonly string  L = "L"; 
@@ -7865,7 +12817,7 @@ namespace LinqToSalesforce
 
     }
     [EntityName("Account")]
-    public class Account_popo : ISalesforceEntity
+    public class Account : ISalesforceEntity
     {
     
         public event PropertyChangedEventHandler PropertyChanged;
@@ -8200,157 +13152,157 @@ namespace LinqToSalesforce
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account_popo, Account_popo> ChildAccounts
+        public RelationShip<Account,Account> ChildAccounts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, AccountContactRole> AccountContactRoles
+        public RelationShip<Account,AccountContactRole> AccountContactRoles
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account_popo, AccountFeed> Feeds
+        public RelationShip<Account,AccountFeed> Feeds
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, AccountHistory> Histories
+        public RelationShip<Account,AccountHistory> Histories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountFromId")]
-        public RelationShip<Account_popo, AccountPartner> AccountPartnersFrom
+        public RelationShip<Account,AccountPartner> AccountPartnersFrom
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountToId")]
-        public RelationShip<Account_popo, AccountPartner> AccountPartnersTo
+        public RelationShip<Account,AccountPartner> AccountPartnersTo
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, AccountShare> Shares
+        public RelationShip<Account,AccountShare> Shares
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, ActivityHistory> ActivityHistories
+        public RelationShip<Account,ActivityHistory> ActivityHistories
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, Asset> Assets
+        public RelationShip<Account,Asset> Assets
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account_popo, Attachment> Attachments
+        public RelationShip<Account,Attachment> Attachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, Case> Cases
+        public RelationShip<Account,Case> Cases
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, Contact> Contacts
+        public RelationShip<Account,Contact> Contacts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, Contract> Contracts
+        public RelationShip<Account,Contract> Contracts
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account_popo, EntitySubscription> FeedSubscriptionsForEntity
+        public RelationShip<Account,EntitySubscription> FeedSubscriptionsForEntity
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Account_popo, Event> Events
+        public RelationShip<Account,Event> Events
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account_popo, Note> Notes
+        public RelationShip<Account,Note> Notes
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
-        public RelationShip<Account_popo, NoteAndAttachment> NotesAndAttachments
+        public RelationShip<Account,NoteAndAttachment> NotesAndAttachments
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, OpenActivity> OpenActivities
+        public RelationShip<Account,OpenActivity> OpenActivities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, Opportunity> Opportunities
+        public RelationShip<Account,Opportunity> Opportunities
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountToId")]
-        public RelationShip<Account_popo, OpportunityPartner> OpportunityPartnersTo
+        public RelationShip<Account,OpportunityPartner> OpportunityPartnersTo
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountId")]
-        public RelationShip<Account_popo, Order> Orders
+        public RelationShip<Account,Order> Orders
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountFromId")]
-        public RelationShip<Account_popo, Partner> PartnersFrom
+        public RelationShip<Account,Partner> PartnersFrom
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("AccountToId")]
-        public RelationShip<Account_popo, Partner> PartnersTo
+        public RelationShip<Account,Partner> PartnersTo
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Account_popo, ProcessInstance> ProcessInstances
+        public RelationShip<Account,ProcessInstance> ProcessInstances
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("TargetObjectId")]
-        public RelationShip<Account_popo, ProcessInstanceHistory> ProcessSteps
+        public RelationShip<Account,ProcessInstanceHistory> ProcessSteps
         {
             get;set;
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
-        public RelationShip<Account_popo, Task> Tasks
+        public RelationShip<Account,Task> Tasks
         {
             get;set;
         }
@@ -18829,8 +23781,8 @@ namespace LinqToSalesforce
         public System.Int32? NumComments
         {
             get { return __NumComments; }
-            set { SetField(ref __NumComments, value); }
         }
+    public bool ShouldSerializeNumComments() => false;
         private System.Double? __VoteScore;
         [EntityField(true)]
         public System.Double? VoteScore
@@ -18864,8 +23816,8 @@ namespace LinqToSalesforce
         public System.DateTime? LastCommentDate
         {
             get { return __LastCommentDate; }
-            set { SetField(ref __LastCommentDate, value); }
         }
+    public bool ShouldSerializeLastCommentDate() => false;
         private System.String __LastCommentId;
         [EntityField(true)]
         public System.String LastCommentId
@@ -28097,7 +33049,7 @@ namespace LinqToSalesforce
     public class SalesforceDataContext : SoqlContext
     {
         public SalesforceDataContext(string instanceName, Rest.OAuth.ImpersonationParam authparams) : base(instanceName, authparams) { }
-        public IQueryable<Account_popo> Accounts => GetTable<Account_popo>();
+        public IQueryable<Account> Accounts => GetTable<Account>();
         public IQueryable<AccountContactRole> AccountContactRoles => GetTable<AccountContactRole>();
         public IQueryable<AccountFeed> AccountFeeds => GetTable<AccountFeed>();
         public IQueryable<AccountHistory> AccountHistories => GetTable<AccountHistory>();

@@ -29,6 +29,8 @@ namespace LinqToSalesforce.Example1
             var context = new SalesforceDataContext("eu11", impersonationParam);
             try
             {
+                var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
+
                 var accounts = from a in context.Accounts
                                    //where a.CreatedDate >= DateTime.Today
                               // where a.NumberBugc > 0.1
@@ -40,7 +42,7 @@ namespace LinqToSalesforce.Example1
 
                 for (var i = 0; i < 10; i++)
                 {
-                    var account = new Account_popo { Name = $"Company {i}" };
+                    var account = new Account { Name = $"Company {i}" };
                     context.Insert(account);
                 }
 
@@ -67,7 +69,7 @@ namespace LinqToSalesforce.Example1
 
         static void DeleteAccountsStartingWithCompany(SoqlContext context)
         {
-            var accounts = from a in context.GetTable<Account_popo>()
+            var accounts = from a in context.GetTable<Account>()
                            where a.Name.StartsWith("Company")
                            select a;
 
@@ -81,7 +83,7 @@ namespace LinqToSalesforce.Example1
 
         static void RenameAccountsStartingWithCompany(SoqlContext context)
         {
-            var accounts = from a in context.GetTable<Account_popo>()
+            var accounts = from a in context.GetTable<Account>()
                            where a.Name.StartsWith("Company")
                            select a;
 
@@ -97,7 +99,7 @@ namespace LinqToSalesforce.Example1
 
         private static void DisplayAccountsWithTheirContactsAndCases(SoqlContext context)
         {
-            var accounts = (from a in context.GetTable<Account_popo>()
+            var accounts = (from a in context.GetTable<Account>()
                             where !a.Name.StartsWith("Company")
                                 && a.Industry == PickAccountIndustry.Biotechnology
                                 && PickAccountIndustry.Biotechnology == a.Industry

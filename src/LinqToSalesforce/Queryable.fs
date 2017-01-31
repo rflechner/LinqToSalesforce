@@ -80,7 +80,14 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
       let result = queryContext.Execute expression false
       if not <| typeof<IEnumerable>.IsAssignableFrom typeof<'TResult>
       then
-        (result :?> IEnumerable<'TResult>).First()
+        match expression with
+        | :? MethodCallExpression as e when e.Method.Name = "FirstOrDefault" ->
+            (result :?> IEnumerable<'TResult>).FirstOrDefault()
+        | :? MethodCallExpression as e when e.Method.Name = "Single" ->
+            (result :?> IEnumerable<'TResult>).Single()
+        | :? MethodCallExpression as e when e.Method.Name = "SingleOrDefault" ->
+            (result :?> IEnumerable<'TResult>).SingleOrDefault()
+        | _ -> (result :?> IEnumerable<'TResult>).First()
       else result :?> 'TResult
     member x.Execute(expression: Expression): obj = 
       queryContext.Execute expression false
