@@ -1,4 +1,7 @@
 
+#### 0.1.1-beta - January 27 2017
+* Implements SingleOrDefault Single and FirstOrDefault like with o
+
 #### 0.1.0-beta - January 27 2017
 * Insert requests returns created id
 
