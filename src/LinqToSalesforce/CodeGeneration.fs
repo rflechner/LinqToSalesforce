@@ -131,8 +131,9 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
             return true;
         }"""
 
-    let writeProperty typeName fieldName auto isReadonly =
-      add "public "; add (fixName typeName); add " "
+    let writeProperty typeName fieldName auto isReadonly isWrongReference =
+      let ptypeName = fixName typeName
+      add "public "; add ptypeName; add " "
       addLine 0 fieldName
       addLine (indent+1) "{"
       if not auto
@@ -143,9 +144,13 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
       else
         addLine (indent+2) "get;set;"
       addLine (indent+1) "}"
-      if isReadonly
+      if isReadonly && not isWrongReference
       then 
         let l = sprintf "public bool ShouldSerialize%s() => false;" fieldName
+        addLine indent l
+      elif isWrongReference
+      then
+        let l = sprintf "public bool ShouldSerialize%s() => %s != default(%s);" fieldName fieldName ptypeName
         addLine indent l
 
     for field in table.Fields do
@@ -169,7 +174,11 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) attr
       addLine (indent+1) (sprintf "[EntityField(%b)]" field.Nillable)
       writeIndent (indent+1)
-      writeProperty typeName fieldName false field.Calculated
+      let shipFields = 
+        table.RelationShips |> List.map (fun r -> r.Field)
+      let isWrongReference = 
+        field.ReferenceTo.Length > 0 && field.ReferenceTo |> List.exists(fun r -> shipFields |> List.contains r |> not)
+      writeProperty typeName fieldName false field.Calculated isWrongReference
     
     for relation in table.RelationShips do
       if relation.RelationshipName |> String.IsNullOrWhiteSpace |> not
@@ -178,7 +187,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) <| sprintf """[ReferencedByField("%s")]""" relation.Field
         writeIndent (indent+1)
         let tname = sprintf "RelationShip<%s, %s>" (fixName table.Name) (fixName relation.ChildSObject)
-        writeProperty tname relation.RelationshipName true false
+        writeProperty tname relation.RelationshipName true false false
 
     addLine indent "}"
       

@@ -1,8 +1,11 @@
 
-#### 0.1.1-beta - January 27 2017
-* Implements SingleOrDefault Single and FirstOrDefault like with o
+#### 0.1.2-beta - January 31 2017
+* detect wrong references during code generation
 
-#### 0.1.0-beta - January 27 2017
+#### 0.1.1-beta - January 31 2017
+* Implements SingleOrDefault Single and FirstOrDefault like with other linq frameworks
+
+#### 0.1.0-beta - January 31 2017
 * Insert requests returns created id
 
 #### 0.0.9-beta - January 27 2017
