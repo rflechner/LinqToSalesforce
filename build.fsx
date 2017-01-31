@@ -67,6 +67,16 @@ let gitRaw = environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/rfl
 
 // Read additional information from the release notes document
 let release = LoadReleaseNotes "RELEASE_NOTES.md"
+//let release = LoadReleaseNotes @"C:\dev\LinqToSalesforce\RELEASE_NOTES.md"
+let svgTemplateName =
+  match release.SemVer.PreRelease with
+  | None -> "nuget_badge.svg.template"
+  | Some _ -> "nuget_badge_pre.svg.template"
+
+let svg = File.ReadAllText(__SOURCE_DIRECTORY__ @@ "docs" @@ "files" @@ "img" @@ svgTemplateName).Replace ("%version%", release.NugetVersion)
+let svgDir = __SOURCE_DIRECTORY__ @@ "docs" @@ "output" @@ "img"
+ensureDirectory svgDir
+File.WriteAllText(svgDir @@ "nuget_badge.svg", svg)
 
 // Helper active pattern for project types
 let (|Fsproj|Csproj|Vbproj|Shproj|) (projFileName:string) =

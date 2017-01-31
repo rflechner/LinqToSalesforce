@@ -1,5 +1,21 @@
 
-#### 0.0.7-beta - December 13 2016
+#### 0.1.2-beta - January 31 2017
+* detect wrong references during code generation
+
+#### 0.1.1-beta - January 31 2017
+* Implements SingleOrDefault Single and FirstOrDefault like with other linq frameworks
+
+#### 0.1.0-beta - January 31 2017
+* Insert requests returns created id
+
+#### 0.0.9-beta - January 27 2017
+* Add types converters for pick list
+* Calculated fields are readonly
+
+#### 0.0.8-beta - January 04 2017
+* Can specify table names using EntityNameAttribute on entities
+
+#### 0.0.7-beta - January 02 2017
 * Plurialize tables and fix a wording in generator arguments
 
 #### 0.0.6-beta - December 13 2016

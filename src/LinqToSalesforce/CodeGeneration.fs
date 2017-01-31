@@ -22,6 +22,20 @@ let private c = CultureInfo "en-us"
 let private ps = PluralizationService.CreateService c
 let pluralize = ps.Pluralize
 
+let ucFirst (s:string) =
+  match s.ToCharArray() |> Seq.toList with
+  | c :: t ->
+    let f = Char.ToUpper c
+    [f] @ t |> List.toArray |> String
+  | _ -> s
+
+let fixName (name:string) = 
+  let parts = 
+    name.Split([|' ';'_';'-'|], StringSplitOptions.RemoveEmptyEntries)
+      |> Array.filter (fun p -> p <> "c")
+      |> Array.map ucFirst
+  String.Join("", parts)
+
 let removeNonLetterDigit (s:string) =
   s.ToCharArray()
   |> Array.filter Char.IsLetterOrDigit
@@ -37,8 +51,38 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
     writeIndent indent
     text |> b.AppendLine |> ignore
 
+  let generatePickTypeConverter (name:string)  (indent:int) =
+    let converterName = sprintf "Pick%sConverter" name
+    let typeName = sprintf "Pick%s" name
+    let tmpl = """public class {name} : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = ({type})value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new {type} {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }"""
+    let c = tmpl.Replace("{type}", typeName).Replace("{name}", converterName)
+    addLine indent c
+
+
   let generatePickList (name:string) (values:string list) (indent:int) =
     let typeName = sprintf "Pick%s" name
+    generatePickTypeConverter name indent
+    sprintf "[TypeConverter(typeof(%sConverter))]" typeName |> addLine indent
     sprintf "public class %s" typeName |> addLine indent
     addLine indent "{"
     for value in values do
@@ -69,7 +113,8 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
     addLine indent "}"
 
   let generateTableCsharp (table:TableDesc) (indent:int) =
-    sprintf "public class %s : ISalesforceEntity" table.Name |> addLine indent
+    sprintf """[EntityName("%s")]""" table.Name |> addLine indent
+    sprintf "public class %s : ISalesforceEntity" (table.Name |> fixName) |> addLine indent
     addLine indent "{"
     addLine indent """
         public event PropertyChangedEventHandler PropertyChanged;
@@ -87,17 +132,27 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
             return true;
         }"""
 
-    let writeProperty typeName fieldName auto =
-      add "public "; add typeName; add " "
+    let writeProperty typeName fieldName auto isReadonly isWrongReference =
+      let ptypeName = fixName typeName
+      add "public "; add ptypeName; add " "
       addLine 0 fieldName
       addLine (indent+1) "{"
       if not auto
       then
         addLine (indent+2) (sprintf "get { return __%s; }" fieldName)
-        addLine (indent+2) (sprintf "set { SetField(ref __%s, value); }" fieldName)
+        if not isReadonly
+        then addLine (indent+2) (sprintf "set { SetField(ref __%s, value); }" fieldName)
       else
         addLine (indent+2) "get;set;"
       addLine (indent+1) "}"
+      if isReadonly && not isWrongReference
+      then 
+        let l = sprintf "public bool ShouldSerialize%s() => false;" fieldName
+        addLine indent l
+      elif isWrongReference
+      then
+        let l = sprintf "public bool ShouldSerialize%s() => %s != default(%s);" fieldName fieldName ptypeName
+        addLine indent l
 
     for field in table.Fields do
       let fieldName =
@@ -108,9 +163,9 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         match field.Type with
         | Native t -> 
           if field.Nillable && t <> typeof<string> 
-          then sprintf "%s?" t.FullName
-          else t.FullName
-        | Picklist _ -> sprintf "Pick%s%s" table.Name field.Name
+          then sprintf "%s?" (fixName t.FullName)
+          else fixName t.FullName
+        | Picklist _ -> sprintf "Pick%s%s" (fixName table.Name) (fixName field.Name)
       
       let backingField = sprintf "private %s __%s;" typeName fieldName
       addLine (indent+1) backingField
@@ -120,7 +175,11 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) attr
       addLine (indent+1) (sprintf "[EntityField(%b)]" field.Nillable)
       writeIndent (indent+1)
-      writeProperty typeName fieldName false
+      let shipFields = 
+        table.RelationShips |> List.map (fun r -> r.Field)
+      let isWrongReference = 
+        field.ReferenceTo.Length > 0 && field.ReferenceTo |> List.exists(fun r -> shipFields |> List.contains r |> not)
+      writeProperty typeName fieldName false field.Calculated isWrongReference
     
     for relation in table.RelationShips do
       if relation.RelationshipName |> String.IsNullOrWhiteSpace |> not
@@ -128,11 +187,13 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) "[JsonIgnore]"
         addLine (indent+1) <| sprintf """[ReferencedByField("%s")]""" relation.Field
         writeIndent (indent+1)
-        let tname = sprintf "RelationShip<%s, %s>" table.Name relation.ChildSObject
-        writeProperty tname relation.RelationshipName true
+        let tname = sprintf "RelationShip<%s, %s>" (fixName table.Name) (fixName relation.ChildSObject)
+        writeProperty tname relation.RelationshipName true false false
 
     addLine indent "}"
       
+  addLine 0 "using System;"
+  addLine 0 "using System.Globalization;"
   addLine 0 "using System.Collections.Generic;"
   addLine 0 "using System.Runtime.Serialization;"
   addLine 0 "using Newtonsoft.Json;"
@@ -157,7 +218,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
                 match f.Type with
                 | Native _ -> None
                 | Picklist values ->
-                    let name = sprintf "%s%s" t.Name f.Name
+                    let name = sprintf "%s%s" (fixName t.Name) (fixName f.Name)
                     Some (name, values)
               )
       ) |> List.ofSeq
@@ -169,18 +230,19 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
   for table in tables do
     generateTableCsharp table 1
   
-  addLine 1 "\nclass SalesforceDataContext : SoqlContext"
+  addLine 1 "public class SalesforceDataContext : SoqlContext"
   addLine 1 "{"
-  addLine 2 "\npublic SalesforceDataContext(string instanceName, Rest.OAuth.ImpersonationParam authparams) : base(instanceName, authparams) { }"
+  addLine 2 "public SalesforceDataContext(string instanceName, Rest.OAuth.ImpersonationParam authparams) : base(instanceName, authparams) { }"
   
   for table in tables do
-    let name = pluralize table.Name
-    let line = sprintf "public IQueryable<%s> %s => GetTable<%s>();" table.Name name table.Name
+    let typename = table.Name |> fixName
+    let name = ps.Pluralize typename
+    let line = sprintf "public IQueryable<%s> %s => GetTable<%s>();" typename name typename
     addLine 2 line
 
-  addLine 1 "\n}"
+  addLine 1 "}"
   
-  addLine 0 "\n}"
+  addLine 0 "}"
 
   b.AppendLine() |> ignore
   b.ToString()

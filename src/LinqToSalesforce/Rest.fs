@@ -166,6 +166,7 @@ module Rest =
       }
 
   open OAuth
+  open Translator
 
   let get (i:Identity) (uri:Uri) =
     async {
@@ -206,6 +207,7 @@ module Rest =
       Length:int
       AutoNumber:bool
       Calculated:bool
+      ReferenceTo:string list
       Nillable:bool }
   and FieldType =
     | Native of Type
@@ -253,6 +255,7 @@ module Rest =
             let length = f.Item "length" |> Convert.ToInt32
             let calculated = f.Item "calculated" |> Convert.ToBoolean
             let nillable = f.Item "nillable" |> Convert.ToBoolean
+                        let referenceTo = f.Item "referenceTo" |> fun t -> t.Children() |> Seq.map (fun t -> t.ToString()) |> Seq.toList
             let ft = 
               match typ with
               | "picklist" -> 
@@ -262,7 +265,7 @@ module Rest =
                   |> Seq.toList
                 Picklist picklistValues
               | _ -> typ |> parseType |> Native
-            { Name=fname; Label=fLabel; Type=ft; Length=length;
+                        { Name=fname; Label=fLabel; Type=ft; Length=length; ReferenceTo=referenceTo
               AutoNumber=autoNumber; Calculated=calculated; Nillable=nillable }
           )
         |> Seq.toList
@@ -317,7 +320,7 @@ module Rest =
     }
     
   let insert (i:Identity) (entity:'q) =
-    let name = entity.GetType().Name
+    let name = entity.GetType() |> findEntityName
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/"
     async {
       let f = 
@@ -328,7 +331,7 @@ module Rest =
     }
 
   let update (i:Identity) (id:string) (entity:'q) =
-    let name = entity.GetType().Name
+    let name = entity.GetType() |> findEntityName
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
@@ -342,7 +345,7 @@ module Rest =
     }
 
   let delete (i:Identity) (id:string) (entity:'q) =
-    let name = entity.GetType().Name
+    let name = entity.GetType() |> findEntityName
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 

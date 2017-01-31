@@ -38,7 +38,7 @@ type RelationShip<'tp,'tc
 
   let loadResults () =
     let childType = typeof<'tc>
-    let chidlTableName = childType.Name
+    let chidlTableName = findEntityName childType
     let field = { Name=referenceField; DecorationName=None; Type=typeof<string> }
     let cmp = { Field=field; Kind=ComparisonKind.Equal; Target=(Constant(parent.Id)) }
     let operations = 
@@ -80,7 +80,7 @@ type SoqlQueryContext<'t when 't :> ISalesforceEntity>(client:Client, tracker:Tr
       visitor.Visit()
       let operations = visitor.Operations |> Seq.toList
       let typ = typeof<'t>
-      let tableName = typ.Name
+      let tableName = findEntityName typ
       let results = ContextHelper.execute<'t> client tracker operations tableName
       for r in results do
         RelationShip<'t,_>.Build typ client tracker r
@@ -98,9 +98,10 @@ type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
 
   member x.Insert entity =
     match client.Insert entity with
-    | Success _ ->
+    | Success r ->
         entity.PropertyChanged.Add
           <| fun _ -> tracker.Track entity
+        r.Id
     | Failure [e] -> e.ToException() |> raise
     | Failure errors -> 
         errors 

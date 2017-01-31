@@ -22,6 +22,11 @@ type EntityFieldAttribute (nullable:bool) =
   inherit Attribute ()
   member __.Nullable
     with get () = nullable
+    
+type EntityNameAttribute (name:string) =
+  inherit Attribute ()
+  member __.Name 
+    with get () = name
 
 type ReferencedByFieldAttribute (name:string) =
   inherit Attribute ()
@@ -34,6 +39,17 @@ module Translator =
     member __.GetSerializedName() =
       let attr = __.GetCustomAttribute<JsonPropertyAttribute>()
       if isNull attr then __.Name else attr.PropertyName
+
+  let findEntityName (t:Type) =
+    t.GetCustomAttributes(true)
+      |> Seq.choose(
+          function
+          | :? EntityNameAttribute as a -> Some a.Name
+          | _ -> None )
+      |> Seq.tryHead
+      |> function 
+         | Some name -> name
+         | None -> t.Name
 
   let buildSelectFromNames (names:string array) =
     let b = StringBuilder("SELECT ")
