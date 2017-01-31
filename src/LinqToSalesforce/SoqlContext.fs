@@ -98,9 +98,10 @@ type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
 
   member x.Insert entity =
     match client.Insert entity with
-    | Success _ ->
+    | Success r ->
         entity.PropertyChanged.Add
           <| fun _ -> tracker.Track entity
+        r.Id
     | Failure [e] -> e.ToException() |> raise
     | Failure errors -> 
         errors 

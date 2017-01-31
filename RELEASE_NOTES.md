@@ -1,4 +1,7 @@
 
+#### 0.1.0-beta - January 27 2017
+* Insert requests returns created id
+
 #### 0.0.9-beta - January 27 2017
 * Add types converters for pick list
 * Calculated fields are readonly
