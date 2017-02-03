@@ -21,8 +21,8 @@ module private ContextHelper =
     | Success r ->
       let records = r.Records.ToList()
       for r in records do
-        r.PropertyChanged.Add
-          <| fun _ -> tracker.Track r
+        r.TrackPropertyUpdates()
+        r.PropertyChanged.Add(fun _ -> tracker.Track r)
       records
     | Failure [e] -> e.ToException() |> raise
     | Failure errors -> 
