@@ -12819,18 +12819,43 @@ namespace LinqToSalesforce
     [EntityName("Account")]
     public class Account : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Account(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Account()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -12839,252 +12864,252 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __MasterRecordId;
         [EntityField(true)]
         public System.String MasterRecordId
         {
             get { return __MasterRecordId; }
-            set { SetField(ref __MasterRecordId, value); }
+            set { SetField(ref __MasterRecordId, value, "MasterRecordId"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private PickAccountType __Type;
         [EntityField(true)]
         public PickAccountType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __ParentId;
         [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __BillingStreet;
         [EntityField(true)]
         public System.String BillingStreet
         {
             get { return __BillingStreet; }
-            set { SetField(ref __BillingStreet, value); }
+            set { SetField(ref __BillingStreet, value, "BillingStreet"); }
         }
         private System.String __BillingCity;
         [EntityField(true)]
         public System.String BillingCity
         {
             get { return __BillingCity; }
-            set { SetField(ref __BillingCity, value); }
+            set { SetField(ref __BillingCity, value, "BillingCity"); }
         }
         private System.String __BillingState;
         [EntityField(true)]
         public System.String BillingState
         {
             get { return __BillingState; }
-            set { SetField(ref __BillingState, value); }
+            set { SetField(ref __BillingState, value, "BillingState"); }
         }
         private System.String __BillingPostalCode;
         [EntityField(true)]
         public System.String BillingPostalCode
         {
             get { return __BillingPostalCode; }
-            set { SetField(ref __BillingPostalCode, value); }
+            set { SetField(ref __BillingPostalCode, value, "BillingPostalCode"); }
         }
         private System.String __BillingCountry;
         [EntityField(true)]
         public System.String BillingCountry
         {
             get { return __BillingCountry; }
-            set { SetField(ref __BillingCountry, value); }
+            set { SetField(ref __BillingCountry, value, "BillingCountry"); }
         }
         private System.String __ShippingStreet;
         [EntityField(true)]
         public System.String ShippingStreet
         {
             get { return __ShippingStreet; }
-            set { SetField(ref __ShippingStreet, value); }
+            set { SetField(ref __ShippingStreet, value, "ShippingStreet"); }
         }
         private System.String __ShippingCity;
         [EntityField(true)]
         public System.String ShippingCity
         {
             get { return __ShippingCity; }
-            set { SetField(ref __ShippingCity, value); }
+            set { SetField(ref __ShippingCity, value, "ShippingCity"); }
         }
         private System.String __ShippingState;
         [EntityField(true)]
         public System.String ShippingState
         {
             get { return __ShippingState; }
-            set { SetField(ref __ShippingState, value); }
+            set { SetField(ref __ShippingState, value, "ShippingState"); }
         }
         private System.String __ShippingPostalCode;
         [EntityField(true)]
         public System.String ShippingPostalCode
         {
             get { return __ShippingPostalCode; }
-            set { SetField(ref __ShippingPostalCode, value); }
+            set { SetField(ref __ShippingPostalCode, value, "ShippingPostalCode"); }
         }
         private System.String __ShippingCountry;
         [EntityField(true)]
         public System.String ShippingCountry
         {
             get { return __ShippingCountry; }
-            set { SetField(ref __ShippingCountry, value); }
+            set { SetField(ref __ShippingCountry, value, "ShippingCountry"); }
         }
         private System.String __Phone;
         [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
-            set { SetField(ref __Phone, value); }
+            set { SetField(ref __Phone, value, "Phone"); }
         }
         private System.String __Fax;
         [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
-            set { SetField(ref __Fax, value); }
+            set { SetField(ref __Fax, value, "Fax"); }
         }
         private System.String __AccountNumber;
         [EntityField(true)]
         public System.String AccountNumber
         {
             get { return __AccountNumber; }
-            set { SetField(ref __AccountNumber, value); }
+            set { SetField(ref __AccountNumber, value, "AccountNumber"); }
         }
         private System.String __Website;
         [EntityField(true)]
         public System.String Website
         {
             get { return __Website; }
-            set { SetField(ref __Website, value); }
+            set { SetField(ref __Website, value, "Website"); }
         }
         private System.String __Sic;
         [EntityField(true)]
         public System.String Sic
         {
             get { return __Sic; }
-            set { SetField(ref __Sic, value); }
+            set { SetField(ref __Sic, value, "Sic"); }
         }
         private PickAccountIndustry __Industry;
         [EntityField(true)]
         public PickAccountIndustry Industry
         {
             get { return __Industry; }
-            set { SetField(ref __Industry, value); }
+            set { SetField(ref __Industry, value, "Industry"); }
         }
         private System.String __AnnualRevenue;
         [EntityField(true)]
         public System.String AnnualRevenue
         {
             get { return __AnnualRevenue; }
-            set { SetField(ref __AnnualRevenue, value); }
+            set { SetField(ref __AnnualRevenue, value, "AnnualRevenue"); }
         }
         private System.Int32? __NumberOfEmployees;
         [EntityField(true)]
         public System.Int32? NumberOfEmployees
         {
             get { return __NumberOfEmployees; }
-            set { SetField(ref __NumberOfEmployees, value); }
+            set { SetField(ref __NumberOfEmployees, value, "NumberOfEmployees"); }
         }
         private PickAccountOwnership __Ownership;
         [EntityField(true)]
         public PickAccountOwnership Ownership
         {
             get { return __Ownership; }
-            set { SetField(ref __Ownership, value); }
+            set { SetField(ref __Ownership, value, "Ownership"); }
         }
         private System.String __TickerSymbol;
         [EntityField(true)]
         public System.String TickerSymbol
         {
             get { return __TickerSymbol; }
-            set { SetField(ref __TickerSymbol, value); }
+            set { SetField(ref __TickerSymbol, value, "TickerSymbol"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickAccountRating __Rating;
         [EntityField(true)]
         public PickAccountRating Rating
         {
             get { return __Rating; }
-            set { SetField(ref __Rating, value); }
+            set { SetField(ref __Rating, value, "Rating"); }
         }
         private System.String __Site;
         [EntityField(true)]
         public System.String Site
         {
             get { return __Site; }
-            set { SetField(ref __Site, value); }
+            set { SetField(ref __Site, value, "Site"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime? __LastActivityDate;
         [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
-            set { SetField(ref __LastActivityDate, value); }
+            set { SetField(ref __LastActivityDate, value, "LastActivityDate"); }
         }
         private PickAccountCustomerPriority __CustomerPriorityc;
         [JsonProperty(PropertyName = "CustomerPriority__c")]
@@ -13092,7 +13117,7 @@ namespace LinqToSalesforce
         public PickAccountCustomerPriority CustomerPriorityc
         {
             get { return __CustomerPriorityc; }
-            set { SetField(ref __CustomerPriorityc, value); }
+            set { SetField(ref __CustomerPriorityc, value, "CustomerPriority__c"); }
         }
         private PickAccountSLA __SLAc;
         [JsonProperty(PropertyName = "SLA__c")]
@@ -13100,7 +13125,7 @@ namespace LinqToSalesforce
         public PickAccountSLA SLAc
         {
             get { return __SLAc; }
-            set { SetField(ref __SLAc, value); }
+            set { SetField(ref __SLAc, value, "SLA__c"); }
         }
         private PickAccountActive __Activec;
         [JsonProperty(PropertyName = "Active__c")]
@@ -13108,7 +13133,7 @@ namespace LinqToSalesforce
         public PickAccountActive Activec
         {
             get { return __Activec; }
-            set { SetField(ref __Activec, value); }
+            set { SetField(ref __Activec, value, "Active__c"); }
         }
         private System.Double? __NumberofLocationsc;
         [JsonProperty(PropertyName = "NumberofLocations__c")]
@@ -13116,7 +13141,7 @@ namespace LinqToSalesforce
         public System.Double? NumberofLocationsc
         {
             get { return __NumberofLocationsc; }
-            set { SetField(ref __NumberofLocationsc, value); }
+            set { SetField(ref __NumberofLocationsc, value, "NumberofLocations__c"); }
         }
         private PickAccountUpsellOpportunity __UpsellOpportunityc;
         [JsonProperty(PropertyName = "UpsellOpportunity__c")]
@@ -13124,7 +13149,7 @@ namespace LinqToSalesforce
         public PickAccountUpsellOpportunity UpsellOpportunityc
         {
             get { return __UpsellOpportunityc; }
-            set { SetField(ref __UpsellOpportunityc, value); }
+            set { SetField(ref __UpsellOpportunityc, value, "UpsellOpportunity__c"); }
         }
         private System.String __SLASerialNumberc;
         [JsonProperty(PropertyName = "SLASerialNumber__c")]
@@ -13132,7 +13157,7 @@ namespace LinqToSalesforce
         public System.String SLASerialNumberc
         {
             get { return __SLASerialNumberc; }
-            set { SetField(ref __SLASerialNumberc, value); }
+            set { SetField(ref __SLASerialNumberc, value, "SLASerialNumber__c"); }
         }
         private System.DateTime? __SLAExpirationDatec;
         [JsonProperty(PropertyName = "SLAExpirationDate__c")]
@@ -13140,7 +13165,7 @@ namespace LinqToSalesforce
         public System.DateTime? SLAExpirationDatec
         {
             get { return __SLAExpirationDatec; }
-            set { SetField(ref __SLAExpirationDatec, value); }
+            set { SetField(ref __SLAExpirationDatec, value, "SLAExpirationDate__c"); }
         }
         private System.Double? __NumberBugc;
         [JsonProperty(PropertyName = "NumberBug__c")]
@@ -13148,7 +13173,7 @@ namespace LinqToSalesforce
         public System.Double? NumberBugc
         {
             get { return __NumberBugc; }
-            set { SetField(ref __NumberBugc, value); }
+            set { SetField(ref __NumberBugc, value, "NumberBug__c"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -13310,18 +13335,43 @@ namespace LinqToSalesforce
     [EntityName("AccountContactRole")]
     public class AccountContactRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountContactRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountContactRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -13330,94 +13380,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __AccountId;
         [EntityField(false)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private PickAccountContactRoleRole __Role;
         [EntityField(true)]
         public PickAccountContactRoleRole Role
         {
             get { return __Role; }
-            set { SetField(ref __Role, value); }
+            set { SetField(ref __Role, value, "Role"); }
         }
         private System.Boolean __IsPrimary;
         [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
-            set { SetField(ref __IsPrimary, value); }
+            set { SetField(ref __IsPrimary, value, "IsPrimary"); }
         }
     }
     [EntityName("AccountFeed")]
     public class AccountFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -13426,56 +13501,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickAccountFeedType __Type;
         [EntityField(true)]
         public PickAccountFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -13493,18 +13568,43 @@ namespace LinqToSalesforce
     [EntityName("AccountHistory")]
     public class AccountHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -13513,73 +13613,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __AccountId;
         [EntityField(false)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickAccountHistoryField __Field;
         [EntityField(false)]
         public PickAccountHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("AccountPartner")]
     public class AccountPartner : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountPartner(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountPartner()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -13588,108 +13713,133 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __AccountFromId;
         [EntityField(false)]
         public System.String AccountFromId
         {
             get { return __AccountFromId; }
-            set { SetField(ref __AccountFromId, value); }
+            set { SetField(ref __AccountFromId, value, "AccountFromId"); }
         }
         private System.String __AccountToId;
         [EntityField(true)]
         public System.String AccountToId
         {
             get { return __AccountToId; }
-            set { SetField(ref __AccountToId, value); }
+            set { SetField(ref __AccountToId, value, "AccountToId"); }
         }
         private System.String __OpportunityId;
         [EntityField(true)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
-            set { SetField(ref __OpportunityId, value); }
+            set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
         private PickAccountPartnerRole __Role;
         [EntityField(true)]
         public PickAccountPartnerRole Role
         {
             get { return __Role; }
-            set { SetField(ref __Role, value); }
+            set { SetField(ref __Role, value, "Role"); }
         }
         private System.Boolean __IsPrimary;
         [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
-            set { SetField(ref __IsPrimary, value); }
+            set { SetField(ref __IsPrimary, value, "IsPrimary"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ReversePartnerId;
         [EntityField(true)]
         public System.String ReversePartnerId
         {
             get { return __ReversePartnerId; }
-            set { SetField(ref __ReversePartnerId, value); }
+            set { SetField(ref __ReversePartnerId, value, "ReversePartnerId"); }
         }
     }
     [EntityName("AccountShare")]
     public class AccountShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -13698,94 +13848,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __AccountId;
         [EntityField(false)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
-            set { SetField(ref __UserOrGroupId, value); }
+            set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
         private PickAccountShareAccountAccessLevel __AccountAccessLevel;
         [EntityField(false)]
         public PickAccountShareAccountAccessLevel AccountAccessLevel
         {
             get { return __AccountAccessLevel; }
-            set { SetField(ref __AccountAccessLevel, value); }
+            set { SetField(ref __AccountAccessLevel, value, "AccountAccessLevel"); }
         }
         private PickAccountShareOpportunityAccessLevel __OpportunityAccessLevel;
         [EntityField(false)]
         public PickAccountShareOpportunityAccessLevel OpportunityAccessLevel
         {
             get { return __OpportunityAccessLevel; }
-            set { SetField(ref __OpportunityAccessLevel, value); }
+            set { SetField(ref __OpportunityAccessLevel, value, "OpportunityAccessLevel"); }
         }
         private PickAccountShareCaseAccessLevel __CaseAccessLevel;
         [EntityField(false)]
         public PickAccountShareCaseAccessLevel CaseAccessLevel
         {
             get { return __CaseAccessLevel; }
-            set { SetField(ref __CaseAccessLevel, value); }
+            set { SetField(ref __CaseAccessLevel, value, "CaseAccessLevel"); }
         }
         private PickAccountShareContactAccessLevel __ContactAccessLevel;
         [EntityField(true)]
         public PickAccountShareContactAccessLevel ContactAccessLevel
         {
             get { return __ContactAccessLevel; }
-            set { SetField(ref __ContactAccessLevel, value); }
+            set { SetField(ref __ContactAccessLevel, value, "ContactAccessLevel"); }
         }
         private PickAccountShareRowCause __RowCause;
         [EntityField(true)]
         public PickAccountShareRowCause RowCause
         {
             get { return __RowCause; }
-            set { SetField(ref __RowCause, value); }
+            set { SetField(ref __RowCause, value, "RowCause"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("ActivityHistory")]
     public class ActivityHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ActivityHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ActivityHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -13794,220 +13969,245 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __WhoId;
         [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
-            set { SetField(ref __WhoId, value); }
+            set { SetField(ref __WhoId, value, "WhoId"); }
         }
         private System.String __WhatId;
         [EntityField(true)]
         public System.String WhatId
         {
             get { return __WhatId; }
-            set { SetField(ref __WhatId, value); }
+            set { SetField(ref __WhatId, value, "WhatId"); }
         }
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
-            set { SetField(ref __Subject, value); }
+            set { SetField(ref __Subject, value, "Subject"); }
         }
         private System.Boolean __IsTask;
         [EntityField(false)]
         public System.Boolean IsTask
         {
             get { return __IsTask; }
-            set { SetField(ref __IsTask, value); }
+            set { SetField(ref __IsTask, value, "IsTask"); }
         }
         private System.DateTime? __ActivityDate;
         [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
-            set { SetField(ref __ActivityDate, value); }
+            set { SetField(ref __ActivityDate, value, "ActivityDate"); }
         }
         private System.String __OwnerId;
         [EntityField(true)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private PickActivityHistoryStatus __Status;
         [EntityField(true)]
         public PickActivityHistoryStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private PickActivityHistoryPriority __Priority;
         [EntityField(true)]
         public PickActivityHistoryPriority Priority
         {
             get { return __Priority; }
-            set { SetField(ref __Priority, value); }
+            set { SetField(ref __Priority, value, "Priority"); }
         }
         private PickActivityHistoryActivityType __ActivityType;
         [EntityField(true)]
         public PickActivityHistoryActivityType ActivityType
         {
             get { return __ActivityType; }
-            set { SetField(ref __ActivityType, value); }
+            set { SetField(ref __ActivityType, value, "ActivityType"); }
         }
         private System.Boolean __IsClosed;
         [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
-            set { SetField(ref __IsClosed, value); }
+            set { SetField(ref __IsClosed, value, "IsClosed"); }
         }
         private System.Boolean __IsAllDayEvent;
         [EntityField(false)]
         public System.Boolean IsAllDayEvent
         {
             get { return __IsAllDayEvent; }
-            set { SetField(ref __IsAllDayEvent, value); }
+            set { SetField(ref __IsAllDayEvent, value, "IsAllDayEvent"); }
         }
         private System.Boolean __IsVisibleInSelfService;
         [EntityField(false)]
         public System.Boolean IsVisibleInSelfService
         {
             get { return __IsVisibleInSelfService; }
-            set { SetField(ref __IsVisibleInSelfService, value); }
+            set { SetField(ref __IsVisibleInSelfService, value, "IsVisibleInSelfService"); }
         }
         private System.Int32? __DurationInMinutes;
         [EntityField(true)]
         public System.Int32? DurationInMinutes
         {
             get { return __DurationInMinutes; }
-            set { SetField(ref __DurationInMinutes, value); }
+            set { SetField(ref __DurationInMinutes, value, "DurationInMinutes"); }
         }
         private System.String __Location;
         [EntityField(true)]
         public System.String Location
         {
             get { return __Location; }
-            set { SetField(ref __Location, value); }
+            set { SetField(ref __Location, value, "Location"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Int32? __CallDurationInSeconds;
         [EntityField(true)]
         public System.Int32? CallDurationInSeconds
         {
             get { return __CallDurationInSeconds; }
-            set { SetField(ref __CallDurationInSeconds, value); }
+            set { SetField(ref __CallDurationInSeconds, value, "CallDurationInSeconds"); }
         }
         private PickActivityHistoryCallType __CallType;
         [EntityField(true)]
         public PickActivityHistoryCallType CallType
         {
             get { return __CallType; }
-            set { SetField(ref __CallType, value); }
+            set { SetField(ref __CallType, value, "CallType"); }
         }
         private System.String __CallDisposition;
         [EntityField(true)]
         public System.String CallDisposition
         {
             get { return __CallDisposition; }
-            set { SetField(ref __CallDisposition, value); }
+            set { SetField(ref __CallDisposition, value, "CallDisposition"); }
         }
         private System.String __CallObject;
         [EntityField(true)]
         public System.String CallObject
         {
             get { return __CallObject; }
-            set { SetField(ref __CallObject, value); }
+            set { SetField(ref __CallObject, value, "CallObject"); }
         }
         private System.DateTime? __ReminderDateTime;
         [EntityField(true)]
         public System.DateTime? ReminderDateTime
         {
             get { return __ReminderDateTime; }
-            set { SetField(ref __ReminderDateTime, value); }
+            set { SetField(ref __ReminderDateTime, value, "ReminderDateTime"); }
         }
         private System.Boolean __IsReminderSet;
         [EntityField(false)]
         public System.Boolean IsReminderSet
         {
             get { return __IsReminderSet; }
-            set { SetField(ref __IsReminderSet, value); }
+            set { SetField(ref __IsReminderSet, value, "IsReminderSet"); }
         }
     }
     [EntityName("AdditionalNumber")]
     public class AdditionalNumber : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AdditionalNumber(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AdditionalNumber()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -14016,94 +14216,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __CallCenterId;
         [EntityField(true)]
         public System.String CallCenterId
         {
             get { return __CallCenterId; }
-            set { SetField(ref __CallCenterId, value); }
+            set { SetField(ref __CallCenterId, value, "CallCenterId"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __Phone;
         [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
-            set { SetField(ref __Phone, value); }
+            set { SetField(ref __Phone, value, "Phone"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("AggregateResult")]
     public class AggregateResult : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AggregateResult(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AggregateResult()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -14112,24 +14337,49 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
     }
     [EntityName("ApexClass")]
     public class ApexClass : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexClass(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexClass()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -14138,115 +14388,140 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Double __ApiVersion;
         [EntityField(false)]
         public System.Double ApiVersion
         {
             get { return __ApiVersion; }
-            set { SetField(ref __ApiVersion, value); }
+            set { SetField(ref __ApiVersion, value, "ApiVersion"); }
         }
         private PickApexClassStatus __Status;
         [EntityField(false)]
         public PickApexClassStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.Boolean __IsValid;
         [EntityField(false)]
         public System.Boolean IsValid
         {
             get { return __IsValid; }
-            set { SetField(ref __IsValid, value); }
+            set { SetField(ref __IsValid, value, "IsValid"); }
         }
         private System.Double? __BodyCrc;
         [EntityField(true)]
         public System.Double? BodyCrc
         {
             get { return __BodyCrc; }
-            set { SetField(ref __BodyCrc, value); }
+            set { SetField(ref __BodyCrc, value, "BodyCrc"); }
         }
         private System.String __Body;
         [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.Int32 __LengthWithoutComments;
         [EntityField(false)]
         public System.Int32 LengthWithoutComments
         {
             get { return __LengthWithoutComments; }
-            set { SetField(ref __LengthWithoutComments, value); }
+            set { SetField(ref __LengthWithoutComments, value, "LengthWithoutComments"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("ApexComponent")]
     public class ApexComponent : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexComponent(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexComponent()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -14255,115 +14530,140 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Double __ApiVersion;
         [EntityField(false)]
         public System.Double ApiVersion
         {
             get { return __ApiVersion; }
-            set { SetField(ref __ApiVersion, value); }
+            set { SetField(ref __ApiVersion, value, "ApiVersion"); }
         }
         private System.String __MasterLabel;
         [EntityField(false)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickApexComponentControllerType __ControllerType;
         [EntityField(false)]
         public PickApexComponentControllerType ControllerType
         {
             get { return __ControllerType; }
-            set { SetField(ref __ControllerType, value); }
+            set { SetField(ref __ControllerType, value, "ControllerType"); }
         }
         private System.String __ControllerKey;
         [EntityField(true)]
         public System.String ControllerKey
         {
             get { return __ControllerKey; }
-            set { SetField(ref __ControllerKey, value); }
+            set { SetField(ref __ControllerKey, value, "ControllerKey"); }
         }
         private System.String __Markup;
         [EntityField(false)]
         public System.String Markup
         {
             get { return __Markup; }
-            set { SetField(ref __Markup, value); }
+            set { SetField(ref __Markup, value, "Markup"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("ApexLog")]
     public class ApexLog : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexLog(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexLog()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -14372,101 +14672,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __LogUserId;
         [EntityField(true)]
         public System.String LogUserId
         {
             get { return __LogUserId; }
-            set { SetField(ref __LogUserId, value); }
+            set { SetField(ref __LogUserId, value, "LogUserId"); }
         }
         private System.Int32 __LogLength;
         [EntityField(false)]
         public System.Int32 LogLength
         {
             get { return __LogLength; }
-            set { SetField(ref __LogLength, value); }
+            set { SetField(ref __LogLength, value, "LogLength"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __Request;
         [EntityField(false)]
         public System.String Request
         {
             get { return __Request; }
-            set { SetField(ref __Request, value); }
+            set { SetField(ref __Request, value, "Request"); }
         }
         private System.String __Operation;
         [EntityField(false)]
         public System.String Operation
         {
             get { return __Operation; }
-            set { SetField(ref __Operation, value); }
+            set { SetField(ref __Operation, value, "Operation"); }
         }
         private System.String __Application;
         [EntityField(false)]
         public System.String Application
         {
             get { return __Application; }
-            set { SetField(ref __Application, value); }
+            set { SetField(ref __Application, value, "Application"); }
         }
         private System.String __Status;
         [EntityField(false)]
         public System.String Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.Int32 __DurationMilliseconds;
         [EntityField(false)]
         public System.Int32 DurationMilliseconds
         {
             get { return __DurationMilliseconds; }
-            set { SetField(ref __DurationMilliseconds, value); }
+            set { SetField(ref __DurationMilliseconds, value, "DurationMilliseconds"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime __StartTime;
         [EntityField(false)]
         public System.DateTime StartTime
         {
             get { return __StartTime; }
-            set { SetField(ref __StartTime, value); }
+            set { SetField(ref __StartTime, value, "StartTime"); }
         }
         private PickApexLogLocation __Location;
         [EntityField(true)]
         public PickApexLogLocation Location
         {
             get { return __Location; }
-            set { SetField(ref __Location, value); }
+            set { SetField(ref __Location, value, "Location"); }
         }
     }
     [EntityName("ApexPage")]
     public class ApexPage : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexPage(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexPage()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -14475,115 +14800,140 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Double __ApiVersion;
         [EntityField(false)]
         public System.Double ApiVersion
         {
             get { return __ApiVersion; }
-            set { SetField(ref __ApiVersion, value); }
+            set { SetField(ref __ApiVersion, value, "ApiVersion"); }
         }
         private System.String __MasterLabel;
         [EntityField(false)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickApexPageControllerType __ControllerType;
         [EntityField(false)]
         public PickApexPageControllerType ControllerType
         {
             get { return __ControllerType; }
-            set { SetField(ref __ControllerType, value); }
+            set { SetField(ref __ControllerType, value, "ControllerType"); }
         }
         private System.String __ControllerKey;
         [EntityField(true)]
         public System.String ControllerKey
         {
             get { return __ControllerKey; }
-            set { SetField(ref __ControllerKey, value); }
+            set { SetField(ref __ControllerKey, value, "ControllerKey"); }
         }
         private System.String __Markup;
         [EntityField(false)]
         public System.String Markup
         {
             get { return __Markup; }
-            set { SetField(ref __Markup, value); }
+            set { SetField(ref __Markup, value, "Markup"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("ApexTrigger")]
     public class ApexTrigger : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexTrigger(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexTrigger()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -14592,178 +14942,203 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private PickApexTriggerTableEnumOrId __TableEnumOrId;
         [EntityField(true)]
         public PickApexTriggerTableEnumOrId TableEnumOrId
         {
             get { return __TableEnumOrId; }
-            set { SetField(ref __TableEnumOrId, value); }
+            set { SetField(ref __TableEnumOrId, value, "TableEnumOrId"); }
         }
         private System.Boolean __UsageBeforeInsert;
         [EntityField(false)]
         public System.Boolean UsageBeforeInsert
         {
             get { return __UsageBeforeInsert; }
-            set { SetField(ref __UsageBeforeInsert, value); }
+            set { SetField(ref __UsageBeforeInsert, value, "UsageBeforeInsert"); }
         }
         private System.Boolean __UsageAfterInsert;
         [EntityField(false)]
         public System.Boolean UsageAfterInsert
         {
             get { return __UsageAfterInsert; }
-            set { SetField(ref __UsageAfterInsert, value); }
+            set { SetField(ref __UsageAfterInsert, value, "UsageAfterInsert"); }
         }
         private System.Boolean __UsageBeforeUpdate;
         [EntityField(false)]
         public System.Boolean UsageBeforeUpdate
         {
             get { return __UsageBeforeUpdate; }
-            set { SetField(ref __UsageBeforeUpdate, value); }
+            set { SetField(ref __UsageBeforeUpdate, value, "UsageBeforeUpdate"); }
         }
         private System.Boolean __UsageAfterUpdate;
         [EntityField(false)]
         public System.Boolean UsageAfterUpdate
         {
             get { return __UsageAfterUpdate; }
-            set { SetField(ref __UsageAfterUpdate, value); }
+            set { SetField(ref __UsageAfterUpdate, value, "UsageAfterUpdate"); }
         }
         private System.Boolean __UsageBeforeDelete;
         [EntityField(false)]
         public System.Boolean UsageBeforeDelete
         {
             get { return __UsageBeforeDelete; }
-            set { SetField(ref __UsageBeforeDelete, value); }
+            set { SetField(ref __UsageBeforeDelete, value, "UsageBeforeDelete"); }
         }
         private System.Boolean __UsageAfterDelete;
         [EntityField(false)]
         public System.Boolean UsageAfterDelete
         {
             get { return __UsageAfterDelete; }
-            set { SetField(ref __UsageAfterDelete, value); }
+            set { SetField(ref __UsageAfterDelete, value, "UsageAfterDelete"); }
         }
         private System.Boolean __UsageIsBulk;
         [EntityField(false)]
         public System.Boolean UsageIsBulk
         {
             get { return __UsageIsBulk; }
-            set { SetField(ref __UsageIsBulk, value); }
+            set { SetField(ref __UsageIsBulk, value, "UsageIsBulk"); }
         }
         private System.Boolean __UsageAfterUndelete;
         [EntityField(false)]
         public System.Boolean UsageAfterUndelete
         {
             get { return __UsageAfterUndelete; }
-            set { SetField(ref __UsageAfterUndelete, value); }
+            set { SetField(ref __UsageAfterUndelete, value, "UsageAfterUndelete"); }
         }
         private System.Double __ApiVersion;
         [EntityField(false)]
         public System.Double ApiVersion
         {
             get { return __ApiVersion; }
-            set { SetField(ref __ApiVersion, value); }
+            set { SetField(ref __ApiVersion, value, "ApiVersion"); }
         }
         private PickApexTriggerStatus __Status;
         [EntityField(false)]
         public PickApexTriggerStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.Boolean __IsValid;
         [EntityField(false)]
         public System.Boolean IsValid
         {
             get { return __IsValid; }
-            set { SetField(ref __IsValid, value); }
+            set { SetField(ref __IsValid, value, "IsValid"); }
         }
         private System.Double? __BodyCrc;
         [EntityField(true)]
         public System.Double? BodyCrc
         {
             get { return __BodyCrc; }
-            set { SetField(ref __BodyCrc, value); }
+            set { SetField(ref __BodyCrc, value, "BodyCrc"); }
         }
         private System.String __Body;
         [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.Int32 __LengthWithoutComments;
         [EntityField(false)]
         public System.Int32 LengthWithoutComments
         {
             get { return __LengthWithoutComments; }
-            set { SetField(ref __LengthWithoutComments, value); }
+            set { SetField(ref __LengthWithoutComments, value, "LengthWithoutComments"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("Asset")]
     public class Asset : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Asset(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Asset()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -14772,140 +15147,140 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ContactId;
         [EntityField(true)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __Product2Id;
         [EntityField(true)]
         public System.String Product2Id
         {
             get { return __Product2Id; }
-            set { SetField(ref __Product2Id, value); }
+            set { SetField(ref __Product2Id, value, "Product2Id"); }
         }
         private System.Boolean __IsCompetitorProduct;
         [EntityField(false)]
         public System.Boolean IsCompetitorProduct
         {
             get { return __IsCompetitorProduct; }
-            set { SetField(ref __IsCompetitorProduct, value); }
+            set { SetField(ref __IsCompetitorProduct, value, "IsCompetitorProduct"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __SerialNumber;
         [EntityField(true)]
         public System.String SerialNumber
         {
             get { return __SerialNumber; }
-            set { SetField(ref __SerialNumber, value); }
+            set { SetField(ref __SerialNumber, value, "SerialNumber"); }
         }
         private System.DateTime? __InstallDate;
         [EntityField(true)]
         public System.DateTime? InstallDate
         {
             get { return __InstallDate; }
-            set { SetField(ref __InstallDate, value); }
+            set { SetField(ref __InstallDate, value, "InstallDate"); }
         }
         private System.DateTime? __PurchaseDate;
         [EntityField(true)]
         public System.DateTime? PurchaseDate
         {
             get { return __PurchaseDate; }
-            set { SetField(ref __PurchaseDate, value); }
+            set { SetField(ref __PurchaseDate, value, "PurchaseDate"); }
         }
         private System.DateTime? __UsageEndDate;
         [EntityField(true)]
         public System.DateTime? UsageEndDate
         {
             get { return __UsageEndDate; }
-            set { SetField(ref __UsageEndDate, value); }
+            set { SetField(ref __UsageEndDate, value, "UsageEndDate"); }
         }
         private PickAssetStatus __Status;
         [EntityField(true)]
         public PickAssetStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.String __Price;
         [EntityField(true)]
         public System.String Price
         {
             get { return __Price; }
-            set { SetField(ref __Price, value); }
+            set { SetField(ref __Price, value, "Price"); }
         }
         private System.Double? __Quantity;
         [EntityField(true)]
         public System.Double? Quantity
         {
             get { return __Quantity; }
-            set { SetField(ref __Quantity, value); }
+            set { SetField(ref __Quantity, value, "Quantity"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
@@ -14989,18 +15364,43 @@ namespace LinqToSalesforce
     [EntityName("AssetFeed")]
     public class AssetFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AssetFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AssetFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15009,56 +15409,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickAssetFeedType __Type;
         [EntityField(true)]
         public PickAssetFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -15076,18 +15476,43 @@ namespace LinqToSalesforce
     [EntityName("AssetHistory")]
     public class AssetHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AssetHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AssetHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15096,73 +15521,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __AssetId;
         [EntityField(false)]
         public System.String AssetId
         {
             get { return __AssetId; }
-            set { SetField(ref __AssetId, value); }
+            set { SetField(ref __AssetId, value, "AssetId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickAssetHistoryField __Field;
         [EntityField(false)]
         public PickAssetHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("AssignmentRule")]
     public class AssignmentRule : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AssignmentRule(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AssignmentRule()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15171,80 +15621,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(true)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private PickAssignmentRuleSobjectType __SobjectType;
         [EntityField(true)]
         public PickAssignmentRuleSobjectType SobjectType
         {
             get { return __SobjectType; }
-            set { SetField(ref __SobjectType, value); }
+            set { SetField(ref __SobjectType, value, "SobjectType"); }
         }
         private System.Boolean __Active;
         [EntityField(false)]
         public System.Boolean Active
         {
             get { return __Active; }
-            set { SetField(ref __Active, value); }
+            set { SetField(ref __Active, value, "Active"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("AsyncApexJob")]
     public class AsyncApexJob : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AsyncApexJob(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AsyncApexJob()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15253,122 +15728,147 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private PickAsyncApexJobJobType __JobType;
         [EntityField(false)]
         public PickAsyncApexJobJobType JobType
         {
             get { return __JobType; }
-            set { SetField(ref __JobType, value); }
+            set { SetField(ref __JobType, value, "JobType"); }
         }
         private System.String __ApexClassId;
         [EntityField(true)]
         public System.String ApexClassId
         {
             get { return __ApexClassId; }
-            set { SetField(ref __ApexClassId, value); }
+            set { SetField(ref __ApexClassId, value, "ApexClassId"); }
         }
         private PickAsyncApexJobStatus __Status;
         [EntityField(false)]
         public PickAsyncApexJobStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.Int32 __JobItemsProcessed;
         [EntityField(false)]
         public System.Int32 JobItemsProcessed
         {
             get { return __JobItemsProcessed; }
-            set { SetField(ref __JobItemsProcessed, value); }
+            set { SetField(ref __JobItemsProcessed, value, "JobItemsProcessed"); }
         }
         private System.Int32? __TotalJobItems;
         [EntityField(true)]
         public System.Int32? TotalJobItems
         {
             get { return __TotalJobItems; }
-            set { SetField(ref __TotalJobItems, value); }
+            set { SetField(ref __TotalJobItems, value, "TotalJobItems"); }
         }
         private System.Int32? __NumberOfErrors;
         [EntityField(true)]
         public System.Int32? NumberOfErrors
         {
             get { return __NumberOfErrors; }
-            set { SetField(ref __NumberOfErrors, value); }
+            set { SetField(ref __NumberOfErrors, value, "NumberOfErrors"); }
         }
         private System.DateTime? __CompletedDate;
         [EntityField(true)]
         public System.DateTime? CompletedDate
         {
             get { return __CompletedDate; }
-            set { SetField(ref __CompletedDate, value); }
+            set { SetField(ref __CompletedDate, value, "CompletedDate"); }
         }
         private System.String __MethodName;
         [EntityField(true)]
         public System.String MethodName
         {
             get { return __MethodName; }
-            set { SetField(ref __MethodName, value); }
+            set { SetField(ref __MethodName, value, "MethodName"); }
         }
         private System.String __ExtendedStatus;
         [EntityField(true)]
         public System.String ExtendedStatus
         {
             get { return __ExtendedStatus; }
-            set { SetField(ref __ExtendedStatus, value); }
+            set { SetField(ref __ExtendedStatus, value, "ExtendedStatus"); }
         }
         private System.String __ParentJobId;
         [EntityField(true)]
         public System.String ParentJobId
         {
             get { return __ParentJobId; }
-            set { SetField(ref __ParentJobId, value); }
+            set { SetField(ref __ParentJobId, value, "ParentJobId"); }
         }
         private System.String __LastProcessed;
         [EntityField(true)]
         public System.String LastProcessed
         {
             get { return __LastProcessed; }
-            set { SetField(ref __LastProcessed, value); }
+            set { SetField(ref __LastProcessed, value, "LastProcessed"); }
         }
         private System.Int32? __LastProcessedOffset;
         [EntityField(true)]
         public System.Int32? LastProcessedOffset
         {
             get { return __LastProcessedOffset; }
-            set { SetField(ref __LastProcessedOffset, value); }
+            set { SetField(ref __LastProcessedOffset, value, "LastProcessedOffset"); }
         }
     }
     [EntityName("Attachment")]
     public class Attachment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Attachment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Attachment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15377,122 +15877,147 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Boolean __IsPrivate;
         [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
-            set { SetField(ref __IsPrivate, value); }
+            set { SetField(ref __IsPrivate, value, "IsPrivate"); }
         }
         private System.String __ContentType;
         [EntityField(true)]
         public System.String ContentType
         {
             get { return __ContentType; }
-            set { SetField(ref __ContentType, value); }
+            set { SetField(ref __ContentType, value, "ContentType"); }
         }
         private System.Int32? __BodyLength;
         [EntityField(true)]
         public System.Int32? BodyLength
         {
             get { return __BodyLength; }
-            set { SetField(ref __BodyLength, value); }
+            set { SetField(ref __BodyLength, value, "BodyLength"); }
         }
         private System.String __Body;
         [EntityField(false)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
     }
     [EntityName("BrandTemplate")]
     public class BrandTemplate : ISalesforceEntity
     {
+    [JsonConstructor]
+        private BrandTemplate(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public BrandTemplate()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15501,101 +16026,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __DeveloperName;
         [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
-            set { SetField(ref __DeveloperName, value); }
+            set { SetField(ref __DeveloperName, value, "DeveloperName"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __Value;
         [EntityField(false)]
         public System.String Value
         {
             get { return __Value; }
-            set { SetField(ref __Value, value); }
+            set { SetField(ref __Value, value, "Value"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("BusinessHours")]
     public class BusinessHours : ISalesforceEntity
     {
+    [JsonConstructor]
+        private BusinessHours(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public BusinessHours()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15604,185 +16154,210 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.Boolean __IsDefault;
         [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
-            set { SetField(ref __IsDefault, value); }
+            set { SetField(ref __IsDefault, value, "IsDefault"); }
         }
         private System.String __SundayStartTime;
         [EntityField(true)]
         public System.String SundayStartTime
         {
             get { return __SundayStartTime; }
-            set { SetField(ref __SundayStartTime, value); }
+            set { SetField(ref __SundayStartTime, value, "SundayStartTime"); }
         }
         private System.String __SundayEndTime;
         [EntityField(true)]
         public System.String SundayEndTime
         {
             get { return __SundayEndTime; }
-            set { SetField(ref __SundayEndTime, value); }
+            set { SetField(ref __SundayEndTime, value, "SundayEndTime"); }
         }
         private System.String __MondayStartTime;
         [EntityField(true)]
         public System.String MondayStartTime
         {
             get { return __MondayStartTime; }
-            set { SetField(ref __MondayStartTime, value); }
+            set { SetField(ref __MondayStartTime, value, "MondayStartTime"); }
         }
         private System.String __MondayEndTime;
         [EntityField(true)]
         public System.String MondayEndTime
         {
             get { return __MondayEndTime; }
-            set { SetField(ref __MondayEndTime, value); }
+            set { SetField(ref __MondayEndTime, value, "MondayEndTime"); }
         }
         private System.String __TuesdayStartTime;
         [EntityField(true)]
         public System.String TuesdayStartTime
         {
             get { return __TuesdayStartTime; }
-            set { SetField(ref __TuesdayStartTime, value); }
+            set { SetField(ref __TuesdayStartTime, value, "TuesdayStartTime"); }
         }
         private System.String __TuesdayEndTime;
         [EntityField(true)]
         public System.String TuesdayEndTime
         {
             get { return __TuesdayEndTime; }
-            set { SetField(ref __TuesdayEndTime, value); }
+            set { SetField(ref __TuesdayEndTime, value, "TuesdayEndTime"); }
         }
         private System.String __WednesdayStartTime;
         [EntityField(true)]
         public System.String WednesdayStartTime
         {
             get { return __WednesdayStartTime; }
-            set { SetField(ref __WednesdayStartTime, value); }
+            set { SetField(ref __WednesdayStartTime, value, "WednesdayStartTime"); }
         }
         private System.String __WednesdayEndTime;
         [EntityField(true)]
         public System.String WednesdayEndTime
         {
             get { return __WednesdayEndTime; }
-            set { SetField(ref __WednesdayEndTime, value); }
+            set { SetField(ref __WednesdayEndTime, value, "WednesdayEndTime"); }
         }
         private System.String __ThursdayStartTime;
         [EntityField(true)]
         public System.String ThursdayStartTime
         {
             get { return __ThursdayStartTime; }
-            set { SetField(ref __ThursdayStartTime, value); }
+            set { SetField(ref __ThursdayStartTime, value, "ThursdayStartTime"); }
         }
         private System.String __ThursdayEndTime;
         [EntityField(true)]
         public System.String ThursdayEndTime
         {
             get { return __ThursdayEndTime; }
-            set { SetField(ref __ThursdayEndTime, value); }
+            set { SetField(ref __ThursdayEndTime, value, "ThursdayEndTime"); }
         }
         private System.String __FridayStartTime;
         [EntityField(true)]
         public System.String FridayStartTime
         {
             get { return __FridayStartTime; }
-            set { SetField(ref __FridayStartTime, value); }
+            set { SetField(ref __FridayStartTime, value, "FridayStartTime"); }
         }
         private System.String __FridayEndTime;
         [EntityField(true)]
         public System.String FridayEndTime
         {
             get { return __FridayEndTime; }
-            set { SetField(ref __FridayEndTime, value); }
+            set { SetField(ref __FridayEndTime, value, "FridayEndTime"); }
         }
         private System.String __SaturdayStartTime;
         [EntityField(true)]
         public System.String SaturdayStartTime
         {
             get { return __SaturdayStartTime; }
-            set { SetField(ref __SaturdayStartTime, value); }
+            set { SetField(ref __SaturdayStartTime, value, "SaturdayStartTime"); }
         }
         private System.String __SaturdayEndTime;
         [EntityField(true)]
         public System.String SaturdayEndTime
         {
             get { return __SaturdayEndTime; }
-            set { SetField(ref __SaturdayEndTime, value); }
+            set { SetField(ref __SaturdayEndTime, value, "SaturdayEndTime"); }
         }
         private PickBusinessHoursTimeZoneSidKey __TimeZoneSidKey;
         [EntityField(false)]
         public PickBusinessHoursTimeZoneSidKey TimeZoneSidKey
         {
             get { return __TimeZoneSidKey; }
-            set { SetField(ref __TimeZoneSidKey, value); }
+            set { SetField(ref __TimeZoneSidKey, value, "TimeZoneSidKey"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
     }
     [EntityName("BusinessProcess")]
     public class BusinessProcess : ISalesforceEntity
     {
+    [JsonConstructor]
+        private BusinessProcess(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public BusinessProcess()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15791,94 +16366,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickBusinessProcessTableEnumOrId __TableEnumOrId;
         [EntityField(false)]
         public PickBusinessProcessTableEnumOrId TableEnumOrId
         {
             get { return __TableEnumOrId; }
-            set { SetField(ref __TableEnumOrId, value); }
+            set { SetField(ref __TableEnumOrId, value, "TableEnumOrId"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CallCenter")]
     public class CallCenter : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CallCenter(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CallCenter()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15887,80 +16487,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __InternalName;
         [EntityField(false)]
         public System.String InternalName
         {
             get { return __InternalName; }
-            set { SetField(ref __InternalName, value); }
+            set { SetField(ref __InternalName, value, "InternalName"); }
         }
         private System.Double? __Version;
         [EntityField(true)]
         public System.Double? Version
         {
             get { return __Version; }
-            set { SetField(ref __Version, value); }
+            set { SetField(ref __Version, value, "Version"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
     }
     [EntityName("Campaign")]
     public class Campaign : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Campaign(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Campaign()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -15969,217 +16594,217 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __ParentId;
         [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private PickCampaignType __Type;
         [EntityField(true)]
         public PickCampaignType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private PickCampaignStatus __Status;
         [EntityField(true)]
         public PickCampaignStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.DateTime? __StartDate;
         [EntityField(true)]
         public System.DateTime? StartDate
         {
             get { return __StartDate; }
-            set { SetField(ref __StartDate, value); }
+            set { SetField(ref __StartDate, value, "StartDate"); }
         }
         private System.DateTime? __EndDate;
         [EntityField(true)]
         public System.DateTime? EndDate
         {
             get { return __EndDate; }
-            set { SetField(ref __EndDate, value); }
+            set { SetField(ref __EndDate, value, "EndDate"); }
         }
         private System.String __ExpectedRevenue;
         [EntityField(true)]
         public System.String ExpectedRevenue
         {
             get { return __ExpectedRevenue; }
-            set { SetField(ref __ExpectedRevenue, value); }
+            set { SetField(ref __ExpectedRevenue, value, "ExpectedRevenue"); }
         }
         private System.String __BudgetedCost;
         [EntityField(true)]
         public System.String BudgetedCost
         {
             get { return __BudgetedCost; }
-            set { SetField(ref __BudgetedCost, value); }
+            set { SetField(ref __BudgetedCost, value, "BudgetedCost"); }
         }
         private System.String __ActualCost;
         [EntityField(true)]
         public System.String ActualCost
         {
             get { return __ActualCost; }
-            set { SetField(ref __ActualCost, value); }
+            set { SetField(ref __ActualCost, value, "ActualCost"); }
         }
         private System.String __ExpectedResponse;
         [EntityField(true)]
         public System.String ExpectedResponse
         {
             get { return __ExpectedResponse; }
-            set { SetField(ref __ExpectedResponse, value); }
+            set { SetField(ref __ExpectedResponse, value, "ExpectedResponse"); }
         }
         private System.Double? __NumberSent;
         [EntityField(true)]
         public System.Double? NumberSent
         {
             get { return __NumberSent; }
-            set { SetField(ref __NumberSent, value); }
+            set { SetField(ref __NumberSent, value, "NumberSent"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Int32 __NumberOfLeads;
         [EntityField(false)]
         public System.Int32 NumberOfLeads
         {
             get { return __NumberOfLeads; }
-            set { SetField(ref __NumberOfLeads, value); }
+            set { SetField(ref __NumberOfLeads, value, "NumberOfLeads"); }
         }
         private System.Int32 __NumberOfConvertedLeads;
         [EntityField(false)]
         public System.Int32 NumberOfConvertedLeads
         {
             get { return __NumberOfConvertedLeads; }
-            set { SetField(ref __NumberOfConvertedLeads, value); }
+            set { SetField(ref __NumberOfConvertedLeads, value, "NumberOfConvertedLeads"); }
         }
         private System.Int32 __NumberOfContacts;
         [EntityField(false)]
         public System.Int32 NumberOfContacts
         {
             get { return __NumberOfContacts; }
-            set { SetField(ref __NumberOfContacts, value); }
+            set { SetField(ref __NumberOfContacts, value, "NumberOfContacts"); }
         }
         private System.Int32 __NumberOfResponses;
         [EntityField(false)]
         public System.Int32 NumberOfResponses
         {
             get { return __NumberOfResponses; }
-            set { SetField(ref __NumberOfResponses, value); }
+            set { SetField(ref __NumberOfResponses, value, "NumberOfResponses"); }
         }
         private System.Int32 __NumberOfOpportunities;
         [EntityField(false)]
         public System.Int32 NumberOfOpportunities
         {
             get { return __NumberOfOpportunities; }
-            set { SetField(ref __NumberOfOpportunities, value); }
+            set { SetField(ref __NumberOfOpportunities, value, "NumberOfOpportunities"); }
         }
         private System.Int32 __NumberOfWonOpportunities;
         [EntityField(false)]
         public System.Int32 NumberOfWonOpportunities
         {
             get { return __NumberOfWonOpportunities; }
-            set { SetField(ref __NumberOfWonOpportunities, value); }
+            set { SetField(ref __NumberOfWonOpportunities, value, "NumberOfWonOpportunities"); }
         }
         private System.String __AmountAllOpportunities;
         [EntityField(false)]
         public System.String AmountAllOpportunities
         {
             get { return __AmountAllOpportunities; }
-            set { SetField(ref __AmountAllOpportunities, value); }
+            set { SetField(ref __AmountAllOpportunities, value, "AmountAllOpportunities"); }
         }
         private System.String __AmountWonOpportunities;
         [EntityField(false)]
         public System.String AmountWonOpportunities
         {
             get { return __AmountWonOpportunities; }
-            set { SetField(ref __AmountWonOpportunities, value); }
+            set { SetField(ref __AmountWonOpportunities, value, "AmountWonOpportunities"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime? __LastActivityDate;
         [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
-            set { SetField(ref __LastActivityDate, value); }
+            set { SetField(ref __LastActivityDate, value, "LastActivityDate"); }
         }
         private System.String __CampaignMemberRecordTypeId;
         [EntityField(true)]
         public System.String CampaignMemberRecordTypeId
         {
             get { return __CampaignMemberRecordTypeId; }
-            set { SetField(ref __CampaignMemberRecordTypeId, value); }
+            set { SetField(ref __CampaignMemberRecordTypeId, value, "CampaignMemberRecordTypeId"); }
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
@@ -16263,18 +16888,43 @@ namespace LinqToSalesforce
     [EntityName("CampaignFeed")]
     public class CampaignFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CampaignFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CampaignFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -16283,56 +16933,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickCampaignFeedType __Type;
         [EntityField(true)]
         public PickCampaignFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -16350,18 +17000,43 @@ namespace LinqToSalesforce
     [EntityName("CampaignMember")]
     public class CampaignMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CampaignMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CampaignMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -16370,108 +17045,133 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __CampaignId;
         [EntityField(false)]
         public System.String CampaignId
         {
             get { return __CampaignId; }
-            set { SetField(ref __CampaignId, value); }
+            set { SetField(ref __CampaignId, value, "CampaignId"); }
         }
         private System.String __LeadId;
         [EntityField(true)]
         public System.String LeadId
         {
             get { return __LeadId; }
-            set { SetField(ref __LeadId, value); }
+            set { SetField(ref __LeadId, value, "LeadId"); }
         }
         private System.String __ContactId;
         [EntityField(true)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private PickCampaignMemberStatus __Status;
         [EntityField(true)]
         public PickCampaignMemberStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.Boolean __HasResponded;
         [EntityField(false)]
         public System.Boolean HasResponded
         {
             get { return __HasResponded; }
-            set { SetField(ref __HasResponded, value); }
+            set { SetField(ref __HasResponded, value, "HasResponded"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime? __FirstRespondedDate;
         [EntityField(true)]
         public System.DateTime? FirstRespondedDate
         {
             get { return __FirstRespondedDate; }
-            set { SetField(ref __FirstRespondedDate, value); }
+            set { SetField(ref __FirstRespondedDate, value, "FirstRespondedDate"); }
         }
     }
     [EntityName("CampaignMemberStatus")]
     public class CampaignMemberStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CampaignMemberStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CampaignMemberStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -16480,101 +17180,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __CampaignId;
         [EntityField(false)]
         public System.String CampaignId
         {
             get { return __CampaignId; }
-            set { SetField(ref __CampaignId, value); }
+            set { SetField(ref __CampaignId, value, "CampaignId"); }
         }
         private System.String __Label;
         [EntityField(false)]
         public System.String Label
         {
             get { return __Label; }
-            set { SetField(ref __Label, value); }
+            set { SetField(ref __Label, value, "Label"); }
         }
         private System.Int32 __SortOrder;
         [EntityField(false)]
         public System.Int32 SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private System.Boolean __IsDefault;
         [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
-            set { SetField(ref __IsDefault, value); }
+            set { SetField(ref __IsDefault, value, "IsDefault"); }
         }
         private System.Boolean __HasResponded;
         [EntityField(false)]
         public System.Boolean HasResponded
         {
             get { return __HasResponded; }
-            set { SetField(ref __HasResponded, value); }
+            set { SetField(ref __HasResponded, value, "HasResponded"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CampaignShare")]
     public class CampaignShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CampaignShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CampaignShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -16583,73 +17308,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __CampaignId;
         [EntityField(false)]
         public System.String CampaignId
         {
             get { return __CampaignId; }
-            set { SetField(ref __CampaignId, value); }
+            set { SetField(ref __CampaignId, value, "CampaignId"); }
         }
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
-            set { SetField(ref __UserOrGroupId, value); }
+            set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
         private PickCampaignShareCampaignAccessLevel __CampaignAccessLevel;
         [EntityField(false)]
         public PickCampaignShareCampaignAccessLevel CampaignAccessLevel
         {
             get { return __CampaignAccessLevel; }
-            set { SetField(ref __CampaignAccessLevel, value); }
+            set { SetField(ref __CampaignAccessLevel, value, "CampaignAccessLevel"); }
         }
         private PickCampaignShareRowCause __RowCause;
         [EntityField(true)]
         public PickCampaignShareRowCause RowCause
         {
             get { return __RowCause; }
-            set { SetField(ref __RowCause, value); }
+            set { SetField(ref __RowCause, value, "RowCause"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("Case")]
     public class Case : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Case(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Case()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -16658,189 +17408,189 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __CaseNumber;
         [EntityField(false)]
         public System.String CaseNumber
         {
             get { return __CaseNumber; }
-            set { SetField(ref __CaseNumber, value); }
+            set { SetField(ref __CaseNumber, value, "CaseNumber"); }
         }
         private System.String __ContactId;
         [EntityField(true)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __AssetId;
         [EntityField(true)]
         public System.String AssetId
         {
             get { return __AssetId; }
-            set { SetField(ref __AssetId, value); }
+            set { SetField(ref __AssetId, value, "AssetId"); }
         }
         private System.String __ParentId;
         [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __SuppliedName;
         [EntityField(true)]
         public System.String SuppliedName
         {
             get { return __SuppliedName; }
-            set { SetField(ref __SuppliedName, value); }
+            set { SetField(ref __SuppliedName, value, "SuppliedName"); }
         }
         private System.String __SuppliedEmail;
         [EntityField(true)]
         public System.String SuppliedEmail
         {
             get { return __SuppliedEmail; }
-            set { SetField(ref __SuppliedEmail, value); }
+            set { SetField(ref __SuppliedEmail, value, "SuppliedEmail"); }
         }
         private System.String __SuppliedPhone;
         [EntityField(true)]
         public System.String SuppliedPhone
         {
             get { return __SuppliedPhone; }
-            set { SetField(ref __SuppliedPhone, value); }
+            set { SetField(ref __SuppliedPhone, value, "SuppliedPhone"); }
         }
         private System.String __SuppliedCompany;
         [EntityField(true)]
         public System.String SuppliedCompany
         {
             get { return __SuppliedCompany; }
-            set { SetField(ref __SuppliedCompany, value); }
+            set { SetField(ref __SuppliedCompany, value, "SuppliedCompany"); }
         }
         private PickCaseType __Type;
         [EntityField(true)]
         public PickCaseType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private PickCaseStatus __Status;
         [EntityField(true)]
         public PickCaseStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private PickCaseReason __Reason;
         [EntityField(true)]
         public PickCaseReason Reason
         {
             get { return __Reason; }
-            set { SetField(ref __Reason, value); }
+            set { SetField(ref __Reason, value, "Reason"); }
         }
         private PickCaseOrigin __Origin;
         [EntityField(true)]
         public PickCaseOrigin Origin
         {
             get { return __Origin; }
-            set { SetField(ref __Origin, value); }
+            set { SetField(ref __Origin, value, "Origin"); }
         }
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
-            set { SetField(ref __Subject, value); }
+            set { SetField(ref __Subject, value, "Subject"); }
         }
         private PickCasePriority __Priority;
         [EntityField(true)]
         public PickCasePriority Priority
         {
             get { return __Priority; }
-            set { SetField(ref __Priority, value); }
+            set { SetField(ref __Priority, value, "Priority"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Boolean __IsClosed;
         [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
-            set { SetField(ref __IsClosed, value); }
+            set { SetField(ref __IsClosed, value, "IsClosed"); }
         }
         private System.DateTime? __ClosedDate;
         [EntityField(true)]
         public System.DateTime? ClosedDate
         {
             get { return __ClosedDate; }
-            set { SetField(ref __ClosedDate, value); }
+            set { SetField(ref __ClosedDate, value, "ClosedDate"); }
         }
         private System.Boolean __IsEscalated;
         [EntityField(false)]
         public System.Boolean IsEscalated
         {
             get { return __IsEscalated; }
-            set { SetField(ref __IsEscalated, value); }
+            set { SetField(ref __IsEscalated, value, "IsEscalated"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __EngineeringReqNumberc;
         [JsonProperty(PropertyName = "EngineeringReqNumber__c")]
@@ -16848,7 +17598,7 @@ namespace LinqToSalesforce
         public System.String EngineeringReqNumberc
         {
             get { return __EngineeringReqNumberc; }
-            set { SetField(ref __EngineeringReqNumberc, value); }
+            set { SetField(ref __EngineeringReqNumberc, value, "EngineeringReqNumber__c"); }
         }
         private PickCaseSLAViolation __SLAViolationc;
         [JsonProperty(PropertyName = "SLAViolation__c")]
@@ -16856,7 +17606,7 @@ namespace LinqToSalesforce
         public PickCaseSLAViolation SLAViolationc
         {
             get { return __SLAViolationc; }
-            set { SetField(ref __SLAViolationc, value); }
+            set { SetField(ref __SLAViolationc, value, "SLAViolation__c"); }
         }
         private PickCaseProduct __Productc;
         [JsonProperty(PropertyName = "Product__c")]
@@ -16864,7 +17614,7 @@ namespace LinqToSalesforce
         public PickCaseProduct Productc
         {
             get { return __Productc; }
-            set { SetField(ref __Productc, value); }
+            set { SetField(ref __Productc, value, "Product__c"); }
         }
         private PickCasePotentialLiability __PotentialLiabilityc;
         [JsonProperty(PropertyName = "PotentialLiability__c")]
@@ -16872,7 +17622,7 @@ namespace LinqToSalesforce
         public PickCasePotentialLiability PotentialLiabilityc
         {
             get { return __PotentialLiabilityc; }
-            set { SetField(ref __PotentialLiabilityc, value); }
+            set { SetField(ref __PotentialLiabilityc, value, "PotentialLiability__c"); }
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
@@ -16986,18 +17736,43 @@ namespace LinqToSalesforce
     [EntityName("CaseComment")]
     public class CaseComment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseComment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseComment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17006,87 +17781,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.Boolean __IsPublished;
         [EntityField(false)]
         public System.Boolean IsPublished
         {
             get { return __IsPublished; }
-            set { SetField(ref __IsPublished, value); }
+            set { SetField(ref __IsPublished, value, "IsPublished"); }
         }
         private System.String __CommentBody;
         [EntityField(true)]
         public System.String CommentBody
         {
             get { return __CommentBody; }
-            set { SetField(ref __CommentBody, value); }
+            set { SetField(ref __CommentBody, value, "CommentBody"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("CaseContactRole")]
     public class CaseContactRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseContactRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseContactRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17095,87 +17895,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __CasesId;
         [EntityField(false)]
         public System.String CasesId
         {
             get { return __CasesId; }
-            set { SetField(ref __CasesId, value); }
+            set { SetField(ref __CasesId, value, "CasesId"); }
         }
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private PickCaseContactRoleRole __Role;
         [EntityField(true)]
         public PickCaseContactRoleRole Role
         {
             get { return __Role; }
-            set { SetField(ref __Role, value); }
+            set { SetField(ref __Role, value, "Role"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("CaseFeed")]
     public class CaseFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17184,56 +18009,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickCaseFeedType __Type;
         [EntityField(true)]
         public PickCaseFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -17251,18 +18076,43 @@ namespace LinqToSalesforce
     [EntityName("CaseHistory")]
     public class CaseHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17271,73 +18121,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __CaseId;
         [EntityField(false)]
         public System.String CaseId
         {
             get { return __CaseId; }
-            set { SetField(ref __CaseId, value); }
+            set { SetField(ref __CaseId, value, "CaseId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickCaseHistoryField __Field;
         [EntityField(false)]
         public PickCaseHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("CaseShare")]
     public class CaseShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17346,73 +18221,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __CaseId;
         [EntityField(false)]
         public System.String CaseId
         {
             get { return __CaseId; }
-            set { SetField(ref __CaseId, value); }
+            set { SetField(ref __CaseId, value, "CaseId"); }
         }
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
-            set { SetField(ref __UserOrGroupId, value); }
+            set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
         private PickCaseShareCaseAccessLevel __CaseAccessLevel;
         [EntityField(false)]
         public PickCaseShareCaseAccessLevel CaseAccessLevel
         {
             get { return __CaseAccessLevel; }
-            set { SetField(ref __CaseAccessLevel, value); }
+            set { SetField(ref __CaseAccessLevel, value, "CaseAccessLevel"); }
         }
         private PickCaseShareRowCause __RowCause;
         [EntityField(true)]
         public PickCaseShareRowCause RowCause
         {
             get { return __RowCause; }
-            set { SetField(ref __RowCause, value); }
+            set { SetField(ref __RowCause, value, "RowCause"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("CaseSolution")]
     public class CaseSolution : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseSolution(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseSolution()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17421,66 +18321,91 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __CaseId;
         [EntityField(false)]
         public System.String CaseId
         {
             get { return __CaseId; }
-            set { SetField(ref __CaseId, value); }
+            set { SetField(ref __CaseId, value, "CaseId"); }
         }
         private System.String __SolutionId;
         [EntityField(false)]
         public System.String SolutionId
         {
             get { return __SolutionId; }
-            set { SetField(ref __SolutionId, value); }
+            set { SetField(ref __SolutionId, value, "SolutionId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("CaseStatus")]
     public class CaseStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17489,87 +18414,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private System.Boolean __IsDefault;
         [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
-            set { SetField(ref __IsDefault, value); }
+            set { SetField(ref __IsDefault, value, "IsDefault"); }
         }
         private System.Boolean __IsClosed;
         [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
-            set { SetField(ref __IsClosed, value); }
+            set { SetField(ref __IsClosed, value, "IsClosed"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CaseTeamMember")]
     public class CaseTeamMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17578,87 +18528,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __MemberId;
         [EntityField(false)]
         public System.String MemberId
         {
             get { return __MemberId; }
-            set { SetField(ref __MemberId, value); }
+            set { SetField(ref __MemberId, value, "MemberId"); }
         }
         private System.String __TeamTemplateMemberId;
         [EntityField(true)]
         public System.String TeamTemplateMemberId
         {
             get { return __TeamTemplateMemberId; }
-            set { SetField(ref __TeamTemplateMemberId, value); }
+            set { SetField(ref __TeamTemplateMemberId, value, "TeamTemplateMemberId"); }
         }
         private System.String __TeamRoleId;
         [EntityField(false)]
         public System.String TeamRoleId
         {
             get { return __TeamRoleId; }
-            set { SetField(ref __TeamRoleId, value); }
+            set { SetField(ref __TeamRoleId, value, "TeamRoleId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CaseTeamRole")]
     public class CaseTeamRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17667,80 +18642,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private PickCaseTeamRoleAccessLevel __AccessLevel;
         [EntityField(false)]
         public PickCaseTeamRoleAccessLevel AccessLevel
         {
             get { return __AccessLevel; }
-            set { SetField(ref __AccessLevel, value); }
+            set { SetField(ref __AccessLevel, value, "AccessLevel"); }
         }
         private System.Boolean __PreferencesVisibleInCSP;
         [EntityField(false)]
         public System.Boolean PreferencesVisibleInCSP
         {
             get { return __PreferencesVisibleInCSP; }
-            set { SetField(ref __PreferencesVisibleInCSP, value); }
+            set { SetField(ref __PreferencesVisibleInCSP, value, "PreferencesVisibleInCSP"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CaseTeamTemplate")]
     public class CaseTeamTemplate : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamTemplate(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamTemplate()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17749,73 +18749,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CaseTeamTemplateMember")]
     public class CaseTeamTemplateMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamTemplateMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamTemplateMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17824,80 +18849,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __TeamTemplateId;
         [EntityField(false)]
         public System.String TeamTemplateId
         {
             get { return __TeamTemplateId; }
-            set { SetField(ref __TeamTemplateId, value); }
+            set { SetField(ref __TeamTemplateId, value, "TeamTemplateId"); }
         }
         private System.String __MemberId;
         [EntityField(false)]
         public System.String MemberId
         {
             get { return __MemberId; }
-            set { SetField(ref __MemberId, value); }
+            set { SetField(ref __MemberId, value, "MemberId"); }
         }
         private System.String __TeamRoleId;
         [EntityField(true)]
         public System.String TeamRoleId
         {
             get { return __TeamRoleId; }
-            set { SetField(ref __TeamRoleId, value); }
+            set { SetField(ref __TeamRoleId, value, "TeamRoleId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CaseTeamTemplateRecord")]
     public class CaseTeamTemplateRecord : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamTemplateRecord(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamTemplateRecord()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17906,59 +18956,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __TeamTemplateId;
         [EntityField(false)]
         public System.String TeamTemplateId
         {
             get { return __TeamTemplateId; }
-            set { SetField(ref __TeamTemplateId, value); }
+            set { SetField(ref __TeamTemplateId, value, "TeamTemplateId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CategoryData")]
     public class CategoryData : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CategoryData(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CategoryData()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -17967,80 +19042,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __CategoryNodeId;
         [EntityField(false)]
         public System.String CategoryNodeId
         {
             get { return __CategoryNodeId; }
-            set { SetField(ref __CategoryNodeId, value); }
+            set { SetField(ref __CategoryNodeId, value, "CategoryNodeId"); }
         }
         private System.String __RelatedSobjectId;
         [EntityField(false)]
         public System.String RelatedSobjectId
         {
             get { return __RelatedSobjectId; }
-            set { SetField(ref __RelatedSobjectId, value); }
+            set { SetField(ref __RelatedSobjectId, value, "RelatedSobjectId"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CategoryNode")]
     public class CategoryNode : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CategoryNode(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CategoryNode()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -18049,87 +19149,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __MasterLabel;
         [EntityField(false)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private PickCategoryNodeSortStyle __SortStyle;
         [EntityField(false)]
         public PickCategoryNodeSortStyle SortStyle
         {
             get { return __SortStyle; }
-            set { SetField(ref __SortStyle, value); }
+            set { SetField(ref __SortStyle, value, "SortStyle"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("ClientBrowser")]
     public class ClientBrowser : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ClientBrowser(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ClientBrowser()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -18138,59 +19263,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __UsersId;
         [EntityField(false)]
         public System.String UsersId
         {
             get { return __UsersId; }
-            set { SetField(ref __UsersId, value); }
+            set { SetField(ref __UsersId, value, "UsersId"); }
         }
         private System.String __FullUserAgent;
         [EntityField(true)]
         public System.String FullUserAgent
         {
             get { return __FullUserAgent; }
-            set { SetField(ref __FullUserAgent, value); }
+            set { SetField(ref __FullUserAgent, value, "FullUserAgent"); }
         }
         private System.String __ProxyInfo;
         [EntityField(true)]
         public System.String ProxyInfo
         {
             get { return __ProxyInfo; }
-            set { SetField(ref __ProxyInfo, value); }
+            set { SetField(ref __ProxyInfo, value, "ProxyInfo"); }
         }
         private System.DateTime? __LastUpdate;
         [EntityField(true)]
         public System.DateTime? LastUpdate
         {
             get { return __LastUpdate; }
-            set { SetField(ref __LastUpdate, value); }
+            set { SetField(ref __LastUpdate, value, "LastUpdate"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
     }
     [EntityName("CollaborationGroup")]
     public class CollaborationGroup : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CollaborationGroup(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CollaborationGroup()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -18199,91 +19349,91 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Int32? __MemberCount;
         [EntityField(true)]
         public System.Int32? MemberCount
         {
             get { return __MemberCount; }
-            set { SetField(ref __MemberCount, value); }
+            set { SetField(ref __MemberCount, value, "MemberCount"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private PickCollaborationGroupCollaborationType __CollaborationType;
         [EntityField(false)]
         public PickCollaborationGroupCollaborationType CollaborationType
         {
             get { return __CollaborationType; }
-            set { SetField(ref __CollaborationType, value); }
+            set { SetField(ref __CollaborationType, value, "CollaborationType"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __FullPhotoUrl;
         [EntityField(true)]
         public System.String FullPhotoUrl
         {
             get { return __FullPhotoUrl; }
-            set { SetField(ref __FullPhotoUrl, value); }
+            set { SetField(ref __FullPhotoUrl, value, "FullPhotoUrl"); }
         }
         private System.String __SmallPhotoUrl;
         [EntityField(true)]
         public System.String SmallPhotoUrl
         {
             get { return __SmallPhotoUrl; }
-            set { SetField(ref __SmallPhotoUrl, value); }
+            set { SetField(ref __SmallPhotoUrl, value, "SmallPhotoUrl"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -18307,18 +19457,43 @@ namespace LinqToSalesforce
     [EntityName("CollaborationGroupFeed")]
     public class CollaborationGroupFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CollaborationGroupFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CollaborationGroupFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -18327,56 +19502,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickCollaborationGroupFeedType __Type;
         [EntityField(true)]
         public PickCollaborationGroupFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -18394,18 +19569,43 @@ namespace LinqToSalesforce
     [EntityName("CollaborationGroupMember")]
     public class CollaborationGroupMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CollaborationGroupMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CollaborationGroupMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -18414,80 +19614,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __CollaborationGroupId;
         [EntityField(false)]
         public System.String CollaborationGroupId
         {
             get { return __CollaborationGroupId; }
-            set { SetField(ref __CollaborationGroupId, value); }
+            set { SetField(ref __CollaborationGroupId, value, "CollaborationGroupId"); }
         }
         private System.String __MemberId;
         [EntityField(false)]
         public System.String MemberId
         {
             get { return __MemberId; }
-            set { SetField(ref __MemberId, value); }
+            set { SetField(ref __MemberId, value, "MemberId"); }
         }
         private PickCollaborationGroupMemberNotificationFrequency __NotificationFrequency;
         [EntityField(true)]
         public PickCollaborationGroupMemberNotificationFrequency NotificationFrequency
         {
             get { return __NotificationFrequency; }
-            set { SetField(ref __NotificationFrequency, value); }
+            set { SetField(ref __NotificationFrequency, value, "NotificationFrequency"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CollaborationInvitation")]
     public class CollaborationInvitation : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CollaborationInvitation(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CollaborationInvitation()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -18496,108 +19721,133 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __SharedEntityId;
         [EntityField(false)]
         public System.String SharedEntityId
         {
             get { return __SharedEntityId; }
-            set { SetField(ref __SharedEntityId, value); }
+            set { SetField(ref __SharedEntityId, value, "SharedEntityId"); }
         }
         private System.String __InviterId;
         [EntityField(false)]
         public System.String InviterId
         {
             get { return __InviterId; }
-            set { SetField(ref __InviterId, value); }
+            set { SetField(ref __InviterId, value, "InviterId"); }
         }
         private System.String __InvitedUserEmail;
         [EntityField(false)]
         public System.String InvitedUserEmail
         {
             get { return __InvitedUserEmail; }
-            set { SetField(ref __InvitedUserEmail, value); }
+            set { SetField(ref __InvitedUserEmail, value, "InvitedUserEmail"); }
         }
         private System.String __InvitedUserEmailNormalized;
         [EntityField(false)]
         public System.String InvitedUserEmailNormalized
         {
             get { return __InvitedUserEmailNormalized; }
-            set { SetField(ref __InvitedUserEmailNormalized, value); }
+            set { SetField(ref __InvitedUserEmailNormalized, value, "InvitedUserEmailNormalized"); }
         }
         private PickCollaborationInvitationStatus __Status;
         [EntityField(false)]
         public PickCollaborationInvitationStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.String __OptionalMessage;
         [EntityField(true)]
         public System.String OptionalMessage
         {
             get { return __OptionalMessage; }
-            set { SetField(ref __OptionalMessage, value); }
+            set { SetField(ref __OptionalMessage, value, "OptionalMessage"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("Community")]
     public class Community : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Community(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Community()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -18606,80 +19856,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
     }
     [EntityName("Contact")]
     public class Contact : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Contact(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Contact()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -18688,301 +19963,301 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __MasterRecordId;
         [EntityField(true)]
         public System.String MasterRecordId
         {
             get { return __MasterRecordId; }
-            set { SetField(ref __MasterRecordId, value); }
+            set { SetField(ref __MasterRecordId, value, "MasterRecordId"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __LastName;
         [EntityField(false)]
         public System.String LastName
         {
             get { return __LastName; }
-            set { SetField(ref __LastName, value); }
+            set { SetField(ref __LastName, value, "LastName"); }
         }
         private System.String __FirstName;
         [EntityField(true)]
         public System.String FirstName
         {
             get { return __FirstName; }
-            set { SetField(ref __FirstName, value); }
+            set { SetField(ref __FirstName, value, "FirstName"); }
         }
         private PickContactSalutation __Salutation;
         [EntityField(true)]
         public PickContactSalutation Salutation
         {
             get { return __Salutation; }
-            set { SetField(ref __Salutation, value); }
+            set { SetField(ref __Salutation, value, "Salutation"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __OtherStreet;
         [EntityField(true)]
         public System.String OtherStreet
         {
             get { return __OtherStreet; }
-            set { SetField(ref __OtherStreet, value); }
+            set { SetField(ref __OtherStreet, value, "OtherStreet"); }
         }
         private System.String __OtherCity;
         [EntityField(true)]
         public System.String OtherCity
         {
             get { return __OtherCity; }
-            set { SetField(ref __OtherCity, value); }
+            set { SetField(ref __OtherCity, value, "OtherCity"); }
         }
         private System.String __OtherState;
         [EntityField(true)]
         public System.String OtherState
         {
             get { return __OtherState; }
-            set { SetField(ref __OtherState, value); }
+            set { SetField(ref __OtherState, value, "OtherState"); }
         }
         private System.String __OtherPostalCode;
         [EntityField(true)]
         public System.String OtherPostalCode
         {
             get { return __OtherPostalCode; }
-            set { SetField(ref __OtherPostalCode, value); }
+            set { SetField(ref __OtherPostalCode, value, "OtherPostalCode"); }
         }
         private System.String __OtherCountry;
         [EntityField(true)]
         public System.String OtherCountry
         {
             get { return __OtherCountry; }
-            set { SetField(ref __OtherCountry, value); }
+            set { SetField(ref __OtherCountry, value, "OtherCountry"); }
         }
         private System.String __MailingStreet;
         [EntityField(true)]
         public System.String MailingStreet
         {
             get { return __MailingStreet; }
-            set { SetField(ref __MailingStreet, value); }
+            set { SetField(ref __MailingStreet, value, "MailingStreet"); }
         }
         private System.String __MailingCity;
         [EntityField(true)]
         public System.String MailingCity
         {
             get { return __MailingCity; }
-            set { SetField(ref __MailingCity, value); }
+            set { SetField(ref __MailingCity, value, "MailingCity"); }
         }
         private System.String __MailingState;
         [EntityField(true)]
         public System.String MailingState
         {
             get { return __MailingState; }
-            set { SetField(ref __MailingState, value); }
+            set { SetField(ref __MailingState, value, "MailingState"); }
         }
         private System.String __MailingPostalCode;
         [EntityField(true)]
         public System.String MailingPostalCode
         {
             get { return __MailingPostalCode; }
-            set { SetField(ref __MailingPostalCode, value); }
+            set { SetField(ref __MailingPostalCode, value, "MailingPostalCode"); }
         }
         private System.String __MailingCountry;
         [EntityField(true)]
         public System.String MailingCountry
         {
             get { return __MailingCountry; }
-            set { SetField(ref __MailingCountry, value); }
+            set { SetField(ref __MailingCountry, value, "MailingCountry"); }
         }
         private System.String __Phone;
         [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
-            set { SetField(ref __Phone, value); }
+            set { SetField(ref __Phone, value, "Phone"); }
         }
         private System.String __Fax;
         [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
-            set { SetField(ref __Fax, value); }
+            set { SetField(ref __Fax, value, "Fax"); }
         }
         private System.String __MobilePhone;
         [EntityField(true)]
         public System.String MobilePhone
         {
             get { return __MobilePhone; }
-            set { SetField(ref __MobilePhone, value); }
+            set { SetField(ref __MobilePhone, value, "MobilePhone"); }
         }
         private System.String __HomePhone;
         [EntityField(true)]
         public System.String HomePhone
         {
             get { return __HomePhone; }
-            set { SetField(ref __HomePhone, value); }
+            set { SetField(ref __HomePhone, value, "HomePhone"); }
         }
         private System.String __OtherPhone;
         [EntityField(true)]
         public System.String OtherPhone
         {
             get { return __OtherPhone; }
-            set { SetField(ref __OtherPhone, value); }
+            set { SetField(ref __OtherPhone, value, "OtherPhone"); }
         }
         private System.String __AssistantPhone;
         [EntityField(true)]
         public System.String AssistantPhone
         {
             get { return __AssistantPhone; }
-            set { SetField(ref __AssistantPhone, value); }
+            set { SetField(ref __AssistantPhone, value, "AssistantPhone"); }
         }
         private System.String __ReportsToId;
         [EntityField(true)]
         public System.String ReportsToId
         {
             get { return __ReportsToId; }
-            set { SetField(ref __ReportsToId, value); }
+            set { SetField(ref __ReportsToId, value, "ReportsToId"); }
         }
         private System.String __Email;
         [EntityField(true)]
         public System.String Email
         {
             get { return __Email; }
-            set { SetField(ref __Email, value); }
+            set { SetField(ref __Email, value, "Email"); }
         }
         private System.String __Title;
         [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.String __Department;
         [EntityField(true)]
         public System.String Department
         {
             get { return __Department; }
-            set { SetField(ref __Department, value); }
+            set { SetField(ref __Department, value, "Department"); }
         }
         private System.String __AssistantName;
         [EntityField(true)]
         public System.String AssistantName
         {
             get { return __AssistantName; }
-            set { SetField(ref __AssistantName, value); }
+            set { SetField(ref __AssistantName, value, "AssistantName"); }
         }
         private PickContactLeadSource __LeadSource;
         [EntityField(true)]
         public PickContactLeadSource LeadSource
         {
             get { return __LeadSource; }
-            set { SetField(ref __LeadSource, value); }
+            set { SetField(ref __LeadSource, value, "LeadSource"); }
         }
         private System.DateTime? __Birthdate;
         [EntityField(true)]
         public System.DateTime? Birthdate
         {
             get { return __Birthdate; }
-            set { SetField(ref __Birthdate, value); }
+            set { SetField(ref __Birthdate, value, "Birthdate"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime? __LastActivityDate;
         [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
-            set { SetField(ref __LastActivityDate, value); }
+            set { SetField(ref __LastActivityDate, value, "LastActivityDate"); }
         }
         private System.DateTime? __LastCURequestDate;
         [EntityField(true)]
         public System.DateTime? LastCURequestDate
         {
             get { return __LastCURequestDate; }
-            set { SetField(ref __LastCURequestDate, value); }
+            set { SetField(ref __LastCURequestDate, value, "LastCURequestDate"); }
         }
         private System.DateTime? __LastCUUpdateDate;
         [EntityField(true)]
         public System.DateTime? LastCUUpdateDate
         {
             get { return __LastCUUpdateDate; }
-            set { SetField(ref __LastCUUpdateDate, value); }
+            set { SetField(ref __LastCUUpdateDate, value, "LastCUUpdateDate"); }
         }
         private System.String __EmailBouncedReason;
         [EntityField(true)]
         public System.String EmailBouncedReason
         {
             get { return __EmailBouncedReason; }
-            set { SetField(ref __EmailBouncedReason, value); }
+            set { SetField(ref __EmailBouncedReason, value, "EmailBouncedReason"); }
         }
         private System.DateTime? __EmailBouncedDate;
         [EntityField(true)]
         public System.DateTime? EmailBouncedDate
         {
             get { return __EmailBouncedDate; }
-            set { SetField(ref __EmailBouncedDate, value); }
+            set { SetField(ref __EmailBouncedDate, value, "EmailBouncedDate"); }
         }
         private PickContactLevel __Levelc;
         [JsonProperty(PropertyName = "Level__c")]
@@ -18990,7 +20265,7 @@ namespace LinqToSalesforce
         public PickContactLevel Levelc
         {
             get { return __Levelc; }
-            set { SetField(ref __Levelc, value); }
+            set { SetField(ref __Levelc, value, "Level__c"); }
         }
         private System.String __Languagesc;
         [JsonProperty(PropertyName = "Languages__c")]
@@ -18998,7 +20273,7 @@ namespace LinqToSalesforce
         public System.String Languagesc
         {
             get { return __Languagesc; }
-            set { SetField(ref __Languagesc, value); }
+            set { SetField(ref __Languagesc, value, "Languages__c"); }
         }
         [JsonIgnore]
         [ReferencedByField("ContactId")]
@@ -19136,18 +20411,43 @@ namespace LinqToSalesforce
     [EntityName("ContactFeed")]
     public class ContactFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContactFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContactFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -19156,56 +20456,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickContactFeedType __Type;
         [EntityField(true)]
         public PickContactFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -19223,18 +20523,43 @@ namespace LinqToSalesforce
     [EntityName("ContactHistory")]
     public class ContactHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContactHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContactHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -19243,73 +20568,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickContactHistoryField __Field;
         [EntityField(false)]
         public PickContactHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("ContactShare")]
     public class ContactShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContactShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContactShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -19318,73 +20668,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
-            set { SetField(ref __UserOrGroupId, value); }
+            set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
         private PickContactShareContactAccessLevel __ContactAccessLevel;
         [EntityField(false)]
         public PickContactShareContactAccessLevel ContactAccessLevel
         {
             get { return __ContactAccessLevel; }
-            set { SetField(ref __ContactAccessLevel, value); }
+            set { SetField(ref __ContactAccessLevel, value, "ContactAccessLevel"); }
         }
         private PickContactShareRowCause __RowCause;
         [EntityField(true)]
         public PickContactShareRowCause RowCause
         {
             get { return __RowCause; }
-            set { SetField(ref __RowCause, value); }
+            set { SetField(ref __RowCause, value, "RowCause"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("ContentDocument")]
     public class ContentDocument : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentDocument(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentDocument()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -19393,77 +20768,77 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __Title;
         [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private PickContentDocumentPublishStatus __PublishStatus;
         [EntityField(false)]
         public PickContentDocumentPublishStatus PublishStatus
         {
             get { return __PublishStatus; }
-            set { SetField(ref __PublishStatus, value); }
+            set { SetField(ref __PublishStatus, value, "PublishStatus"); }
         }
         private System.String __LatestPublishedVersionId;
         [EntityField(true)]
         public System.String LatestPublishedVersionId
         {
             get { return __LatestPublishedVersionId; }
-            set { SetField(ref __LatestPublishedVersionId, value); }
+            set { SetField(ref __LatestPublishedVersionId, value, "LatestPublishedVersionId"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -19493,18 +20868,43 @@ namespace LinqToSalesforce
     [EntityName("ContentDocumentFeed")]
     public class ContentDocumentFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentDocumentFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentDocumentFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -19513,56 +20913,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickContentDocumentFeedType __Type;
         [EntityField(true)]
         public PickContentDocumentFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -19580,18 +20980,43 @@ namespace LinqToSalesforce
     [EntityName("ContentDocumentHistory")]
     public class ContentDocumentHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentDocumentHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentDocumentHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -19600,73 +21025,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ContentDocumentId;
         [EntityField(false)]
         public System.String ContentDocumentId
         {
             get { return __ContentDocumentId; }
-            set { SetField(ref __ContentDocumentId, value); }
+            set { SetField(ref __ContentDocumentId, value, "ContentDocumentId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickContentDocumentHistoryField __Field;
         [EntityField(false)]
         public PickContentDocumentHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("ContentVersion")]
     public class ContentVersion : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentVersion(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentVersion()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -19675,210 +21125,210 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ContentDocumentId;
         [EntityField(false)]
         public System.String ContentDocumentId
         {
             get { return __ContentDocumentId; }
-            set { SetField(ref __ContentDocumentId, value); }
+            set { SetField(ref __ContentDocumentId, value, "ContentDocumentId"); }
         }
         private System.Boolean __IsLatest;
         [EntityField(false)]
         public System.Boolean IsLatest
         {
             get { return __IsLatest; }
-            set { SetField(ref __IsLatest, value); }
+            set { SetField(ref __IsLatest, value, "IsLatest"); }
         }
         private System.String __ContentUrl;
         [EntityField(true)]
         public System.String ContentUrl
         {
             get { return __ContentUrl; }
-            set { SetField(ref __ContentUrl, value); }
+            set { SetField(ref __ContentUrl, value, "ContentUrl"); }
         }
         private System.String __VersionNumber;
         [EntityField(true)]
         public System.String VersionNumber
         {
             get { return __VersionNumber; }
-            set { SetField(ref __VersionNumber, value); }
+            set { SetField(ref __VersionNumber, value, "VersionNumber"); }
         }
         private System.String __Title;
         [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __ReasonForChange;
         [EntityField(true)]
         public System.String ReasonForChange
         {
             get { return __ReasonForChange; }
-            set { SetField(ref __ReasonForChange, value); }
+            set { SetField(ref __ReasonForChange, value, "ReasonForChange"); }
         }
         private System.String __PathOnClient;
         [EntityField(true)]
         public System.String PathOnClient
         {
             get { return __PathOnClient; }
-            set { SetField(ref __PathOnClient, value); }
+            set { SetField(ref __PathOnClient, value, "PathOnClient"); }
         }
         private System.Int32? __RatingCount;
         [EntityField(true)]
         public System.Int32? RatingCount
         {
             get { return __RatingCount; }
-            set { SetField(ref __RatingCount, value); }
+            set { SetField(ref __RatingCount, value, "RatingCount"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime? __ContentModifiedDate;
         [EntityField(true)]
         public System.DateTime? ContentModifiedDate
         {
             get { return __ContentModifiedDate; }
-            set { SetField(ref __ContentModifiedDate, value); }
+            set { SetField(ref __ContentModifiedDate, value, "ContentModifiedDate"); }
         }
         private System.String __ContentModifiedById;
         [EntityField(true)]
         public System.String ContentModifiedById
         {
             get { return __ContentModifiedById; }
-            set { SetField(ref __ContentModifiedById, value); }
+            set { SetField(ref __ContentModifiedById, value, "ContentModifiedById"); }
         }
         private System.Int32? __PositiveRatingCount;
         [EntityField(true)]
         public System.Int32? PositiveRatingCount
         {
             get { return __PositiveRatingCount; }
-            set { SetField(ref __PositiveRatingCount, value); }
+            set { SetField(ref __PositiveRatingCount, value, "PositiveRatingCount"); }
         }
         private System.Int32? __NegativeRatingCount;
         [EntityField(true)]
         public System.Int32? NegativeRatingCount
         {
             get { return __NegativeRatingCount; }
-            set { SetField(ref __NegativeRatingCount, value); }
+            set { SetField(ref __NegativeRatingCount, value, "NegativeRatingCount"); }
         }
         private System.Int32? __FeaturedContentBoost;
         [EntityField(true)]
         public System.Int32? FeaturedContentBoost
         {
             get { return __FeaturedContentBoost; }
-            set { SetField(ref __FeaturedContentBoost, value); }
+            set { SetField(ref __FeaturedContentBoost, value, "FeaturedContentBoost"); }
         }
         private System.DateTime? __FeaturedContentDate;
         [EntityField(true)]
         public System.DateTime? FeaturedContentDate
         {
             get { return __FeaturedContentDate; }
-            set { SetField(ref __FeaturedContentDate, value); }
+            set { SetField(ref __FeaturedContentDate, value, "FeaturedContentDate"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __TagCsv;
         [EntityField(true)]
         public System.String TagCsv
         {
             get { return __TagCsv; }
-            set { SetField(ref __TagCsv, value); }
+            set { SetField(ref __TagCsv, value, "TagCsv"); }
         }
         private System.String __FileType;
         [EntityField(false)]
         public System.String FileType
         {
             get { return __FileType; }
-            set { SetField(ref __FileType, value); }
+            set { SetField(ref __FileType, value, "FileType"); }
         }
         private PickContentVersionPublishStatus __PublishStatus;
         [EntityField(false)]
         public PickContentVersionPublishStatus PublishStatus
         {
             get { return __PublishStatus; }
-            set { SetField(ref __PublishStatus, value); }
+            set { SetField(ref __PublishStatus, value, "PublishStatus"); }
         }
         private System.String __VersionData;
         [EntityField(true)]
         public System.String VersionData
         {
             get { return __VersionData; }
-            set { SetField(ref __VersionData, value); }
+            set { SetField(ref __VersionData, value, "VersionData"); }
         }
         private System.Int32? __ContentSize;
         [EntityField(true)]
         public System.Int32? ContentSize
         {
             get { return __ContentSize; }
-            set { SetField(ref __ContentSize, value); }
+            set { SetField(ref __ContentSize, value, "ContentSize"); }
         }
         private System.String __FirstPublishLocationId;
         [EntityField(true)]
         public System.String FirstPublishLocationId
         {
             get { return __FirstPublishLocationId; }
-            set { SetField(ref __FirstPublishLocationId, value); }
+            set { SetField(ref __FirstPublishLocationId, value, "FirstPublishLocationId"); }
         }
         private PickContentVersionOrigin __Origin;
         [EntityField(false)]
         public PickContentVersionOrigin Origin
         {
             get { return __Origin; }
-            set { SetField(ref __Origin, value); }
+            set { SetField(ref __Origin, value, "Origin"); }
         }
         [JsonIgnore]
         [ReferencedByField("ContentVersionId")]
@@ -19890,18 +21340,43 @@ namespace LinqToSalesforce
     [EntityName("ContentVersionHistory")]
     public class ContentVersionHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentVersionHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentVersionHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -19910,73 +21385,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ContentVersionId;
         [EntityField(false)]
         public System.String ContentVersionId
         {
             get { return __ContentVersionId; }
-            set { SetField(ref __ContentVersionId, value); }
+            set { SetField(ref __ContentVersionId, value, "ContentVersionId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickContentVersionHistoryField __Field;
         [EntityField(false)]
         public PickContentVersionHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("ContentWorkspace")]
     public class ContentWorkspace : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentWorkspace(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentWorkspace()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -19985,101 +21485,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickContentWorkspaceTagModel __TagModel;
         [EntityField(true)]
         public PickContentWorkspaceTagModel TagModel
         {
             get { return __TagModel; }
-            set { SetField(ref __TagModel, value); }
+            set { SetField(ref __TagModel, value, "TagModel"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __DefaultRecordTypeId;
         [EntityField(true)]
         public System.String DefaultRecordTypeId
         {
             get { return __DefaultRecordTypeId; }
-            set { SetField(ref __DefaultRecordTypeId, value); }
+            set { SetField(ref __DefaultRecordTypeId, value, "DefaultRecordTypeId"); }
         }
         private System.Boolean __IsRestrictContentTypes;
         [EntityField(false)]
         public System.Boolean IsRestrictContentTypes
         {
             get { return __IsRestrictContentTypes; }
-            set { SetField(ref __IsRestrictContentTypes, value); }
+            set { SetField(ref __IsRestrictContentTypes, value, "IsRestrictContentTypes"); }
         }
         private System.Boolean __IsRestrictLinkedContentTypes;
         [EntityField(false)]
         public System.Boolean IsRestrictLinkedContentTypes
         {
             get { return __IsRestrictLinkedContentTypes; }
-            set { SetField(ref __IsRestrictLinkedContentTypes, value); }
+            set { SetField(ref __IsRestrictLinkedContentTypes, value, "IsRestrictLinkedContentTypes"); }
         }
     }
     [EntityName("ContentWorkspaceDoc")]
     public class ContentWorkspaceDoc : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentWorkspaceDoc(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentWorkspaceDoc()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -20088,66 +21613,91 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ContentWorkspaceId;
         [EntityField(false)]
         public System.String ContentWorkspaceId
         {
             get { return __ContentWorkspaceId; }
-            set { SetField(ref __ContentWorkspaceId, value); }
+            set { SetField(ref __ContentWorkspaceId, value, "ContentWorkspaceId"); }
         }
         private System.String __ContentDocumentId;
         [EntityField(false)]
         public System.String ContentDocumentId
         {
             get { return __ContentDocumentId; }
-            set { SetField(ref __ContentDocumentId, value); }
+            set { SetField(ref __ContentDocumentId, value, "ContentDocumentId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsOwner;
         [EntityField(false)]
         public System.Boolean IsOwner
         {
             get { return __IsOwner; }
-            set { SetField(ref __IsOwner, value); }
+            set { SetField(ref __IsOwner, value, "IsOwner"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("Contract")]
     public class Contract : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Contract(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Contract()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -20156,231 +21706,231 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __AccountId;
         [EntityField(false)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __Pricebook2Id;
         [EntityField(true)]
         public System.String Pricebook2Id
         {
             get { return __Pricebook2Id; }
-            set { SetField(ref __Pricebook2Id, value); }
+            set { SetField(ref __Pricebook2Id, value, "Pricebook2Id"); }
         }
         private PickContractOwnerExpirationNotice __OwnerExpirationNotice;
         [EntityField(true)]
         public PickContractOwnerExpirationNotice OwnerExpirationNotice
         {
             get { return __OwnerExpirationNotice; }
-            set { SetField(ref __OwnerExpirationNotice, value); }
+            set { SetField(ref __OwnerExpirationNotice, value, "OwnerExpirationNotice"); }
         }
         private System.DateTime? __StartDate;
         [EntityField(true)]
         public System.DateTime? StartDate
         {
             get { return __StartDate; }
-            set { SetField(ref __StartDate, value); }
+            set { SetField(ref __StartDate, value, "StartDate"); }
         }
         private System.DateTime? __EndDate;
         [EntityField(true)]
         public System.DateTime? EndDate
         {
             get { return __EndDate; }
-            set { SetField(ref __EndDate, value); }
+            set { SetField(ref __EndDate, value, "EndDate"); }
         }
         private System.String __BillingStreet;
         [EntityField(true)]
         public System.String BillingStreet
         {
             get { return __BillingStreet; }
-            set { SetField(ref __BillingStreet, value); }
+            set { SetField(ref __BillingStreet, value, "BillingStreet"); }
         }
         private System.String __BillingCity;
         [EntityField(true)]
         public System.String BillingCity
         {
             get { return __BillingCity; }
-            set { SetField(ref __BillingCity, value); }
+            set { SetField(ref __BillingCity, value, "BillingCity"); }
         }
         private System.String __BillingState;
         [EntityField(true)]
         public System.String BillingState
         {
             get { return __BillingState; }
-            set { SetField(ref __BillingState, value); }
+            set { SetField(ref __BillingState, value, "BillingState"); }
         }
         private System.String __BillingPostalCode;
         [EntityField(true)]
         public System.String BillingPostalCode
         {
             get { return __BillingPostalCode; }
-            set { SetField(ref __BillingPostalCode, value); }
+            set { SetField(ref __BillingPostalCode, value, "BillingPostalCode"); }
         }
         private System.String __BillingCountry;
         [EntityField(true)]
         public System.String BillingCountry
         {
             get { return __BillingCountry; }
-            set { SetField(ref __BillingCountry, value); }
+            set { SetField(ref __BillingCountry, value, "BillingCountry"); }
         }
         private System.Int32? __ContractTerm;
         [EntityField(true)]
         public System.Int32? ContractTerm
         {
             get { return __ContractTerm; }
-            set { SetField(ref __ContractTerm, value); }
+            set { SetField(ref __ContractTerm, value, "ContractTerm"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private PickContractStatus __Status;
         [EntityField(false)]
         public PickContractStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.String __CompanySignedId;
         [EntityField(true)]
         public System.String CompanySignedId
         {
             get { return __CompanySignedId; }
-            set { SetField(ref __CompanySignedId, value); }
+            set { SetField(ref __CompanySignedId, value, "CompanySignedId"); }
         }
         private System.DateTime? __CompanySignedDate;
         [EntityField(true)]
         public System.DateTime? CompanySignedDate
         {
             get { return __CompanySignedDate; }
-            set { SetField(ref __CompanySignedDate, value); }
+            set { SetField(ref __CompanySignedDate, value, "CompanySignedDate"); }
         }
         private System.String __CustomerSignedId;
         [EntityField(true)]
         public System.String CustomerSignedId
         {
             get { return __CustomerSignedId; }
-            set { SetField(ref __CustomerSignedId, value); }
+            set { SetField(ref __CustomerSignedId, value, "CustomerSignedId"); }
         }
         private System.String __CustomerSignedTitle;
         [EntityField(true)]
         public System.String CustomerSignedTitle
         {
             get { return __CustomerSignedTitle; }
-            set { SetField(ref __CustomerSignedTitle, value); }
+            set { SetField(ref __CustomerSignedTitle, value, "CustomerSignedTitle"); }
         }
         private System.DateTime? __CustomerSignedDate;
         [EntityField(true)]
         public System.DateTime? CustomerSignedDate
         {
             get { return __CustomerSignedDate; }
-            set { SetField(ref __CustomerSignedDate, value); }
+            set { SetField(ref __CustomerSignedDate, value, "CustomerSignedDate"); }
         }
         private System.String __SpecialTerms;
         [EntityField(true)]
         public System.String SpecialTerms
         {
             get { return __SpecialTerms; }
-            set { SetField(ref __SpecialTerms, value); }
+            set { SetField(ref __SpecialTerms, value, "SpecialTerms"); }
         }
         private System.String __ActivatedById;
         [EntityField(true)]
         public System.String ActivatedById
         {
             get { return __ActivatedById; }
-            set { SetField(ref __ActivatedById, value); }
+            set { SetField(ref __ActivatedById, value, "ActivatedById"); }
         }
         private System.DateTime? __ActivatedDate;
         [EntityField(true)]
         public System.DateTime? ActivatedDate
         {
             get { return __ActivatedDate; }
-            set { SetField(ref __ActivatedDate, value); }
+            set { SetField(ref __ActivatedDate, value, "ActivatedDate"); }
         }
         private PickContractStatusCode __StatusCode;
         [EntityField(false)]
         public PickContractStatusCode StatusCode
         {
             get { return __StatusCode; }
-            set { SetField(ref __StatusCode, value); }
+            set { SetField(ref __StatusCode, value, "StatusCode"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ContractNumber;
         [EntityField(false)]
         public System.String ContractNumber
         {
             get { return __ContractNumber; }
-            set { SetField(ref __ContractNumber, value); }
+            set { SetField(ref __ContractNumber, value, "ContractNumber"); }
         }
         private System.DateTime? __LastApprovedDate;
         [EntityField(true)]
         public System.DateTime? LastApprovedDate
         {
             get { return __LastApprovedDate; }
-            set { SetField(ref __LastApprovedDate, value); }
+            set { SetField(ref __LastApprovedDate, value, "LastApprovedDate"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime? __LastActivityDate;
         [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
-            set { SetField(ref __LastActivityDate, value); }
+            set { SetField(ref __LastActivityDate, value, "LastActivityDate"); }
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
@@ -20470,18 +22020,43 @@ namespace LinqToSalesforce
     [EntityName("ContractContactRole")]
     public class ContractContactRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContractContactRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContractContactRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -20490,94 +22065,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ContractId;
         [EntityField(false)]
         public System.String ContractId
         {
             get { return __ContractId; }
-            set { SetField(ref __ContractId, value); }
+            set { SetField(ref __ContractId, value, "ContractId"); }
         }
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private PickContractContactRoleRole __Role;
         [EntityField(true)]
         public PickContractContactRoleRole Role
         {
             get { return __Role; }
-            set { SetField(ref __Role, value); }
+            set { SetField(ref __Role, value, "Role"); }
         }
         private System.Boolean __IsPrimary;
         [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
-            set { SetField(ref __IsPrimary, value); }
+            set { SetField(ref __IsPrimary, value, "IsPrimary"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("ContractFeed")]
     public class ContractFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContractFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContractFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -20586,56 +22186,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickContractFeedType __Type;
         [EntityField(true)]
         public PickContractFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -20653,18 +22253,43 @@ namespace LinqToSalesforce
     [EntityName("ContractHistory")]
     public class ContractHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContractHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContractHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -20673,73 +22298,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ContractId;
         [EntityField(false)]
         public System.String ContractId
         {
             get { return __ContractId; }
-            set { SetField(ref __ContractId, value); }
+            set { SetField(ref __ContractId, value, "ContractId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickContractHistoryField __Field;
         [EntityField(false)]
         public PickContractHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("ContractStatus")]
     public class ContractStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContractStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContractStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -20748,87 +22398,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private System.Boolean __IsDefault;
         [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
-            set { SetField(ref __IsDefault, value); }
+            set { SetField(ref __IsDefault, value, "IsDefault"); }
         }
         private PickContractStatusStatusCode __StatusCode;
         [EntityField(true)]
         public PickContractStatusStatusCode StatusCode
         {
             get { return __StatusCode; }
-            set { SetField(ref __StatusCode, value); }
+            set { SetField(ref __StatusCode, value, "StatusCode"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("CronTrigger")]
     public class CronTrigger : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CronTrigger(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CronTrigger()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -20837,108 +22512,133 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.DateTime? __NextFireTime;
         [EntityField(true)]
         public System.DateTime? NextFireTime
         {
             get { return __NextFireTime; }
-            set { SetField(ref __NextFireTime, value); }
+            set { SetField(ref __NextFireTime, value, "NextFireTime"); }
         }
         private System.DateTime? __PreviousFireTime;
         [EntityField(true)]
         public System.DateTime? PreviousFireTime
         {
             get { return __PreviousFireTime; }
-            set { SetField(ref __PreviousFireTime, value); }
+            set { SetField(ref __PreviousFireTime, value, "PreviousFireTime"); }
         }
         private System.String __State;
         [EntityField(true)]
         public System.String State
         {
             get { return __State; }
-            set { SetField(ref __State, value); }
+            set { SetField(ref __State, value, "State"); }
         }
         private System.DateTime? __StartTime;
         [EntityField(true)]
         public System.DateTime? StartTime
         {
             get { return __StartTime; }
-            set { SetField(ref __StartTime, value); }
+            set { SetField(ref __StartTime, value, "StartTime"); }
         }
         private System.DateTime? __EndTime;
         [EntityField(true)]
         public System.DateTime? EndTime
         {
             get { return __EndTime; }
-            set { SetField(ref __EndTime, value); }
+            set { SetField(ref __EndTime, value, "EndTime"); }
         }
         private System.String __CronExpression;
         [EntityField(true)]
         public System.String CronExpression
         {
             get { return __CronExpression; }
-            set { SetField(ref __CronExpression, value); }
+            set { SetField(ref __CronExpression, value, "CronExpression"); }
         }
         private PickCronTriggerTimeZoneSidKey __TimeZoneSidKey;
         [EntityField(true)]
         public PickCronTriggerTimeZoneSidKey TimeZoneSidKey
         {
             get { return __TimeZoneSidKey; }
-            set { SetField(ref __TimeZoneSidKey, value); }
+            set { SetField(ref __TimeZoneSidKey, value, "TimeZoneSidKey"); }
         }
         private System.String __OwnerId;
         [EntityField(true)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Int32? __TimesTriggered;
         [EntityField(true)]
         public System.Int32? TimesTriggered
         {
             get { return __TimesTriggered; }
-            set { SetField(ref __TimesTriggered, value); }
+            set { SetField(ref __TimesTriggered, value, "TimesTriggered"); }
         }
     }
     [EntityName("Dashboard")]
     public class Dashboard : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Dashboard(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Dashboard()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -20947,161 +22647,161 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __FolderId;
         [EntityField(false)]
         public System.String FolderId
         {
             get { return __FolderId; }
-            set { SetField(ref __FolderId, value); }
+            set { SetField(ref __FolderId, value, "FolderId"); }
         }
         private System.String __Title;
         [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.String __DeveloperName;
         [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
-            set { SetField(ref __DeveloperName, value); }
+            set { SetField(ref __DeveloperName, value, "DeveloperName"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickDashboardLeftSize __LeftSize;
         [EntityField(false)]
         public PickDashboardLeftSize LeftSize
         {
             get { return __LeftSize; }
-            set { SetField(ref __LeftSize, value); }
+            set { SetField(ref __LeftSize, value, "LeftSize"); }
         }
         private PickDashboardMiddleSize __MiddleSize;
         [EntityField(true)]
         public PickDashboardMiddleSize MiddleSize
         {
             get { return __MiddleSize; }
-            set { SetField(ref __MiddleSize, value); }
+            set { SetField(ref __MiddleSize, value, "MiddleSize"); }
         }
         private PickDashboardRightSize __RightSize;
         [EntityField(false)]
         public PickDashboardRightSize RightSize
         {
             get { return __RightSize; }
-            set { SetField(ref __RightSize, value); }
+            set { SetField(ref __RightSize, value, "RightSize"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __RunningUserId;
         [EntityField(false)]
         public System.String RunningUserId
         {
             get { return __RunningUserId; }
-            set { SetField(ref __RunningUserId, value); }
+            set { SetField(ref __RunningUserId, value, "RunningUserId"); }
         }
         private System.Int32 __TitleColor;
         [EntityField(false)]
         public System.Int32 TitleColor
         {
             get { return __TitleColor; }
-            set { SetField(ref __TitleColor, value); }
+            set { SetField(ref __TitleColor, value, "TitleColor"); }
         }
         private System.Int32 __TitleSize;
         [EntityField(false)]
         public System.Int32 TitleSize
         {
             get { return __TitleSize; }
-            set { SetField(ref __TitleSize, value); }
+            set { SetField(ref __TitleSize, value, "TitleSize"); }
         }
         private System.Int32 __TextColor;
         [EntityField(false)]
         public System.Int32 TextColor
         {
             get { return __TextColor; }
-            set { SetField(ref __TextColor, value); }
+            set { SetField(ref __TextColor, value, "TextColor"); }
         }
         private System.Int32 __BackgroundStart;
         [EntityField(false)]
         public System.Int32 BackgroundStart
         {
             get { return __BackgroundStart; }
-            set { SetField(ref __BackgroundStart, value); }
+            set { SetField(ref __BackgroundStart, value, "BackgroundStart"); }
         }
         private System.Int32 __BackgroundEnd;
         [EntityField(false)]
         public System.Int32 BackgroundEnd
         {
             get { return __BackgroundEnd; }
-            set { SetField(ref __BackgroundEnd, value); }
+            set { SetField(ref __BackgroundEnd, value, "BackgroundEnd"); }
         }
         private PickDashboardBackgroundDirection __BackgroundDirection;
         [EntityField(false)]
         public PickDashboardBackgroundDirection BackgroundDirection
         {
             get { return __BackgroundDirection; }
-            set { SetField(ref __BackgroundDirection, value); }
+            set { SetField(ref __BackgroundDirection, value, "BackgroundDirection"); }
         }
         private PickDashboardType __Type;
         [EntityField(false)]
         public PickDashboardType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -21119,18 +22819,43 @@ namespace LinqToSalesforce
     [EntityName("DashboardFeed")]
     public class DashboardFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private DashboardFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public DashboardFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -21139,56 +22864,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickDashboardFeedType __Type;
         [EntityField(true)]
         public PickDashboardFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -21206,18 +22931,43 @@ namespace LinqToSalesforce
     [EntityName("Document")]
     public class Document : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Document(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Document()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -21226,171 +22976,196 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __FolderId;
         [EntityField(false)]
         public System.String FolderId
         {
             get { return __FolderId; }
-            set { SetField(ref __FolderId, value); }
+            set { SetField(ref __FolderId, value, "FolderId"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __DeveloperName;
         [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
-            set { SetField(ref __DeveloperName, value); }
+            set { SetField(ref __DeveloperName, value, "DeveloperName"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __ContentType;
         [EntityField(true)]
         public System.String ContentType
         {
             get { return __ContentType; }
-            set { SetField(ref __ContentType, value); }
+            set { SetField(ref __ContentType, value, "ContentType"); }
         }
         private System.String __Type;
         [EntityField(true)]
         public System.String Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.Boolean __IsPublic;
         [EntityField(false)]
         public System.Boolean IsPublic
         {
             get { return __IsPublic; }
-            set { SetField(ref __IsPublic, value); }
+            set { SetField(ref __IsPublic, value, "IsPublic"); }
         }
         private System.Int32 __BodyLength;
         [EntityField(false)]
         public System.Int32 BodyLength
         {
             get { return __BodyLength; }
-            set { SetField(ref __BodyLength, value); }
+            set { SetField(ref __BodyLength, value, "BodyLength"); }
         }
         private System.String __Body;
         [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.String __Url;
         [EntityField(true)]
         public System.String Url
         {
             get { return __Url; }
-            set { SetField(ref __Url, value); }
+            set { SetField(ref __Url, value, "Url"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __Keywords;
         [EntityField(true)]
         public System.String Keywords
         {
             get { return __Keywords; }
-            set { SetField(ref __Keywords, value); }
+            set { SetField(ref __Keywords, value, "Keywords"); }
         }
         private System.Boolean __IsInternalUseOnly;
         [EntityField(false)]
         public System.Boolean IsInternalUseOnly
         {
             get { return __IsInternalUseOnly; }
-            set { SetField(ref __IsInternalUseOnly, value); }
+            set { SetField(ref __IsInternalUseOnly, value, "IsInternalUseOnly"); }
         }
         private System.String __AuthorId;
         [EntityField(false)]
         public System.String AuthorId
         {
             get { return __AuthorId; }
-            set { SetField(ref __AuthorId, value); }
+            set { SetField(ref __AuthorId, value, "AuthorId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsBodySearchable;
         [EntityField(false)]
         public System.Boolean IsBodySearchable
         {
             get { return __IsBodySearchable; }
-            set { SetField(ref __IsBodySearchable, value); }
+            set { SetField(ref __IsBodySearchable, value, "IsBodySearchable"); }
         }
     }
     [EntityName("DocumentAttachmentMap")]
     public class DocumentAttachmentMap : ISalesforceEntity
     {
+    [JsonConstructor]
+        private DocumentAttachmentMap(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public DocumentAttachmentMap()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -21399,59 +23174,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __DocumentId;
         [EntityField(false)]
         public System.String DocumentId
         {
             get { return __DocumentId; }
-            set { SetField(ref __DocumentId, value); }
+            set { SetField(ref __DocumentId, value, "DocumentId"); }
         }
         private System.Int32 __DocumentSequence;
         [EntityField(false)]
         public System.Int32 DocumentSequence
         {
             get { return __DocumentSequence; }
-            set { SetField(ref __DocumentSequence, value); }
+            set { SetField(ref __DocumentSequence, value, "DocumentSequence"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
     }
     [EntityName("EmailMessage")]
     public class EmailMessage : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailMessage(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailMessage()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -21460,154 +23260,154 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __ActivityId;
         [EntityField(true)]
         public System.String ActivityId
         {
             get { return __ActivityId; }
-            set { SetField(ref __ActivityId, value); }
+            set { SetField(ref __ActivityId, value, "ActivityId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __TextBody;
         [EntityField(true)]
         public System.String TextBody
         {
             get { return __TextBody; }
-            set { SetField(ref __TextBody, value); }
+            set { SetField(ref __TextBody, value, "TextBody"); }
         }
         private System.String __HtmlBody;
         [EntityField(true)]
         public System.String HtmlBody
         {
             get { return __HtmlBody; }
-            set { SetField(ref __HtmlBody, value); }
+            set { SetField(ref __HtmlBody, value, "HtmlBody"); }
         }
         private System.String __Headers;
         [EntityField(true)]
         public System.String Headers
         {
             get { return __Headers; }
-            set { SetField(ref __Headers, value); }
+            set { SetField(ref __Headers, value, "Headers"); }
         }
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
-            set { SetField(ref __Subject, value); }
+            set { SetField(ref __Subject, value, "Subject"); }
         }
         private System.String __FromName;
         [EntityField(true)]
         public System.String FromName
         {
             get { return __FromName; }
-            set { SetField(ref __FromName, value); }
+            set { SetField(ref __FromName, value, "FromName"); }
         }
         private System.String __FromAddress;
         [EntityField(true)]
         public System.String FromAddress
         {
             get { return __FromAddress; }
-            set { SetField(ref __FromAddress, value); }
+            set { SetField(ref __FromAddress, value, "FromAddress"); }
         }
         private System.String __ToAddress;
         [EntityField(true)]
         public System.String ToAddress
         {
             get { return __ToAddress; }
-            set { SetField(ref __ToAddress, value); }
+            set { SetField(ref __ToAddress, value, "ToAddress"); }
         }
         private System.String __CcAddress;
         [EntityField(true)]
         public System.String CcAddress
         {
             get { return __CcAddress; }
-            set { SetField(ref __CcAddress, value); }
+            set { SetField(ref __CcAddress, value, "CcAddress"); }
         }
         private System.String __BccAddress;
         [EntityField(true)]
         public System.String BccAddress
         {
             get { return __BccAddress; }
-            set { SetField(ref __BccAddress, value); }
+            set { SetField(ref __BccAddress, value, "BccAddress"); }
         }
         private System.Boolean __Incoming;
         [EntityField(false)]
         public System.Boolean Incoming
         {
             get { return __Incoming; }
-            set { SetField(ref __Incoming, value); }
+            set { SetField(ref __Incoming, value, "Incoming"); }
         }
         private System.Boolean __HasAttachment;
         [EntityField(false)]
         public System.Boolean HasAttachment
         {
             get { return __HasAttachment; }
-            set { SetField(ref __HasAttachment, value); }
+            set { SetField(ref __HasAttachment, value, "HasAttachment"); }
         }
         private PickEmailMessageStatus __Status;
         [EntityField(false)]
         public PickEmailMessageStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.DateTime? __MessageDate;
         [EntityField(true)]
         public System.DateTime? MessageDate
         {
             get { return __MessageDate; }
-            set { SetField(ref __MessageDate, value); }
+            set { SetField(ref __MessageDate, value, "MessageDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -21631,18 +23431,43 @@ namespace LinqToSalesforce
     [EntityName("EmailServicesAddress")]
     public class EmailServicesAddress : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailServicesAddress(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailServicesAddress()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -21651,101 +23476,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.String __LocalPart;
         [EntityField(false)]
         public System.String LocalPart
         {
             get { return __LocalPart; }
-            set { SetField(ref __LocalPart, value); }
+            set { SetField(ref __LocalPart, value, "LocalPart"); }
         }
         private System.String __EmailDomainName;
         [EntityField(true)]
         public System.String EmailDomainName
         {
             get { return __EmailDomainName; }
-            set { SetField(ref __EmailDomainName, value); }
+            set { SetField(ref __EmailDomainName, value, "EmailDomainName"); }
         }
         private System.String __AuthorizedSenders;
         [EntityField(true)]
         public System.String AuthorizedSenders
         {
             get { return __AuthorizedSenders; }
-            set { SetField(ref __AuthorizedSenders, value); }
+            set { SetField(ref __AuthorizedSenders, value, "AuthorizedSenders"); }
         }
         private System.String __RunAsUserId;
         [EntityField(false)]
         public System.String RunAsUserId
         {
             get { return __RunAsUserId; }
-            set { SetField(ref __RunAsUserId, value); }
+            set { SetField(ref __RunAsUserId, value, "RunAsUserId"); }
         }
         private System.String __FunctionId;
         [EntityField(false)]
         public System.String FunctionId
         {
             get { return __FunctionId; }
-            set { SetField(ref __FunctionId, value); }
+            set { SetField(ref __FunctionId, value, "FunctionId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("EmailServicesFunction")]
     public class EmailServicesFunction : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailServicesFunction(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailServicesFunction()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -21754,154 +23604,154 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.String __FunctionName;
         [EntityField(false)]
         public System.String FunctionName
         {
             get { return __FunctionName; }
-            set { SetField(ref __FunctionName, value); }
+            set { SetField(ref __FunctionName, value, "FunctionName"); }
         }
         private System.String __AuthorizedSenders;
         [EntityField(true)]
         public System.String AuthorizedSenders
         {
             get { return __AuthorizedSenders; }
-            set { SetField(ref __AuthorizedSenders, value); }
+            set { SetField(ref __AuthorizedSenders, value, "AuthorizedSenders"); }
         }
         private System.Boolean __IsAuthenticationRequired;
         [EntityField(false)]
         public System.Boolean IsAuthenticationRequired
         {
             get { return __IsAuthenticationRequired; }
-            set { SetField(ref __IsAuthenticationRequired, value); }
+            set { SetField(ref __IsAuthenticationRequired, value, "IsAuthenticationRequired"); }
         }
         private System.Boolean __IsTlsRequired;
         [EntityField(false)]
         public System.Boolean IsTlsRequired
         {
             get { return __IsTlsRequired; }
-            set { SetField(ref __IsTlsRequired, value); }
+            set { SetField(ref __IsTlsRequired, value, "IsTlsRequired"); }
         }
         private PickEmailServicesFunctionAttachmentOption __AttachmentOption;
         [EntityField(false)]
         public PickEmailServicesFunctionAttachmentOption AttachmentOption
         {
             get { return __AttachmentOption; }
-            set { SetField(ref __AttachmentOption, value); }
+            set { SetField(ref __AttachmentOption, value, "AttachmentOption"); }
         }
         private System.String __ApexClassId;
         [EntityField(true)]
         public System.String ApexClassId
         {
             get { return __ApexClassId; }
-            set { SetField(ref __ApexClassId, value); }
+            set { SetField(ref __ApexClassId, value, "ApexClassId"); }
         }
         private PickEmailServicesFunctionOverLimitAction __OverLimitAction;
         [EntityField(true)]
         public PickEmailServicesFunctionOverLimitAction OverLimitAction
         {
             get { return __OverLimitAction; }
-            set { SetField(ref __OverLimitAction, value); }
+            set { SetField(ref __OverLimitAction, value, "OverLimitAction"); }
         }
         private PickEmailServicesFunctionFunctionInactiveAction __FunctionInactiveAction;
         [EntityField(true)]
         public PickEmailServicesFunctionFunctionInactiveAction FunctionInactiveAction
         {
             get { return __FunctionInactiveAction; }
-            set { SetField(ref __FunctionInactiveAction, value); }
+            set { SetField(ref __FunctionInactiveAction, value, "FunctionInactiveAction"); }
         }
         private PickEmailServicesFunctionAddressInactiveAction __AddressInactiveAction;
         [EntityField(true)]
         public PickEmailServicesFunctionAddressInactiveAction AddressInactiveAction
         {
             get { return __AddressInactiveAction; }
-            set { SetField(ref __AddressInactiveAction, value); }
+            set { SetField(ref __AddressInactiveAction, value, "AddressInactiveAction"); }
         }
         private PickEmailServicesFunctionAuthenticationFailureAction __AuthenticationFailureAction;
         [EntityField(true)]
         public PickEmailServicesFunctionAuthenticationFailureAction AuthenticationFailureAction
         {
             get { return __AuthenticationFailureAction; }
-            set { SetField(ref __AuthenticationFailureAction, value); }
+            set { SetField(ref __AuthenticationFailureAction, value, "AuthenticationFailureAction"); }
         }
         private PickEmailServicesFunctionAuthorizationFailureAction __AuthorizationFailureAction;
         [EntityField(true)]
         public PickEmailServicesFunctionAuthorizationFailureAction AuthorizationFailureAction
         {
             get { return __AuthorizationFailureAction; }
-            set { SetField(ref __AuthorizationFailureAction, value); }
+            set { SetField(ref __AuthorizationFailureAction, value, "AuthorizationFailureAction"); }
         }
         private System.Boolean __IsTextTruncated;
         [EntityField(false)]
         public System.Boolean IsTextTruncated
         {
             get { return __IsTextTruncated; }
-            set { SetField(ref __IsTextTruncated, value); }
+            set { SetField(ref __IsTextTruncated, value, "IsTextTruncated"); }
         }
         private System.Boolean __IsErrorRoutingEnabled;
         [EntityField(false)]
         public System.Boolean IsErrorRoutingEnabled
         {
             get { return __IsErrorRoutingEnabled; }
-            set { SetField(ref __IsErrorRoutingEnabled, value); }
+            set { SetField(ref __IsErrorRoutingEnabled, value, "IsErrorRoutingEnabled"); }
         }
         private System.String __ErrorRoutingAddress;
         [EntityField(true)]
         public System.String ErrorRoutingAddress
         {
             get { return __ErrorRoutingAddress; }
-            set { SetField(ref __ErrorRoutingAddress, value); }
+            set { SetField(ref __ErrorRoutingAddress, value, "ErrorRoutingAddress"); }
         }
         private System.Boolean __IsTextAttachmentsAsBinary;
         [EntityField(false)]
         public System.Boolean IsTextAttachmentsAsBinary
         {
             get { return __IsTextAttachmentsAsBinary; }
-            set { SetField(ref __IsTextAttachmentsAsBinary, value); }
+            set { SetField(ref __IsTextAttachmentsAsBinary, value, "IsTextAttachmentsAsBinary"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FunctionId")]
@@ -21913,18 +23763,43 @@ namespace LinqToSalesforce
     [EntityName("EmailStatus")]
     public class EmailStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -21933,94 +23808,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __TaskId;
         [EntityField(false)]
         public System.String TaskId
         {
             get { return __TaskId; }
-            set { SetField(ref __TaskId, value); }
+            set { SetField(ref __TaskId, value, "TaskId"); }
         }
         private System.String __WhoId;
         [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
-            set { SetField(ref __WhoId, value); }
+            set { SetField(ref __WhoId, value, "WhoId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Int32 __TimesOpened;
         [EntityField(false)]
         public System.Int32 TimesOpened
         {
             get { return __TimesOpened; }
-            set { SetField(ref __TimesOpened, value); }
+            set { SetField(ref __TimesOpened, value, "TimesOpened"); }
         }
         private System.DateTime? __FirstOpenDate;
         [EntityField(true)]
         public System.DateTime? FirstOpenDate
         {
             get { return __FirstOpenDate; }
-            set { SetField(ref __FirstOpenDate, value); }
+            set { SetField(ref __FirstOpenDate, value, "FirstOpenDate"); }
         }
         private System.DateTime? __LastOpenDate;
         [EntityField(true)]
         public System.DateTime? LastOpenDate
         {
             get { return __LastOpenDate; }
-            set { SetField(ref __LastOpenDate, value); }
+            set { SetField(ref __LastOpenDate, value, "LastOpenDate"); }
         }
         private System.String __EmailTemplateName;
         [EntityField(true)]
         public System.String EmailTemplateName
         {
             get { return __EmailTemplateName; }
-            set { SetField(ref __EmailTemplateName, value); }
+            set { SetField(ref __EmailTemplateName, value, "EmailTemplateName"); }
         }
     }
     [EntityName("EmailTemplate")]
     public class EmailTemplate : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailTemplate(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailTemplate()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -22029,168 +23929,168 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __DeveloperName;
         [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
-            set { SetField(ref __DeveloperName, value); }
+            set { SetField(ref __DeveloperName, value, "DeveloperName"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.String __FolderId;
         [EntityField(false)]
         public System.String FolderId
         {
             get { return __FolderId; }
-            set { SetField(ref __FolderId, value); }
+            set { SetField(ref __FolderId, value, "FolderId"); }
         }
         private System.String __BrandTemplateId;
         [EntityField(true)]
         public System.String BrandTemplateId
         {
             get { return __BrandTemplateId; }
-            set { SetField(ref __BrandTemplateId, value); }
+            set { SetField(ref __BrandTemplateId, value, "BrandTemplateId"); }
         }
         private PickEmailTemplateTemplateStyle __TemplateStyle;
         [EntityField(false)]
         public PickEmailTemplateTemplateStyle TemplateStyle
         {
             get { return __TemplateStyle; }
-            set { SetField(ref __TemplateStyle, value); }
+            set { SetField(ref __TemplateStyle, value, "TemplateStyle"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private PickEmailTemplateTemplateType __TemplateType;
         [EntityField(false)]
         public PickEmailTemplateTemplateType TemplateType
         {
             get { return __TemplateType; }
-            set { SetField(ref __TemplateType, value); }
+            set { SetField(ref __TemplateType, value, "TemplateType"); }
         }
         private PickEmailTemplateEncoding __Encoding;
         [EntityField(true)]
         public PickEmailTemplateEncoding Encoding
         {
             get { return __Encoding; }
-            set { SetField(ref __Encoding, value); }
+            set { SetField(ref __Encoding, value, "Encoding"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
-            set { SetField(ref __Subject, value); }
+            set { SetField(ref __Subject, value, "Subject"); }
         }
         private System.String __HtmlValue;
         [EntityField(true)]
         public System.String HtmlValue
         {
             get { return __HtmlValue; }
-            set { SetField(ref __HtmlValue, value); }
+            set { SetField(ref __HtmlValue, value, "HtmlValue"); }
         }
         private System.String __Body;
         [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.Int32? __TimesUsed;
         [EntityField(true)]
         public System.Int32? TimesUsed
         {
             get { return __TimesUsed; }
-            set { SetField(ref __TimesUsed, value); }
+            set { SetField(ref __TimesUsed, value, "TimesUsed"); }
         }
         private System.DateTime? __LastUsedDate;
         [EntityField(true)]
         public System.DateTime? LastUsedDate
         {
             get { return __LastUsedDate; }
-            set { SetField(ref __LastUsedDate, value); }
+            set { SetField(ref __LastUsedDate, value, "LastUsedDate"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Double? __ApiVersion;
         [EntityField(true)]
         public System.Double? ApiVersion
         {
             get { return __ApiVersion; }
-            set { SetField(ref __ApiVersion, value); }
+            set { SetField(ref __ApiVersion, value, "ApiVersion"); }
         }
         private System.String __Markup;
         [EntityField(true)]
         public System.String Markup
         {
             get { return __Markup; }
-            set { SetField(ref __Markup, value); }
+            set { SetField(ref __Markup, value, "Markup"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -22202,18 +24102,43 @@ namespace LinqToSalesforce
     [EntityName("EntitySubscription")]
     public class EntitySubscription : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EntitySubscription(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EntitySubscription()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -22222,59 +24147,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __SubscriberId;
         [EntityField(false)]
         public System.String SubscriberId
         {
             get { return __SubscriberId; }
-            set { SetField(ref __SubscriberId, value); }
+            set { SetField(ref __SubscriberId, value, "SubscriberId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("Event")]
     public class Event : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Event(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Event()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -22283,273 +24233,273 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __WhoId;
         [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
-            set { SetField(ref __WhoId, value); }
+            set { SetField(ref __WhoId, value, "WhoId"); }
         }
         private System.String __WhatId;
         [EntityField(true)]
         public System.String WhatId
         {
             get { return __WhatId; }
-            set { SetField(ref __WhatId, value); }
+            set { SetField(ref __WhatId, value, "WhatId"); }
         }
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
-            set { SetField(ref __Subject, value); }
+            set { SetField(ref __Subject, value, "Subject"); }
         }
         private System.String __Location;
         [EntityField(true)]
         public System.String Location
         {
             get { return __Location; }
-            set { SetField(ref __Location, value); }
+            set { SetField(ref __Location, value, "Location"); }
         }
         private System.Boolean __IsAllDayEvent;
         [EntityField(false)]
         public System.Boolean IsAllDayEvent
         {
             get { return __IsAllDayEvent; }
-            set { SetField(ref __IsAllDayEvent, value); }
+            set { SetField(ref __IsAllDayEvent, value, "IsAllDayEvent"); }
         }
         private System.DateTime? __ActivityDateTime;
         [EntityField(true)]
         public System.DateTime? ActivityDateTime
         {
             get { return __ActivityDateTime; }
-            set { SetField(ref __ActivityDateTime, value); }
+            set { SetField(ref __ActivityDateTime, value, "ActivityDateTime"); }
         }
         private System.DateTime? __ActivityDate;
         [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
-            set { SetField(ref __ActivityDate, value); }
+            set { SetField(ref __ActivityDate, value, "ActivityDate"); }
         }
         private System.Int32? __DurationInMinutes;
         [EntityField(true)]
         public System.Int32? DurationInMinutes
         {
             get { return __DurationInMinutes; }
-            set { SetField(ref __DurationInMinutes, value); }
+            set { SetField(ref __DurationInMinutes, value, "DurationInMinutes"); }
         }
         private System.DateTime? __StartDateTime;
         [EntityField(true)]
         public System.DateTime? StartDateTime
         {
             get { return __StartDateTime; }
-            set { SetField(ref __StartDateTime, value); }
+            set { SetField(ref __StartDateTime, value, "StartDateTime"); }
         }
         private System.DateTime? __EndDateTime;
         [EntityField(true)]
         public System.DateTime? EndDateTime
         {
             get { return __EndDateTime; }
-            set { SetField(ref __EndDateTime, value); }
+            set { SetField(ref __EndDateTime, value, "EndDateTime"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.Boolean __IsPrivate;
         [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
-            set { SetField(ref __IsPrivate, value); }
+            set { SetField(ref __IsPrivate, value, "IsPrivate"); }
         }
         private PickEventShowAs __ShowAs;
         [EntityField(true)]
         public PickEventShowAs ShowAs
         {
             get { return __ShowAs; }
-            set { SetField(ref __ShowAs, value); }
+            set { SetField(ref __ShowAs, value, "ShowAs"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.Boolean __IsChild;
         [EntityField(false)]
         public System.Boolean IsChild
         {
             get { return __IsChild; }
-            set { SetField(ref __IsChild, value); }
+            set { SetField(ref __IsChild, value, "IsChild"); }
         }
         private System.Boolean __IsGroupEvent;
         [EntityField(false)]
         public System.Boolean IsGroupEvent
         {
             get { return __IsGroupEvent; }
-            set { SetField(ref __IsGroupEvent, value); }
+            set { SetField(ref __IsGroupEvent, value, "IsGroupEvent"); }
         }
         private PickEventGroupEventType __GroupEventType;
         [EntityField(true)]
         public PickEventGroupEventType GroupEventType
         {
             get { return __GroupEventType; }
-            set { SetField(ref __GroupEventType, value); }
+            set { SetField(ref __GroupEventType, value, "GroupEventType"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsArchived;
         [EntityField(false)]
         public System.Boolean IsArchived
         {
             get { return __IsArchived; }
-            set { SetField(ref __IsArchived, value); }
+            set { SetField(ref __IsArchived, value, "IsArchived"); }
         }
         private System.String __RecurrenceActivityId;
         [EntityField(true)]
         public System.String RecurrenceActivityId
         {
             get { return __RecurrenceActivityId; }
-            set { SetField(ref __RecurrenceActivityId, value); }
+            set { SetField(ref __RecurrenceActivityId, value, "RecurrenceActivityId"); }
         }
         private System.Boolean __IsRecurrence;
         [EntityField(false)]
         public System.Boolean IsRecurrence
         {
             get { return __IsRecurrence; }
-            set { SetField(ref __IsRecurrence, value); }
+            set { SetField(ref __IsRecurrence, value, "IsRecurrence"); }
         }
         private System.DateTime? __RecurrenceStartDateTime;
         [EntityField(true)]
         public System.DateTime? RecurrenceStartDateTime
         {
             get { return __RecurrenceStartDateTime; }
-            set { SetField(ref __RecurrenceStartDateTime, value); }
+            set { SetField(ref __RecurrenceStartDateTime, value, "RecurrenceStartDateTime"); }
         }
         private System.DateTime? __RecurrenceEndDateOnly;
         [EntityField(true)]
         public System.DateTime? RecurrenceEndDateOnly
         {
             get { return __RecurrenceEndDateOnly; }
-            set { SetField(ref __RecurrenceEndDateOnly, value); }
+            set { SetField(ref __RecurrenceEndDateOnly, value, "RecurrenceEndDateOnly"); }
         }
         private PickEventRecurrenceTimeZoneSidKey __RecurrenceTimeZoneSidKey;
         [EntityField(true)]
         public PickEventRecurrenceTimeZoneSidKey RecurrenceTimeZoneSidKey
         {
             get { return __RecurrenceTimeZoneSidKey; }
-            set { SetField(ref __RecurrenceTimeZoneSidKey, value); }
+            set { SetField(ref __RecurrenceTimeZoneSidKey, value, "RecurrenceTimeZoneSidKey"); }
         }
         private PickEventRecurrenceType __RecurrenceType;
         [EntityField(true)]
         public PickEventRecurrenceType RecurrenceType
         {
             get { return __RecurrenceType; }
-            set { SetField(ref __RecurrenceType, value); }
+            set { SetField(ref __RecurrenceType, value, "RecurrenceType"); }
         }
         private System.Int32? __RecurrenceInterval;
         [EntityField(true)]
         public System.Int32? RecurrenceInterval
         {
             get { return __RecurrenceInterval; }
-            set { SetField(ref __RecurrenceInterval, value); }
+            set { SetField(ref __RecurrenceInterval, value, "RecurrenceInterval"); }
         }
         private System.Int32? __RecurrenceDayOfWeekMask;
         [EntityField(true)]
         public System.Int32? RecurrenceDayOfWeekMask
         {
             get { return __RecurrenceDayOfWeekMask; }
-            set { SetField(ref __RecurrenceDayOfWeekMask, value); }
+            set { SetField(ref __RecurrenceDayOfWeekMask, value, "RecurrenceDayOfWeekMask"); }
         }
         private System.Int32? __RecurrenceDayOfMonth;
         [EntityField(true)]
         public System.Int32? RecurrenceDayOfMonth
         {
             get { return __RecurrenceDayOfMonth; }
-            set { SetField(ref __RecurrenceDayOfMonth, value); }
+            set { SetField(ref __RecurrenceDayOfMonth, value, "RecurrenceDayOfMonth"); }
         }
         private PickEventRecurrenceInstance __RecurrenceInstance;
         [EntityField(true)]
         public PickEventRecurrenceInstance RecurrenceInstance
         {
             get { return __RecurrenceInstance; }
-            set { SetField(ref __RecurrenceInstance, value); }
+            set { SetField(ref __RecurrenceInstance, value, "RecurrenceInstance"); }
         }
         private PickEventRecurrenceMonthOfYear __RecurrenceMonthOfYear;
         [EntityField(true)]
         public PickEventRecurrenceMonthOfYear RecurrenceMonthOfYear
         {
             get { return __RecurrenceMonthOfYear; }
-            set { SetField(ref __RecurrenceMonthOfYear, value); }
+            set { SetField(ref __RecurrenceMonthOfYear, value, "RecurrenceMonthOfYear"); }
         }
         private System.DateTime? __ReminderDateTime;
         [EntityField(true)]
         public System.DateTime? ReminderDateTime
         {
             get { return __ReminderDateTime; }
-            set { SetField(ref __ReminderDateTime, value); }
+            set { SetField(ref __ReminderDateTime, value, "ReminderDateTime"); }
         }
         private System.Boolean __IsReminderSet;
         [EntityField(false)]
         public System.Boolean IsReminderSet
         {
             get { return __IsReminderSet; }
-            set { SetField(ref __IsReminderSet, value); }
+            set { SetField(ref __IsReminderSet, value, "IsReminderSet"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -22585,18 +24535,43 @@ namespace LinqToSalesforce
     [EntityName("EventAttendee")]
     public class EventAttendee : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EventAttendee(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EventAttendee()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -22605,101 +24580,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __EventId;
         [EntityField(false)]
         public System.String EventId
         {
             get { return __EventId; }
-            set { SetField(ref __EventId, value); }
+            set { SetField(ref __EventId, value, "EventId"); }
         }
         private System.String __AttendeeId;
         [EntityField(false)]
         public System.String AttendeeId
         {
             get { return __AttendeeId; }
-            set { SetField(ref __AttendeeId, value); }
+            set { SetField(ref __AttendeeId, value, "AttendeeId"); }
         }
         private PickEventAttendeeStatus __Status;
         [EntityField(false)]
         public PickEventAttendeeStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.DateTime? __RespondedDate;
         [EntityField(true)]
         public System.DateTime? RespondedDate
         {
             get { return __RespondedDate; }
-            set { SetField(ref __RespondedDate, value); }
+            set { SetField(ref __RespondedDate, value, "RespondedDate"); }
         }
         private System.String __Response;
         [EntityField(true)]
         public System.String Response
         {
             get { return __Response; }
-            set { SetField(ref __Response, value); }
+            set { SetField(ref __Response, value, "Response"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("EventFeed")]
     public class EventFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EventFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EventFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -22708,56 +24708,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickEventFeedType __Type;
         [EntityField(true)]
         public PickEventFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -22775,18 +24775,43 @@ namespace LinqToSalesforce
     [EntityName("FeedComment")]
     public class FeedComment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private FeedComment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public FeedComment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -22795,66 +24820,91 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __FeedItemId;
         [EntityField(false)]
         public System.String FeedItemId
         {
             get { return __FeedItemId; }
-            set { SetField(ref __FeedItemId, value); }
+            set { SetField(ref __FeedItemId, value, "FeedItemId"); }
         }
         private System.String __ParentId;
         [EntityField(true)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CommentBody;
         [EntityField(false)]
         public System.String CommentBody
         {
             get { return __CommentBody; }
-            set { SetField(ref __CommentBody, value); }
+            set { SetField(ref __CommentBody, value, "CommentBody"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("FeedPost")]
     public class FeedPost : ISalesforceEntity
     {
+    [JsonConstructor]
+        private FeedPost(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public FeedPost()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -22863,129 +24913,154 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __FeedItemId;
         [EntityField(false)]
         public System.String FeedItemId
         {
             get { return __FeedItemId; }
-            set { SetField(ref __FeedItemId, value); }
+            set { SetField(ref __FeedItemId, value, "FeedItemId"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private PickFeedPostType __Type;
         [EntityField(false)]
         public PickFeedPostType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __Title;
         [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.String __Body;
         [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.String __LinkUrl;
         [EntityField(true)]
         public System.String LinkUrl
         {
             get { return __LinkUrl; }
-            set { SetField(ref __LinkUrl, value); }
+            set { SetField(ref __LinkUrl, value, "LinkUrl"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ContentData;
         [EntityField(true)]
         public System.String ContentData
         {
             get { return __ContentData; }
-            set { SetField(ref __ContentData, value); }
+            set { SetField(ref __ContentData, value, "ContentData"); }
         }
         private System.String __ContentFileName;
         [EntityField(true)]
         public System.String ContentFileName
         {
             get { return __ContentFileName; }
-            set { SetField(ref __ContentFileName, value); }
+            set { SetField(ref __ContentFileName, value, "ContentFileName"); }
         }
         private System.String __ContentDescription;
         [EntityField(true)]
         public System.String ContentDescription
         {
             get { return __ContentDescription; }
-            set { SetField(ref __ContentDescription, value); }
+            set { SetField(ref __ContentDescription, value, "ContentDescription"); }
         }
         private System.String __ContentType;
         [EntityField(true)]
         public System.String ContentType
         {
             get { return __ContentType; }
-            set { SetField(ref __ContentType, value); }
+            set { SetField(ref __ContentType, value, "ContentType"); }
         }
         private System.Int32? __ContentSize;
         [EntityField(true)]
         public System.Int32? ContentSize
         {
             get { return __ContentSize; }
-            set { SetField(ref __ContentSize, value); }
+            set { SetField(ref __ContentSize, value, "ContentSize"); }
         }
     }
     [EntityName("FeedTrackedChange")]
     public class FeedTrackedChange : ISalesforceEntity
     {
+    [JsonConstructor]
+        private FeedTrackedChange(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public FeedTrackedChange()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -22994,52 +25069,77 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __FeedItemId;
         [EntityField(false)]
         public System.String FeedItemId
         {
             get { return __FeedItemId; }
-            set { SetField(ref __FeedItemId, value); }
+            set { SetField(ref __FeedItemId, value, "FeedItemId"); }
         }
         private System.String __FieldName;
         [EntityField(false)]
         public System.String FieldName
         {
             get { return __FieldName; }
-            set { SetField(ref __FieldName, value); }
+            set { SetField(ref __FieldName, value, "FieldName"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("FiscalYearSettings")]
     public class FiscalYearSettings : ISalesforceEntity
     {
+    [JsonConstructor]
+        private FiscalYearSettings(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public FiscalYearSettings()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -23048,105 +25148,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __PeriodId;
         [EntityField(true)]
         public System.String PeriodId
         {
             get { return __PeriodId; }
-            set { SetField(ref __PeriodId, value); }
+            set { SetField(ref __PeriodId, value, "PeriodId"); }
         }
         private System.DateTime? __StartDate;
         [EntityField(true)]
         public System.DateTime? StartDate
         {
             get { return __StartDate; }
-            set { SetField(ref __StartDate, value); }
+            set { SetField(ref __StartDate, value, "StartDate"); }
         }
         private System.DateTime? __EndDate;
         [EntityField(true)]
         public System.DateTime? EndDate
         {
             get { return __EndDate; }
-            set { SetField(ref __EndDate, value); }
+            set { SetField(ref __EndDate, value, "EndDate"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Boolean __IsStandardYear;
         [EntityField(false)]
         public System.Boolean IsStandardYear
         {
             get { return __IsStandardYear; }
-            set { SetField(ref __IsStandardYear, value); }
+            set { SetField(ref __IsStandardYear, value, "IsStandardYear"); }
         }
         private PickFiscalYearSettingsYearType __YearType;
         [EntityField(true)]
         public PickFiscalYearSettingsYearType YearType
         {
             get { return __YearType; }
-            set { SetField(ref __YearType, value); }
+            set { SetField(ref __YearType, value, "YearType"); }
         }
         private PickFiscalYearSettingsQuarterLabelScheme __QuarterLabelScheme;
         [EntityField(true)]
         public PickFiscalYearSettingsQuarterLabelScheme QuarterLabelScheme
         {
             get { return __QuarterLabelScheme; }
-            set { SetField(ref __QuarterLabelScheme, value); }
+            set { SetField(ref __QuarterLabelScheme, value, "QuarterLabelScheme"); }
         }
         private PickFiscalYearSettingsPeriodLabelScheme __PeriodLabelScheme;
         [EntityField(true)]
         public PickFiscalYearSettingsPeriodLabelScheme PeriodLabelScheme
         {
             get { return __PeriodLabelScheme; }
-            set { SetField(ref __PeriodLabelScheme, value); }
+            set { SetField(ref __PeriodLabelScheme, value, "PeriodLabelScheme"); }
         }
         private PickFiscalYearSettingsWeekLabelScheme __WeekLabelScheme;
         [EntityField(true)]
         public PickFiscalYearSettingsWeekLabelScheme WeekLabelScheme
         {
             get { return __WeekLabelScheme; }
-            set { SetField(ref __WeekLabelScheme, value); }
+            set { SetField(ref __WeekLabelScheme, value, "WeekLabelScheme"); }
         }
         private PickFiscalYearSettingsQuarterPrefix __QuarterPrefix;
         [EntityField(true)]
         public PickFiscalYearSettingsQuarterPrefix QuarterPrefix
         {
             get { return __QuarterPrefix; }
-            set { SetField(ref __QuarterPrefix, value); }
+            set { SetField(ref __QuarterPrefix, value, "QuarterPrefix"); }
         }
         private PickFiscalYearSettingsPeriodPrefix __PeriodPrefix;
         [EntityField(true)]
         public PickFiscalYearSettingsPeriodPrefix PeriodPrefix
         {
             get { return __PeriodPrefix; }
-            set { SetField(ref __PeriodPrefix, value); }
+            set { SetField(ref __PeriodPrefix, value, "PeriodPrefix"); }
         }
         private System.Int32? __WeekStartDay;
         [EntityField(true)]
         public System.Int32? WeekStartDay
         {
             get { return __WeekStartDay; }
-            set { SetField(ref __WeekStartDay, value); }
+            set { SetField(ref __WeekStartDay, value, "WeekStartDay"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FiscalYearSettingsId")]
@@ -23158,18 +25258,43 @@ namespace LinqToSalesforce
     [EntityName("Folder")]
     public class Folder : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Folder(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Folder()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -23178,101 +25303,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __DeveloperName;
         [EntityField(true)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
-            set { SetField(ref __DeveloperName, value); }
+            set { SetField(ref __DeveloperName, value, "DeveloperName"); }
         }
         private PickFolderAccessType __AccessType;
         [EntityField(false)]
         public PickFolderAccessType AccessType
         {
             get { return __AccessType; }
-            set { SetField(ref __AccessType, value); }
+            set { SetField(ref __AccessType, value, "AccessType"); }
         }
         private System.Boolean __IsReadonly;
         [EntityField(false)]
         public System.Boolean IsReadonly
         {
             get { return __IsReadonly; }
-            set { SetField(ref __IsReadonly, value); }
+            set { SetField(ref __IsReadonly, value, "IsReadonly"); }
         }
         private PickFolderType __Type;
         [EntityField(false)]
         public PickFolderType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("ForecastShare")]
     public class ForecastShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ForecastShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ForecastShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -23281,73 +25431,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __UserRoleId;
         [EntityField(false)]
         public System.String UserRoleId
         {
             get { return __UserRoleId; }
-            set { SetField(ref __UserRoleId, value); }
+            set { SetField(ref __UserRoleId, value, "UserRoleId"); }
         }
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
-            set { SetField(ref __UserOrGroupId, value); }
+            set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
         private PickForecastShareAccessLevel __AccessLevel;
         [EntityField(false)]
         public PickForecastShareAccessLevel AccessLevel
         {
             get { return __AccessLevel; }
-            set { SetField(ref __AccessLevel, value); }
+            set { SetField(ref __AccessLevel, value, "AccessLevel"); }
         }
         private System.Boolean __CanSubmit;
         [EntityField(false)]
         public System.Boolean CanSubmit
         {
             get { return __CanSubmit; }
-            set { SetField(ref __CanSubmit, value); }
+            set { SetField(ref __CanSubmit, value, "CanSubmit"); }
         }
         private PickForecastShareRowCause __RowCause;
         [EntityField(false)]
         public PickForecastShareRowCause RowCause
         {
             get { return __RowCause; }
-            set { SetField(ref __RowCause, value); }
+            set { SetField(ref __RowCause, value, "RowCause"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
     }
     [EntityName("Group")]
     public class Group : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Group(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Group()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -23356,91 +25531,91 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __RelatedId;
         [EntityField(true)]
         public System.String RelatedId
         {
             get { return __RelatedId; }
-            set { SetField(ref __RelatedId, value); }
+            set { SetField(ref __RelatedId, value, "RelatedId"); }
         }
         private PickGroupType __Type;
         [EntityField(false)]
         public PickGroupType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __Email;
         [EntityField(true)]
         public System.String Email
         {
             get { return __Email; }
-            set { SetField(ref __Email, value); }
+            set { SetField(ref __Email, value, "Email"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.Boolean __DoesSendEmailToMembers;
         [EntityField(false)]
         public System.Boolean DoesSendEmailToMembers
         {
             get { return __DoesSendEmailToMembers; }
-            set { SetField(ref __DoesSendEmailToMembers, value); }
+            set { SetField(ref __DoesSendEmailToMembers, value, "DoesSendEmailToMembers"); }
         }
         private System.Boolean __DoesIncludeBosses;
         [EntityField(false)]
         public System.Boolean DoesIncludeBosses
         {
             get { return __DoesIncludeBosses; }
-            set { SetField(ref __DoesIncludeBosses, value); }
+            set { SetField(ref __DoesIncludeBosses, value, "DoesIncludeBosses"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("GroupId")]
@@ -23464,18 +25639,43 @@ namespace LinqToSalesforce
     [EntityName("GroupMember")]
     public class GroupMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private GroupMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public GroupMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -23484,45 +25684,70 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __GroupId;
         [EntityField(false)]
         public System.String GroupId
         {
             get { return __GroupId; }
-            set { SetField(ref __GroupId, value); }
+            set { SetField(ref __GroupId, value, "GroupId"); }
         }
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
-            set { SetField(ref __UserOrGroupId, value); }
+            set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("Holiday")]
     public class Holiday : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Holiday(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Holiday()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -23531,164 +25756,189 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Boolean __IsAllDay;
         [EntityField(false)]
         public System.Boolean IsAllDay
         {
             get { return __IsAllDay; }
-            set { SetField(ref __IsAllDay, value); }
+            set { SetField(ref __IsAllDay, value, "IsAllDay"); }
         }
         private System.DateTime? __ActivityDate;
         [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
-            set { SetField(ref __ActivityDate, value); }
+            set { SetField(ref __ActivityDate, value, "ActivityDate"); }
         }
         private System.Int32? __StartTimeInMinutes;
         [EntityField(true)]
         public System.Int32? StartTimeInMinutes
         {
             get { return __StartTimeInMinutes; }
-            set { SetField(ref __StartTimeInMinutes, value); }
+            set { SetField(ref __StartTimeInMinutes, value, "StartTimeInMinutes"); }
         }
         private System.Int32? __EndTimeInMinutes;
         [EntityField(true)]
         public System.Int32? EndTimeInMinutes
         {
             get { return __EndTimeInMinutes; }
-            set { SetField(ref __EndTimeInMinutes, value); }
+            set { SetField(ref __EndTimeInMinutes, value, "EndTimeInMinutes"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsRecurrence;
         [EntityField(false)]
         public System.Boolean IsRecurrence
         {
             get { return __IsRecurrence; }
-            set { SetField(ref __IsRecurrence, value); }
+            set { SetField(ref __IsRecurrence, value, "IsRecurrence"); }
         }
         private System.DateTime? __RecurrenceStartDate;
         [EntityField(true)]
         public System.DateTime? RecurrenceStartDate
         {
             get { return __RecurrenceStartDate; }
-            set { SetField(ref __RecurrenceStartDate, value); }
+            set { SetField(ref __RecurrenceStartDate, value, "RecurrenceStartDate"); }
         }
         private System.DateTime? __RecurrenceEndDateOnly;
         [EntityField(true)]
         public System.DateTime? RecurrenceEndDateOnly
         {
             get { return __RecurrenceEndDateOnly; }
-            set { SetField(ref __RecurrenceEndDateOnly, value); }
+            set { SetField(ref __RecurrenceEndDateOnly, value, "RecurrenceEndDateOnly"); }
         }
         private PickHolidayRecurrenceType __RecurrenceType;
         [EntityField(true)]
         public PickHolidayRecurrenceType RecurrenceType
         {
             get { return __RecurrenceType; }
-            set { SetField(ref __RecurrenceType, value); }
+            set { SetField(ref __RecurrenceType, value, "RecurrenceType"); }
         }
         private System.Int32? __RecurrenceInterval;
         [EntityField(true)]
         public System.Int32? RecurrenceInterval
         {
             get { return __RecurrenceInterval; }
-            set { SetField(ref __RecurrenceInterval, value); }
+            set { SetField(ref __RecurrenceInterval, value, "RecurrenceInterval"); }
         }
         private System.Int32? __RecurrenceDayOfWeekMask;
         [EntityField(true)]
         public System.Int32? RecurrenceDayOfWeekMask
         {
             get { return __RecurrenceDayOfWeekMask; }
-            set { SetField(ref __RecurrenceDayOfWeekMask, value); }
+            set { SetField(ref __RecurrenceDayOfWeekMask, value, "RecurrenceDayOfWeekMask"); }
         }
         private System.Int32? __RecurrenceDayOfMonth;
         [EntityField(true)]
         public System.Int32? RecurrenceDayOfMonth
         {
             get { return __RecurrenceDayOfMonth; }
-            set { SetField(ref __RecurrenceDayOfMonth, value); }
+            set { SetField(ref __RecurrenceDayOfMonth, value, "RecurrenceDayOfMonth"); }
         }
         private PickHolidayRecurrenceInstance __RecurrenceInstance;
         [EntityField(true)]
         public PickHolidayRecurrenceInstance RecurrenceInstance
         {
             get { return __RecurrenceInstance; }
-            set { SetField(ref __RecurrenceInstance, value); }
+            set { SetField(ref __RecurrenceInstance, value, "RecurrenceInstance"); }
         }
         private PickHolidayRecurrenceMonthOfYear __RecurrenceMonthOfYear;
         [EntityField(true)]
         public PickHolidayRecurrenceMonthOfYear RecurrenceMonthOfYear
         {
             get { return __RecurrenceMonthOfYear; }
-            set { SetField(ref __RecurrenceMonthOfYear, value); }
+            set { SetField(ref __RecurrenceMonthOfYear, value, "RecurrenceMonthOfYear"); }
         }
     }
     [EntityName("Idea")]
     public class Idea : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Idea(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Idea()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -23697,84 +25947,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __Title;
         [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.String __RecordTypeId;
         [EntityField(true)]
         public System.String RecordTypeId
         {
             get { return __RecordTypeId; }
-            set { SetField(ref __RecordTypeId, value); }
+            set { SetField(ref __RecordTypeId, value, "RecordTypeId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsLocked;
         [EntityField(false)]
         public System.Boolean IsLocked
         {
             get { return __IsLocked; }
-            set { SetField(ref __IsLocked, value); }
+            set { SetField(ref __IsLocked, value, "IsLocked"); }
         }
         private System.String __CommunityId;
         [EntityField(false)]
         public System.String CommunityId
         {
             get { return __CommunityId; }
-            set { SetField(ref __CommunityId, value); }
+            set { SetField(ref __CommunityId, value, "CommunityId"); }
         }
         private System.String __Body;
         [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.Int32? __NumComments;
         [EntityField(true)]
@@ -23782,34 +26032,33 @@ namespace LinqToSalesforce
         {
             get { return __NumComments; }
         }
-    public bool ShouldSerializeNumComments() => false;
         private System.Double? __VoteScore;
         [EntityField(true)]
         public System.Double? VoteScore
         {
             get { return __VoteScore; }
-            set { SetField(ref __VoteScore, value); }
+            set { SetField(ref __VoteScore, value, "VoteScore"); }
         }
         private System.Double? __VoteTotal;
         [EntityField(true)]
         public System.Double? VoteTotal
         {
             get { return __VoteTotal; }
-            set { SetField(ref __VoteTotal, value); }
+            set { SetField(ref __VoteTotal, value, "VoteTotal"); }
         }
         private System.String __Categories;
         [EntityField(true)]
         public System.String Categories
         {
             get { return __Categories; }
-            set { SetField(ref __Categories, value); }
+            set { SetField(ref __Categories, value, "Categories"); }
         }
         private PickIdeaStatus __Status;
         [EntityField(true)]
         public PickIdeaStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.DateTime? __LastCommentDate;
         [EntityField(true)]
@@ -23817,27 +26066,26 @@ namespace LinqToSalesforce
         {
             get { return __LastCommentDate; }
         }
-    public bool ShouldSerializeLastCommentDate() => false;
         private System.String __LastCommentId;
         [EntityField(true)]
         public System.String LastCommentId
         {
             get { return __LastCommentId; }
-            set { SetField(ref __LastCommentId, value); }
+            set { SetField(ref __LastCommentId, value, "LastCommentId"); }
         }
         private System.String __ParentIdeaId;
         [EntityField(true)]
         public System.String ParentIdeaId
         {
             get { return __ParentIdeaId; }
-            set { SetField(ref __ParentIdeaId, value); }
+            set { SetField(ref __ParentIdeaId, value, "ParentIdeaId"); }
         }
         private System.Boolean __IsHtml;
         [EntityField(false)]
         public System.Boolean IsHtml
         {
             get { return __IsHtml; }
-            set { SetField(ref __IsHtml, value); }
+            set { SetField(ref __IsHtml, value, "IsHtml"); }
         }
         [JsonIgnore]
         [ReferencedByField("IdeaId")]
@@ -23855,18 +26103,43 @@ namespace LinqToSalesforce
     [EntityName("IdeaComment")]
     public class IdeaComment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private IdeaComment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public IdeaComment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -23875,56 +26148,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __IdeaId;
         [EntityField(false)]
         public System.String IdeaId
         {
             get { return __IdeaId; }
-            set { SetField(ref __IdeaId, value); }
+            set { SetField(ref __IdeaId, value, "IdeaId"); }
         }
         private System.String __CommentBody;
         [EntityField(true)]
         public System.String CommentBody
         {
             get { return __CommentBody; }
-            set { SetField(ref __CommentBody, value); }
+            set { SetField(ref __CommentBody, value, "CommentBody"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.Boolean __IsHtml;
         [EntityField(false)]
         public System.Boolean IsHtml
         {
             get { return __IsHtml; }
-            set { SetField(ref __IsHtml, value); }
+            set { SetField(ref __IsHtml, value, "IsHtml"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -23936,18 +26209,43 @@ namespace LinqToSalesforce
     [EntityName("Lead")]
     public class Lead : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Lead(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Lead()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -23956,287 +26254,287 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __MasterRecordId;
         [EntityField(true)]
         public System.String MasterRecordId
         {
             get { return __MasterRecordId; }
-            set { SetField(ref __MasterRecordId, value); }
+            set { SetField(ref __MasterRecordId, value, "MasterRecordId"); }
         }
         private System.String __LastName;
         [EntityField(false)]
         public System.String LastName
         {
             get { return __LastName; }
-            set { SetField(ref __LastName, value); }
+            set { SetField(ref __LastName, value, "LastName"); }
         }
         private System.String __FirstName;
         [EntityField(true)]
         public System.String FirstName
         {
             get { return __FirstName; }
-            set { SetField(ref __FirstName, value); }
+            set { SetField(ref __FirstName, value, "FirstName"); }
         }
         private PickLeadSalutation __Salutation;
         [EntityField(true)]
         public PickLeadSalutation Salutation
         {
             get { return __Salutation; }
-            set { SetField(ref __Salutation, value); }
+            set { SetField(ref __Salutation, value, "Salutation"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Title;
         [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.String __Company;
         [EntityField(false)]
         public System.String Company
         {
             get { return __Company; }
-            set { SetField(ref __Company, value); }
+            set { SetField(ref __Company, value, "Company"); }
         }
         private System.String __Street;
         [EntityField(true)]
         public System.String Street
         {
             get { return __Street; }
-            set { SetField(ref __Street, value); }
+            set { SetField(ref __Street, value, "Street"); }
         }
         private System.String __City;
         [EntityField(true)]
         public System.String City
         {
             get { return __City; }
-            set { SetField(ref __City, value); }
+            set { SetField(ref __City, value, "City"); }
         }
         private System.String __State;
         [EntityField(true)]
         public System.String State
         {
             get { return __State; }
-            set { SetField(ref __State, value); }
+            set { SetField(ref __State, value, "State"); }
         }
         private System.String __PostalCode;
         [EntityField(true)]
         public System.String PostalCode
         {
             get { return __PostalCode; }
-            set { SetField(ref __PostalCode, value); }
+            set { SetField(ref __PostalCode, value, "PostalCode"); }
         }
         private System.String __Country;
         [EntityField(true)]
         public System.String Country
         {
             get { return __Country; }
-            set { SetField(ref __Country, value); }
+            set { SetField(ref __Country, value, "Country"); }
         }
         private System.String __Phone;
         [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
-            set { SetField(ref __Phone, value); }
+            set { SetField(ref __Phone, value, "Phone"); }
         }
         private System.String __MobilePhone;
         [EntityField(true)]
         public System.String MobilePhone
         {
             get { return __MobilePhone; }
-            set { SetField(ref __MobilePhone, value); }
+            set { SetField(ref __MobilePhone, value, "MobilePhone"); }
         }
         private System.String __Fax;
         [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
-            set { SetField(ref __Fax, value); }
+            set { SetField(ref __Fax, value, "Fax"); }
         }
         private System.String __Email;
         [EntityField(true)]
         public System.String Email
         {
             get { return __Email; }
-            set { SetField(ref __Email, value); }
+            set { SetField(ref __Email, value, "Email"); }
         }
         private System.String __Website;
         [EntityField(true)]
         public System.String Website
         {
             get { return __Website; }
-            set { SetField(ref __Website, value); }
+            set { SetField(ref __Website, value, "Website"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickLeadLeadSource __LeadSource;
         [EntityField(true)]
         public PickLeadLeadSource LeadSource
         {
             get { return __LeadSource; }
-            set { SetField(ref __LeadSource, value); }
+            set { SetField(ref __LeadSource, value, "LeadSource"); }
         }
         private PickLeadStatus __Status;
         [EntityField(false)]
         public PickLeadStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private PickLeadIndustry __Industry;
         [EntityField(true)]
         public PickLeadIndustry Industry
         {
             get { return __Industry; }
-            set { SetField(ref __Industry, value); }
+            set { SetField(ref __Industry, value, "Industry"); }
         }
         private PickLeadRating __Rating;
         [EntityField(true)]
         public PickLeadRating Rating
         {
             get { return __Rating; }
-            set { SetField(ref __Rating, value); }
+            set { SetField(ref __Rating, value, "Rating"); }
         }
         private System.String __AnnualRevenue;
         [EntityField(true)]
         public System.String AnnualRevenue
         {
             get { return __AnnualRevenue; }
-            set { SetField(ref __AnnualRevenue, value); }
+            set { SetField(ref __AnnualRevenue, value, "AnnualRevenue"); }
         }
         private System.Int32? __NumberOfEmployees;
         [EntityField(true)]
         public System.Int32? NumberOfEmployees
         {
             get { return __NumberOfEmployees; }
-            set { SetField(ref __NumberOfEmployees, value); }
+            set { SetField(ref __NumberOfEmployees, value, "NumberOfEmployees"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.Boolean __IsConverted;
         [EntityField(false)]
         public System.Boolean IsConverted
         {
             get { return __IsConverted; }
-            set { SetField(ref __IsConverted, value); }
+            set { SetField(ref __IsConverted, value, "IsConverted"); }
         }
         private System.DateTime? __ConvertedDate;
         [EntityField(true)]
         public System.DateTime? ConvertedDate
         {
             get { return __ConvertedDate; }
-            set { SetField(ref __ConvertedDate, value); }
+            set { SetField(ref __ConvertedDate, value, "ConvertedDate"); }
         }
         private System.String __ConvertedAccountId;
         [EntityField(true)]
         public System.String ConvertedAccountId
         {
             get { return __ConvertedAccountId; }
-            set { SetField(ref __ConvertedAccountId, value); }
+            set { SetField(ref __ConvertedAccountId, value, "ConvertedAccountId"); }
         }
         private System.String __ConvertedContactId;
         [EntityField(true)]
         public System.String ConvertedContactId
         {
             get { return __ConvertedContactId; }
-            set { SetField(ref __ConvertedContactId, value); }
+            set { SetField(ref __ConvertedContactId, value, "ConvertedContactId"); }
         }
         private System.String __ConvertedOpportunityId;
         [EntityField(true)]
         public System.String ConvertedOpportunityId
         {
             get { return __ConvertedOpportunityId; }
-            set { SetField(ref __ConvertedOpportunityId, value); }
+            set { SetField(ref __ConvertedOpportunityId, value, "ConvertedOpportunityId"); }
         }
         private System.Boolean __IsUnreadByOwner;
         [EntityField(false)]
         public System.Boolean IsUnreadByOwner
         {
             get { return __IsUnreadByOwner; }
-            set { SetField(ref __IsUnreadByOwner, value); }
+            set { SetField(ref __IsUnreadByOwner, value, "IsUnreadByOwner"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime? __LastActivityDate;
         [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
-            set { SetField(ref __LastActivityDate, value); }
+            set { SetField(ref __LastActivityDate, value, "LastActivityDate"); }
         }
         private System.String __EmailBouncedReason;
         [EntityField(true)]
         public System.String EmailBouncedReason
         {
             get { return __EmailBouncedReason; }
-            set { SetField(ref __EmailBouncedReason, value); }
+            set { SetField(ref __EmailBouncedReason, value, "EmailBouncedReason"); }
         }
         private System.DateTime? __EmailBouncedDate;
         [EntityField(true)]
         public System.DateTime? EmailBouncedDate
         {
             get { return __EmailBouncedDate; }
-            set { SetField(ref __EmailBouncedDate, value); }
+            set { SetField(ref __EmailBouncedDate, value, "EmailBouncedDate"); }
         }
         private System.String __SICCodec;
         [JsonProperty(PropertyName = "SICCode__c")]
@@ -24244,7 +26542,7 @@ namespace LinqToSalesforce
         public System.String SICCodec
         {
             get { return __SICCodec; }
-            set { SetField(ref __SICCodec, value); }
+            set { SetField(ref __SICCodec, value, "SICCode__c"); }
         }
         private PickLeadProductInterest __ProductInterestc;
         [JsonProperty(PropertyName = "ProductInterest__c")]
@@ -24252,7 +26550,7 @@ namespace LinqToSalesforce
         public PickLeadProductInterest ProductInterestc
         {
             get { return __ProductInterestc; }
-            set { SetField(ref __ProductInterestc, value); }
+            set { SetField(ref __ProductInterestc, value, "ProductInterest__c"); }
         }
         private PickLeadPrimary __Primaryc;
         [JsonProperty(PropertyName = "Primary__c")]
@@ -24260,7 +26558,7 @@ namespace LinqToSalesforce
         public PickLeadPrimary Primaryc
         {
             get { return __Primaryc; }
-            set { SetField(ref __Primaryc, value); }
+            set { SetField(ref __Primaryc, value, "Primary__c"); }
         }
         private System.String __CurrentGeneratorsc;
         [JsonProperty(PropertyName = "CurrentGenerators__c")]
@@ -24268,7 +26566,7 @@ namespace LinqToSalesforce
         public System.String CurrentGeneratorsc
         {
             get { return __CurrentGeneratorsc; }
-            set { SetField(ref __CurrentGeneratorsc, value); }
+            set { SetField(ref __CurrentGeneratorsc, value, "CurrentGenerators__c"); }
         }
         private System.Double? __NumberofLocationsc;
         [JsonProperty(PropertyName = "NumberofLocations__c")]
@@ -24276,7 +26574,7 @@ namespace LinqToSalesforce
         public System.Double? NumberofLocationsc
         {
             get { return __NumberofLocationsc; }
-            set { SetField(ref __NumberofLocationsc, value); }
+            set { SetField(ref __NumberofLocationsc, value, "NumberofLocations__c"); }
         }
         [JsonIgnore]
         [ReferencedByField("WhoId")]
@@ -24372,18 +26670,43 @@ namespace LinqToSalesforce
     [EntityName("LeadFeed")]
     public class LeadFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LeadFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LeadFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -24392,56 +26715,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickLeadFeedType __Type;
         [EntityField(true)]
         public PickLeadFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -24459,18 +26782,43 @@ namespace LinqToSalesforce
     [EntityName("LeadHistory")]
     public class LeadHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LeadHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LeadHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -24479,73 +26827,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __LeadId;
         [EntityField(false)]
         public System.String LeadId
         {
             get { return __LeadId; }
-            set { SetField(ref __LeadId, value); }
+            set { SetField(ref __LeadId, value, "LeadId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickLeadHistoryField __Field;
         [EntityField(false)]
         public PickLeadHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("LeadShare")]
     public class LeadShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LeadShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LeadShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -24554,73 +26927,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __LeadId;
         [EntityField(false)]
         public System.String LeadId
         {
             get { return __LeadId; }
-            set { SetField(ref __LeadId, value); }
+            set { SetField(ref __LeadId, value, "LeadId"); }
         }
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
-            set { SetField(ref __UserOrGroupId, value); }
+            set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
         private PickLeadShareLeadAccessLevel __LeadAccessLevel;
         [EntityField(false)]
         public PickLeadShareLeadAccessLevel LeadAccessLevel
         {
             get { return __LeadAccessLevel; }
-            set { SetField(ref __LeadAccessLevel, value); }
+            set { SetField(ref __LeadAccessLevel, value, "LeadAccessLevel"); }
         }
         private PickLeadShareRowCause __RowCause;
         [EntityField(true)]
         public PickLeadShareRowCause RowCause
         {
             get { return __RowCause; }
-            set { SetField(ref __RowCause, value); }
+            set { SetField(ref __RowCause, value, "RowCause"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("LeadStatus")]
     public class LeadStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LeadStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LeadStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -24629,87 +27027,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private System.Boolean __IsDefault;
         [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
-            set { SetField(ref __IsDefault, value); }
+            set { SetField(ref __IsDefault, value, "IsDefault"); }
         }
         private System.Boolean __IsConverted;
         [EntityField(false)]
         public System.Boolean IsConverted
         {
             get { return __IsConverted; }
-            set { SetField(ref __IsConverted, value); }
+            set { SetField(ref __IsConverted, value, "IsConverted"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("LoginIp")]
     public class LoginIp : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LoginIp(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LoginIp()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -24718,59 +27141,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __UsersId;
         [EntityField(false)]
         public System.String UsersId
         {
             get { return __UsersId; }
-            set { SetField(ref __UsersId, value); }
+            set { SetField(ref __UsersId, value, "UsersId"); }
         }
         private System.String __SourceIp;
         [EntityField(true)]
         public System.String SourceIp
         {
             get { return __SourceIp; }
-            set { SetField(ref __SourceIp, value); }
+            set { SetField(ref __SourceIp, value, "SourceIp"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsAuthenticated;
         [EntityField(false)]
         public System.Boolean IsAuthenticated
         {
             get { return __IsAuthenticated; }
-            set { SetField(ref __IsAuthenticated, value); }
+            set { SetField(ref __IsAuthenticated, value, "IsAuthenticated"); }
         }
         private System.DateTime? __ChallengeSentDate;
         [EntityField(true)]
         public System.DateTime? ChallengeSentDate
         {
             get { return __ChallengeSentDate; }
-            set { SetField(ref __ChallengeSentDate, value); }
+            set { SetField(ref __ChallengeSentDate, value, "ChallengeSentDate"); }
         }
     }
     [EntityName("MailmergeTemplate")]
     public class MailmergeTemplate : ISalesforceEntity
     {
+    [JsonConstructor]
+        private MailmergeTemplate(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public MailmergeTemplate()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -24779,136 +27227,161 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __Filename;
         [EntityField(false)]
         public System.String Filename
         {
             get { return __Filename; }
-            set { SetField(ref __Filename, value); }
+            set { SetField(ref __Filename, value, "Filename"); }
         }
         private System.Int32? __BodyLength;
         [EntityField(true)]
         public System.Int32? BodyLength
         {
             get { return __BodyLength; }
-            set { SetField(ref __BodyLength, value); }
+            set { SetField(ref __BodyLength, value, "BodyLength"); }
         }
         private System.String __Body;
         [EntityField(false)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.DateTime? __LastUsedDate;
         [EntityField(true)]
         public System.DateTime? LastUsedDate
         {
             get { return __LastUsedDate; }
-            set { SetField(ref __LastUsedDate, value); }
+            set { SetField(ref __LastUsedDate, value, "LastUsedDate"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __SecurityOptionsAttachmentScannedForXSS;
         [EntityField(false)]
         public System.Boolean SecurityOptionsAttachmentScannedForXSS
         {
             get { return __SecurityOptionsAttachmentScannedForXSS; }
-            set { SetField(ref __SecurityOptionsAttachmentScannedForXSS, value); }
+            set { SetField(ref __SecurityOptionsAttachmentScannedForXSS, value, "SecurityOptionsAttachmentScannedForXSS"); }
         }
         private System.Boolean __SecurityOptionsAttachmentHasXSSThreat;
         [EntityField(false)]
         public System.Boolean SecurityOptionsAttachmentHasXSSThreat
         {
             get { return __SecurityOptionsAttachmentHasXSSThreat; }
-            set { SetField(ref __SecurityOptionsAttachmentHasXSSThreat, value); }
+            set { SetField(ref __SecurityOptionsAttachmentHasXSSThreat, value, "SecurityOptionsAttachmentHasXSSThreat"); }
         }
         private System.Boolean __SecurityOptionsAttachmentScannedforFlash;
         [EntityField(false)]
         public System.Boolean SecurityOptionsAttachmentScannedforFlash
         {
             get { return __SecurityOptionsAttachmentScannedforFlash; }
-            set { SetField(ref __SecurityOptionsAttachmentScannedforFlash, value); }
+            set { SetField(ref __SecurityOptionsAttachmentScannedforFlash, value, "SecurityOptionsAttachmentScannedforFlash"); }
         }
         private System.Boolean __SecurityOptionsAttachmentHasFlash;
         [EntityField(false)]
         public System.Boolean SecurityOptionsAttachmentHasFlash
         {
             get { return __SecurityOptionsAttachmentHasFlash; }
-            set { SetField(ref __SecurityOptionsAttachmentHasFlash, value); }
+            set { SetField(ref __SecurityOptionsAttachmentHasFlash, value, "SecurityOptionsAttachmentHasFlash"); }
         }
     }
     [EntityName("Name")]
     public class Name : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Name(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Name()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -24917,7 +27390,7 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String ___Name;
         [JsonProperty(PropertyName = "Name")]
@@ -24925,101 +27398,126 @@ namespace LinqToSalesforce
         public System.String _Name
         {
             get { return ___Name; }
-            set { SetField(ref ___Name, value); }
+            set { SetField(ref ___Name, value, "Name"); }
         }
         private System.String __LastName;
         [EntityField(true)]
         public System.String LastName
         {
             get { return __LastName; }
-            set { SetField(ref __LastName, value); }
+            set { SetField(ref __LastName, value, "LastName"); }
         }
         private System.String __FirstName;
         [EntityField(true)]
         public System.String FirstName
         {
             get { return __FirstName; }
-            set { SetField(ref __FirstName, value); }
+            set { SetField(ref __FirstName, value, "FirstName"); }
         }
         private PickNameType __Type;
         [EntityField(true)]
         public PickNameType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __Alias;
         [EntityField(true)]
         public System.String Alias
         {
             get { return __Alias; }
-            set { SetField(ref __Alias, value); }
+            set { SetField(ref __Alias, value, "Alias"); }
         }
         private System.String __UserRoleId;
         [EntityField(true)]
         public System.String UserRoleId
         {
             get { return __UserRoleId; }
-            set { SetField(ref __UserRoleId, value); }
+            set { SetField(ref __UserRoleId, value, "UserRoleId"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.String __ProfileId;
         [EntityField(true)]
         public System.String ProfileId
         {
             get { return __ProfileId; }
-            set { SetField(ref __ProfileId, value); }
+            set { SetField(ref __ProfileId, value, "ProfileId"); }
         }
         private System.String __Title;
         [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.String __Email;
         [EntityField(true)]
         public System.String Email
         {
             get { return __Email; }
-            set { SetField(ref __Email, value); }
+            set { SetField(ref __Email, value, "Email"); }
         }
         private System.String __Phone;
         [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
-            set { SetField(ref __Phone, value); }
+            set { SetField(ref __Phone, value, "Phone"); }
         }
         private System.String __Username;
         [EntityField(true)]
         public System.String Username
         {
             get { return __Username; }
-            set { SetField(ref __Username, value); }
+            set { SetField(ref __Username, value, "Username"); }
         }
     }
     [EntityName("NewsFeed")]
     public class NewsFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private NewsFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public NewsFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -25028,56 +27526,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickNewsFeedType __Type;
         [EntityField(true)]
         public PickNewsFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -25095,18 +27593,43 @@ namespace LinqToSalesforce
     [EntityName("Note")]
     public class Note : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Note(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Note()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -25115,101 +27638,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __Title;
         [EntityField(false)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.Boolean __IsPrivate;
         [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
-            set { SetField(ref __IsPrivate, value); }
+            set { SetField(ref __IsPrivate, value, "IsPrivate"); }
         }
         private System.String __Body;
         [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("NoteAndAttachment")]
     public class NoteAndAttachment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private NoteAndAttachment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public NoteAndAttachment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -25218,101 +27766,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.Boolean __IsNote;
         [EntityField(false)]
         public System.Boolean IsNote
         {
             get { return __IsNote; }
-            set { SetField(ref __IsNote, value); }
+            set { SetField(ref __IsNote, value, "IsNote"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __Title;
         [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.Boolean __IsPrivate;
         [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
-            set { SetField(ref __IsPrivate, value); }
+            set { SetField(ref __IsPrivate, value, "IsPrivate"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("OpenActivity")]
     public class OpenActivity : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpenActivity(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpenActivity()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -25321,220 +27894,245 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __WhoId;
         [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
-            set { SetField(ref __WhoId, value); }
+            set { SetField(ref __WhoId, value, "WhoId"); }
         }
         private System.String __WhatId;
         [EntityField(true)]
         public System.String WhatId
         {
             get { return __WhatId; }
-            set { SetField(ref __WhatId, value); }
+            set { SetField(ref __WhatId, value, "WhatId"); }
         }
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
-            set { SetField(ref __Subject, value); }
+            set { SetField(ref __Subject, value, "Subject"); }
         }
         private System.Boolean __IsTask;
         [EntityField(false)]
         public System.Boolean IsTask
         {
             get { return __IsTask; }
-            set { SetField(ref __IsTask, value); }
+            set { SetField(ref __IsTask, value, "IsTask"); }
         }
         private System.DateTime? __ActivityDate;
         [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
-            set { SetField(ref __ActivityDate, value); }
+            set { SetField(ref __ActivityDate, value, "ActivityDate"); }
         }
         private System.String __OwnerId;
         [EntityField(true)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private PickOpenActivityStatus __Status;
         [EntityField(true)]
         public PickOpenActivityStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private PickOpenActivityPriority __Priority;
         [EntityField(true)]
         public PickOpenActivityPriority Priority
         {
             get { return __Priority; }
-            set { SetField(ref __Priority, value); }
+            set { SetField(ref __Priority, value, "Priority"); }
         }
         private PickOpenActivityActivityType __ActivityType;
         [EntityField(true)]
         public PickOpenActivityActivityType ActivityType
         {
             get { return __ActivityType; }
-            set { SetField(ref __ActivityType, value); }
+            set { SetField(ref __ActivityType, value, "ActivityType"); }
         }
         private System.Boolean __IsClosed;
         [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
-            set { SetField(ref __IsClosed, value); }
+            set { SetField(ref __IsClosed, value, "IsClosed"); }
         }
         private System.Boolean __IsAllDayEvent;
         [EntityField(false)]
         public System.Boolean IsAllDayEvent
         {
             get { return __IsAllDayEvent; }
-            set { SetField(ref __IsAllDayEvent, value); }
+            set { SetField(ref __IsAllDayEvent, value, "IsAllDayEvent"); }
         }
         private System.Boolean __IsVisibleInSelfService;
         [EntityField(false)]
         public System.Boolean IsVisibleInSelfService
         {
             get { return __IsVisibleInSelfService; }
-            set { SetField(ref __IsVisibleInSelfService, value); }
+            set { SetField(ref __IsVisibleInSelfService, value, "IsVisibleInSelfService"); }
         }
         private System.Int32? __DurationInMinutes;
         [EntityField(true)]
         public System.Int32? DurationInMinutes
         {
             get { return __DurationInMinutes; }
-            set { SetField(ref __DurationInMinutes, value); }
+            set { SetField(ref __DurationInMinutes, value, "DurationInMinutes"); }
         }
         private System.String __Location;
         [EntityField(true)]
         public System.String Location
         {
             get { return __Location; }
-            set { SetField(ref __Location, value); }
+            set { SetField(ref __Location, value, "Location"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Int32? __CallDurationInSeconds;
         [EntityField(true)]
         public System.Int32? CallDurationInSeconds
         {
             get { return __CallDurationInSeconds; }
-            set { SetField(ref __CallDurationInSeconds, value); }
+            set { SetField(ref __CallDurationInSeconds, value, "CallDurationInSeconds"); }
         }
         private PickOpenActivityCallType __CallType;
         [EntityField(true)]
         public PickOpenActivityCallType CallType
         {
             get { return __CallType; }
-            set { SetField(ref __CallType, value); }
+            set { SetField(ref __CallType, value, "CallType"); }
         }
         private System.String __CallDisposition;
         [EntityField(true)]
         public System.String CallDisposition
         {
             get { return __CallDisposition; }
-            set { SetField(ref __CallDisposition, value); }
+            set { SetField(ref __CallDisposition, value, "CallDisposition"); }
         }
         private System.String __CallObject;
         [EntityField(true)]
         public System.String CallObject
         {
             get { return __CallObject; }
-            set { SetField(ref __CallObject, value); }
+            set { SetField(ref __CallObject, value, "CallObject"); }
         }
         private System.DateTime? __ReminderDateTime;
         [EntityField(true)]
         public System.DateTime? ReminderDateTime
         {
             get { return __ReminderDateTime; }
-            set { SetField(ref __ReminderDateTime, value); }
+            set { SetField(ref __ReminderDateTime, value, "ReminderDateTime"); }
         }
         private System.Boolean __IsReminderSet;
         [EntityField(false)]
         public System.Boolean IsReminderSet
         {
             get { return __IsReminderSet; }
-            set { SetField(ref __IsReminderSet, value); }
+            set { SetField(ref __IsReminderSet, value, "IsReminderSet"); }
         }
     }
     [EntityName("Opportunity")]
     public class Opportunity : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Opportunity(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Opportunity()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -25543,224 +28141,224 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.Boolean __IsPrivate;
         [EntityField(false)]
         public System.Boolean IsPrivate
         {
             get { return __IsPrivate; }
-            set { SetField(ref __IsPrivate, value); }
+            set { SetField(ref __IsPrivate, value, "IsPrivate"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickOpportunityStageName __StageName;
         [EntityField(false)]
         public PickOpportunityStageName StageName
         {
             get { return __StageName; }
-            set { SetField(ref __StageName, value); }
+            set { SetField(ref __StageName, value, "StageName"); }
         }
         private System.String __Amount;
         [EntityField(true)]
         public System.String Amount
         {
             get { return __Amount; }
-            set { SetField(ref __Amount, value); }
+            set { SetField(ref __Amount, value, "Amount"); }
         }
         private System.String __Probability;
         [EntityField(true)]
         public System.String Probability
         {
             get { return __Probability; }
-            set { SetField(ref __Probability, value); }
+            set { SetField(ref __Probability, value, "Probability"); }
         }
         private System.String __ExpectedRevenue;
         [EntityField(true)]
         public System.String ExpectedRevenue
         {
             get { return __ExpectedRevenue; }
-            set { SetField(ref __ExpectedRevenue, value); }
+            set { SetField(ref __ExpectedRevenue, value, "ExpectedRevenue"); }
         }
         private System.Double? __TotalOpportunityQuantity;
         [EntityField(true)]
         public System.Double? TotalOpportunityQuantity
         {
             get { return __TotalOpportunityQuantity; }
-            set { SetField(ref __TotalOpportunityQuantity, value); }
+            set { SetField(ref __TotalOpportunityQuantity, value, "TotalOpportunityQuantity"); }
         }
         private System.DateTime __CloseDate;
         [EntityField(false)]
         public System.DateTime CloseDate
         {
             get { return __CloseDate; }
-            set { SetField(ref __CloseDate, value); }
+            set { SetField(ref __CloseDate, value, "CloseDate"); }
         }
         private PickOpportunityType __Type;
         [EntityField(true)]
         public PickOpportunityType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __NextStep;
         [EntityField(true)]
         public System.String NextStep
         {
             get { return __NextStep; }
-            set { SetField(ref __NextStep, value); }
+            set { SetField(ref __NextStep, value, "NextStep"); }
         }
         private PickOpportunityLeadSource __LeadSource;
         [EntityField(true)]
         public PickOpportunityLeadSource LeadSource
         {
             get { return __LeadSource; }
-            set { SetField(ref __LeadSource, value); }
+            set { SetField(ref __LeadSource, value, "LeadSource"); }
         }
         private System.Boolean __IsClosed;
         [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
-            set { SetField(ref __IsClosed, value); }
+            set { SetField(ref __IsClosed, value, "IsClosed"); }
         }
         private System.Boolean __IsWon;
         [EntityField(false)]
         public System.Boolean IsWon
         {
             get { return __IsWon; }
-            set { SetField(ref __IsWon, value); }
+            set { SetField(ref __IsWon, value, "IsWon"); }
         }
         private PickOpportunityForecastCategory __ForecastCategory;
         [EntityField(false)]
         public PickOpportunityForecastCategory ForecastCategory
         {
             get { return __ForecastCategory; }
-            set { SetField(ref __ForecastCategory, value); }
+            set { SetField(ref __ForecastCategory, value, "ForecastCategory"); }
         }
         private PickOpportunityForecastCategoryName __ForecastCategoryName;
         [EntityField(true)]
         public PickOpportunityForecastCategoryName ForecastCategoryName
         {
             get { return __ForecastCategoryName; }
-            set { SetField(ref __ForecastCategoryName, value); }
+            set { SetField(ref __ForecastCategoryName, value, "ForecastCategoryName"); }
         }
         private System.String __CampaignId;
         [EntityField(true)]
         public System.String CampaignId
         {
             get { return __CampaignId; }
-            set { SetField(ref __CampaignId, value); }
+            set { SetField(ref __CampaignId, value, "CampaignId"); }
         }
         private System.Boolean __HasOpportunityLineItem;
         [EntityField(false)]
         public System.Boolean HasOpportunityLineItem
         {
             get { return __HasOpportunityLineItem; }
-            set { SetField(ref __HasOpportunityLineItem, value); }
+            set { SetField(ref __HasOpportunityLineItem, value, "HasOpportunityLineItem"); }
         }
         private System.String __Pricebook2Id;
         [EntityField(true)]
         public System.String Pricebook2Id
         {
             get { return __Pricebook2Id; }
-            set { SetField(ref __Pricebook2Id, value); }
+            set { SetField(ref __Pricebook2Id, value, "Pricebook2Id"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime? __LastActivityDate;
         [EntityField(true)]
         public System.DateTime? LastActivityDate
         {
             get { return __LastActivityDate; }
-            set { SetField(ref __LastActivityDate, value); }
+            set { SetField(ref __LastActivityDate, value, "LastActivityDate"); }
         }
         private System.Int32? __FiscalQuarter;
         [EntityField(true)]
         public System.Int32? FiscalQuarter
         {
             get { return __FiscalQuarter; }
-            set { SetField(ref __FiscalQuarter, value); }
+            set { SetField(ref __FiscalQuarter, value, "FiscalQuarter"); }
         }
         private System.Int32? __FiscalYear;
         [EntityField(true)]
         public System.Int32? FiscalYear
         {
             get { return __FiscalYear; }
-            set { SetField(ref __FiscalYear, value); }
+            set { SetField(ref __FiscalYear, value, "FiscalYear"); }
         }
         private System.String __Fiscal;
         [EntityField(true)]
         public System.String Fiscal
         {
             get { return __Fiscal; }
-            set { SetField(ref __Fiscal, value); }
+            set { SetField(ref __Fiscal, value, "Fiscal"); }
         }
         private PickOpportunityDeliveryInstallationStatus __DeliveryInstallationStatusc;
         [JsonProperty(PropertyName = "DeliveryInstallationStatus__c")]
@@ -25768,7 +28366,7 @@ namespace LinqToSalesforce
         public PickOpportunityDeliveryInstallationStatus DeliveryInstallationStatusc
         {
             get { return __DeliveryInstallationStatusc; }
-            set { SetField(ref __DeliveryInstallationStatusc, value); }
+            set { SetField(ref __DeliveryInstallationStatusc, value, "DeliveryInstallationStatus__c"); }
         }
         private System.String __TrackingNumberc;
         [JsonProperty(PropertyName = "TrackingNumber__c")]
@@ -25776,7 +28374,7 @@ namespace LinqToSalesforce
         public System.String TrackingNumberc
         {
             get { return __TrackingNumberc; }
-            set { SetField(ref __TrackingNumberc, value); }
+            set { SetField(ref __TrackingNumberc, value, "TrackingNumber__c"); }
         }
         private System.String __OrderNumberc;
         [JsonProperty(PropertyName = "OrderNumber__c")]
@@ -25784,7 +28382,7 @@ namespace LinqToSalesforce
         public System.String OrderNumberc
         {
             get { return __OrderNumberc; }
-            set { SetField(ref __OrderNumberc, value); }
+            set { SetField(ref __OrderNumberc, value, "OrderNumber__c"); }
         }
         private System.String __CurrentGeneratorsc;
         [JsonProperty(PropertyName = "CurrentGenerators__c")]
@@ -25792,7 +28390,7 @@ namespace LinqToSalesforce
         public System.String CurrentGeneratorsc
         {
             get { return __CurrentGeneratorsc; }
-            set { SetField(ref __CurrentGeneratorsc, value); }
+            set { SetField(ref __CurrentGeneratorsc, value, "CurrentGenerators__c"); }
         }
         private System.String __MainCompetitorsc;
         [JsonProperty(PropertyName = "MainCompetitors__c")]
@@ -25800,7 +28398,7 @@ namespace LinqToSalesforce
         public System.String MainCompetitorsc
         {
             get { return __MainCompetitorsc; }
-            set { SetField(ref __MainCompetitorsc, value); }
+            set { SetField(ref __MainCompetitorsc, value, "MainCompetitors__c"); }
         }
         [JsonIgnore]
         [ReferencedByField("OpportunityId")]
@@ -25926,18 +28524,43 @@ namespace LinqToSalesforce
     [EntityName("OpportunityCompetitor")]
     public class OpportunityCompetitor : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityCompetitor(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityCompetitor()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -25946,94 +28569,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __OpportunityId;
         [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
-            set { SetField(ref __OpportunityId, value); }
+            set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
         private System.String __CompetitorName;
         [EntityField(true)]
         public System.String CompetitorName
         {
             get { return __CompetitorName; }
-            set { SetField(ref __CompetitorName, value); }
+            set { SetField(ref __CompetitorName, value, "CompetitorName"); }
         }
         private System.String __Strengths;
         [EntityField(true)]
         public System.String Strengths
         {
             get { return __Strengths; }
-            set { SetField(ref __Strengths, value); }
+            set { SetField(ref __Strengths, value, "Strengths"); }
         }
         private System.String __Weaknesses;
         [EntityField(true)]
         public System.String Weaknesses
         {
             get { return __Weaknesses; }
-            set { SetField(ref __Weaknesses, value); }
+            set { SetField(ref __Weaknesses, value, "Weaknesses"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("OpportunityContactRole")]
     public class OpportunityContactRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityContactRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityContactRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -26042,94 +28690,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __OpportunityId;
         [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
-            set { SetField(ref __OpportunityId, value); }
+            set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private PickOpportunityContactRoleRole __Role;
         [EntityField(true)]
         public PickOpportunityContactRoleRole Role
         {
             get { return __Role; }
-            set { SetField(ref __Role, value); }
+            set { SetField(ref __Role, value, "Role"); }
         }
         private System.Boolean __IsPrimary;
         [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
-            set { SetField(ref __IsPrimary, value); }
+            set { SetField(ref __IsPrimary, value, "IsPrimary"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("OpportunityFeed")]
     public class OpportunityFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -26138,56 +28811,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickOpportunityFeedType __Type;
         [EntityField(true)]
         public PickOpportunityFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -26205,18 +28878,43 @@ namespace LinqToSalesforce
     [EntityName("OpportunityFieldHistory")]
     public class OpportunityFieldHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityFieldHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityFieldHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -26225,73 +28923,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __OpportunityId;
         [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
-            set { SetField(ref __OpportunityId, value); }
+            set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickOpportunityFieldHistoryField __Field;
         [EntityField(false)]
         public PickOpportunityFieldHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("OpportunityHistory")]
     public class OpportunityHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -26300,101 +29023,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __OpportunityId;
         [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
-            set { SetField(ref __OpportunityId, value); }
+            set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickOpportunityHistoryStageName __StageName;
         [EntityField(false)]
         public PickOpportunityHistoryStageName StageName
         {
             get { return __StageName; }
-            set { SetField(ref __StageName, value); }
+            set { SetField(ref __StageName, value, "StageName"); }
         }
         private System.String __Amount;
         [EntityField(true)]
         public System.String Amount
         {
             get { return __Amount; }
-            set { SetField(ref __Amount, value); }
+            set { SetField(ref __Amount, value, "Amount"); }
         }
         private System.String __ExpectedRevenue;
         [EntityField(true)]
         public System.String ExpectedRevenue
         {
             get { return __ExpectedRevenue; }
-            set { SetField(ref __ExpectedRevenue, value); }
+            set { SetField(ref __ExpectedRevenue, value, "ExpectedRevenue"); }
         }
         private System.DateTime? __CloseDate;
         [EntityField(true)]
         public System.DateTime? CloseDate
         {
             get { return __CloseDate; }
-            set { SetField(ref __CloseDate, value); }
+            set { SetField(ref __CloseDate, value, "CloseDate"); }
         }
         private System.String __Probability;
         [EntityField(true)]
         public System.String Probability
         {
             get { return __Probability; }
-            set { SetField(ref __Probability, value); }
+            set { SetField(ref __Probability, value, "Probability"); }
         }
         private PickOpportunityHistoryForecastCategory __ForecastCategory;
         [EntityField(true)]
         public PickOpportunityHistoryForecastCategory ForecastCategory
         {
             get { return __ForecastCategory; }
-            set { SetField(ref __ForecastCategory, value); }
+            set { SetField(ref __ForecastCategory, value, "ForecastCategory"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("OpportunityLineItem")]
     public class OpportunityLineItem : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityLineItem(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityLineItem()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -26403,129 +29151,154 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __OpportunityId;
         [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
-            set { SetField(ref __OpportunityId, value); }
+            set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private System.String __PricebookEntryId;
         [EntityField(true)]
         public System.String PricebookEntryId
         {
             get { return __PricebookEntryId; }
-            set { SetField(ref __PricebookEntryId, value); }
+            set { SetField(ref __PricebookEntryId, value, "PricebookEntryId"); }
         }
         private System.Double __Quantity;
         [EntityField(false)]
         public System.Double Quantity
         {
             get { return __Quantity; }
-            set { SetField(ref __Quantity, value); }
+            set { SetField(ref __Quantity, value, "Quantity"); }
         }
         private System.String __TotalPrice;
         [EntityField(true)]
         public System.String TotalPrice
         {
             get { return __TotalPrice; }
-            set { SetField(ref __TotalPrice, value); }
+            set { SetField(ref __TotalPrice, value, "TotalPrice"); }
         }
         private System.String __UnitPrice;
         [EntityField(true)]
         public System.String UnitPrice
         {
             get { return __UnitPrice; }
-            set { SetField(ref __UnitPrice, value); }
+            set { SetField(ref __UnitPrice, value, "UnitPrice"); }
         }
         private System.String __ListPrice;
         [EntityField(true)]
         public System.String ListPrice
         {
             get { return __ListPrice; }
-            set { SetField(ref __ListPrice, value); }
+            set { SetField(ref __ListPrice, value, "ListPrice"); }
         }
         private System.DateTime? __ServiceDate;
         [EntityField(true)]
         public System.DateTime? ServiceDate
         {
             get { return __ServiceDate; }
-            set { SetField(ref __ServiceDate, value); }
+            set { SetField(ref __ServiceDate, value, "ServiceDate"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("OpportunityPartner")]
     public class OpportunityPartner : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityPartner(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityPartner()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -26534,101 +29307,126 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __OpportunityId;
         [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
-            set { SetField(ref __OpportunityId, value); }
+            set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
         private System.String __AccountToId;
         [EntityField(false)]
         public System.String AccountToId
         {
             get { return __AccountToId; }
-            set { SetField(ref __AccountToId, value); }
+            set { SetField(ref __AccountToId, value, "AccountToId"); }
         }
         private PickOpportunityPartnerRole __Role;
         [EntityField(true)]
         public PickOpportunityPartnerRole Role
         {
             get { return __Role; }
-            set { SetField(ref __Role, value); }
+            set { SetField(ref __Role, value, "Role"); }
         }
         private System.Boolean __IsPrimary;
         [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
-            set { SetField(ref __IsPrimary, value); }
+            set { SetField(ref __IsPrimary, value, "IsPrimary"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ReversePartnerId;
         [EntityField(true)]
         public System.String ReversePartnerId
         {
             get { return __ReversePartnerId; }
-            set { SetField(ref __ReversePartnerId, value); }
+            set { SetField(ref __ReversePartnerId, value, "ReversePartnerId"); }
         }
     }
     [EntityName("OpportunityShare")]
     public class OpportunityShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -26637,73 +29435,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __OpportunityId;
         [EntityField(false)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
-            set { SetField(ref __OpportunityId, value); }
+            set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
         {
             get { return __UserOrGroupId; }
-            set { SetField(ref __UserOrGroupId, value); }
+            set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
         private PickOpportunityShareOpportunityAccessLevel __OpportunityAccessLevel;
         [EntityField(false)]
         public PickOpportunityShareOpportunityAccessLevel OpportunityAccessLevel
         {
             get { return __OpportunityAccessLevel; }
-            set { SetField(ref __OpportunityAccessLevel, value); }
+            set { SetField(ref __OpportunityAccessLevel, value, "OpportunityAccessLevel"); }
         }
         private PickOpportunityShareRowCause __RowCause;
         [EntityField(true)]
         public PickOpportunityShareRowCause RowCause
         {
             get { return __RowCause; }
-            set { SetField(ref __RowCause, value); }
+            set { SetField(ref __RowCause, value, "RowCause"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
     }
     [EntityName("OpportunityStage")]
     public class OpportunityStage : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityStage(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityStage()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -26712,122 +29535,147 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private System.Boolean __IsClosed;
         [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
-            set { SetField(ref __IsClosed, value); }
+            set { SetField(ref __IsClosed, value, "IsClosed"); }
         }
         private System.Boolean __IsWon;
         [EntityField(false)]
         public System.Boolean IsWon
         {
             get { return __IsWon; }
-            set { SetField(ref __IsWon, value); }
+            set { SetField(ref __IsWon, value, "IsWon"); }
         }
         private PickOpportunityStageForecastCategory __ForecastCategory;
         [EntityField(false)]
         public PickOpportunityStageForecastCategory ForecastCategory
         {
             get { return __ForecastCategory; }
-            set { SetField(ref __ForecastCategory, value); }
+            set { SetField(ref __ForecastCategory, value, "ForecastCategory"); }
         }
         private PickOpportunityStageForecastCategoryName __ForecastCategoryName;
         [EntityField(false)]
         public PickOpportunityStageForecastCategoryName ForecastCategoryName
         {
             get { return __ForecastCategoryName; }
-            set { SetField(ref __ForecastCategoryName, value); }
+            set { SetField(ref __ForecastCategoryName, value, "ForecastCategoryName"); }
         }
         private System.String __DefaultProbability;
         [EntityField(true)]
         public System.String DefaultProbability
         {
             get { return __DefaultProbability; }
-            set { SetField(ref __DefaultProbability, value); }
+            set { SetField(ref __DefaultProbability, value, "DefaultProbability"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("Order")]
     public class Order : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Order(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Order()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -26836,273 +29684,273 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ContractId;
         [EntityField(true)]
         public System.String ContractId
         {
             get { return __ContractId; }
-            set { SetField(ref __ContractId, value); }
+            set { SetField(ref __ContractId, value, "ContractId"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.DateTime __EffectiveDate;
         [EntityField(false)]
         public System.DateTime EffectiveDate
         {
             get { return __EffectiveDate; }
-            set { SetField(ref __EffectiveDate, value); }
+            set { SetField(ref __EffectiveDate, value, "EffectiveDate"); }
         }
         private System.Boolean __IsReductionOrder;
         [EntityField(false)]
         public System.Boolean IsReductionOrder
         {
             get { return __IsReductionOrder; }
-            set { SetField(ref __IsReductionOrder, value); }
+            set { SetField(ref __IsReductionOrder, value, "IsReductionOrder"); }
         }
         private PickOrderStatus __Status;
         [EntityField(false)]
         public PickOrderStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __CustomerAuthorizedById;
         [EntityField(true)]
         public System.String CustomerAuthorizedById
         {
             get { return __CustomerAuthorizedById; }
-            set { SetField(ref __CustomerAuthorizedById, value); }
+            set { SetField(ref __CustomerAuthorizedById, value, "CustomerAuthorizedById"); }
         }
         private System.DateTime? __CustomerAuthorizedDate;
         [EntityField(true)]
         public System.DateTime? CustomerAuthorizedDate
         {
             get { return __CustomerAuthorizedDate; }
-            set { SetField(ref __CustomerAuthorizedDate, value); }
+            set { SetField(ref __CustomerAuthorizedDate, value, "CustomerAuthorizedDate"); }
         }
         private System.String __CompanyAuthorizedById;
         [EntityField(true)]
         public System.String CompanyAuthorizedById
         {
             get { return __CompanyAuthorizedById; }
-            set { SetField(ref __CompanyAuthorizedById, value); }
+            set { SetField(ref __CompanyAuthorizedById, value, "CompanyAuthorizedById"); }
         }
         private System.DateTime? __CompanyAuthorizedDate;
         [EntityField(true)]
         public System.DateTime? CompanyAuthorizedDate
         {
             get { return __CompanyAuthorizedDate; }
-            set { SetField(ref __CompanyAuthorizedDate, value); }
+            set { SetField(ref __CompanyAuthorizedDate, value, "CompanyAuthorizedDate"); }
         }
         private PickOrderType __Type;
         [EntityField(true)]
         public PickOrderType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __BillingStreet;
         [EntityField(true)]
         public System.String BillingStreet
         {
             get { return __BillingStreet; }
-            set { SetField(ref __BillingStreet, value); }
+            set { SetField(ref __BillingStreet, value, "BillingStreet"); }
         }
         private System.String __BillingCity;
         [EntityField(true)]
         public System.String BillingCity
         {
             get { return __BillingCity; }
-            set { SetField(ref __BillingCity, value); }
+            set { SetField(ref __BillingCity, value, "BillingCity"); }
         }
         private System.String __BillingState;
         [EntityField(true)]
         public System.String BillingState
         {
             get { return __BillingState; }
-            set { SetField(ref __BillingState, value); }
+            set { SetField(ref __BillingState, value, "BillingState"); }
         }
         private System.String __BillingPostalCode;
         [EntityField(true)]
         public System.String BillingPostalCode
         {
             get { return __BillingPostalCode; }
-            set { SetField(ref __BillingPostalCode, value); }
+            set { SetField(ref __BillingPostalCode, value, "BillingPostalCode"); }
         }
         private System.String __BillingCountry;
         [EntityField(true)]
         public System.String BillingCountry
         {
             get { return __BillingCountry; }
-            set { SetField(ref __BillingCountry, value); }
+            set { SetField(ref __BillingCountry, value, "BillingCountry"); }
         }
         private System.String __ShippingStreet;
         [EntityField(true)]
         public System.String ShippingStreet
         {
             get { return __ShippingStreet; }
-            set { SetField(ref __ShippingStreet, value); }
+            set { SetField(ref __ShippingStreet, value, "ShippingStreet"); }
         }
         private System.String __ShippingCity;
         [EntityField(true)]
         public System.String ShippingCity
         {
             get { return __ShippingCity; }
-            set { SetField(ref __ShippingCity, value); }
+            set { SetField(ref __ShippingCity, value, "ShippingCity"); }
         }
         private System.String __ShippingState;
         [EntityField(true)]
         public System.String ShippingState
         {
             get { return __ShippingState; }
-            set { SetField(ref __ShippingState, value); }
+            set { SetField(ref __ShippingState, value, "ShippingState"); }
         }
         private System.String __ShippingPostalCode;
         [EntityField(true)]
         public System.String ShippingPostalCode
         {
             get { return __ShippingPostalCode; }
-            set { SetField(ref __ShippingPostalCode, value); }
+            set { SetField(ref __ShippingPostalCode, value, "ShippingPostalCode"); }
         }
         private System.String __ShippingCountry;
         [EntityField(true)]
         public System.String ShippingCountry
         {
             get { return __ShippingCountry; }
-            set { SetField(ref __ShippingCountry, value); }
+            set { SetField(ref __ShippingCountry, value, "ShippingCountry"); }
         }
         private System.String __Name;
         [EntityField(true)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.DateTime? __PoDate;
         [EntityField(true)]
         public System.DateTime? PoDate
         {
             get { return __PoDate; }
-            set { SetField(ref __PoDate, value); }
+            set { SetField(ref __PoDate, value, "PoDate"); }
         }
         private System.String __PoNumber;
         [EntityField(true)]
         public System.String PoNumber
         {
             get { return __PoNumber; }
-            set { SetField(ref __PoNumber, value); }
+            set { SetField(ref __PoNumber, value, "PoNumber"); }
         }
         private System.String __OrderReferenceNumber;
         [EntityField(true)]
         public System.String OrderReferenceNumber
         {
             get { return __OrderReferenceNumber; }
-            set { SetField(ref __OrderReferenceNumber, value); }
+            set { SetField(ref __OrderReferenceNumber, value, "OrderReferenceNumber"); }
         }
         private System.String __BillToContactId;
         [EntityField(true)]
         public System.String BillToContactId
         {
             get { return __BillToContactId; }
-            set { SetField(ref __BillToContactId, value); }
+            set { SetField(ref __BillToContactId, value, "BillToContactId"); }
         }
         private System.String __ShipToContactId;
         [EntityField(true)]
         public System.String ShipToContactId
         {
             get { return __ShipToContactId; }
-            set { SetField(ref __ShipToContactId, value); }
+            set { SetField(ref __ShipToContactId, value, "ShipToContactId"); }
         }
         private System.DateTime? __ActivatedDate;
         [EntityField(true)]
         public System.DateTime? ActivatedDate
         {
             get { return __ActivatedDate; }
-            set { SetField(ref __ActivatedDate, value); }
+            set { SetField(ref __ActivatedDate, value, "ActivatedDate"); }
         }
         private System.String __ActivatedById;
         [EntityField(true)]
         public System.String ActivatedById
         {
             get { return __ActivatedById; }
-            set { SetField(ref __ActivatedById, value); }
+            set { SetField(ref __ActivatedById, value, "ActivatedById"); }
         }
         private PickOrderStatusCode __StatusCode;
         [EntityField(false)]
         public PickOrderStatusCode StatusCode
         {
             get { return __StatusCode; }
-            set { SetField(ref __StatusCode, value); }
+            set { SetField(ref __StatusCode, value, "StatusCode"); }
         }
         private System.String __OrderNumber;
         [EntityField(false)]
         public System.String OrderNumber
         {
             get { return __OrderNumber; }
-            set { SetField(ref __OrderNumber, value); }
+            set { SetField(ref __OrderNumber, value, "OrderNumber"); }
         }
         private System.String __TotalAmount;
         [EntityField(false)]
         public System.String TotalAmount
         {
             get { return __TotalAmount; }
-            set { SetField(ref __TotalAmount, value); }
+            set { SetField(ref __TotalAmount, value, "TotalAmount"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
@@ -27180,18 +30028,43 @@ namespace LinqToSalesforce
     [EntityName("OrderHistory")]
     public class OrderHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OrderHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OrderHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -27200,73 +30073,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __OrderId;
         [EntityField(false)]
         public System.String OrderId
         {
             get { return __OrderId; }
-            set { SetField(ref __OrderId, value); }
+            set { SetField(ref __OrderId, value, "OrderId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickOrderHistoryField __Field;
         [EntityField(false)]
         public PickOrderHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("OrderItem")]
     public class OrderItem : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OrderItem(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OrderItem()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -27275,119 +30173,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __OrderId;
         [EntityField(false)]
         public System.String OrderId
         {
             get { return __OrderId; }
-            set { SetField(ref __OrderId, value); }
+            set { SetField(ref __OrderId, value, "OrderId"); }
         }
         private System.String __PricebookEntryId;
         [EntityField(false)]
         public System.String PricebookEntryId
         {
             get { return __PricebookEntryId; }
-            set { SetField(ref __PricebookEntryId, value); }
+            set { SetField(ref __PricebookEntryId, value, "PricebookEntryId"); }
         }
         private System.String __OriginalOrderItemId;
         [EntityField(true)]
         public System.String OriginalOrderItemId
         {
             get { return __OriginalOrderItemId; }
-            set { SetField(ref __OriginalOrderItemId, value); }
+            set { SetField(ref __OriginalOrderItemId, value, "OriginalOrderItemId"); }
         }
         private System.Double __Quantity;
         [EntityField(false)]
         public System.Double Quantity
         {
             get { return __Quantity; }
-            set { SetField(ref __Quantity, value); }
+            set { SetField(ref __Quantity, value, "Quantity"); }
         }
         private System.String __UnitPrice;
         [EntityField(true)]
         public System.String UnitPrice
         {
             get { return __UnitPrice; }
-            set { SetField(ref __UnitPrice, value); }
+            set { SetField(ref __UnitPrice, value, "UnitPrice"); }
         }
         private System.String __ListPrice;
         [EntityField(true)]
         public System.String ListPrice
         {
             get { return __ListPrice; }
-            set { SetField(ref __ListPrice, value); }
+            set { SetField(ref __ListPrice, value, "ListPrice"); }
         }
         private System.DateTime? __ServiceDate;
         [EntityField(true)]
         public System.DateTime? ServiceDate
         {
             get { return __ServiceDate; }
-            set { SetField(ref __ServiceDate, value); }
+            set { SetField(ref __ServiceDate, value, "ServiceDate"); }
         }
         private System.DateTime? __EndDate;
         [EntityField(true)]
         public System.DateTime? EndDate
         {
             get { return __EndDate; }
-            set { SetField(ref __EndDate, value); }
+            set { SetField(ref __EndDate, value, "EndDate"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __OrderItemNumber;
         [EntityField(false)]
         public System.String OrderItemNumber
         {
             get { return __OrderItemNumber; }
-            set { SetField(ref __OrderItemNumber, value); }
+            set { SetField(ref __OrderItemNumber, value, "OrderItemNumber"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -27405,18 +30303,43 @@ namespace LinqToSalesforce
     [EntityName("OrgWideEmailAddress")]
     public class OrgWideEmailAddress : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OrgWideEmailAddress(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OrgWideEmailAddress()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -27425,80 +30348,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __Address;
         [EntityField(false)]
         public System.String Address
         {
             get { return __Address; }
-            set { SetField(ref __Address, value); }
+            set { SetField(ref __Address, value, "Address"); }
         }
         private System.String __DisplayName;
         [EntityField(false)]
         public System.String DisplayName
         {
             get { return __DisplayName; }
-            set { SetField(ref __DisplayName, value); }
+            set { SetField(ref __DisplayName, value, "DisplayName"); }
         }
         private System.Boolean __IsAllowAllProfiles;
         [EntityField(false)]
         public System.Boolean IsAllowAllProfiles
         {
             get { return __IsAllowAllProfiles; }
-            set { SetField(ref __IsAllowAllProfiles, value); }
+            set { SetField(ref __IsAllowAllProfiles, value, "IsAllowAllProfiles"); }
         }
     }
     [EntityName("Organization")]
     public class Organization : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Organization(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Organization()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -27507,304 +30455,329 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Division;
         [EntityField(true)]
         public System.String Division
         {
             get { return __Division; }
-            set { SetField(ref __Division, value); }
+            set { SetField(ref __Division, value, "Division"); }
         }
         private System.String __Street;
         [EntityField(true)]
         public System.String Street
         {
             get { return __Street; }
-            set { SetField(ref __Street, value); }
+            set { SetField(ref __Street, value, "Street"); }
         }
         private System.String __City;
         [EntityField(true)]
         public System.String City
         {
             get { return __City; }
-            set { SetField(ref __City, value); }
+            set { SetField(ref __City, value, "City"); }
         }
         private System.String __State;
         [EntityField(true)]
         public System.String State
         {
             get { return __State; }
-            set { SetField(ref __State, value); }
+            set { SetField(ref __State, value, "State"); }
         }
         private System.String __PostalCode;
         [EntityField(true)]
         public System.String PostalCode
         {
             get { return __PostalCode; }
-            set { SetField(ref __PostalCode, value); }
+            set { SetField(ref __PostalCode, value, "PostalCode"); }
         }
         private System.String __Country;
         [EntityField(true)]
         public System.String Country
         {
             get { return __Country; }
-            set { SetField(ref __Country, value); }
+            set { SetField(ref __Country, value, "Country"); }
         }
         private System.String __Phone;
         [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
-            set { SetField(ref __Phone, value); }
+            set { SetField(ref __Phone, value, "Phone"); }
         }
         private System.String __Fax;
         [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
-            set { SetField(ref __Fax, value); }
+            set { SetField(ref __Fax, value, "Fax"); }
         }
         private System.String __PrimaryContact;
         [EntityField(true)]
         public System.String PrimaryContact
         {
             get { return __PrimaryContact; }
-            set { SetField(ref __PrimaryContact, value); }
+            set { SetField(ref __PrimaryContact, value, "PrimaryContact"); }
         }
         private PickOrganizationDefaultLocaleSidKey __DefaultLocaleSidKey;
         [EntityField(false)]
         public PickOrganizationDefaultLocaleSidKey DefaultLocaleSidKey
         {
             get { return __DefaultLocaleSidKey; }
-            set { SetField(ref __DefaultLocaleSidKey, value); }
+            set { SetField(ref __DefaultLocaleSidKey, value, "DefaultLocaleSidKey"); }
         }
         private PickOrganizationLanguageLocaleKey __LanguageLocaleKey;
         [EntityField(false)]
         public PickOrganizationLanguageLocaleKey LanguageLocaleKey
         {
             get { return __LanguageLocaleKey; }
-            set { SetField(ref __LanguageLocaleKey, value); }
+            set { SetField(ref __LanguageLocaleKey, value, "LanguageLocaleKey"); }
         }
         private System.Boolean __ReceivesInfoEmails;
         [EntityField(false)]
         public System.Boolean ReceivesInfoEmails
         {
             get { return __ReceivesInfoEmails; }
-            set { SetField(ref __ReceivesInfoEmails, value); }
+            set { SetField(ref __ReceivesInfoEmails, value, "ReceivesInfoEmails"); }
         }
         private System.Boolean __ReceivesAdminInfoEmails;
         [EntityField(false)]
         public System.Boolean ReceivesAdminInfoEmails
         {
             get { return __ReceivesAdminInfoEmails; }
-            set { SetField(ref __ReceivesAdminInfoEmails, value); }
+            set { SetField(ref __ReceivesAdminInfoEmails, value, "ReceivesAdminInfoEmails"); }
         }
         private System.Boolean __PreferencesRequireOpportunityProducts;
         [EntityField(false)]
         public System.Boolean PreferencesRequireOpportunityProducts
         {
             get { return __PreferencesRequireOpportunityProducts; }
-            set { SetField(ref __PreferencesRequireOpportunityProducts, value); }
+            set { SetField(ref __PreferencesRequireOpportunityProducts, value, "PreferencesRequireOpportunityProducts"); }
         }
         private System.Boolean __PreferencesTransactionSecurityPolicy;
         [EntityField(false)]
         public System.Boolean PreferencesTransactionSecurityPolicy
         {
             get { return __PreferencesTransactionSecurityPolicy; }
-            set { SetField(ref __PreferencesTransactionSecurityPolicy, value); }
+            set { SetField(ref __PreferencesTransactionSecurityPolicy, value, "PreferencesTransactionSecurityPolicy"); }
         }
         private System.Boolean __PreferencesTerminateOldestSession;
         [EntityField(false)]
         public System.Boolean PreferencesTerminateOldestSession
         {
             get { return __PreferencesTerminateOldestSession; }
-            set { SetField(ref __PreferencesTerminateOldestSession, value); }
+            set { SetField(ref __PreferencesTerminateOldestSession, value, "PreferencesTerminateOldestSession"); }
         }
         private System.Int32? __FiscalYearStartMonth;
         [EntityField(true)]
         public System.Int32? FiscalYearStartMonth
         {
             get { return __FiscalYearStartMonth; }
-            set { SetField(ref __FiscalYearStartMonth, value); }
+            set { SetField(ref __FiscalYearStartMonth, value, "FiscalYearStartMonth"); }
         }
         private System.Boolean __UsesStartDateAsFiscalYearName;
         [EntityField(false)]
         public System.Boolean UsesStartDateAsFiscalYearName
         {
             get { return __UsesStartDateAsFiscalYearName; }
-            set { SetField(ref __UsesStartDateAsFiscalYearName, value); }
+            set { SetField(ref __UsesStartDateAsFiscalYearName, value, "UsesStartDateAsFiscalYearName"); }
         }
         private PickOrganizationDefaultAccountAccess __DefaultAccountAccess;
         [EntityField(true)]
         public PickOrganizationDefaultAccountAccess DefaultAccountAccess
         {
             get { return __DefaultAccountAccess; }
-            set { SetField(ref __DefaultAccountAccess, value); }
+            set { SetField(ref __DefaultAccountAccess, value, "DefaultAccountAccess"); }
         }
         private PickOrganizationDefaultContactAccess __DefaultContactAccess;
         [EntityField(true)]
         public PickOrganizationDefaultContactAccess DefaultContactAccess
         {
             get { return __DefaultContactAccess; }
-            set { SetField(ref __DefaultContactAccess, value); }
+            set { SetField(ref __DefaultContactAccess, value, "DefaultContactAccess"); }
         }
         private PickOrganizationDefaultOpportunityAccess __DefaultOpportunityAccess;
         [EntityField(true)]
         public PickOrganizationDefaultOpportunityAccess DefaultOpportunityAccess
         {
             get { return __DefaultOpportunityAccess; }
-            set { SetField(ref __DefaultOpportunityAccess, value); }
+            set { SetField(ref __DefaultOpportunityAccess, value, "DefaultOpportunityAccess"); }
         }
         private PickOrganizationDefaultLeadAccess __DefaultLeadAccess;
         [EntityField(true)]
         public PickOrganizationDefaultLeadAccess DefaultLeadAccess
         {
             get { return __DefaultLeadAccess; }
-            set { SetField(ref __DefaultLeadAccess, value); }
+            set { SetField(ref __DefaultLeadAccess, value, "DefaultLeadAccess"); }
         }
         private PickOrganizationDefaultCaseAccess __DefaultCaseAccess;
         [EntityField(true)]
         public PickOrganizationDefaultCaseAccess DefaultCaseAccess
         {
             get { return __DefaultCaseAccess; }
-            set { SetField(ref __DefaultCaseAccess, value); }
+            set { SetField(ref __DefaultCaseAccess, value, "DefaultCaseAccess"); }
         }
         private PickOrganizationDefaultCalendarAccess __DefaultCalendarAccess;
         [EntityField(true)]
         public PickOrganizationDefaultCalendarAccess DefaultCalendarAccess
         {
             get { return __DefaultCalendarAccess; }
-            set { SetField(ref __DefaultCalendarAccess, value); }
+            set { SetField(ref __DefaultCalendarAccess, value, "DefaultCalendarAccess"); }
         }
         private PickOrganizationDefaultPricebookAccess __DefaultPricebookAccess;
         [EntityField(true)]
         public PickOrganizationDefaultPricebookAccess DefaultPricebookAccess
         {
             get { return __DefaultPricebookAccess; }
-            set { SetField(ref __DefaultPricebookAccess, value); }
+            set { SetField(ref __DefaultPricebookAccess, value, "DefaultPricebookAccess"); }
         }
         private PickOrganizationDefaultCampaignAccess __DefaultCampaignAccess;
         [EntityField(true)]
         public PickOrganizationDefaultCampaignAccess DefaultCampaignAccess
         {
             get { return __DefaultCampaignAccess; }
-            set { SetField(ref __DefaultCampaignAccess, value); }
+            set { SetField(ref __DefaultCampaignAccess, value, "DefaultCampaignAccess"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __ComplianceBccEmail;
         [EntityField(true)]
         public System.String ComplianceBccEmail
         {
             get { return __ComplianceBccEmail; }
-            set { SetField(ref __ComplianceBccEmail, value); }
+            set { SetField(ref __ComplianceBccEmail, value, "ComplianceBccEmail"); }
         }
         private PickOrganizationUiSkin __UiSkin;
         [EntityField(true)]
         public PickOrganizationUiSkin UiSkin
         {
             get { return __UiSkin; }
-            set { SetField(ref __UiSkin, value); }
+            set { SetField(ref __UiSkin, value, "UiSkin"); }
         }
         private System.String __SignupCountryIsoCode;
         [EntityField(true)]
         public System.String SignupCountryIsoCode
         {
             get { return __SignupCountryIsoCode; }
-            set { SetField(ref __SignupCountryIsoCode, value); }
+            set { SetField(ref __SignupCountryIsoCode, value, "SignupCountryIsoCode"); }
         }
         private System.DateTime? __TrialExpirationDate;
         [EntityField(true)]
         public System.DateTime? TrialExpirationDate
         {
             get { return __TrialExpirationDate; }
-            set { SetField(ref __TrialExpirationDate, value); }
+            set { SetField(ref __TrialExpirationDate, value, "TrialExpirationDate"); }
         }
         private PickOrganizationOrganizationType __OrganizationType;
         [EntityField(true)]
         public PickOrganizationOrganizationType OrganizationType
         {
             get { return __OrganizationType; }
-            set { SetField(ref __OrganizationType, value); }
+            set { SetField(ref __OrganizationType, value, "OrganizationType"); }
         }
         private System.String __WebToCaseDefaultOrigin;
         [EntityField(true)]
         public System.String WebToCaseDefaultOrigin
         {
             get { return __WebToCaseDefaultOrigin; }
-            set { SetField(ref __WebToCaseDefaultOrigin, value); }
+            set { SetField(ref __WebToCaseDefaultOrigin, value, "WebToCaseDefaultOrigin"); }
         }
         private System.Int32? __MonthlyPageViewsUsed;
         [EntityField(true)]
         public System.Int32? MonthlyPageViewsUsed
         {
             get { return __MonthlyPageViewsUsed; }
-            set { SetField(ref __MonthlyPageViewsUsed, value); }
+            set { SetField(ref __MonthlyPageViewsUsed, value, "MonthlyPageViewsUsed"); }
         }
         private System.Int32? __MonthlyPageViewsEntitlement;
         [EntityField(true)]
         public System.Int32? MonthlyPageViewsEntitlement
         {
             get { return __MonthlyPageViewsEntitlement; }
-            set { SetField(ref __MonthlyPageViewsEntitlement, value); }
+            set { SetField(ref __MonthlyPageViewsEntitlement, value, "MonthlyPageViewsEntitlement"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
     }
     [EntityName("Partner")]
     public class Partner : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Partner(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Partner()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -27813,108 +30786,133 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __OpportunityId;
         [EntityField(true)]
         public System.String OpportunityId
         {
             get { return __OpportunityId; }
-            set { SetField(ref __OpportunityId, value); }
+            set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
         private System.String __AccountFromId;
         [EntityField(true)]
         public System.String AccountFromId
         {
             get { return __AccountFromId; }
-            set { SetField(ref __AccountFromId, value); }
+            set { SetField(ref __AccountFromId, value, "AccountFromId"); }
         }
         private System.String __AccountToId;
         [EntityField(false)]
         public System.String AccountToId
         {
             get { return __AccountToId; }
-            set { SetField(ref __AccountToId, value); }
+            set { SetField(ref __AccountToId, value, "AccountToId"); }
         }
         private PickPartnerRole __Role;
         [EntityField(true)]
         public PickPartnerRole Role
         {
             get { return __Role; }
-            set { SetField(ref __Role, value); }
+            set { SetField(ref __Role, value, "Role"); }
         }
         private System.Boolean __IsPrimary;
         [EntityField(false)]
         public System.Boolean IsPrimary
         {
             get { return __IsPrimary; }
-            set { SetField(ref __IsPrimary, value); }
+            set { SetField(ref __IsPrimary, value, "IsPrimary"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ReversePartnerId;
         [EntityField(true)]
         public System.String ReversePartnerId
         {
             get { return __ReversePartnerId; }
-            set { SetField(ref __ReversePartnerId, value); }
+            set { SetField(ref __ReversePartnerId, value, "ReversePartnerId"); }
         }
     }
     [EntityName("PartnerRole")]
     public class PartnerRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private PartnerRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public PartnerRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -27923,80 +30921,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private PickPartnerRoleReverseRole __ReverseRole;
         [EntityField(true)]
         public PickPartnerRoleReverseRole ReverseRole
         {
             get { return __ReverseRole; }
-            set { SetField(ref __ReverseRole, value); }
+            set { SetField(ref __ReverseRole, value, "ReverseRole"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("Period")]
     public class Period : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Period(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Period()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28005,87 +31028,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __FiscalYearSettingsId;
         [EntityField(true)]
         public System.String FiscalYearSettingsId
         {
             get { return __FiscalYearSettingsId; }
-            set { SetField(ref __FiscalYearSettingsId, value); }
+            set { SetField(ref __FiscalYearSettingsId, value, "FiscalYearSettingsId"); }
         }
         private PickPeriodType __Type;
         [EntityField(true)]
         public PickPeriodType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.DateTime __StartDate;
         [EntityField(false)]
         public System.DateTime StartDate
         {
             get { return __StartDate; }
-            set { SetField(ref __StartDate, value); }
+            set { SetField(ref __StartDate, value, "StartDate"); }
         }
         private System.DateTime __EndDate;
         [EntityField(false)]
         public System.DateTime EndDate
         {
             get { return __EndDate; }
-            set { SetField(ref __EndDate, value); }
+            set { SetField(ref __EndDate, value, "EndDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsForecastPeriod;
         [EntityField(false)]
         public System.Boolean IsForecastPeriod
         {
             get { return __IsForecastPeriod; }
-            set { SetField(ref __IsForecastPeriod, value); }
+            set { SetField(ref __IsForecastPeriod, value, "IsForecastPeriod"); }
         }
         private PickPeriodQuarterLabel __QuarterLabel;
         [EntityField(true)]
         public PickPeriodQuarterLabel QuarterLabel
         {
             get { return __QuarterLabel; }
-            set { SetField(ref __QuarterLabel, value); }
+            set { SetField(ref __QuarterLabel, value, "QuarterLabel"); }
         }
         private PickPeriodPeriodLabel __PeriodLabel;
         [EntityField(true)]
         public PickPeriodPeriodLabel PeriodLabel
         {
             get { return __PeriodLabel; }
-            set { SetField(ref __PeriodLabel, value); }
+            set { SetField(ref __PeriodLabel, value, "PeriodLabel"); }
         }
         private System.Int32? __Number;
         [EntityField(true)]
         public System.Int32? Number
         {
             get { return __Number; }
-            set { SetField(ref __Number, value); }
+            set { SetField(ref __Number, value, "Number"); }
         }
     }
     [EntityName("Pricebook2")]
     public class Pricebook2 : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Pricebook2(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Pricebook2()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28094,77 +31142,77 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Boolean __IsStandard;
         [EntityField(false)]
         public System.Boolean IsStandard
         {
             get { return __IsStandard; }
-            set { SetField(ref __IsStandard, value); }
+            set { SetField(ref __IsStandard, value, "IsStandard"); }
         }
         [JsonIgnore]
         [ReferencedByField("Pricebook2Id")]
@@ -28194,18 +31242,43 @@ namespace LinqToSalesforce
     [EntityName("Pricebook2History")]
     public class Pricebook2History : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Pricebook2History(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Pricebook2History()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28214,73 +31287,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __Pricebook2Id;
         [EntityField(false)]
         public System.String Pricebook2Id
         {
             get { return __Pricebook2Id; }
-            set { SetField(ref __Pricebook2Id, value); }
+            set { SetField(ref __Pricebook2Id, value, "Pricebook2Id"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickPricebook2HistoryField __Field;
         [EntityField(false)]
         public PickPricebook2HistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("PricebookEntry")]
     public class PricebookEntry : ISalesforceEntity
     {
+    [JsonConstructor]
+        private PricebookEntry(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public PricebookEntry()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28289,98 +31387,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(true)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Pricebook2Id;
         [EntityField(false)]
         public System.String Pricebook2Id
         {
             get { return __Pricebook2Id; }
-            set { SetField(ref __Pricebook2Id, value); }
+            set { SetField(ref __Pricebook2Id, value, "Pricebook2Id"); }
         }
         private System.String __Product2Id;
         [EntityField(false)]
         public System.String Product2Id
         {
             get { return __Product2Id; }
-            set { SetField(ref __Product2Id, value); }
+            set { SetField(ref __Product2Id, value, "Product2Id"); }
         }
         private System.String __UnitPrice;
         [EntityField(false)]
         public System.String UnitPrice
         {
             get { return __UnitPrice; }
-            set { SetField(ref __UnitPrice, value); }
+            set { SetField(ref __UnitPrice, value, "UnitPrice"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.Boolean __UseStandardPrice;
         [EntityField(false)]
         public System.Boolean UseStandardPrice
         {
             get { return __UseStandardPrice; }
-            set { SetField(ref __UseStandardPrice, value); }
+            set { SetField(ref __UseStandardPrice, value, "UseStandardPrice"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __ProductCode;
         [EntityField(true)]
         public System.String ProductCode
         {
             get { return __ProductCode; }
-            set { SetField(ref __ProductCode, value); }
+            set { SetField(ref __ProductCode, value, "ProductCode"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         [JsonIgnore]
         [ReferencedByField("PricebookEntryId")]
@@ -28398,18 +31496,43 @@ namespace LinqToSalesforce
     [EntityName("ProcessDefinition")]
     public class ProcessDefinition : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessDefinition(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessDefinition()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28418,108 +31541,133 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __DeveloperName;
         [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
-            set { SetField(ref __DeveloperName, value); }
+            set { SetField(ref __DeveloperName, value, "DeveloperName"); }
         }
         private PickProcessDefinitionType __Type;
         [EntityField(false)]
         public PickProcessDefinitionType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickProcessDefinitionTableEnumOrId __TableEnumOrId;
         [EntityField(false)]
         public PickProcessDefinitionTableEnumOrId TableEnumOrId
         {
             get { return __TableEnumOrId; }
-            set { SetField(ref __TableEnumOrId, value); }
+            set { SetField(ref __TableEnumOrId, value, "TableEnumOrId"); }
         }
         private PickProcessDefinitionLockType __LockType;
         [EntityField(false)]
         public PickProcessDefinitionLockType LockType
         {
             get { return __LockType; }
-            set { SetField(ref __LockType, value); }
+            set { SetField(ref __LockType, value, "LockType"); }
         }
         private PickProcessDefinitionState __State;
         [EntityField(false)]
         public PickProcessDefinitionState State
         {
             get { return __State; }
-            set { SetField(ref __State, value); }
+            set { SetField(ref __State, value, "State"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("ProcessInstance")]
     public class ProcessInstance : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessInstance(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessInstance()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28528,70 +31676,70 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ProcessDefinitionId;
         [EntityField(false)]
         public System.String ProcessDefinitionId
         {
             get { return __ProcessDefinitionId; }
-            set { SetField(ref __ProcessDefinitionId, value); }
+            set { SetField(ref __ProcessDefinitionId, value, "ProcessDefinitionId"); }
         }
         private System.String __TargetObjectId;
         [EntityField(false)]
         public System.String TargetObjectId
         {
             get { return __TargetObjectId; }
-            set { SetField(ref __TargetObjectId, value); }
+            set { SetField(ref __TargetObjectId, value, "TargetObjectId"); }
         }
         private PickProcessInstanceStatus __Status;
         [EntityField(false)]
         public PickProcessInstanceStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("ProcessInstanceId")]
@@ -28615,18 +31763,43 @@ namespace LinqToSalesforce
     [EntityName("ProcessInstanceHistory")]
     public class ProcessInstanceHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessInstanceHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessInstanceHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28635,108 +31808,133 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsPending;
         [EntityField(false)]
         public System.Boolean IsPending
         {
             get { return __IsPending; }
-            set { SetField(ref __IsPending, value); }
+            set { SetField(ref __IsPending, value, "IsPending"); }
         }
         private System.String __ProcessInstanceId;
         [EntityField(false)]
         public System.String ProcessInstanceId
         {
             get { return __ProcessInstanceId; }
-            set { SetField(ref __ProcessInstanceId, value); }
+            set { SetField(ref __ProcessInstanceId, value, "ProcessInstanceId"); }
         }
         private System.String __TargetObjectId;
         [EntityField(true)]
         public System.String TargetObjectId
         {
             get { return __TargetObjectId; }
-            set { SetField(ref __TargetObjectId, value); }
+            set { SetField(ref __TargetObjectId, value, "TargetObjectId"); }
         }
         private PickProcessInstanceHistoryStepStatus __StepStatus;
         [EntityField(true)]
         public PickProcessInstanceHistoryStepStatus StepStatus
         {
             get { return __StepStatus; }
-            set { SetField(ref __StepStatus, value); }
+            set { SetField(ref __StepStatus, value, "StepStatus"); }
         }
         private System.String __OriginalActorId;
         [EntityField(false)]
         public System.String OriginalActorId
         {
             get { return __OriginalActorId; }
-            set { SetField(ref __OriginalActorId, value); }
+            set { SetField(ref __OriginalActorId, value, "OriginalActorId"); }
         }
         private System.String __ActorId;
         [EntityField(false)]
         public System.String ActorId
         {
             get { return __ActorId; }
-            set { SetField(ref __ActorId, value); }
+            set { SetField(ref __ActorId, value, "ActorId"); }
         }
         private System.Int32? __RemindersSent;
         [EntityField(true)]
         public System.Int32? RemindersSent
         {
             get { return __RemindersSent; }
-            set { SetField(ref __RemindersSent, value); }
+            set { SetField(ref __RemindersSent, value, "RemindersSent"); }
         }
         private System.String __Comments;
         [EntityField(true)]
         public System.String Comments
         {
             get { return __Comments; }
-            set { SetField(ref __Comments, value); }
+            set { SetField(ref __Comments, value, "Comments"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("ProcessInstanceStep")]
     public class ProcessInstanceStep : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessInstanceStep(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessInstanceStep()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28745,80 +31943,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ProcessInstanceId;
         [EntityField(false)]
         public System.String ProcessInstanceId
         {
             get { return __ProcessInstanceId; }
-            set { SetField(ref __ProcessInstanceId, value); }
+            set { SetField(ref __ProcessInstanceId, value, "ProcessInstanceId"); }
         }
         private PickProcessInstanceStepStepStatus __StepStatus;
         [EntityField(true)]
         public PickProcessInstanceStepStepStatus StepStatus
         {
             get { return __StepStatus; }
-            set { SetField(ref __StepStatus, value); }
+            set { SetField(ref __StepStatus, value, "StepStatus"); }
         }
         private System.String __OriginalActorId;
         [EntityField(false)]
         public System.String OriginalActorId
         {
             get { return __OriginalActorId; }
-            set { SetField(ref __OriginalActorId, value); }
+            set { SetField(ref __OriginalActorId, value, "OriginalActorId"); }
         }
         private System.String __ActorId;
         [EntityField(false)]
         public System.String ActorId
         {
             get { return __ActorId; }
-            set { SetField(ref __ActorId, value); }
+            set { SetField(ref __ActorId, value, "ActorId"); }
         }
         private System.String __Comments;
         [EntityField(true)]
         public System.String Comments
         {
             get { return __Comments; }
-            set { SetField(ref __Comments, value); }
+            set { SetField(ref __Comments, value, "Comments"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("ProcessInstanceWorkitem")]
     public class ProcessInstanceWorkitem : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessInstanceWorkitem(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessInstanceWorkitem()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28827,73 +32050,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ProcessInstanceId;
         [EntityField(false)]
         public System.String ProcessInstanceId
         {
             get { return __ProcessInstanceId; }
-            set { SetField(ref __ProcessInstanceId, value); }
+            set { SetField(ref __ProcessInstanceId, value, "ProcessInstanceId"); }
         }
         private System.String __OriginalActorId;
         [EntityField(false)]
         public System.String OriginalActorId
         {
             get { return __OriginalActorId; }
-            set { SetField(ref __OriginalActorId, value); }
+            set { SetField(ref __OriginalActorId, value, "OriginalActorId"); }
         }
         private System.String __ActorId;
         [EntityField(false)]
         public System.String ActorId
         {
             get { return __ActorId; }
-            set { SetField(ref __ActorId, value); }
+            set { SetField(ref __ActorId, value, "ActorId"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("ProcessNode")]
     public class ProcessNode : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessNode(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessNode()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28902,59 +32150,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __DeveloperName;
         [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
-            set { SetField(ref __DeveloperName, value); }
+            set { SetField(ref __DeveloperName, value, "DeveloperName"); }
         }
         private System.String __ProcessDefinitionId;
         [EntityField(false)]
         public System.String ProcessDefinitionId
         {
             get { return __ProcessDefinitionId; }
-            set { SetField(ref __ProcessDefinitionId, value); }
+            set { SetField(ref __ProcessDefinitionId, value, "ProcessDefinitionId"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("Product2")]
     public class Product2 : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Product2(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Product2()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -28963,84 +32236,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __ProductCode;
         [EntityField(true)]
         public System.String ProductCode
         {
             get { return __ProductCode; }
-            set { SetField(ref __ProductCode, value); }
+            set { SetField(ref __ProductCode, value, "ProductCode"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private PickProduct2Family __Family;
         [EntityField(true)]
         public PickProduct2Family Family
         {
             get { return __Family; }
-            set { SetField(ref __Family, value); }
+            set { SetField(ref __Family, value, "Family"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
@@ -29124,18 +32397,43 @@ namespace LinqToSalesforce
     [EntityName("Product2Feed")]
     public class Product2Feed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Product2Feed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Product2Feed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -29144,56 +32442,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickProduct2FeedType __Type;
         [EntityField(true)]
         public PickProduct2FeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -29211,18 +32509,43 @@ namespace LinqToSalesforce
     [EntityName("Profile")]
     public class Profile : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Profile(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Profile()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -29231,595 +32554,595 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Boolean __PermissionsEmailSingle;
         [EntityField(false)]
         public System.Boolean PermissionsEmailSingle
         {
             get { return __PermissionsEmailSingle; }
-            set { SetField(ref __PermissionsEmailSingle, value); }
+            set { SetField(ref __PermissionsEmailSingle, value, "PermissionsEmailSingle"); }
         }
         private System.Boolean __PermissionsEmailMass;
         [EntityField(false)]
         public System.Boolean PermissionsEmailMass
         {
             get { return __PermissionsEmailMass; }
-            set { SetField(ref __PermissionsEmailMass, value); }
+            set { SetField(ref __PermissionsEmailMass, value, "PermissionsEmailMass"); }
         }
         private System.Boolean __PermissionsEditTask;
         [EntityField(false)]
         public System.Boolean PermissionsEditTask
         {
             get { return __PermissionsEditTask; }
-            set { SetField(ref __PermissionsEditTask, value); }
+            set { SetField(ref __PermissionsEditTask, value, "PermissionsEditTask"); }
         }
         private System.Boolean __PermissionsEditEvent;
         [EntityField(false)]
         public System.Boolean PermissionsEditEvent
         {
             get { return __PermissionsEditEvent; }
-            set { SetField(ref __PermissionsEditEvent, value); }
+            set { SetField(ref __PermissionsEditEvent, value, "PermissionsEditEvent"); }
         }
         private System.Boolean __PermissionsExportReport;
         [EntityField(false)]
         public System.Boolean PermissionsExportReport
         {
             get { return __PermissionsExportReport; }
-            set { SetField(ref __PermissionsExportReport, value); }
+            set { SetField(ref __PermissionsExportReport, value, "PermissionsExportReport"); }
         }
         private System.Boolean __PermissionsImportPersonal;
         [EntityField(false)]
         public System.Boolean PermissionsImportPersonal
         {
             get { return __PermissionsImportPersonal; }
-            set { SetField(ref __PermissionsImportPersonal, value); }
+            set { SetField(ref __PermissionsImportPersonal, value, "PermissionsImportPersonal"); }
         }
         private System.Boolean __PermissionsManageUsers;
         [EntityField(false)]
         public System.Boolean PermissionsManageUsers
         {
             get { return __PermissionsManageUsers; }
-            set { SetField(ref __PermissionsManageUsers, value); }
+            set { SetField(ref __PermissionsManageUsers, value, "PermissionsManageUsers"); }
         }
         private System.Boolean __PermissionsEditPublicTemplates;
         [EntityField(false)]
         public System.Boolean PermissionsEditPublicTemplates
         {
             get { return __PermissionsEditPublicTemplates; }
-            set { SetField(ref __PermissionsEditPublicTemplates, value); }
+            set { SetField(ref __PermissionsEditPublicTemplates, value, "PermissionsEditPublicTemplates"); }
         }
         private System.Boolean __PermissionsModifyAllData;
         [EntityField(false)]
         public System.Boolean PermissionsModifyAllData
         {
             get { return __PermissionsModifyAllData; }
-            set { SetField(ref __PermissionsModifyAllData, value); }
+            set { SetField(ref __PermissionsModifyAllData, value, "PermissionsModifyAllData"); }
         }
         private System.Boolean __PermissionsManageCases;
         [EntityField(false)]
         public System.Boolean PermissionsManageCases
         {
             get { return __PermissionsManageCases; }
-            set { SetField(ref __PermissionsManageCases, value); }
+            set { SetField(ref __PermissionsManageCases, value, "PermissionsManageCases"); }
         }
         private System.Boolean __PermissionsMassInlineEdit;
         [EntityField(false)]
         public System.Boolean PermissionsMassInlineEdit
         {
             get { return __PermissionsMassInlineEdit; }
-            set { SetField(ref __PermissionsMassInlineEdit, value); }
+            set { SetField(ref __PermissionsMassInlineEdit, value, "PermissionsMassInlineEdit"); }
         }
         private System.Boolean __PermissionsViewKnowledge;
         [EntityField(false)]
         public System.Boolean PermissionsViewKnowledge
         {
             get { return __PermissionsViewKnowledge; }
-            set { SetField(ref __PermissionsViewKnowledge, value); }
+            set { SetField(ref __PermissionsViewKnowledge, value, "PermissionsViewKnowledge"); }
         }
         private System.Boolean __PermissionsEditKnowledge;
         [EntityField(false)]
         public System.Boolean PermissionsEditKnowledge
         {
             get { return __PermissionsEditKnowledge; }
-            set { SetField(ref __PermissionsEditKnowledge, value); }
+            set { SetField(ref __PermissionsEditKnowledge, value, "PermissionsEditKnowledge"); }
         }
         private System.Boolean __PermissionsManageKnowledge;
         [EntityField(false)]
         public System.Boolean PermissionsManageKnowledge
         {
             get { return __PermissionsManageKnowledge; }
-            set { SetField(ref __PermissionsManageKnowledge, value); }
+            set { SetField(ref __PermissionsManageKnowledge, value, "PermissionsManageKnowledge"); }
         }
         private System.Boolean __PermissionsManageSolutions;
         [EntityField(false)]
         public System.Boolean PermissionsManageSolutions
         {
             get { return __PermissionsManageSolutions; }
-            set { SetField(ref __PermissionsManageSolutions, value); }
+            set { SetField(ref __PermissionsManageSolutions, value, "PermissionsManageSolutions"); }
         }
         private System.Boolean __PermissionsCustomizeApplication;
         [EntityField(false)]
         public System.Boolean PermissionsCustomizeApplication
         {
             get { return __PermissionsCustomizeApplication; }
-            set { SetField(ref __PermissionsCustomizeApplication, value); }
+            set { SetField(ref __PermissionsCustomizeApplication, value, "PermissionsCustomizeApplication"); }
         }
         private System.Boolean __PermissionsEditReadonlyFields;
         [EntityField(false)]
         public System.Boolean PermissionsEditReadonlyFields
         {
             get { return __PermissionsEditReadonlyFields; }
-            set { SetField(ref __PermissionsEditReadonlyFields, value); }
+            set { SetField(ref __PermissionsEditReadonlyFields, value, "PermissionsEditReadonlyFields"); }
         }
         private System.Boolean __PermissionsRunReports;
         [EntityField(false)]
         public System.Boolean PermissionsRunReports
         {
             get { return __PermissionsRunReports; }
-            set { SetField(ref __PermissionsRunReports, value); }
+            set { SetField(ref __PermissionsRunReports, value, "PermissionsRunReports"); }
         }
         private System.Boolean __PermissionsViewSetup;
         [EntityField(false)]
         public System.Boolean PermissionsViewSetup
         {
             get { return __PermissionsViewSetup; }
-            set { SetField(ref __PermissionsViewSetup, value); }
+            set { SetField(ref __PermissionsViewSetup, value, "PermissionsViewSetup"); }
         }
         private System.Boolean __PermissionsTransferAnyEntity;
         [EntityField(false)]
         public System.Boolean PermissionsTransferAnyEntity
         {
             get { return __PermissionsTransferAnyEntity; }
-            set { SetField(ref __PermissionsTransferAnyEntity, value); }
+            set { SetField(ref __PermissionsTransferAnyEntity, value, "PermissionsTransferAnyEntity"); }
         }
         private System.Boolean __PermissionsNewReportBuilder;
         [EntityField(false)]
         public System.Boolean PermissionsNewReportBuilder
         {
             get { return __PermissionsNewReportBuilder; }
-            set { SetField(ref __PermissionsNewReportBuilder, value); }
+            set { SetField(ref __PermissionsNewReportBuilder, value, "PermissionsNewReportBuilder"); }
         }
         private System.Boolean __PermissionsActivateContract;
         [EntityField(false)]
         public System.Boolean PermissionsActivateContract
         {
             get { return __PermissionsActivateContract; }
-            set { SetField(ref __PermissionsActivateContract, value); }
+            set { SetField(ref __PermissionsActivateContract, value, "PermissionsActivateContract"); }
         }
         private System.Boolean __PermissionsActivateOrder;
         [EntityField(false)]
         public System.Boolean PermissionsActivateOrder
         {
             get { return __PermissionsActivateOrder; }
-            set { SetField(ref __PermissionsActivateOrder, value); }
+            set { SetField(ref __PermissionsActivateOrder, value, "PermissionsActivateOrder"); }
         }
         private System.Boolean __PermissionsImportLeads;
         [EntityField(false)]
         public System.Boolean PermissionsImportLeads
         {
             get { return __PermissionsImportLeads; }
-            set { SetField(ref __PermissionsImportLeads, value); }
+            set { SetField(ref __PermissionsImportLeads, value, "PermissionsImportLeads"); }
         }
         private System.Boolean __PermissionsManageLeads;
         [EntityField(false)]
         public System.Boolean PermissionsManageLeads
         {
             get { return __PermissionsManageLeads; }
-            set { SetField(ref __PermissionsManageLeads, value); }
+            set { SetField(ref __PermissionsManageLeads, value, "PermissionsManageLeads"); }
         }
         private System.Boolean __PermissionsTransferAnyLead;
         [EntityField(false)]
         public System.Boolean PermissionsTransferAnyLead
         {
             get { return __PermissionsTransferAnyLead; }
-            set { SetField(ref __PermissionsTransferAnyLead, value); }
+            set { SetField(ref __PermissionsTransferAnyLead, value, "PermissionsTransferAnyLead"); }
         }
         private System.Boolean __PermissionsViewAllData;
         [EntityField(false)]
         public System.Boolean PermissionsViewAllData
         {
             get { return __PermissionsViewAllData; }
-            set { SetField(ref __PermissionsViewAllData, value); }
+            set { SetField(ref __PermissionsViewAllData, value, "PermissionsViewAllData"); }
         }
         private System.Boolean __PermissionsEditPublicDocuments;
         [EntityField(false)]
         public System.Boolean PermissionsEditPublicDocuments
         {
             get { return __PermissionsEditPublicDocuments; }
-            set { SetField(ref __PermissionsEditPublicDocuments, value); }
+            set { SetField(ref __PermissionsEditPublicDocuments, value, "PermissionsEditPublicDocuments"); }
         }
         private System.Boolean __PermissionsViewEncryptedData;
         [EntityField(false)]
         public System.Boolean PermissionsViewEncryptedData
         {
             get { return __PermissionsViewEncryptedData; }
-            set { SetField(ref __PermissionsViewEncryptedData, value); }
+            set { SetField(ref __PermissionsViewEncryptedData, value, "PermissionsViewEncryptedData"); }
         }
         private System.Boolean __PermissionsEditBrandTemplates;
         [EntityField(false)]
         public System.Boolean PermissionsEditBrandTemplates
         {
             get { return __PermissionsEditBrandTemplates; }
-            set { SetField(ref __PermissionsEditBrandTemplates, value); }
+            set { SetField(ref __PermissionsEditBrandTemplates, value, "PermissionsEditBrandTemplates"); }
         }
         private System.Boolean __PermissionsEditHtmlTemplates;
         [EntityField(false)]
         public System.Boolean PermissionsEditHtmlTemplates
         {
             get { return __PermissionsEditHtmlTemplates; }
-            set { SetField(ref __PermissionsEditHtmlTemplates, value); }
+            set { SetField(ref __PermissionsEditHtmlTemplates, value, "PermissionsEditHtmlTemplates"); }
         }
         private System.Boolean __PermissionsDeleteActivatedContract;
         [EntityField(false)]
         public System.Boolean PermissionsDeleteActivatedContract
         {
             get { return __PermissionsDeleteActivatedContract; }
-            set { SetField(ref __PermissionsDeleteActivatedContract, value); }
+            set { SetField(ref __PermissionsDeleteActivatedContract, value, "PermissionsDeleteActivatedContract"); }
         }
         private System.Boolean __PermissionsSendSitRequests;
         [EntityField(false)]
         public System.Boolean PermissionsSendSitRequests
         {
             get { return __PermissionsSendSitRequests; }
-            set { SetField(ref __PermissionsSendSitRequests, value); }
+            set { SetField(ref __PermissionsSendSitRequests, value, "PermissionsSendSitRequests"); }
         }
         private System.Boolean __PermissionsManageRemoteAccess;
         [EntityField(false)]
         public System.Boolean PermissionsManageRemoteAccess
         {
             get { return __PermissionsManageRemoteAccess; }
-            set { SetField(ref __PermissionsManageRemoteAccess, value); }
+            set { SetField(ref __PermissionsManageRemoteAccess, value, "PermissionsManageRemoteAccess"); }
         }
         private System.Boolean __PermissionsCanUseNewDashboardBuilder;
         [EntityField(false)]
         public System.Boolean PermissionsCanUseNewDashboardBuilder
         {
             get { return __PermissionsCanUseNewDashboardBuilder; }
-            set { SetField(ref __PermissionsCanUseNewDashboardBuilder, value); }
+            set { SetField(ref __PermissionsCanUseNewDashboardBuilder, value, "PermissionsCanUseNewDashboardBuilder"); }
         }
         private System.Boolean __PermissionsManageCategories;
         [EntityField(false)]
         public System.Boolean PermissionsManageCategories
         {
             get { return __PermissionsManageCategories; }
-            set { SetField(ref __PermissionsManageCategories, value); }
+            set { SetField(ref __PermissionsManageCategories, value, "PermissionsManageCategories"); }
         }
         private System.Boolean __PermissionsConvertLeads;
         [EntityField(false)]
         public System.Boolean PermissionsConvertLeads
         {
             get { return __PermissionsConvertLeads; }
-            set { SetField(ref __PermissionsConvertLeads, value); }
+            set { SetField(ref __PermissionsConvertLeads, value, "PermissionsConvertLeads"); }
         }
         private System.Boolean __PermissionsPasswordNeverExpires;
         [EntityField(false)]
         public System.Boolean PermissionsPasswordNeverExpires
         {
             get { return __PermissionsPasswordNeverExpires; }
-            set { SetField(ref __PermissionsPasswordNeverExpires, value); }
+            set { SetField(ref __PermissionsPasswordNeverExpires, value, "PermissionsPasswordNeverExpires"); }
         }
         private System.Boolean __PermissionsUseTeamReassignWizards;
         [EntityField(false)]
         public System.Boolean PermissionsUseTeamReassignWizards
         {
             get { return __PermissionsUseTeamReassignWizards; }
-            set { SetField(ref __PermissionsUseTeamReassignWizards, value); }
+            set { SetField(ref __PermissionsUseTeamReassignWizards, value, "PermissionsUseTeamReassignWizards"); }
         }
         private System.Boolean __PermissionsEditActivatedOrders;
         [EntityField(false)]
         public System.Boolean PermissionsEditActivatedOrders
         {
             get { return __PermissionsEditActivatedOrders; }
-            set { SetField(ref __PermissionsEditActivatedOrders, value); }
+            set { SetField(ref __PermissionsEditActivatedOrders, value, "PermissionsEditActivatedOrders"); }
         }
         private System.Boolean __PermissionsInstallMultiforce;
         [EntityField(false)]
         public System.Boolean PermissionsInstallMultiforce
         {
             get { return __PermissionsInstallMultiforce; }
-            set { SetField(ref __PermissionsInstallMultiforce, value); }
+            set { SetField(ref __PermissionsInstallMultiforce, value, "PermissionsInstallMultiforce"); }
         }
         private System.Boolean __PermissionsPublishMultiforce;
         [EntityField(false)]
         public System.Boolean PermissionsPublishMultiforce
         {
             get { return __PermissionsPublishMultiforce; }
-            set { SetField(ref __PermissionsPublishMultiforce, value); }
+            set { SetField(ref __PermissionsPublishMultiforce, value, "PermissionsPublishMultiforce"); }
         }
         private System.Boolean __PermissionsEditOppLineItemUnitPrice;
         [EntityField(false)]
         public System.Boolean PermissionsEditOppLineItemUnitPrice
         {
             get { return __PermissionsEditOppLineItemUnitPrice; }
-            set { SetField(ref __PermissionsEditOppLineItemUnitPrice, value); }
+            set { SetField(ref __PermissionsEditOppLineItemUnitPrice, value, "PermissionsEditOppLineItemUnitPrice"); }
         }
         private System.Boolean __PermissionsCreateMultiforce;
         [EntityField(false)]
         public System.Boolean PermissionsCreateMultiforce
         {
             get { return __PermissionsCreateMultiforce; }
-            set { SetField(ref __PermissionsCreateMultiforce, value); }
+            set { SetField(ref __PermissionsCreateMultiforce, value, "PermissionsCreateMultiforce"); }
         }
         private System.Boolean __PermissionsBulkApiHardDelete;
         [EntityField(false)]
         public System.Boolean PermissionsBulkApiHardDelete
         {
             get { return __PermissionsBulkApiHardDelete; }
-            set { SetField(ref __PermissionsBulkApiHardDelete, value); }
+            set { SetField(ref __PermissionsBulkApiHardDelete, value, "PermissionsBulkApiHardDelete"); }
         }
         private System.Boolean __PermissionsSolutionImport;
         [EntityField(false)]
         public System.Boolean PermissionsSolutionImport
         {
             get { return __PermissionsSolutionImport; }
-            set { SetField(ref __PermissionsSolutionImport, value); }
+            set { SetField(ref __PermissionsSolutionImport, value, "PermissionsSolutionImport"); }
         }
         private System.Boolean __PermissionsManageCallCenters;
         [EntityField(false)]
         public System.Boolean PermissionsManageCallCenters
         {
             get { return __PermissionsManageCallCenters; }
-            set { SetField(ref __PermissionsManageCallCenters, value); }
+            set { SetField(ref __PermissionsManageCallCenters, value, "PermissionsManageCallCenters"); }
         }
         private System.Boolean __PermissionsManageSynonyms;
         [EntityField(false)]
         public System.Boolean PermissionsManageSynonyms
         {
             get { return __PermissionsManageSynonyms; }
-            set { SetField(ref __PermissionsManageSynonyms, value); }
+            set { SetField(ref __PermissionsManageSynonyms, value, "PermissionsManageSynonyms"); }
         }
         private System.Boolean __PermissionsViewContent;
         [EntityField(false)]
         public System.Boolean PermissionsViewContent
         {
             get { return __PermissionsViewContent; }
-            set { SetField(ref __PermissionsViewContent, value); }
+            set { SetField(ref __PermissionsViewContent, value, "PermissionsViewContent"); }
         }
         private System.Boolean __PermissionsManageEmailClientConfig;
         [EntityField(false)]
         public System.Boolean PermissionsManageEmailClientConfig
         {
             get { return __PermissionsManageEmailClientConfig; }
-            set { SetField(ref __PermissionsManageEmailClientConfig, value); }
+            set { SetField(ref __PermissionsManageEmailClientConfig, value, "PermissionsManageEmailClientConfig"); }
         }
         private System.Boolean __PermissionsEnableNotifications;
         [EntityField(false)]
         public System.Boolean PermissionsEnableNotifications
         {
             get { return __PermissionsEnableNotifications; }
-            set { SetField(ref __PermissionsEnableNotifications, value); }
+            set { SetField(ref __PermissionsEnableNotifications, value, "PermissionsEnableNotifications"); }
         }
         private System.Boolean __PermissionsManageDataIntegrations;
         [EntityField(false)]
         public System.Boolean PermissionsManageDataIntegrations
         {
             get { return __PermissionsManageDataIntegrations; }
-            set { SetField(ref __PermissionsManageDataIntegrations, value); }
+            set { SetField(ref __PermissionsManageDataIntegrations, value, "PermissionsManageDataIntegrations"); }
         }
         private System.Boolean __PermissionsDistributeFromPersWksp;
         [EntityField(false)]
         public System.Boolean PermissionsDistributeFromPersWksp
         {
             get { return __PermissionsDistributeFromPersWksp; }
-            set { SetField(ref __PermissionsDistributeFromPersWksp, value); }
+            set { SetField(ref __PermissionsDistributeFromPersWksp, value, "PermissionsDistributeFromPersWksp"); }
         }
         private System.Boolean __PermissionsViewDataCategories;
         [EntityField(false)]
         public System.Boolean PermissionsViewDataCategories
         {
             get { return __PermissionsViewDataCategories; }
-            set { SetField(ref __PermissionsViewDataCategories, value); }
+            set { SetField(ref __PermissionsViewDataCategories, value, "PermissionsViewDataCategories"); }
         }
         private System.Boolean __PermissionsManageDataCategories;
         [EntityField(false)]
         public System.Boolean PermissionsManageDataCategories
         {
             get { return __PermissionsManageDataCategories; }
-            set { SetField(ref __PermissionsManageDataCategories, value); }
+            set { SetField(ref __PermissionsManageDataCategories, value, "PermissionsManageDataCategories"); }
         }
         private System.Boolean __PermissionsAuthorApex;
         [EntityField(false)]
         public System.Boolean PermissionsAuthorApex
         {
             get { return __PermissionsAuthorApex; }
-            set { SetField(ref __PermissionsAuthorApex, value); }
+            set { SetField(ref __PermissionsAuthorApex, value, "PermissionsAuthorApex"); }
         }
         private System.Boolean __PermissionsManageMobile;
         [EntityField(false)]
         public System.Boolean PermissionsManageMobile
         {
             get { return __PermissionsManageMobile; }
-            set { SetField(ref __PermissionsManageMobile, value); }
+            set { SetField(ref __PermissionsManageMobile, value, "PermissionsManageMobile"); }
         }
         private System.Boolean __PermissionsApiEnabled;
         [EntityField(false)]
         public System.Boolean PermissionsApiEnabled
         {
             get { return __PermissionsApiEnabled; }
-            set { SetField(ref __PermissionsApiEnabled, value); }
+            set { SetField(ref __PermissionsApiEnabled, value, "PermissionsApiEnabled"); }
         }
         private System.Boolean __PermissionsManageCustomReportTypes;
         [EntityField(false)]
         public System.Boolean PermissionsManageCustomReportTypes
         {
             get { return __PermissionsManageCustomReportTypes; }
-            set { SetField(ref __PermissionsManageCustomReportTypes, value); }
+            set { SetField(ref __PermissionsManageCustomReportTypes, value, "PermissionsManageCustomReportTypes"); }
         }
         private System.Boolean __PermissionsEditCaseComments;
         [EntityField(false)]
         public System.Boolean PermissionsEditCaseComments
         {
             get { return __PermissionsEditCaseComments; }
-            set { SetField(ref __PermissionsEditCaseComments, value); }
+            set { SetField(ref __PermissionsEditCaseComments, value, "PermissionsEditCaseComments"); }
         }
         private System.Boolean __PermissionsTransferAnyCase;
         [EntityField(false)]
         public System.Boolean PermissionsTransferAnyCase
         {
             get { return __PermissionsTransferAnyCase; }
-            set { SetField(ref __PermissionsTransferAnyCase, value); }
+            set { SetField(ref __PermissionsTransferAnyCase, value, "PermissionsTransferAnyCase"); }
         }
         private System.Boolean __PermissionsContentAdministrator;
         [EntityField(false)]
         public System.Boolean PermissionsContentAdministrator
         {
             get { return __PermissionsContentAdministrator; }
-            set { SetField(ref __PermissionsContentAdministrator, value); }
+            set { SetField(ref __PermissionsContentAdministrator, value, "PermissionsContentAdministrator"); }
         }
         private System.Boolean __PermissionsCreateWorkspaces;
         [EntityField(false)]
         public System.Boolean PermissionsCreateWorkspaces
         {
             get { return __PermissionsCreateWorkspaces; }
-            set { SetField(ref __PermissionsCreateWorkspaces, value); }
+            set { SetField(ref __PermissionsCreateWorkspaces, value, "PermissionsCreateWorkspaces"); }
         }
         private System.Boolean __PermissionsManageContentPermissions;
         [EntityField(false)]
         public System.Boolean PermissionsManageContentPermissions
         {
             get { return __PermissionsManageContentPermissions; }
-            set { SetField(ref __PermissionsManageContentPermissions, value); }
+            set { SetField(ref __PermissionsManageContentPermissions, value, "PermissionsManageContentPermissions"); }
         }
         private System.Boolean __PermissionsManageContentProperties;
         [EntityField(false)]
         public System.Boolean PermissionsManageContentProperties
         {
             get { return __PermissionsManageContentProperties; }
-            set { SetField(ref __PermissionsManageContentProperties, value); }
+            set { SetField(ref __PermissionsManageContentProperties, value, "PermissionsManageContentProperties"); }
         }
         private System.Boolean __PermissionsManageContentTypes;
         [EntityField(false)]
         public System.Boolean PermissionsManageContentTypes
         {
             get { return __PermissionsManageContentTypes; }
-            set { SetField(ref __PermissionsManageContentTypes, value); }
+            set { SetField(ref __PermissionsManageContentTypes, value, "PermissionsManageContentTypes"); }
         }
         private System.Boolean __PermissionsManageAnalyticSnapshots;
         [EntityField(false)]
         public System.Boolean PermissionsManageAnalyticSnapshots
         {
             get { return __PermissionsManageAnalyticSnapshots; }
-            set { SetField(ref __PermissionsManageAnalyticSnapshots, value); }
+            set { SetField(ref __PermissionsManageAnalyticSnapshots, value, "PermissionsManageAnalyticSnapshots"); }
         }
         private System.Boolean __PermissionsScheduleReports;
         [EntityField(false)]
         public System.Boolean PermissionsScheduleReports
         {
             get { return __PermissionsScheduleReports; }
-            set { SetField(ref __PermissionsScheduleReports, value); }
+            set { SetField(ref __PermissionsScheduleReports, value, "PermissionsScheduleReports"); }
         }
         private System.Boolean __PermissionsManageBusinessHourHolidays;
         [EntityField(false)]
         public System.Boolean PermissionsManageBusinessHourHolidays
         {
             get { return __PermissionsManageBusinessHourHolidays; }
-            set { SetField(ref __PermissionsManageBusinessHourHolidays, value); }
+            set { SetField(ref __PermissionsManageBusinessHourHolidays, value, "PermissionsManageBusinessHourHolidays"); }
         }
         private System.Boolean __PermissionsManageDynamicDashboards;
         [EntityField(false)]
         public System.Boolean PermissionsManageDynamicDashboards
         {
             get { return __PermissionsManageDynamicDashboards; }
-            set { SetField(ref __PermissionsManageDynamicDashboards, value); }
+            set { SetField(ref __PermissionsManageDynamicDashboards, value, "PermissionsManageDynamicDashboards"); }
         }
         private System.Boolean __PermissionsCustomSidebarOnAllPages;
         [EntityField(false)]
         public System.Boolean PermissionsCustomSidebarOnAllPages
         {
             get { return __PermissionsCustomSidebarOnAllPages; }
-            set { SetField(ref __PermissionsCustomSidebarOnAllPages, value); }
+            set { SetField(ref __PermissionsCustomSidebarOnAllPages, value, "PermissionsCustomSidebarOnAllPages"); }
         }
         private System.Boolean __PermissionsManageInteraction;
         [EntityField(false)]
         public System.Boolean PermissionsManageInteraction
         {
             get { return __PermissionsManageInteraction; }
-            set { SetField(ref __PermissionsManageInteraction, value); }
+            set { SetField(ref __PermissionsManageInteraction, value, "PermissionsManageInteraction"); }
         }
         private System.Boolean __PermissionsViewMyTeamsDashboards;
         [EntityField(false)]
         public System.Boolean PermissionsViewMyTeamsDashboards
         {
             get { return __PermissionsViewMyTeamsDashboards; }
-            set { SetField(ref __PermissionsViewMyTeamsDashboards, value); }
+            set { SetField(ref __PermissionsViewMyTeamsDashboards, value, "PermissionsViewMyTeamsDashboards"); }
         }
         private System.Boolean __PermissionsModerateChatter;
         [EntityField(false)]
         public System.Boolean PermissionsModerateChatter
         {
             get { return __PermissionsModerateChatter; }
-            set { SetField(ref __PermissionsModerateChatter, value); }
+            set { SetField(ref __PermissionsModerateChatter, value, "PermissionsModerateChatter"); }
         }
         private System.Boolean __PermissionsManageNetworks;
         [EntityField(false)]
         public System.Boolean PermissionsManageNetworks
         {
             get { return __PermissionsManageNetworks; }
-            set { SetField(ref __PermissionsManageNetworks, value); }
+            set { SetField(ref __PermissionsManageNetworks, value, "PermissionsManageNetworks"); }
         }
         private System.String __UserLicenseId;
         [EntityField(false)]
         public System.String UserLicenseId
         {
             get { return __UserLicenseId; }
-            set { SetField(ref __UserLicenseId, value); }
+            set { SetField(ref __UserLicenseId, value, "UserLicenseId"); }
         }
         private PickProfileUserType __UserType;
         [EntityField(true)]
         public PickProfileUserType UserType
         {
             get { return __UserType; }
-            set { SetField(ref __UserType, value); }
+            set { SetField(ref __UserType, value, "UserType"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         [JsonIgnore]
         [ReferencedByField("ProfileId")]
@@ -29831,18 +33154,43 @@ namespace LinqToSalesforce
     [EntityName("QueueSobject")]
     public class QueueSobject : ISalesforceEntity
     {
+    [JsonConstructor]
+        private QueueSobject(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public QueueSobject()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -29851,52 +33199,77 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __QueueId;
         [EntityField(false)]
         public System.String QueueId
         {
             get { return __QueueId; }
-            set { SetField(ref __QueueId, value); }
+            set { SetField(ref __QueueId, value, "QueueId"); }
         }
         private PickQueueSobjectSobjectType __SobjectType;
         [EntityField(false)]
         public PickQueueSobjectSobjectType SobjectType
         {
             get { return __SobjectType; }
-            set { SetField(ref __SobjectType, value); }
+            set { SetField(ref __SobjectType, value, "SobjectType"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("RecordType")]
     public class RecordType : ISalesforceEntity
     {
+    [JsonConstructor]
+        private RecordType(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public RecordType()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -29905,108 +33278,133 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __DeveloperName;
         [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
-            set { SetField(ref __DeveloperName, value); }
+            set { SetField(ref __DeveloperName, value, "DeveloperName"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __BusinessProcessId;
         [EntityField(true)]
         public System.String BusinessProcessId
         {
             get { return __BusinessProcessId; }
-            set { SetField(ref __BusinessProcessId, value); }
+            set { SetField(ref __BusinessProcessId, value, "BusinessProcessId"); }
         }
         private PickRecordTypeSobjectType __SobjectType;
         [EntityField(false)]
         public PickRecordTypeSobjectType SobjectType
         {
             get { return __SobjectType; }
-            set { SetField(ref __SobjectType, value); }
+            set { SetField(ref __SobjectType, value, "SobjectType"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("Report")]
     public class Report : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Report(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Report()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -30015,91 +33413,91 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __DeveloperName;
         [EntityField(false)]
         public System.String DeveloperName
         {
             get { return __DeveloperName; }
-            set { SetField(ref __DeveloperName, value); }
+            set { SetField(ref __DeveloperName, value, "DeveloperName"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.DateTime? __LastRunDate;
         [EntityField(true)]
         public System.DateTime? LastRunDate
         {
             get { return __LastRunDate; }
-            set { SetField(ref __LastRunDate, value); }
+            set { SetField(ref __LastRunDate, value, "LastRunDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -30117,18 +33515,43 @@ namespace LinqToSalesforce
     [EntityName("ReportFeed")]
     public class ReportFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ReportFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ReportFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -30137,56 +33560,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickReportFeedType __Type;
         [EntityField(true)]
         public PickReportFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -30204,18 +33627,43 @@ namespace LinqToSalesforce
     [EntityName("SetupAuditTrail")]
     public class SetupAuditTrail : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SetupAuditTrail(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SetupAuditTrail()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -30224,59 +33672,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Action;
         [EntityField(false)]
         public System.String Action
         {
             get { return __Action; }
-            set { SetField(ref __Action, value); }
+            set { SetField(ref __Action, value, "Action"); }
         }
         private System.String __Section;
         [EntityField(true)]
         public System.String Section
         {
             get { return __Section; }
-            set { SetField(ref __Section, value); }
+            set { SetField(ref __Section, value, "Section"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.String __Display;
         [EntityField(true)]
         public System.String Display
         {
             get { return __Display; }
-            set { SetField(ref __Display, value); }
+            set { SetField(ref __Display, value, "Display"); }
         }
     }
     [EntityName("Site")]
     public class Site : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Site(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Site()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -30285,182 +33758,182 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __Subdomain;
         [EntityField(true)]
         public System.String Subdomain
         {
             get { return __Subdomain; }
-            set { SetField(ref __Subdomain, value); }
+            set { SetField(ref __Subdomain, value, "Subdomain"); }
         }
         private System.String __TopLevelDomain;
         [EntityField(true)]
         public System.String TopLevelDomain
         {
             get { return __TopLevelDomain; }
-            set { SetField(ref __TopLevelDomain, value); }
+            set { SetField(ref __TopLevelDomain, value, "TopLevelDomain"); }
         }
         private System.String __UrlPathPrefix;
         [EntityField(true)]
         public System.String UrlPathPrefix
         {
             get { return __UrlPathPrefix; }
-            set { SetField(ref __UrlPathPrefix, value); }
+            set { SetField(ref __UrlPathPrefix, value, "UrlPathPrefix"); }
         }
         private PickSiteStatus __Status;
         [EntityField(false)]
         public PickSiteStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.String __AdminId;
         [EntityField(false)]
         public System.String AdminId
         {
             get { return __AdminId; }
-            set { SetField(ref __AdminId, value); }
+            set { SetField(ref __AdminId, value, "AdminId"); }
         }
         private System.Boolean __OptionsEnableFeeds;
         [EntityField(false)]
         public System.Boolean OptionsEnableFeeds
         {
             get { return __OptionsEnableFeeds; }
-            set { SetField(ref __OptionsEnableFeeds, value); }
+            set { SetField(ref __OptionsEnableFeeds, value, "OptionsEnableFeeds"); }
         }
         private System.Boolean __OptionsAllowHomePage;
         [EntityField(false)]
         public System.Boolean OptionsAllowHomePage
         {
             get { return __OptionsAllowHomePage; }
-            set { SetField(ref __OptionsAllowHomePage, value); }
+            set { SetField(ref __OptionsAllowHomePage, value, "OptionsAllowHomePage"); }
         }
         private System.Boolean __OptionsAllowStandardIdeasPages;
         [EntityField(false)]
         public System.Boolean OptionsAllowStandardIdeasPages
         {
             get { return __OptionsAllowStandardIdeasPages; }
-            set { SetField(ref __OptionsAllowStandardIdeasPages, value); }
+            set { SetField(ref __OptionsAllowStandardIdeasPages, value, "OptionsAllowStandardIdeasPages"); }
         }
         private System.Boolean __OptionsAllowStandardSearch;
         [EntityField(false)]
         public System.Boolean OptionsAllowStandardSearch
         {
             get { return __OptionsAllowStandardSearch; }
-            set { SetField(ref __OptionsAllowStandardSearch, value); }
+            set { SetField(ref __OptionsAllowStandardSearch, value, "OptionsAllowStandardSearch"); }
         }
         private System.Boolean __OptionsAllowStandardLookups;
         [EntityField(false)]
         public System.Boolean OptionsAllowStandardLookups
         {
             get { return __OptionsAllowStandardLookups; }
-            set { SetField(ref __OptionsAllowStandardLookups, value); }
+            set { SetField(ref __OptionsAllowStandardLookups, value, "OptionsAllowStandardLookups"); }
         }
         private System.Boolean __OptionsAllowStandardAnswersPages;
         [EntityField(false)]
         public System.Boolean OptionsAllowStandardAnswersPages
         {
             get { return __OptionsAllowStandardAnswersPages; }
-            set { SetField(ref __OptionsAllowStandardAnswersPages, value); }
+            set { SetField(ref __OptionsAllowStandardAnswersPages, value, "OptionsAllowStandardAnswersPages"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.String __MasterLabel;
         [EntityField(false)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.String __AnalyticsTrackingCode;
         [EntityField(true)]
         public System.String AnalyticsTrackingCode
         {
             get { return __AnalyticsTrackingCode; }
-            set { SetField(ref __AnalyticsTrackingCode, value); }
+            set { SetField(ref __AnalyticsTrackingCode, value, "AnalyticsTrackingCode"); }
         }
         private System.Int32? __DailyBandwidthLimit;
         [EntityField(true)]
         public System.Int32? DailyBandwidthLimit
         {
             get { return __DailyBandwidthLimit; }
-            set { SetField(ref __DailyBandwidthLimit, value); }
+            set { SetField(ref __DailyBandwidthLimit, value, "DailyBandwidthLimit"); }
         }
         private System.Int32? __DailyBandwidthUsed;
         [EntityField(true)]
         public System.Int32? DailyBandwidthUsed
         {
             get { return __DailyBandwidthUsed; }
-            set { SetField(ref __DailyBandwidthUsed, value); }
+            set { SetField(ref __DailyBandwidthUsed, value, "DailyBandwidthUsed"); }
         }
         private System.Int32? __DailyRequestTimeLimit;
         [EntityField(true)]
         public System.Int32? DailyRequestTimeLimit
         {
             get { return __DailyRequestTimeLimit; }
-            set { SetField(ref __DailyRequestTimeLimit, value); }
+            set { SetField(ref __DailyRequestTimeLimit, value, "DailyRequestTimeLimit"); }
         }
         private System.Int32? __DailyRequestTimeUsed;
         [EntityField(true)]
         public System.Int32? DailyRequestTimeUsed
         {
             get { return __DailyRequestTimeUsed; }
-            set { SetField(ref __DailyRequestTimeUsed, value); }
+            set { SetField(ref __DailyRequestTimeUsed, value, "DailyRequestTimeUsed"); }
         }
         private System.Int32? __MonthlyPageViewsEntitlement;
         [EntityField(true)]
         public System.Int32? MonthlyPageViewsEntitlement
         {
             get { return __MonthlyPageViewsEntitlement; }
-            set { SetField(ref __MonthlyPageViewsEntitlement, value); }
+            set { SetField(ref __MonthlyPageViewsEntitlement, value, "MonthlyPageViewsEntitlement"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -30484,18 +33957,43 @@ namespace LinqToSalesforce
     [EntityName("SiteFeed")]
     public class SiteFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SiteFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SiteFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -30504,56 +34002,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickSiteFeedType __Type;
         [EntityField(true)]
         public PickSiteFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -30571,18 +34069,43 @@ namespace LinqToSalesforce
     [EntityName("SiteHistory")]
     public class SiteHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SiteHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SiteHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -30591,73 +34114,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __SiteId;
         [EntityField(false)]
         public System.String SiteId
         {
             get { return __SiteId; }
-            set { SetField(ref __SiteId, value); }
+            set { SetField(ref __SiteId, value, "SiteId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickSiteHistoryField __Field;
         [EntityField(false)]
         public PickSiteHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("Solution")]
     public class Solution : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Solution(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Solution()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -30666,119 +34214,119 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __SolutionNumber;
         [EntityField(false)]
         public System.String SolutionNumber
         {
             get { return __SolutionNumber; }
-            set { SetField(ref __SolutionNumber, value); }
+            set { SetField(ref __SolutionNumber, value, "SolutionNumber"); }
         }
         private System.String __SolutionName;
         [EntityField(false)]
         public System.String SolutionName
         {
             get { return __SolutionName; }
-            set { SetField(ref __SolutionName, value); }
+            set { SetField(ref __SolutionName, value, "SolutionName"); }
         }
         private System.Boolean __IsPublished;
         [EntityField(false)]
         public System.Boolean IsPublished
         {
             get { return __IsPublished; }
-            set { SetField(ref __IsPublished, value); }
+            set { SetField(ref __IsPublished, value, "IsPublished"); }
         }
         private System.Boolean __IsPublishedInPublicKb;
         [EntityField(false)]
         public System.Boolean IsPublishedInPublicKb
         {
             get { return __IsPublishedInPublicKb; }
-            set { SetField(ref __IsPublishedInPublicKb, value); }
+            set { SetField(ref __IsPublishedInPublicKb, value, "IsPublishedInPublicKb"); }
         }
         private PickSolutionStatus __Status;
         [EntityField(false)]
         public PickSolutionStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private System.Boolean __IsReviewed;
         [EntityField(false)]
         public System.Boolean IsReviewed
         {
             get { return __IsReviewed; }
-            set { SetField(ref __IsReviewed, value); }
+            set { SetField(ref __IsReviewed, value, "IsReviewed"); }
         }
         private System.String __SolutionNote;
         [EntityField(true)]
         public System.String SolutionNote
         {
             get { return __SolutionNote; }
-            set { SetField(ref __SolutionNote, value); }
+            set { SetField(ref __SolutionNote, value, "SolutionNote"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Int32 __TimesUsed;
         [EntityField(false)]
         public System.Int32 TimesUsed
         {
             get { return __TimesUsed; }
-            set { SetField(ref __TimesUsed, value); }
+            set { SetField(ref __TimesUsed, value, "TimesUsed"); }
         }
         private System.Boolean __IsHtml;
         [EntityField(false)]
         public System.Boolean IsHtml
         {
             get { return __IsHtml; }
-            set { SetField(ref __IsHtml, value); }
+            set { SetField(ref __IsHtml, value, "IsHtml"); }
         }
         [JsonIgnore]
         [ReferencedByField("WhatId")]
@@ -30856,18 +34404,43 @@ namespace LinqToSalesforce
     [EntityName("SolutionFeed")]
     public class SolutionFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SolutionFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SolutionFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -30876,56 +34449,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickSolutionFeedType __Type;
         [EntityField(true)]
         public PickSolutionFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -30943,18 +34516,43 @@ namespace LinqToSalesforce
     [EntityName("SolutionHistory")]
     public class SolutionHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SolutionHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SolutionHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -30963,73 +34561,98 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __SolutionId;
         [EntityField(false)]
         public System.String SolutionId
         {
             get { return __SolutionId; }
-            set { SetField(ref __SolutionId, value); }
+            set { SetField(ref __SolutionId, value, "SolutionId"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private PickSolutionHistoryField __Field;
         [EntityField(false)]
         public PickSolutionHistoryField Field
         {
             get { return __Field; }
-            set { SetField(ref __Field, value); }
+            set { SetField(ref __Field, value, "Field"); }
         }
         private System.String __OldValue;
         [EntityField(true)]
         public System.String OldValue
         {
             get { return __OldValue; }
-            set { SetField(ref __OldValue, value); }
+            set { SetField(ref __OldValue, value, "OldValue"); }
         }
         private System.String __NewValue;
         [EntityField(true)]
         public System.String NewValue
         {
             get { return __NewValue; }
-            set { SetField(ref __NewValue, value); }
+            set { SetField(ref __NewValue, value, "NewValue"); }
         }
     }
     [EntityName("SolutionStatus")]
     public class SolutionStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SolutionStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SolutionStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -31038,87 +34661,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private System.Boolean __IsDefault;
         [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
-            set { SetField(ref __IsDefault, value); }
+            set { SetField(ref __IsDefault, value, "IsDefault"); }
         }
         private System.Boolean __IsReviewed;
         [EntityField(false)]
         public System.Boolean IsReviewed
         {
             get { return __IsReviewed; }
-            set { SetField(ref __IsReviewed, value); }
+            set { SetField(ref __IsReviewed, value, "IsReviewed"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("StaticResource")]
     public class StaticResource : ISalesforceEntity
     {
+    [JsonConstructor]
+        private StaticResource(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public StaticResource()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -31127,108 +34775,133 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __ContentType;
         [EntityField(false)]
         public System.String ContentType
         {
             get { return __ContentType; }
-            set { SetField(ref __ContentType, value); }
+            set { SetField(ref __ContentType, value, "ContentType"); }
         }
         private System.Int32 __BodyLength;
         [EntityField(false)]
         public System.Int32 BodyLength
         {
             get { return __BodyLength; }
-            set { SetField(ref __BodyLength, value); }
+            set { SetField(ref __BodyLength, value, "BodyLength"); }
         }
         private System.String __Body;
         [EntityField(true)]
         public System.String Body
         {
             get { return __Body; }
-            set { SetField(ref __Body, value); }
+            set { SetField(ref __Body, value, "Body"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private PickStaticResourceCacheControl __CacheControl;
         [EntityField(false)]
         public PickStaticResourceCacheControl CacheControl
         {
             get { return __CacheControl; }
-            set { SetField(ref __CacheControl, value); }
+            set { SetField(ref __CacheControl, value, "CacheControl"); }
         }
     }
     [EntityName("Task")]
     public class Task : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Task(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Task()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -31237,245 +34910,245 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __WhoId;
         [EntityField(true)]
         public System.String WhoId
         {
             get { return __WhoId; }
-            set { SetField(ref __WhoId, value); }
+            set { SetField(ref __WhoId, value, "WhoId"); }
         }
         private System.String __WhatId;
         [EntityField(true)]
         public System.String WhatId
         {
             get { return __WhatId; }
-            set { SetField(ref __WhatId, value); }
+            set { SetField(ref __WhatId, value, "WhatId"); }
         }
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
         {
             get { return __Subject; }
-            set { SetField(ref __Subject, value); }
+            set { SetField(ref __Subject, value, "Subject"); }
         }
         private System.DateTime? __ActivityDate;
         [EntityField(true)]
         public System.DateTime? ActivityDate
         {
             get { return __ActivityDate; }
-            set { SetField(ref __ActivityDate, value); }
+            set { SetField(ref __ActivityDate, value, "ActivityDate"); }
         }
         private PickTaskStatus __Status;
         [EntityField(false)]
         public PickTaskStatus Status
         {
             get { return __Status; }
-            set { SetField(ref __Status, value); }
+            set { SetField(ref __Status, value, "Status"); }
         }
         private PickTaskPriority __Priority;
         [EntityField(false)]
         public PickTaskPriority Priority
         {
             get { return __Priority; }
-            set { SetField(ref __Priority, value); }
+            set { SetField(ref __Priority, value, "Priority"); }
         }
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
         {
             get { return __OwnerId; }
-            set { SetField(ref __OwnerId, value); }
+            set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.Boolean __IsClosed;
         [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
-            set { SetField(ref __IsClosed, value); }
+            set { SetField(ref __IsClosed, value, "IsClosed"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.Boolean __IsArchived;
         [EntityField(false)]
         public System.Boolean IsArchived
         {
             get { return __IsArchived; }
-            set { SetField(ref __IsArchived, value); }
+            set { SetField(ref __IsArchived, value, "IsArchived"); }
         }
         private System.Int32? __CallDurationInSeconds;
         [EntityField(true)]
         public System.Int32? CallDurationInSeconds
         {
             get { return __CallDurationInSeconds; }
-            set { SetField(ref __CallDurationInSeconds, value); }
+            set { SetField(ref __CallDurationInSeconds, value, "CallDurationInSeconds"); }
         }
         private PickTaskCallType __CallType;
         [EntityField(true)]
         public PickTaskCallType CallType
         {
             get { return __CallType; }
-            set { SetField(ref __CallType, value); }
+            set { SetField(ref __CallType, value, "CallType"); }
         }
         private System.String __CallDisposition;
         [EntityField(true)]
         public System.String CallDisposition
         {
             get { return __CallDisposition; }
-            set { SetField(ref __CallDisposition, value); }
+            set { SetField(ref __CallDisposition, value, "CallDisposition"); }
         }
         private System.String __CallObject;
         [EntityField(true)]
         public System.String CallObject
         {
             get { return __CallObject; }
-            set { SetField(ref __CallObject, value); }
+            set { SetField(ref __CallObject, value, "CallObject"); }
         }
         private System.DateTime? __ReminderDateTime;
         [EntityField(true)]
         public System.DateTime? ReminderDateTime
         {
             get { return __ReminderDateTime; }
-            set { SetField(ref __ReminderDateTime, value); }
+            set { SetField(ref __ReminderDateTime, value, "ReminderDateTime"); }
         }
         private System.Boolean __IsReminderSet;
         [EntityField(false)]
         public System.Boolean IsReminderSet
         {
             get { return __IsReminderSet; }
-            set { SetField(ref __IsReminderSet, value); }
+            set { SetField(ref __IsReminderSet, value, "IsReminderSet"); }
         }
         private System.String __RecurrenceActivityId;
         [EntityField(true)]
         public System.String RecurrenceActivityId
         {
             get { return __RecurrenceActivityId; }
-            set { SetField(ref __RecurrenceActivityId, value); }
+            set { SetField(ref __RecurrenceActivityId, value, "RecurrenceActivityId"); }
         }
         private System.Boolean __IsRecurrence;
         [EntityField(false)]
         public System.Boolean IsRecurrence
         {
             get { return __IsRecurrence; }
-            set { SetField(ref __IsRecurrence, value); }
+            set { SetField(ref __IsRecurrence, value, "IsRecurrence"); }
         }
         private System.DateTime? __RecurrenceStartDateOnly;
         [EntityField(true)]
         public System.DateTime? RecurrenceStartDateOnly
         {
             get { return __RecurrenceStartDateOnly; }
-            set { SetField(ref __RecurrenceStartDateOnly, value); }
+            set { SetField(ref __RecurrenceStartDateOnly, value, "RecurrenceStartDateOnly"); }
         }
         private System.DateTime? __RecurrenceEndDateOnly;
         [EntityField(true)]
         public System.DateTime? RecurrenceEndDateOnly
         {
             get { return __RecurrenceEndDateOnly; }
-            set { SetField(ref __RecurrenceEndDateOnly, value); }
+            set { SetField(ref __RecurrenceEndDateOnly, value, "RecurrenceEndDateOnly"); }
         }
         private PickTaskRecurrenceTimeZoneSidKey __RecurrenceTimeZoneSidKey;
         [EntityField(true)]
         public PickTaskRecurrenceTimeZoneSidKey RecurrenceTimeZoneSidKey
         {
             get { return __RecurrenceTimeZoneSidKey; }
-            set { SetField(ref __RecurrenceTimeZoneSidKey, value); }
+            set { SetField(ref __RecurrenceTimeZoneSidKey, value, "RecurrenceTimeZoneSidKey"); }
         }
         private PickTaskRecurrenceType __RecurrenceType;
         [EntityField(true)]
         public PickTaskRecurrenceType RecurrenceType
         {
             get { return __RecurrenceType; }
-            set { SetField(ref __RecurrenceType, value); }
+            set { SetField(ref __RecurrenceType, value, "RecurrenceType"); }
         }
         private System.Int32? __RecurrenceInterval;
         [EntityField(true)]
         public System.Int32? RecurrenceInterval
         {
             get { return __RecurrenceInterval; }
-            set { SetField(ref __RecurrenceInterval, value); }
+            set { SetField(ref __RecurrenceInterval, value, "RecurrenceInterval"); }
         }
         private System.Int32? __RecurrenceDayOfWeekMask;
         [EntityField(true)]
         public System.Int32? RecurrenceDayOfWeekMask
         {
             get { return __RecurrenceDayOfWeekMask; }
-            set { SetField(ref __RecurrenceDayOfWeekMask, value); }
+            set { SetField(ref __RecurrenceDayOfWeekMask, value, "RecurrenceDayOfWeekMask"); }
         }
         private System.Int32? __RecurrenceDayOfMonth;
         [EntityField(true)]
         public System.Int32? RecurrenceDayOfMonth
         {
             get { return __RecurrenceDayOfMonth; }
-            set { SetField(ref __RecurrenceDayOfMonth, value); }
+            set { SetField(ref __RecurrenceDayOfMonth, value, "RecurrenceDayOfMonth"); }
         }
         private PickTaskRecurrenceInstance __RecurrenceInstance;
         [EntityField(true)]
         public PickTaskRecurrenceInstance RecurrenceInstance
         {
             get { return __RecurrenceInstance; }
-            set { SetField(ref __RecurrenceInstance, value); }
+            set { SetField(ref __RecurrenceInstance, value, "RecurrenceInstance"); }
         }
         private PickTaskRecurrenceMonthOfYear __RecurrenceMonthOfYear;
         [EntityField(true)]
         public PickTaskRecurrenceMonthOfYear RecurrenceMonthOfYear
         {
             get { return __RecurrenceMonthOfYear; }
-            set { SetField(ref __RecurrenceMonthOfYear, value); }
+            set { SetField(ref __RecurrenceMonthOfYear, value, "RecurrenceMonthOfYear"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -31505,18 +35178,43 @@ namespace LinqToSalesforce
     [EntityName("TaskFeed")]
     public class TaskFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private TaskFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public TaskFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -31525,56 +35223,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickTaskFeedType __Type;
         [EntityField(true)]
         public PickTaskFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -31592,18 +35290,43 @@ namespace LinqToSalesforce
     [EntityName("TaskPriority")]
     public class TaskPriority : ISalesforceEntity
     {
+    [JsonConstructor]
+        private TaskPriority(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public TaskPriority()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -31612,87 +35335,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private System.Boolean __IsDefault;
         [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
-            set { SetField(ref __IsDefault, value); }
+            set { SetField(ref __IsDefault, value, "IsDefault"); }
         }
         private System.Boolean __IsHighPriority;
         [EntityField(false)]
         public System.Boolean IsHighPriority
         {
             get { return __IsHighPriority; }
-            set { SetField(ref __IsHighPriority, value); }
+            set { SetField(ref __IsHighPriority, value, "IsHighPriority"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("TaskStatus")]
     public class TaskStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private TaskStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public TaskStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -31701,87 +35449,112 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
         {
             get { return __SortOrder; }
-            set { SetField(ref __SortOrder, value); }
+            set { SetField(ref __SortOrder, value, "SortOrder"); }
         }
         private System.Boolean __IsDefault;
         [EntityField(false)]
         public System.Boolean IsDefault
         {
             get { return __IsDefault; }
-            set { SetField(ref __IsDefault, value); }
+            set { SetField(ref __IsDefault, value, "IsDefault"); }
         }
         private System.Boolean __IsClosed;
         [EntityField(false)]
         public System.Boolean IsClosed
         {
             get { return __IsClosed; }
-            set { SetField(ref __IsClosed, value); }
+            set { SetField(ref __IsClosed, value, "IsClosed"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("User")]
     public class User : ISalesforceEntity
     {
+    [JsonConstructor]
+        private User(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public User()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -31790,504 +35563,504 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Username;
         [EntityField(false)]
         public System.String Username
         {
             get { return __Username; }
-            set { SetField(ref __Username, value); }
+            set { SetField(ref __Username, value, "Username"); }
         }
         private System.String __LastName;
         [EntityField(false)]
         public System.String LastName
         {
             get { return __LastName; }
-            set { SetField(ref __LastName, value); }
+            set { SetField(ref __LastName, value, "LastName"); }
         }
         private System.String __FirstName;
         [EntityField(true)]
         public System.String FirstName
         {
             get { return __FirstName; }
-            set { SetField(ref __FirstName, value); }
+            set { SetField(ref __FirstName, value, "FirstName"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __CompanyName;
         [EntityField(true)]
         public System.String CompanyName
         {
             get { return __CompanyName; }
-            set { SetField(ref __CompanyName, value); }
+            set { SetField(ref __CompanyName, value, "CompanyName"); }
         }
         private System.String __Division;
         [EntityField(true)]
         public System.String Division
         {
             get { return __Division; }
-            set { SetField(ref __Division, value); }
+            set { SetField(ref __Division, value, "Division"); }
         }
         private System.String __Department;
         [EntityField(true)]
         public System.String Department
         {
             get { return __Department; }
-            set { SetField(ref __Department, value); }
+            set { SetField(ref __Department, value, "Department"); }
         }
         private System.String __Title;
         [EntityField(true)]
         public System.String Title
         {
             get { return __Title; }
-            set { SetField(ref __Title, value); }
+            set { SetField(ref __Title, value, "Title"); }
         }
         private System.String __Street;
         [EntityField(true)]
         public System.String Street
         {
             get { return __Street; }
-            set { SetField(ref __Street, value); }
+            set { SetField(ref __Street, value, "Street"); }
         }
         private System.String __City;
         [EntityField(true)]
         public System.String City
         {
             get { return __City; }
-            set { SetField(ref __City, value); }
+            set { SetField(ref __City, value, "City"); }
         }
         private System.String __State;
         [EntityField(true)]
         public System.String State
         {
             get { return __State; }
-            set { SetField(ref __State, value); }
+            set { SetField(ref __State, value, "State"); }
         }
         private System.String __PostalCode;
         [EntityField(true)]
         public System.String PostalCode
         {
             get { return __PostalCode; }
-            set { SetField(ref __PostalCode, value); }
+            set { SetField(ref __PostalCode, value, "PostalCode"); }
         }
         private System.String __Country;
         [EntityField(true)]
         public System.String Country
         {
             get { return __Country; }
-            set { SetField(ref __Country, value); }
+            set { SetField(ref __Country, value, "Country"); }
         }
         private System.String __Email;
         [EntityField(false)]
         public System.String Email
         {
             get { return __Email; }
-            set { SetField(ref __Email, value); }
+            set { SetField(ref __Email, value, "Email"); }
         }
         private System.String __Phone;
         [EntityField(true)]
         public System.String Phone
         {
             get { return __Phone; }
-            set { SetField(ref __Phone, value); }
+            set { SetField(ref __Phone, value, "Phone"); }
         }
         private System.String __Fax;
         [EntityField(true)]
         public System.String Fax
         {
             get { return __Fax; }
-            set { SetField(ref __Fax, value); }
+            set { SetField(ref __Fax, value, "Fax"); }
         }
         private System.String __MobilePhone;
         [EntityField(true)]
         public System.String MobilePhone
         {
             get { return __MobilePhone; }
-            set { SetField(ref __MobilePhone, value); }
+            set { SetField(ref __MobilePhone, value, "MobilePhone"); }
         }
         private System.String __Alias;
         [EntityField(false)]
         public System.String Alias
         {
             get { return __Alias; }
-            set { SetField(ref __Alias, value); }
+            set { SetField(ref __Alias, value, "Alias"); }
         }
         private System.String __CommunityNickname;
         [EntityField(false)]
         public System.String CommunityNickname
         {
             get { return __CommunityNickname; }
-            set { SetField(ref __CommunityNickname, value); }
+            set { SetField(ref __CommunityNickname, value, "CommunityNickname"); }
         }
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
         {
             get { return __IsActive; }
-            set { SetField(ref __IsActive, value); }
+            set { SetField(ref __IsActive, value, "IsActive"); }
         }
         private PickUserTimeZoneSidKey __TimeZoneSidKey;
         [EntityField(false)]
         public PickUserTimeZoneSidKey TimeZoneSidKey
         {
             get { return __TimeZoneSidKey; }
-            set { SetField(ref __TimeZoneSidKey, value); }
+            set { SetField(ref __TimeZoneSidKey, value, "TimeZoneSidKey"); }
         }
         private System.String __UserRoleId;
         [EntityField(true)]
         public System.String UserRoleId
         {
             get { return __UserRoleId; }
-            set { SetField(ref __UserRoleId, value); }
+            set { SetField(ref __UserRoleId, value, "UserRoleId"); }
         }
         private PickUserLocaleSidKey __LocaleSidKey;
         [EntityField(false)]
         public PickUserLocaleSidKey LocaleSidKey
         {
             get { return __LocaleSidKey; }
-            set { SetField(ref __LocaleSidKey, value); }
+            set { SetField(ref __LocaleSidKey, value, "LocaleSidKey"); }
         }
         private System.Boolean __ReceivesInfoEmails;
         [EntityField(false)]
         public System.Boolean ReceivesInfoEmails
         {
             get { return __ReceivesInfoEmails; }
-            set { SetField(ref __ReceivesInfoEmails, value); }
+            set { SetField(ref __ReceivesInfoEmails, value, "ReceivesInfoEmails"); }
         }
         private System.Boolean __ReceivesAdminInfoEmails;
         [EntityField(false)]
         public System.Boolean ReceivesAdminInfoEmails
         {
             get { return __ReceivesAdminInfoEmails; }
-            set { SetField(ref __ReceivesAdminInfoEmails, value); }
+            set { SetField(ref __ReceivesAdminInfoEmails, value, "ReceivesAdminInfoEmails"); }
         }
         private PickUserEmailEncodingKey __EmailEncodingKey;
         [EntityField(false)]
         public PickUserEmailEncodingKey EmailEncodingKey
         {
             get { return __EmailEncodingKey; }
-            set { SetField(ref __EmailEncodingKey, value); }
+            set { SetField(ref __EmailEncodingKey, value, "EmailEncodingKey"); }
         }
         private System.String __ProfileId;
         [EntityField(false)]
         public System.String ProfileId
         {
             get { return __ProfileId; }
-            set { SetField(ref __ProfileId, value); }
+            set { SetField(ref __ProfileId, value, "ProfileId"); }
         }
         private PickUserUserType __UserType;
         [EntityField(true)]
         public PickUserUserType UserType
         {
             get { return __UserType; }
-            set { SetField(ref __UserType, value); }
+            set { SetField(ref __UserType, value, "UserType"); }
         }
         private PickUserLanguageLocaleKey __LanguageLocaleKey;
         [EntityField(false)]
         public PickUserLanguageLocaleKey LanguageLocaleKey
         {
             get { return __LanguageLocaleKey; }
-            set { SetField(ref __LanguageLocaleKey, value); }
+            set { SetField(ref __LanguageLocaleKey, value, "LanguageLocaleKey"); }
         }
         private System.String __EmployeeNumber;
         [EntityField(true)]
         public System.String EmployeeNumber
         {
             get { return __EmployeeNumber; }
-            set { SetField(ref __EmployeeNumber, value); }
+            set { SetField(ref __EmployeeNumber, value, "EmployeeNumber"); }
         }
         private System.String __DelegatedApproverId;
         [EntityField(true)]
         public System.String DelegatedApproverId
         {
             get { return __DelegatedApproverId; }
-            set { SetField(ref __DelegatedApproverId, value); }
+            set { SetField(ref __DelegatedApproverId, value, "DelegatedApproverId"); }
         }
         private System.String __ManagerId;
         [EntityField(true)]
         public System.String ManagerId
         {
             get { return __ManagerId; }
-            set { SetField(ref __ManagerId, value); }
+            set { SetField(ref __ManagerId, value, "ManagerId"); }
         }
         private System.DateTime? __LastLoginDate;
         [EntityField(true)]
         public System.DateTime? LastLoginDate
         {
             get { return __LastLoginDate; }
-            set { SetField(ref __LastLoginDate, value); }
+            set { SetField(ref __LastLoginDate, value, "LastLoginDate"); }
         }
         private System.DateTime? __LastPasswordChangeDate;
         [EntityField(true)]
         public System.DateTime? LastPasswordChangeDate
         {
             get { return __LastPasswordChangeDate; }
-            set { SetField(ref __LastPasswordChangeDate, value); }
+            set { SetField(ref __LastPasswordChangeDate, value, "LastPasswordChangeDate"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.DateTime? __OfflineTrialExpirationDate;
         [EntityField(true)]
         public System.DateTime? OfflineTrialExpirationDate
         {
             get { return __OfflineTrialExpirationDate; }
-            set { SetField(ref __OfflineTrialExpirationDate, value); }
+            set { SetField(ref __OfflineTrialExpirationDate, value, "OfflineTrialExpirationDate"); }
         }
         private System.DateTime? __OfflinePdaTrialExpirationDate;
         [EntityField(true)]
         public System.DateTime? OfflinePdaTrialExpirationDate
         {
             get { return __OfflinePdaTrialExpirationDate; }
-            set { SetField(ref __OfflinePdaTrialExpirationDate, value); }
+            set { SetField(ref __OfflinePdaTrialExpirationDate, value, "OfflinePdaTrialExpirationDate"); }
         }
         private System.Boolean __UserPermissionsMarketingUser;
         [EntityField(false)]
         public System.Boolean UserPermissionsMarketingUser
         {
             get { return __UserPermissionsMarketingUser; }
-            set { SetField(ref __UserPermissionsMarketingUser, value); }
+            set { SetField(ref __UserPermissionsMarketingUser, value, "UserPermissionsMarketingUser"); }
         }
         private System.Boolean __UserPermissionsOfflineUser;
         [EntityField(false)]
         public System.Boolean UserPermissionsOfflineUser
         {
             get { return __UserPermissionsOfflineUser; }
-            set { SetField(ref __UserPermissionsOfflineUser, value); }
+            set { SetField(ref __UserPermissionsOfflineUser, value, "UserPermissionsOfflineUser"); }
         }
         private System.Boolean __UserPermissionsCallCenterAutoLogin;
         [EntityField(false)]
         public System.Boolean UserPermissionsCallCenterAutoLogin
         {
             get { return __UserPermissionsCallCenterAutoLogin; }
-            set { SetField(ref __UserPermissionsCallCenterAutoLogin, value); }
+            set { SetField(ref __UserPermissionsCallCenterAutoLogin, value, "UserPermissionsCallCenterAutoLogin"); }
         }
         private System.Boolean __UserPermissionsMobileUser;
         [EntityField(false)]
         public System.Boolean UserPermissionsMobileUser
         {
             get { return __UserPermissionsMobileUser; }
-            set { SetField(ref __UserPermissionsMobileUser, value); }
+            set { SetField(ref __UserPermissionsMobileUser, value, "UserPermissionsMobileUser"); }
         }
         private System.Boolean __UserPermissionsSFContentUser;
         [EntityField(false)]
         public System.Boolean UserPermissionsSFContentUser
         {
             get { return __UserPermissionsSFContentUser; }
-            set { SetField(ref __UserPermissionsSFContentUser, value); }
+            set { SetField(ref __UserPermissionsSFContentUser, value, "UserPermissionsSFContentUser"); }
         }
         private System.Boolean __UserPermissionsKnowledgeUser;
         [EntityField(false)]
         public System.Boolean UserPermissionsKnowledgeUser
         {
             get { return __UserPermissionsKnowledgeUser; }
-            set { SetField(ref __UserPermissionsKnowledgeUser, value); }
+            set { SetField(ref __UserPermissionsKnowledgeUser, value, "UserPermissionsKnowledgeUser"); }
         }
         private System.Boolean __UserPermissionsInteractionUser;
         [EntityField(false)]
         public System.Boolean UserPermissionsInteractionUser
         {
             get { return __UserPermissionsInteractionUser; }
-            set { SetField(ref __UserPermissionsInteractionUser, value); }
+            set { SetField(ref __UserPermissionsInteractionUser, value, "UserPermissionsInteractionUser"); }
         }
         private System.Boolean __UserPermissionsSupportUser;
         [EntityField(false)]
         public System.Boolean UserPermissionsSupportUser
         {
             get { return __UserPermissionsSupportUser; }
-            set { SetField(ref __UserPermissionsSupportUser, value); }
+            set { SetField(ref __UserPermissionsSupportUser, value, "UserPermissionsSupportUser"); }
         }
         private System.Boolean __ForecastEnabled;
         [EntityField(false)]
         public System.Boolean ForecastEnabled
         {
             get { return __ForecastEnabled; }
-            set { SetField(ref __ForecastEnabled, value); }
+            set { SetField(ref __ForecastEnabled, value, "ForecastEnabled"); }
         }
         private System.Boolean __UserPreferencesActivityRemindersPopup;
         [EntityField(false)]
         public System.Boolean UserPreferencesActivityRemindersPopup
         {
             get { return __UserPreferencesActivityRemindersPopup; }
-            set { SetField(ref __UserPreferencesActivityRemindersPopup, value); }
+            set { SetField(ref __UserPreferencesActivityRemindersPopup, value, "UserPreferencesActivityRemindersPopup"); }
         }
         private System.Boolean __UserPreferencesEventRemindersCheckboxDefault;
         [EntityField(false)]
         public System.Boolean UserPreferencesEventRemindersCheckboxDefault
         {
             get { return __UserPreferencesEventRemindersCheckboxDefault; }
-            set { SetField(ref __UserPreferencesEventRemindersCheckboxDefault, value); }
+            set { SetField(ref __UserPreferencesEventRemindersCheckboxDefault, value, "UserPreferencesEventRemindersCheckboxDefault"); }
         }
         private System.Boolean __UserPreferencesTaskRemindersCheckboxDefault;
         [EntityField(false)]
         public System.Boolean UserPreferencesTaskRemindersCheckboxDefault
         {
             get { return __UserPreferencesTaskRemindersCheckboxDefault; }
-            set { SetField(ref __UserPreferencesTaskRemindersCheckboxDefault, value); }
+            set { SetField(ref __UserPreferencesTaskRemindersCheckboxDefault, value, "UserPreferencesTaskRemindersCheckboxDefault"); }
         }
         private System.Boolean __UserPreferencesReminderSoundOff;
         [EntityField(false)]
         public System.Boolean UserPreferencesReminderSoundOff
         {
             get { return __UserPreferencesReminderSoundOff; }
-            set { SetField(ref __UserPreferencesReminderSoundOff, value); }
+            set { SetField(ref __UserPreferencesReminderSoundOff, value, "UserPreferencesReminderSoundOff"); }
         }
         private System.Boolean __UserPreferencesDisableAutoSubForFeeds;
         [EntityField(false)]
         public System.Boolean UserPreferencesDisableAutoSubForFeeds
         {
             get { return __UserPreferencesDisableAutoSubForFeeds; }
-            set { SetField(ref __UserPreferencesDisableAutoSubForFeeds, value); }
+            set { SetField(ref __UserPreferencesDisableAutoSubForFeeds, value, "UserPreferencesDisableAutoSubForFeeds"); }
         }
         private System.Boolean __UserPreferencesApexPagesDeveloperMode;
         [EntityField(false)]
         public System.Boolean UserPreferencesApexPagesDeveloperMode
         {
             get { return __UserPreferencesApexPagesDeveloperMode; }
-            set { SetField(ref __UserPreferencesApexPagesDeveloperMode, value); }
+            set { SetField(ref __UserPreferencesApexPagesDeveloperMode, value, "UserPreferencesApexPagesDeveloperMode"); }
         }
         private System.Boolean __UserPreferencesHideCSNGetChatterMobileTask;
         [EntityField(false)]
         public System.Boolean UserPreferencesHideCSNGetChatterMobileTask
         {
             get { return __UserPreferencesHideCSNGetChatterMobileTask; }
-            set { SetField(ref __UserPreferencesHideCSNGetChatterMobileTask, value); }
+            set { SetField(ref __UserPreferencesHideCSNGetChatterMobileTask, value, "UserPreferencesHideCSNGetChatterMobileTask"); }
         }
         private System.Boolean __UserPreferencesHideCSNDesktopTask;
         [EntityField(false)]
         public System.Boolean UserPreferencesHideCSNDesktopTask
         {
             get { return __UserPreferencesHideCSNDesktopTask; }
-            set { SetField(ref __UserPreferencesHideCSNDesktopTask, value); }
+            set { SetField(ref __UserPreferencesHideCSNDesktopTask, value, "UserPreferencesHideCSNDesktopTask"); }
         }
         private System.Boolean __UserPreferencesSortFeedByComment;
         [EntityField(false)]
         public System.Boolean UserPreferencesSortFeedByComment
         {
             get { return __UserPreferencesSortFeedByComment; }
-            set { SetField(ref __UserPreferencesSortFeedByComment, value); }
+            set { SetField(ref __UserPreferencesSortFeedByComment, value, "UserPreferencesSortFeedByComment"); }
         }
         private System.Boolean __UserPreferencesOptOutOfTouch;
         [EntityField(false)]
         public System.Boolean UserPreferencesOptOutOfTouch
         {
             get { return __UserPreferencesOptOutOfTouch; }
-            set { SetField(ref __UserPreferencesOptOutOfTouch, value); }
+            set { SetField(ref __UserPreferencesOptOutOfTouch, value, "UserPreferencesOptOutOfTouch"); }
         }
         private System.Boolean __UserPreferencesLightningExperiencePreferred;
         [EntityField(false)]
         public System.Boolean UserPreferencesLightningExperiencePreferred
         {
             get { return __UserPreferencesLightningExperiencePreferred; }
-            set { SetField(ref __UserPreferencesLightningExperiencePreferred, value); }
+            set { SetField(ref __UserPreferencesLightningExperiencePreferred, value, "UserPreferencesLightningExperiencePreferred"); }
         }
         private System.String __ContactId;
         [EntityField(true)]
         public System.String ContactId
         {
             get { return __ContactId; }
-            set { SetField(ref __ContactId, value); }
+            set { SetField(ref __ContactId, value, "ContactId"); }
         }
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
         {
             get { return __AccountId; }
-            set { SetField(ref __AccountId, value); }
+            set { SetField(ref __AccountId, value, "AccountId"); }
         }
         private System.String __CallCenterId;
         [EntityField(true)]
         public System.String CallCenterId
         {
             get { return __CallCenterId; }
-            set { SetField(ref __CallCenterId, value); }
+            set { SetField(ref __CallCenterId, value, "CallCenterId"); }
         }
         private System.String __Extension;
         [EntityField(true)]
         public System.String Extension
         {
             get { return __Extension; }
-            set { SetField(ref __Extension, value); }
+            set { SetField(ref __Extension, value, "Extension"); }
         }
         private System.String __FederationIdentifier;
         [EntityField(true)]
         public System.String FederationIdentifier
         {
             get { return __FederationIdentifier; }
-            set { SetField(ref __FederationIdentifier, value); }
+            set { SetField(ref __FederationIdentifier, value, "FederationIdentifier"); }
         }
         private System.String __AboutMe;
         [EntityField(true)]
         public System.String AboutMe
         {
             get { return __AboutMe; }
-            set { SetField(ref __AboutMe, value); }
+            set { SetField(ref __AboutMe, value, "AboutMe"); }
         }
         private System.String __CurrentStatus;
         [EntityField(true)]
         public System.String CurrentStatus
         {
             get { return __CurrentStatus; }
-            set { SetField(ref __CurrentStatus, value); }
+            set { SetField(ref __CurrentStatus, value, "CurrentStatus"); }
         }
         private System.String __FullPhotoUrl;
         [EntityField(true)]
         public System.String FullPhotoUrl
         {
             get { return __FullPhotoUrl; }
-            set { SetField(ref __FullPhotoUrl, value); }
+            set { SetField(ref __FullPhotoUrl, value, "FullPhotoUrl"); }
         }
         private System.String __SmallPhotoUrl;
         [EntityField(true)]
         public System.String SmallPhotoUrl
         {
             get { return __SmallPhotoUrl; }
-            set { SetField(ref __SmallPhotoUrl, value); }
+            set { SetField(ref __SmallPhotoUrl, value, "SmallPhotoUrl"); }
         }
         private PickUserDigestFrequency __DigestFrequency;
         [EntityField(false)]
         public PickUserDigestFrequency DigestFrequency
         {
             get { return __DigestFrequency; }
-            set { SetField(ref __DigestFrequency, value); }
+            set { SetField(ref __DigestFrequency, value, "DigestFrequency"); }
         }
         [JsonIgnore]
         [ReferencedByField("MemberId")]
@@ -32347,18 +36120,43 @@ namespace LinqToSalesforce
     [EntityName("UserFeed")]
     public class UserFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -32367,56 +36165,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickUserFeedType __Type;
         [EntityField(true)]
         public PickUserFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -32434,18 +36232,43 @@ namespace LinqToSalesforce
     [EntityName("UserLicense")]
     public class UserLicense : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserLicense(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserLicense()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -32454,59 +36277,84 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __LicenseDefinitionKey;
         [EntityField(false)]
         public System.String LicenseDefinitionKey
         {
             get { return __LicenseDefinitionKey; }
-            set { SetField(ref __LicenseDefinitionKey, value); }
+            set { SetField(ref __LicenseDefinitionKey, value, "LicenseDefinitionKey"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Int32? __MonthlyLoginsUsed;
         [EntityField(true)]
         public System.Int32? MonthlyLoginsUsed
         {
             get { return __MonthlyLoginsUsed; }
-            set { SetField(ref __MonthlyLoginsUsed, value); }
+            set { SetField(ref __MonthlyLoginsUsed, value, "MonthlyLoginsUsed"); }
         }
         private System.Int32? __MonthlyLoginsEntitlement;
         [EntityField(true)]
         public System.Int32? MonthlyLoginsEntitlement
         {
             get { return __MonthlyLoginsEntitlement; }
-            set { SetField(ref __MonthlyLoginsEntitlement, value); }
+            set { SetField(ref __MonthlyLoginsEntitlement, value, "MonthlyLoginsEntitlement"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("UserPreference")]
     public class UserPreference : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserPreference(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserPreference()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -32515,52 +36363,77 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __UserId;
         [EntityField(false)]
         public System.String UserId
         {
             get { return __UserId; }
-            set { SetField(ref __UserId, value); }
+            set { SetField(ref __UserId, value, "UserId"); }
         }
         private PickUserPreferencePreference __Preference;
         [EntityField(false)]
         public PickUserPreferencePreference Preference
         {
             get { return __Preference; }
-            set { SetField(ref __Preference, value); }
+            set { SetField(ref __Preference, value, "Preference"); }
         }
         private System.String __Value;
         [EntityField(true)]
         public System.String Value
         {
             get { return __Value; }
-            set { SetField(ref __Value, value); }
+            set { SetField(ref __Value, value, "Value"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("UserProfileFeed")]
     public class UserProfileFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserProfileFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserProfileFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -32569,56 +36442,56 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
         {
             get { return __FeedPostId; }
-            set { SetField(ref __FeedPostId, value); }
+            set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
         private PickUserProfileFeedType __Type;
         [EntityField(true)]
         public PickUserProfileFeedType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         [JsonIgnore]
         [ReferencedByField("FeedItemId")]
@@ -32636,18 +36509,43 @@ namespace LinqToSalesforce
     [EntityName("UserRole")]
     public class UserRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -32656,105 +36554,105 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.String __ParentRoleId;
         [EntityField(true)]
         public System.String ParentRoleId
         {
             get { return __ParentRoleId; }
-            set { SetField(ref __ParentRoleId, value); }
+            set { SetField(ref __ParentRoleId, value, "ParentRoleId"); }
         }
         private System.String __RollupDescription;
         [EntityField(true)]
         public System.String RollupDescription
         {
             get { return __RollupDescription; }
-            set { SetField(ref __RollupDescription, value); }
+            set { SetField(ref __RollupDescription, value, "RollupDescription"); }
         }
         private PickUserRoleOpportunityAccessForAccountOwner __OpportunityAccessForAccountOwner;
         [EntityField(false)]
         public PickUserRoleOpportunityAccessForAccountOwner OpportunityAccessForAccountOwner
         {
             get { return __OpportunityAccessForAccountOwner; }
-            set { SetField(ref __OpportunityAccessForAccountOwner, value); }
+            set { SetField(ref __OpportunityAccessForAccountOwner, value, "OpportunityAccessForAccountOwner"); }
         }
         private PickUserRoleCaseAccessForAccountOwner __CaseAccessForAccountOwner;
         [EntityField(true)]
         public PickUserRoleCaseAccessForAccountOwner CaseAccessForAccountOwner
         {
             get { return __CaseAccessForAccountOwner; }
-            set { SetField(ref __CaseAccessForAccountOwner, value); }
+            set { SetField(ref __CaseAccessForAccountOwner, value, "CaseAccessForAccountOwner"); }
         }
         private PickUserRoleContactAccessForAccountOwner __ContactAccessForAccountOwner;
         [EntityField(true)]
         public PickUserRoleContactAccessForAccountOwner ContactAccessForAccountOwner
         {
             get { return __ContactAccessForAccountOwner; }
-            set { SetField(ref __ContactAccessForAccountOwner, value); }
+            set { SetField(ref __ContactAccessForAccountOwner, value, "ContactAccessForAccountOwner"); }
         }
         private System.String __ForecastUserId;
         [EntityField(true)]
         public System.String ForecastUserId
         {
             get { return __ForecastUserId; }
-            set { SetField(ref __ForecastUserId, value); }
+            set { SetField(ref __ForecastUserId, value, "ForecastUserId"); }
         }
         private System.Boolean __MayForecastManagerShare;
         [EntityField(false)]
         public System.Boolean MayForecastManagerShare
         {
             get { return __MayForecastManagerShare; }
-            set { SetField(ref __MayForecastManagerShare, value); }
+            set { SetField(ref __MayForecastManagerShare, value, "MayForecastManagerShare"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
         private System.String __PortalAccountId;
         [EntityField(true)]
         public System.String PortalAccountId
         {
             get { return __PortalAccountId; }
-            set { SetField(ref __PortalAccountId, value); }
+            set { SetField(ref __PortalAccountId, value, "PortalAccountId"); }
         }
         private PickUserRolePortalType __PortalType;
         [EntityField(true)]
         public PickUserRolePortalType PortalType
         {
             get { return __PortalType; }
-            set { SetField(ref __PortalType, value); }
+            set { SetField(ref __PortalType, value, "PortalType"); }
         }
         private System.String __PortalAccountOwnerId;
         [EntityField(true)]
         public System.String PortalAccountOwnerId
         {
             get { return __PortalAccountOwnerId; }
-            set { SetField(ref __PortalAccountOwnerId, value); }
+            set { SetField(ref __PortalAccountOwnerId, value, "PortalAccountOwnerId"); }
         }
         [JsonIgnore]
         [ReferencedByField("UserRoleId")]
@@ -32766,18 +36664,43 @@ namespace LinqToSalesforce
     [EntityName("Vote")]
     public class Vote : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Vote(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Vote()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -32786,66 +36709,91 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
         {
             get { return __IsDeleted; }
-            set { SetField(ref __IsDeleted, value); }
+            set { SetField(ref __IsDeleted, value, "IsDeleted"); }
         }
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
         {
             get { return __ParentId; }
-            set { SetField(ref __ParentId, value); }
+            set { SetField(ref __ParentId, value, "ParentId"); }
         }
         private PickVoteType __Type;
         [EntityField(false)]
         public PickVoteType Type
         {
             get { return __Type; }
-            set { SetField(ref __Type, value); }
+            set { SetField(ref __Type, value, "Type"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     [EntityName("WebLink")]
     public class WebLink : ISalesforceEntity
     {
+    [JsonConstructor]
+        private WebLink(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public WebLink()
+        {
+            trackPropertyUpdates = true;
+        } 
     
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }
@@ -32854,196 +36802,196 @@ namespace LinqToSalesforce
         public System.String Id
         {
             get { return __Id; }
-            set { SetField(ref __Id, value); }
+            set { SetField(ref __Id, value, "Id"); }
         }
         private PickWebLinkPageOrSobjectType __PageOrSobjectType;
         [EntityField(false)]
         public PickWebLinkPageOrSobjectType PageOrSobjectType
         {
             get { return __PageOrSobjectType; }
-            set { SetField(ref __PageOrSobjectType, value); }
+            set { SetField(ref __PageOrSobjectType, value, "PageOrSobjectType"); }
         }
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
         {
             get { return __Name; }
-            set { SetField(ref __Name, value); }
+            set { SetField(ref __Name, value, "Name"); }
         }
         private System.Boolean __IsProtected;
         [EntityField(false)]
         public System.Boolean IsProtected
         {
             get { return __IsProtected; }
-            set { SetField(ref __IsProtected, value); }
+            set { SetField(ref __IsProtected, value, "IsProtected"); }
         }
         private System.String __Url;
         [EntityField(true)]
         public System.String Url
         {
             get { return __Url; }
-            set { SetField(ref __Url, value); }
+            set { SetField(ref __Url, value, "Url"); }
         }
         private PickWebLinkEncodingKey __EncodingKey;
         [EntityField(false)]
         public PickWebLinkEncodingKey EncodingKey
         {
             get { return __EncodingKey; }
-            set { SetField(ref __EncodingKey, value); }
+            set { SetField(ref __EncodingKey, value, "EncodingKey"); }
         }
         private PickWebLinkLinkType __LinkType;
         [EntityField(false)]
         public PickWebLinkLinkType LinkType
         {
             get { return __LinkType; }
-            set { SetField(ref __LinkType, value); }
+            set { SetField(ref __LinkType, value, "LinkType"); }
         }
         private PickWebLinkOpenType __OpenType;
         [EntityField(false)]
         public PickWebLinkOpenType OpenType
         {
             get { return __OpenType; }
-            set { SetField(ref __OpenType, value); }
+            set { SetField(ref __OpenType, value, "OpenType"); }
         }
         private System.Int32? __Height;
         [EntityField(true)]
         public System.Int32? Height
         {
             get { return __Height; }
-            set { SetField(ref __Height, value); }
+            set { SetField(ref __Height, value, "Height"); }
         }
         private System.Int32? __Width;
         [EntityField(true)]
         public System.Int32? Width
         {
             get { return __Width; }
-            set { SetField(ref __Width, value); }
+            set { SetField(ref __Width, value, "Width"); }
         }
         private System.Boolean __ShowsLocation;
         [EntityField(false)]
         public System.Boolean ShowsLocation
         {
             get { return __ShowsLocation; }
-            set { SetField(ref __ShowsLocation, value); }
+            set { SetField(ref __ShowsLocation, value, "ShowsLocation"); }
         }
         private System.Boolean __HasScrollbars;
         [EntityField(false)]
         public System.Boolean HasScrollbars
         {
             get { return __HasScrollbars; }
-            set { SetField(ref __HasScrollbars, value); }
+            set { SetField(ref __HasScrollbars, value, "HasScrollbars"); }
         }
         private System.Boolean __HasToolbar;
         [EntityField(false)]
         public System.Boolean HasToolbar
         {
             get { return __HasToolbar; }
-            set { SetField(ref __HasToolbar, value); }
+            set { SetField(ref __HasToolbar, value, "HasToolbar"); }
         }
         private System.Boolean __HasMenubar;
         [EntityField(false)]
         public System.Boolean HasMenubar
         {
             get { return __HasMenubar; }
-            set { SetField(ref __HasMenubar, value); }
+            set { SetField(ref __HasMenubar, value, "HasMenubar"); }
         }
         private System.Boolean __ShowsStatus;
         [EntityField(false)]
         public System.Boolean ShowsStatus
         {
             get { return __ShowsStatus; }
-            set { SetField(ref __ShowsStatus, value); }
+            set { SetField(ref __ShowsStatus, value, "ShowsStatus"); }
         }
         private System.Boolean __IsResizable;
         [EntityField(false)]
         public System.Boolean IsResizable
         {
             get { return __IsResizable; }
-            set { SetField(ref __IsResizable, value); }
+            set { SetField(ref __IsResizable, value, "IsResizable"); }
         }
         private PickWebLinkPosition __Position;
         [EntityField(true)]
         public PickWebLinkPosition Position
         {
             get { return __Position; }
-            set { SetField(ref __Position, value); }
+            set { SetField(ref __Position, value, "Position"); }
         }
         private System.String __ScontrolId;
         [EntityField(true)]
         public System.String ScontrolId
         {
             get { return __ScontrolId; }
-            set { SetField(ref __ScontrolId, value); }
+            set { SetField(ref __ScontrolId, value, "ScontrolId"); }
         }
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
         {
             get { return __MasterLabel; }
-            set { SetField(ref __MasterLabel, value); }
+            set { SetField(ref __MasterLabel, value, "MasterLabel"); }
         }
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
         {
             get { return __Description; }
-            set { SetField(ref __Description, value); }
+            set { SetField(ref __Description, value, "Description"); }
         }
         private PickWebLinkDisplayType __DisplayType;
         [EntityField(false)]
         public PickWebLinkDisplayType DisplayType
         {
             get { return __DisplayType; }
-            set { SetField(ref __DisplayType, value); }
+            set { SetField(ref __DisplayType, value, "DisplayType"); }
         }
         private System.Boolean __RequireRowSelection;
         [EntityField(false)]
         public System.Boolean RequireRowSelection
         {
             get { return __RequireRowSelection; }
-            set { SetField(ref __RequireRowSelection, value); }
+            set { SetField(ref __RequireRowSelection, value, "RequireRowSelection"); }
         }
         private System.String __NamespacePrefix;
         [EntityField(true)]
         public System.String NamespacePrefix
         {
             get { return __NamespacePrefix; }
-            set { SetField(ref __NamespacePrefix, value); }
+            set { SetField(ref __NamespacePrefix, value, "NamespacePrefix"); }
         }
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
         {
             get { return __CreatedDate; }
-            set { SetField(ref __CreatedDate, value); }
+            set { SetField(ref __CreatedDate, value, "CreatedDate"); }
         }
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
         {
             get { return __CreatedById; }
-            set { SetField(ref __CreatedById, value); }
+            set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
         {
             get { return __LastModifiedDate; }
-            set { SetField(ref __LastModifiedDate, value); }
+            set { SetField(ref __LastModifiedDate, value, "LastModifiedDate"); }
         }
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
         {
             get { return __LastModifiedById; }
-            set { SetField(ref __LastModifiedById, value); }
+            set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
         {
             get { return __SystemModstamp; }
-            set { SetField(ref __SystemModstamp, value); }
+            set { SetField(ref __SystemModstamp, value, "SystemModstamp"); }
         }
     }
     public class SalesforceDataContext : SoqlContext

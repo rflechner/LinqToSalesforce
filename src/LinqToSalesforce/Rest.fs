@@ -43,36 +43,18 @@ module Rest =
     settings.DateFormatString <- "yyyy-MM-dd"
     JsonConvert.SerializeObject(o, settings)
   
-  let private toInsertJson (o:obj) =
+  let private toInsertJson (e:#ISalesforceEntity) =
     let invalidFields = 
       [ "Id"; "LastModifiedDate";"CreatedById"; "MasterRecordId";
         "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";
         "LastModifiedById"; "IsClosed"; "ClosedDate"]
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
-    let j = JObject.FromObject o
-        
-    let toRemove =
-      o.GetType().GetProperties()
-        |> Seq.choose (
-            fun p -> 
-              match p.GetCustomAttribute<EntityFieldAttribute>() with
-              | a when isNull (box a) -> None
-              | a when not a.Nullable -> 
-                  let v = p.GetValue o
-                  if isNull v
-                  then Some (p.Name)
-                  else None
-              | _ -> None
-           )
-        |> Seq.toList
-    let l = invalidFields @ toRemove
-    for f in l do
-      match (j.Item f) with
-      | t when isNull t -> ()
-      | t -> t.Parent.Remove()
-
-    //printfn "%A" toRemove
+    let properties = e.UpdatedProperties
+    for f in invalidFields do
+      if properties.ContainsKey f
+      then properties.Remove f |> ignore
+    let j = JObject.FromObject properties
     JsonConvert.SerializeObject(j, settings)
   
   module Config =
@@ -313,7 +295,7 @@ module Rest =
       return! readRestResponse<'t SoqlResult> rs
     }
     
-  let insert (i:Identity) (entity:'q) =
+  let insert (i:Identity) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/"
     async {
@@ -324,7 +306,7 @@ module Rest =
       return! readRestResponse<InsertResult> rs
     }
 
-  let update (i:Identity) (id:string) (entity:'q) =
+  let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
@@ -338,7 +320,7 @@ module Rest =
       else return false
     }
 
-  let delete (i:Identity) (id:string) (entity:'q) =
+  let delete (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
