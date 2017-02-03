@@ -12819,6 +12819,16 @@ namespace LinqToSalesforce
     [EntityName("Account")]
     public class Account : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Account(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Account()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -12870,7 +12880,6 @@ namespace LinqToSalesforce
             get { return __MasterRecordId; }
             set { SetField(ref __MasterRecordId, value, "MasterRecordId"); }
         }
-    public bool ShouldSerializeMasterRecordId() => MasterRecordId != default(System.String);
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
@@ -12892,7 +12901,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __BillingStreet;
         [EntityField(true)]
         public System.String BillingStreet
@@ -13061,7 +13069,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -13076,7 +13083,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -13091,7 +13097,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -13330,6 +13335,16 @@ namespace LinqToSalesforce
     [EntityName("AccountContactRole")]
     public class AccountContactRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountContactRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountContactRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -13388,7 +13403,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -13403,7 +13417,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -13418,7 +13431,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
@@ -13426,7 +13438,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private PickAccountContactRoleRole __Role;
         [EntityField(true)]
         public PickAccountContactRoleRole Role
@@ -13445,6 +13456,16 @@ namespace LinqToSalesforce
     [EntityName("AccountFeed")]
     public class AccountFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -13489,7 +13510,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -13497,7 +13517,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickAccountFeedType __Type;
         [EntityField(true)]
         public PickAccountFeedType Type
@@ -13512,7 +13531,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -13550,6 +13568,16 @@ namespace LinqToSalesforce
     [EntityName("AccountHistory")]
     public class AccountHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -13601,7 +13629,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -13609,7 +13636,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -13642,6 +13668,16 @@ namespace LinqToSalesforce
     [EntityName("AccountPartner")]
     public class AccountPartner : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountPartner(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountPartner()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -13686,7 +13722,6 @@ namespace LinqToSalesforce
             get { return __AccountFromId; }
             set { SetField(ref __AccountFromId, value, "AccountFromId"); }
         }
-    public bool ShouldSerializeAccountFromId() => AccountFromId != default(System.String);
         private System.String __AccountToId;
         [EntityField(true)]
         public System.String AccountToId
@@ -13694,7 +13729,6 @@ namespace LinqToSalesforce
             get { return __AccountToId; }
             set { SetField(ref __AccountToId, value, "AccountToId"); }
         }
-    public bool ShouldSerializeAccountToId() => AccountToId != default(System.String);
         private System.String __OpportunityId;
         [EntityField(true)]
         public System.String OpportunityId
@@ -13702,7 +13736,6 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
-    public bool ShouldSerializeOpportunityId() => OpportunityId != default(System.String);
         private PickAccountPartnerRole __Role;
         [EntityField(true)]
         public PickAccountPartnerRole Role
@@ -13731,7 +13764,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -13746,7 +13778,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -13768,11 +13799,20 @@ namespace LinqToSalesforce
             get { return __ReversePartnerId; }
             set { SetField(ref __ReversePartnerId, value, "ReversePartnerId"); }
         }
-    public bool ShouldSerializeReversePartnerId() => ReversePartnerId != default(System.String);
     }
     [EntityName("AccountShare")]
     public class AccountShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AccountShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AccountShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -13817,7 +13857,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
@@ -13825,7 +13864,6 @@ namespace LinqToSalesforce
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
-    public bool ShouldSerializeUserOrGroupId() => UserOrGroupId != default(System.String);
         private PickAccountShareAccountAccessLevel __AccountAccessLevel;
         [EntityField(false)]
         public PickAccountShareAccountAccessLevel AccountAccessLevel
@@ -13875,7 +13913,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -13887,6 +13924,16 @@ namespace LinqToSalesforce
     [EntityName("ActivityHistory")]
     public class ActivityHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ActivityHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ActivityHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -13931,7 +13978,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __WhoId;
         [EntityField(true)]
         public System.String WhoId
@@ -13939,7 +13985,6 @@ namespace LinqToSalesforce
             get { return __WhoId; }
             set { SetField(ref __WhoId, value, "WhoId"); }
         }
-    public bool ShouldSerializeWhoId() => WhoId != default(System.String);
         private System.String __WhatId;
         [EntityField(true)]
         public System.String WhatId
@@ -13947,7 +13992,6 @@ namespace LinqToSalesforce
             get { return __WhatId; }
             set { SetField(ref __WhatId, value, "WhatId"); }
         }
-    public bool ShouldSerializeWhatId() => WhatId != default(System.String);
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
@@ -13976,7 +14020,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private PickActivityHistoryStatus __Status;
         [EntityField(true)]
         public PickActivityHistoryStatus Status
@@ -14061,7 +14104,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -14076,7 +14118,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -14130,6 +14171,16 @@ namespace LinqToSalesforce
     [EntityName("AdditionalNumber")]
     public class AdditionalNumber : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AdditionalNumber(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AdditionalNumber()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -14181,7 +14232,6 @@ namespace LinqToSalesforce
             get { return __CallCenterId; }
             set { SetField(ref __CallCenterId, value, "CallCenterId"); }
         }
-    public bool ShouldSerializeCallCenterId() => CallCenterId != default(System.String);
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
@@ -14217,7 +14267,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -14232,7 +14281,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -14244,6 +14292,16 @@ namespace LinqToSalesforce
     [EntityName("AggregateResult")]
     public class AggregateResult : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AggregateResult(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AggregateResult()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -14285,6 +14343,16 @@ namespace LinqToSalesforce
     [EntityName("ApexClass")]
     public class ApexClass : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexClass(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexClass()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -14392,7 +14460,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -14407,7 +14474,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -14419,6 +14485,16 @@ namespace LinqToSalesforce
     [EntityName("ApexComponent")]
     public class ApexComponent : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexComponent(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexComponent()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -14526,7 +14602,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -14541,7 +14616,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -14553,6 +14627,16 @@ namespace LinqToSalesforce
     [EntityName("ApexLog")]
     public class ApexLog : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexLog(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexLog()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -14597,7 +14681,6 @@ namespace LinqToSalesforce
             get { return __LogUserId; }
             set { SetField(ref __LogUserId, value, "LogUserId"); }
         }
-    public bool ShouldSerializeLogUserId() => LogUserId != default(System.String);
         private System.Int32 __LogLength;
         [EntityField(false)]
         public System.Int32 LogLength
@@ -14672,6 +14755,16 @@ namespace LinqToSalesforce
     [EntityName("ApexPage")]
     public class ApexPage : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexPage(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexPage()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -14779,7 +14872,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -14794,7 +14886,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -14806,6 +14897,16 @@ namespace LinqToSalesforce
     [EntityName("ApexTrigger")]
     public class ApexTrigger : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ApexTrigger(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ApexTrigger()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -14976,7 +15077,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -14991,7 +15091,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -15003,6 +15102,16 @@ namespace LinqToSalesforce
     [EntityName("Asset")]
     public class Asset : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Asset(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Asset()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -15047,7 +15156,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
@@ -15055,7 +15163,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __Product2Id;
         [EntityField(true)]
         public System.String Product2Id
@@ -15063,7 +15170,6 @@ namespace LinqToSalesforce
             get { return __Product2Id; }
             set { SetField(ref __Product2Id, value, "Product2Id"); }
         }
-    public bool ShouldSerializeProduct2Id() => Product2Id != default(System.String);
         private System.Boolean __IsCompetitorProduct;
         [EntityField(false)]
         public System.Boolean IsCompetitorProduct
@@ -15085,7 +15191,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -15100,7 +15205,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -15260,6 +15364,16 @@ namespace LinqToSalesforce
     [EntityName("AssetFeed")]
     public class AssetFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AssetFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AssetFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -15304,7 +15418,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -15312,7 +15425,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickAssetFeedType __Type;
         [EntityField(true)]
         public PickAssetFeedType Type
@@ -15327,7 +15439,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -15365,6 +15476,16 @@ namespace LinqToSalesforce
     [EntityName("AssetHistory")]
     public class AssetHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AssetHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AssetHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -15416,7 +15537,6 @@ namespace LinqToSalesforce
             get { return __AssetId; }
             set { SetField(ref __AssetId, value, "AssetId"); }
         }
-    public bool ShouldSerializeAssetId() => AssetId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -15424,7 +15544,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -15457,6 +15576,16 @@ namespace LinqToSalesforce
     [EntityName("AssignmentRule")]
     public class AssignmentRule : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AssignmentRule(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AssignmentRule()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -15522,7 +15651,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -15537,7 +15665,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -15556,6 +15683,16 @@ namespace LinqToSalesforce
     [EntityName("AsyncApexJob")]
     public class AsyncApexJob : ISalesforceEntity
     {
+    [JsonConstructor]
+        private AsyncApexJob(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public AsyncApexJob()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -15607,7 +15744,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private PickAsyncApexJobJobType __JobType;
         [EntityField(false)]
         public PickAsyncApexJobJobType JobType
@@ -15622,7 +15758,6 @@ namespace LinqToSalesforce
             get { return __ApexClassId; }
             set { SetField(ref __ApexClassId, value, "ApexClassId"); }
         }
-    public bool ShouldSerializeApexClassId() => ApexClassId != default(System.String);
         private PickAsyncApexJobStatus __Status;
         [EntityField(false)]
         public PickAsyncApexJobStatus Status
@@ -15679,7 +15814,6 @@ namespace LinqToSalesforce
             get { return __ParentJobId; }
             set { SetField(ref __ParentJobId, value, "ParentJobId"); }
         }
-    public bool ShouldSerializeParentJobId() => ParentJobId != default(System.String);
         private System.String __LastProcessed;
         [EntityField(true)]
         public System.String LastProcessed
@@ -15698,6 +15832,16 @@ namespace LinqToSalesforce
     [EntityName("Attachment")]
     public class Attachment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Attachment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Attachment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -15749,7 +15893,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
@@ -15792,7 +15935,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -15807,7 +15949,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -15822,7 +15963,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -15841,6 +15981,16 @@ namespace LinqToSalesforce
     [EntityName("BrandTemplate")]
     public class BrandTemplate : ISalesforceEntity
     {
+    [JsonConstructor]
+        private BrandTemplate(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public BrandTemplate()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -15934,7 +16084,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -15949,7 +16098,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -15961,6 +16109,16 @@ namespace LinqToSalesforce
     [EntityName("BusinessHours")]
     public class BusinessHours : ISalesforceEntity
     {
+    [JsonConstructor]
+        private BusinessHours(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public BusinessHours()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -16145,7 +16303,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -16160,11 +16317,20 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
     }
     [EntityName("BusinessProcess")]
     public class BusinessProcess : ISalesforceEntity
     {
+    [JsonConstructor]
+        private BusinessProcess(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public BusinessProcess()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -16244,7 +16410,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -16259,7 +16424,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -16278,6 +16442,16 @@ namespace LinqToSalesforce
     [EntityName("CallCenter")]
     public class CallCenter : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CallCenter(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CallCenter()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -16357,7 +16531,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -16372,11 +16545,20 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
     }
     [EntityName("Campaign")]
     public class Campaign : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Campaign(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Campaign()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -16435,7 +16617,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private PickCampaignType __Type;
         [EntityField(true)]
         public PickCampaignType Type
@@ -16576,7 +16757,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -16591,7 +16771,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -16606,7 +16785,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -16628,7 +16806,6 @@ namespace LinqToSalesforce
             get { return __CampaignMemberRecordTypeId; }
             set { SetField(ref __CampaignMemberRecordTypeId, value, "CampaignMemberRecordTypeId"); }
         }
-    public bool ShouldSerializeCampaignMemberRecordTypeId() => CampaignMemberRecordTypeId != default(System.String);
         [JsonIgnore]
         [ReferencedByField("WhatId")]
         public RelationShip<Campaign,ActivityHistory> ActivityHistories
@@ -16711,6 +16888,16 @@ namespace LinqToSalesforce
     [EntityName("CampaignFeed")]
     public class CampaignFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CampaignFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CampaignFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -16755,7 +16942,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -16763,7 +16949,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickCampaignFeedType __Type;
         [EntityField(true)]
         public PickCampaignFeedType Type
@@ -16778,7 +16963,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -16816,6 +17000,16 @@ namespace LinqToSalesforce
     [EntityName("CampaignMember")]
     public class CampaignMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CampaignMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CampaignMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -16867,7 +17061,6 @@ namespace LinqToSalesforce
             get { return __CampaignId; }
             set { SetField(ref __CampaignId, value, "CampaignId"); }
         }
-    public bool ShouldSerializeCampaignId() => CampaignId != default(System.String);
         private System.String __LeadId;
         [EntityField(true)]
         public System.String LeadId
@@ -16875,7 +17068,6 @@ namespace LinqToSalesforce
             get { return __LeadId; }
             set { SetField(ref __LeadId, value, "LeadId"); }
         }
-    public bool ShouldSerializeLeadId() => LeadId != default(System.String);
         private System.String __ContactId;
         [EntityField(true)]
         public System.String ContactId
@@ -16883,7 +17075,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private PickCampaignMemberStatus __Status;
         [EntityField(true)]
         public PickCampaignMemberStatus Status
@@ -16912,7 +17103,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -16927,7 +17117,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -16946,6 +17135,16 @@ namespace LinqToSalesforce
     [EntityName("CampaignMemberStatus")]
     public class CampaignMemberStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CampaignMemberStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CampaignMemberStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -16997,7 +17196,6 @@ namespace LinqToSalesforce
             get { return __CampaignId; }
             set { SetField(ref __CampaignId, value, "CampaignId"); }
         }
-    public bool ShouldSerializeCampaignId() => CampaignId != default(System.String);
         private System.String __Label;
         [EntityField(false)]
         public System.String Label
@@ -17040,7 +17238,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -17055,7 +17252,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -17067,6 +17263,16 @@ namespace LinqToSalesforce
     [EntityName("CampaignShare")]
     public class CampaignShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CampaignShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CampaignShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -17111,7 +17317,6 @@ namespace LinqToSalesforce
             get { return __CampaignId; }
             set { SetField(ref __CampaignId, value, "CampaignId"); }
         }
-    public bool ShouldSerializeCampaignId() => CampaignId != default(System.String);
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
@@ -17119,7 +17324,6 @@ namespace LinqToSalesforce
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
-    public bool ShouldSerializeUserOrGroupId() => UserOrGroupId != default(System.String);
         private PickCampaignShareCampaignAccessLevel __CampaignAccessLevel;
         [EntityField(false)]
         public PickCampaignShareCampaignAccessLevel CampaignAccessLevel
@@ -17148,7 +17352,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -17160,6 +17363,16 @@ namespace LinqToSalesforce
     [EntityName("Case")]
     public class Case : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Case(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Case()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -17218,7 +17431,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
@@ -17226,7 +17438,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __AssetId;
         [EntityField(true)]
         public System.String AssetId
@@ -17234,7 +17445,6 @@ namespace LinqToSalesforce
             get { return __AssetId; }
             set { SetField(ref __AssetId, value, "AssetId"); }
         }
-    public bool ShouldSerializeAssetId() => AssetId != default(System.String);
         private System.String __ParentId;
         [EntityField(true)]
         public System.String ParentId
@@ -17242,7 +17452,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __SuppliedName;
         [EntityField(true)]
         public System.String SuppliedName
@@ -17348,7 +17557,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -17363,7 +17571,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -17378,7 +17585,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -17530,6 +17736,16 @@ namespace LinqToSalesforce
     [EntityName("CaseComment")]
     public class CaseComment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseComment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseComment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -17574,7 +17790,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.Boolean __IsPublished;
         [EntityField(false)]
         public System.Boolean IsPublished
@@ -17596,7 +17811,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -17625,7 +17839,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -17637,6 +17850,16 @@ namespace LinqToSalesforce
     [EntityName("CaseContactRole")]
     public class CaseContactRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseContactRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseContactRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -17681,7 +17904,6 @@ namespace LinqToSalesforce
             get { return __CasesId; }
             set { SetField(ref __CasesId, value, "CasesId"); }
         }
-    public bool ShouldSerializeCasesId() => CasesId != default(System.String);
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
@@ -17689,7 +17911,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private PickCaseContactRoleRole __Role;
         [EntityField(true)]
         public PickCaseContactRoleRole Role
@@ -17711,7 +17932,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -17726,7 +17946,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -17745,6 +17964,16 @@ namespace LinqToSalesforce
     [EntityName("CaseFeed")]
     public class CaseFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -17789,7 +18018,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -17797,7 +18025,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickCaseFeedType __Type;
         [EntityField(true)]
         public PickCaseFeedType Type
@@ -17812,7 +18039,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -17850,6 +18076,16 @@ namespace LinqToSalesforce
     [EntityName("CaseHistory")]
     public class CaseHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -17901,7 +18137,6 @@ namespace LinqToSalesforce
             get { return __CaseId; }
             set { SetField(ref __CaseId, value, "CaseId"); }
         }
-    public bool ShouldSerializeCaseId() => CaseId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -17909,7 +18144,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -17942,6 +18176,16 @@ namespace LinqToSalesforce
     [EntityName("CaseShare")]
     public class CaseShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -17986,7 +18230,6 @@ namespace LinqToSalesforce
             get { return __CaseId; }
             set { SetField(ref __CaseId, value, "CaseId"); }
         }
-    public bool ShouldSerializeCaseId() => CaseId != default(System.String);
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
@@ -17994,7 +18237,6 @@ namespace LinqToSalesforce
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
-    public bool ShouldSerializeUserOrGroupId() => UserOrGroupId != default(System.String);
         private PickCaseShareCaseAccessLevel __CaseAccessLevel;
         [EntityField(false)]
         public PickCaseShareCaseAccessLevel CaseAccessLevel
@@ -18023,7 +18265,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -18035,6 +18276,16 @@ namespace LinqToSalesforce
     [EntityName("CaseSolution")]
     public class CaseSolution : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseSolution(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseSolution()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18079,7 +18330,6 @@ namespace LinqToSalesforce
             get { return __CaseId; }
             set { SetField(ref __CaseId, value, "CaseId"); }
         }
-    public bool ShouldSerializeCaseId() => CaseId != default(System.String);
         private System.String __SolutionId;
         [EntityField(false)]
         public System.String SolutionId
@@ -18087,7 +18337,6 @@ namespace LinqToSalesforce
             get { return __SolutionId; }
             set { SetField(ref __SolutionId, value, "SolutionId"); }
         }
-    public bool ShouldSerializeSolutionId() => SolutionId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -18095,7 +18344,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -18121,6 +18369,16 @@ namespace LinqToSalesforce
     [EntityName("CaseStatus")]
     public class CaseStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18193,7 +18451,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -18208,7 +18465,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -18227,6 +18483,16 @@ namespace LinqToSalesforce
     [EntityName("CaseTeamMember")]
     public class CaseTeamMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18271,7 +18537,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __MemberId;
         [EntityField(false)]
         public System.String MemberId
@@ -18279,7 +18544,6 @@ namespace LinqToSalesforce
             get { return __MemberId; }
             set { SetField(ref __MemberId, value, "MemberId"); }
         }
-    public bool ShouldSerializeMemberId() => MemberId != default(System.String);
         private System.String __TeamTemplateMemberId;
         [EntityField(true)]
         public System.String TeamTemplateMemberId
@@ -18287,7 +18551,6 @@ namespace LinqToSalesforce
             get { return __TeamTemplateMemberId; }
             set { SetField(ref __TeamTemplateMemberId, value, "TeamTemplateMemberId"); }
         }
-    public bool ShouldSerializeTeamTemplateMemberId() => TeamTemplateMemberId != default(System.String);
         private System.String __TeamRoleId;
         [EntityField(false)]
         public System.String TeamRoleId
@@ -18295,7 +18558,6 @@ namespace LinqToSalesforce
             get { return __TeamRoleId; }
             set { SetField(ref __TeamRoleId, value, "TeamRoleId"); }
         }
-    public bool ShouldSerializeTeamRoleId() => TeamRoleId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -18310,7 +18572,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -18325,7 +18586,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -18337,6 +18597,16 @@ namespace LinqToSalesforce
     [EntityName("CaseTeamRole")]
     public class CaseTeamRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18409,7 +18679,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -18424,7 +18693,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -18436,6 +18704,16 @@ namespace LinqToSalesforce
     [EntityName("CaseTeamTemplate")]
     public class CaseTeamTemplate : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamTemplate(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamTemplate()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18501,7 +18779,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -18516,7 +18793,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -18528,6 +18804,16 @@ namespace LinqToSalesforce
     [EntityName("CaseTeamTemplateMember")]
     public class CaseTeamTemplateMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamTemplateMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamTemplateMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18572,7 +18858,6 @@ namespace LinqToSalesforce
             get { return __TeamTemplateId; }
             set { SetField(ref __TeamTemplateId, value, "TeamTemplateId"); }
         }
-    public bool ShouldSerializeTeamTemplateId() => TeamTemplateId != default(System.String);
         private System.String __MemberId;
         [EntityField(false)]
         public System.String MemberId
@@ -18580,7 +18865,6 @@ namespace LinqToSalesforce
             get { return __MemberId; }
             set { SetField(ref __MemberId, value, "MemberId"); }
         }
-    public bool ShouldSerializeMemberId() => MemberId != default(System.String);
         private System.String __TeamRoleId;
         [EntityField(true)]
         public System.String TeamRoleId
@@ -18588,7 +18872,6 @@ namespace LinqToSalesforce
             get { return __TeamRoleId; }
             set { SetField(ref __TeamRoleId, value, "TeamRoleId"); }
         }
-    public bool ShouldSerializeTeamRoleId() => TeamRoleId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -18603,7 +18886,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -18618,7 +18900,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -18630,6 +18911,16 @@ namespace LinqToSalesforce
     [EntityName("CaseTeamTemplateRecord")]
     public class CaseTeamTemplateRecord : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CaseTeamTemplateRecord(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CaseTeamTemplateRecord()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18674,7 +18965,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __TeamTemplateId;
         [EntityField(false)]
         public System.String TeamTemplateId
@@ -18682,7 +18972,6 @@ namespace LinqToSalesforce
             get { return __TeamTemplateId; }
             set { SetField(ref __TeamTemplateId, value, "TeamTemplateId"); }
         }
-    public bool ShouldSerializeTeamTemplateId() => TeamTemplateId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -18697,7 +18986,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -18709,6 +18997,16 @@ namespace LinqToSalesforce
     [EntityName("CategoryData")]
     public class CategoryData : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CategoryData(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CategoryData()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18753,7 +19051,6 @@ namespace LinqToSalesforce
             get { return __CategoryNodeId; }
             set { SetField(ref __CategoryNodeId, value, "CategoryNodeId"); }
         }
-    public bool ShouldSerializeCategoryNodeId() => CategoryNodeId != default(System.String);
         private System.String __RelatedSobjectId;
         [EntityField(false)]
         public System.String RelatedSobjectId
@@ -18761,7 +19058,6 @@ namespace LinqToSalesforce
             get { return __RelatedSobjectId; }
             set { SetField(ref __RelatedSobjectId, value, "RelatedSobjectId"); }
         }
-    public bool ShouldSerializeRelatedSobjectId() => RelatedSobjectId != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -18783,7 +19079,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -18798,7 +19093,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -18810,6 +19104,16 @@ namespace LinqToSalesforce
     [EntityName("CategoryNode")]
     public class CategoryNode : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CategoryNode(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CategoryNode()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18854,7 +19158,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __MasterLabel;
         [EntityField(false)]
         public System.String MasterLabel
@@ -18890,7 +19193,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -18905,7 +19207,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -18917,6 +19218,16 @@ namespace LinqToSalesforce
     [EntityName("ClientBrowser")]
     public class ClientBrowser : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ClientBrowser(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ClientBrowser()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -18961,7 +19272,6 @@ namespace LinqToSalesforce
             get { return __UsersId; }
             set { SetField(ref __UsersId, value, "UsersId"); }
         }
-    public bool ShouldSerializeUsersId() => UsersId != default(System.String);
         private System.String __FullUserAgent;
         [EntityField(true)]
         public System.String FullUserAgent
@@ -18994,6 +19304,16 @@ namespace LinqToSalesforce
     [EntityName("CollaborationGroup")]
     public class CollaborationGroup : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CollaborationGroup(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CollaborationGroup()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -19052,7 +19372,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private PickCollaborationGroupCollaborationType __CollaborationType;
         [EntityField(false)]
         public PickCollaborationGroupCollaborationType CollaborationType
@@ -19081,7 +19400,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -19096,7 +19414,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -19140,6 +19457,16 @@ namespace LinqToSalesforce
     [EntityName("CollaborationGroupFeed")]
     public class CollaborationGroupFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CollaborationGroupFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CollaborationGroupFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -19184,7 +19511,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -19192,7 +19518,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickCollaborationGroupFeedType __Type;
         [EntityField(true)]
         public PickCollaborationGroupFeedType Type
@@ -19207,7 +19532,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -19245,6 +19569,16 @@ namespace LinqToSalesforce
     [EntityName("CollaborationGroupMember")]
     public class CollaborationGroupMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CollaborationGroupMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CollaborationGroupMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -19289,7 +19623,6 @@ namespace LinqToSalesforce
             get { return __CollaborationGroupId; }
             set { SetField(ref __CollaborationGroupId, value, "CollaborationGroupId"); }
         }
-    public bool ShouldSerializeCollaborationGroupId() => CollaborationGroupId != default(System.String);
         private System.String __MemberId;
         [EntityField(false)]
         public System.String MemberId
@@ -19297,7 +19630,6 @@ namespace LinqToSalesforce
             get { return __MemberId; }
             set { SetField(ref __MemberId, value, "MemberId"); }
         }
-    public bool ShouldSerializeMemberId() => MemberId != default(System.String);
         private PickCollaborationGroupMemberNotificationFrequency __NotificationFrequency;
         [EntityField(true)]
         public PickCollaborationGroupMemberNotificationFrequency NotificationFrequency
@@ -19319,7 +19651,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -19334,7 +19665,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -19346,6 +19676,16 @@ namespace LinqToSalesforce
     [EntityName("CollaborationInvitation")]
     public class CollaborationInvitation : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CollaborationInvitation(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CollaborationInvitation()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -19390,7 +19730,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __SharedEntityId;
         [EntityField(false)]
         public System.String SharedEntityId
@@ -19398,7 +19737,6 @@ namespace LinqToSalesforce
             get { return __SharedEntityId; }
             set { SetField(ref __SharedEntityId, value, "SharedEntityId"); }
         }
-    public bool ShouldSerializeSharedEntityId() => SharedEntityId != default(System.String);
         private System.String __InviterId;
         [EntityField(false)]
         public System.String InviterId
@@ -19406,7 +19744,6 @@ namespace LinqToSalesforce
             get { return __InviterId; }
             set { SetField(ref __InviterId, value, "InviterId"); }
         }
-    public bool ShouldSerializeInviterId() => InviterId != default(System.String);
         private System.String __InvitedUserEmail;
         [EntityField(false)]
         public System.String InvitedUserEmail
@@ -19449,7 +19786,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -19464,7 +19800,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -19476,6 +19811,16 @@ namespace LinqToSalesforce
     [EntityName("Community")]
     public class Community : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Community(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Community()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -19534,7 +19879,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -19549,7 +19893,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.String __Name;
         [EntityField(false)]
         public System.String Name
@@ -19575,6 +19918,16 @@ namespace LinqToSalesforce
     [EntityName("Contact")]
     public class Contact : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Contact(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Contact()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -19626,7 +19979,6 @@ namespace LinqToSalesforce
             get { return __MasterRecordId; }
             set { SetField(ref __MasterRecordId, value, "MasterRecordId"); }
         }
-    public bool ShouldSerializeMasterRecordId() => MasterRecordId != default(System.String);
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
@@ -19634,7 +19986,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __LastName;
         [EntityField(false)]
         public System.String LastName
@@ -19782,7 +20133,6 @@ namespace LinqToSalesforce
             get { return __ReportsToId; }
             set { SetField(ref __ReportsToId, value, "ReportsToId"); }
         }
-    public bool ShouldSerializeReportsToId() => ReportsToId != default(System.String);
         private System.String __Email;
         [EntityField(true)]
         public System.String Email
@@ -19839,7 +20189,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -19854,7 +20203,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -19869,7 +20217,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -20064,6 +20411,16 @@ namespace LinqToSalesforce
     [EntityName("ContactFeed")]
     public class ContactFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContactFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContactFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -20108,7 +20465,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -20116,7 +20472,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickContactFeedType __Type;
         [EntityField(true)]
         public PickContactFeedType Type
@@ -20131,7 +20486,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -20169,6 +20523,16 @@ namespace LinqToSalesforce
     [EntityName("ContactHistory")]
     public class ContactHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContactHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContactHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -20220,7 +20584,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -20228,7 +20591,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -20261,6 +20623,16 @@ namespace LinqToSalesforce
     [EntityName("ContactShare")]
     public class ContactShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContactShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContactShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -20305,7 +20677,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
@@ -20313,7 +20684,6 @@ namespace LinqToSalesforce
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
-    public bool ShouldSerializeUserOrGroupId() => UserOrGroupId != default(System.String);
         private PickContactShareContactAccessLevel __ContactAccessLevel;
         [EntityField(false)]
         public PickContactShareContactAccessLevel ContactAccessLevel
@@ -20342,7 +20712,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -20354,6 +20723,16 @@ namespace LinqToSalesforce
     [EntityName("ContentDocument")]
     public class ContentDocument : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentDocument(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentDocument()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -20398,7 +20777,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -20413,7 +20791,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -20435,7 +20812,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -20464,7 +20840,6 @@ namespace LinqToSalesforce
             get { return __LatestPublishedVersionId; }
             set { SetField(ref __LatestPublishedVersionId, value, "LatestPublishedVersionId"); }
         }
-    public bool ShouldSerializeLatestPublishedVersionId() => LatestPublishedVersionId != default(System.String);
         [JsonIgnore]
         [ReferencedByField("ParentId")]
         public RelationShip<ContentDocument,ContentDocumentFeed> Feeds
@@ -20493,6 +20868,16 @@ namespace LinqToSalesforce
     [EntityName("ContentDocumentFeed")]
     public class ContentDocumentFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentDocumentFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentDocumentFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -20537,7 +20922,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -20545,7 +20929,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickContentDocumentFeedType __Type;
         [EntityField(true)]
         public PickContentDocumentFeedType Type
@@ -20560,7 +20943,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -20598,6 +20980,16 @@ namespace LinqToSalesforce
     [EntityName("ContentDocumentHistory")]
     public class ContentDocumentHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentDocumentHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentDocumentHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -20649,7 +21041,6 @@ namespace LinqToSalesforce
             get { return __ContentDocumentId; }
             set { SetField(ref __ContentDocumentId, value, "ContentDocumentId"); }
         }
-    public bool ShouldSerializeContentDocumentId() => ContentDocumentId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -20657,7 +21048,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -20690,6 +21080,16 @@ namespace LinqToSalesforce
     [EntityName("ContentVersion")]
     public class ContentVersion : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentVersion(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentVersion()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -20734,7 +21134,6 @@ namespace LinqToSalesforce
             get { return __ContentDocumentId; }
             set { SetField(ref __ContentDocumentId, value, "ContentDocumentId"); }
         }
-    public bool ShouldSerializeContentDocumentId() => ContentDocumentId != default(System.String);
         private System.Boolean __IsLatest;
         [EntityField(false)]
         public System.Boolean IsLatest
@@ -20812,7 +21211,6 @@ namespace LinqToSalesforce
             get { return __ContentModifiedById; }
             set { SetField(ref __ContentModifiedById, value, "ContentModifiedById"); }
         }
-    public bool ShouldSerializeContentModifiedById() => ContentModifiedById != default(System.String);
         private System.Int32? __PositiveRatingCount;
         [EntityField(true)]
         public System.Int32? PositiveRatingCount
@@ -20848,7 +21246,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -20856,7 +21253,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -20871,7 +21267,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -20928,7 +21323,6 @@ namespace LinqToSalesforce
             get { return __FirstPublishLocationId; }
             set { SetField(ref __FirstPublishLocationId, value, "FirstPublishLocationId"); }
         }
-    public bool ShouldSerializeFirstPublishLocationId() => FirstPublishLocationId != default(System.String);
         private PickContentVersionOrigin __Origin;
         [EntityField(false)]
         public PickContentVersionOrigin Origin
@@ -20946,6 +21340,16 @@ namespace LinqToSalesforce
     [EntityName("ContentVersionHistory")]
     public class ContentVersionHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentVersionHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentVersionHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -20997,7 +21401,6 @@ namespace LinqToSalesforce
             get { return __ContentVersionId; }
             set { SetField(ref __ContentVersionId, value, "ContentVersionId"); }
         }
-    public bool ShouldSerializeContentVersionId() => ContentVersionId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -21005,7 +21408,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -21038,6 +21440,16 @@ namespace LinqToSalesforce
     [EntityName("ContentWorkspace")]
     public class ContentWorkspace : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentWorkspace(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentWorkspace()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -21103,7 +21515,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -21118,7 +21529,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -21140,7 +21550,6 @@ namespace LinqToSalesforce
             get { return __DefaultRecordTypeId; }
             set { SetField(ref __DefaultRecordTypeId, value, "DefaultRecordTypeId"); }
         }
-    public bool ShouldSerializeDefaultRecordTypeId() => DefaultRecordTypeId != default(System.String);
         private System.Boolean __IsRestrictContentTypes;
         [EntityField(false)]
         public System.Boolean IsRestrictContentTypes
@@ -21159,6 +21568,16 @@ namespace LinqToSalesforce
     [EntityName("ContentWorkspaceDoc")]
     public class ContentWorkspaceDoc : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContentWorkspaceDoc(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContentWorkspaceDoc()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -21203,7 +21622,6 @@ namespace LinqToSalesforce
             get { return __ContentWorkspaceId; }
             set { SetField(ref __ContentWorkspaceId, value, "ContentWorkspaceId"); }
         }
-    public bool ShouldSerializeContentWorkspaceId() => ContentWorkspaceId != default(System.String);
         private System.String __ContentDocumentId;
         [EntityField(false)]
         public System.String ContentDocumentId
@@ -21211,7 +21629,6 @@ namespace LinqToSalesforce
             get { return __ContentDocumentId; }
             set { SetField(ref __ContentDocumentId, value, "ContentDocumentId"); }
         }
-    public bool ShouldSerializeContentDocumentId() => ContentDocumentId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -21244,6 +21661,16 @@ namespace LinqToSalesforce
     [EntityName("Contract")]
     public class Contract : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Contract(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Contract()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -21288,7 +21715,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __Pricebook2Id;
         [EntityField(true)]
         public System.String Pricebook2Id
@@ -21296,7 +21722,6 @@ namespace LinqToSalesforce
             get { return __Pricebook2Id; }
             set { SetField(ref __Pricebook2Id, value, "Pricebook2Id"); }
         }
-    public bool ShouldSerializePricebook2Id() => Pricebook2Id != default(System.String);
         private PickContractOwnerExpirationNotice __OwnerExpirationNotice;
         [EntityField(true)]
         public PickContractOwnerExpirationNotice OwnerExpirationNotice
@@ -21367,7 +21792,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private PickContractStatus __Status;
         [EntityField(false)]
         public PickContractStatus Status
@@ -21382,7 +21806,6 @@ namespace LinqToSalesforce
             get { return __CompanySignedId; }
             set { SetField(ref __CompanySignedId, value, "CompanySignedId"); }
         }
-    public bool ShouldSerializeCompanySignedId() => CompanySignedId != default(System.String);
         private System.DateTime? __CompanySignedDate;
         [EntityField(true)]
         public System.DateTime? CompanySignedDate
@@ -21397,7 +21820,6 @@ namespace LinqToSalesforce
             get { return __CustomerSignedId; }
             set { SetField(ref __CustomerSignedId, value, "CustomerSignedId"); }
         }
-    public bool ShouldSerializeCustomerSignedId() => CustomerSignedId != default(System.String);
         private System.String __CustomerSignedTitle;
         [EntityField(true)]
         public System.String CustomerSignedTitle
@@ -21426,7 +21848,6 @@ namespace LinqToSalesforce
             get { return __ActivatedById; }
             set { SetField(ref __ActivatedById, value, "ActivatedById"); }
         }
-    public bool ShouldSerializeActivatedById() => ActivatedById != default(System.String);
         private System.DateTime? __ActivatedDate;
         [EntityField(true)]
         public System.DateTime? ActivatedDate
@@ -21483,7 +21904,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -21498,7 +21918,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -21601,6 +22020,16 @@ namespace LinqToSalesforce
     [EntityName("ContractContactRole")]
     public class ContractContactRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContractContactRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContractContactRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -21645,7 +22074,6 @@ namespace LinqToSalesforce
             get { return __ContractId; }
             set { SetField(ref __ContractId, value, "ContractId"); }
         }
-    public bool ShouldSerializeContractId() => ContractId != default(System.String);
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
@@ -21653,7 +22081,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private PickContractContactRoleRole __Role;
         [EntityField(true)]
         public PickContractContactRoleRole Role
@@ -21682,7 +22109,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -21697,7 +22123,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -21716,6 +22141,16 @@ namespace LinqToSalesforce
     [EntityName("ContractFeed")]
     public class ContractFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContractFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContractFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -21760,7 +22195,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -21768,7 +22202,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickContractFeedType __Type;
         [EntityField(true)]
         public PickContractFeedType Type
@@ -21783,7 +22216,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -21821,6 +22253,16 @@ namespace LinqToSalesforce
     [EntityName("ContractHistory")]
     public class ContractHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContractHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContractHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -21872,7 +22314,6 @@ namespace LinqToSalesforce
             get { return __ContractId; }
             set { SetField(ref __ContractId, value, "ContractId"); }
         }
-    public bool ShouldSerializeContractId() => ContractId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -21880,7 +22321,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -21913,6 +22353,16 @@ namespace LinqToSalesforce
     [EntityName("ContractStatus")]
     public class ContractStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ContractStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ContractStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -21985,7 +22435,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -22000,7 +22449,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -22019,6 +22467,16 @@ namespace LinqToSalesforce
     [EntityName("CronTrigger")]
     public class CronTrigger : ISalesforceEntity
     {
+    [JsonConstructor]
+        private CronTrigger(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public CronTrigger()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -22112,7 +22570,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.String __LastModifiedById;
         [EntityField(false)]
         public System.String LastModifiedById
@@ -22120,7 +22577,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -22128,7 +22584,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -22147,6 +22602,16 @@ namespace LinqToSalesforce
     [EntityName("Dashboard")]
     public class Dashboard : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Dashboard(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Dashboard()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -22198,7 +22663,6 @@ namespace LinqToSalesforce
             get { return __FolderId; }
             set { SetField(ref __FolderId, value, "FolderId"); }
         }
-    public bool ShouldSerializeFolderId() => FolderId != default(System.String);
         private System.String __Title;
         [EntityField(false)]
         public System.String Title
@@ -22262,7 +22726,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -22277,7 +22740,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -22292,7 +22754,6 @@ namespace LinqToSalesforce
             get { return __RunningUserId; }
             set { SetField(ref __RunningUserId, value, "RunningUserId"); }
         }
-    public bool ShouldSerializeRunningUserId() => RunningUserId != default(System.String);
         private System.Int32 __TitleColor;
         [EntityField(false)]
         public System.Int32 TitleColor
@@ -22358,6 +22819,16 @@ namespace LinqToSalesforce
     [EntityName("DashboardFeed")]
     public class DashboardFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private DashboardFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public DashboardFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -22402,7 +22873,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -22410,7 +22880,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickDashboardFeedType __Type;
         [EntityField(true)]
         public PickDashboardFeedType Type
@@ -22425,7 +22894,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -22463,6 +22931,16 @@ namespace LinqToSalesforce
     [EntityName("Document")]
     public class Document : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Document(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Document()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -22507,7 +22985,6 @@ namespace LinqToSalesforce
             get { return __FolderId; }
             set { SetField(ref __FolderId, value, "FolderId"); }
         }
-    public bool ShouldSerializeFolderId() => FolderId != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -22606,7 +23083,6 @@ namespace LinqToSalesforce
             get { return __AuthorId; }
             set { SetField(ref __AuthorId, value, "AuthorId"); }
         }
-    public bool ShouldSerializeAuthorId() => AuthorId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -22621,7 +23097,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -22636,7 +23111,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -22655,6 +23129,16 @@ namespace LinqToSalesforce
     [EntityName("DocumentAttachmentMap")]
     public class DocumentAttachmentMap : ISalesforceEntity
     {
+    [JsonConstructor]
+        private DocumentAttachmentMap(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public DocumentAttachmentMap()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -22699,7 +23183,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __DocumentId;
         [EntityField(false)]
         public System.String DocumentId
@@ -22707,7 +23190,6 @@ namespace LinqToSalesforce
             get { return __DocumentId; }
             set { SetField(ref __DocumentId, value, "DocumentId"); }
         }
-    public bool ShouldSerializeDocumentId() => DocumentId != default(System.String);
         private System.Int32 __DocumentSequence;
         [EntityField(false)]
         public System.Int32 DocumentSequence
@@ -22729,11 +23211,20 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
     }
     [EntityName("EmailMessage")]
     public class EmailMessage : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailMessage(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailMessage()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -22778,7 +23269,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __ActivityId;
         [EntityField(true)]
         public System.String ActivityId
@@ -22786,7 +23276,6 @@ namespace LinqToSalesforce
             get { return __ActivityId; }
             set { SetField(ref __ActivityId, value, "ActivityId"); }
         }
-    public bool ShouldSerializeActivityId() => ActivityId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -22794,7 +23283,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -22816,7 +23304,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -22944,6 +23431,16 @@ namespace LinqToSalesforce
     [EntityName("EmailServicesAddress")]
     public class EmailServicesAddress : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailServicesAddress(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailServicesAddress()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -23016,7 +23513,6 @@ namespace LinqToSalesforce
             get { return __RunAsUserId; }
             set { SetField(ref __RunAsUserId, value, "RunAsUserId"); }
         }
-    public bool ShouldSerializeRunAsUserId() => RunAsUserId != default(System.String);
         private System.String __FunctionId;
         [EntityField(false)]
         public System.String FunctionId
@@ -23024,7 +23520,6 @@ namespace LinqToSalesforce
             get { return __FunctionId; }
             set { SetField(ref __FunctionId, value, "FunctionId"); }
         }
-    public bool ShouldSerializeFunctionId() => FunctionId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -23032,7 +23527,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -23047,7 +23541,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -23066,6 +23559,16 @@ namespace LinqToSalesforce
     [EntityName("EmailServicesFunction")]
     public class EmailServicesFunction : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailServicesFunction(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailServicesFunction()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -23152,7 +23655,6 @@ namespace LinqToSalesforce
             get { return __ApexClassId; }
             set { SetField(ref __ApexClassId, value, "ApexClassId"); }
         }
-    public bool ShouldSerializeApexClassId() => ApexClassId != default(System.String);
         private PickEmailServicesFunctionOverLimitAction __OverLimitAction;
         [EntityField(true)]
         public PickEmailServicesFunctionOverLimitAction OverLimitAction
@@ -23223,7 +23725,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -23238,7 +23739,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -23263,6 +23763,16 @@ namespace LinqToSalesforce
     [EntityName("EmailStatus")]
     public class EmailStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -23307,7 +23817,6 @@ namespace LinqToSalesforce
             get { return __TaskId; }
             set { SetField(ref __TaskId, value, "TaskId"); }
         }
-    public bool ShouldSerializeTaskId() => TaskId != default(System.String);
         private System.String __WhoId;
         [EntityField(true)]
         public System.String WhoId
@@ -23315,7 +23824,6 @@ namespace LinqToSalesforce
             get { return __WhoId; }
             set { SetField(ref __WhoId, value, "WhoId"); }
         }
-    public bool ShouldSerializeWhoId() => WhoId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -23330,7 +23838,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -23345,7 +23852,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Int32 __TimesOpened;
         [EntityField(false)]
         public System.Int32 TimesOpened
@@ -23378,6 +23884,16 @@ namespace LinqToSalesforce
     [EntityName("EmailTemplate")]
     public class EmailTemplate : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EmailTemplate(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EmailTemplate()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -23443,7 +23959,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.String __FolderId;
         [EntityField(false)]
         public System.String FolderId
@@ -23451,7 +23966,6 @@ namespace LinqToSalesforce
             get { return __FolderId; }
             set { SetField(ref __FolderId, value, "FolderId"); }
         }
-    public bool ShouldSerializeFolderId() => FolderId != default(System.String);
         private System.String __BrandTemplateId;
         [EntityField(true)]
         public System.String BrandTemplateId
@@ -23459,7 +23973,6 @@ namespace LinqToSalesforce
             get { return __BrandTemplateId; }
             set { SetField(ref __BrandTemplateId, value, "BrandTemplateId"); }
         }
-    public bool ShouldSerializeBrandTemplateId() => BrandTemplateId != default(System.String);
         private PickEmailTemplateTemplateStyle __TemplateStyle;
         [EntityField(false)]
         public PickEmailTemplateTemplateStyle TemplateStyle
@@ -23544,7 +24057,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -23559,7 +24071,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -23591,6 +24102,16 @@ namespace LinqToSalesforce
     [EntityName("EntitySubscription")]
     public class EntitySubscription : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EntitySubscription(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EntitySubscription()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -23635,7 +24156,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __SubscriberId;
         [EntityField(false)]
         public System.String SubscriberId
@@ -23643,7 +24163,6 @@ namespace LinqToSalesforce
             get { return __SubscriberId; }
             set { SetField(ref __SubscriberId, value, "SubscriberId"); }
         }
-    public bool ShouldSerializeSubscriberId() => SubscriberId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -23651,7 +24170,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -23670,6 +24188,16 @@ namespace LinqToSalesforce
     [EntityName("Event")]
     public class Event : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Event(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Event()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -23714,7 +24242,6 @@ namespace LinqToSalesforce
             get { return __WhoId; }
             set { SetField(ref __WhoId, value, "WhoId"); }
         }
-    public bool ShouldSerializeWhoId() => WhoId != default(System.String);
         private System.String __WhatId;
         [EntityField(true)]
         public System.String WhatId
@@ -23722,7 +24249,6 @@ namespace LinqToSalesforce
             get { return __WhatId; }
             set { SetField(ref __WhatId, value, "WhatId"); }
         }
-    public bool ShouldSerializeWhatId() => WhatId != default(System.String);
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
@@ -23793,7 +24319,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
@@ -23801,7 +24326,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.Boolean __IsPrivate;
         [EntityField(false)]
         public System.Boolean IsPrivate
@@ -23858,7 +24382,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -23873,7 +24396,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -23895,7 +24417,6 @@ namespace LinqToSalesforce
             get { return __RecurrenceActivityId; }
             set { SetField(ref __RecurrenceActivityId, value, "RecurrenceActivityId"); }
         }
-    public bool ShouldSerializeRecurrenceActivityId() => RecurrenceActivityId != default(System.String);
         private System.Boolean __IsRecurrence;
         [EntityField(false)]
         public System.Boolean IsRecurrence
@@ -24014,6 +24535,16 @@ namespace LinqToSalesforce
     [EntityName("EventAttendee")]
     public class EventAttendee : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EventAttendee(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EventAttendee()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -24058,7 +24589,6 @@ namespace LinqToSalesforce
             get { return __EventId; }
             set { SetField(ref __EventId, value, "EventId"); }
         }
-    public bool ShouldSerializeEventId() => EventId != default(System.String);
         private System.String __AttendeeId;
         [EntityField(false)]
         public System.String AttendeeId
@@ -24066,7 +24596,6 @@ namespace LinqToSalesforce
             get { return __AttendeeId; }
             set { SetField(ref __AttendeeId, value, "AttendeeId"); }
         }
-    public bool ShouldSerializeAttendeeId() => AttendeeId != default(System.String);
         private PickEventAttendeeStatus __Status;
         [EntityField(false)]
         public PickEventAttendeeStatus Status
@@ -24102,7 +24631,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -24117,7 +24645,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -24136,6 +24663,16 @@ namespace LinqToSalesforce
     [EntityName("EventFeed")]
     public class EventFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private EventFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public EventFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -24180,7 +24717,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -24188,7 +24724,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickEventFeedType __Type;
         [EntityField(true)]
         public PickEventFeedType Type
@@ -24203,7 +24738,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -24241,6 +24775,16 @@ namespace LinqToSalesforce
     [EntityName("FeedComment")]
     public class FeedComment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private FeedComment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public FeedComment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -24285,7 +24829,6 @@ namespace LinqToSalesforce
             get { return __FeedItemId; }
             set { SetField(ref __FeedItemId, value, "FeedItemId"); }
         }
-    public bool ShouldSerializeFeedItemId() => FeedItemId != default(System.String);
         private System.String __ParentId;
         [EntityField(true)]
         public System.String ParentId
@@ -24293,7 +24836,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -24301,7 +24843,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -24327,6 +24868,16 @@ namespace LinqToSalesforce
     [EntityName("FeedPost")]
     public class FeedPost : ISalesforceEntity
     {
+    [JsonConstructor]
+        private FeedPost(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public FeedPost()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -24371,7 +24922,6 @@ namespace LinqToSalesforce
             get { return __FeedItemId; }
             set { SetField(ref __FeedItemId, value, "FeedItemId"); }
         }
-    public bool ShouldSerializeFeedItemId() => FeedItemId != default(System.String);
         private System.String __ParentId;
         [EntityField(false)]
         public System.String ParentId
@@ -24379,7 +24929,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private PickFeedPostType __Type;
         [EntityField(false)]
         public PickFeedPostType Type
@@ -24394,7 +24943,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -24476,6 +25024,16 @@ namespace LinqToSalesforce
     [EntityName("FeedTrackedChange")]
     public class FeedTrackedChange : ISalesforceEntity
     {
+    [JsonConstructor]
+        private FeedTrackedChange(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public FeedTrackedChange()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -24520,7 +25078,6 @@ namespace LinqToSalesforce
             get { return __FeedItemId; }
             set { SetField(ref __FeedItemId, value, "FeedItemId"); }
         }
-    public bool ShouldSerializeFeedItemId() => FeedItemId != default(System.String);
         private System.String __FieldName;
         [EntityField(false)]
         public System.String FieldName
@@ -24546,6 +25103,16 @@ namespace LinqToSalesforce
     [EntityName("FiscalYearSettings")]
     public class FiscalYearSettings : ISalesforceEntity
     {
+    [JsonConstructor]
+        private FiscalYearSettings(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public FiscalYearSettings()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -24590,7 +25157,6 @@ namespace LinqToSalesforce
             get { return __PeriodId; }
             set { SetField(ref __PeriodId, value, "PeriodId"); }
         }
-    public bool ShouldSerializePeriodId() => PeriodId != default(System.String);
         private System.DateTime? __StartDate;
         [EntityField(true)]
         public System.DateTime? StartDate
@@ -24692,6 +25258,16 @@ namespace LinqToSalesforce
     [EntityName("Folder")]
     public class Folder : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Folder(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Folder()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -24785,7 +25361,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -24800,7 +25375,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -24812,6 +25386,16 @@ namespace LinqToSalesforce
     [EntityName("ForecastShare")]
     public class ForecastShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ForecastShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ForecastShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -24856,7 +25440,6 @@ namespace LinqToSalesforce
             get { return __UserRoleId; }
             set { SetField(ref __UserRoleId, value, "UserRoleId"); }
         }
-    public bool ShouldSerializeUserRoleId() => UserRoleId != default(System.String);
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
@@ -24864,7 +25447,6 @@ namespace LinqToSalesforce
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
-    public bool ShouldSerializeUserOrGroupId() => UserOrGroupId != default(System.String);
         private PickForecastShareAccessLevel __AccessLevel;
         [EntityField(false)]
         public PickForecastShareAccessLevel AccessLevel
@@ -24900,11 +25482,20 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
     }
     [EntityName("Group")]
     public class Group : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Group(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Group()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -24956,7 +25547,6 @@ namespace LinqToSalesforce
             get { return __RelatedId; }
             set { SetField(ref __RelatedId, value, "RelatedId"); }
         }
-    public bool ShouldSerializeRelatedId() => RelatedId != default(System.String);
         private PickGroupType __Type;
         [EntityField(false)]
         public PickGroupType Type
@@ -24978,7 +25568,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.Boolean __DoesSendEmailToMembers;
         [EntityField(false)]
         public System.Boolean DoesSendEmailToMembers
@@ -25007,7 +25596,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -25022,7 +25610,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -25052,6 +25639,16 @@ namespace LinqToSalesforce
     [EntityName("GroupMember")]
     public class GroupMember : ISalesforceEntity
     {
+    [JsonConstructor]
+        private GroupMember(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public GroupMember()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -25096,7 +25693,6 @@ namespace LinqToSalesforce
             get { return __GroupId; }
             set { SetField(ref __GroupId, value, "GroupId"); }
         }
-    public bool ShouldSerializeGroupId() => GroupId != default(System.String);
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
@@ -25104,7 +25700,6 @@ namespace LinqToSalesforce
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
-    public bool ShouldSerializeUserOrGroupId() => UserOrGroupId != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -25116,6 +25711,16 @@ namespace LinqToSalesforce
     [EntityName("Holiday")]
     public class Holiday : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Holiday(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Holiday()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -25209,7 +25814,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -25224,7 +25828,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -25299,6 +25902,16 @@ namespace LinqToSalesforce
     [EntityName("Idea")]
     public class Idea : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Idea(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Idea()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -25357,7 +25970,6 @@ namespace LinqToSalesforce
             get { return __RecordTypeId; }
             set { SetField(ref __RecordTypeId, value, "RecordTypeId"); }
         }
-    public bool ShouldSerializeRecordTypeId() => RecordTypeId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -25372,7 +25984,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -25387,7 +25998,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -25409,7 +26019,6 @@ namespace LinqToSalesforce
             get { return __CommunityId; }
             set { SetField(ref __CommunityId, value, "CommunityId"); }
         }
-    public bool ShouldSerializeCommunityId() => CommunityId != default(System.String);
         private System.String __Body;
         [EntityField(true)]
         public System.String Body
@@ -25423,7 +26032,6 @@ namespace LinqToSalesforce
         {
             get { return __NumComments; }
         }
-    public bool ShouldSerializeNumComments() => false;
         private System.Double? __VoteScore;
         [EntityField(true)]
         public System.Double? VoteScore
@@ -25458,7 +26066,6 @@ namespace LinqToSalesforce
         {
             get { return __LastCommentDate; }
         }
-    public bool ShouldSerializeLastCommentDate() => false;
         private System.String __LastCommentId;
         [EntityField(true)]
         public System.String LastCommentId
@@ -25466,7 +26073,6 @@ namespace LinqToSalesforce
             get { return __LastCommentId; }
             set { SetField(ref __LastCommentId, value, "LastCommentId"); }
         }
-    public bool ShouldSerializeLastCommentId() => LastCommentId != default(System.String);
         private System.String __ParentIdeaId;
         [EntityField(true)]
         public System.String ParentIdeaId
@@ -25474,7 +26080,6 @@ namespace LinqToSalesforce
             get { return __ParentIdeaId; }
             set { SetField(ref __ParentIdeaId, value, "ParentIdeaId"); }
         }
-    public bool ShouldSerializeParentIdeaId() => ParentIdeaId != default(System.String);
         private System.Boolean __IsHtml;
         [EntityField(false)]
         public System.Boolean IsHtml
@@ -25498,6 +26103,16 @@ namespace LinqToSalesforce
     [EntityName("IdeaComment")]
     public class IdeaComment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private IdeaComment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public IdeaComment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -25542,7 +26157,6 @@ namespace LinqToSalesforce
             get { return __IdeaId; }
             set { SetField(ref __IdeaId, value, "IdeaId"); }
         }
-    public bool ShouldSerializeIdeaId() => IdeaId != default(System.String);
         private System.String __CommentBody;
         [EntityField(true)]
         public System.String CommentBody
@@ -25557,7 +26171,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -25596,6 +26209,16 @@ namespace LinqToSalesforce
     [EntityName("Lead")]
     public class Lead : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Lead(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Lead()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -25647,7 +26270,6 @@ namespace LinqToSalesforce
             get { return __MasterRecordId; }
             set { SetField(ref __MasterRecordId, value, "MasterRecordId"); }
         }
-    public bool ShouldSerializeMasterRecordId() => MasterRecordId != default(System.String);
         private System.String __LastName;
         [EntityField(false)]
         public System.String LastName
@@ -25816,7 +26438,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.Boolean __IsConverted;
         [EntityField(false)]
         public System.Boolean IsConverted
@@ -25838,7 +26459,6 @@ namespace LinqToSalesforce
             get { return __ConvertedAccountId; }
             set { SetField(ref __ConvertedAccountId, value, "ConvertedAccountId"); }
         }
-    public bool ShouldSerializeConvertedAccountId() => ConvertedAccountId != default(System.String);
         private System.String __ConvertedContactId;
         [EntityField(true)]
         public System.String ConvertedContactId
@@ -25846,7 +26466,6 @@ namespace LinqToSalesforce
             get { return __ConvertedContactId; }
             set { SetField(ref __ConvertedContactId, value, "ConvertedContactId"); }
         }
-    public bool ShouldSerializeConvertedContactId() => ConvertedContactId != default(System.String);
         private System.String __ConvertedOpportunityId;
         [EntityField(true)]
         public System.String ConvertedOpportunityId
@@ -25854,7 +26473,6 @@ namespace LinqToSalesforce
             get { return __ConvertedOpportunityId; }
             set { SetField(ref __ConvertedOpportunityId, value, "ConvertedOpportunityId"); }
         }
-    public bool ShouldSerializeConvertedOpportunityId() => ConvertedOpportunityId != default(System.String);
         private System.Boolean __IsUnreadByOwner;
         [EntityField(false)]
         public System.Boolean IsUnreadByOwner
@@ -25876,7 +26494,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -25891,7 +26508,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -26054,6 +26670,16 @@ namespace LinqToSalesforce
     [EntityName("LeadFeed")]
     public class LeadFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LeadFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LeadFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -26098,7 +26724,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -26106,7 +26731,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickLeadFeedType __Type;
         [EntityField(true)]
         public PickLeadFeedType Type
@@ -26121,7 +26745,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -26159,6 +26782,16 @@ namespace LinqToSalesforce
     [EntityName("LeadHistory")]
     public class LeadHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LeadHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LeadHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -26210,7 +26843,6 @@ namespace LinqToSalesforce
             get { return __LeadId; }
             set { SetField(ref __LeadId, value, "LeadId"); }
         }
-    public bool ShouldSerializeLeadId() => LeadId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -26218,7 +26850,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -26251,6 +26882,16 @@ namespace LinqToSalesforce
     [EntityName("LeadShare")]
     public class LeadShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LeadShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LeadShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -26295,7 +26936,6 @@ namespace LinqToSalesforce
             get { return __LeadId; }
             set { SetField(ref __LeadId, value, "LeadId"); }
         }
-    public bool ShouldSerializeLeadId() => LeadId != default(System.String);
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
@@ -26303,7 +26943,6 @@ namespace LinqToSalesforce
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
-    public bool ShouldSerializeUserOrGroupId() => UserOrGroupId != default(System.String);
         private PickLeadShareLeadAccessLevel __LeadAccessLevel;
         [EntityField(false)]
         public PickLeadShareLeadAccessLevel LeadAccessLevel
@@ -26332,7 +26971,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -26344,6 +26982,16 @@ namespace LinqToSalesforce
     [EntityName("LeadStatus")]
     public class LeadStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LeadStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LeadStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -26416,7 +27064,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -26431,7 +27078,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -26450,6 +27096,16 @@ namespace LinqToSalesforce
     [EntityName("LoginIp")]
     public class LoginIp : ISalesforceEntity
     {
+    [JsonConstructor]
+        private LoginIp(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public LoginIp()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -26494,7 +27150,6 @@ namespace LinqToSalesforce
             get { return __UsersId; }
             set { SetField(ref __UsersId, value, "UsersId"); }
         }
-    public bool ShouldSerializeUsersId() => UsersId != default(System.String);
         private System.String __SourceIp;
         [EntityField(true)]
         public System.String SourceIp
@@ -26527,6 +27182,16 @@ namespace LinqToSalesforce
     [EntityName("MailmergeTemplate")]
     public class MailmergeTemplate : ISalesforceEntity
     {
+    [JsonConstructor]
+        private MailmergeTemplate(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public MailmergeTemplate()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -26627,7 +27292,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -26642,7 +27306,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -26682,6 +27345,16 @@ namespace LinqToSalesforce
     [EntityName("Name")]
     public class Name : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Name(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Name()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -26762,7 +27435,6 @@ namespace LinqToSalesforce
             get { return __UserRoleId; }
             set { SetField(ref __UserRoleId, value, "UserRoleId"); }
         }
-    public bool ShouldSerializeUserRoleId() => UserRoleId != default(System.String);
         private System.Boolean __IsActive;
         [EntityField(false)]
         public System.Boolean IsActive
@@ -26777,7 +27449,6 @@ namespace LinqToSalesforce
             get { return __ProfileId; }
             set { SetField(ref __ProfileId, value, "ProfileId"); }
         }
-    public bool ShouldSerializeProfileId() => ProfileId != default(System.String);
         private System.String __Title;
         [EntityField(true)]
         public System.String Title
@@ -26810,6 +27481,16 @@ namespace LinqToSalesforce
     [EntityName("NewsFeed")]
     public class NewsFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private NewsFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public NewsFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -26854,7 +27535,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -26862,7 +27542,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickNewsFeedType __Type;
         [EntityField(true)]
         public PickNewsFeedType Type
@@ -26877,7 +27556,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -26915,6 +27593,16 @@ namespace LinqToSalesforce
     [EntityName("Note")]
     public class Note : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Note(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Note()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -26966,7 +27654,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __Title;
         [EntityField(false)]
         public System.String Title
@@ -26995,7 +27682,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -27010,7 +27696,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -27025,7 +27710,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -27037,6 +27721,16 @@ namespace LinqToSalesforce
     [EntityName("NoteAndAttachment")]
     public class NoteAndAttachment : ISalesforceEntity
     {
+    [JsonConstructor]
+        private NoteAndAttachment(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public NoteAndAttachment()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -27095,7 +27789,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __Title;
         [EntityField(true)]
         public System.String Title
@@ -27117,7 +27810,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -27132,7 +27824,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -27147,7 +27838,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -27159,6 +27849,16 @@ namespace LinqToSalesforce
     [EntityName("OpenActivity")]
     public class OpenActivity : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpenActivity(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpenActivity()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -27203,7 +27903,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __WhoId;
         [EntityField(true)]
         public System.String WhoId
@@ -27211,7 +27910,6 @@ namespace LinqToSalesforce
             get { return __WhoId; }
             set { SetField(ref __WhoId, value, "WhoId"); }
         }
-    public bool ShouldSerializeWhoId() => WhoId != default(System.String);
         private System.String __WhatId;
         [EntityField(true)]
         public System.String WhatId
@@ -27219,7 +27917,6 @@ namespace LinqToSalesforce
             get { return __WhatId; }
             set { SetField(ref __WhatId, value, "WhatId"); }
         }
-    public bool ShouldSerializeWhatId() => WhatId != default(System.String);
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
@@ -27248,7 +27945,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private PickOpenActivityStatus __Status;
         [EntityField(true)]
         public PickOpenActivityStatus Status
@@ -27333,7 +28029,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -27348,7 +28043,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -27402,6 +28096,16 @@ namespace LinqToSalesforce
     [EntityName("Opportunity")]
     public class Opportunity : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Opportunity(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Opportunity()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -27453,7 +28157,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.Boolean __IsPrivate;
         [EntityField(false)]
         public System.Boolean IsPrivate
@@ -27573,7 +28276,6 @@ namespace LinqToSalesforce
             get { return __CampaignId; }
             set { SetField(ref __CampaignId, value, "CampaignId"); }
         }
-    public bool ShouldSerializeCampaignId() => CampaignId != default(System.String);
         private System.Boolean __HasOpportunityLineItem;
         [EntityField(false)]
         public System.Boolean HasOpportunityLineItem
@@ -27588,7 +28290,6 @@ namespace LinqToSalesforce
             get { return __Pricebook2Id; }
             set { SetField(ref __Pricebook2Id, value, "Pricebook2Id"); }
         }
-    public bool ShouldSerializePricebook2Id() => Pricebook2Id != default(System.String);
         private System.String __OwnerId;
         [EntityField(false)]
         public System.String OwnerId
@@ -27596,7 +28297,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -27611,7 +28311,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -27626,7 +28325,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -27826,6 +28524,16 @@ namespace LinqToSalesforce
     [EntityName("OpportunityCompetitor")]
     public class OpportunityCompetitor : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityCompetitor(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityCompetitor()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -27870,7 +28578,6 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
-    public bool ShouldSerializeOpportunityId() => OpportunityId != default(System.String);
         private System.String __CompetitorName;
         [EntityField(true)]
         public System.String CompetitorName
@@ -27899,7 +28606,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -27914,7 +28620,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -27940,6 +28645,16 @@ namespace LinqToSalesforce
     [EntityName("OpportunityContactRole")]
     public class OpportunityContactRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityContactRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityContactRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -27984,7 +28699,6 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
-    public bool ShouldSerializeOpportunityId() => OpportunityId != default(System.String);
         private System.String __ContactId;
         [EntityField(false)]
         public System.String ContactId
@@ -27992,7 +28706,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private PickOpportunityContactRoleRole __Role;
         [EntityField(true)]
         public PickOpportunityContactRoleRole Role
@@ -28021,7 +28734,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -28036,7 +28748,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -28055,6 +28766,16 @@ namespace LinqToSalesforce
     [EntityName("OpportunityFeed")]
     public class OpportunityFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -28099,7 +28820,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -28107,7 +28827,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickOpportunityFeedType __Type;
         [EntityField(true)]
         public PickOpportunityFeedType Type
@@ -28122,7 +28841,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -28160,6 +28878,16 @@ namespace LinqToSalesforce
     [EntityName("OpportunityFieldHistory")]
     public class OpportunityFieldHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityFieldHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityFieldHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -28211,7 +28939,6 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
-    public bool ShouldSerializeOpportunityId() => OpportunityId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -28219,7 +28946,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -28252,6 +28978,16 @@ namespace LinqToSalesforce
     [EntityName("OpportunityHistory")]
     public class OpportunityHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -28296,7 +29032,6 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
-    public bool ShouldSerializeOpportunityId() => OpportunityId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -28304,7 +29039,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -28372,6 +29106,16 @@ namespace LinqToSalesforce
     [EntityName("OpportunityLineItem")]
     public class OpportunityLineItem : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityLineItem(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityLineItem()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -28416,7 +29160,6 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
-    public bool ShouldSerializeOpportunityId() => OpportunityId != default(System.String);
         private System.Int32? __SortOrder;
         [EntityField(true)]
         public System.Int32? SortOrder
@@ -28431,7 +29174,6 @@ namespace LinqToSalesforce
             get { return __PricebookEntryId; }
             set { SetField(ref __PricebookEntryId, value, "PricebookEntryId"); }
         }
-    public bool ShouldSerializePricebookEntryId() => PricebookEntryId != default(System.String);
         private System.Double __Quantity;
         [EntityField(false)]
         public System.Double Quantity
@@ -28488,7 +29230,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -28503,7 +29244,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -28522,6 +29262,16 @@ namespace LinqToSalesforce
     [EntityName("OpportunityPartner")]
     public class OpportunityPartner : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityPartner(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityPartner()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -28566,7 +29316,6 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
-    public bool ShouldSerializeOpportunityId() => OpportunityId != default(System.String);
         private System.String __AccountToId;
         [EntityField(false)]
         public System.String AccountToId
@@ -28574,7 +29323,6 @@ namespace LinqToSalesforce
             get { return __AccountToId; }
             set { SetField(ref __AccountToId, value, "AccountToId"); }
         }
-    public bool ShouldSerializeAccountToId() => AccountToId != default(System.String);
         private PickOpportunityPartnerRole __Role;
         [EntityField(true)]
         public PickOpportunityPartnerRole Role
@@ -28603,7 +29351,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -28618,7 +29365,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -28640,11 +29386,20 @@ namespace LinqToSalesforce
             get { return __ReversePartnerId; }
             set { SetField(ref __ReversePartnerId, value, "ReversePartnerId"); }
         }
-    public bool ShouldSerializeReversePartnerId() => ReversePartnerId != default(System.String);
     }
     [EntityName("OpportunityShare")]
     public class OpportunityShare : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityShare(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityShare()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -28689,7 +29444,6 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
-    public bool ShouldSerializeOpportunityId() => OpportunityId != default(System.String);
         private System.String __UserOrGroupId;
         [EntityField(false)]
         public System.String UserOrGroupId
@@ -28697,7 +29451,6 @@ namespace LinqToSalesforce
             get { return __UserOrGroupId; }
             set { SetField(ref __UserOrGroupId, value, "UserOrGroupId"); }
         }
-    public bool ShouldSerializeUserOrGroupId() => UserOrGroupId != default(System.String);
         private PickOpportunityShareOpportunityAccessLevel __OpportunityAccessLevel;
         [EntityField(false)]
         public PickOpportunityShareOpportunityAccessLevel OpportunityAccessLevel
@@ -28726,7 +29479,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -28738,6 +29490,16 @@ namespace LinqToSalesforce
     [EntityName("OpportunityStage")]
     public class OpportunityStage : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OpportunityStage(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OpportunityStage()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -28845,7 +29607,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -28860,7 +29621,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -28879,6 +29639,16 @@ namespace LinqToSalesforce
     [EntityName("Order")]
     public class Order : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Order(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Order()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -28923,7 +29693,6 @@ namespace LinqToSalesforce
             get { return __ContractId; }
             set { SetField(ref __ContractId, value, "ContractId"); }
         }
-    public bool ShouldSerializeContractId() => ContractId != default(System.String);
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
@@ -28931,7 +29700,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.DateTime __EffectiveDate;
         [EntityField(false)]
         public System.DateTime EffectiveDate
@@ -28967,7 +29735,6 @@ namespace LinqToSalesforce
             get { return __CustomerAuthorizedById; }
             set { SetField(ref __CustomerAuthorizedById, value, "CustomerAuthorizedById"); }
         }
-    public bool ShouldSerializeCustomerAuthorizedById() => CustomerAuthorizedById != default(System.String);
         private System.DateTime? __CustomerAuthorizedDate;
         [EntityField(true)]
         public System.DateTime? CustomerAuthorizedDate
@@ -28982,7 +29749,6 @@ namespace LinqToSalesforce
             get { return __CompanyAuthorizedById; }
             set { SetField(ref __CompanyAuthorizedById, value, "CompanyAuthorizedById"); }
         }
-    public bool ShouldSerializeCompanyAuthorizedById() => CompanyAuthorizedById != default(System.String);
         private System.DateTime? __CompanyAuthorizedDate;
         [EntityField(true)]
         public System.DateTime? CompanyAuthorizedDate
@@ -29102,7 +29868,6 @@ namespace LinqToSalesforce
             get { return __BillToContactId; }
             set { SetField(ref __BillToContactId, value, "BillToContactId"); }
         }
-    public bool ShouldSerializeBillToContactId() => BillToContactId != default(System.String);
         private System.String __ShipToContactId;
         [EntityField(true)]
         public System.String ShipToContactId
@@ -29110,7 +29875,6 @@ namespace LinqToSalesforce
             get { return __ShipToContactId; }
             set { SetField(ref __ShipToContactId, value, "ShipToContactId"); }
         }
-    public bool ShouldSerializeShipToContactId() => ShipToContactId != default(System.String);
         private System.DateTime? __ActivatedDate;
         [EntityField(true)]
         public System.DateTime? ActivatedDate
@@ -29125,7 +29889,6 @@ namespace LinqToSalesforce
             get { return __ActivatedById; }
             set { SetField(ref __ActivatedById, value, "ActivatedById"); }
         }
-    public bool ShouldSerializeActivatedById() => ActivatedById != default(System.String);
         private PickOrderStatusCode __StatusCode;
         [EntityField(false)]
         public PickOrderStatusCode StatusCode
@@ -29161,7 +29924,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -29176,7 +29938,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -29267,6 +30028,16 @@ namespace LinqToSalesforce
     [EntityName("OrderHistory")]
     public class OrderHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OrderHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OrderHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -29318,7 +30089,6 @@ namespace LinqToSalesforce
             get { return __OrderId; }
             set { SetField(ref __OrderId, value, "OrderId"); }
         }
-    public bool ShouldSerializeOrderId() => OrderId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -29326,7 +30096,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -29359,6 +30128,16 @@ namespace LinqToSalesforce
     [EntityName("OrderItem")]
     public class OrderItem : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OrderItem(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OrderItem()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -29410,7 +30189,6 @@ namespace LinqToSalesforce
             get { return __OrderId; }
             set { SetField(ref __OrderId, value, "OrderId"); }
         }
-    public bool ShouldSerializeOrderId() => OrderId != default(System.String);
         private System.String __PricebookEntryId;
         [EntityField(false)]
         public System.String PricebookEntryId
@@ -29418,7 +30196,6 @@ namespace LinqToSalesforce
             get { return __PricebookEntryId; }
             set { SetField(ref __PricebookEntryId, value, "PricebookEntryId"); }
         }
-    public bool ShouldSerializePricebookEntryId() => PricebookEntryId != default(System.String);
         private System.String __OriginalOrderItemId;
         [EntityField(true)]
         public System.String OriginalOrderItemId
@@ -29426,7 +30203,6 @@ namespace LinqToSalesforce
             get { return __OriginalOrderItemId; }
             set { SetField(ref __OriginalOrderItemId, value, "OriginalOrderItemId"); }
         }
-    public bool ShouldSerializeOriginalOrderItemId() => OriginalOrderItemId != default(System.String);
         private System.Double __Quantity;
         [EntityField(false)]
         public System.Double Quantity
@@ -29483,7 +30259,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -29498,7 +30273,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -29529,6 +30303,16 @@ namespace LinqToSalesforce
     [EntityName("OrgWideEmailAddress")]
     public class OrgWideEmailAddress : ISalesforceEntity
     {
+    [JsonConstructor]
+        private OrgWideEmailAddress(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public OrgWideEmailAddress()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -29573,7 +30357,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -29595,7 +30378,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -29628,6 +30410,16 @@ namespace LinqToSalesforce
     [EntityName("Organization")]
     public class Organization : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Organization(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Organization()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -29931,7 +30723,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -29946,11 +30737,20 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
     }
     [EntityName("Partner")]
     public class Partner : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Partner(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Partner()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -29995,7 +30795,6 @@ namespace LinqToSalesforce
             get { return __OpportunityId; }
             set { SetField(ref __OpportunityId, value, "OpportunityId"); }
         }
-    public bool ShouldSerializeOpportunityId() => OpportunityId != default(System.String);
         private System.String __AccountFromId;
         [EntityField(true)]
         public System.String AccountFromId
@@ -30003,7 +30802,6 @@ namespace LinqToSalesforce
             get { return __AccountFromId; }
             set { SetField(ref __AccountFromId, value, "AccountFromId"); }
         }
-    public bool ShouldSerializeAccountFromId() => AccountFromId != default(System.String);
         private System.String __AccountToId;
         [EntityField(false)]
         public System.String AccountToId
@@ -30011,7 +30809,6 @@ namespace LinqToSalesforce
             get { return __AccountToId; }
             set { SetField(ref __AccountToId, value, "AccountToId"); }
         }
-    public bool ShouldSerializeAccountToId() => AccountToId != default(System.String);
         private PickPartnerRole __Role;
         [EntityField(true)]
         public PickPartnerRole Role
@@ -30040,7 +30837,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -30055,7 +30851,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -30077,11 +30872,20 @@ namespace LinqToSalesforce
             get { return __ReversePartnerId; }
             set { SetField(ref __ReversePartnerId, value, "ReversePartnerId"); }
         }
-    public bool ShouldSerializeReversePartnerId() => ReversePartnerId != default(System.String);
     }
     [EntityName("PartnerRole")]
     public class PartnerRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private PartnerRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public PartnerRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -30147,7 +30951,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -30162,7 +30965,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -30181,6 +30983,16 @@ namespace LinqToSalesforce
     [EntityName("Period")]
     public class Period : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Period(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Period()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -30225,7 +31037,6 @@ namespace LinqToSalesforce
             get { return __FiscalYearSettingsId; }
             set { SetField(ref __FiscalYearSettingsId, value, "FiscalYearSettingsId"); }
         }
-    public bool ShouldSerializeFiscalYearSettingsId() => FiscalYearSettingsId != default(System.String);
         private PickPeriodType __Type;
         [EntityField(true)]
         public PickPeriodType Type
@@ -30286,6 +31097,16 @@ namespace LinqToSalesforce
     [EntityName("Pricebook2")]
     public class Pricebook2 : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Pricebook2(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Pricebook2()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -30351,7 +31172,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -30366,7 +31186,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -30423,6 +31242,16 @@ namespace LinqToSalesforce
     [EntityName("Pricebook2History")]
     public class Pricebook2History : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Pricebook2History(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Pricebook2History()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -30474,7 +31303,6 @@ namespace LinqToSalesforce
             get { return __Pricebook2Id; }
             set { SetField(ref __Pricebook2Id, value, "Pricebook2Id"); }
         }
-    public bool ShouldSerializePricebook2Id() => Pricebook2Id != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -30482,7 +31310,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -30515,6 +31342,16 @@ namespace LinqToSalesforce
     [EntityName("PricebookEntry")]
     public class PricebookEntry : ISalesforceEntity
     {
+    [JsonConstructor]
+        private PricebookEntry(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public PricebookEntry()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -30566,7 +31403,6 @@ namespace LinqToSalesforce
             get { return __Pricebook2Id; }
             set { SetField(ref __Pricebook2Id, value, "Pricebook2Id"); }
         }
-    public bool ShouldSerializePricebook2Id() => Pricebook2Id != default(System.String);
         private System.String __Product2Id;
         [EntityField(false)]
         public System.String Product2Id
@@ -30574,7 +31410,6 @@ namespace LinqToSalesforce
             get { return __Product2Id; }
             set { SetField(ref __Product2Id, value, "Product2Id"); }
         }
-    public bool ShouldSerializeProduct2Id() => Product2Id != default(System.String);
         private System.String __UnitPrice;
         [EntityField(false)]
         public System.String UnitPrice
@@ -30610,7 +31445,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -30625,7 +31459,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -30663,6 +31496,16 @@ namespace LinqToSalesforce
     [EntityName("ProcessDefinition")]
     public class ProcessDefinition : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessDefinition(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessDefinition()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -30763,7 +31606,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -30778,7 +31620,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -30790,6 +31631,16 @@ namespace LinqToSalesforce
     [EntityName("ProcessInstance")]
     public class ProcessInstance : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessInstance(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessInstance()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -30834,7 +31685,6 @@ namespace LinqToSalesforce
             get { return __ProcessDefinitionId; }
             set { SetField(ref __ProcessDefinitionId, value, "ProcessDefinitionId"); }
         }
-    public bool ShouldSerializeProcessDefinitionId() => ProcessDefinitionId != default(System.String);
         private System.String __TargetObjectId;
         [EntityField(false)]
         public System.String TargetObjectId
@@ -30842,7 +31692,6 @@ namespace LinqToSalesforce
             get { return __TargetObjectId; }
             set { SetField(ref __TargetObjectId, value, "TargetObjectId"); }
         }
-    public bool ShouldSerializeTargetObjectId() => TargetObjectId != default(System.String);
         private PickProcessInstanceStatus __Status;
         [EntityField(false)]
         public PickProcessInstanceStatus Status
@@ -30871,7 +31720,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -30886,7 +31734,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -30916,6 +31763,16 @@ namespace LinqToSalesforce
     [EntityName("ProcessInstanceHistory")]
     public class ProcessInstanceHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessInstanceHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessInstanceHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -30967,7 +31824,6 @@ namespace LinqToSalesforce
             get { return __ProcessInstanceId; }
             set { SetField(ref __ProcessInstanceId, value, "ProcessInstanceId"); }
         }
-    public bool ShouldSerializeProcessInstanceId() => ProcessInstanceId != default(System.String);
         private System.String __TargetObjectId;
         [EntityField(true)]
         public System.String TargetObjectId
@@ -30975,7 +31831,6 @@ namespace LinqToSalesforce
             get { return __TargetObjectId; }
             set { SetField(ref __TargetObjectId, value, "TargetObjectId"); }
         }
-    public bool ShouldSerializeTargetObjectId() => TargetObjectId != default(System.String);
         private PickProcessInstanceHistoryStepStatus __StepStatus;
         [EntityField(true)]
         public PickProcessInstanceHistoryStepStatus StepStatus
@@ -30990,7 +31845,6 @@ namespace LinqToSalesforce
             get { return __OriginalActorId; }
             set { SetField(ref __OriginalActorId, value, "OriginalActorId"); }
         }
-    public bool ShouldSerializeOriginalActorId() => OriginalActorId != default(System.String);
         private System.String __ActorId;
         [EntityField(false)]
         public System.String ActorId
@@ -30998,7 +31852,6 @@ namespace LinqToSalesforce
             get { return __ActorId; }
             set { SetField(ref __ActorId, value, "ActorId"); }
         }
-    public bool ShouldSerializeActorId() => ActorId != default(System.String);
         private System.Int32? __RemindersSent;
         [EntityField(true)]
         public System.Int32? RemindersSent
@@ -31034,7 +31887,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -31046,6 +31898,16 @@ namespace LinqToSalesforce
     [EntityName("ProcessInstanceStep")]
     public class ProcessInstanceStep : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessInstanceStep(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessInstanceStep()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -31090,7 +31952,6 @@ namespace LinqToSalesforce
             get { return __ProcessInstanceId; }
             set { SetField(ref __ProcessInstanceId, value, "ProcessInstanceId"); }
         }
-    public bool ShouldSerializeProcessInstanceId() => ProcessInstanceId != default(System.String);
         private PickProcessInstanceStepStepStatus __StepStatus;
         [EntityField(true)]
         public PickProcessInstanceStepStepStatus StepStatus
@@ -31105,7 +31966,6 @@ namespace LinqToSalesforce
             get { return __OriginalActorId; }
             set { SetField(ref __OriginalActorId, value, "OriginalActorId"); }
         }
-    public bool ShouldSerializeOriginalActorId() => OriginalActorId != default(System.String);
         private System.String __ActorId;
         [EntityField(false)]
         public System.String ActorId
@@ -31113,7 +31973,6 @@ namespace LinqToSalesforce
             get { return __ActorId; }
             set { SetField(ref __ActorId, value, "ActorId"); }
         }
-    public bool ShouldSerializeActorId() => ActorId != default(System.String);
         private System.String __Comments;
         [EntityField(true)]
         public System.String Comments
@@ -31135,7 +31994,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -31147,6 +32005,16 @@ namespace LinqToSalesforce
     [EntityName("ProcessInstanceWorkitem")]
     public class ProcessInstanceWorkitem : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessInstanceWorkitem(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessInstanceWorkitem()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -31191,7 +32059,6 @@ namespace LinqToSalesforce
             get { return __ProcessInstanceId; }
             set { SetField(ref __ProcessInstanceId, value, "ProcessInstanceId"); }
         }
-    public bool ShouldSerializeProcessInstanceId() => ProcessInstanceId != default(System.String);
         private System.String __OriginalActorId;
         [EntityField(false)]
         public System.String OriginalActorId
@@ -31199,7 +32066,6 @@ namespace LinqToSalesforce
             get { return __OriginalActorId; }
             set { SetField(ref __OriginalActorId, value, "OriginalActorId"); }
         }
-    public bool ShouldSerializeOriginalActorId() => OriginalActorId != default(System.String);
         private System.String __ActorId;
         [EntityField(false)]
         public System.String ActorId
@@ -31207,7 +32073,6 @@ namespace LinqToSalesforce
             get { return __ActorId; }
             set { SetField(ref __ActorId, value, "ActorId"); }
         }
-    public bool ShouldSerializeActorId() => ActorId != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -31229,7 +32094,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -31241,6 +32105,16 @@ namespace LinqToSalesforce
     [EntityName("ProcessNode")]
     public class ProcessNode : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ProcessNode(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ProcessNode()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -31299,7 +32173,6 @@ namespace LinqToSalesforce
             get { return __ProcessDefinitionId; }
             set { SetField(ref __ProcessDefinitionId, value, "ProcessDefinitionId"); }
         }
-    public bool ShouldSerializeProcessDefinitionId() => ProcessDefinitionId != default(System.String);
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
@@ -31318,6 +32191,16 @@ namespace LinqToSalesforce
     [EntityName("Product2")]
     public class Product2 : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Product2(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Product2()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -31397,7 +32280,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -31412,7 +32294,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -31516,6 +32397,16 @@ namespace LinqToSalesforce
     [EntityName("Product2Feed")]
     public class Product2Feed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Product2Feed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Product2Feed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -31560,7 +32451,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -31568,7 +32458,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickProduct2FeedType __Type;
         [EntityField(true)]
         public PickProduct2FeedType Type
@@ -31583,7 +32472,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -31621,6 +32509,16 @@ namespace LinqToSalesforce
     [EntityName("Profile")]
     public class Profile : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Profile(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Profile()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -32197,7 +33095,6 @@ namespace LinqToSalesforce
             get { return __UserLicenseId; }
             set { SetField(ref __UserLicenseId, value, "UserLicenseId"); }
         }
-    public bool ShouldSerializeUserLicenseId() => UserLicenseId != default(System.String);
         private PickProfileUserType __UserType;
         [EntityField(true)]
         public PickProfileUserType UserType
@@ -32219,7 +33116,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -32234,7 +33130,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -32259,6 +33154,16 @@ namespace LinqToSalesforce
     [EntityName("QueueSobject")]
     public class QueueSobject : ISalesforceEntity
     {
+    [JsonConstructor]
+        private QueueSobject(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public QueueSobject()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -32303,7 +33208,6 @@ namespace LinqToSalesforce
             get { return __QueueId; }
             set { SetField(ref __QueueId, value, "QueueId"); }
         }
-    public bool ShouldSerializeQueueId() => QueueId != default(System.String);
         private PickQueueSobjectSobjectType __SobjectType;
         [EntityField(false)]
         public PickQueueSobjectSobjectType SobjectType
@@ -32318,7 +33222,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -32330,6 +33233,16 @@ namespace LinqToSalesforce
     [EntityName("RecordType")]
     public class RecordType : ISalesforceEntity
     {
+    [JsonConstructor]
+        private RecordType(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public RecordType()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -32402,7 +33315,6 @@ namespace LinqToSalesforce
             get { return __BusinessProcessId; }
             set { SetField(ref __BusinessProcessId, value, "BusinessProcessId"); }
         }
-    public bool ShouldSerializeBusinessProcessId() => BusinessProcessId != default(System.String);
         private PickRecordTypeSobjectType __SobjectType;
         [EntityField(false)]
         public PickRecordTypeSobjectType SobjectType
@@ -32424,7 +33336,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -32439,7 +33350,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -32458,6 +33368,16 @@ namespace LinqToSalesforce
     [EntityName("Report")]
     public class Report : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Report(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Report()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -32502,7 +33422,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -32517,7 +33436,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -32532,7 +33450,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.Boolean __IsDeleted;
         [EntityField(false)]
         public System.Boolean IsDeleted
@@ -32598,6 +33515,16 @@ namespace LinqToSalesforce
     [EntityName("ReportFeed")]
     public class ReportFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private ReportFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public ReportFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -32642,7 +33569,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -32650,7 +33576,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickReportFeedType __Type;
         [EntityField(true)]
         public PickReportFeedType Type
@@ -32665,7 +33590,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -32703,6 +33627,16 @@ namespace LinqToSalesforce
     [EntityName("SetupAuditTrail")]
     public class SetupAuditTrail : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SetupAuditTrail(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SetupAuditTrail()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -32768,7 +33702,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.String __Display;
         [EntityField(true)]
         public System.String Display
@@ -32780,6 +33713,16 @@ namespace LinqToSalesforce
     [EntityName("Site")]
     public class Site : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Site(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Site()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -32859,7 +33802,6 @@ namespace LinqToSalesforce
             get { return __AdminId; }
             set { SetField(ref __AdminId, value, "AdminId"); }
         }
-    public bool ShouldSerializeAdminId() => AdminId != default(System.String);
         private System.Boolean __OptionsEnableFeeds;
         [EntityField(false)]
         public System.Boolean OptionsEnableFeeds
@@ -32972,7 +33914,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -32987,7 +33928,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -33017,6 +33957,16 @@ namespace LinqToSalesforce
     [EntityName("SiteFeed")]
     public class SiteFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SiteFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SiteFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -33061,7 +34011,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -33069,7 +34018,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickSiteFeedType __Type;
         [EntityField(true)]
         public PickSiteFeedType Type
@@ -33084,7 +34032,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -33122,6 +34069,16 @@ namespace LinqToSalesforce
     [EntityName("SiteHistory")]
     public class SiteHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SiteHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SiteHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -33173,7 +34130,6 @@ namespace LinqToSalesforce
             get { return __SiteId; }
             set { SetField(ref __SiteId, value, "SiteId"); }
         }
-    public bool ShouldSerializeSiteId() => SiteId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -33181,7 +34137,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -33214,6 +34169,16 @@ namespace LinqToSalesforce
     [EntityName("Solution")]
     public class Solution : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Solution(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Solution()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -33314,7 +34279,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -33329,7 +34293,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -33344,7 +34307,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -33442,6 +34404,16 @@ namespace LinqToSalesforce
     [EntityName("SolutionFeed")]
     public class SolutionFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SolutionFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SolutionFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -33486,7 +34458,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -33494,7 +34465,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickSolutionFeedType __Type;
         [EntityField(true)]
         public PickSolutionFeedType Type
@@ -33509,7 +34479,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -33547,6 +34516,16 @@ namespace LinqToSalesforce
     [EntityName("SolutionHistory")]
     public class SolutionHistory : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SolutionHistory(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SolutionHistory()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -33598,7 +34577,6 @@ namespace LinqToSalesforce
             get { return __SolutionId; }
             set { SetField(ref __SolutionId, value, "SolutionId"); }
         }
-    public bool ShouldSerializeSolutionId() => SolutionId != default(System.String);
         private System.String __CreatedById;
         [EntityField(false)]
         public System.String CreatedById
@@ -33606,7 +34584,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -33639,6 +34616,16 @@ namespace LinqToSalesforce
     [EntityName("SolutionStatus")]
     public class SolutionStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private SolutionStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public SolutionStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -33711,7 +34698,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -33726,7 +34712,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -33745,6 +34730,16 @@ namespace LinqToSalesforce
     [EntityName("StaticResource")]
     public class StaticResource : ISalesforceEntity
     {
+    [JsonConstructor]
+        private StaticResource(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public StaticResource()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -33838,7 +34833,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -33853,7 +34847,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -33872,6 +34865,16 @@ namespace LinqToSalesforce
     [EntityName("Task")]
     public class Task : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Task(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Task()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -33916,7 +34919,6 @@ namespace LinqToSalesforce
             get { return __WhoId; }
             set { SetField(ref __WhoId, value, "WhoId"); }
         }
-    public bool ShouldSerializeWhoId() => WhoId != default(System.String);
         private System.String __WhatId;
         [EntityField(true)]
         public System.String WhatId
@@ -33924,7 +34926,6 @@ namespace LinqToSalesforce
             get { return __WhatId; }
             set { SetField(ref __WhatId, value, "WhatId"); }
         }
-    public bool ShouldSerializeWhatId() => WhatId != default(System.String);
         private System.String __Subject;
         [EntityField(true)]
         public System.String Subject
@@ -33960,7 +34961,6 @@ namespace LinqToSalesforce
             get { return __OwnerId; }
             set { SetField(ref __OwnerId, value, "OwnerId"); }
         }
-    public bool ShouldSerializeOwnerId() => OwnerId != default(System.String);
         private System.String __Description;
         [EntityField(true)]
         public System.String Description
@@ -33982,7 +34982,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.Boolean __IsClosed;
         [EntityField(false)]
         public System.Boolean IsClosed
@@ -34004,7 +35003,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -34019,7 +35017,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -34083,7 +35080,6 @@ namespace LinqToSalesforce
             get { return __RecurrenceActivityId; }
             set { SetField(ref __RecurrenceActivityId, value, "RecurrenceActivityId"); }
         }
-    public bool ShouldSerializeRecurrenceActivityId() => RecurrenceActivityId != default(System.String);
         private System.Boolean __IsRecurrence;
         [EntityField(false)]
         public System.Boolean IsRecurrence
@@ -34182,6 +35178,16 @@ namespace LinqToSalesforce
     [EntityName("TaskFeed")]
     public class TaskFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private TaskFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public TaskFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -34226,7 +35232,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -34234,7 +35239,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickTaskFeedType __Type;
         [EntityField(true)]
         public PickTaskFeedType Type
@@ -34249,7 +35253,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -34287,6 +35290,16 @@ namespace LinqToSalesforce
     [EntityName("TaskPriority")]
     public class TaskPriority : ISalesforceEntity
     {
+    [JsonConstructor]
+        private TaskPriority(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public TaskPriority()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -34359,7 +35372,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -34374,7 +35386,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -34393,6 +35404,16 @@ namespace LinqToSalesforce
     [EntityName("TaskStatus")]
     public class TaskStatus : ISalesforceEntity
     {
+    [JsonConstructor]
+        private TaskStatus(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public TaskStatus()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -34465,7 +35486,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -34480,7 +35500,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -34499,6 +35518,16 @@ namespace LinqToSalesforce
     [EntityName("User")]
     public class User : ISalesforceEntity
     {
+    [JsonConstructor]
+        private User(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public User()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -34690,7 +35719,6 @@ namespace LinqToSalesforce
             get { return __UserRoleId; }
             set { SetField(ref __UserRoleId, value, "UserRoleId"); }
         }
-    public bool ShouldSerializeUserRoleId() => UserRoleId != default(System.String);
         private PickUserLocaleSidKey __LocaleSidKey;
         [EntityField(false)]
         public PickUserLocaleSidKey LocaleSidKey
@@ -34726,7 +35754,6 @@ namespace LinqToSalesforce
             get { return __ProfileId; }
             set { SetField(ref __ProfileId, value, "ProfileId"); }
         }
-    public bool ShouldSerializeProfileId() => ProfileId != default(System.String);
         private PickUserUserType __UserType;
         [EntityField(true)]
         public PickUserUserType UserType
@@ -34755,7 +35782,6 @@ namespace LinqToSalesforce
             get { return __DelegatedApproverId; }
             set { SetField(ref __DelegatedApproverId, value, "DelegatedApproverId"); }
         }
-    public bool ShouldSerializeDelegatedApproverId() => DelegatedApproverId != default(System.String);
         private System.String __ManagerId;
         [EntityField(true)]
         public System.String ManagerId
@@ -34763,7 +35789,6 @@ namespace LinqToSalesforce
             get { return __ManagerId; }
             set { SetField(ref __ManagerId, value, "ManagerId"); }
         }
-    public bool ShouldSerializeManagerId() => ManagerId != default(System.String);
         private System.DateTime? __LastLoginDate;
         [EntityField(true)]
         public System.DateTime? LastLoginDate
@@ -34792,7 +35817,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -34807,7 +35831,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -34976,7 +35999,6 @@ namespace LinqToSalesforce
             get { return __ContactId; }
             set { SetField(ref __ContactId, value, "ContactId"); }
         }
-    public bool ShouldSerializeContactId() => ContactId != default(System.String);
         private System.String __AccountId;
         [EntityField(true)]
         public System.String AccountId
@@ -34984,7 +36006,6 @@ namespace LinqToSalesforce
             get { return __AccountId; }
             set { SetField(ref __AccountId, value, "AccountId"); }
         }
-    public bool ShouldSerializeAccountId() => AccountId != default(System.String);
         private System.String __CallCenterId;
         [EntityField(true)]
         public System.String CallCenterId
@@ -34992,7 +36013,6 @@ namespace LinqToSalesforce
             get { return __CallCenterId; }
             set { SetField(ref __CallCenterId, value, "CallCenterId"); }
         }
-    public bool ShouldSerializeCallCenterId() => CallCenterId != default(System.String);
         private System.String __Extension;
         [EntityField(true)]
         public System.String Extension
@@ -35100,6 +36120,16 @@ namespace LinqToSalesforce
     [EntityName("UserFeed")]
     public class UserFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -35144,7 +36174,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -35152,7 +36181,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickUserFeedType __Type;
         [EntityField(true)]
         public PickUserFeedType Type
@@ -35167,7 +36195,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -35205,6 +36232,16 @@ namespace LinqToSalesforce
     [EntityName("UserLicense")]
     public class UserLicense : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserLicense(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserLicense()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -35281,6 +36318,16 @@ namespace LinqToSalesforce
     [EntityName("UserPreference")]
     public class UserPreference : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserPreference(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserPreference()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -35325,7 +36372,6 @@ namespace LinqToSalesforce
             get { return __UserId; }
             set { SetField(ref __UserId, value, "UserId"); }
         }
-    public bool ShouldSerializeUserId() => UserId != default(System.String);
         private PickUserPreferencePreference __Preference;
         [EntityField(false)]
         public PickUserPreferencePreference Preference
@@ -35351,6 +36397,16 @@ namespace LinqToSalesforce
     [EntityName("UserProfileFeed")]
     public class UserProfileFeed : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserProfileFeed(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserProfileFeed()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -35395,7 +36451,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private System.String __FeedPostId;
         [EntityField(true)]
         public System.String FeedPostId
@@ -35403,7 +36458,6 @@ namespace LinqToSalesforce
             get { return __FeedPostId; }
             set { SetField(ref __FeedPostId, value, "FeedPostId"); }
         }
-    public bool ShouldSerializeFeedPostId() => FeedPostId != default(System.String);
         private PickUserProfileFeedType __Type;
         [EntityField(true)]
         public PickUserProfileFeedType Type
@@ -35418,7 +36472,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __CreatedDate;
         [EntityField(false)]
         public System.DateTime CreatedDate
@@ -35456,6 +36509,16 @@ namespace LinqToSalesforce
     [EntityName("UserRole")]
     public class UserRole : ISalesforceEntity
     {
+    [JsonConstructor]
+        private UserRole(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public UserRole()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -35507,7 +36570,6 @@ namespace LinqToSalesforce
             get { return __ParentRoleId; }
             set { SetField(ref __ParentRoleId, value, "ParentRoleId"); }
         }
-    public bool ShouldSerializeParentRoleId() => ParentRoleId != default(System.String);
         private System.String __RollupDescription;
         [EntityField(true)]
         public System.String RollupDescription
@@ -35543,7 +36605,6 @@ namespace LinqToSalesforce
             get { return __ForecastUserId; }
             set { SetField(ref __ForecastUserId, value, "ForecastUserId"); }
         }
-    public bool ShouldSerializeForecastUserId() => ForecastUserId != default(System.String);
         private System.Boolean __MayForecastManagerShare;
         [EntityField(false)]
         public System.Boolean MayForecastManagerShare
@@ -35565,7 +36626,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -35580,7 +36640,6 @@ namespace LinqToSalesforce
             get { return __PortalAccountId; }
             set { SetField(ref __PortalAccountId, value, "PortalAccountId"); }
         }
-    public bool ShouldSerializePortalAccountId() => PortalAccountId != default(System.String);
         private PickUserRolePortalType __PortalType;
         [EntityField(true)]
         public PickUserRolePortalType PortalType
@@ -35595,7 +36654,6 @@ namespace LinqToSalesforce
             get { return __PortalAccountOwnerId; }
             set { SetField(ref __PortalAccountOwnerId, value, "PortalAccountOwnerId"); }
         }
-    public bool ShouldSerializePortalAccountOwnerId() => PortalAccountOwnerId != default(System.String);
         [JsonIgnore]
         [ReferencedByField("UserRoleId")]
         public RelationShip<UserRole,User> Users
@@ -35606,6 +36664,16 @@ namespace LinqToSalesforce
     [EntityName("Vote")]
     public class Vote : ISalesforceEntity
     {
+    [JsonConstructor]
+        private Vote(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public Vote()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -35657,7 +36725,6 @@ namespace LinqToSalesforce
             get { return __ParentId; }
             set { SetField(ref __ParentId, value, "ParentId"); }
         }
-    public bool ShouldSerializeParentId() => ParentId != default(System.String);
         private PickVoteType __Type;
         [EntityField(false)]
         public PickVoteType Type
@@ -35679,7 +36746,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp
@@ -35691,6 +36757,16 @@ namespace LinqToSalesforce
     [EntityName("WebLink")]
     public class WebLink : ISalesforceEntity
     {
+    [JsonConstructor]
+        private WebLink(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public WebLink()
+        {
+            trackPropertyUpdates = true;
+        } 
     
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
@@ -35847,7 +36923,6 @@ namespace LinqToSalesforce
             get { return __ScontrolId; }
             set { SetField(ref __ScontrolId, value, "ScontrolId"); }
         }
-    public bool ShouldSerializeScontrolId() => ScontrolId != default(System.String);
         private System.String __MasterLabel;
         [EntityField(true)]
         public System.String MasterLabel
@@ -35897,7 +36972,6 @@ namespace LinqToSalesforce
             get { return __CreatedById; }
             set { SetField(ref __CreatedById, value, "CreatedById"); }
         }
-    public bool ShouldSerializeCreatedById() => CreatedById != default(System.String);
         private System.DateTime __LastModifiedDate;
         [EntityField(false)]
         public System.DateTime LastModifiedDate
@@ -35912,7 +36986,6 @@ namespace LinqToSalesforce
             get { return __LastModifiedById; }
             set { SetField(ref __LastModifiedById, value, "LastModifiedById"); }
         }
-    public bool ShouldSerializeLastModifiedById() => LastModifiedById != default(System.String);
         private System.DateTime __SystemModstamp;
         [EntityField(false)]
         public System.DateTime SystemModstamp

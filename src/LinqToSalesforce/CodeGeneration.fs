@@ -113,8 +113,23 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
 
   let generateTableCsharp (table:TableDesc) (indent:int) =
     sprintf """[EntityName("%s")]""" table.Name |> addLine indent
-    sprintf "public class %s : ISalesforceEntity" (table.Name |> fixName) |> addLine indent
+    let typeName = fixName table.Name
+    sprintf "public class %s : ISalesforceEntity" typeName |> addLine indent
     addLine indent "{"
+    
+    let constructors =
+      sprintf """[JsonConstructor]
+        private %s(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public %s()
+        {
+            trackPropertyUpdates = true;
+        } """ typeName typeName
+    addLine indent constructors
+
     addLine indent """
         private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
         public IDictionary<string, object> UpdatedProperties => _updatedProperties;
