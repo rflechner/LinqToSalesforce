@@ -1,6 +1,10 @@
 
+#### 0.1.3-beta - February 04 2017
+* Improve serialization.
+* Only send modified properties during insert and update operations.
+
 #### 0.1.2-beta - January 31 2017
-* detect wrong references during code generation
+* Detect wrong references during code generation
 
 #### 0.1.1-beta - January 31 2017
 * Implements SingleOrDefault Single and FirstOrDefault like with other linq frameworks
