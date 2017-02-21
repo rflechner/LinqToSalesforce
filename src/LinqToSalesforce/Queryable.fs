@@ -74,40 +74,31 @@ module TypeSystem =
         ienum.GetGenericArguments() |> Seq.head
 
 type QueryProvider (queryContext:IQueryContext, tableName) =
+
   member private x.BuildUnaryFuncImpl<'rt,'pt>(u:UnaryExpression) =
     let operand = u.Operand :?> LambdaExpression
     match operand.Body with
     | :? MemberExpression as m ->
         match m.Member, m.Expression with
         | (:? PropertyInfo as p), (:? ParameterExpression as pa) ->
-            //results.Select(fun r -> p.GetValue(r)) |> box :?> 'TResult
-            //results |> Seq.map (fun r -> p.GetValue(r))
-            let name = pa.Name
-            let parameter = Expression.Parameter(typeof<'pt>, name)
-            //let l = Expression.Lambda<Func<'pt, 'rt>>(m, parameter)
-            let method = p :?> MethodInfo
-            let l = Expression.Call(method, parameter)
-            let func = l.Compile()
-            func
-            //result :?> 'TResult
+            let parameter = Expression.Parameter(typeof<'pt>, pa.Name)
+            let property = Expression.Property(parameter, p)
+            let l = Expression.Lambda<Func<'pt, 'rt>>(property, parameter)
+            l.Compile()
         | _ -> failwith "UnaryExpression"
     | _ -> failwith "UnaryExpression"
-//    let func = Expression.Lambda<Func<'pt, 'rt>>(u, parameter).Compile()
-//    let func = Expression.Lambda<'rt>(u, parameter).Compile()
-    //u.Method
-//    true
+  
   member private x.BuildUnaryFunc(rt:Type, pt:Type, u:UnaryExpression) = 
     let m = x.GetType().GetMethod("BuildUnaryFuncImpl", Reflection.BindingFlags.NonPublic ||| Reflection.BindingFlags.Instance)
     let gm = m.MakeGenericMethod(rt, pt)
     let f = gm.Invoke(x, [|u|])
-    f
-//  member private x.ExecUnaryImpl<'rt,'pt>(o:obj) : 'rt = 
-//    failwith ""
-//  member private x.ExecUnary(rt:Type, pt:Type, o:obj) = 
-//    let m = x.GetType().GetMethod("ExecUnaryImpl", Reflection.BindingFlags.NonPublic ||| Reflection.BindingFlags.Instance)
-//    let gm = m.MakeGenericMethod(rt, pt)
-//    let f = gm.Invoke(x, [|o|])
-//    true
+    f :?> Delegate
+
+  member private x.SelectProperties<'rt,'pt>(u:UnaryExpression, results:IEnumerable<'pt>) : IEnumerable<'rt> =
+    let f = x.BuildUnaryFuncImpl<'rt,'pt>(u)
+    results |> Seq.map f.Invoke
+
+
   interface IQueryProvider with
     member x.CreateQuery(exp: Expression): IQueryable<'TElement> = 
       (new Queryable<'TElement>(x, tableName, Some exp)) :> IQueryable<'TElement>
@@ -130,35 +121,14 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
         | :? MethodCallExpression as e when e.Method.Name = "Select" ->
             match e.Arguments.[1] with
             | :? UnaryExpression as u ->
-                let garg = result.GetType().GetGenericArguments().Single()
-                let garg2 = typeof<'TResult>.GetGenericArguments().Single()
-                //let parameter = Expression.Parameter(garg, "value")
-                //let func = Expression.Lambda<Func<'TResult>>(u, parameter).Compile()
-                //let f = Expression.Lambda(u).Compile()
-//                Expression.Call(u)
-                //let func = Expression.Lambda<Func<'TResult, obj>>(u, parameter).Compile()
-                let f = x.BuildUnaryFunc(garg2, garg, u)
-                
-//                let operand = u.Operand :?> LambdaExpression
-//                match operand.Body with
-//                | :? MemberExpression as m ->
-//                    match m.Member with
-//                    | :? PropertyInfo as p ->
-//                        //results.Select(fun r -> p.GetValue(r)) |> box :?> 'TResult
-//                        //results |> Seq.map (fun r -> p.GetValue(r))
-//                        let l =
-//                          seq {
-//                            for r in results do
-//                              yield p.GetValue r
-//                          } |> Seq.toList
-//                        l |> box :?> 'TResult
-//                        //result :?> 'TResult
-//                    | _ -> failwith "UnaryExpression"
-//                | _ -> failwith "UnaryExpression"
-
-                result :?> 'TResult
-
-            | _ -> failwith "bug"
+                let modelType = result.GetType().GetGenericArguments() |> Seq.head
+                let selectedType = typeof<'TResult>.GetGenericArguments() |> Seq.head
+                let m = x.GetType().GetMethod("SelectProperties", Reflection.BindingFlags.NonPublic ||| Reflection.BindingFlags.Instance)
+                let gm = m.MakeGenericMethod(selectedType, modelType)
+                let pp = gm.GetParameters()
+                let f = gm.Invoke(x, [|u:>obj; results:>obj|])
+                f :?> 'TResult
+            | _ -> failwith "Not implemented select case"
         | _ -> result :?> 'TResult
     member x.Execute(expression: Expression): obj = 
       queryContext.Execute expression false
