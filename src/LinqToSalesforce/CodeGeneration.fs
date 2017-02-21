@@ -196,10 +196,6 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) attr
       addLine (indent+1) (sprintf "[EntityField(%b)]" field.Nillable)
       writeIndent (indent+1)
-      let shipFields = 
-        table.RelationShips |> List.map (fun r -> r.Field)
-      let isWrongReference = 
-        field.ReferenceTo.Length > 0 && field.ReferenceTo |> List.exists(fun r -> shipFields |> List.contains r |> not)
       writeProperty typeName fieldName field.Name false field.Calculated
     
     for relation in table.RelationShips do

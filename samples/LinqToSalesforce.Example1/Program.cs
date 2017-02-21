@@ -31,6 +31,12 @@ namespace LinqToSalesforce.Example1
             {
                 var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
 
+                var names = (from a in context.Accounts select a.Name).ToList();
+                foreach (var name in names)
+                {
+                    WriteLine($"Name: {name}");
+                }
+
                 var accounts = from a in context.Accounts
                                    //where a.CreatedDate >= DateTime.Today
                               // where a.NumberBugc > 0.1
