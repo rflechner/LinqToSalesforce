@@ -31,6 +31,17 @@ namespace LinqToSalesforce.Example1
             {
                 var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
 
+                var selected = (from a in context.Accounts
+                                select new
+                                {
+                                    a.Id,
+                                    a.Name
+                                }).ToList();
+                foreach (var o in selected)
+                {
+                    WriteLine($"Name: {o.Name}");
+                }
+
                 var names = (from a in context.Accounts select a.Name).ToList();
                 foreach (var name in names)
                 {

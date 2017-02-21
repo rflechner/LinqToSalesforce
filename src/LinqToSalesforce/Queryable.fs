@@ -86,6 +86,9 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
             let l = Expression.Lambda<Func<'pt, 'rt>>(property, parameter)
             l.Compile()
         | _ -> failwith "UnaryExpression"
+    | :? NewExpression as e ->
+          e.Constructor
+          failwith "NewExpression"
     | _ -> failwith "UnaryExpression"
   
   member private x.BuildUnaryFunc(rt:Type, pt:Type, u:UnaryExpression) = 
