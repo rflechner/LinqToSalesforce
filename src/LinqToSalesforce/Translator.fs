@@ -66,12 +66,7 @@ module Translator =
 
   let buildSelectFromFields (fields:FieldSelect list) =
     fields
-    |> Seq.map (
-        fun f -> 
-          match f.Alias with
-          | Some a -> a
-          | None -> f.Field.GetSerializedName()
-        )
+    |> Seq.map (fun f -> f.Field.GetSerializedName())
     |> Seq.toArray
     |> buildSelectFromNames
 

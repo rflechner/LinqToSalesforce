@@ -75,32 +75,44 @@ module TypeSystem =
 
 type QueryProvider (queryContext:IQueryContext, tableName) =
 
-  member private x.BuildUnaryFuncImpl<'rt,'pt>(u:UnaryExpression) =
-    let operand = u.Operand :?> LambdaExpression
-    match operand.Body with
-    | :? MemberExpression as m ->
-        match m.Member, m.Expression with
-        | (:? PropertyInfo as p), (:? ParameterExpression as pa) ->
-            let parameter = Expression.Parameter(typeof<'pt>, pa.Name)
-            let property = Expression.Property(parameter, p)
-            let l = Expression.Lambda<Func<'pt, 'rt>>(property, parameter)
-            l.Compile()
-        | _ -> failwith "UnaryExpression"
-    | :? NewExpression as e ->
-          e.Constructor
-          failwith "NewExpression"
-    | _ -> failwith "UnaryExpression"
-  
-  member private x.BuildUnaryFunc(rt:Type, pt:Type, u:UnaryExpression) = 
-    let m = x.GetType().GetMethod("BuildUnaryFuncImpl", Reflection.BindingFlags.NonPublic ||| Reflection.BindingFlags.Instance)
-    let gm = m.MakeGenericMethod(rt, pt)
-    let f = gm.Invoke(x, [|u|])
-    f :?> Delegate
+  member private x.BuildSelectMemberFunc<'rt,'pt>(m:MemberExpression) =
+    match m.Member, m.Expression with
+    | (:? PropertyInfo as p), (:? ParameterExpression as pa) ->
+        let parameter = Expression.Parameter(typeof<'pt>, pa.Name)
+        let property = Expression.Property(parameter, p)
+        let l = Expression.Lambda<Func<'pt, 'rt>>(property, parameter)
+        l.Compile()
+    | _ -> failwith "MemberExpression"
 
   member private x.SelectProperties<'rt,'pt>(u:UnaryExpression, results:IEnumerable<'pt>) : IEnumerable<'rt> =
-    let f = x.BuildUnaryFuncImpl<'rt,'pt>(u)
-    results |> Seq.map f.Invoke
-
+    let operand = u.Operand :?> LambdaExpression
+    let returnType = typeof<'rt>
+    let paramType = typeof<'pt>
+    match operand.Body with
+    | :? MemberExpression as m ->
+      let f = x.BuildSelectMemberFunc<'rt,'pt>(m)
+      results |> Seq.map f.Invoke
+    | :? NewExpression as e ->
+      let names = 
+            e.Arguments
+            |> Seq.map (fun a -> (a :?> MemberExpression).Member.Name)
+            |> Seq.toList
+      let parameters = e.Constructor.GetParameters() |> Seq.toList
+      let properties = paramType.GetProperties() |> Seq.map (fun m -> m.Name, m) |> dict
+      let toArgs result = 
+        (e.Members, names, parameters) 
+          |||> Seq.map3 (
+              fun field alias param ->
+                let m = properties.Item alias
+                m.GetValue result )
+          |> Seq.toArray
+      results
+        |> Seq.map (
+            fun result ->
+              let args = result |> toArgs
+              e.Constructor.Invoke args :?> 'rt
+            )
+    | _ -> failwith "SelectProperties"
 
   interface IQueryProvider with
     member x.CreateQuery(exp: Expression): IQueryable<'TElement> = 
@@ -127,10 +139,7 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
                 let modelType = result.GetType().GetGenericArguments() |> Seq.head
                 let selectedType = typeof<'TResult>.GetGenericArguments() |> Seq.head
                 let m = x.GetType().GetMethod("SelectProperties", Reflection.BindingFlags.NonPublic ||| Reflection.BindingFlags.Instance)
-                let gm = m.MakeGenericMethod(selectedType, modelType)
-                let pp = gm.GetParameters()
-                let f = gm.Invoke(x, [|u:>obj; results:>obj|])
-                f :?> 'TResult
+                m.MakeGenericMethod(selectedType, modelType).Invoke(x, [|u:>obj; results:>obj|]) :?> 'TResult
             | _ -> failwith "Not implemented select case"
         | _ -> result :?> 'TResult
     member x.Execute(expression: Expression): obj = 

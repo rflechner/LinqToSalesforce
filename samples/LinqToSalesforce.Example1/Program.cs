@@ -29,17 +29,17 @@ namespace LinqToSalesforce.Example1
             var context = new SalesforceDataContext("eu11", impersonationParam);
             try
             {
-                var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
+                //var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
 
                 var selected = (from a in context.Accounts
                                 select new
                                 {
                                     a.Id,
-                                    a.Name
+                                    Nom = a.Name
                                 }).ToList();
                 foreach (var o in selected)
                 {
-                    WriteLine($"Name: {o.Name}");
+                    WriteLine($"Name: {o.Nom}");
                 }
 
                 var names = (from a in context.Accounts select a.Name).ToList();
