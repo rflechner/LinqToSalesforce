@@ -97,21 +97,15 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
             e.Arguments
             |> Seq.map (fun a -> (a :?> MemberExpression).Member.Name)
             |> Seq.toList
-      let parameters = e.Constructor.GetParameters() |> Seq.toList
       let properties = paramType.GetProperties() |> Seq.map (fun m -> m.Name, m) |> dict
       let toArgs result = 
-        (e.Members, names, parameters) 
-          |||> Seq.map3 (
-              fun field alias param ->
-                let m = properties.Item alias
-                m.GetValue result )
-          |> Seq.toArray
-      results
+        names 
         |> Seq.map (
-            fun result ->
-              let args = result |> toArgs
-              e.Constructor.Invoke args :?> 'rt
-            )
+            fun n ->
+              let m = properties.Item n
+              m.GetValue result )
+        |> Seq.toArray
+      results |> Seq.map (fun r -> r |> toArgs |> e.Constructor.Invoke :?> 'rt )
     | _ -> failwith "SelectProperties"
 
   interface IQueryProvider with
