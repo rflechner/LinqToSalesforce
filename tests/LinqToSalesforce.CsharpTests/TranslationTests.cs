@@ -25,7 +25,7 @@ namespace LinqToSalesforce.CsharpTests
                 };
             var soql = query.ToString();
             
-            Assert.AreEqual(@"SELECT Id, BornDate FROM Customer WHERE (Firstname = 'popo') AND (Birth >= 1985-02-11T00:00:00Z) ORDER BY Birth DESC", soql);
+            Assert.AreEqual(@"SELECT Id, Birth FROM Customer WHERE (Firstname = 'popo') AND (Birth >= 1985-02-11T00:00:00Z) ORDER BY Birth DESC", soql);
         }
 
         public class Entity1

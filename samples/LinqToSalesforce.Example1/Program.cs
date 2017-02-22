@@ -42,7 +42,9 @@ namespace LinqToSalesforce.Example1
                     WriteLine($"Name: {o.Nom}");
                 }
 
-                var names = (from a in context.Accounts select a.Name).ToList();
+                var names = (from a in context.Accounts
+                             where a.Name.Contains("Company")
+                             select a.CreatedDate).ToList();
                 foreach (var name in names)
                 {
                     WriteLine($"Name: {name}");
