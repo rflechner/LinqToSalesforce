@@ -1,4 +1,8 @@
 
+#### 0.1.4-beta - February 23 2017
+* Fix members select issues.
+* Fix anonymous types select issues.
+
 #### 0.1.3-beta - February 04 2017
 * Improve serialization.
 * Only send modified properties during insert and update operations.
