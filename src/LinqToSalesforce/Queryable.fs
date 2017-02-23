@@ -1,6 +1,7 @@
 ﻿namespace LinqToSalesforce
 
 open System
+open System.Reflection
 open System.Collections
 open System.Collections.Generic
 open System.Linq
@@ -73,9 +74,46 @@ module TypeSystem =
         ienum.GetGenericArguments() |> Seq.head
 
 type QueryProvider (queryContext:IQueryContext, tableName) =
+
+  member private x.BuildSelectMemberFunc<'rt,'pt>(m:MemberExpression) =
+    match m.Member, m.Expression with
+    | (:? PropertyInfo as p), (:? ParameterExpression as pa) ->
+        let parameter = Expression.Parameter(typeof<'pt>, pa.Name)
+        let property = Expression.Property(parameter, p)
+        let l = Expression.Lambda<Func<'pt, 'rt>>(property, parameter)
+        l.Compile()
+    | _ -> failwith "MemberExpression"
+
+  member private x.SelectProperties<'rt,'pt>(u:UnaryExpression, results:IEnumerable<'pt>) : IEnumerable<'rt> =
+    let operand = u.Operand :?> LambdaExpression
+    let returnType = typeof<'rt>
+    let paramType = typeof<'pt>
+    match operand.Body with
+    | :? MemberExpression as m ->
+      let f = x.BuildSelectMemberFunc<'rt,'pt>(m)
+      results |> Seq.map f.Invoke
+    | :? NewExpression as e ->
+      let names = 
+            e.Arguments
+            |> Seq.map (fun a -> (a :?> MemberExpression).Member.Name)
+            |> Seq.toList
+      let properties = paramType.GetProperties() |> Seq.map (fun m -> m.Name, m) |> dict
+      let toArgs result = 
+        names 
+        |> Seq.map (
+            fun n ->
+              let m = properties.Item n
+              m.GetValue result )
+        |> Seq.toArray
+      results |> Seq.map (fun r -> r |> toArgs |> e.Constructor.Invoke :?> 'rt )
+    | :? ParameterExpression ->
+        results :?> IEnumerable<'rt>
+    | _ -> failwith "SelectProperties"
+
   interface IQueryProvider with
     member x.CreateQuery(exp: Expression): IQueryable<'TElement> = 
       (new Queryable<'TElement>(x, tableName, Some exp)) :> IQueryable<'TElement>
+
     member x.Execute(expression: Expression): 'TResult = 
       let result = queryContext.Execute expression false
       if not <| typeof<IEnumerable>.IsAssignableFrom typeof<'TResult>
@@ -88,7 +126,18 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
         | :? MethodCallExpression as e when e.Method.Name = "SingleOrDefault" ->
             (result :?> IEnumerable<'TResult>).SingleOrDefault()
         | _ -> (result :?> IEnumerable<'TResult>).First()
-      else result :?> 'TResult
+      else 
+        let results = (result :?> IEnumerable)
+        match expression with
+        | :? MethodCallExpression as e when e.Method.Name = "Select" ->
+            match e.Arguments.[1] with
+            | :? UnaryExpression as u ->
+                let modelType = result.GetType().GetGenericArguments() |> Seq.head
+                let selectedType = typeof<'TResult>.GetGenericArguments() |> Seq.head
+                let m = x.GetType().GetMethod("SelectProperties", Reflection.BindingFlags.NonPublic ||| Reflection.BindingFlags.Instance)
+                m.MakeGenericMethod(selectedType, modelType).Invoke(x, [|u:>obj; results:>obj|]) :?> 'TResult
+            | _ -> failwith "Not implemented select case"
+        | _ -> result :?> 'TResult
     member x.Execute(expression: Expression): obj = 
       queryContext.Execute expression false
     member x.CreateQuery(expression: Expression): IQueryable = 
