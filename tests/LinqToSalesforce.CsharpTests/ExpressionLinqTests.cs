@@ -11,7 +11,7 @@ namespace LinqToSalesforce.CsharpTests
         [Test]
         public void WhenSelectCustomer_ShouldBeOnlySelectTokenWithAllProperties()
         {
-            var context = new FakeQueryContext();
+            var context = new FakeQueryContext(() => new List<Customer>());
             var customers = context.GetTable<Customer>();
             var selected =
                 from c in customers
@@ -27,7 +27,7 @@ namespace LinqToSalesforce.CsharpTests
         [Test]
         public void WhenSelectCustomerWhereFirstnameIsPopo_ShouldBe2Tokens()
         {
-            var context = new FakeQueryContext();
+            var context = new FakeQueryContext(() => new List<Customer>());
             var customers = context.GetTable<Customer>();
             var selected =
                 from c in customers
@@ -49,7 +49,7 @@ namespace LinqToSalesforce.CsharpTests
         [Test]
         public void WhenSelectBirthCustomerWhereFirstnameIsPopo_ShouldBe2Tokens()
         {
-            var context = new FakeQueryContext();
+            var context = new FakeQueryContext(() => new List<Customer>());
             var customers = context.GetTable<Customer>();
             var selected =
                 from c in customers
@@ -74,7 +74,7 @@ namespace LinqToSalesforce.CsharpTests
         [Test]
         public void WhenSelectBirthCustomerWhereFirstnameIsPopoAndBirthGreatherOrEqualThan02Feb1985_ShouldBe2ComparisonAnd1SelectTokens()
         {
-            var context = new FakeQueryContext();
+            var context = new FakeQueryContext(() => new List<Customer>());
             var customers = context.GetTable<Customer>();
             var dateTime = new DateTime(1985, 02, 11);
             var selected =
@@ -92,7 +92,7 @@ namespace LinqToSalesforce.CsharpTests
             Assert.AreEqual(1, ((Visitor.SelectArgs.Fields)@select.Item).Item.Length);
 
             var @where = context.Operations.OfType<Visitor.Operation.Where>().Single();
-            var binaryComparison = ((Visitor.WhereArgs.BinaryComparison)@where.Item);
+            var binaryComparison = (Visitor.WhereArgs.BinaryComparison)@where.Item;
             var cmp1 = ((Visitor.WhereArgs.UnaryComparison)binaryComparison.Item1).Item;
             Assert.AreEqual(typeof(string), cmp1.Field.Type);
             Assert.AreEqual("Firstname", cmp1.Field.Name);

@@ -29,7 +29,7 @@ namespace LinqToSalesforce.Example1
             var context = new SalesforceDataContext("eu11", impersonationParam);
             try
             {
-                //var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
+                var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
 
                 var selected = (from a in context.Accounts
                                 select new
@@ -42,12 +42,12 @@ namespace LinqToSalesforce.Example1
                     WriteLine($"Name: {o.Nom}");
                 }
 
-                var names = (from a in context.Accounts
+                var dates = (from a in context.Accounts
                              where a.Name.Contains("Company")
                              select a.CreatedDate).ToList();
-                foreach (var name in names)
+                foreach (var date in dates)
                 {
-                    WriteLine($"Name: {name}");
+                    WriteLine($"Date: {date}");
                 }
 
                 var accounts = from a in context.Accounts

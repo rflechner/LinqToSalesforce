@@ -106,6 +106,8 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
               m.GetValue result )
         |> Seq.toArray
       results |> Seq.map (fun r -> r |> toArgs |> e.Constructor.Invoke :?> 'rt )
+    | :? ParameterExpression ->
+        results :?> IEnumerable<'rt>
     | _ -> failwith "SelectProperties"
 
   interface IQueryProvider with
