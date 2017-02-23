@@ -60,10 +60,15 @@ module Visitor =
   type Operation =
     | Select of SelectArgs
     | Where of WhereArgs
-    | Join of Operation list * Operation list * Field * Field
+    | Join of ParsedExpression * ParsedExpression * Field * Field
     | Order of OrderDirection * Field
     | Limit of int
     | Skip of int
+    | Count of ParsedExpression
+  and ParsedExpression = Operation list
+
+  type IOperationsProvider =
+    abstract member ProvideOperations : unit -> Operation list
 
   let findDecorationName (m:MemberInfo) =
     let attr = m.GetCustomAttribute<JsonPropertyAttribute>()
@@ -309,9 +314,32 @@ module Visitor =
         let count = arg.Value :?> int
         let token = Skip count
         parseExpression (e.Arguments.Item 0) (token :: acc)
+    | :? MethodCallExpression as e when e.Method.Name = "Count" ->
+        match e.Arguments.Item 0 with
+        | :? ConstantExpression as exp ->
+            let q = exp.Value :?> IQueryable<_>
+            let sexp = (q.Expression :?> ConstantExpression).Value :?> IQueryable
+            let ssexp = sexp.Expression
+            let f = (Expression.Lambda ssexp).Compile()
+            let r = f.DynamicInvoke() :?> IOperationsProvider
+            let subOps = r.ProvideOperations()
+            printfn "subOps: %A" subOps
+            failwith "Not finished"
+        | _ ->
+//        let s = subExp.ToString()
+//        printfn "s: %s" s
+//        let subOps = parseExpression subExp []
+//        parseExpression exp (Count(subOps) :: acc)
+//        let token = Skip 0
+//        parseExpression (e.Arguments.Item 0) (token :: acc)
+        failwithf "Method not visited: '%s'" e.Method.Name
     | :? MethodCallExpression as e ->
         failwithf "Method not visited: '%s'" e.Method.Name
-    | _ ->
+//    | :? ConstantExpression as exp ->
+//        let q = exp.Value :?> IQueryable
+//        let exp2 = q.Expression
+//        parseExpression q.Expression acc
+    | o ->
       acc
 
   type RequestExpressionVisitor(mainExpression:Expression) = 

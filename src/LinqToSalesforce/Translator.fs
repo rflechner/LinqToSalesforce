@@ -165,13 +165,21 @@ module Translator =
         function
         | Skip count -> Some (sprintf "OFFSET %d" count)
         | _ -> None )
+  
+  let rec buildCount(op:Operation list) =
+    op |> List.choose (function | Count _ -> Some "COUNT()" | _ -> None ) |> List.tryHead
 
   let buildSoql (op:Operation list) (t:Type) tableName =
     let b = StringBuilder()
-    match buildSelect op with
-    | Some s ->  b.Append s |> ignore
-    | None -> buildSelectFromType t |> b.Append |> ignore
-    b.Append (sprintf "FROM %s " tableName) |> ignore
+
+    match buildCount op with
+    | Some count -> b.Append count |> ignore
+    | None ->
+      match buildSelect op with
+      | Some s ->  b.Append s |> ignore
+      | None -> buildSelectFromType t |> b.Append |> ignore
+      b.Append (sprintf "FROM %s " tableName) |> ignore
+
     match buildWhere op with
     | [] -> ()
     | [w] -> b.Append (sprintf "WHERE %s" w) |> ignore

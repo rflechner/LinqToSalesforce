@@ -20,11 +20,14 @@ type Queryable<'t> (provider:IQueryProvider, tableName, expression:Expression op
     match expression with
     | None -> Expression.Constant(x) :> Expression
     | Some exp -> exp
+  interface Visitor.IOperationsProvider with
+    member x.ProvideOperations () =
+      let e = x.BuildExpression()
+      let visitor = new Visitor.RequestExpressionVisitor(e)
+      visitor.Visit()
+      visitor.Operations |> Seq.toList
   override x.ToString() =
-    let e = x.BuildExpression()
-    let visitor = new Visitor.RequestExpressionVisitor(e)
-    visitor.Visit()
-    let operations = visitor.Operations |> Seq.toList
+    let operations = (x:>Visitor.IOperationsProvider).ProvideOperations ()
     buildSoql operations (typeof<'t>) tableName
   
   interface IOrderedQueryable<'t> with
@@ -125,6 +128,8 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
             (result :?> IEnumerable<'TResult>).Single()
         | :? MethodCallExpression as e when e.Method.Name = "SingleOrDefault" ->
             (result :?> IEnumerable<'TResult>).SingleOrDefault()
+        | :? MethodCallExpression as e when e.Method.Name = "Count" ->
+            result :?> 'TResult
         | _ -> (result :?> IEnumerable<'TResult>).First()
       else 
         let results = (result :?> IEnumerable)
