@@ -31,7 +31,7 @@ namespace LinqToSalesforce.Example1
             {
                 //var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
 
-                var count = context.Accounts.Where(a => a.Name == "coucou").Count();
+                var count = context.Accounts.Where(a => a.Name.Contains("Company")).Count();
 
                 var selected = (from a in context.Accounts
                                 select new

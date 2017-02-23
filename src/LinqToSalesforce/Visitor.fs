@@ -64,7 +64,7 @@ module Visitor =
     | Order of OrderDirection * Field
     | Limit of int
     | Skip of int
-    | Count of ParsedExpression
+    | Count // of WhereArgs
   and ParsedExpression = Operation list
 
   type IOperationsProvider =
@@ -325,20 +325,29 @@ module Visitor =
             let subOps = r.ProvideOperations()
             printfn "subOps: %A" subOps
             failwith "Not finished"
-        | _ ->
+        | :? MethodCallExpression as mc2 ->
+            let subExp = mc2.Arguments.Item 1
+//            let subOps = parseExpression subExp []
+            let args = parseWhereArgs subExp
+            parseExpression mc2 (Count :: acc)
+            //parseExpression mc2 (Count(args) :: acc)
+            //failwithf "Method not visited: '%s'" e.Method.Name
 //        let s = subExp.ToString()
 //        printfn "s: %s" s
 //        let subOps = parseExpression subExp []
 //        parseExpression exp (Count(subOps) :: acc)
 //        let token = Skip 0
 //        parseExpression (e.Arguments.Item 0) (token :: acc)
-        failwithf "Method not visited: '%s'" e.Method.Name
+        | o2 ->
+          failwithf "Method not visited: '%s'" e.Method.Name
     | :? MethodCallExpression as e ->
         failwithf "Method not visited: '%s'" e.Method.Name
 //    | :? ConstantExpression as exp ->
 //        let q = exp.Value :?> IQueryable
 //        let exp2 = q.Expression
 //        parseExpression q.Expression acc
+//    | :? UnaryExpression as ue ->
+//        acc
     | o ->
       acc
 
