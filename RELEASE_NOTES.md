@@ -1,4 +1,7 @@
 
+#### 0.1.5-beta - February 24 2017
+* Implement SOQL Count().
+
 #### 0.1.4-beta - February 23 2017
 * Fix members select issues.
 * Fix anonymous types select issues.
