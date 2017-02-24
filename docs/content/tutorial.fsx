@@ -64,7 +64,7 @@ Reading the database
 using LinqToSalesforce;
 using static System.Console;
 
-var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
+var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientsecret, securityToken, username, password);
 var context = new SalesforceDataContext("eu11", impersonationParam);
 
 var accounts = (from a in context.Accounts

@@ -48,7 +48,7 @@ In this example, we search 10 accounts where name starts with "Company" and indu
 
 Then we can iterate their contacts and cases using lazy loading.
 
-This Linq provider is written in FSharp but is originally made to use in CSharp
+This Linq provider is written in FSharp but is originally made to be used in CSharp
 
 In csharp
 ---------
