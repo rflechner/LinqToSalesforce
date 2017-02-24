@@ -60,10 +60,12 @@ module Visitor =
   type Operation =
     | Select of SelectArgs
     | Where of WhereArgs
-    | Join of Operation list * Operation list * Field * Field
+    | Join of ParsedExpression * ParsedExpression * Field * Field
     | Order of OrderDirection * Field
     | Limit of int
     | Skip of int
+    | Count
+  and ParsedExpression = Operation list
 
   let findDecorationName (m:MemberInfo) =
     let attr = m.GetCustomAttribute<JsonPropertyAttribute>()
@@ -309,10 +311,19 @@ module Visitor =
         let count = arg.Value :?> int
         let token = Skip count
         parseExpression (e.Arguments.Item 0) (token :: acc)
+    | :? MethodCallExpression as e when e.Method.Name = "Count" ->
+        match e.Arguments.Item 0 with
+        | :? ConstantExpression as exp ->
+            parseExpression exp (Count :: acc)
+        | :? MethodCallExpression as mc2 ->
+            let subExp = mc2.Arguments.Item 1
+            let args = parseWhereArgs subExp
+            parseExpression mc2 (Count :: acc)
+        | _ ->
+            failwithf "Method not visited: '%s'" e.Method.Name
     | :? MethodCallExpression as e ->
         failwithf "Method not visited: '%s'" e.Method.Name
-    | _ ->
-      acc
+    | _ -> acc
 
   type RequestExpressionVisitor(mainExpression:Expression) = 
     let operations:Operation list ref = ref []

@@ -29,7 +29,13 @@ namespace LinqToSalesforce.Example1
             var context = new SalesforceDataContext("eu11", impersonationParam);
             try
             {
-                var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
+                //var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
+
+                var count1 = context.Accounts.Count();
+                var count2 = context.Accounts.Where(a => a.Name.Contains("Company")).Count();
+
+                var a1 = new Account { Name = $"Company {DateTime.Now.Ticks}" };
+                context.Insert(a1);
 
                 var selected = (from a in context.Accounts
                                 select new
