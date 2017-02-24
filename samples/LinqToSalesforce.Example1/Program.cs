@@ -31,6 +31,9 @@ namespace LinqToSalesforce.Example1
             {
                 var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
 
+                var a1 = new Account { Name = $"Company {DateTime.Now.Ticks}" };
+                context.Insert(a1);
+
                 var selected = (from a in context.Accounts
                                 select new
                                 {
