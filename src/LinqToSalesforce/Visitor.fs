@@ -64,11 +64,8 @@ module Visitor =
     | Order of OrderDirection * Field
     | Limit of int
     | Skip of int
-    | Count // of WhereArgs
+    | Count
   and ParsedExpression = Operation list
-
-  type IOperationsProvider =
-    abstract member ProvideOperations : unit -> Operation list
 
   let findDecorationName (m:MemberInfo) =
     let attr = m.GetCustomAttribute<JsonPropertyAttribute>()
@@ -317,39 +314,16 @@ module Visitor =
     | :? MethodCallExpression as e when e.Method.Name = "Count" ->
         match e.Arguments.Item 0 with
         | :? ConstantExpression as exp ->
-            let q = exp.Value :?> IQueryable<_>
-            let sexp = (q.Expression :?> ConstantExpression).Value :?> IQueryable
-            let ssexp = sexp.Expression
-            let f = (Expression.Lambda ssexp).Compile()
-            let r = f.DynamicInvoke() :?> IOperationsProvider
-            let subOps = r.ProvideOperations()
-            printfn "subOps: %A" subOps
-            failwith "Not finished"
+            parseExpression exp (Count :: acc)
         | :? MethodCallExpression as mc2 ->
             let subExp = mc2.Arguments.Item 1
-//            let subOps = parseExpression subExp []
             let args = parseWhereArgs subExp
             parseExpression mc2 (Count :: acc)
-            //parseExpression mc2 (Count(args) :: acc)
-            //failwithf "Method not visited: '%s'" e.Method.Name
-//        let s = subExp.ToString()
-//        printfn "s: %s" s
-//        let subOps = parseExpression subExp []
-//        parseExpression exp (Count(subOps) :: acc)
-//        let token = Skip 0
-//        parseExpression (e.Arguments.Item 0) (token :: acc)
-        | o2 ->
-          failwithf "Method not visited: '%s'" e.Method.Name
+        | _ ->
+            failwithf "Method not visited: '%s'" e.Method.Name
     | :? MethodCallExpression as e ->
         failwithf "Method not visited: '%s'" e.Method.Name
-//    | :? ConstantExpression as exp ->
-//        let q = exp.Value :?> IQueryable
-//        let exp2 = q.Expression
-//        parseExpression q.Expression acc
-//    | :? UnaryExpression as ue ->
-//        acc
-    | o ->
-      acc
+    | _ -> acc
 
   type RequestExpressionVisitor(mainExpression:Expression) = 
     let operations:Operation list ref = ref []

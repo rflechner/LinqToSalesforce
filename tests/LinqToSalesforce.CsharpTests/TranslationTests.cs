@@ -54,19 +54,6 @@ namespace LinqToSalesforce.CsharpTests
 
             Assert.AreEqual(@"SELECT Id, Name, Cost FROM Entity1 WHERE Name = 'popo'", soql);
         }
-
-        [Test]
-        public void WhenCountEntitiesUsingLinq_SoqlShouldUseCountFunction()
-        {
-            var context = new FakeQueryContext(() => 1);
-            IQueryable<Entity1> entities = context.GetTable<Entity1>();
-            var query =
-                (from c in entities
-                where c.Name == "popo"
-                select c).Count();
-            var soql = query.ToString();
-
-            Assert.AreEqual(@"SELECT COUNT() FROM Entity1 WHERE Name = 'popo'", soql);
-        }
+        
     }
 }
