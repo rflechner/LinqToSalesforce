@@ -54,5 +54,6 @@ namespace LinqToSalesforce.CsharpTests
 
             Assert.AreEqual(@"SELECT Id, Name, Cost FROM Entity1 WHERE Name = 'popo'", soql);
         }
+        
     }
 }
