@@ -14,6 +14,8 @@ type IQueryContext =
 type Queryable<'t> (provider:IQueryProvider, tableName, expression:Expression option) =
   new (provider:IQueryProvider, tableName) =
     Queryable<'t>(provider, tableName, None)
+  new (args: obj array) =
+    Queryable<'t>(args.[0] :?> IQueryProvider, args.[1] :?> string, args.[2] :?> Expression option)
   member val Provider:IQueryProvider=provider with get, set
   member val TableName:string=tableName with get, set
   member x.BuildExpression() =
@@ -56,14 +58,14 @@ module TypeSystem =
       if t.IsGenericType
       then
         t.GetGenericArguments()
-          |> Seq.tryFind (fun a -> typeof<(IEnumerable<_>)>.MakeGenericType(a).IsAssignableFrom t)
+          |> Seq.tryFind (fun a -> typedefof<(IEnumerable<_>)>.MakeGenericType(a).IsAssignableFrom t)
       else None
 
     match seqType with
     | t when t = typeof<string> || isNull t -> None
     | t when t.IsArray -> 
         typeof<IEnumerable<_>>.MakeGenericType(seqType.GetElementType()) |> Some
-    | IsInGenericArguments t -> Some t
+    | IsInGenericArguments t -> typedefof<(IEnumerable<_>)>.MakeGenericType(t) |> Some
     | InterfacesHaveIenum t -> Some t
     | t when t.BaseType <> null && t.BaseType <> typeof<obj> ->
         findIEnumerable t.BaseType
@@ -146,7 +148,6 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
       queryContext.Execute expression false
     member x.CreateQuery(expression: Expression): IQueryable = 
       let elementType = TypeSystem.getElementType expression.Type
-      let args = [|x:>obj;expression:>obj|]
-      let ty = typeof<Queryable<_>>.MakeGenericType(elementType)
+      let args : obj[] = [|x; tableName; Some expression|]
+      let ty = typedefof<Queryable<_>>.MakeGenericType(elementType)
       Activator.CreateInstance(ty, args) :?> IQueryable
-
