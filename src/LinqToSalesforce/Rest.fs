@@ -207,7 +207,7 @@ module Rest =
 
   let getObjectsList (i:Identity) =
     let baseUrl = Config.BuildUri "https://%s.salesforce.com"
-    let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/"
+    let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v300/sobjects/"
     async {
       let! rs = get i uri
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
@@ -288,7 +288,7 @@ module Rest =
     readResponse<'t, RemoteError list>
 
   let executeSoql<'t> (i:Identity) (soql:string) =
-    let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/query/?q="
+    let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v300/query/?q="
     let qurl = uri.ToString() + (Uri.EscapeUriString soql)
     async {
       let! rs = get i (Uri qurl)
@@ -297,7 +297,7 @@ module Rest =
     
   let insert (i:Identity) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/"
+    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v300/sobjects/").ToString() + name + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
@@ -308,7 +308,7 @@ module Rest =
 
   let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
+    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v300/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
@@ -322,7 +322,7 @@ module Rest =
 
   let delete (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
+    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v300/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
