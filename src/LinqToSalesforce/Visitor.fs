@@ -73,8 +73,10 @@ module Visitor =
   
   let (|AndOr|_|) (t:ExpressionType) =
     match t with
+    | ExpressionType.And -> Some And
     | ExpressionType.AndAlso -> Some And
     | ExpressionType.Or -> Some Or
+    | ExpressionType.OrElse -> Some Or
     | _ -> None
   let (|Comparison|_|) (t:ExpressionType) =
     match t with

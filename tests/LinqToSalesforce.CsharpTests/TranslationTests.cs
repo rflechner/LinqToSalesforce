@@ -24,9 +24,30 @@ namespace LinqToSalesforce.CsharpTests
                     BornDate = c.Birth
                 };
             var soql = query.ToString();
-            
+
             Assert.AreEqual(@"SELECT Id, Birth FROM Customer WHERE (Firstname = 'popo') AND (Birth >= 1985-02-11T00:00:00Z) ORDER BY Birth DESC", soql);
         }
+
+        [Test]
+        public void WhenSelectBirthAsBornDateAndIdCustomerWhereFirstnameIsPopoOrBirthGreatherOrEqualThan02Feb1985OrderByDate_ShouldBe2ComparisonAnd1SelectTokens()
+        {
+            var context = new FakeQueryContext();
+            var customers = context.GetTable<Customer>();
+            var dateTime = new DateTime(1985, 02, 11);
+            var query =
+                from c in customers
+                where c.Firstname == "popo" || c.Birth >= dateTime
+                orderby c.Birth descending
+                select new
+                {
+                    c.Id,
+                    BornDate = c.Birth
+                };
+            var soql = query.ToString();
+
+            Assert.AreEqual(@"SELECT Id, Birth FROM Customer WHERE (Firstname = 'popo') OR (Birth >= 1985-02-11T00:00:00Z) ORDER BY Birth DESC", soql);
+        }
+
 
         public class Entity1
         {
