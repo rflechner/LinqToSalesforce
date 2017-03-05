@@ -44,8 +44,10 @@
     <Compile Include="ExpressionLinqTests.cs" />
     <Compile Include="FakeQueryContext.cs" />
     <Compile Include="Models.cs" />
+    <Compile Include="ODataHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TranslationTests.cs" />
+    <Compile Include="VisitorOdataTests.cs" />
     <Compile Include="VisitorTests.cs" />
   </ItemGroup>
   <ItemGroup>

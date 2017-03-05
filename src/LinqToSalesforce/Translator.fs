@@ -148,8 +148,8 @@ module Translator =
     op
     |> List.choose (
         function
-        | Order (Ascending, f) -> Some (sprintf "ORDER BY %s" f.Name)
-        | Order (Descending, f) -> Some (sprintf "ORDER BY %s DESC" f.Name)
+        | Order (Ascending, f) -> Some (sprintf "%s" f.Name)
+        | Order (Descending, f) -> Some (sprintf "%s DESC" f.Name)
         | _ -> None )
 
   let rec buildLimit(op:Operation list) =
@@ -191,10 +191,11 @@ module Translator =
           |> List.toArray
         let s = String.Join(" AND ", l)
         b.Append (sprintf "WHERE %s" s) |> ignore
+   
     match buildOrder op with
     | [] -> ()
-    | o :: _ -> b.Append " " |> ignore; b.Append o |> ignore
-    
+    | ops -> b.Append " ORDER BY " |> ignore; b.Append(String.Join(", ", ops)) |> ignore;
+
     match buildLimit op with
     | [] -> ()
     | o :: _ -> b.Append " " |> ignore; b.Append o |> ignore

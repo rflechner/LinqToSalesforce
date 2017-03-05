@@ -54,6 +54,21 @@ namespace LinqToSalesforce.CsharpTests
 
             Assert.AreEqual(@"SELECT Id, Name, Cost FROM Entity1 WHERE Name = 'popo'", soql);
         }
-        
+
+        [Test]
+        public void WhenOrderedByMultipleFields_ShouldHaveMultipleOrderByPredicates()
+        {
+            // Arrange
+            var context = new FakeQueryContext();
+
+            // Act
+            var customers = context.GetTable<Customer>();
+            var query = customers.OrderBy(x => x.Id).ThenByDescending(x => x.Lastname);
+
+            // Assert
+            var soql = query.ToString();
+            Assert.AreEqual("SELECT  FROM Customer  ORDER BY Id, Lastname DESC", soql);
+        }
+
     }
 }
