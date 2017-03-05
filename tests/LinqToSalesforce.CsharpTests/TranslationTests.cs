@@ -91,5 +91,20 @@ namespace LinqToSalesforce.CsharpTests
             Assert.AreEqual("SELECT  FROM Customer  ORDER BY Id, Lastname DESC", soql);
         }
 
+        [Test]
+        public void WhenPagingParameters_ShouldHaveLimitAndOffset()
+        {
+            // Arrange
+            var context = new FakeQueryContext();
+
+            // Act
+            var customers = context.GetTable<Customer>();
+            var query = customers.Skip(10).Take(5);
+
+            // Assert
+            var soql = query.ToString();
+            Assert.AreEqual("SELECT  FROM Customer  LIMIT 5 OFFSET 10", soql);
+        }
+
     }
 }
