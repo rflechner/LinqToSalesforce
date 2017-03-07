@@ -1,0 +1,14 @@
+Microsoft.VisualStudio.Shell.Interop
+Microsoft.VisualStudio.Shell.Interop.8.0
+Microsoft.VisualStudio.OLE.Interop
+Microsoft.VisualStudio.Shell.Immutable.14.0
+FSharp.Core
+Microsoft.VisualStudio.CoreUtility
+Microsoft.VisualStudio.Imaging
+Microsoft.VisualStudio.Shell.14.0
+Microsoft.VisualStudio.Text.Data
+Microsoft.VisualStudio.Text.Logic
+Microsoft.VisualStudio.Text.UI.Wpf
+Microsoft.VisualStudio.Text.UI
+Microsoft.VisualStudio.TextManager.Interop.8.0
+Microsoft.VisualStudio.Validation
