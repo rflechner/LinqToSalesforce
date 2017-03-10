@@ -2,13 +2,10 @@ FSharp.Core
 Microsoft.VisualStudio.CoreUtility
 Microsoft.VisualStudio.Imaging
 Microsoft.VisualStudio.OLE.Interop
-Microsoft.VisualStudio.Shell.14.0
-Microsoft.VisualStudio.Shell.Immutable.10.0
 Microsoft.VisualStudio.Shell.Immutable.11.0
 Microsoft.VisualStudio.Shell.Immutable.12.0
 Microsoft.VisualStudio.Shell.Immutable.14.0
 Microsoft.VisualStudio.Shell.Interop
-Microsoft.VisualStudio.Shell.Interop.10.0
 Microsoft.VisualStudio.Shell.Interop.11.0
 Microsoft.VisualStudio.Shell.Interop.12.0
 Microsoft.VisualStudio.Shell.Interop.8.0

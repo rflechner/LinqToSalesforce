@@ -12,25 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace LinqToSalesforce.VsPlugin.Ui
+namespace LinqToSalesforce.VsPlugin2017.Ui
 {
     /// <summary>
-    /// Interaction logic for AuthenticationControl.xaml
+    /// Interaction logic for DesignerGeneralPage.xaml
     /// </summary>
-    public partial class AuthenticationControl : UserControl
+    public partial class DesignerGeneralPage : UserControl
     {
-        public AuthenticationControl()
+        public DesignerGeneralPage()
         {
             InitializeComponent();
-        }
-
-        private int count = 0;
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            button.Content = $"Click {++count}";
         }
     }
 }

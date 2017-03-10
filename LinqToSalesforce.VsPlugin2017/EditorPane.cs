@@ -1,71 +1,44 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.IO;
-using System.Drawing;
-using System.Globalization;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
+using LinqToSalesforce.VsPlugin2017.Ui;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.OLE.Interop;
-using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.XmlEditor;
-using EnvDTE;
-using LinqToSalesforce.VsPlugin.Ui;
-using ISysServiceProvider = System.IServiceProvider;
-using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
-using VSStd97CmdID = Microsoft.VisualStudio.VSConstants.VSStd97CmdID;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace LinqToSalesforce.VsPlugin
+namespace LinqToSalesforce.VsPlugin2017
 {
     [ComVisible(true)]
-    public sealed class EditorPane : WindowPane, IOleComponent, IVsDeferredDocView, IVsLinkedUndoClient
-    {
-        private readonly LinqToSalesforceVsPackage _package;
-        private readonly string _filename;
-        private readonly IVsTextLines _textBuffer;
-        private AuthenticationControl _vsDesignerControl;
+    public sealed class EditorPane : WindowPane, 
+        IOleComponent, 
+        IVsDeferredDocView, 
+        IVsLinkedUndoClient
 
-        public EditorPane(LinqToSalesforceVsPackage package, string filename, IVsTextLines textBuffer)
-            : base(null)
+        //IOleCommandTarget,
+        //IVsPersistDocData,
+        //IPersistFileFormat
+
+    {
+        private readonly CreateDiagramCommandPackage _package;
+        private readonly string _filename;
+        private AuthenticationControl authenticationControl;
+        //private UserControl1 authenticationControl;
+
+        public EditorPane(CreateDiagramCommandPackage package, string filename) : base(null)
         {
             _package = package;
             _filename = filename;
-            _textBuffer = textBuffer;
+            
+            Content = authenticationControl = new AuthenticationControl();
         }
 
         protected override void Initialize()
         {
             base.Initialize();
-
-            _vsDesignerControl = new AuthenticationControl();
-            Content = _vsDesignerControl;
-
-            RegisterIndependentView(true);
         }
-
-        void RegisterIndependentView(bool subscribe)
-        {
-            IVsTextManager textManager = (IVsTextManager)GetService(typeof(SVsTextManager));
-
-            if (textManager != null)
-            {
-                if (subscribe)
-                {
-                    textManager.RegisterIndependentView(this, _textBuffer);
-                }
-                else
-                {
-                    textManager.UnregisterIndependentView(this, _textBuffer);
-                }
-            }
-        }
-
+        
         public int FReserved1(uint dwReserved, uint message, IntPtr wParam, IntPtr lParam)
         {
             return VSConstants.S_OK;
@@ -95,10 +68,10 @@ namespace LinqToSalesforce.VsPlugin
 
         public int FDoIdle(uint grfidlef)
         {
-            if (_vsDesignerControl != null)
-            {
-                //_vsDesignerControl.DoIdle();
-            }
+            //if (authenticationControl != null)
+            //{
+            //    //authenticationControl.DoIdle();
+            //}
             return VSConstants.S_OK;
         }
 
@@ -144,5 +117,7 @@ namespace LinqToSalesforce.VsPlugin
         {
             return VSConstants.E_FAIL;
         }
+
+
     }
 }

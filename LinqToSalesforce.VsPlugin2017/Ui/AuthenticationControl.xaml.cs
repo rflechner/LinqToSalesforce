@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace LinqToSalesforce.VsPlugin.Ui
+namespace LinqToSalesforce.VsPlugin2017.Ui
 {
     /// <summary>
     /// Interaction logic for AuthenticationControl.xaml
@@ -26,11 +26,15 @@ namespace LinqToSalesforce.VsPlugin.Ui
             InitializeComponent();
         }
 
-        private int count = 0;
+        private int i = 0;
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            button.Content = $"Click {++count}";
+            var button = sender as Button;
+            if (button == null)
+                return;
+
+            button.Content = $"Click {++i}";
         }
     }
 }
