@@ -205,12 +205,13 @@ module Rest =
     | "double" -> typeof<double>
     | _ -> typeof<String>
 
-  let getObjectsList (i:Identity) =
+  let getObjectsList (i:Identity) (log:string Action) =
     let baseUrl = Config.BuildUri "https://%s.salesforce.com"
     let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/"
     async {
       let! rs = get i uri
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
+      log.Invoke(sprintf "json: %A" json)
       let o = JObject.Parse json
       return
         o.SelectTokens("sobjects[*].urls.describe")
@@ -221,6 +222,7 @@ module Rest =
                 async {
                   let! rs = get i (Uri url)
                   let! c = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
+                  log.Invoke(sprintf "json: %A" c)
                   let j = JObject.Parse c
                   let name = (j.Item "name").ToString()
                   let labelPlural = (j.Item "labelPlural").ToString()

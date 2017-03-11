@@ -5,14 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LinqToSalesforce.VsPlugin2017.Ui"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid x:Name="MyGrid">
+             d:DesignHeight="350" d:DesignWidth="300">
+    <Grid x:Name="MainGrid" Background="WhiteSmoke">
         <Grid.Resources>
             <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"/>
         </Grid.Resources>
         <Grid.DataContext>
             <TextBlock Text="Text Column Header" Tag="Tag Columne Header"/>
         </Grid.DataContext>
-        <Button Margin="10,10,206,267" Click="Button_Click">Coucou</Button>
+        <StackPanel Margin="10,0,17,0">
+            <TextBlock Foreground="#FF224091" FontSize="18" HorizontalAlignment="Center">Linq to Salesforce</TextBlock>
+            <Label>Client id</Label>
+            <TextBox x:Name="ClientIdBox"></TextBox>
+            <Label>Client secret key</Label>
+            <TextBox x:Name="ClientSecretBox"></TextBox>
+            <Label>SecurityToken</Label>
+            <TextBox x:Name="SecurityTokenBox"></TextBox>
+            <Label>Login / email</Label>
+            <TextBox x:Name="UsernameBox"></TextBox>
+            <Label>Password</Label>
+            <PasswordBox x:Name="PasswordEntry"></PasswordBox>
+            <Label>Instance name</Label>
+            <TextBox x:Name="InstanceBox"></TextBox>
+            <Button Click="Button_Click" Margin="0,10,0,0">Authenticate</Button>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

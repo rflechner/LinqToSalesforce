@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,7 +14,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
+using LinqToSalesforce.VsPlugin2017.Model;
+using LinqToSalesforce.VsPlugin2017.Storage;
+using Microsoft.FSharp.Collections;
+using Microsoft.FSharp.Control;
+using Microsoft.FSharp.Core;
 using Microsoft.VisualStudio.TextManager.Interop;
+using Newtonsoft.Json;
 
 namespace LinqToSalesforce.VsPlugin2017.Ui
 {
@@ -21,12 +30,47 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
     /// </summary>
     public partial class AuthenticationControl : UserControl
     {
-        public AuthenticationControl()
+        readonly DiagramDocumentStorage documentStorage = new DiagramDocumentStorage();
+        private DiagramDocument document;
+
+        public AuthenticationControl(string filename)
         {
+            Filename = filename;
+
             InitializeComponent();
         }
+        
+        public string Filename { get; }
 
-        private int i = 0;
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+
+            document = documentStorage.LoadDocument(Filename);
+            if (document?.Credentials != null)
+            {
+                Task.Factory.StartNew(async () =>
+                {
+                    var identity = await AuthenticateAsync();
+                    Dispatcher.Invoke(() => DisplayTablesSelector(identity));
+                });
+            }
+        }
+
+        private void DisplayTablesSelector(Rest.OAuth.Identity identity)
+        {
+            var tablesSelectorControl = new TablesSelectorControl(Filename, document, identity);
+            tablesSelectorControl.Backclicked += (sender, args) => { Content = MainGrid; };
+            Content = tablesSelectorControl;
+        }
+
+        public async Task<Rest.OAuth.Identity> AuthenticateAsync()
+        {
+            var param = document.Credentials.ToImpersonationParam();
+            var authenticateWithCredentials = Rest.OAuth.authenticateWithCredentials(param);
+
+            return FSharpAsync.RunSynchronously(authenticateWithCredentials, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -34,7 +78,28 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
             if (button == null)
                 return;
 
-            button.Content = $"Click {++i}";
+            var l1 = new FSharpList<string>("coucou", FSharpList<string>.Empty);
+            Rest.Config.ProductionInstance = InstanceBox.Text;
+            var oauth = new Rest.OAuth.ImpersonationParam
+            {
+                ClientId = ClientIdBox.Text,
+                ClientSecret = ClientSecretBox.Text,
+                Username = UsernameBox.Text,
+                Password = PasswordEntry.Password,
+                SecurityToken = SecurityTokenBox.Text
+            };
+
+            var document = new DiagramDocument
+            {
+                Credentials = Credentials.From(oauth)
+            };
+            document.Credentials.Instance = InstanceBox.Text;
+
+            documentStorage.Save(document, Filename);
+
+            //var json = JsonConvert.SerializeObject(new {Text = "popo"});
+            //serializer.Serialize();
         }
     }
+
 }

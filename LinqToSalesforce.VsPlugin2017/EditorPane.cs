@@ -30,8 +30,9 @@ namespace LinqToSalesforce.VsPlugin2017
         {
             _package = package;
             _filename = filename;
-            
-            Content = authenticationControl = new AuthenticationControl();
+
+            Content = authenticationControl = new AuthenticationControl(filename);
+
         }
 
         protected override void Initialize()
