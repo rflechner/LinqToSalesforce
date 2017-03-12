@@ -32,7 +32,7 @@ namespace LinqToSalesforce.VsPlugin2017.Storage
 
         public void Save(DiagramDocument document, string filename)
         {
-            using (var stream = File.OpenWrite(filename))
+            using (var stream = File.Open(filename, FileMode.Create))
                 serializer.Serialize(stream, document);
         }
     }

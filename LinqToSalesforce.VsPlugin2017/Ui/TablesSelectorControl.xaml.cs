@@ -53,7 +53,10 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
         public string ResolveNameSpace()
         {
             var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
-            var dteProject = (EnvDTE.Project)activeSolutionProjects.GetValue(0);
+            if (activeSolutionProjects.Length <= 0)
+                return "LinqToSalesforce";
+
+            var dteProject = (Project)activeSolutionProjects.GetValue(0);
             var defaultNamespace = dteProject.Properties.Item("DefaultNamespace").Value;
 
             return defaultNamespace.ToString();
