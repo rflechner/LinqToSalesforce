@@ -52,12 +52,17 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
             document = documentStorage.LoadDocument(Filename);
             if (document?.Credentials != null)
             {
-                Task.Factory.StartNew(async () =>
-                {
-                    var identity = await AuthenticateAsync();
-                    Dispatcher.Invoke(() => DisplayTablesSelector(identity));
-                });
+                CheckCredentials();
             }
+        }
+
+        private void CheckCredentials()
+        {
+            Task.Factory.StartNew(async () =>
+            {
+                var identity = await AuthenticateAsync();
+                Dispatcher.Invoke(() => DisplayTablesSelector(identity));
+            });
         }
 
         private void DisplayTablesSelector(Rest.OAuth.Identity identity)
@@ -80,8 +85,7 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
             var button = sender as Button;
             if (button == null)
                 return;
-
-            var l1 = new FSharpList<string>("coucou", FSharpList<string>.Empty);
+            
             Rest.Config.ProductionInstance = InstanceBox.Text;
             var oauth = new Rest.OAuth.ImpersonationParam
             {
@@ -92,7 +96,7 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
                 SecurityToken = SecurityTokenBox.Text
             };
 
-            var document = new DiagramDocument
+            document = new DiagramDocument
             {
                 Credentials = Credentials.From(oauth)
             };
@@ -100,8 +104,7 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
 
             documentStorage.Save(document, Filename);
 
-            //var json = JsonConvert.SerializeObject(new {Text = "popo"});
-            //serializer.Serialize();
+            CheckCredentials();
         }
     }
 

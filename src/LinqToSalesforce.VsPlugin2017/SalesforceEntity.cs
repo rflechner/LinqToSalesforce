@@ -104,7 +104,7 @@ namespace LinqToSalesforce.VsPlugin2017
             var dte = (EnvDTE.DTE)vsServiceProvider.GetService(typeof(EnvDTE.DTE));
             
             // Create the Document (editor)
-            var editor = new EditorPane(editorPackage, pszMkDocument, dte);
+            var editor = new EditorPane(pszMkDocument, dte);
             ppunkDocView = Marshal.GetIUnknownForObject(editor);
             ppunkDocData = Marshal.GetIUnknownForObject(textBuffer);
             pbstrEditorCaption = " entities generator";

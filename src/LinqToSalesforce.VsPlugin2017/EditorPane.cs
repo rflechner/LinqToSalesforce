@@ -16,43 +16,16 @@ namespace LinqToSalesforce.VsPlugin2017
         IOleComponent, 
         IVsDeferredDocView, 
         IVsLinkedUndoClient
-
-        //IOleCommandTarget,
-        //IVsPersistDocData,
-        //IPersistFileFormat
-
     {
-        private readonly CreateDiagramCommandPackage _package;
-        private readonly string _filename;
-        private readonly DTE dte;
-        private AuthenticationControl authenticationControl;
-        //private UserControl1 authenticationControl;
-
-        public EditorPane(CreateDiagramCommandPackage package, string filename, DTE dte) : base(null)
+        public EditorPane(string filename, DTE dte) : base(null)
         {
-            _package = package;
-            _filename = filename;
-            this.dte = dte;
-
-            Content = authenticationControl = new AuthenticationControl(filename, dte);
-            //var dte = (EnvDTE.DTE)package.QueryService<EnvDTE.DTE>();
-
-        }
-
-        protected override void Initialize()
-        {
-            base.Initialize();
+            Content = new AuthenticationControl(filename, dte);
+            
         }
         
-        public int FReserved1(uint dwReserved, uint message, IntPtr wParam, IntPtr lParam)
-        {
-            return VSConstants.S_OK;
-        }
+        public int FReserved1(uint dwReserved, uint message, IntPtr wParam, IntPtr lParam) => VSConstants.S_OK;
 
-        public int FPreTranslateMessage(MSG[] pMsg)
-        {
-            return VSConstants.S_OK;
-        }
+        public int FPreTranslateMessage(MSG[] pMsg) => VSConstants.S_OK;
 
         public void OnEnterState(uint uStateID, int fEnter)
         {
@@ -71,24 +44,11 @@ namespace LinqToSalesforce.VsPlugin2017
         {
         }
 
-        public int FDoIdle(uint grfidlef)
-        {
-            //if (authenticationControl != null)
-            //{
-            //    //authenticationControl.DoIdle();
-            //}
-            return VSConstants.S_OK;
-        }
+        public int FDoIdle(uint grfidlef) => VSConstants.S_OK;
 
-        public int FContinueMessageLoop(uint uReason, IntPtr pvLoopData, MSG[] pMsgPeeked)
-        {
-            return VSConstants.S_OK;
-        }
+        public int FContinueMessageLoop(uint uReason, IntPtr pvLoopData, MSG[] pMsgPeeked) => VSConstants.S_OK;
 
-        public int FQueryTerminate(int fPromptUser)
-        {
-            return 1;
-        }
+        public int FQueryTerminate(int fPromptUser) => 1;
 
         public void Terminate()
         {
@@ -118,11 +78,6 @@ namespace LinqToSalesforce.VsPlugin2017
             return VSConstants.S_OK;
         }
 
-        public int OnInterveningUnitBlockingLinkedUndo()
-        {
-            return VSConstants.E_FAIL;
-        }
-
-
+        public int OnInterveningUnitBlockingLinkedUndo() => VSConstants.E_FAIL;
     }
 }

@@ -18,30 +18,13 @@ using Microsoft.Win32;
 
 namespace LinqToSalesforce.VsPlugin2017
 {
-    /// <summary>
-    /// This is the class that implements the package exposed by this assembly.
-    /// </summary>
-    /// <remarks>
-    /// <para>
-    /// The minimum requirement for a class to be considered a valid package for Visual Studio
-    /// is to implement the IVsPackage interface and register itself with the shell.
-    /// This package uses the helper classes defined inside the Managed Package Framework (MPF)
-    /// to do it: it derives from the Package class that provides the implementation of the
-    /// IVsPackage interface and uses the registration attributes defined in the framework to
-    /// register itself and its components with the shell. These attributes tell the pkgdef creation
-    /// utility what data to put into .pkgdef file.
-    /// </para>
-    /// <para>
-    /// To get loaded into VS, the package must be referred by &lt;Asset Type="Microsoft.VisualStudio.VsPackage" ...&gt; in .vsixmanifest file.
-    /// </para>
-    /// </remarks>
-    [ProvideXmlEditorChooserDesignerView("SFDiagram", "sfdiagram", LogicalViewID.Designer, 1000,
-    DesignerLogicalViewEditor = typeof(SalesforceEntity),
-    Namespace = "http://schemas.microsoft.com/developer/vstemplate/2005",
-    MatchExtensionAndNamespace = false)]
-    // And which type of files we want to handle
-    [ProvideEditorExtension(typeof(SalesforceEntity), SalesforceEntity.Extension, 1000, NameResourceID = 106)]
-    // We register that our editor supports LOGVIEWID_Designer logical view
+    //[ProvideXmlEditorChooserDesignerView("SFDiagram", "sfdiagram", LogicalViewID.Designer, 1000,
+    //DesignerLogicalViewEditor = typeof(SalesforceEntity),
+    //Namespace = "http://schemas.microsoft.com/developer/vstemplate/2005",
+    //MatchExtensionAndNamespace = false)]
+    
+    //[ProvideEditorExtension(typeof(SalesforceEntity), SalesforceEntity.Extension, 1000, NameResourceID = 106)]
+    [ProvideEditorExtension(CreateDiagramCommandPackage.PackageGuidString, SalesforceEntity.Extension, 97)]
     [ProvideEditorLogicalView(typeof(SalesforceEntity), LogicalViewID.Designer)]
 
     // We register the XML Editor ("{FA3CD31E-987B-443A-9B81-186104E8DAC1}") as an EditorFactoryNotify
@@ -50,29 +33,19 @@ namespace LinqToSalesforce.VsPlugin2017
     [EditorFactoryNotifyForProject("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}", SalesforceEntity.Extension, GuidList.GuidXmlChooserEditorFactory)]
     // Microsoft Visual C# Project
     [EditorFactoryNotifyForProject("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}", SalesforceEntity.Extension, GuidList.GuidXmlChooserEditorFactory)]
-    [ProvideXmlEditorChooserDesignerView("LinqToSalesforce",
-        "sfdiagram",
-        LogicalViewID.Designer,
-        1,
-        Namespace = "https://rflechner.github.io/LinqToSalesforce",
-        MatchExtensionAndNamespace = true,
-        CodeLogicalViewEditor = typeof(SalesforceEntity),
-        DesignerLogicalViewEditor = typeof(SalesforceEntity),
-        DebuggingLogicalViewEditor = typeof(SalesforceEntity),
-        TextLogicalViewEditor = typeof(SalesforceEntity))]
-    [ProvideEditorExtension(typeof(SalesforceEntity), ".sfdiagram", 1000, NameResourceID = 113, DefaultName = "Linq to Salesforce")]
+
+    //[ProvideXmlEditorChooserDesignerView("LinqToSalesforce",
+    //    ".sfdiagram",
+    //    LogicalViewID.Designer,
+    //    1,
+    //    Namespace = "https://rflechner.github.io/LinqToSalesforce",
+    //    MatchExtensionAndNamespace = true,
+    //    CodeLogicalViewEditor = typeof(SalesforceEntity),
+    //    DesignerLogicalViewEditor = typeof(SalesforceEntity),
+    //    DebuggingLogicalViewEditor = typeof(SalesforceEntity),
+    //    TextLogicalViewEditor = typeof(SalesforceEntity))]
+    [ProvideEditorExtension(typeof(SalesforceEntity), ".sfdiagram", 100, NameResourceID = 113, DefaultName = "Linq to Salesforce")]
     [ProvideEditorFactory(typeof(SalesforceEntity), 113, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
-
-    // Options pages
-    [ProvideProfile(typeof(OptionPageGrid), "Linq to Salesforce designer", "Linq to Salesforce Designer Options", 114, 114, true, DescriptionResourceID = 114)]
-    [ProvideOptionPage(typeof(OptionPageGrid),
-        "Linq to Salesforce",
-        "General",
-        114,
-        115,
-        true,
-        new[] { "sfdiagram", "designer" })]
-
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About

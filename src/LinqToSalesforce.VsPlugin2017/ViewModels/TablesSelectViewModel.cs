@@ -19,32 +19,6 @@ using Microsoft.FSharp.Core;
 
 namespace LinqToSalesforce.VsPlugin2017.ViewModels
 {
-    public class TableDescPresenter : INotifyPropertyChanged
-    {
-        private bool selected;
-
-        public bool Selected
-        {
-            get { return selected; }
-            set
-            {
-                selected = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Rest.TableDesc Table { get; set; }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
     public class TablesSelectViewModel : INotifyPropertyChanged
     {
         private readonly DTE dte;
@@ -105,8 +79,10 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 var item = fileNames.First(f => f.FileNames[0] == Filename);
                 item.ProjectItems.AddFromFile(csFullPath);
             }
-
+            
             project.Save();
+
+            var vsProject = project.Object as VSProject;
         });
 
         public IEnumerable<ProjectItem> GetProjectFiles()

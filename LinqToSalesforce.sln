@@ -62,7 +62,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqToSalesforce.CsharpTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqToSalesforce.Example1", "samples\LinqToSalesforce.Example1\LinqToSalesforce.Example1.csproj", "{C8971E7A-C89D-4140-979F-A0A8363CBB1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqToSalesforce.VsPlugin2017", "LinqToSalesforce.VsPlugin2017\LinqToSalesforce.VsPlugin2017.csproj", "{590EBC80-A0A4-4357-BB61-025905A62D71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqToSalesforce.VsPlugin2017", "src\LinqToSalesforce.VsPlugin2017\LinqToSalesforce.VsPlugin2017.csproj", "{590EBC80-A0A4-4357-BB61-025905A62D71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
