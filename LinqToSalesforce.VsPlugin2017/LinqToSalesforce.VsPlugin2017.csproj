@@ -55,11 +55,13 @@
     <Compile Include="CreateDiagramCommandPackage.cs" />
     <Compile Include="Model\Credentials.cs" />
     <Compile Include="Model\DiagramDocument.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SalesforceEntity.cs" />
     <Compile Include="EditorPane.cs" />
     <Compile Include="GuidList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\DiagramDocumentStorage.cs" />
+    <Compile Include="Storage\IDiagramDocumentStorage.cs" />
     <Compile Include="Ui\AuthenticationControl.xaml.cs">
       <DependentUpon>AuthenticationControl.xaml</DependentUpon>
     </Compile>
@@ -78,6 +80,7 @@
     <Compile Include="Ui\UserControl1.Designer.cs">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\TablesSelectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

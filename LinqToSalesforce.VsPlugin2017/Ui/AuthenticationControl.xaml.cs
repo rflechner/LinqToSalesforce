@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
+using EnvDTE;
 using LinqToSalesforce.VsPlugin2017.Model;
 using LinqToSalesforce.VsPlugin2017.Storage;
 using Microsoft.FSharp.Collections;
@@ -30,11 +31,13 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
     /// </summary>
     public partial class AuthenticationControl : UserControl
     {
+        private readonly DTE dte;
         readonly DiagramDocumentStorage documentStorage = new DiagramDocumentStorage();
         private DiagramDocument document;
 
-        public AuthenticationControl(string filename)
+        public AuthenticationControl(string filename, DTE dte)
         {
+            this.dte = dte;
             Filename = filename;
 
             InitializeComponent();
@@ -59,7 +62,7 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
 
         private void DisplayTablesSelector(Rest.OAuth.Identity identity)
         {
-            var tablesSelectorControl = new TablesSelectorControl(Filename, document, identity);
+            var tablesSelectorControl = new TablesSelectorControl(Filename, document, identity, dte);
             tablesSelectorControl.Backclicked += (sender, args) => { Content = MainGrid; };
             Content = tablesSelectorControl;
         }

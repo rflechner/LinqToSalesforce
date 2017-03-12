@@ -9,13 +9,7 @@ using LinqToSalesforce.VsPlugin2017.Model;
 
 namespace LinqToSalesforce.VsPlugin2017.Storage
 {
-    public interface IDiagramDocumentStorage
-    {
-        DiagramDocument LoadDocument(string filename);
-        void Save(DiagramDocument document, string filename);
-    }
-
-    public class DiagramDocumentStorage
+    public class DiagramDocumentStorage : IDiagramDocumentStorage
     {
         readonly XmlSerializer serializer = new XmlSerializer(typeof(DiagramDocument));
 

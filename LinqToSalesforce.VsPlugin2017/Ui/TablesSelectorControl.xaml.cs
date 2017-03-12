@@ -14,7 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EnvDTE;
 using LinqToSalesforce.VsPlugin2017.Model;
+using LinqToSalesforce.VsPlugin2017.Storage;
+using LinqToSalesforce.VsPlugin2017.ViewModels;
 using Microsoft.FSharp.Collections;
 using Microsoft.FSharp.Control;
 using Microsoft.FSharp.Core;
@@ -31,46 +34,63 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
 
         private readonly DiagramDocument document;
         private readonly Rest.OAuth.Identity identity;
+        private readonly DTE dte;
         private readonly string filename;
+        private readonly TablesSelectViewModel viewModel;
 
-        public TablesSelectorControl(string filename, DiagramDocument document, Rest.OAuth.Identity identity)
+        public TablesSelectorControl(string filename, DiagramDocument document, Rest.OAuth.Identity identity, DTE dte)
         {
             this.document = document;
             this.identity = identity;
+            this.dte = dte;
             this.filename = filename;
-
+            
+            viewModel = new TablesSelectViewModel(Dispatcher, new DiagramDocumentStorage(), ResolveNameSpace, document, filename, identity);
+            
             InitializeComponent();
+        }
 
-            TablesListView.DataContext = this;
-            TablesListView.DisplayMemberPath = "Name";
+        public string ResolveNameSpace()
+        {
+            var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
+            var dteProject = (EnvDTE.Project)activeSolutionProjects.GetValue(0);
+            var defaultNamespace = dteProject.Properties.Item("DefaultNamespace").Value;
+
+            return defaultNamespace.ToString();
         }
 
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
 
-            Task.Factory.StartNew(async () =>
-            {
-                Tables = new ObservableCollection<Rest.TableDesc>((await GetTableListAsync()).ToList());
+            DataContext = viewModel;
+            //TablesListView.DisplayMemberPath = "Name";
+            TablesListView.ItemsSource = viewModel.Tables;
 
-                Dispatcher.Invoke(() => TablesListView.ItemsSource = Tables);
-            });
+            //Task.Factory.StartNew(async () =>
+            //{
+            //    Tables = new ObservableCollection<Rest.TableDesc>((await GetTableListAsync()).ToList());
+
+            //    Dispatcher.Invoke(() => TablesListView.ItemsSource = Tables);
+            //});
+
+            viewModel.LoadTables();
         }
 
-        private async Task<IEnumerable<Rest.TableDesc>> GetTableListAsync()
-        {
-            Action<string> logger = s =>
-            {
-                Console.WriteLine(s);
-            };
+        //private async Task<IEnumerable<Rest.TableDesc>> GetTableListAsync()
+        //{
+        //    Action<string> logger = s =>
+        //    {
+        //        Console.WriteLine(s);
+        //    };
             
-            Rest.Config.ProductionInstance = document.Credentials.Instance;
+        //    Rest.Config.ProductionInstance = document.Credentials.Instance;
 
-            return FSharpAsync.RunSynchronously(Rest.getObjectsList(identity, logger), FSharpOption<int>.None,
-                FSharpOption<CancellationToken>.None);
-        }
+        //    return FSharpAsync.RunSynchronously(Rest.getObjectsList(identity, logger), FSharpOption<int>.None,
+        //        FSharpOption<CancellationToken>.None);
+        //}
 
-        public ObservableCollection<Rest.TableDesc> Tables { get; set; }
+        //public ObservableCollection<Rest.TableDesc> Tables { get; set; }
         
         private void Button_Click(object sender, RoutedEventArgs e)
         {

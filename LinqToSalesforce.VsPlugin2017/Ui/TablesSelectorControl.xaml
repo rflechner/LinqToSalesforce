@@ -9,6 +9,7 @@
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Name="Top" Height="20"></RowDefinition>
+            <RowDefinition Height="15"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -16,7 +17,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="10,0" Grid.Row="0" Grid.ColumnSpan="3">
+        <StackPanel Orientation="Horizontal" Margin="5,0" Grid.Row="0" Grid.ColumnSpan="3">
             <Button Click="Button_Click" VerticalAlignment="Center">Back</Button>
             <TextBlock Margin="5" VerticalAlignment="Center">Tables selector</TextBlock>
         </StackPanel>
@@ -24,9 +25,26 @@
         <GridSplitter HorizontalAlignment="Right" 
                   VerticalAlignment="Stretch" 
                   Grid.Row="1" Grid.Column="1" ResizeBehavior="PreviousAndNext"
-                  Width="2" Background="#FFBCBCBC"/>
+                  Width="5" Background="#FFBCBCBC"/>
 
-        <ListView x:Name="TablesListView" Background="Aquamarine" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=Tables}" />
+        <WrapPanel Grid.Row="1" Grid.Column="0">
+            <CheckBox ToolTip="Check / UnCheck all" IsChecked="{Binding Path=AllChecked}" Margin="5,0,0,0"></CheckBox>
+        </WrapPanel>
+        
+        <ListView x:Name="TablesListView" Background="#EEEEEE" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path=Tables}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <CheckBox IsChecked="{Binding Path=Selected}" />
+                        <TextBlock Text="{Binding Path=Table.Name}"></TextBlock>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ScrollViewer Grid.Row="2" Grid.Column="2">
+            <TextBox IsReadOnly="True" Text="{Binding Path=SourceCode}" />
+        </ScrollViewer>
 
     </Grid>
 </UserControl>

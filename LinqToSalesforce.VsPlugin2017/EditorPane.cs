@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
+using EnvDTE;
 using LinqToSalesforce.VsPlugin2017.Ui;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
@@ -23,15 +24,18 @@ namespace LinqToSalesforce.VsPlugin2017
     {
         private readonly CreateDiagramCommandPackage _package;
         private readonly string _filename;
+        private readonly DTE dte;
         private AuthenticationControl authenticationControl;
         //private UserControl1 authenticationControl;
 
-        public EditorPane(CreateDiagramCommandPackage package, string filename) : base(null)
+        public EditorPane(CreateDiagramCommandPackage package, string filename, DTE dte) : base(null)
         {
             _package = package;
             _filename = filename;
+            this.dte = dte;
 
-            Content = authenticationControl = new AuthenticationControl(filename);
+            Content = authenticationControl = new AuthenticationControl(filename, dte);
+            //var dte = (EnvDTE.DTE)package.QueryService<EnvDTE.DTE>();
 
         }
 
