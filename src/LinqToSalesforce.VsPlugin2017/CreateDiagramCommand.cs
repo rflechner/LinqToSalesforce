@@ -93,17 +93,23 @@ namespace LinqToSalesforce.VsPlugin2017
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "CreateDiagramCommand";
+            //string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
+            //string title = "Create Salesforce linq entities";
+            //VsShellUtilities.ShowMessageBox(
+            //    this.ServiceProvider,
+            //    message,
+            //    title,
+            //    OLEMSGICON.OLEMSGICON_INFO,
+            //    OLEMSGBUTTON.OLEMSGBUTTON_OK,
+            //    OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.ServiceProvider,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            IVsUIShell uiShell = (IVsUIShell)ServiceProvider.GetService(typeof(SVsUIShell));
+            var reply = VsShellUtilities.PromptYesNo("Do you want to add a Salesforce datacontext to the current project ?",
+                "LinqToSalesForce", OLEMSGICON.OLEMSGICON_QUERY, uiShell);
+            if (reply)
+            {
+                
+            }
         }
     }
 }

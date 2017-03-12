@@ -36,7 +36,7 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Groups>
-      <Group guid="guidCreateDiagramCommandPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+      <Group guid="guidCreateDiagramCommandPackageCmdSet" id="SalesforceMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
       </Group>
     </Groups>
@@ -53,10 +53,10 @@
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
       <Button guid="guidCreateDiagramCommandPackageCmdSet" id="CreateDiagramCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCreateDiagramCommandPackageCmdSet" id="MyMenuGroup" />
+        <Parent guid="guidCreateDiagramCommandPackageCmdSet" id="SalesforceMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Invoke CreateDiagramCommand</ButtonText>
+          <ButtonText>Create Salesforce linq entities</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -78,7 +78,7 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidCreateDiagramCommandPackageCmdSet" value="{262c34d1-0b95-46ad-9556-267a991fb531}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="SalesforceMenuGroup" value="0x1020" />
       <IDSymbol name="CreateDiagramCommandId" value="0x0100" />
     </GuidSymbol>
 
