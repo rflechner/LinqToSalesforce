@@ -35,12 +35,12 @@ namespace LinqToSalesforce.VsPlugin2017
     /// To get loaded into VS, the package must be referred by &lt;Asset Type="Microsoft.VisualStudio.VsPackage" ...&gt; in .vsixmanifest file.
     /// </para>
     /// </remarks>
-    [ProvideXmlEditorChooserDesignerView("SFDiagram", "sfdiagram", LogicalViewID.Designer, 0x60,
+    [ProvideXmlEditorChooserDesignerView("SFDiagram", "sfdiagram", LogicalViewID.Designer, 1000,
     DesignerLogicalViewEditor = typeof(SalesforceEntity),
     Namespace = "http://schemas.microsoft.com/developer/vstemplate/2005",
     MatchExtensionAndNamespace = false)]
     // And which type of files we want to handle
-    [ProvideEditorExtension(typeof(SalesforceEntity), SalesforceEntity.Extension, 0x40, NameResourceID = 106)]
+    [ProvideEditorExtension(typeof(SalesforceEntity), SalesforceEntity.Extension, 1000, NameResourceID = 106)]
     // We register that our editor supports LOGVIEWID_Designer logical view
     [ProvideEditorLogicalView(typeof(SalesforceEntity), LogicalViewID.Designer)]
 
@@ -60,7 +60,7 @@ namespace LinqToSalesforce.VsPlugin2017
         DesignerLogicalViewEditor = typeof(SalesforceEntity),
         DebuggingLogicalViewEditor = typeof(SalesforceEntity),
         TextLogicalViewEditor = typeof(SalesforceEntity))]
-    [ProvideEditorExtension(typeof(SalesforceEntity), ".sfdiagram", 1, NameResourceID = 113, DefaultName = "Linq to Salesforce")]
+    [ProvideEditorExtension(typeof(SalesforceEntity), ".sfdiagram", 1000, NameResourceID = 113, DefaultName = "Linq to Salesforce")]
     [ProvideEditorFactory(typeof(SalesforceEntity), 113, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
 
     // Options pages

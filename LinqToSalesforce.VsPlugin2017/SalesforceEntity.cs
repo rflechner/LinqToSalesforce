@@ -107,7 +107,7 @@ namespace LinqToSalesforce.VsPlugin2017
             var editor = new EditorPane(editorPackage, pszMkDocument, dte);
             ppunkDocView = Marshal.GetIUnknownForObject(editor);
             ppunkDocData = Marshal.GetIUnknownForObject(textBuffer);
-            pbstrEditorCaption = "coucou";
+            pbstrEditorCaption = " entities generator";
             return VSConstants.S_OK;
         }
 

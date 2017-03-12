@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Threading;
+using EnvDTE;
 using LinqToSalesforce.VsPlugin2017.Annotations;
 using LinqToSalesforce.VsPlugin2017.Model;
 using LinqToSalesforce.VsPlugin2017.Storage;
@@ -44,19 +47,18 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
     public class TablesSelectViewModel : INotifyPropertyChanged
     {
+        private readonly DTE dte;
         private readonly Dispatcher dispatcher;
         private readonly IDiagramDocumentStorage documentStorage;
-        private readonly Func<string> resolveNameSpace;
         private bool allChecked;
         private string sourceCode;
 
-        public TablesSelectViewModel(Dispatcher dispatcher, IDiagramDocumentStorage documentStorage,
-            Func<string> resolveNameSpace,
+        public TablesSelectViewModel(DTE dte, Dispatcher dispatcher, IDiagramDocumentStorage documentStorage,
             DiagramDocument document, string filename, Rest.OAuth.Identity identity)
         {
+            this.dte = dte;
             this.dispatcher = dispatcher;
             this.documentStorage = documentStorage;
-            this.resolveNameSpace = resolveNameSpace;
             Document = document;
             Filename = filename;
             Identity = identity;
@@ -83,6 +85,48 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
         public ObservableCollection<TableDescPresenter> Tables { get; set; }
 
+        public ICommand SaveCommand => new RelayCommand(() =>
+        {
+            var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
+            if (activeSolutionProjects.Length <= 0)
+                return;
+
+            var dir = Path.GetDirectoryName(Filename);
+            var csFilename = Path.GetFileNameWithoutExtension(Filename) + ".generated.cs";
+            var csFullPath = Path.Combine(dir, csFilename);
+            var fileNames = GetProjectFiles().ToArray();
+
+            File.WriteAllText(csFullPath, SourceCode);
+
+            var project = (Project)activeSolutionProjects.GetValue(0);
+
+            if (fileNames.All(f => f.FileNames[0] != csFullPath))
+            {
+                var item = fileNames.First(f => f.FileNames[0] == Filename);
+                item.ProjectItems.AddFromFile(csFullPath);
+            }
+
+            project.Save();
+        });
+
+        public IEnumerable<ProjectItem> GetProjectFiles()
+        {
+            var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
+            if (activeSolutionProjects.Length <= 0)
+                yield break;
+
+            var project = (Project)activeSolutionProjects.GetValue(0);
+
+            foreach (var p in project.Collection)
+            {
+                var proj = (Project)p;
+                foreach (var sp in proj.ProjectItems)
+                {
+                    yield return (ProjectItem)sp;
+                }
+            }
+        }
+
         public bool AllChecked
         {
             get { return allChecked; }
@@ -100,7 +144,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
         private void GenerateSourceCode()
         {
-            var nameSpace = resolveNameSpace();
+            var nameSpace = ResolveNameSpace();
 
             UnsubscribeTablePresenters();
             Task.Factory.StartNew(() =>
@@ -118,6 +162,18 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 Document.SelectedTables = selectedTables.Select(t => t.Name).ToArray();
                 documentStorage.Save(Document, Filename);
             });
+        }
+
+        public string ResolveNameSpace()
+        {
+            var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
+            if (activeSolutionProjects.Length <= 0)
+                return "LinqToSalesforce";
+
+            var project = (Project)activeSolutionProjects.GetValue(0);
+            var defaultNamespace = project.Properties.Item("DefaultNamespace").Value;
+
+            return defaultNamespace.ToString();
         }
 
         public void LoadTables()
@@ -183,5 +239,27 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+    }
+
+    public class RelayCommand : ICommand
+    {
+        private readonly Action action;
+
+        public RelayCommand(Action action)
+        {
+            this.action = action;
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            action?.Invoke();
+        }
+
+        public event EventHandler CanExecuteChanged;
     }
 }

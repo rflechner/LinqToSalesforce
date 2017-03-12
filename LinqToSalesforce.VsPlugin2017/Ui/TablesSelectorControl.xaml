@@ -18,17 +18,18 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Margin="5,0" Grid.Row="0" Grid.ColumnSpan="3">
-            <Button Click="Button_Click" VerticalAlignment="Center">Back</Button>
+            <Button Click="Button_Click" VerticalAlignment="Center">Credentials</Button>
             <TextBlock Margin="5" VerticalAlignment="Center">Tables selector</TextBlock>
         </StackPanel>
 
         <GridSplitter HorizontalAlignment="Right" 
                   VerticalAlignment="Stretch" 
-                  Grid.Row="1" Grid.Column="1" ResizeBehavior="PreviousAndNext"
-                  Width="5" Background="#FFBCBCBC"/>
+                  Grid.Row="2" Grid.Column="1" ResizeBehavior="PreviousAndNext"
+                  Width="4" Background="#FFBCBCBC"/>
 
         <WrapPanel Grid.Row="1" Grid.Column="0">
-            <CheckBox ToolTip="Check / UnCheck all" IsChecked="{Binding Path=AllChecked}" Margin="5,0,0,0"></CheckBox>
+            <CheckBox ToolTip="Check / UnCheck all" IsChecked="{Binding Path=AllChecked}" Margin="5,0,0,0" HorizontalAlignment="Center"></CheckBox>
+            <TextBlock Margin="5,0,0,0" HorizontalAlignment="Center">Entities</TextBlock>
         </WrapPanel>
         
         <ListView x:Name="TablesListView" Background="#EEEEEE" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path=Tables}">
@@ -46,5 +47,7 @@
             <TextBox IsReadOnly="True" Text="{Binding Path=SourceCode}" />
         </ScrollViewer>
 
+        <Button Command="{Binding Path=SaveCommand}" Grid.Column="3" Width="60" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0">Save code</Button>
+        
     </Grid>
 </UserControl>
