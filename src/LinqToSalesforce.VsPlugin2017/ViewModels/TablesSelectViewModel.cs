@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Threading;
 using EnvDTE;
@@ -16,6 +17,8 @@ using LinqToSalesforce.VsPlugin2017.Model;
 using LinqToSalesforce.VsPlugin2017.Storage;
 using Microsoft.FSharp.Control;
 using Microsoft.FSharp.Core;
+using VSLangProj;
+using MessageBox = System.Windows.MessageBox;
 
 namespace LinqToSalesforce.VsPlugin2017.ViewModels
 {
@@ -83,16 +86,45 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             project.Save();
 
             var vsProject = project.Object as VSProject;
+            if (vsProject == null)
+                return;
+
+            var references = GetReferences().ToArray();
+            if (references.All(r => r.Name != "LinqToSalesforce"))
+            {
+                MessageBox.Show("NuGet LinqToSalesforce should be added to project.");
+            }
         });
+
+        public Project Project
+        {
+            get
+            {
+                var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
+                if (activeSolutionProjects.Length <= 0)
+                    return null;
+
+                return (Project)activeSolutionProjects.GetValue(0);
+            }
+        }
+
+        public IEnumerable<Reference> GetReferences()
+        {
+            var project = Project;
+            var vsProject = project?.Object as VSProject;
+            if (vsProject == null)
+                yield break;
+
+            foreach (var r in vsProject.References)
+                yield return (Reference) r;
+        }
 
         public IEnumerable<ProjectItem> GetProjectFiles()
         {
-            var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
-            if (activeSolutionProjects.Length <= 0)
+            var project = Project;
+            if (project == null)
                 yield break;
-
-            var project = (Project)activeSolutionProjects.GetValue(0);
-
+            
             foreach (var p in project.Collection)
             {
                 var proj = (Project)p;
