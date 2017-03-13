@@ -18,8 +18,10 @@ using LinqToSalesforce.VsPlugin2017.Model;
 using LinqToSalesforce.VsPlugin2017.Storage;
 using Microsoft.FSharp.Control;
 using Microsoft.FSharp.Core;
+using Microsoft.VisualStudio.Shell;
 using VSLangProj;
 using MessageBox = System.Windows.MessageBox;
+using Task = System.Threading.Tasks.Task;
 
 namespace LinqToSalesforce.VsPlugin2017.ViewModels
 {
@@ -89,6 +91,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             if (references.All(r => r.Name != "LinqToSalesforce"))
             {
                 MessageBox.Show("NuGet LinqToSalesforce should be added to project.");
+                VsShellUtilities.OpenBrowser("https://www.nuget.org/packages/LinqToSalesforce");
             }
         });
 
