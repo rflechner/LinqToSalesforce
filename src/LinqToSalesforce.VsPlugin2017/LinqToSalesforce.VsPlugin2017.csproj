@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="CreateDiagramCommand.cs" />
     <Compile Include="CreateDiagramCommandPackage.cs" />
+    <Compile Include="Helpers\DteExtensions.cs" />
     <Compile Include="Model\Credentials.cs" />
     <Compile Include="Model\DiagramDocument.cs" />
     <Compile Include="Properties\Annotations.cs" />

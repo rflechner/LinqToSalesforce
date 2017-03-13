@@ -7,6 +7,9 @@
 using System;
 using System.ComponentModel.Design;
 using System.Globalization;
+using System.IO;
+using System.Linq;
+using LinqToSalesforce.VsPlugin2017.Helpers;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -102,13 +105,31 @@ namespace LinqToSalesforce.VsPlugin2017
             //    OLEMSGICON.OLEMSGICON_INFO,
             //    OLEMSGBUTTON.OLEMSGBUTTON_OK,
             //    OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            var dte = (EnvDTE.DTE)ServiceProvider.GetService(typeof(EnvDTE.DTE));
 
-            IVsUIShell uiShell = (IVsUIShell)ServiceProvider.GetService(typeof(SVsUIShell));
+            var uiShell = (IVsUIShell)ServiceProvider.GetService(typeof(SVsUIShell));
             var reply = VsShellUtilities.PromptYesNo("Do you want to add a Salesforce datacontext to the current project ?",
                 "LinqToSalesForce", OLEMSGICON.OLEMSGICON_QUERY, uiShell);
             if (reply)
             {
-                
+                var project = dte.GetCurrentProject();
+                if (!project.GetProjectFiles().Any(f => f.FileNames[0].EndsWith(SalesforceEntity.Extension)))
+                {
+                    var directory = Path.GetDirectoryName(project.FileName);
+                    var filename = Path.Combine(directory, "SoqlDataContext.sfdiagram");
+                    File.WriteAllText(filename, String.Empty);
+                    project.ProjectItems.AddFromFile(filename);
+                }
+                else
+                {
+                    VsShellUtilities.ShowMessageBox(
+                        ServiceProvider,
+                        $"Another {SalesforceEntity.Extension} detected",
+                        "Invalid operation",
+                        OLEMSGICON.OLEMSGICON_INFO,
+                        OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                        OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                }
             }
         }
     }

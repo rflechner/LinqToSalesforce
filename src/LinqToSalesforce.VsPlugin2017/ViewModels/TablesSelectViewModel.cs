@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using EnvDTE;
 using LinqToSalesforce.VsPlugin2017.Annotations;
+using LinqToSalesforce.VsPlugin2017.Helpers;
 using LinqToSalesforce.VsPlugin2017.Model;
 using LinqToSalesforce.VsPlugin2017.Storage;
 using Microsoft.FSharp.Control;
@@ -71,12 +72,11 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             var dir = Path.GetDirectoryName(Filename);
             var csFilename = Path.GetFileNameWithoutExtension(Filename) + ".generated.cs";
             var csFullPath = Path.Combine(dir, csFilename);
-            var fileNames = GetProjectFiles().ToArray();
+            var project = (Project)activeSolutionProjects.GetValue(0);
+            var fileNames = project.GetProjectFiles().ToArray();
 
             File.WriteAllText(csFullPath, SourceCode);
-
-            var project = (Project)activeSolutionProjects.GetValue(0);
-
+            
             if (fileNames.All(f => f.FileNames[0] != csFullPath))
             {
                 var item = fileNames.First(f => f.FileNames[0] == Filename);
@@ -84,12 +84,8 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             }
             
             project.Save();
-
-            var vsProject = project.Object as VSProject;
-            if (vsProject == null)
-                return;
-
-            var references = GetReferences().ToArray();
+            
+            var references = project.GetReferences().ToArray();
             if (references.All(r => r.Name != "LinqToSalesforce"))
             {
                 MessageBox.Show("NuGet LinqToSalesforce should be added to project.");
@@ -107,34 +103,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 return (Project)activeSolutionProjects.GetValue(0);
             }
         }
-
-        public IEnumerable<Reference> GetReferences()
-        {
-            var project = Project;
-            var vsProject = project?.Object as VSProject;
-            if (vsProject == null)
-                yield break;
-
-            foreach (var r in vsProject.References)
-                yield return (Reference) r;
-        }
-
-        public IEnumerable<ProjectItem> GetProjectFiles()
-        {
-            var project = Project;
-            if (project == null)
-                yield break;
-            
-            foreach (var p in project.Collection)
-            {
-                var proj = (Project)p;
-                foreach (var sp in proj.ProjectItems)
-                {
-                    yield return (ProjectItem)sp;
-                }
-            }
-        }
-
+        
         public bool AllChecked
         {
             get { return allChecked; }
