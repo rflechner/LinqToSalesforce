@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LinqToSalesforce.VsPlugin2017.Ui"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="300">
-    <Grid x:Name="MainGrid" Background="WhiteSmoke">
+             d:DesignHeight="420" d:DesignWidth="300" Background="White">
+    <Grid x:Name="MainGrid" Background="White" MaxWidth="400" MinWidth="300" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.Resources>
             <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}"/>
         </Grid.Resources>
@@ -16,19 +16,21 @@
         <StackPanel Margin="10,0,17,0">
             <TextBlock Foreground="#FF224091" FontSize="18" HorizontalAlignment="Center">Linq to Salesforce</TextBlock>
             <Label>Client id</Label>
-            <TextBox x:Name="ClientIdBox"></TextBox>
-            <Label>Client secret key</Label>
-            <TextBox x:Name="ClientSecretBox"></TextBox>
-            <Label>SecurityToken</Label>
-            <TextBox x:Name="SecurityTokenBox"></TextBox>
-            <Label>Login / email</Label>
-            <TextBox x:Name="UsernameBox"></TextBox>
-            <Label>Password</Label>
-            <PasswordBox x:Name="PasswordEntry"></PasswordBox>
-            <Label>Instance name</Label>
-            <TextBox x:Name="InstanceBox"></TextBox>
-            <Button Click="Button_Click" Margin="0,10,0,0">Authenticate</Button>
+            <TextBox x:Name="ClientIdBox" Background="#FFF4F7FF"></TextBox>
+            <Label Margin="0,10,0,0">Client secret key</Label>
+            <TextBox x:Name="ClientSecretBox" Background="#FFF4F7FF"></TextBox>
+            <Label Margin="0,10,0,0">SecurityToken</Label>
+            <TextBox x:Name="SecurityTokenBox" Background="#FFF4F7FF"></TextBox>
+            <Label Margin="0,10,0,0">Login / email</Label>
+            <TextBox x:Name="UsernameBox" Background="#FFF4F7FF"></TextBox>
+            <Label Margin="0,10,0,0">Password</Label>
+            <PasswordBox x:Name="PasswordEntry" Background="#FFF4F7FF"></PasswordBox>
+            <Label Margin="0,10,0,0">Instance name</Label>
+            <TextBox x:Name="InstanceBox" Background="#FFF4F7FF"></TextBox>
+            <Button Click="Button_Click" Margin="0,15,0,0" BorderBrush="#FF224091" Background="White" Foreground="#FF224091">Authenticate</Button>
+            <Button Background="Transparent" BorderBrush="Transparent" Click="Button_Click_1">
+                <TextBlock HorizontalAlignment="Center" FontSize="10" VerticalAlignment="Center" Foreground="#FF274BAC" TextDecorations="Underline" Cursor="Hand">Need help ?</TextBlock>
+            </Button>
         </StackPanel>
-        
     </Grid>
 </UserControl>

@@ -5,10 +5,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Threading;
 using EnvDTE;
@@ -19,7 +17,6 @@ using LinqToSalesforce.VsPlugin2017.Storage;
 using Microsoft.FSharp.Control;
 using Microsoft.FSharp.Core;
 using Microsoft.VisualStudio.Shell;
-using VSLangProj;
 using MessageBox = System.Windows.MessageBox;
 using Task = System.Threading.Tasks.Task;
 
@@ -27,6 +24,8 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 {
     public class TablesSelectViewModel : INotifyPropertyChanged
     {
+        static readonly object locker = new object();
+
         private readonly DTE dte;
         private readonly Dispatcher dispatcher;
         private readonly IDiagramDocumentStorage documentStorage;
@@ -44,7 +43,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             Identity = identity;
 
             Tables = new ObservableCollection<TableDescPresenter>();
-            AllChecked = true;
+            allChecked = false;
         }
 
         public DiagramDocument Document { get; }
@@ -67,33 +66,47 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
         public ICommand SaveCommand => new RelayCommand(() =>
         {
-            var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
-            if (activeSolutionProjects.Length <= 0)
-                return;
-
-            var dir = Path.GetDirectoryName(Filename);
-            var csFilename = Path.GetFileNameWithoutExtension(Filename) + ".generated.cs";
-            var csFullPath = Path.Combine(dir, csFilename);
-            var project = (Project)activeSolutionProjects.GetValue(0);
-            var fileNames = project.GetProjectFiles().ToArray();
-
-            File.WriteAllText(csFullPath, SourceCode);
-            
-            if (fileNames.All(f => f.FileNames[0] != csFullPath))
-            {
-                var item = fileNames.First(f => f.FileNames[0] == Filename);
-                item.ProjectItems.AddFromFile(csFullPath);
-            }
-            
-            project.Save();
-            
-            var references = project.GetReferences().ToArray();
-            if (references.All(r => r.Name != "LinqToSalesforce"))
-            {
-                MessageBox.Show("NuGet LinqToSalesforce should be added to project.");
-                VsShellUtilities.OpenBrowser("https://www.nuget.org/packages/LinqToSalesforce");
-            }
+            GenerateSourceCode();
         });
+
+        private void SaveGeneratedCode()
+        {
+            lock (locker)
+            {
+                var csFullPath = CsFullPath;
+                File.WriteAllText(csFullPath, SourceCode);
+
+                var activeSolutionProjects = (Array) dte.ActiveSolutionProjects;
+                if (activeSolutionProjects.Length <= 0)
+                {
+                    //MessageBox.Show("Please select a project in the Solution Explorer.");
+                    return;
+                }
+                var project = (Project) activeSolutionProjects.GetValue(0);
+                var fileNames = project.GetProjectFiles().ToArray();
+
+                if (fileNames.All(f => f.FileNames[0] != csFullPath))
+                {
+                    var item = fileNames.First(f => f.FileNames[0] == Filename);
+                    item.ProjectItems.AddFromFile(csFullPath);
+                }
+
+                project.Save();
+
+                
+            }
+        }
+
+        private string CsFullPath
+        {
+            get
+            {
+                var dir = Path.GetDirectoryName(Filename);
+                var csFilename = Path.GetFileNameWithoutExtension(Filename) + ".generated.cs";
+                var csFullPath = Path.Combine(dir, csFilename);
+                return csFullPath;
+            }
+        }
 
         public Project Project
         {
@@ -117,12 +130,13 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 {
                     table.Selected = allChecked;
                 }
-                
+
                 GenerateSourceCode();
+                OnPropertyChanged();
             }
         }
 
-        private void GenerateSourceCode()
+        public void GenerateSourceCode()
         {
             var nameSpace = ResolveNameSpace();
 
@@ -132,16 +146,62 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 var selectedTables = Tables.Where(t => t.Selected).Select(t => t.Table).ToArray();
                 var csharp = CodeGeneration.generateCsharp(selectedTables, nameSpace);
 
-                dispatcher.Invoke(() =>
+                dispatcher.InvokeAsync(() =>
                 {
-                    return SourceCode = csharp;
+                    SourceCode = csharp;
                 });
 
                 SubscribeTablePresenters();
-                Document.Tables = Tables.Select(t => t.Table.Name).ToArray();
-                Document.SelectedTables = selectedTables.Select(t => t.Name).ToArray();
-                documentStorage.Save(Document, Filename);
+                if (Tables.Any())
+                {
+                    Document.Tables = Tables.Select(t => t.Table.Name).ToArray();
+                    Document.SelectedTables = selectedTables.Select(t => t.Name).ToArray();
+                    documentStorage.Save(Document, Filename);
+                }
+                
+                SaveGeneratedCode();
             });
+        }
+
+        public void ViewCode()
+        {
+            foreach (var project in dte.GetSolutionProjects())
+            {
+                TryOpenGeneratedCsFile(project);
+            }
+
+            
+        }
+
+        private void TryOpenGeneratedCsFile(Project project)
+        {
+            var item = project?.GetProjectFiles()?.FirstOrDefault(i => i.FileNames[0] == Filename);
+            if (item != null)
+            {
+                foreach (ProjectItem projectItem in item.ProjectItems)
+                {
+                    if (projectItem.FileNames[0] == CsFullPath)
+                    {
+                        CheckNuget(project);
+
+                        if (projectItem.IsOpen)
+                            continue;
+                        var window = projectItem.Open();
+                        window.Visible = true;
+                        window.SetFocus();
+                    }
+                }
+            }
+        }
+
+        private static void CheckNuget(Project project)
+        {
+            var references = project.GetReferences().ToArray();
+            if (references.All(r => r.Name != "LinqToSalesforce"))
+            {
+                MessageBox.Show("NuGet LinqToSalesforce should be added to project.");
+                VsShellUtilities.OpenBrowser("https://www.nuget.org/packages/LinqToSalesforce");
+            }
         }
 
         public string ResolveNameSpace()
@@ -168,15 +228,21 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
                     foreach (var tableDesc in tableDescs)
                     {
+                        var selected = Document?.SelectedTables?.Contains(tableDesc.Name) ?? false;
                         var presenter = new TableDescPresenter
                         {
-                            Selected = false,
+                            Selected = selected,
                             Table = tableDesc
                         };
                         Tables.Add(presenter);
                     }
 
+                    allChecked = Document?.SelectedTables?.SequenceEqual(Document?.Tables ?? Enumerable.Empty<string>()) ?? false;
+                    OnPropertyChanged(nameof(AllChecked));
+
                     SubscribeTablePresenters();
+
+                    GenerateSourceCode();
                 });
             });
         }
@@ -219,27 +285,5 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
-
-    public class RelayCommand : ICommand
-    {
-        private readonly Action action;
-
-        public RelayCommand(Action action)
-        {
-            this.action = action;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
-        {
-            action?.Invoke();
-        }
-
-        public event EventHandler CanExecuteChanged;
     }
 }

@@ -16,20 +16,15 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
     {
         public EventHandler Backclicked;
 
-        
-        private readonly DTE dte;
         private readonly TablesSelectViewModel viewModel;
 
         public TablesSelectorControl(string filename, DiagramDocument document, Rest.OAuth.Identity identity, DTE dte)
         {
-            this.dte = dte;
-            
             viewModel = new TablesSelectViewModel(dte, Dispatcher, new DiagramDocumentStorage(), document, filename, identity);
             
             InitializeComponent();
         }
         
-
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
@@ -38,15 +33,22 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
             TablesListView.ItemsSource = viewModel.Tables;
             
             viewModel.LoadTables();
+
+            Browser.Navigate(new Uri("https://rflechner.github.io/LinqToSalesforce/tutorial.html"));
         }
         
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AuthButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             if (button == null)
                 return;
 
             Backclicked?.Invoke(this, new EventArgs());
+        }
+
+        private void CodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.ViewCode();
         }
     }
 }

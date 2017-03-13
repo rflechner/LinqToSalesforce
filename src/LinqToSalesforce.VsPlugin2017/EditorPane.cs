@@ -20,7 +20,6 @@ namespace LinqToSalesforce.VsPlugin2017
         public EditorPane(string filename, DTE dte) : base(null)
         {
             Content = new AuthenticationControl(filename, dte);
-            
         }
         
         public int FReserved1(uint dwReserved, uint message, IntPtr wParam, IntPtr lParam) => VSConstants.S_OK;

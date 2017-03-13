@@ -6,33 +6,36 @@
              xmlns:local="clr-namespace:LinqToSalesforce.VsPlugin2017.Ui"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="WhiteSmoke">
+    <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Name="Top" Height="20"></RowDefinition>
+            <RowDefinition Name="Top" Height="50"></RowDefinition>
             <RowDefinition Height="15"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Name="Left" MinWidth="100"></ColumnDefinition>
+            <ColumnDefinition Name="Left" MinWidth="150" Width="150"></ColumnDefinition>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Margin="5,0" Grid.Row="0" Grid.ColumnSpan="3">
-            <Button Click="Button_Click" VerticalAlignment="Center">Credentials</Button>
-            <TextBlock Margin="5" VerticalAlignment="Center">Tables selector</TextBlock>
+            <StackPanel Margin="0,5,0,0">
+                <Button BorderBrush="#FF224091" Click="AuthButton_Click" FontSize="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF224091">Credentials</Button>
+                <Button Margin="0,5,0,0" BorderBrush="#FF224091" FontSize="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF224091" Click="CodeButton_Click">View code</Button>
+            </StackPanel>
+            <TextBlock Foreground="#FF224091" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">Linq to Salesforce</TextBlock>
         </StackPanel>
 
-        <GridSplitter HorizontalAlignment="Right" 
+        <GridSplitter HorizontalAlignment="Right"
                   VerticalAlignment="Stretch" 
                   Grid.Row="2" Grid.Column="1" ResizeBehavior="PreviousAndNext"
-                  Width="4" Background="#FFBCBCBC"/>
+                  Width="2" Background="#FF224091"/>
 
         <WrapPanel Grid.Row="1" Grid.Column="0">
             <CheckBox ToolTip="Check / UnCheck all" IsChecked="{Binding Path=AllChecked}" Margin="5,0,0,0" HorizontalAlignment="Center"></CheckBox>
-            <TextBlock Margin="5,0,0,0" HorizontalAlignment="Center">Entities</TextBlock>
+            <TextBlock Margin="0" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center">All</TextBlock>
         </WrapPanel>
         
-        <ListView x:Name="TablesListView" Background="#EEEEEE" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path=Tables}">
+        <ListView x:Name="TablesListView" Background="#FFEFF6FF" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path=Tables}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -43,11 +46,12 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <ScrollViewer Grid.Row="2" Grid.Column="2">
-            <TextBox IsReadOnly="True" Text="{Binding Path=SourceCode}" />
-        </ScrollViewer>
+        <!--<TextBox Grid.Row="2" Grid.Column="2" VerticalScrollBarVisibility="Visible" IsReadOnly="True" Text="{Binding Path=SourceCode, IsAsync=True}" />-->
+        <WebBrowser x:Name="Browser" Grid.Row="2" Grid.Column="2" />
 
-        <Button Command="{Binding Path=SaveCommand}" Grid.Column="3" Width="60" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0">Save code</Button>
+        <!--<TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Path=SourceCode, IsAsync=True}"></TextBlock>-->
+        
+        <Button Visibility="Hidden" Command="{Binding Path=SaveCommand}" Grid.Column="2"  Background="White" BorderBrush="#FF224091" Foreground="#FF224091" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="10" VerticalAlignment="Bottom">Save code</Button>
         
     </Grid>
 </UserControl>

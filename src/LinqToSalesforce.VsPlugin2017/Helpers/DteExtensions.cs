@@ -8,6 +8,15 @@ namespace LinqToSalesforce.VsPlugin2017.Helpers
     public static class DteExtensions
     {
 
+        public static IEnumerable<Project> GetSolutionProjects(this DTE dte)
+        {
+            Projects solutionProjects = dte.Solution.Projects;
+            foreach (var project in solutionProjects)
+            {
+                yield return (Project) project;
+            }
+        }
+
         public static Project GetCurrentProject(this DTE dte)
         {
             var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
