@@ -28,7 +28,7 @@
         <GridSplitter HorizontalAlignment="Right"
                   VerticalAlignment="Stretch" 
                   Grid.Row="2" Grid.Column="1" ResizeBehavior="PreviousAndNext"
-                  Width="2" Background="#FF224091"/>
+                  Width="4" Background="#FF224091"/>
 
         <WrapPanel Grid.Row="1" Grid.Column="0">
             <CheckBox ToolTip="Check / UnCheck all" IsChecked="{Binding Path=AllChecked}" Margin="5,0,0,0" HorizontalAlignment="Center"></CheckBox>
