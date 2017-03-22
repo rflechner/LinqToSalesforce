@@ -16,6 +16,8 @@ open System.IO
 open SourceLink
 #endif
 
+open Fake.StrongNamingHelper
+
 // --------------------------------------------------------------------------------------
 // START TODO: Provide project-specific details below
 // --------------------------------------------------------------------------------------
@@ -136,14 +138,26 @@ Target "Clean" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build library & test project
 
+Target "KeyGen" (fun _ ->
+  let strongFile = __SOURCE_DIRECTORY__ @@ "LinqToSalesforce.snk"
+  match TestFile strongFile with
+  | true -> ()
+  | _ -> strongFile |> sprintf "-k %s" |> StrongName id
+)
+
 Target "Build" (fun _ ->
-    !! solutionFile
-#if MONO
-    |> MSBuildReleaseExt "" [ ("DefineConstants","MONO") ] "Build"
-#else
-    |> MSBuildRelease "" "Build"
-#endif
-    |> ignore
+//    !! solutionFile
+//#if MONO
+//    |> MSBuildReleaseExt "" [ ("DefineConstants","MONO") ] "Build"
+//#else
+//    |> MSBuildRelease "" "Build"
+//#endif
+//    |> ignore
+
+  let snk = __SOURCE_DIRECTORY__ @@ "LinqToSalesforce.snk"
+  !! solutionFile
+  |> MSBuildReleaseExt "" [ ("AssemblyOriginatorKeyFile",snk); ("SignAssembly", "true") ] "Build"
+  |> ignore
 )
 
 // --------------------------------------------------------------------------------------
@@ -381,6 +395,7 @@ Target "BuildPackage" DoNothing
 Target "All" DoNothing
 
 "AssemblyInfo"
+  ==> "KeyGen"
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
