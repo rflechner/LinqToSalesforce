@@ -50,7 +50,10 @@ namespace LinqToSalesforce.Example1
 
                 var dates = (from a in context.Accounts
                              where a.Name.Contains("Company")
-                             select a.CreatedDate).ToList();
+                             select a.CreatedDate)
+                             .Skip(3)
+                             .Take(4)
+                             .ToList();
                 foreach (var date in dates)
                 {
                     WriteLine($"Date: {date}");
