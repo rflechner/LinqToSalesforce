@@ -1,4 +1,10 @@
 
+#### 0.2.0-beta - March 22 2017
+* Using Salesforce API v30.0
+* PR #23 FEAT: can use take and skip when selecting a member
+* PR #21 FEAT: Paging, OrderBy multiple fields, OrElse in WhereArgs
+* PR #20 FIX: QueryProvider CreateQuery (non-generic) not working
+
 #### 0.1.5-beta - February 24 2017
 * Implement SOQL Count().
 * Fix: assign entity Id after insert operation.
