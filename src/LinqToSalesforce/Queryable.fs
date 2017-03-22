@@ -79,6 +79,20 @@ module TypeSystem =
 
 type QueryProvider (queryContext:IQueryContext, tableName) =
 
+  let rec findSelect (exp:MethodCallExpression) : UnaryExpression option =
+    if exp.Arguments.Count < 0
+    then None
+    else
+      if exp.Method.Name = "Select"
+      then
+          match exp.Arguments.[1] with
+          | :? UnaryExpression as u -> Some u
+          | _ -> None
+        else
+          match exp.Arguments.[0] with
+          | :? MethodCallExpression as sub -> findSelect sub
+          | _ -> None
+
   member private x.BuildSelectMemberFunc<'rt,'pt>(m:MemberExpression) =
     match m.Member, m.Expression with
     | (:? PropertyInfo as p), (:? ParameterExpression as pa) ->
@@ -90,7 +104,6 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
 
   member private x.SelectProperties<'rt,'pt>(u:UnaryExpression, results:IEnumerable<'pt>) : IEnumerable<'rt> =
     let operand = u.Operand :?> LambdaExpression
-    let returnType = typeof<'rt>
     let paramType = typeof<'pt>
     match operand.Body with
     | :? MemberExpression as m ->
@@ -134,15 +147,20 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
         | _ -> (result :?> IEnumerable<'TResult>).First()
       else 
         let results = (result :?> IEnumerable)
+        let modelType = result.GetType().GetGenericArguments() |> Seq.head
+        let selectedType = typeof<'TResult>.GetGenericArguments() |> Seq.head
+        let m = x.GetType().GetMethod("SelectProperties", BindingFlags.NonPublic ||| BindingFlags.Instance)
+        let selector = m.MakeGenericMethod(selectedType, modelType)
         match expression with
         | :? MethodCallExpression as e when e.Method.Name = "Select" ->
             match e.Arguments.[1] with
             | :? UnaryExpression as u ->
-                let modelType = result.GetType().GetGenericArguments() |> Seq.head
-                let selectedType = typeof<'TResult>.GetGenericArguments() |> Seq.head
-                let m = x.GetType().GetMethod("SelectProperties", Reflection.BindingFlags.NonPublic ||| Reflection.BindingFlags.Instance)
-                m.MakeGenericMethod(selectedType, modelType).Invoke(x, [|u:>obj; results:>obj|]) :?> 'TResult
+                selector.Invoke(x, [|u:>obj; results:>obj|]) :?> 'TResult
             | _ -> failwith "Not implemented select case"
+        | :? MethodCallExpression as e when e.Method.Name = "Take" || e.Method.Name = "Skip" ->
+              match findSelect e with
+              | Some u -> selector.Invoke(x, [|u:>obj; results:>obj|]) :?> 'TResult
+              | _ -> result :?> 'TResult
         | _ -> result :?> 'TResult
     member x.Execute(expression: Expression): obj = 
       queryContext.Execute expression false
