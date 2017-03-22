@@ -14,6 +14,8 @@ type IQueryContext =
 type Queryable<'t> (provider:IQueryProvider, tableName, expression:Expression option) =
   new (provider:IQueryProvider, tableName) =
     Queryable<'t>(provider, tableName, None)
+  new (args: obj array) =
+    Queryable<'t>(args.[0] :?> IQueryProvider, args.[1] :?> string, args.[2] :?> Expression option)
   member val Provider:IQueryProvider=provider with get, set
   member val TableName:string=tableName with get, set
   member x.BuildExpression() =
@@ -56,14 +58,14 @@ module TypeSystem =
       if t.IsGenericType
       then
         t.GetGenericArguments()
-          |> Seq.tryFind (fun a -> typeof<(IEnumerable<_>)>.MakeGenericType(a).IsAssignableFrom t)
+          |> Seq.tryFind (fun a -> typedefof<(IEnumerable<_>)>.MakeGenericType(a).IsAssignableFrom t)
       else None
 
     match seqType with
     | t when t = typeof<string> || isNull t -> None
     | t when t.IsArray -> 
         typeof<IEnumerable<_>>.MakeGenericType(seqType.GetElementType()) |> Some
-    | IsInGenericArguments t -> Some t
+    | IsInGenericArguments t -> typedefof<(IEnumerable<_>)>.MakeGenericType(t) |> Some
     | InterfacesHaveIenum t -> Some t
     | t when t.BaseType <> null && t.BaseType <> typeof<obj> ->
         findIEnumerable t.BaseType
@@ -77,6 +79,20 @@ module TypeSystem =
 
 type QueryProvider (queryContext:IQueryContext, tableName) =
 
+  let rec findSelect (exp:MethodCallExpression) : UnaryExpression option =
+    if exp.Arguments.Count < 0
+    then None
+    else
+      if exp.Method.Name = "Select"
+      then
+          match exp.Arguments.[1] with
+          | :? UnaryExpression as u -> Some u
+          | _ -> None
+        else
+          match exp.Arguments.[0] with
+          | :? MethodCallExpression as sub -> findSelect sub
+          | _ -> None
+
   member private x.BuildSelectMemberFunc<'rt,'pt>(m:MemberExpression) =
     match m.Member, m.Expression with
     | (:? PropertyInfo as p), (:? ParameterExpression as pa) ->
@@ -88,7 +104,6 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
 
   member private x.SelectProperties<'rt,'pt>(u:UnaryExpression, results:IEnumerable<'pt>) : IEnumerable<'rt> =
     let operand = u.Operand :?> LambdaExpression
-    let returnType = typeof<'rt>
     let paramType = typeof<'pt>
     match operand.Body with
     | :? MemberExpression as m ->
@@ -132,21 +147,25 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
         | _ -> (result :?> IEnumerable<'TResult>).First()
       else 
         let results = (result :?> IEnumerable)
+        let modelType = result.GetType().GetGenericArguments() |> Seq.head
+        let selectedType = typeof<'TResult>.GetGenericArguments() |> Seq.head
+        let m = x.GetType().GetMethod("SelectProperties", BindingFlags.NonPublic ||| BindingFlags.Instance)
+        let selector = m.MakeGenericMethod(selectedType, modelType)
         match expression with
         | :? MethodCallExpression as e when e.Method.Name = "Select" ->
             match e.Arguments.[1] with
             | :? UnaryExpression as u ->
-                let modelType = result.GetType().GetGenericArguments() |> Seq.head
-                let selectedType = typeof<'TResult>.GetGenericArguments() |> Seq.head
-                let m = x.GetType().GetMethod("SelectProperties", Reflection.BindingFlags.NonPublic ||| Reflection.BindingFlags.Instance)
-                m.MakeGenericMethod(selectedType, modelType).Invoke(x, [|u:>obj; results:>obj|]) :?> 'TResult
+                selector.Invoke(x, [|u:>obj; results:>obj|]) :?> 'TResult
             | _ -> failwith "Not implemented select case"
+        | :? MethodCallExpression as e when e.Method.Name = "Take" || e.Method.Name = "Skip" ->
+              match findSelect e with
+              | Some u -> selector.Invoke(x, [|u:>obj; results:>obj|]) :?> 'TResult
+              | _ -> result :?> 'TResult
         | _ -> result :?> 'TResult
     member x.Execute(expression: Expression): obj = 
       queryContext.Execute expression false
     member x.CreateQuery(expression: Expression): IQueryable = 
       let elementType = TypeSystem.getElementType expression.Type
-      let args = [|x:>obj;expression:>obj|]
-      let ty = typeof<Queryable<_>>.MakeGenericType(elementType)
+      let args : obj[] = [|x; tableName; Some expression|]
+      let ty = typedefof<Queryable<_>>.MakeGenericType(elementType)
       Activator.CreateInstance(ty, args) :?> IQueryable
-
