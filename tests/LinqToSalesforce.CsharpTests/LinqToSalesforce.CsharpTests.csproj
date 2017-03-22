@@ -44,9 +44,12 @@
     <Compile Include="ExpressionLinqTests.cs" />
     <Compile Include="FakeQueryContext.cs" />
     <Compile Include="Models.cs" />
+    <Compile Include="ODataHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryProviderTests.cs" />
     <Compile Include="TranslationTests.cs" />
+    <Compile Include="VisitorOdataTests.cs" />
+    <Compile Include="VisitorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
@@ -1322,5 +1325,8 @@
       <Private>True</Private>
       <Paket>True</Paket>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
 </Project>
