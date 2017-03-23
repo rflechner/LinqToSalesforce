@@ -38,7 +38,18 @@
         <div class="span9" id="main">
           
 <h1><a name="LinqToSalesforce-tutorial" class="anchor" href="#LinqToSalesforce-tutorial">LinqToSalesforce tutorial</a></h1>
-<h2><a name="Generating-your-entities" class="anchor" href="#Generating-your-entities">Generating your entities</a></h2>
+<h2><a name="Generating-your-entities-using-Visual-Studio-plugin" class="anchor" href="#Generating-your-entities-using-Visual-Studio-plugin">Generating your entities using Visual Studio plugin</a></h2>
+<p>Add diagram into your project:</p>
+<ul>
+<li>Select the project.</li>
+<li><p>Click on <strong>Tools</strong> ==&gt; <strong>"Create Salesforce linq entities"</strong>.</p></li>
+</ul>
+<p><img src="img/sf_plugin_screen2.gif" alt="screen2" /></p>
+<p>Enter your credentials.</p>
+<p><img src="img/sf_plugin_doc_1.png" alt="authentication" /></p>
+<p>Select entities to generate.</p>
+<p><img src="img/sf_plugin_screen3.gif" alt="screen3" /></p>
+<h2><a name="Generating-your-entities-using-command-line" class="anchor" href="#Generating-your-entities-using-command-line">Generating your entities using command line</a></h2>
 <p>Developing with Salesforce SOQL Linq provider is like a "DB First" entity framework using.</p>
 <p>NuGet packages contains 'LinqToSalesforce.ModelGenerator.exe' in tools folder</p>
 <p><img src="img/nuget1.png" alt="nuget1" /></p>
@@ -46,7 +57,7 @@
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="schell"> &gt; LinqToSalesforce.ModelGenerator.exe --clientid ... --clientsecret ... --securitytoken ... --login ... 
+<td class="snippet"><pre class="fssnip"><code lang="shell"> &gt; LinqToSalesforce.ModelGenerator.exe --clientid ... --clientsecret ... --securitytoken ... --login ... 
     \ --password ... --instancename ... --outputfile "absolute_path_to\Models.cs"
 </code></pre></td></tr></table>
 <p>Your 'Model.cs' should have things like:</p>
@@ -144,7 +155,7 @@
 <span class="k">using</span> LinqToSalesforce;
 <span class="k">using</span> <span class="k">static</span> System.Console;
 
-<span class="k">var</span> impersonationParam <span class="o">=</span> <span class="k">new</span> Rest.OAuth.ImpersonationParam(clientId, clientsecret, securityToken, username, password);
+<span class="k">var</span> impersonationParam <span class="o">=</span> <span class="k">new</span> Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
 <span class="k">var</span> context <span class="o">=</span> <span class="k">new</span> SalesforceDataContext(<span class="s">"eu11"</span>, impersonationParam);
 
 <span class="k">var</span> accounts <span class="o">=</span> (<span class="k">from</span> a <span class="k">in</span> context.Accounts

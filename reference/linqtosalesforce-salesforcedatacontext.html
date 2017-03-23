@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>SalesforceDataContext - LinqToSalesforce</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="rflechner"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/LinqToSalesforce/content/style.css" />
+    <script type="text/javascript" src="/LinqToSalesforce/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <link type="text/css" rel="stylesheet" href="/LinqToSalesforce/romcyber.css" />
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://fsharpparis.github.io">FSharp Paris</a></li>
+          <li><a href="https://github.com/rflechner/LinqToSalesforce">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/LinqToSalesforce/index.html">LinqToSalesforce</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>SalesforceDataContext</h1>
+<p>
+  <span>Namespace: LinqToSalesforce</span><br />
+</p>
+<div class="xmldoc">
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5140', 5140)" onmouseover="showTip(event, '5140', 5140)">
+            new(instanceName, authparams)
+          </code>
+          <div class="tip" id="5140">
+            <strong>Signature:</strong> (instanceName:string * authparams:ImpersonationParam) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5141', 5141)" onmouseover="showTip(event, '5141', 5141)">
+            AccountContactRoles
+          </code>
+          <div class="tip" id="5141">
+            <strong>Signature:</strong> IQueryable&lt;AccountContactRole&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5142', 5142)" onmouseover="showTip(event, '5142', 5142)">
+            AccountFeeds
+          </code>
+          <div class="tip" id="5142">
+            <strong>Signature:</strong> IQueryable&lt;AccountFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5143', 5143)" onmouseover="showTip(event, '5143', 5143)">
+            AccountHistories
+          </code>
+          <div class="tip" id="5143">
+            <strong>Signature:</strong> IQueryable&lt;AccountHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5144', 5144)" onmouseover="showTip(event, '5144', 5144)">
+            AccountPartners
+          </code>
+          <div class="tip" id="5144">
+            <strong>Signature:</strong> IQueryable&lt;AccountPartner&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5145', 5145)" onmouseover="showTip(event, '5145', 5145)">
+            Accounts
+          </code>
+          <div class="tip" id="5145">
+            <strong>Signature:</strong> IQueryable&lt;Account&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5146', 5146)" onmouseover="showTip(event, '5146', 5146)">
+            AccountShares
+          </code>
+          <div class="tip" id="5146">
+            <strong>Signature:</strong> IQueryable&lt;AccountShare&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5147', 5147)" onmouseover="showTip(event, '5147', 5147)">
+            ActivityHistories
+          </code>
+          <div class="tip" id="5147">
+            <strong>Signature:</strong> IQueryable&lt;ActivityHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5148', 5148)" onmouseover="showTip(event, '5148', 5148)">
+            AdditionalNumbers
+          </code>
+          <div class="tip" id="5148">
+            <strong>Signature:</strong> IQueryable&lt;AdditionalNumber&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5149', 5149)" onmouseover="showTip(event, '5149', 5149)">
+            AggregateResults
+          </code>
+          <div class="tip" id="5149">
+            <strong>Signature:</strong> IQueryable&lt;AggregateResult&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5150', 5150)" onmouseover="showTip(event, '5150', 5150)">
+            ApexClasses
+          </code>
+          <div class="tip" id="5150">
+            <strong>Signature:</strong> IQueryable&lt;ApexClass&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5151', 5151)" onmouseover="showTip(event, '5151', 5151)">
+            ApexComponents
+          </code>
+          <div class="tip" id="5151">
+            <strong>Signature:</strong> IQueryable&lt;ApexComponent&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5152', 5152)" onmouseover="showTip(event, '5152', 5152)">
+            ApexLogs
+          </code>
+          <div class="tip" id="5152">
+            <strong>Signature:</strong> IQueryable&lt;ApexLog&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5153', 5153)" onmouseover="showTip(event, '5153', 5153)">
+            ApexPages
+          </code>
+          <div class="tip" id="5153">
+            <strong>Signature:</strong> IQueryable&lt;ApexPage&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5154', 5154)" onmouseover="showTip(event, '5154', 5154)">
+            ApexTriggers
+          </code>
+          <div class="tip" id="5154">
+            <strong>Signature:</strong> IQueryable&lt;ApexTrigger&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5155', 5155)" onmouseover="showTip(event, '5155', 5155)">
+            AssetFeeds
+          </code>
+          <div class="tip" id="5155">
+            <strong>Signature:</strong> IQueryable&lt;AssetFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5156', 5156)" onmouseover="showTip(event, '5156', 5156)">
+            AssetHistories
+          </code>
+          <div class="tip" id="5156">
+            <strong>Signature:</strong> IQueryable&lt;AssetHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5157', 5157)" onmouseover="showTip(event, '5157', 5157)">
+            Assets
+          </code>
+          <div class="tip" id="5157">
+            <strong>Signature:</strong> IQueryable&lt;Asset&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5158', 5158)" onmouseover="showTip(event, '5158', 5158)">
+            AssignmentRules
+          </code>
+          <div class="tip" id="5158">
+            <strong>Signature:</strong> IQueryable&lt;AssignmentRule&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5159', 5159)" onmouseover="showTip(event, '5159', 5159)">
+            AsyncApexJobs
+          </code>
+          <div class="tip" id="5159">
+            <strong>Signature:</strong> IQueryable&lt;AsyncApexJob&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5160', 5160)" onmouseover="showTip(event, '5160', 5160)">
+            Attachments
+          </code>
+          <div class="tip" id="5160">
+            <strong>Signature:</strong> IQueryable&lt;Attachment&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5161', 5161)" onmouseover="showTip(event, '5161', 5161)">
+            BrandTemplates
+          </code>
+          <div class="tip" id="5161">
+            <strong>Signature:</strong> IQueryable&lt;BrandTemplate&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5162', 5162)" onmouseover="showTip(event, '5162', 5162)">
+            BusinessHours
+          </code>
+          <div class="tip" id="5162">
+            <strong>Signature:</strong> IQueryable&lt;BusinessHours&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5163', 5163)" onmouseover="showTip(event, '5163', 5163)">
+            BusinessProcesses
+          </code>
+          <div class="tip" id="5163">
+            <strong>Signature:</strong> IQueryable&lt;BusinessProcess&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5164', 5164)" onmouseover="showTip(event, '5164', 5164)">
+            CallCenters
+          </code>
+          <div class="tip" id="5164">
+            <strong>Signature:</strong> IQueryable&lt;CallCenter&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5165', 5165)" onmouseover="showTip(event, '5165', 5165)">
+            CampaignFeeds
+          </code>
+          <div class="tip" id="5165">
+            <strong>Signature:</strong> IQueryable&lt;CampaignFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5166', 5166)" onmouseover="showTip(event, '5166', 5166)">
+            CampaignMembers
+          </code>
+          <div class="tip" id="5166">
+            <strong>Signature:</strong> IQueryable&lt;CampaignMember&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5167', 5167)" onmouseover="showTip(event, '5167', 5167)">
+            CampaignMemberStatus
+          </code>
+          <div class="tip" id="5167">
+            <strong>Signature:</strong> IQueryable&lt;CampaignMemberStatus&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5168', 5168)" onmouseover="showTip(event, '5168', 5168)">
+            Campaigns
+          </code>
+          <div class="tip" id="5168">
+            <strong>Signature:</strong> IQueryable&lt;Campaign&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5169', 5169)" onmouseover="showTip(event, '5169', 5169)">
+            CampaignShares
+          </code>
+          <div class="tip" id="5169">
+            <strong>Signature:</strong> IQueryable&lt;CampaignShare&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5170', 5170)" onmouseover="showTip(event, '5170', 5170)">
+            CaseComments
+          </code>
+          <div class="tip" id="5170">
+            <strong>Signature:</strong> IQueryable&lt;CaseComment&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5171', 5171)" onmouseover="showTip(event, '5171', 5171)">
+            CaseContactRoles
+          </code>
+          <div class="tip" id="5171">
+            <strong>Signature:</strong> IQueryable&lt;CaseContactRole&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5172', 5172)" onmouseover="showTip(event, '5172', 5172)">
+            CaseFeeds
+          </code>
+          <div class="tip" id="5172">
+            <strong>Signature:</strong> IQueryable&lt;CaseFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5173', 5173)" onmouseover="showTip(event, '5173', 5173)">
+            CaseHistories
+          </code>
+          <div class="tip" id="5173">
+            <strong>Signature:</strong> IQueryable&lt;CaseHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5174', 5174)" onmouseover="showTip(event, '5174', 5174)">
+            Cases
+          </code>
+          <div class="tip" id="5174">
+            <strong>Signature:</strong> IQueryable&lt;Case&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5175', 5175)" onmouseover="showTip(event, '5175', 5175)">
+            CaseShares
+          </code>
+          <div class="tip" id="5175">
+            <strong>Signature:</strong> IQueryable&lt;CaseShare&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5176', 5176)" onmouseover="showTip(event, '5176', 5176)">
+            CaseSolutions
+          </code>
+          <div class="tip" id="5176">
+            <strong>Signature:</strong> IQueryable&lt;CaseSolution&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5177', 5177)" onmouseover="showTip(event, '5177', 5177)">
+            CaseStatus
+          </code>
+          <div class="tip" id="5177">
+            <strong>Signature:</strong> IQueryable&lt;CaseStatus&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5178', 5178)" onmouseover="showTip(event, '5178', 5178)">
+            CaseTeamMembers
+          </code>
+          <div class="tip" id="5178">
+            <strong>Signature:</strong> IQueryable&lt;CaseTeamMember&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5179', 5179)" onmouseover="showTip(event, '5179', 5179)">
+            CaseTeamRoles
+          </code>
+          <div class="tip" id="5179">
+            <strong>Signature:</strong> IQueryable&lt;CaseTeamRole&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5180', 5180)" onmouseover="showTip(event, '5180', 5180)">
+            CaseTeamTemplateMembers
+          </code>
+          <div class="tip" id="5180">
+            <strong>Signature:</strong> IQueryable&lt;CaseTeamTemplateMember&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5181', 5181)" onmouseover="showTip(event, '5181', 5181)">
+            CaseTeamTemplateRecords
+          </code>
+          <div class="tip" id="5181">
+            <strong>Signature:</strong> IQueryable&lt;CaseTeamTemplateRecord&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5182', 5182)" onmouseover="showTip(event, '5182', 5182)">
+            CaseTeamTemplates
+          </code>
+          <div class="tip" id="5182">
+            <strong>Signature:</strong> IQueryable&lt;CaseTeamTemplate&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5183', 5183)" onmouseover="showTip(event, '5183', 5183)">
+            CategoryDatas
+          </code>
+          <div class="tip" id="5183">
+            <strong>Signature:</strong> IQueryable&lt;CategoryData&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5184', 5184)" onmouseover="showTip(event, '5184', 5184)">
+            CategoryNodes
+          </code>
+          <div class="tip" id="5184">
+            <strong>Signature:</strong> IQueryable&lt;CategoryNode&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5185', 5185)" onmouseover="showTip(event, '5185', 5185)">
+            ClientBrowsers
+          </code>
+          <div class="tip" id="5185">
+            <strong>Signature:</strong> IQueryable&lt;ClientBrowser&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5186', 5186)" onmouseover="showTip(event, '5186', 5186)">
+            CollaborationGroupFeeds
+          </code>
+          <div class="tip" id="5186">
+            <strong>Signature:</strong> IQueryable&lt;CollaborationGroupFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5187', 5187)" onmouseover="showTip(event, '5187', 5187)">
+            CollaborationGroupMembers
+          </code>
+          <div class="tip" id="5187">
+            <strong>Signature:</strong> IQueryable&lt;CollaborationGroupMember&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5188', 5188)" onmouseover="showTip(event, '5188', 5188)">
+            CollaborationGroups
+          </code>
+          <div class="tip" id="5188">
+            <strong>Signature:</strong> IQueryable&lt;CollaborationGroup&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5189', 5189)" onmouseover="showTip(event, '5189', 5189)">
+            CollaborationInvitations
+          </code>
+          <div class="tip" id="5189">
+            <strong>Signature:</strong> IQueryable&lt;CollaborationInvitation&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5190', 5190)" onmouseover="showTip(event, '5190', 5190)">
+            Communities
+          </code>
+          <div class="tip" id="5190">
+            <strong>Signature:</strong> IQueryable&lt;Community&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5191', 5191)" onmouseover="showTip(event, '5191', 5191)">
+            ContactFeeds
+          </code>
+          <div class="tip" id="5191">
+            <strong>Signature:</strong> IQueryable&lt;ContactFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5192', 5192)" onmouseover="showTip(event, '5192', 5192)">
+            ContactHistories
+          </code>
+          <div class="tip" id="5192">
+            <strong>Signature:</strong> IQueryable&lt;ContactHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5193', 5193)" onmouseover="showTip(event, '5193', 5193)">
+            Contacts
+          </code>
+          <div class="tip" id="5193">
+            <strong>Signature:</strong> IQueryable&lt;Contact&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5194', 5194)" onmouseover="showTip(event, '5194', 5194)">
+            ContactShares
+          </code>
+          <div class="tip" id="5194">
+            <strong>Signature:</strong> IQueryable&lt;ContactShare&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5195', 5195)" onmouseover="showTip(event, '5195', 5195)">
+            ContentDocumentFeeds
+          </code>
+          <div class="tip" id="5195">
+            <strong>Signature:</strong> IQueryable&lt;ContentDocumentFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5196', 5196)" onmouseover="showTip(event, '5196', 5196)">
+            ContentDocumentHistories
+          </code>
+          <div class="tip" id="5196">
+            <strong>Signature:</strong> IQueryable&lt;ContentDocumentHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5197', 5197)" onmouseover="showTip(event, '5197', 5197)">
+            ContentDocuments
+          </code>
+          <div class="tip" id="5197">
+            <strong>Signature:</strong> IQueryable&lt;ContentDocument&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5198', 5198)" onmouseover="showTip(event, '5198', 5198)">
+            ContentVersionHistories
+          </code>
+          <div class="tip" id="5198">
+            <strong>Signature:</strong> IQueryable&lt;ContentVersionHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5199', 5199)" onmouseover="showTip(event, '5199', 5199)">
+            ContentVersions
+          </code>
+          <div class="tip" id="5199">
+            <strong>Signature:</strong> IQueryable&lt;ContentVersion&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5200', 5200)" onmouseover="showTip(event, '5200', 5200)">
+            ContentWorkspaceDocs
+          </code>
+          <div class="tip" id="5200">
+            <strong>Signature:</strong> IQueryable&lt;ContentWorkspaceDoc&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5201', 5201)" onmouseover="showTip(event, '5201', 5201)">
+            ContentWorkspaces
+          </code>
+          <div class="tip" id="5201">
+            <strong>Signature:</strong> IQueryable&lt;ContentWorkspace&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5202', 5202)" onmouseover="showTip(event, '5202', 5202)">
+            ContractContactRoles
+          </code>
+          <div class="tip" id="5202">
+            <strong>Signature:</strong> IQueryable&lt;ContractContactRole&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5203', 5203)" onmouseover="showTip(event, '5203', 5203)">
+            ContractFeeds
+          </code>
+          <div class="tip" id="5203">
+            <strong>Signature:</strong> IQueryable&lt;ContractFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5204', 5204)" onmouseover="showTip(event, '5204', 5204)">
+            ContractHistories
+          </code>
+          <div class="tip" id="5204">
+            <strong>Signature:</strong> IQueryable&lt;ContractHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5205', 5205)" onmouseover="showTip(event, '5205', 5205)">
+            Contracts
+          </code>
+          <div class="tip" id="5205">
+            <strong>Signature:</strong> IQueryable&lt;Contract&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5206', 5206)" onmouseover="showTip(event, '5206', 5206)">
+            ContractStatus
+          </code>
+          <div class="tip" id="5206">
+            <strong>Signature:</strong> IQueryable&lt;ContractStatus&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5207', 5207)" onmouseover="showTip(event, '5207', 5207)">
+            CronTriggers
+          </code>
+          <div class="tip" id="5207">
+            <strong>Signature:</strong> IQueryable&lt;CronTrigger&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5208', 5208)" onmouseover="showTip(event, '5208', 5208)">
+            DashboardFeeds
+          </code>
+          <div class="tip" id="5208">
+            <strong>Signature:</strong> IQueryable&lt;DashboardFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5209', 5209)" onmouseover="showTip(event, '5209', 5209)">
+            Dashboards
+          </code>
+          <div class="tip" id="5209">
+            <strong>Signature:</strong> IQueryable&lt;Dashboard&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5210', 5210)" onmouseover="showTip(event, '5210', 5210)">
+            DocumentAttachmentMaps
+          </code>
+          <div class="tip" id="5210">
+            <strong>Signature:</strong> IQueryable&lt;DocumentAttachmentMap&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5211', 5211)" onmouseover="showTip(event, '5211', 5211)">
+            Documents
+          </code>
+          <div class="tip" id="5211">
+            <strong>Signature:</strong> IQueryable&lt;Document&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5212', 5212)" onmouseover="showTip(event, '5212', 5212)">
+            EmailMessages
+          </code>
+          <div class="tip" id="5212">
+            <strong>Signature:</strong> IQueryable&lt;EmailMessage&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5213', 5213)" onmouseover="showTip(event, '5213', 5213)">
+            EmailServicesAddresses
+          </code>
+          <div class="tip" id="5213">
+            <strong>Signature:</strong> IQueryable&lt;EmailServicesAddress&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5214', 5214)" onmouseover="showTip(event, '5214', 5214)">
+            EmailServicesFunctions
+          </code>
+          <div class="tip" id="5214">
+            <strong>Signature:</strong> IQueryable&lt;EmailServicesFunction&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5215', 5215)" onmouseover="showTip(event, '5215', 5215)">
+            EmailStatus
+          </code>
+          <div class="tip" id="5215">
+            <strong>Signature:</strong> IQueryable&lt;EmailStatus&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5216', 5216)" onmouseover="showTip(event, '5216', 5216)">
+            EmailTemplates
+          </code>
+          <div class="tip" id="5216">
+            <strong>Signature:</strong> IQueryable&lt;EmailTemplate&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5217', 5217)" onmouseover="showTip(event, '5217', 5217)">
+            EntitySubscriptions
+          </code>
+          <div class="tip" id="5217">
+            <strong>Signature:</strong> IQueryable&lt;EntitySubscription&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5218', 5218)" onmouseover="showTip(event, '5218', 5218)">
+            EventAttendees
+          </code>
+          <div class="tip" id="5218">
+            <strong>Signature:</strong> IQueryable&lt;EventAttendee&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5219', 5219)" onmouseover="showTip(event, '5219', 5219)">
+            EventFeeds
+          </code>
+          <div class="tip" id="5219">
+            <strong>Signature:</strong> IQueryable&lt;EventFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5220', 5220)" onmouseover="showTip(event, '5220', 5220)">
+            Events
+          </code>
+          <div class="tip" id="5220">
+            <strong>Signature:</strong> IQueryable&lt;Event&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5221', 5221)" onmouseover="showTip(event, '5221', 5221)">
+            FeedComments
+          </code>
+          <div class="tip" id="5221">
+            <strong>Signature:</strong> IQueryable&lt;FeedComment&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5222', 5222)" onmouseover="showTip(event, '5222', 5222)">
+            FeedPosts
+          </code>
+          <div class="tip" id="5222">
+            <strong>Signature:</strong> IQueryable&lt;FeedPost&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5223', 5223)" onmouseover="showTip(event, '5223', 5223)">
+            FeedTrackedChanges
+          </code>
+          <div class="tip" id="5223">
+            <strong>Signature:</strong> IQueryable&lt;FeedTrackedChange&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5224', 5224)" onmouseover="showTip(event, '5224', 5224)">
+            FiscalYearSettings
+          </code>
+          <div class="tip" id="5224">
+            <strong>Signature:</strong> IQueryable&lt;FiscalYearSettings&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5225', 5225)" onmouseover="showTip(event, '5225', 5225)">
+            Folders
+          </code>
+          <div class="tip" id="5225">
+            <strong>Signature:</strong> IQueryable&lt;Folder&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5226', 5226)" onmouseover="showTip(event, '5226', 5226)">
+            ForecastShares
+          </code>
+          <div class="tip" id="5226">
+            <strong>Signature:</strong> IQueryable&lt;ForecastShare&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5227', 5227)" onmouseover="showTip(event, '5227', 5227)">
+            GroupMembers
+          </code>
+          <div class="tip" id="5227">
+            <strong>Signature:</strong> IQueryable&lt;GroupMember&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5228', 5228)" onmouseover="showTip(event, '5228', 5228)">
+            Groups
+          </code>
+          <div class="tip" id="5228">
+            <strong>Signature:</strong> IQueryable&lt;Group&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5229', 5229)" onmouseover="showTip(event, '5229', 5229)">
+            Holidays
+          </code>
+          <div class="tip" id="5229">
+            <strong>Signature:</strong> IQueryable&lt;Holiday&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5230', 5230)" onmouseover="showTip(event, '5230', 5230)">
+            IdeaComments
+          </code>
+          <div class="tip" id="5230">
+            <strong>Signature:</strong> IQueryable&lt;IdeaComment&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5231', 5231)" onmouseover="showTip(event, '5231', 5231)">
+            Ideas
+          </code>
+          <div class="tip" id="5231">
+            <strong>Signature:</strong> IQueryable&lt;Idea&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5232', 5232)" onmouseover="showTip(event, '5232', 5232)">
+            LeadFeeds
+          </code>
+          <div class="tip" id="5232">
+            <strong>Signature:</strong> IQueryable&lt;LeadFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5233', 5233)" onmouseover="showTip(event, '5233', 5233)">
+            LeadHistories
+          </code>
+          <div class="tip" id="5233">
+            <strong>Signature:</strong> IQueryable&lt;LeadHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5234', 5234)" onmouseover="showTip(event, '5234', 5234)">
+            Leads
+          </code>
+          <div class="tip" id="5234">
+            <strong>Signature:</strong> IQueryable&lt;Lead&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5235', 5235)" onmouseover="showTip(event, '5235', 5235)">
+            LeadShares
+          </code>
+          <div class="tip" id="5235">
+            <strong>Signature:</strong> IQueryable&lt;LeadShare&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5236', 5236)" onmouseover="showTip(event, '5236', 5236)">
+            LeadStatus
+          </code>
+          <div class="tip" id="5236">
+            <strong>Signature:</strong> IQueryable&lt;LeadStatus&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5237', 5237)" onmouseover="showTip(event, '5237', 5237)">
+            LoginIps
+          </code>
+          <div class="tip" id="5237">
+            <strong>Signature:</strong> IQueryable&lt;LoginIp&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5238', 5238)" onmouseover="showTip(event, '5238', 5238)">
+            MailmergeTemplates
+          </code>
+          <div class="tip" id="5238">
+            <strong>Signature:</strong> IQueryable&lt;MailmergeTemplate&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5239', 5239)" onmouseover="showTip(event, '5239', 5239)">
+            Names
+          </code>
+          <div class="tip" id="5239">
+            <strong>Signature:</strong> IQueryable&lt;Name&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5240', 5240)" onmouseover="showTip(event, '5240', 5240)">
+            NewsFeeds
+          </code>
+          <div class="tip" id="5240">
+            <strong>Signature:</strong> IQueryable&lt;NewsFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5241', 5241)" onmouseover="showTip(event, '5241', 5241)">
+            NoteAndAttachments
+          </code>
+          <div class="tip" id="5241">
+            <strong>Signature:</strong> IQueryable&lt;NoteAndAttachment&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5242', 5242)" onmouseover="showTip(event, '5242', 5242)">
+            Notes
+          </code>
+          <div class="tip" id="5242">
+            <strong>Signature:</strong> IQueryable&lt;Note&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5243', 5243)" onmouseover="showTip(event, '5243', 5243)">
+            OpenActivities
+          </code>
+          <div class="tip" id="5243">
+            <strong>Signature:</strong> IQueryable&lt;OpenActivity&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5244', 5244)" onmouseover="showTip(event, '5244', 5244)">
+            Opportunities
+          </code>
+          <div class="tip" id="5244">
+            <strong>Signature:</strong> IQueryable&lt;Opportunity&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5245', 5245)" onmouseover="showTip(event, '5245', 5245)">
+            OpportunityCompetitors
+          </code>
+          <div class="tip" id="5245">
+            <strong>Signature:</strong> IQueryable&lt;OpportunityCompetitor&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5246', 5246)" onmouseover="showTip(event, '5246', 5246)">
+            OpportunityContactRoles
+          </code>
+          <div class="tip" id="5246">
+            <strong>Signature:</strong> IQueryable&lt;OpportunityContactRole&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5247', 5247)" onmouseover="showTip(event, '5247', 5247)">
+            OpportunityFeeds
+          </code>
+          <div class="tip" id="5247">
+            <strong>Signature:</strong> IQueryable&lt;OpportunityFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5248', 5248)" onmouseover="showTip(event, '5248', 5248)">
+            OpportunityFieldHistories
+          </code>
+          <div class="tip" id="5248">
+            <strong>Signature:</strong> IQueryable&lt;OpportunityFieldHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5249', 5249)" onmouseover="showTip(event, '5249', 5249)">
+            OpportunityHistories
+          </code>
+          <div class="tip" id="5249">
+            <strong>Signature:</strong> IQueryable&lt;OpportunityHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5250', 5250)" onmouseover="showTip(event, '5250', 5250)">
+            OpportunityLineItems
+          </code>
+          <div class="tip" id="5250">
+            <strong>Signature:</strong> IQueryable&lt;OpportunityLineItem&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5251', 5251)" onmouseover="showTip(event, '5251', 5251)">
+            OpportunityPartners
+          </code>
+          <div class="tip" id="5251">
+            <strong>Signature:</strong> IQueryable&lt;OpportunityPartner&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5252', 5252)" onmouseover="showTip(event, '5252', 5252)">
+            OpportunityShares
+          </code>
+          <div class="tip" id="5252">
+            <strong>Signature:</strong> IQueryable&lt;OpportunityShare&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5253', 5253)" onmouseover="showTip(event, '5253', 5253)">
+            OpportunityStages
+          </code>
+          <div class="tip" id="5253">
+            <strong>Signature:</strong> IQueryable&lt;OpportunityStage&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5254', 5254)" onmouseover="showTip(event, '5254', 5254)">
+            OrderHistories
+          </code>
+          <div class="tip" id="5254">
+            <strong>Signature:</strong> IQueryable&lt;OrderHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5255', 5255)" onmouseover="showTip(event, '5255', 5255)">
+            OrderItems
+          </code>
+          <div class="tip" id="5255">
+            <strong>Signature:</strong> IQueryable&lt;OrderItem&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5256', 5256)" onmouseover="showTip(event, '5256', 5256)">
+            Orders
+          </code>
+          <div class="tip" id="5256">
+            <strong>Signature:</strong> IQueryable&lt;Order&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5257', 5257)" onmouseover="showTip(event, '5257', 5257)">
+            Organizations
+          </code>
+          <div class="tip" id="5257">
+            <strong>Signature:</strong> IQueryable&lt;Organization&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5258', 5258)" onmouseover="showTip(event, '5258', 5258)">
+            OrgWideEmailAddresses
+          </code>
+          <div class="tip" id="5258">
+            <strong>Signature:</strong> IQueryable&lt;OrgWideEmailAddress&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5259', 5259)" onmouseover="showTip(event, '5259', 5259)">
+            PartnerRoles
+          </code>
+          <div class="tip" id="5259">
+            <strong>Signature:</strong> IQueryable&lt;PartnerRole&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5260', 5260)" onmouseover="showTip(event, '5260', 5260)">
+            Partners
+          </code>
+          <div class="tip" id="5260">
+            <strong>Signature:</strong> IQueryable&lt;Partner&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5261', 5261)" onmouseover="showTip(event, '5261', 5261)">
+            Periods
+          </code>
+          <div class="tip" id="5261">
+            <strong>Signature:</strong> IQueryable&lt;Period&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5262', 5262)" onmouseover="showTip(event, '5262', 5262)">
+            Pricebook2
+          </code>
+          <div class="tip" id="5262">
+            <strong>Signature:</strong> IQueryable&lt;Pricebook2&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5263', 5263)" onmouseover="showTip(event, '5263', 5263)">
+            Pricebook2History
+          </code>
+          <div class="tip" id="5263">
+            <strong>Signature:</strong> IQueryable&lt;Pricebook2History&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5264', 5264)" onmouseover="showTip(event, '5264', 5264)">
+            PricebookEntries
+          </code>
+          <div class="tip" id="5264">
+            <strong>Signature:</strong> IQueryable&lt;PricebookEntry&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5265', 5265)" onmouseover="showTip(event, '5265', 5265)">
+            ProcessDefinitions
+          </code>
+          <div class="tip" id="5265">
+            <strong>Signature:</strong> IQueryable&lt;ProcessDefinition&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5266', 5266)" onmouseover="showTip(event, '5266', 5266)">
+            ProcessInstanceHistories
+          </code>
+          <div class="tip" id="5266">
+            <strong>Signature:</strong> IQueryable&lt;ProcessInstanceHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5267', 5267)" onmouseover="showTip(event, '5267', 5267)">
+            ProcessInstances
+          </code>
+          <div class="tip" id="5267">
+            <strong>Signature:</strong> IQueryable&lt;ProcessInstance&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5268', 5268)" onmouseover="showTip(event, '5268', 5268)">
+            ProcessInstanceSteps
+          </code>
+          <div class="tip" id="5268">
+            <strong>Signature:</strong> IQueryable&lt;ProcessInstanceStep&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5269', 5269)" onmouseover="showTip(event, '5269', 5269)">
+            ProcessInstanceWorkitems
+          </code>
+          <div class="tip" id="5269">
+            <strong>Signature:</strong> IQueryable&lt;ProcessInstanceWorkitem&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5270', 5270)" onmouseover="showTip(event, '5270', 5270)">
+            ProcessNodes
+          </code>
+          <div class="tip" id="5270">
+            <strong>Signature:</strong> IQueryable&lt;ProcessNode&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5271', 5271)" onmouseover="showTip(event, '5271', 5271)">
+            Product2
+          </code>
+          <div class="tip" id="5271">
+            <strong>Signature:</strong> IQueryable&lt;Product2&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5272', 5272)" onmouseover="showTip(event, '5272', 5272)">
+            Product2Feed
+          </code>
+          <div class="tip" id="5272">
+            <strong>Signature:</strong> IQueryable&lt;Product2Feed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5273', 5273)" onmouseover="showTip(event, '5273', 5273)">
+            Profiles
+          </code>
+          <div class="tip" id="5273">
+            <strong>Signature:</strong> IQueryable&lt;Profile&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5274', 5274)" onmouseover="showTip(event, '5274', 5274)">
+            QueueSobjects
+          </code>
+          <div class="tip" id="5274">
+            <strong>Signature:</strong> IQueryable&lt;QueueSobject&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5275', 5275)" onmouseover="showTip(event, '5275', 5275)">
+            RecordTypes
+          </code>
+          <div class="tip" id="5275">
+            <strong>Signature:</strong> IQueryable&lt;RecordType&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5276', 5276)" onmouseover="showTip(event, '5276', 5276)">
+            ReportFeeds
+          </code>
+          <div class="tip" id="5276">
+            <strong>Signature:</strong> IQueryable&lt;ReportFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5277', 5277)" onmouseover="showTip(event, '5277', 5277)">
+            Reports
+          </code>
+          <div class="tip" id="5277">
+            <strong>Signature:</strong> IQueryable&lt;Report&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5278', 5278)" onmouseover="showTip(event, '5278', 5278)">
+            SetupAuditTrails
+          </code>
+          <div class="tip" id="5278">
+            <strong>Signature:</strong> IQueryable&lt;SetupAuditTrail&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5279', 5279)" onmouseover="showTip(event, '5279', 5279)">
+            SiteFeeds
+          </code>
+          <div class="tip" id="5279">
+            <strong>Signature:</strong> IQueryable&lt;SiteFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5280', 5280)" onmouseover="showTip(event, '5280', 5280)">
+            SiteHistories
+          </code>
+          <div class="tip" id="5280">
+            <strong>Signature:</strong> IQueryable&lt;SiteHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5281', 5281)" onmouseover="showTip(event, '5281', 5281)">
+            Sites
+          </code>
+          <div class="tip" id="5281">
+            <strong>Signature:</strong> IQueryable&lt;Site&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5282', 5282)" onmouseover="showTip(event, '5282', 5282)">
+            SolutionFeeds
+          </code>
+          <div class="tip" id="5282">
+            <strong>Signature:</strong> IQueryable&lt;SolutionFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5283', 5283)" onmouseover="showTip(event, '5283', 5283)">
+            SolutionHistories
+          </code>
+          <div class="tip" id="5283">
+            <strong>Signature:</strong> IQueryable&lt;SolutionHistory&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5284', 5284)" onmouseover="showTip(event, '5284', 5284)">
+            Solutions
+          </code>
+          <div class="tip" id="5284">
+            <strong>Signature:</strong> IQueryable&lt;Solution&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5285', 5285)" onmouseover="showTip(event, '5285', 5285)">
+            SolutionStatus
+          </code>
+          <div class="tip" id="5285">
+            <strong>Signature:</strong> IQueryable&lt;SolutionStatus&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5286', 5286)" onmouseover="showTip(event, '5286', 5286)">
+            StaticResources
+          </code>
+          <div class="tip" id="5286">
+            <strong>Signature:</strong> IQueryable&lt;StaticResource&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5287', 5287)" onmouseover="showTip(event, '5287', 5287)">
+            TaskFeeds
+          </code>
+          <div class="tip" id="5287">
+            <strong>Signature:</strong> IQueryable&lt;TaskFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5288', 5288)" onmouseover="showTip(event, '5288', 5288)">
+            TaskPriorities
+          </code>
+          <div class="tip" id="5288">
+            <strong>Signature:</strong> IQueryable&lt;TaskPriority&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5289', 5289)" onmouseover="showTip(event, '5289', 5289)">
+            Tasks
+          </code>
+          <div class="tip" id="5289">
+            <strong>Signature:</strong> IQueryable&lt;Task&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5290', 5290)" onmouseover="showTip(event, '5290', 5290)">
+            TaskStatus
+          </code>
+          <div class="tip" id="5290">
+            <strong>Signature:</strong> IQueryable&lt;TaskStatus&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5291', 5291)" onmouseover="showTip(event, '5291', 5291)">
+            UserFeeds
+          </code>
+          <div class="tip" id="5291">
+            <strong>Signature:</strong> IQueryable&lt;UserFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5292', 5292)" onmouseover="showTip(event, '5292', 5292)">
+            UserLicenses
+          </code>
+          <div class="tip" id="5292">
+            <strong>Signature:</strong> IQueryable&lt;UserLicense&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5293', 5293)" onmouseover="showTip(event, '5293', 5293)">
+            UserPreferences
+          </code>
+          <div class="tip" id="5293">
+            <strong>Signature:</strong> IQueryable&lt;UserPreference&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5294', 5294)" onmouseover="showTip(event, '5294', 5294)">
+            UserProfileFeeds
+          </code>
+          <div class="tip" id="5294">
+            <strong>Signature:</strong> IQueryable&lt;UserProfileFeed&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5295', 5295)" onmouseover="showTip(event, '5295', 5295)">
+            UserRoles
+          </code>
+          <div class="tip" id="5295">
+            <strong>Signature:</strong> IQueryable&lt;UserRole&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5296', 5296)" onmouseover="showTip(event, '5296', 5296)">
+            Users
+          </code>
+          <div class="tip" id="5296">
+            <strong>Signature:</strong> IQueryable&lt;User&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5297', 5297)" onmouseover="showTip(event, '5297', 5297)">
+            Votes
+          </code>
+          <div class="tip" id="5297">
+            <strong>Signature:</strong> IQueryable&lt;Vote&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5298', 5298)" onmouseover="showTip(event, '5298', 5298)">
+            WebLinks
+          </code>
+          <div class="tip" id="5298">
+            <strong>Signature:</strong> IQueryable&lt;WebLink&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/LinqToSalesforce/img/fsharp-ug-paris-128.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">LinqToSalesforce</li>
+            <li><a href="/LinqToSalesforce/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/LinqToSalesforce">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/rflechner/LinqToSalesforce">Source Code on GitHub</a></li>
+            <li><a href="/LinqToSalesforce/license.html">License</a></li>
+            <li><a href="/LinqToSalesforce/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="/LinqToSalesforce/getting_started_with_salesforce.html">Getting started with salesforce</a></li>
+            <li><a href="/LinqToSalesforce/salesforce_api.html">Salesforce API</a></li>
+            <li><a href="/LinqToSalesforce/tutorial.html">Sample tutorial</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="/LinqToSalesforce/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/rflechner/LinqToSalesforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>
