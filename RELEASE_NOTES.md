@@ -1,4 +1,7 @@
 
+#### 0.2.1-beta - March 23 2017
+* Fix addresses deserialization
+
 #### 0.2.0-beta - March 22 2017
 * Using Salesforce API v30.0
 * PR #23 FEAT: can use take and skip when selecting a member
