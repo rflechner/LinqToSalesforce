@@ -48,6 +48,7 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
 
         private void CodeButton_Click(object sender, RoutedEventArgs e)
         {
+            viewModel.GenerateSourceCode();
             viewModel.ViewCode();
         }
     }

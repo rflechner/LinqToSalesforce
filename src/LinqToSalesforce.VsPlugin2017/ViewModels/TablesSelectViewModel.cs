@@ -130,8 +130,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 {
                     table.Selected = allChecked;
                 }
-
-                GenerateSourceCode();
+                
                 OnPropertyChanged();
             }
         }
@@ -241,8 +240,6 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                     OnPropertyChanged(nameof(AllChecked));
 
                     SubscribeTablePresenters();
-
-                    GenerateSourceCode();
                 });
             });
         }
@@ -261,7 +258,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
         private void PresenterOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            GenerateSourceCode();
+            
         }
 
         private async Task<IEnumerable<Rest.TableDesc>> GetTableListAsync()

@@ -20,7 +20,7 @@
         <StackPanel Orientation="Horizontal" Margin="5,0" Grid.Row="0" Grid.ColumnSpan="3">
             <StackPanel Margin="0,5,0,0">
                 <Button BorderBrush="#FF224091" Click="AuthButton_Click" FontSize="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF224091">Credentials</Button>
-                <Button Margin="0,5,0,0" BorderBrush="#FF224091" FontSize="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF224091" Click="CodeButton_Click">View code</Button>
+                <Button Margin="0,5,0,0" BorderBrush="#FF224091" FontSize="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF224091" Click="CodeButton_Click">Generate code</Button>
             </StackPanel>
             <TextBlock Foreground="#FF224091" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">Linq to Salesforce</TextBlock>
         </StackPanel>
