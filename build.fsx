@@ -121,8 +121,12 @@ Target "AssemblyInfo" (fun _ ->
 // But keeps a subdirectory structure for each project in the
 // src folder to support multiple project outputs
 Target "CopyBinaries" (fun _ ->
-    !! "src/**/*.??proj"
-    -- "src/**/*.shproj"
+   // !! "src/**/*.??proj"
+   // -- "src/**/*.shproj"
+    !! "src/LinqToSalesforce/LinqToSalesforce.fsproj"
+        ++ "src/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.fsproj"
+        ++ "tests/LinqToSalesforce.CsharpTests/LinqToSalesforce.CsharpTests.csproj"
+        ++ "tests/LinqToSalesforce.Tests/LinqToSalesforce.Tests.fsproj"
     |>  Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) </> "bin/Release", "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
     |>  Seq.iter (fun (fromDir, toDir) -> CopyDir toDir fromDir (fun _ -> true))
 )
@@ -156,6 +160,10 @@ Target "Build" (fun _ ->
 
   let snk = __SOURCE_DIRECTORY__ @@ "LinqToSalesforce.snk"
   !! solutionFile
+  //!! "src/LinqToSalesforce/LinqToSalesforce.fsproj"
+  //  ++ "src/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.fsproj"
+  //  ++ "tests/LinqToSalesforce.CsharpTests/LinqToSalesforce.CsharpTests.csproj"
+  //  ++ "tests/LinqToSalesforce.Tests/LinqToSalesforce.Tests.fsproj"
   |> MSBuildReleaseExt "" [ ("AssemblyOriginatorKeyFile",snk); ("SignAssembly", "true") ] "Build"
   |> ignore
 )
