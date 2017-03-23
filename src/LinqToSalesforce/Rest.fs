@@ -205,12 +205,13 @@ module Rest =
     | "double" -> typeof<double>
     | _ -> typeof<String>
 
-  let getObjectsList (i:Identity) =
+  let getObjectsList (i:Identity) (log:string Action) =
     let baseUrl = Config.BuildUri "https://%s.salesforce.com"
     let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/"
     async {
       let! rs = get i uri
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
+      log.Invoke(sprintf "json: %A" json)
       let o = JObject.Parse json
       return
         o.SelectTokens("sobjects[*].urls.describe")
@@ -221,6 +222,7 @@ module Rest =
                 async {
                   let! rs = get i (Uri url)
                   let! c = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
+                  log.Invoke(sprintf "json: %A" c)
                   let j = JObject.Parse c
                   let name = (j.Item "name").ToString()
                   let labelPlural = (j.Item "labelPlural").ToString()
@@ -245,6 +247,8 @@ module Rest =
                               |> Seq.map (fun token -> token.ToString())
                               |> Seq.toList
                             Picklist picklistValues
+                          | "address" ->
+                            Native(typeof<BuiltinTypes.Address>)
                           | _ -> typ |> parseType |> Native
                         { Name=fname; Label=fLabel; Type=ft; Length=length; ReferenceTo=referenceTo
                           AutoNumber=autoNumber; Calculated=calculated; Nillable=nillable }
@@ -270,11 +274,11 @@ module Rest =
   type SoqlResult<'t> =
     { [<JsonProperty("totalSize")>] TotalSize:int
       [<JsonProperty("done")>] Done:bool
-      [<JsonProperty("records")>] Records:'t list }
+      [<JsonProperty("records")>] Records:'t[] }
   type InsertResult =
     { [<JsonProperty("id")>] Id:string
       [<JsonProperty("success")>] Success:bool
-      [<JsonProperty("errors")>] Errors:string list }
+      [<JsonProperty("errors")>] Errors:string [] }
 
   let readResponse<'ts,'te> (rs:HttpResponseMessage) =
     async {

@@ -2,7 +2,27 @@
 LinqToSalesforce tutorial
 =========================
 
-Generating your entities
+Generating your entities using Visual Studio plugin
+---------------------------------------------------
+
+Add diagram into your project:
+
+- Select the project.
+
+- Click on **Tools** ==> **"Create Salesforce linq entities"**.
+
+![screen2](img/sf_plugin_screen2.gif)
+
+Enter your credentials.
+
+![authentication](img/sf_plugin_doc_1.png)
+
+Select entities to generate.
+
+![screen3](img/sf_plugin_screen3.gif)
+
+
+Generating your entities using command line
 ------------------------
 
 Developing with Salesforce SOQL Linq provider is like a "DB First" entity framework using.
@@ -13,7 +33,7 @@ NuGet packages contains 'LinqToSalesforce.ModelGenerator.exe' in tools folder
 
 Run it with your credentials in command line:
 
-```schell
+```shell
  > LinqToSalesforce.ModelGenerator.exe --clientid ... --clientsecret ... --securitytoken ... --login ... 
     \ --password ... --instancename ... --outputfile "absolute_path_to\Models.cs"
 ```

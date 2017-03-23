@@ -54,8 +54,9 @@ let main argv =
           Password=password }
       Config.ProductionInstance <- instaceName
       let oauth = authenticateWithCredentials authparams |> Async.RunSynchronously
-      let tables = getObjectsList oauth |> Async.RunSynchronously
-      let cs = CodeGeneration.generateCsharp tables ns
+      let log:string Action = new Action<string> (fun s -> ())
+      let tables = getObjectsList oauth log |> Async.RunSynchronously
+      let cs = CodeGeneration.generateCsharp (Array.ofList tables) ns
       if String.IsNullOrWhiteSpace outputFile
       then printfn "%s" cs
       else File.WriteAllText(outputFile, cs)

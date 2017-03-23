@@ -3,6 +3,32 @@ source https://nuget.org/api/v2
 nuget Argu
 nuget FSharp.Core redirects: force
 nuget Microsoft.Net.Http
+
+nuget Microsoft.VisualStudio.CoreUtility
+nuget Microsoft.VisualStudio.Imaging
+nuget Microsoft.VisualStudio.OLE.Interop
+nuget Microsoft.VisualStudio.Shell.14.0
+nuget Microsoft.VisualStudio.Shell.Immutable.10.0
+nuget Microsoft.VisualStudio.Shell.Immutable.11.0
+nuget Microsoft.VisualStudio.Shell.Immutable.12.0
+nuget Microsoft.VisualStudio.Shell.Immutable.14.0
+nuget Microsoft.VisualStudio.Shell.Interop
+nuget Microsoft.VisualStudio.Shell.Interop.10.0
+nuget Microsoft.VisualStudio.Shell.Interop.11.0
+nuget Microsoft.VisualStudio.Shell.Interop.12.0
+nuget Microsoft.VisualStudio.Shell.Interop.8.0
+nuget Microsoft.VisualStudio.Shell.Interop.9.0
+nuget Microsoft.VisualStudio.Text.Data
+nuget Microsoft.VisualStudio.Text.Logic
+nuget Microsoft.VisualStudio.Text.UI
+nuget Microsoft.VisualStudio.Text.UI.Wpf
+nuget Microsoft.VisualStudio.TextManager.Interop
+nuget Microsoft.VisualStudio.TextManager.Interop.8.0
+nuget Microsoft.VisualStudio.Threading
+nuget Microsoft.VisualStudio.Utilities
+nuget Microsoft.VisualStudio.Validation
+nuget Microsoft.VSSDK.BuildTools = 14.3.25407
+
 nuget Newtonsoft.Json
 nuget NUnit
 
