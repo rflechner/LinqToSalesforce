@@ -247,6 +247,8 @@ module Rest =
                               |> Seq.map (fun token -> token.ToString())
                               |> Seq.toList
                             Picklist picklistValues
+                          | "address" ->
+                            Native(typeof<BuiltinTypes.Address>)
                           | _ -> typ |> parseType |> Native
                         { Name=fname; Label=fLabel; Type=ft; Length=length; ReferenceTo=referenceTo
                           AutoNumber=autoNumber; Calculated=calculated; Nillable=nillable }
@@ -272,11 +274,11 @@ module Rest =
   type SoqlResult<'t> =
     { [<JsonProperty("totalSize")>] TotalSize:int
       [<JsonProperty("done")>] Done:bool
-      [<JsonProperty("records")>] Records:'t list }
+      [<JsonProperty("records")>] Records:'t[] }
   type InsertResult =
     { [<JsonProperty("id")>] Id:string
       [<JsonProperty("success")>] Success:bool
-      [<JsonProperty("errors")>] Errors:string list }
+      [<JsonProperty("errors")>] Errors:string [] }
 
   let readResponse<'ts,'te> (rs:HttpResponseMessage) =
     async {

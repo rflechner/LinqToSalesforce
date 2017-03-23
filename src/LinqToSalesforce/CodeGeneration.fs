@@ -33,7 +33,7 @@ let fixName (name:string) =
     name.Split([|' ';'_';'-'|], StringSplitOptions.RemoveEmptyEntries)
       |> Array.filter (fun p -> p <> "c")
       |> Array.map ucFirst
-  String.Join("", parts)
+  String.Join("", parts).Replace('+', '.')
 
 let removeNonLetterDigit (s:string) =
   s.ToCharArray()
@@ -183,7 +183,7 @@ let generateCsharp (tables:TableDesc []) (``namespace``:string) =
       let typeName =
         match field.Type with
         | Native t -> 
-          if field.Nillable && t <> typeof<string> 
+          if field.Nillable && t <> typeof<string> && t.IsValueType
           then sprintf "%s?" (fixName t.FullName)
           else fixName t.FullName
         | Picklist _ -> sprintf "Pick%s%s" (fixName table.Name) (fixName field.Name)

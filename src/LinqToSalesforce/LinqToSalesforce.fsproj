@@ -64,6 +64,7 @@
     <Compile Include="Visitor.fs" />
     <Compile Include="Translator.fs" />
     <Compile Include="Queryable.fs" />
+    <Compile Include="BuiltinTypes.fs" />
     <Compile Include="Entities.fs" />
     <Compile Include="Rest.fs" />
     <Compile Include="SoqlContext.fs" />

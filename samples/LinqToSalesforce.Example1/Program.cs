@@ -31,8 +31,11 @@ namespace LinqToSalesforce.Example1
             {
                 //var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
 
+                var accounts100 = (from a in context.Accounts
+                                   select a).Take(100).ToList();
+
                 var count1 = context.Accounts.Count();
-                var count2 = context.Accounts.Where(a => a.Name.Contains("Company")).Count();
+                var count2 = context.Accounts.Count(a => a.Name.Contains("Company"));
 
                 var a1 = new Account { Name = $"Company {DateTime.Now.Ticks}" };
                 context.Insert(a1);
