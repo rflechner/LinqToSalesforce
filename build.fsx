@@ -443,10 +443,6 @@ Target "CI" DoNothing
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
-#if MONO
-#else
-  =?> ("SourceLink", Pdbstr.tryFind().IsSome )
-#endif
   ==> "NuGet"
   ==> "BuildPackage"
   ==> "CI"
