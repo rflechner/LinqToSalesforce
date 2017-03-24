@@ -404,21 +404,33 @@ Target "All" DoNothing
 
 Target "CI" DoNothing
 
-"AssemblyInfo"
-  ==> "KeyGen"
-  ==> "Build"
-  ==> "CopyBinaries"
-  ==> "RunTests"
-  ==> "GenerateReferenceDocs"
-  ==> "GenerateDocs"
-#if MONO
-#else
-  =?> ("SourceLink", Pdbstr.tryFind().IsSome )
-#endif
-  ==> "NuGet"
-  ==> "BuildPackage"
-  ==> "All"
-  =?> ("ReleaseDocs",isLocalBuild)
+if isLocalBuild
+then
+    "AssemblyInfo"
+        ==> "KeyGen"
+        ==> "Build"
+        ==> "CopyBinaries"
+        ==> "RunTests"
+        ==> "GenerateReferenceDocs"
+        ==> "GenerateDocs"
+        #if MONO
+        #else
+        =?> ("SourceLink", Pdbstr.tryFind().IsSome )
+        #endif
+        ==> "NuGet"
+        ==> "BuildPackage"
+        ==> "All"
+        =?> ("ReleaseDocs",isLocalBuild)
+        ==> "CI"
+else
+    "AssemblyInfo"
+        ==> "KeyGen"
+        ==> "Build"
+        ==> "CopyBinaries"
+        ==> "RunTests"
+        ==> "NuGet"
+        ==> "BuildPackage"
+        ==> "CI"
 
 "GenerateHelp"
   ==> "GenerateReferenceDocs"
@@ -436,15 +448,5 @@ Target "CI" DoNothing
 
 "ReleaseDocs"
   ==> "Release"
-
-
-"AssemblyInfo"
-  ==> "KeyGen"
-  ==> "Build"
-  ==> "CopyBinaries"
-  ==> "RunTests"
-  ==> "NuGet"
-  ==> "BuildPackage"
-  ==> "CI"
 
 RunTargetOrDefault "CI"
