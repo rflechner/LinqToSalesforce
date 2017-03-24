@@ -164,7 +164,7 @@ Target "Build" (fun _ ->
   //  ++ "src/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.fsproj"
   //  ++ "tests/LinqToSalesforce.CsharpTests/LinqToSalesforce.CsharpTests.csproj"
   //  ++ "tests/LinqToSalesforce.Tests/LinqToSalesforce.Tests.fsproj"
-  |> MSBuildReleaseExt "" [ ("AssemblyOriginatorKeyFile",snk); ("SignAssembly", "true") ] "Build"
+  |> MSBuildReleaseExt "" [ ("AssemblyOriginatorKeyFile",snk); ("SignAssembly", "true"); ("WarningLevel", "0") ] "Build"
   |> ignore
 )
 
