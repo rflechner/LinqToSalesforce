@@ -412,6 +412,15 @@ then
         ==> "Build"
         ==> "CopyBinaries"
         ==> "RunTests"
+        ==> "NuGet"
+        ==> "BuildPackage"
+        ==> "CI"
+else
+    "AssemblyInfo"
+        ==> "KeyGen"
+        ==> "Build"
+        ==> "CopyBinaries"
+        ==> "RunTests"
         ==> "GenerateReferenceDocs"
         ==> "GenerateDocs"
         #if MONO
@@ -422,15 +431,6 @@ then
         ==> "BuildPackage"
         ==> "All"
         =?> ("ReleaseDocs",isLocalBuild)
-        ==> "CI"
-else
-    "AssemblyInfo"
-        ==> "KeyGen"
-        ==> "Build"
-        ==> "CopyBinaries"
-        ==> "RunTests"
-        ==> "NuGet"
-        ==> "BuildPackage"
         ==> "CI"
 
 "GenerateHelp"
