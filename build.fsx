@@ -404,7 +404,8 @@ Target "All" DoNothing
 
 Target "CI" DoNothing
 
-if isLocalBuild
+let isCi = Fake.EnvironmentHelper.hasBuildParam "ci"
+if isCi
 then
     "AssemblyInfo"
         ==> "KeyGen"
