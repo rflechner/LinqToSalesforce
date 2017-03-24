@@ -274,11 +274,11 @@ module Rest =
   type SoqlResult<'t> =
     { [<JsonProperty("totalSize")>] TotalSize:int
       [<JsonProperty("done")>] Done:bool
-      [<JsonProperty("records")>] Records:'t[] }
+      [<JsonProperty("records")>] Records:'t array }
   type InsertResult =
     { [<JsonProperty("id")>] Id:string
       [<JsonProperty("success")>] Success:bool
-      [<JsonProperty("errors")>] Errors:string [] }
+      [<JsonProperty("errors")>] Errors:string array }
 
   let readResponse<'ts,'te> (rs:HttpResponseMessage) =
     async {
