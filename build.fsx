@@ -402,6 +402,8 @@ Target "BuildPackage" DoNothing
 
 Target "All" DoNothing
 
+Target "CI" DoNothing
+
 "AssemblyInfo"
   ==> "KeyGen"
   ==> "Build"
@@ -435,4 +437,18 @@ Target "All" DoNothing
 "ReleaseDocs"
   ==> "Release"
 
-RunTargetOrDefault "All"
+
+"AssemblyInfo"
+  ==> "KeyGen"
+  ==> "Build"
+  ==> "CopyBinaries"
+  ==> "RunTests"
+#if MONO
+#else
+  =?> ("SourceLink", Pdbstr.tryFind().IsSome )
+#endif
+  ==> "NuGet"
+  ==> "BuildPackage"
+  ==> "CI"
+
+RunTargetOrDefault "CI"
