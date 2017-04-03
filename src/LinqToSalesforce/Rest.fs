@@ -43,36 +43,18 @@ module Rest =
     settings.DateFormatString <- "yyyy-MM-dd"
     JsonConvert.SerializeObject(o, settings)
   
-  let private toInsertJson (o:obj) =
+  let private toInsertJson (e:#ISalesforceEntity) =
     let invalidFields = 
       [ "Id"; "LastModifiedDate";"CreatedById"; "MasterRecordId";
         "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";
         "LastModifiedById"; "IsClosed"; "ClosedDate"]
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
-    let j = JObject.FromObject o
-        
-    let toRemove =
-      o.GetType().GetProperties()
-        |> Seq.choose (
-            fun p -> 
-              match p.GetCustomAttribute<EntityFieldAttribute>() with
-              | a when isNull (box a) -> None
-              | a when not a.Nullable -> 
-                  let v = p.GetValue o
-                  if isNull v
-                  then Some (p.Name)
-                  else None
-              | _ -> None
-           )
-        |> Seq.toList
-    let l = invalidFields @ toRemove
-    for f in l do
-      match (j.Item f) with
-      | t when isNull t -> ()
-      | t -> t.Parent.Remove()
-
-    //printfn "%A" toRemove
+    let properties = e.UpdatedProperties
+    for f in invalidFields do
+      if properties.ContainsKey f
+      then properties.Remove f |> ignore
+    let j = JObject.FromObject properties
     JsonConvert.SerializeObject(j, settings)
   
   module Config =
@@ -255,7 +237,7 @@ module Rest =
             let length = f.Item "length" |> Convert.ToInt32
             let calculated = f.Item "calculated" |> Convert.ToBoolean
             let nillable = f.Item "nillable" |> Convert.ToBoolean
-                        let referenceTo = f.Item "referenceTo" |> fun t -> t.Children() |> Seq.map (fun t -> t.ToString()) |> Seq.toList
+            let referenceTo = f.Item "referenceTo" |> fun t -> t.Children() |> Seq.map (fun t -> t.ToString()) |> Seq.toList
             let ft = 
               match typ with
               | "picklist" -> 
@@ -265,7 +247,7 @@ module Rest =
                   |> Seq.toList
                 Picklist picklistValues
               | _ -> typ |> parseType |> Native
-                        { Name=fname; Label=fLabel; Type=ft; Length=length; ReferenceTo=referenceTo
+            { Name=fname; Label=fLabel; Type=ft; Length=length; ReferenceTo=referenceTo
               AutoNumber=autoNumber; Calculated=calculated; Nillable=nillable }
           )
         |> Seq.toList
@@ -294,11 +276,11 @@ module Rest =
   type SoqlResult<'t> =
     { [<JsonProperty("totalSize")>] TotalSize:int
       [<JsonProperty("done")>] Done:bool
-      [<JsonProperty("records")>] Records:'t list }
+      [<JsonProperty("records")>] Records:'t[] }
   type InsertResult =
     { [<JsonProperty("id")>] Id:string
       [<JsonProperty("success")>] Success:bool
-      [<JsonProperty("errors")>] Errors:string list }
+      [<JsonProperty("errors")>] Errors:string [] }
 
   let readResponse<'ts,'te> (rs:HttpResponseMessage) =
     async {
@@ -312,16 +294,16 @@ module Rest =
     readResponse<'t, RemoteError list>
 
   let executeSoql<'t> (i:Identity) (soql:string) =
-    let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/query/?q="
+    let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/query/?q="
     let qurl = uri.ToString() + (Uri.EscapeUriString soql)
     async {
       let! rs = get i (Uri qurl)
       return! readRestResponse<'t SoqlResult> rs
     }
     
-  let insert (i:Identity) (entity:'q) =
+  let insert (i:Identity) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/"
+    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
@@ -330,9 +312,9 @@ module Rest =
       return! readRestResponse<InsertResult> rs
     }
 
-  let update (i:Identity) (id:string) (entity:'q) =
+  let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/" + id + "/"
+    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
@@ -344,9 +326,9 @@ module Rest =
       else return false
     }
 
-  let delete (i:Identity) (id:string) (entity:'q) =
+  let delete (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/").ToString() + name + "/" + id + "/"
+    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 

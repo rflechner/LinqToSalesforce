@@ -66,12 +66,7 @@ module Translator =
 
   let buildSelectFromFields (fields:FieldSelect list) =
     fields
-    |> Seq.map (
-        fun f -> 
-          match f.Alias with
-          | Some a -> a
-          | None -> f.Field.GetSerializedName()
-        )
+    |> Seq.map (fun f -> f.Field.GetSerializedName())
     |> Seq.toArray
     |> buildSelectFromNames
 
@@ -153,8 +148,8 @@ module Translator =
     op
     |> List.choose (
         function
-        | Order (Ascending, f) -> Some (sprintf "ORDER BY %s" f.Name)
-        | Order (Descending, f) -> Some (sprintf "ORDER BY %s DESC" f.Name)
+        | Order (Ascending, f) -> Some (sprintf "%s" f.Name)
+        | Order (Descending, f) -> Some (sprintf "%s DESC" f.Name)
         | _ -> None )
 
   let rec buildLimit(op:Operation list) =
@@ -170,13 +165,22 @@ module Translator =
         function
         | Skip count -> Some (sprintf "OFFSET %d" count)
         | _ -> None )
+  
+  let rec buildCount(op:Operation list) =
+    op |> List.choose (function | Count -> Some "SELECT COUNT() " | _ -> None ) |> List.tryHead
 
   let buildSoql (op:Operation list) (t:Type) tableName =
     let b = StringBuilder()
-    match buildSelect op with
-    | Some s ->  b.Append s |> ignore
-    | None -> buildSelectFromType t |> b.Append |> ignore
+
+    match buildCount op with
+    | Some count -> b.Append count |> ignore
+    | None ->
+      match buildSelect op with
+      | Some s ->  b.Append s |> ignore
+      | None -> buildSelectFromType t |> b.Append |> ignore
+    
     b.Append (sprintf "FROM %s " tableName) |> ignore
+
     match buildWhere op with
     | [] -> ()
     | [w] -> b.Append (sprintf "WHERE %s" w) |> ignore
@@ -187,10 +191,11 @@ module Translator =
           |> List.toArray
         let s = String.Join(" AND ", l)
         b.Append (sprintf "WHERE %s" s) |> ignore
+   
     match buildOrder op with
     | [] -> ()
-    | o :: _ -> b.Append " " |> ignore; b.Append o |> ignore
-    
+    | ops -> b.Append " ORDER BY " |> ignore; b.Append(String.Join(", ", ops)) |> ignore;
+
     match buildLimit op with
     | [] -> ()
     | o :: _ -> b.Append " " |> ignore; b.Append o |> ignore

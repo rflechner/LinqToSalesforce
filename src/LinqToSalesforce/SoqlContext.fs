@@ -12,6 +12,23 @@ open Translator
 open Visitor
 
 module private ContextHelper =
+  let isCountQuery = List.exists (function | Count -> true | _ -> false)
+  
+  let executeCount(client:Client) (tracker:Tracker) operations tableName =
+//    if not <| isCountQuery operations then failwith "This is not a count query"
+    let typ = typeof<int32>
+    let soql = buildSoql operations typ tableName
+    let rs = client.ExecuteSoql<int32> soql |> Async.RunSynchronously
+    match rs with
+    | Success r -> r.TotalSize
+    | Failure [e] -> e.ToException() |> raise
+    | Failure errors -> 
+        errors 
+          |> List.map (fun e -> e.ToException() :> Exception) 
+          |> List.toArray
+          |> AggregateException
+          |> raise
+
   let execute<'t when 't :> ISalesforceEntity>(client:Client) (tracker:Tracker) operations tableName =
     let typ = typeof<'t>
     let soql = buildSoql operations typ tableName
@@ -21,8 +38,8 @@ module private ContextHelper =
     | Success r ->
       let records = r.Records.ToList()
       for r in records do
-        r.PropertyChanged.Add
-          <| fun _ -> tracker.Track r
+        r.TrackPropertyUpdates()
+        r.PropertyChanged.Add(fun _ -> tracker.Track r)
       records
     | Failure [e] -> e.ToException() |> raise
     | Failure errors -> 
@@ -81,10 +98,15 @@ type SoqlQueryContext<'t when 't :> ISalesforceEntity>(client:Client, tracker:Tr
       let operations = visitor.Operations |> Seq.toList
       let typ = typeof<'t>
       let tableName = findEntityName typ
-      let results = ContextHelper.execute<'t> client tracker operations tableName
-      for r in results do
-        RelationShip<'t,_>.Build typ client tracker r
-      results :> obj
+      if ContextHelper.isCountQuery operations
+      then
+        let count = ContextHelper.executeCount client tracker operations tableName
+        count :> obj
+      else
+        let results = ContextHelper.execute<'t> client tracker operations tableName
+        for r in results do
+          RelationShip<'t,_>.Build typ client tracker r
+        results :> obj
 
 type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
   let client = Client(instanceName, authparams)
@@ -101,6 +123,7 @@ type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
     | Success r ->
         entity.PropertyChanged.Add
           <| fun _ -> tracker.Track entity
+        entity.Id <- r.Id
         r.Id
     | Failure [e] -> e.ToException() |> raise
     | Failure errors -> 

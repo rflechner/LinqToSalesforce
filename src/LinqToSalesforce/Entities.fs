@@ -1,11 +1,14 @@
 ﻿namespace LinqToSalesforce
 
 open System
+open System.Collections.Generic
 open System.ComponentModel
 
 type ISalesforceEntity = 
   inherit INotifyPropertyChanged
   abstract member Id : string with get,set
+  abstract member UpdatedProperties : IDictionary<string, obj> with get
+  abstract member TrackPropertyUpdates : unit -> unit
 
 module Entities =
   

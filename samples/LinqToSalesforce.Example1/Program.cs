@@ -29,7 +29,38 @@ namespace LinqToSalesforce.Example1
             var context = new SalesforceDataContext("eu11", impersonationParam);
             try
             {
-                var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
+                //var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
+
+                var accounts100 = (from a in context.Accounts
+                                   select a).Take(100).ToList();
+
+                var count1 = context.Accounts.Count();
+                var count2 = context.Accounts.Count(a => a.Name.Contains("Company"));
+
+                var a1 = new Account { Name = $"Company {DateTime.Now.Ticks}" };
+                context.Insert(a1);
+
+                var selected = (from a in context.Accounts
+                                select new
+                                {
+                                    a.Id,
+                                    Nom = a.Name
+                                }).ToList();
+                foreach (var o in selected)
+                {
+                    WriteLine($"Name: {o.Nom}");
+                }
+
+                var dates = (from a in context.Accounts
+                             where a.Name.Contains("Company")
+                             select a.CreatedDate)
+                             .Skip(3)
+                             .Take(4)
+                             .ToList();
+                foreach (var date in dates)
+                {
+                    WriteLine($"Date: {date}");
+                }
 
                 var accounts = from a in context.Accounts
                                    //where a.CreatedDate >= DateTime.Today

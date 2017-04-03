@@ -1,6 +1,27 @@
 
+#### 0.2.1-beta - March 23 2017
+* Fix addresses deserialization
+
+#### 0.2.0-beta - March 22 2017
+* Using Salesforce API v30.0
+* PR #23 FEAT: can use take and skip when selecting a member
+* PR #21 FEAT: Paging, OrderBy multiple fields, OrElse in WhereArgs
+* PR #20 FIX: QueryProvider CreateQuery (non-generic) not working
+
+#### 0.1.5-beta - February 24 2017
+* Implement SOQL Count().
+* Fix: assign entity Id after insert operation.
+
+#### 0.1.4-beta - February 23 2017
+* Fix members select issues.
+* Fix anonymous types select issues.
+
+#### 0.1.3-beta - February 04 2017
+* Improve serialization.
+* Only send modified properties during insert and update operations.
+
 #### 0.1.2-beta - January 31 2017
-* detect wrong references during code generation
+* Detect wrong references during code generation
 
 #### 0.1.1-beta - January 31 2017
 * Implements SingleOrDefault Single and FirstOrDefault like with other linq frameworks

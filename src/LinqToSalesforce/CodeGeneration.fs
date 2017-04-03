@@ -34,13 +34,13 @@ let fixName (name:string) =
     name.Split([|' ';'_';'-'|], StringSplitOptions.RemoveEmptyEntries)
       |> Array.filter (fun p -> p <> "c")
       |> Array.map ucFirst
-  String.Join("", parts)
+  String.Join("", parts).Replace('+', '.')
 
 let removeNonLetterDigit (s:string) =
   s.ToCharArray()
   |> Array.filter Char.IsLetterOrDigit
   |> String
-let generateCsharp (tables:TableDesc list) (``namespace``:string) =
+let generateCsharp (tables:TableDesc []) (``namespace``:string) =
   let b = StringBuilder()
   let add (text:string) =
     text |> b.Append |> ignore
@@ -112,27 +112,57 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
     addLine 0 ""
     addLine indent "}"
 
-  let generateTableCsharp (table:TableDesc) (indent:int) =
+  let generateTableCsharp (table:TableDesc) (indent:int) isValidRelation =
     sprintf """[EntityName("%s")]""" table.Name |> addLine indent
-    sprintf "public class %s : ISalesforceEntity" (table.Name |> fixName) |> addLine indent
+    let typeName = fixName table.Name
+    sprintf "public class %s : ISalesforceEntity" typeName |> addLine indent
     addLine indent "{"
+    
+    let constructors =
+      sprintf """[JsonConstructor]
+        private %s(string hack)
+        {
+            trackPropertyUpdates = false;
+        }
+
+        public %s()
+        {
+            trackPropertyUpdates = true;
+        } """ typeName typeName
+    addLine indent constructors
+
     addLine indent """
+        private IDictionary<string, object> _updatedProperties = new Dictionary<string, object>();
+        public IDictionary<string, object> UpdatedProperties => _updatedProperties;
+        private bool trackPropertyUpdates = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        public void TrackPropertyUpdates() => trackPropertyUpdates = true;
+
+        protected bool SetField<T>(ref T field, T value, string serializedName, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
             field = value;
+
+            if (trackPropertyUpdates && !string.IsNullOrWhiteSpace(serializedName))
+            {
+              if (_updatedProperties.ContainsKey(serializedName))
+                  _updatedProperties[serializedName] = value;
+              else
+                  _updatedProperties.Add(serializedName, value);
+            }
+
             OnPropertyChanged(propertyName);
             return true;
         }"""
 
-    let writeProperty typeName fieldName auto isReadonly isWrongReference =
+    let writeProperty typeName fieldName serializedName auto isReadonly =
       let ptypeName = fixName typeName
       add "public "; add ptypeName; add " "
       addLine 0 fieldName
@@ -141,19 +171,11 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
       then
         addLine (indent+2) (sprintf "get { return __%s; }" fieldName)
         if not isReadonly
-        then addLine (indent+2) (sprintf "set { SetField(ref __%s, value); }" fieldName)
+        then addLine (indent+2) (sprintf """set { SetField(ref __%s, value, "%s"); }""" fieldName serializedName)
       else
         addLine (indent+2) "get;set;"
       addLine (indent+1) "}"
-      if isReadonly && not isWrongReference
-      then 
-        let l = sprintf "public bool ShouldSerialize%s() => false;" fieldName
-        addLine indent l
-      elif isWrongReference
-      then
-        let l = sprintf "public bool ShouldSerialize%s() => %s != default(%s);" fieldName fieldName ptypeName
-        addLine indent l
-
+      
     for field in table.Fields do
       let fieldName =
         match removeNonLetterDigit field.Name with
@@ -162,7 +184,7 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
       let typeName =
         match field.Type with
         | Native t -> 
-          if field.Nillable && t <> typeof<string> 
+          if field.Nillable && t <> typeof<string> && t.IsValueType
           then sprintf "%s?" (fixName t.FullName)
           else fixName t.FullName
         | Picklist _ -> sprintf "Pick%s%s" (fixName table.Name) (fixName field.Name)
@@ -175,20 +197,16 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
         addLine (indent+1) attr
       addLine (indent+1) (sprintf "[EntityField(%b)]" field.Nillable)
       writeIndent (indent+1)
-      let shipFields = 
-        table.RelationShips |> List.map (fun r -> r.Field)
-      let isWrongReference = 
-        field.ReferenceTo.Length > 0 && field.ReferenceTo |> List.exists(fun r -> shipFields |> List.contains r |> not)
-      writeProperty typeName fieldName false field.Calculated isWrongReference
+      writeProperty typeName fieldName field.Name false field.Calculated
     
     for relation in table.RelationShips do
-      if relation.RelationshipName |> String.IsNullOrWhiteSpace |> not
+      if relation.RelationshipName |> String.IsNullOrWhiteSpace |> not && (isValidRelation relation.ChildSObject)
       then
         addLine (indent+1) "[JsonIgnore]"
         addLine (indent+1) <| sprintf """[ReferencedByField("%s")]""" relation.Field
         writeIndent (indent+1)
         let tname = sprintf "RelationShip<%s, %s>" (fixName table.Name) (fixName relation.ChildSObject)
-        writeProperty tname relation.RelationshipName true false false
+        writeProperty tname relation.RelationshipName "" true false
 
     addLine indent "}"
       
@@ -226,9 +244,11 @@ let generateCsharp (tables:TableDesc list) (``namespace``:string) =
   for (name, values) in enums do
     let vs = values |> List.distinct
     generatePickList name vs 1
-
+    
+  let isValidRelation name =
+    tables |> Seq.exists(fun t -> t.Name = name)
   for table in tables do
-    generateTableCsharp table 1
+    generateTableCsharp table 1 isValidRelation
   
   addLine 1 "public class SalesforceDataContext : SoqlContext"
   addLine 1 "{"

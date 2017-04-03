@@ -16,6 +16,8 @@ open System.IO
 open SourceLink
 #endif
 
+open Fake.StrongNamingHelper
+
 // --------------------------------------------------------------------------------------
 // START TODO: Provide project-specific details below
 // --------------------------------------------------------------------------------------
@@ -119,8 +121,12 @@ Target "AssemblyInfo" (fun _ ->
 // But keeps a subdirectory structure for each project in the
 // src folder to support multiple project outputs
 Target "CopyBinaries" (fun _ ->
-    !! "src/**/*.??proj"
-    -- "src/**/*.shproj"
+   // !! "src/**/*.??proj"
+   // -- "src/**/*.shproj"
+    !! "src/LinqToSalesforce/LinqToSalesforce.fsproj"
+        ++ "src/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.fsproj"
+        ++ "tests/LinqToSalesforce.CsharpTests/LinqToSalesforce.CsharpTests.csproj"
+        ++ "tests/LinqToSalesforce.Tests/LinqToSalesforce.Tests.fsproj"
     |>  Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) </> "bin/Release", "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
     |>  Seq.iter (fun (fromDir, toDir) -> CopyDir toDir fromDir (fun _ -> true))
 )
@@ -136,14 +142,30 @@ Target "Clean" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build library & test project
 
+Target "KeyGen" (fun _ ->
+  let strongFile = __SOURCE_DIRECTORY__ @@ "LinqToSalesforce.snk"
+  match TestFile strongFile with
+  | true -> ()
+  | _ -> strongFile |> sprintf "-k %s" |> StrongName id
+)
+
 Target "Build" (fun _ ->
-    !! solutionFile
-#if MONO
-    |> MSBuildReleaseExt "" [ ("DefineConstants","MONO") ] "Build"
-#else
-    |> MSBuildRelease "" "Build"
-#endif
-    |> ignore
+//    !! solutionFile
+//#if MONO
+//    |> MSBuildReleaseExt "" [ ("DefineConstants","MONO") ] "Build"
+//#else
+//    |> MSBuildRelease "" "Build"
+//#endif
+//    |> ignore
+
+  let snk = __SOURCE_DIRECTORY__ @@ "LinqToSalesforce.snk"
+  !! solutionFile
+  //!! "src/LinqToSalesforce/LinqToSalesforce.fsproj"
+  //  ++ "src/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.fsproj"
+  //  ++ "tests/LinqToSalesforce.CsharpTests/LinqToSalesforce.CsharpTests.csproj"
+  //  ++ "tests/LinqToSalesforce.Tests/LinqToSalesforce.Tests.fsproj"
+  |> MSBuildReleaseExt "" [ ("AssemblyOriginatorKeyFile",snk); ("SignAssembly", "true") ] "Build"
+  |> ignore
 )
 
 // --------------------------------------------------------------------------------------
@@ -381,6 +403,7 @@ Target "BuildPackage" DoNothing
 Target "All" DoNothing
 
 "AssemblyInfo"
+  ==> "KeyGen"
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"

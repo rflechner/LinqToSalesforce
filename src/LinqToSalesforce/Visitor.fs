@@ -60,10 +60,12 @@ module Visitor =
   type Operation =
     | Select of SelectArgs
     | Where of WhereArgs
-    | Join of Operation list * Operation list * Field * Field
+    | Join of ParsedExpression * ParsedExpression * Field * Field
     | Order of OrderDirection * Field
     | Limit of int
     | Skip of int
+    | Count
+  and ParsedExpression = Operation list
 
   let findDecorationName (m:MemberInfo) =
     let attr = m.GetCustomAttribute<JsonPropertyAttribute>()
@@ -71,8 +73,10 @@ module Visitor =
   
   let (|AndOr|_|) (t:ExpressionType) =
     match t with
+    | ExpressionType.And -> Some And
     | ExpressionType.AndAlso -> Some And
     | ExpressionType.Or -> Some Or
+    | ExpressionType.OrElse -> Some Or
     | _ -> None
   let (|Comparison|_|) (t:ExpressionType) =
     match t with
@@ -291,6 +295,12 @@ module Visitor =
     | :? MethodCallExpression as e when e.Method.Name = "OrderByDescending" ->
         let order = e.Arguments.Item 1 |> parseOrderArgs Descending
         parseExpression (e.Arguments.Item 0) (order :: acc)
+    | :? MethodCallExpression as e when e.Method.Name = "ThenBy" ->
+        let order = e.Arguments.Item 1 |> parseOrderArgs Ascending
+        parseExpression (e.Arguments.Item 0) (order :: acc)
+    | :? MethodCallExpression as e when e.Method.Name = "ThenByDescending" ->
+        let order = e.Arguments.Item 1 |> parseOrderArgs Descending
+        parseExpression (e.Arguments.Item 0) (order :: acc)
     | LimitMethods e when e.Arguments.Count = 1 ->
         let token = Limit 1
         parseExpression (e.Arguments.Item 0) (token :: acc)
@@ -300,19 +310,34 @@ module Visitor =
         let args = parseWhereArgs arg
         parseExpression (e.Arguments.Item 0) ((Where args) :: limit :: acc)
     | :? MethodCallExpression as e when e.Method.Name = "Take" ->
-        let arg = (e.Arguments.Item 1) :?> ConstantExpression
-        let count = arg.Value :?> int
+        let getMemberExpressionValue (exp: Expression) = 
+            match exp with
+            | :? ConstantExpression as e -> e.Value :?> int
+            | :? MemberExpression as e -> Expression.Lambda(e).Compile().DynamicInvoke() :?> int
+        let count = getMemberExpressionValue (e.Arguments.Item 1)
         let token = Limit count
         parseExpression (e.Arguments.Item 0) (token :: acc)
     | :? MethodCallExpression as e when e.Method.Name = "Skip" ->
-        let arg = (e.Arguments.Item 1) :?> ConstantExpression
-        let count = arg.Value :?> int
+        let getMemberExpressionValue (exp: Expression) = 
+            match exp with
+            | :? ConstantExpression as e -> e.Value :?> int
+            | :? MemberExpression as e -> Expression.Lambda(e).Compile().DynamicInvoke() :?> int
+        let count = getMemberExpressionValue (e.Arguments.Item 1)
         let token = Skip count
         parseExpression (e.Arguments.Item 0) (token :: acc)
+    | :? MethodCallExpression as e when e.Method.Name = "Count" ->
+        match e.Arguments.Item 0 with
+        | :? ConstantExpression as exp ->
+            parseExpression exp (Count :: acc)
+        | :? MethodCallExpression as mc2 ->
+            let subExp = mc2.Arguments.Item 1
+            let args = parseWhereArgs subExp
+            parseExpression mc2 (Count :: acc)
+        | _ ->
+            failwithf "Method not visited: '%s'" e.Method.Name
     | :? MethodCallExpression as e ->
         failwithf "Method not visited: '%s'" e.Method.Name
-    | _ ->
-      acc
+    | _ -> acc
 
   type RequestExpressionVisitor(mainExpression:Expression) = 
     let operations:Operation list ref = ref []

@@ -1,11 +1,33 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace LinqToSalesforce.CsharpTests
 {
     public class FakeQueryContext : IQueryContext
     {
+        private readonly Func<object>[] _builders;
+        private int _buildCount;
+
+        public FakeQueryContext(params Func<object>[] builders)
+        {
+            _builders = builders;
+        }
+
+        private object CreateInstance(Type type)
+        {
+            if (!_builders.Any())
+                return Activator.CreateInstance(type);
+
+            var instance = _builders[_buildCount]();
+
+            if (_buildCount++ >= _builders.Length)
+                _buildCount = 0;
+
+            return instance;
+        }
+
         public object Execute(Expression expression, bool isEnumerable)
         {
             var visitor = new Visitor.RequestExpressionVisitor(expression);
@@ -13,10 +35,7 @@ namespace LinqToSalesforce.CsharpTests
             Operations = visitor.Operations;
             var rt = visitor.GetReturnType();
             var type = typeof(List<>).MakeGenericType(rt);
-            var instance = Activator.CreateInstance(type);
-
-            //var visitor = new QueryExpressionVisitor();
-            //var instance = visitor.Visit(expression);
+            var instance = CreateInstance(type);
 
             return instance;
         }
