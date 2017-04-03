@@ -27,12 +27,13 @@ module RestApi =
       policy.SlidingExpiration <- TimeSpan.FromMinutes 5.
       cache.Add(key, result, policy) |> ignore
       result
-  let loadTableList oauth (f:string -> unit) =
+  let loadTableList oauth (f:TableDesc -> unit) =
     async {
-      let! tableNames = cacheAndReturns "tableNames" (fun () -> getObjectsDescUrls oauth)
-      //let! tableNames = getObjectsDescUrls oauth // |> Seq.take 5 // |> Async.RunSynchronously
-      for name in tableNames do
-        f name
+      let! tableUrls = cacheAndReturns "tableNames" (fun () -> getObjectsDescUrls oauth)
+      let getTable = getTableFromUrl oauth
+      for url in tableUrls do
+        let! table = getTable url
+        f table
     }
 
 type BaseEntity () =
@@ -113,20 +114,49 @@ type SalesforceProvider () as this =
         
         RestApi.loadTableList oauth (
           fun table ->
-  //          ProvidedProperty(CodeGeneration.pluralize table, typeof<obj>, //tableType,
-  //            GetterCode=fun args -> 
-  //              <@@
-  //                let ctx = (%%args.[0]:>obj) :?> SoqlContext
-  ////                let id = (%%args.[0]:>obj) :?> Identity
-  //                (ctx,table)
-  //              @@>
-  //              ) |> tablesType.AddMember
                 tablesType.AddMemberDelayed (fun () ->
-                  ProvidedProperty(CodeGeneration.pluralize table, typeof<obj>, //tableType,
+                  
+                  let entityType = ProvidedTypeDefinition(
+                                    sprintf "%sEntity" table.Name,
+                                    baseType = Some typeof<BaseEntity>,
+                                    HideObjectMethods = false)
+                  for field in table.Fields do
+                    let fn = field.Name
+                    ProvidedProperty(field.Name, typeof<string>,
+                      GetterCode=fun args -> 
+                        <@@
+        //                  let id = (%%args.[0]:>obj) :?> Identity
+        //                  (id,name)
+                          fn
+                        @@>) |> entityType.AddMember
+
+                  let tq = typedefof<Queryable<_>>.MakeGenericType(entityType)
+                  //let queryType = ProvidedTypeDefinition(
+                  //                  sprintf "%sQueryable" table.Name,
+                  //                  baseType = Some tq,
+                  //                  HideObjectMethods = false)
+                  
+                  let tableType = ProvidedTypeDefinition(
+                                      sprintf "%sTable" table.Name,
+                                      baseType = Some tq,
+                                      HideObjectMethods = true)
+                  ProvidedConstructor([],
+                      InvokeCode=
+                          fun [c]-> 
+                              <@@
+                                  let ctx = %%c:SoqlContext
+                                  let getTableMethod = typeof<SoqlContext>.GetMethod("GetTable").MakeGenericMethod(entityType)
+                                  //let q = ctx.GetTable<BaseEntity>()
+                                  ctx
+                              @@>
+                      ) |> tableType.AddMember
+                  do ty.AddMember tableType
+
+                  ProvidedProperty(table.LabelPlural, tableType, //typeof<obj>, //tableType,
                     GetterCode=fun args -> 
                       <@@
                         let ctx = (%%args.[0]:>obj) :?> SoqlContext
-                        (ctx,table)
+                        ctx
                       @@>
                       )
                   )
