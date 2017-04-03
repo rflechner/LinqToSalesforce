@@ -11,8 +11,29 @@ open LinqToSalesforce
 open Rest
 open Rest.OAuth
 open System.ComponentModel
+open System.Runtime.Caching
 
 type TableContext = SoqlContext*string
+
+module RestApi =
+  let cache = new MemoryCache("RestApi")
+  let cacheAndReturns key (f:unit -> 't) =
+    if cache.Contains key
+    then 
+      cache.Get(key) :?> 't
+    else
+      let result = f()
+      let policy = new CacheItemPolicy()
+      policy.SlidingExpiration <- TimeSpan.FromMinutes 5.
+      cache.Add(key, result, policy) |> ignore
+      result
+  let loadTableList oauth (f:string -> unit) =
+    async {
+      let! tableNames = cacheAndReturns "tableNames" (fun () -> getObjectsDescUrls oauth)
+      //let! tableNames = getObjectsDescUrls oauth // |> Seq.take 5 // |> Async.RunSynchronously
+      for name in tableNames do
+        f name
+    }
 
 type BaseEntity () =
   let event = Event<_, _>()
@@ -89,58 +110,79 @@ type SalesforceProvider () as this =
                       let a = (%%args.[0]:obj) :?> SoqlContext
                       a
                   @@>) |> ty.AddMember
-
-        async {
-          let! tableNames = getObjectsDescUrls oauth // |> Seq.take 5 // |> Async.RunSynchronously
-          for name in tableNames do
-  //          let entityType = ProvidedTypeDefinition(
-  //                              sprintf "%sEntity" name,
-  //                              baseType = Some typeof<BaseEntity>,
-  //                              HideObjectMethods = false)
-  //          for field in table.Fields do
-  //            let fn = field.Name
-  //            ProvidedProperty(field.Name, typeof<string>,
-  //              GetterCode=fun args -> 
-  //                <@@
-  ////                  let id = (%%args.[0]:>obj) :?> Identity
-  ////                  (id,name)
-  //                  fn
-  //                @@>) |> entityType.AddMember
-  //          
-  //          let tableType = ProvidedTypeDefinition(
-  //                              sprintf "%sTable" table.Name,
-  //                              baseType = Some typeof<TableContext>,
-  //                              HideObjectMethods = true)
-  //          ProvidedConstructor([],
-  //              InvokeCode=
-  //                  fun [c]-> 
-  //                      <@@
-  //                          let ctx = %%c:TableContext
-  //                          ctx
-  //                      @@>
-  //              ) |> tableType.AddMember
-  //          do ty.AddMember tableType
-
-  //          ProvidedProperty("Query", typeof<TableContext>,
+        
+        RestApi.loadTableList oauth (
+          fun table ->
+  //          ProvidedProperty(CodeGeneration.pluralize table, typeof<obj>, //tableType,
   //            GetterCode=fun args -> 
   //              <@@
-  //                let ctx = (%%args.[0]:>obj)// :?> TableContext
-  //                ctx
+  //                let ctx = (%%args.[0]:>obj) :?> SoqlContext
+  ////                let id = (%%args.[0]:>obj) :?> Identity
+  //                (ctx,table)
   //              @@>
-  //              ) |> tableType.AddMember
-            //Queryable
+  //              ) |> tablesType.AddMember
+                tablesType.AddMemberDelayed (fun () ->
+                  ProvidedProperty(CodeGeneration.pluralize table, typeof<obj>, //tableType,
+                    GetterCode=fun args -> 
+                      <@@
+                        let ctx = (%%args.[0]:>obj) :?> SoqlContext
+                        (ctx,table)
+                      @@>
+                      )
+                  )
+        ) |> Async.StartAsTask |> ignore
+        
+  //      async {
+  //        let! tableNames = getObjectsDescUrls oauth // |> Seq.take 5 // |> Async.RunSynchronously
+  //        for name in tableNames do
+  ////          let entityType = ProvidedTypeDefinition(
+  ////                              sprintf "%sEntity" name,
+  ////                              baseType = Some typeof<BaseEntity>,
+  ////                              HideObjectMethods = false)
+  ////          for field in table.Fields do
+  ////            let fn = field.Name
+  ////            ProvidedProperty(field.Name, typeof<string>,
+  ////              GetterCode=fun args -> 
+  ////                <@@
+  //////                  let id = (%%args.[0]:>obj) :?> Identity
+  //////                  (id,name)
+  ////                  fn
+  ////                @@>) |> entityType.AddMember
+  ////          
+  ////          let tableType = ProvidedTypeDefinition(
+  ////                              sprintf "%sTable" table.Name,
+  ////                              baseType = Some typeof<TableContext>,
+  ////                              HideObjectMethods = true)
+  ////          ProvidedConstructor([],
+  ////              InvokeCode=
+  ////                  fun [c]-> 
+  ////                      <@@
+  ////                          let ctx = %%c:TableContext
+  ////                          ctx
+  ////                      @@>
+  ////              ) |> tableType.AddMember
+  ////          do ty.AddMember tableType
 
-  //          let name = table.Name
-            ProvidedProperty(CodeGeneration.pluralize name, typeof<obj>, //tableType,
-              GetterCode=fun args -> 
-                <@@
-                  let ctx = (%%args.[0]:>obj) :?> SoqlContext
-  //                let id = (%%args.[0]:>obj) :?> Identity
-                  (ctx,name)
-                @@>
-                ) |> tablesType.AddMember
+  ////          ProvidedProperty("Query", typeof<TableContext>,
+  ////            GetterCode=fun args -> 
+  ////              <@@
+  ////                let ctx = (%%args.[0]:>obj)// :?> TableContext
+  ////                ctx
+  ////              @@>
+  ////              ) |> tableType.AddMember
+  //          //Queryable
+
+  ////          let name = table.Name
+  //          ProvidedProperty(CodeGeneration.pluralize name, typeof<obj>, //tableType,
+  //            GetterCode=fun args -> 
+  //              <@@
+  //                let ctx = (%%args.[0]:>obj) :?> SoqlContext
+  ////                let id = (%%args.[0]:>obj) :?> Identity
+  //                (ctx,name)
+  //              @@>
+  //              ) |> tablesType.AddMember
               
-        } |> Async.StartImmediate
+  //      } |> Async.StartImmediate
 
         ty)
 
