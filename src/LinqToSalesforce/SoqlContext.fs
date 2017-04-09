@@ -117,6 +117,11 @@ type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
     let tableName = typeof<'t>.Name
     let queryProvider = new QueryProvider(c, tableName)
     new Queryable<'t>(queryProvider, tableName)
+  
+  member x.CreateQueryable(t:Type) =
+    let et = t.GetGenericArguments()
+    let m = x.GetType().GetMethod("GetTable").MakeGenericMethod(et)
+    m.Invoke(x, null)
 
   member x.Insert entity =
     match client.Insert entity with

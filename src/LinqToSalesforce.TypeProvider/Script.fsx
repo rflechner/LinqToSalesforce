@@ -29,12 +29,13 @@ ServicePointManager.SecurityProtocol <- SecurityProtocolType.Tls12 ||| SecurityP
 //let impersonationParam = Rest.OAuth.ImpersonationParam.FromJson json
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
-let [<Literal>] authfile = @"C:\dev\LinqToSalesforce\src\Files\OAuth.config.json"
+let [<Literal>] authfile = @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
 let authparams = authfile |> File.ReadAllText |> ImpersonationParam.FromJson
 
 type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11">
 
 let sf = TS()
 //sf.Tables.Account.Name
-sf.Tables
+
+sf.Tables.Accounts
 

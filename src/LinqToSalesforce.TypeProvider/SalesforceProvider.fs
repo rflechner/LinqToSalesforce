@@ -31,8 +31,9 @@ module RestApi =
     async {
       let! tableUrls = cacheAndReturns "tableNames" (fun () -> getObjectsDescUrls oauth)
       let getTable = getTableFromUrl oauth
-      for url in tableUrls do
-        let! table = getTable url
+      for url in tableUrls |> List.take 5 do
+        let key = sprintf "key_%s" url
+        let! table = cacheAndReturns key (fun () -> getTable url)
         f table
     }
 
@@ -59,6 +60,8 @@ type BaseEntity () =
     member this.UpdatedProperties: Collections.Generic.IDictionary<string,obj> = 
       raise (NotImplementedException())
     
+type QueryableProvider(entityType:Type) =
+  
 
 [<TypeProvider>]
 type SalesforceProvider () as this =
@@ -129,6 +132,8 @@ type SalesforceProvider () as this =
         //                  (id,name)
                           fn
                         @@>) |> entityType.AddMember
+                  
+                  do ty.AddMember entityType
 
                   let tq = typedefof<Queryable<_>>.MakeGenericType(entityType)
                   //let queryType = ProvidedTypeDefinition(
@@ -136,27 +141,46 @@ type SalesforceProvider () as this =
                   //                  baseType = Some tq,
                   //                  HideObjectMethods = false)
                   
-                  let tableType = ProvidedTypeDefinition(
-                                      sprintf "%sTable" table.Name,
-                                      baseType = Some tq,
-                                      HideObjectMethods = true)
-                  ProvidedConstructor([],
-                      InvokeCode=
-                          fun [c]-> 
-                              <@@
-                                  let ctx = %%c:SoqlContext
-                                  let getTableMethod = typeof<SoqlContext>.GetMethod("GetTable").MakeGenericMethod(entityType)
-                                  //let q = ctx.GetTable<BaseEntity>()
-                                  ctx
-                              @@>
-                      ) |> tableType.AddMember
-                  do ty.AddMember tableType
+                  //let tableType = ProvidedTypeDefinition(
+                  //                    sprintf "%sTable" table.Name,
+                  //                    baseType = Some tq,
+                  //                    HideObjectMethods = true)
+                  //ProvidedConstructor([],
+                  //    InvokeCode=
+                  //        fun [c]-> 
+                  //            <@@
+                  //                //let ctx = %%c:SoqlContext
+                  //                //let getTableMethod = typeof<SoqlContext>.GetMethod("GetTable").MakeGenericMethod(entityType)
+                  //                //getTableMethod.Invoke(ctx, null)
+                  //                //let q = ctx.GetTable<BaseEntity>()
+                  //                //ctx
+                  //                //printfn "table constructor %A" %%c
+                  //                let q = %%c :>obj //:?> Queryable<_>
+                  //                q
+                  //            @@>
+                  //    ) |> tableType.AddMember
+                  //do ty.AddMember tableType
 
-                  ProvidedProperty(table.LabelPlural, tableType, //typeof<obj>, //tableType,
+
+                  let buildQueryable (ctx:SoqlContext) =
+                    let getTableMethod = typeof<SoqlContext>.GetMethod("GetTable").MakeGenericMethod(entityType)
+                    getTableMethod.Invoke(ctx, null)
+                    
+                  ProvidedProperty(table.LabelPlural, tq, // tableType, //typeof<obj>, //tableType,
                     GetterCode=fun args -> 
                       <@@
                         let ctx = (%%args.[0]:>obj) :?> SoqlContext
-                        ctx
+                        //ctx.GetTable<BaseEntity>()
+                        //let t = (%tq:>Type)
+                        ctx.CreateQueryable(tq)
+
+                        //let ty = (%entityType :> obj)
+
+                        //printfn "getting table"
+                        //let r = buildQueryable ctx
+                        //let getTableMethod = typeof<SoqlContext>.GetMethod("GetTable").MakeGenericMethod(entityType)
+                        //getTableMethod.Invoke(ctx, null)
+                        //null
                       @@>
                       )
                   )
