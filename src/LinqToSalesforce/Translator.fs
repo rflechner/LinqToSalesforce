@@ -61,6 +61,7 @@ module Translator =
     t.GetProperties()
     |> Seq.filter (fun p -> p.GetCustomAttributes<EntityFieldAttribute>().Any())
     |> Seq.map (fun p -> p.GetSerializedName())
+    //|> Seq.map (fun p -> p.Name)
     |> Seq.toArray
     |> buildSelectFromNames
 

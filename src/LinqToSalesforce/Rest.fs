@@ -36,7 +36,10 @@ module Rest =
       RemoteException(__.Message, __.ErrorCode)
 
   let fromJson<'t> json =
-    JsonConvert.DeserializeObject<'t> json
+    try
+      JsonConvert.DeserializeObject<'t> json
+    with e -> 
+      raise (new Exception("Invalid Json " + json, e))
   
   let toJson (o:obj) =
     let settings = new JsonSerializerSettings()

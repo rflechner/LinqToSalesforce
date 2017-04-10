@@ -60,7 +60,7 @@ type BaseEntity () =
     member this.UpdatedProperties: Collections.Generic.IDictionary<string,obj> = 
       raise (NotImplementedException())
     
-type QueryableProvider(entityType:Type) =
+//type QueryableProvider(entityType:Type) =
   
 
 [<TypeProvider>]
@@ -135,7 +135,13 @@ type SalesforceProvider () as this =
                   
                   do ty.AddMember entityType
 
-                  let tq = typedefof<Queryable<_>>.MakeGenericType(entityType)
+                  //let tq = typedefof<Queryable<_>>.MakeGenericType(entityType)
+                  //let ct = ProvidedTypeDefinition(table.Name, None ,HideObjectMethods=false)
+                  //ct.AddInterfaceImplementationsDelayed(fun () -> [ProvidedTypeBuilder.MakeGenericType(typedefof<System.Linq.IOrderedQueryable<_>>,[entityType :> Type])])
+
+                  let tq = ProvidedTypeBuilder.MakeGenericType(typedefof<System.Linq.IOrderedQueryable<_>>, [entityType])
+                  let ct = ProvidedTypeDefinition(table.Name, Some tq ,HideObjectMethods=false)
+
                   //let queryType = ProvidedTypeDefinition(
                   //                  sprintf "%sQueryable" table.Name,
                   //                  baseType = Some tq,
@@ -160,19 +166,17 @@ type SalesforceProvider () as this =
                   //            @@>
                   //    ) |> tableType.AddMember
                   //do ty.AddMember tableType
-
-
-                  let buildQueryable (ctx:SoqlContext) =
-                    let getTableMethod = typeof<SoqlContext>.GetMethod("GetTable").MakeGenericMethod(entityType)
-                    getTableMethod.Invoke(ctx, null)
-                    
-                  ProvidedProperty(table.LabelPlural, tq, // tableType, //typeof<obj>, //tableType,
+                  do ty.AddMember ct
+                  
+                  let tableName = table.Name
+                  ProvidedProperty(table.LabelPlural, ct, // tableType, //typeof<obj>, //tableType,
                     GetterCode=fun args -> 
                       <@@
                         let ctx = (%%args.[0]:>obj) :?> SoqlContext
                         //ctx.GetTable<BaseEntity>()
                         //let t = (%tq:>Type)
-                        ctx.CreateQueryable(tq)
+                        //ctx.CreateQueryable(ct) //:> Queryable<BaseEntity>
+                        ctx.BuildQueryable<BaseEntity>(tableName)
 
                         //let ty = (%entityType :> obj)
 
@@ -186,58 +190,6 @@ type SalesforceProvider () as this =
                   )
         ) |> Async.StartAsTask |> ignore
         
-  //      async {
-  //        let! tableNames = getObjectsDescUrls oauth // |> Seq.take 5 // |> Async.RunSynchronously
-  //        for name in tableNames do
-  ////          let entityType = ProvidedTypeDefinition(
-  ////                              sprintf "%sEntity" name,
-  ////                              baseType = Some typeof<BaseEntity>,
-  ////                              HideObjectMethods = false)
-  ////          for field in table.Fields do
-  ////            let fn = field.Name
-  ////            ProvidedProperty(field.Name, typeof<string>,
-  ////              GetterCode=fun args -> 
-  ////                <@@
-  //////                  let id = (%%args.[0]:>obj) :?> Identity
-  //////                  (id,name)
-  ////                  fn
-  ////                @@>) |> entityType.AddMember
-  ////          
-  ////          let tableType = ProvidedTypeDefinition(
-  ////                              sprintf "%sTable" table.Name,
-  ////                              baseType = Some typeof<TableContext>,
-  ////                              HideObjectMethods = true)
-  ////          ProvidedConstructor([],
-  ////              InvokeCode=
-  ////                  fun [c]-> 
-  ////                      <@@
-  ////                          let ctx = %%c:TableContext
-  ////                          ctx
-  ////                      @@>
-  ////              ) |> tableType.AddMember
-  ////          do ty.AddMember tableType
-
-  ////          ProvidedProperty("Query", typeof<TableContext>,
-  ////            GetterCode=fun args -> 
-  ////              <@@
-  ////                let ctx = (%%args.[0]:>obj)// :?> TableContext
-  ////                ctx
-  ////              @@>
-  ////              ) |> tableType.AddMember
-  //          //Queryable
-
-  ////          let name = table.Name
-  //          ProvidedProperty(CodeGeneration.pluralize name, typeof<obj>, //tableType,
-  //            GetterCode=fun args -> 
-  //              <@@
-  //                let ctx = (%%args.[0]:>obj) :?> SoqlContext
-  ////                let id = (%%args.[0]:>obj) :?> Identity
-  //                (ctx,name)
-  //              @@>
-  //              ) |> tablesType.AddMember
-              
-  //      } |> Async.StartImmediate
-
         ty)
 
 

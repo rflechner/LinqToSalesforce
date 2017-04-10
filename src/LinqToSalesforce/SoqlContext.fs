@@ -90,14 +90,14 @@ type RelationShip<'tp,'tc
             r1.SetValue(parent, instance)
          )
 
-type SoqlQueryContext<'t when 't :> ISalesforceEntity>(client:Client, tracker:Tracker) =
+type SoqlQueryContext<'t when 't :> ISalesforceEntity>(client:Client, tracker:Tracker, ?pTableName:string) =
   interface IQueryContext with
     member x.Execute expression _ =
       let visitor = new RequestExpressionVisitor(expression)
       visitor.Visit()
       let operations = visitor.Operations |> Seq.toList
       let typ = typeof<'t>
-      let tableName = findEntityName typ
+      let tableName = match pTableName with | Some n -> n | None -> findEntityName typ
       if ContextHelper.isCountQuery operations
       then
         let count = ContextHelper.executeCount client tracker operations tableName
@@ -118,6 +118,11 @@ type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
     let queryProvider = new QueryProvider(c, tableName)
     new Queryable<'t>(queryProvider, tableName)
   
+  member x.BuildQueryable<'t when 't :> ISalesforceEntity>(tableName) =
+    let c = new SoqlQueryContext<'t>(client, tracker, tableName)
+    let queryProvider = new QueryProvider(c, tableName)
+    new Queryable<'t>(queryProvider, tableName)
+
   member x.CreateQueryable(t:Type) =
     let et = t.GetGenericArguments()
     let m = x.GetType().GetMethod("GetTable").MakeGenericMethod(et)
