@@ -14,10 +14,8 @@ open Visitor
 module private ContextHelper =
   let isCountQuery = List.exists (function | Count -> true | _ -> false)
   
-  let executeCount(client:Client) (tracker:Tracker) operations tableName fieldsProviders =
-//    if not <| isCountQuery operations then failwith "This is not a count query"
-    let typ = typeof<int32>
-    let soql = buildSoql operations typ tableName fieldsProviders
+  let executeCount(client:Client) operations tableName fieldsProviders =
+    let soql = buildSoql operations tableName fieldsProviders
     let rs = client.ExecuteSoql<int32> soql |> Async.RunSynchronously
     match rs with
     | Success r -> r.TotalSize
@@ -30,8 +28,8 @@ module private ContextHelper =
           |> raise
 
   let execute<'t when 't :> ISalesforceEntity>(client:Client) (tracker:Tracker) operations tableName fieldsProviders =
-    let typ = typeof<'t>
-    let soql = buildSoql operations typ tableName fieldsProviders
+    //let typ = typeof<'t>
+    let soql = buildSoql operations tableName fieldsProviders
     //printfn "SOQL: %s" soql
     let rs = client.ExecuteSoql<'t> soql |> Async.RunSynchronously
     match rs with
@@ -101,7 +99,7 @@ type SoqlQueryContext<'t when 't :> ISalesforceEntity>(client:Client, tracker:Tr
       let tableName = match pTableName with | Some n -> n | None -> findEntityName typ
       if ContextHelper.isCountQuery operations
       then
-        let count = ContextHelper.executeCount client tracker operations tableName fieldsProviders
+        let count = ContextHelper.executeCount client operations tableName fieldsProviders
         count :> obj
       else
         let results = ContextHelper.execute<'t> client tracker operations tableName fieldsProviders

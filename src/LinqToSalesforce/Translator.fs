@@ -57,7 +57,7 @@ module Translator =
     b.Append " " |> ignore
     b.ToString()
 
-  let buildSelectFromType (t:Type) fieldsProviders =
+  let buildSelectFromType fieldsProviders =
     fieldsProviders()
     |> buildSelectFromNames
 
@@ -75,8 +75,8 @@ module Translator =
               match args with
               | Fields fields ->
                   Some (buildSelectFromFields fields)
-              | SelectType t -> 
-                  Some (buildSelectFromType t fieldsProviders)
+              | SelectType _ -> 
+                  Some (buildSelectFromType fieldsProviders)
           | _ -> None
        )
     |> List.tryHead
@@ -166,7 +166,7 @@ module Translator =
   let rec buildCount(op:Operation list) =
     op |> List.choose (function | Count -> Some "SELECT COUNT() " | _ -> None ) |> List.tryHead
 
-  let buildSoql (op:Operation list) (t:Type) tableName (fieldsProviders:unit->string array) =
+  let buildSoql (op:Operation list) tableName (fieldsProviders:unit->string array) =
     let b = StringBuilder()
 
     match buildCount op with
@@ -174,7 +174,7 @@ module Translator =
     | None ->
       match buildSelect op fieldsProviders with
       | Some s ->  b.Append s |> ignore
-      | None -> buildSelectFromType t fieldsProviders |> b.Append |> ignore
+      | None -> buildSelectFromType fieldsProviders |> b.Append |> ignore
     
     b.Append (sprintf "FROM %s " tableName) |> ignore
 

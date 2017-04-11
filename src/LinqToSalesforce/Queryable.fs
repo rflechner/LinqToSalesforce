@@ -40,7 +40,7 @@ type Queryable<'t> (provider:IQueryProvider, tableName, expression:Expression op
     visitor.Operations |> Seq.toList
   override x.ToString() =
     let operations = x.ProvideOperations ()
-    buildSoql operations (typeof<'t>) tableName x.FieldsProvider
+    buildSoql operations tableName x.FieldsProvider
   
   interface IOrderedQueryable<'t> with
     member x.ElementType: Type = 
