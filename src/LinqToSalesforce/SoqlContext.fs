@@ -101,7 +101,7 @@ type SoqlQueryContext<'t when 't :> ISalesforceEntity>(client:Client, tracker:Tr
       let tableName = match pTableName with | Some n -> n | None -> findEntityName typ
       if ContextHelper.isCountQuery operations
       then
-        let count = ContextHelper.executeCount client tracker operations tableName
+        let count = ContextHelper.executeCount client tracker operations tableName fieldsProviders
         count :> obj
       else
         let results = ContextHelper.execute<'t> client tracker operations tableName fieldsProviders
