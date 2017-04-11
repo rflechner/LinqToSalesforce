@@ -12,6 +12,7 @@ open Rest
 open Rest.OAuth
 open System.ComponentModel
 open System.Runtime.Caching
+open Entities
 
 type TableContext = SoqlContext*string
 
@@ -41,26 +42,6 @@ module RestApi =
         let! table = cacheAndReturns key (fun () -> getTable url)
         f table
     }
-
-type BaseEntity () =
-  let event = Event<_, _>()
-//  let mutable propval = 0.0
-//  member this.MyProperty
-//    with get() = propval
-//    and  set(v) =
-//        propval <- v
-//        event.Trigger(this, new PropertyChangedEventArgs("MyProperty"))
-  interface INotifyPropertyChanged with
-    member this.add_PropertyChanged(e) =
-        event.Publish.AddHandler(e)
-    member this.remove_PropertyChanged(e) =
-        event.Publish.RemoveHandler(e)
-  interface ISalesforceEntity with
-    member val Id="" with get,set
-    member this.TrackPropertyUpdates(): unit = 
-      ()
-    member this.UpdatedProperties: Collections.Generic.IDictionary<string,obj> = 
-      [] |> dict
 
 [<TypeProvider>]
 type SalesforceProvider () as this =
@@ -120,7 +101,7 @@ type SalesforceProvider () as this =
                   
                   let entityType = ProvidedTypeDefinition(
                                     sprintf "%sEntity" table.Name,
-                                    baseType = Some typeof<BaseEntity>,
+                                    baseType = Some typeof<JsonEntity>,
                                     HideObjectMethods = false)
                   for field in table.Fields do
                     let fn = field.Name
@@ -147,7 +128,7 @@ type SalesforceProvider () as this =
                         let url = tableUrls.Item tableName
                         let getTable = getTableFromUrl oauth
                         let table = url |> getTable |> Async.RunSynchronously
-                        ctx.BuildQueryable<BaseEntity>(table)
+                        ctx.BuildQueryable<JsonEntity>(table)
                       @@>
                       )
                   )

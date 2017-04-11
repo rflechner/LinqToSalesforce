@@ -14,6 +14,7 @@ open Newtonsoft.Json
 open Newtonsoft.Json.Serialization
 open Newtonsoft.Json.Converters
 open Newtonsoft.Json.Linq
+open Entities
 
 type Result<'ts,'te> =
   | Success of 'ts
@@ -37,7 +38,16 @@ module Rest =
 
   let fromJson<'t> json =
     try
-      JsonConvert.DeserializeObject<'t> json
+      let t = typeof<'t>
+      if t.IsGenericType && (t.GetGenericArguments() |> Seq.contains (typeof<JsonEntity>))
+      then
+        //TODO: lists ...
+        (json |> JObject.Parse |> JsonEntity) |> box :?> 't
+      elif t = typeof<JsonEntity>
+      then
+        (json |> JObject.Parse |> JsonEntity) |> box :?> 't
+      else
+        JsonConvert.DeserializeObject<'t> json
     with e -> 
       raise (new Exception("Invalid Json " + json, e))
   
