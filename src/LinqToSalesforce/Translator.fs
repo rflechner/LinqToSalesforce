@@ -57,12 +57,8 @@ module Translator =
     b.Append " " |> ignore
     b.ToString()
 
-  let buildSelectFromType (t:Type) =
-    t.GetProperties()
-    |> Seq.filter (fun p -> p.GetCustomAttributes<EntityFieldAttribute>().Any())
-    |> Seq.map (fun p -> p.GetSerializedName())
-    //|> Seq.map (fun p -> p.Name)
-    |> Seq.toArray
+  let buildSelectFromType (t:Type) fieldsProviders =
+    fieldsProviders()
     |> buildSelectFromNames
 
   let buildSelectFromFields (fields:FieldSelect list) =
@@ -71,7 +67,7 @@ module Translator =
     |> Seq.toArray
     |> buildSelectFromNames
 
-  let buildSelect(op:Operation list) =
+  let buildSelect (op:Operation list) fieldsProviders =
     op
     |> List.choose (
           function
@@ -80,7 +76,7 @@ module Translator =
               | Fields fields ->
                   Some (buildSelectFromFields fields)
               | SelectType t -> 
-                  Some (buildSelectFromType t)
+                  Some (buildSelectFromType t fieldsProviders)
           | _ -> None
        )
     |> List.tryHead
@@ -170,15 +166,15 @@ module Translator =
   let rec buildCount(op:Operation list) =
     op |> List.choose (function | Count -> Some "SELECT COUNT() " | _ -> None ) |> List.tryHead
 
-  let buildSoql (op:Operation list) (t:Type) tableName =
+  let buildSoql (op:Operation list) (t:Type) tableName (fieldsProviders:unit->string array) =
     let b = StringBuilder()
 
     match buildCount op with
     | Some count -> b.Append count |> ignore
     | None ->
-      match buildSelect op with
+      match buildSelect op fieldsProviders with
       | Some s ->  b.Append s |> ignore
-      | None -> buildSelectFromType t |> b.Append |> ignore
+      | None -> buildSelectFromType t fieldsProviders |> b.Append |> ignore
     
     b.Append (sprintf "FROM %s " tableName) |> ignore
 

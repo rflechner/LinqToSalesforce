@@ -209,14 +209,17 @@ module Rest =
     | _ -> typeof<String>
 
   let getObjectsDescUrls (i:Identity) =
-    let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v20.0/sobjects/"
+    let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/"
     async {
       let! rs = get i uri
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
       let o = JObject.Parse json
-      return o.SelectTokens("sobjects[*].urls.describe")
-              |> Seq.map (fun d -> d.ToString())
-              |> Seq.toList
+      let urls = o.SelectTokens "sobjects[*].urls.describe"
+      let names = o.SelectTokens "sobjects[*].name"
+      return Seq.map2 (fun url name -> (name.ToString()), (url.ToString())) urls names  |> dict
+      //return o.SelectTokens("sobjects[*].urls.describe")
+      //        |> Seq.map (fun d -> d.ToString())
+      //        |> Seq.toList
     }
 
   let getTableFromUrl (i:Identity) name =
@@ -270,7 +273,7 @@ module Rest =
     async {
       let! names = getObjectsDescUrls i
       return!
-        names
+        names.Values
 //          |> Seq.take 5
           |> Seq.map (getTableFromUrl i)
           |> Async.Parallel
@@ -349,22 +352,18 @@ module Rest =
       | None -> authenticate()
       | Some o when o.IsExired() -> authenticate()
       | _ -> ()
-    let getIdentity() =
+    member __.GetIdentity() =
+      checkSession()
       match !oauth with
       | Some o -> o
       | None -> failwith "Not authenticated"
     member __.ExecuteSoql<'t> soql =
-      checkSession()
-      executeSoql<'t> (getIdentity()) soql
+      executeSoql<'t> (__.GetIdentity()) soql
     member __.Insert<'t when 't :> ISalesforceEntity> (entity:'t) =
-      checkSession()
-      insert (getIdentity()) entity |> Async.RunSynchronously
+      insert (__.GetIdentity()) entity |> Async.RunSynchronously
     member __.Update<'t when 't :> ISalesforceEntity> (entity:'t) =
-      checkSession()
-      update (getIdentity()) entity.Id entity |> Async.RunSynchronously
+      update (__.GetIdentity()) entity.Id entity |> Async.RunSynchronously
     member __.Delete<'t when 't :> ISalesforceEntity> (entity:'t) =
-      checkSession()
-      delete (getIdentity()) entity.Id entity |> Async.RunSynchronously
+      delete (__.GetIdentity()) entity.Id entity |> Async.RunSynchronously
     member __.GetTablesList() =
-      checkSession()
-      getObjectsList (getIdentity()) |> Async.StartAsTask
+      getObjectsList (__.GetIdentity()) |> Async.StartAsTask

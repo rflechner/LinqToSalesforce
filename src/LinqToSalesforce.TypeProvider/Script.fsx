@@ -37,10 +37,16 @@ type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11">
 let sf = TS()
 //sf.Tables.Account.Name
 
-query {
-  for a in sf.Tables.Accounts do
-    yield a
-} |> Seq.take 2
+let accounts =
+  query {
+    for a in sf.Tables.Accounts do
+      //where (a.NumberBug__c = "dzdz")
+      yield a
+  } 
+  |> Seq.take 2
+  |> Seq.toArray
 
+for a in accounts do
+  printfn "name: %s" a.Name
 
 let gt = sf.Tables.Accounts.GetType().GetGenericArguments().[0]

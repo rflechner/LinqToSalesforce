@@ -27,11 +27,16 @@ module RestApi =
       policy.SlidingExpiration <- TimeSpan.FromMinutes 5.
       cache.Add(key, result, policy) |> ignore
       result
+
+  let getTablesUrls oauth =
+    async {
+      return! cacheAndReturns "tableNames" (fun () -> getObjectsDescUrls oauth)
+    }
   let loadTableList oauth (f:TableDesc -> unit) =
     async {
-      let! tableUrls = cacheAndReturns "tableNames" (fun () -> getObjectsDescUrls oauth)
+      let! tableUrls = getTablesUrls oauth
       let getTable = getTableFromUrl oauth
-      for url in tableUrls |> List.take 5 do
+      for url in tableUrls.Values |> Seq.take 5 do
         let key = sprintf "key_%s" url
         let! table = cacheAndReturns key (fun () -> getTable url)
         f table
@@ -56,9 +61,9 @@ type BaseEntity () =
     //member this.PropertyChanged: IEvent<PropertyChangedEventHandler,PropertyChangedEventArgs> = 
     //  raise (NotImplementedException())
     member this.TrackPropertyUpdates(): unit = 
-      raise (NotImplementedException())
+      () //raise (NotImplementedException())
     member this.UpdatedProperties: Collections.Generic.IDictionary<string,obj> = 
-      raise (NotImplementedException())
+      [] |> dict //raise (NotImplementedException())
     
 //type QueryableProvider(entityType:Type) =
   
@@ -176,7 +181,12 @@ type SalesforceProvider () as this =
                         //ctx.GetTable<BaseEntity>()
                         //let t = (%tq:>Type)
                         //ctx.CreateQueryable(ct) //:> Queryable<BaseEntity>
-                        ctx.BuildQueryable<BaseEntity>(tableName)
+                        let oauth = ctx.GetIdentity()
+                        let tableUrls = oauth |> RestApi.getTablesUrls |> Async.RunSynchronously
+                        let url = tableUrls.Item tableName
+                        let getTable = getTableFromUrl oauth
+                        let table = url |> getTable |> Async.RunSynchronously
+                        ctx.BuildQueryable<BaseEntity>(table)
 
                         //let ty = (%entityType :> obj)
 

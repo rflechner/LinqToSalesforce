@@ -14,10 +14,10 @@ open Visitor
 module private ContextHelper =
   let isCountQuery = List.exists (function | Count -> true | _ -> false)
   
-  let executeCount(client:Client) (tracker:Tracker) operations tableName =
+  let executeCount(client:Client) (tracker:Tracker) operations tableName fieldsProviders =
 //    if not <| isCountQuery operations then failwith "This is not a count query"
     let typ = typeof<int32>
-    let soql = buildSoql operations typ tableName
+    let soql = buildSoql operations typ tableName fieldsProviders
     let rs = client.ExecuteSoql<int32> soql |> Async.RunSynchronously
     match rs with
     | Success r -> r.TotalSize
@@ -29,9 +29,9 @@ module private ContextHelper =
           |> AggregateException
           |> raise
 
-  let execute<'t when 't :> ISalesforceEntity>(client:Client) (tracker:Tracker) operations tableName =
+  let execute<'t when 't :> ISalesforceEntity>(client:Client) (tracker:Tracker) operations tableName fieldsProviders =
     let typ = typeof<'t>
-    let soql = buildSoql operations typ tableName
+    let soql = buildSoql operations typ tableName fieldsProviders
     //printfn "SOQL: %s" soql
     let rs = client.ExecuteSoql<'t> soql |> Async.RunSynchronously
     match rs with
@@ -51,7 +51,7 @@ module private ContextHelper =
 
 type RelationShip<'tp,'tc
   when 'tp :> ISalesforceEntity 
-  and 'tc :> ISalesforceEntity>(client:Client, referenceField:string, tracker:Tracker, parent:'tp) =
+  and 'tc :> ISalesforceEntity>(client:Client, referenceField:string, tracker:Tracker, parent:'tp, fieldsProviders) =
 
   let loadResults () =
     let childType = typeof<'tc>
@@ -61,7 +61,7 @@ type RelationShip<'tp,'tc
     let operations = 
       [ Select (SelectType childType)
         Where (UnaryComparison(cmp)) ]
-    let results = ContextHelper.execute<'tc> client tracker operations chidlTableName
+    let results = ContextHelper.execute<'tc> client tracker operations chidlTableName fieldsProviders
     for r in results do
       RelationShip<'tp,_>.Build childType client tracker r
     results
@@ -74,7 +74,7 @@ type RelationShip<'tp,'tc
     member x.GetEnumerator(): IEnumerator<'tc> = 
       results.Value.GetEnumerator() :> IEnumerator<'tc>
 
-  static member Build (typ:Type) (client:Client) (tracker:Tracker) (parent:#ISalesforceEntity) =
+  static member Build (typ:Type) (client:Client) (tracker:Tracker) (parent:#ISalesforceEntity) fieldsProviders =
     let td = typedefof<RelationShip<_,_>>
     typ.GetProperties() 
       |> Seq.filter (
@@ -84,13 +84,14 @@ type RelationShip<'tp,'tc
       |> Seq.iter (
           fun r1 ->
             let ct = parent.GetType()
-            let co = r1.PropertyType.GetConstructor([|typeof<Client>; typeof<string>; typeof<Tracker>; ct|])
+            //let co = r1.PropertyType.GetConstructor([|typeof<Client>; typeof<string>; typeof<Tracker>; ct|])
+            let co = r1.PropertyType.GetConstructors() |> Seq.head
             let referencedByFieldAttr = r1.GetCustomAttributes<ReferencedByFieldAttribute>() |> Seq.head
-            let instance = co.Invoke([|client; referencedByFieldAttr.Name; tracker; parent|])
+            let instance = co.Invoke([|client; referencedByFieldAttr.Name; tracker; parent; fieldsProviders|])
             r1.SetValue(parent, instance)
          )
 
-type SoqlQueryContext<'t when 't :> ISalesforceEntity>(client:Client, tracker:Tracker, ?pTableName:string) =
+type SoqlQueryContext<'t when 't :> ISalesforceEntity>(client:Client, tracker:Tracker, fieldsProviders, ?pTableName:string) =
   interface IQueryContext with
     member x.Execute expression _ =
       let visitor = new RequestExpressionVisitor(expression)
@@ -103,30 +104,37 @@ type SoqlQueryContext<'t when 't :> ISalesforceEntity>(client:Client, tracker:Tr
         let count = ContextHelper.executeCount client tracker operations tableName
         count :> obj
       else
-        let results = ContextHelper.execute<'t> client tracker operations tableName
+        let results = ContextHelper.execute<'t> client tracker operations tableName fieldsProviders
         for r in results do
-          RelationShip<'t,_>.Build typ client tracker r
+          RelationShip<'t,_>.Build typ client tracker r fieldsProviders
         results :> obj
 
 type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
   let client = Client(instanceName, authparams)
   let tracker = new Tracker()
   
+  member x.GetIdentity() =
+    client.GetIdentity()
+
   member x.GetTable<'t when 't :> ISalesforceEntity>() =
-    let c = new SoqlQueryContext<'t>(client, tracker)
+    let c = new SoqlQueryContext<'t>(client, tracker, FieldsProviders.fieldsFromTypeProvider<'t>)
     let tableName = typeof<'t>.Name
     let queryProvider = new QueryProvider(c, tableName)
     new Queryable<'t>(queryProvider, tableName)
   
-  member x.BuildQueryable<'t when 't :> ISalesforceEntity>(tableName) =
-    let c = new SoqlQueryContext<'t>(client, tracker, tableName)
-    let queryProvider = new QueryProvider(c, tableName)
-    new Queryable<'t>(queryProvider, tableName)
+  member x.BuildQueryable<'t when 't :> ISalesforceEntity>(table:TableDesc) =
+    let fieldsProviders () =
+      table.Fields
+      |> Seq.map (fun f -> f.Name)
+      |> Seq.toArray
+    let c = new SoqlQueryContext<'t>(client, tracker, fieldsProviders, table.Name)
+    let queryProvider = new QueryProvider(c, table.Name)
+    new Queryable<'t>(queryProvider, table.Name)
 
-  member x.CreateQueryable(t:Type) =
-    let et = t.GetGenericArguments()
-    let m = x.GetType().GetMethod("GetTable").MakeGenericMethod(et)
-    m.Invoke(x, null)
+  //member x.CreateQueryable(t:Type) =
+  //  let et = t.GetGenericArguments()
+  //  let m = x.GetType().GetMethod("GetTable").MakeGenericMethod(et)
+  //  m.Invoke(x, null)
 
   member x.Insert entity =
     match client.Insert entity with

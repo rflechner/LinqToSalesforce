@@ -11,13 +11,24 @@ open Translator
 type IQueryContext =
   abstract member Execute : Expression -> bool -> obj
 
+module FieldsProviders =
+  let fieldsFromTypeProvider<'t> () =
+    let t = (typeof<'t>)
+    t.GetProperties()
+    |> Seq.filter (fun p -> p.GetCustomAttributes<EntityFieldAttribute>().Any())
+    |> Seq.map (fun p -> p.GetSerializedName())
+    |> Seq.toArray
+
 type Queryable<'t> (provider:IQueryProvider, tableName, expression:Expression option) =
   new (provider:IQueryProvider, tableName) =
     Queryable<'t>(provider, tableName, None)
   new (args: obj array) =
     Queryable<'t>(args.[0] :?> IQueryProvider, args.[1] :?> string, args.[2] :?> Expression option)
+  
   member val Provider:IQueryProvider=provider with get, set
   member val TableName:string=tableName with get, set
+  member val FieldsProvider=FieldsProviders.fieldsFromTypeProvider<'t> with get, set
+
   member x.BuildExpression() =
     match expression with
     | None -> Expression.Constant(x) :> Expression
@@ -29,7 +40,7 @@ type Queryable<'t> (provider:IQueryProvider, tableName, expression:Expression op
     visitor.Operations |> Seq.toList
   override x.ToString() =
     let operations = x.ProvideOperations ()
-    buildSoql operations (typeof<'t>) tableName
+    buildSoql operations (typeof<'t>) tableName x.FieldsProvider
   
   interface IOrderedQueryable<'t> with
     member x.ElementType: Type = 
