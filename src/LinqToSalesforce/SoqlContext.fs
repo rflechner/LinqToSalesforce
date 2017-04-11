@@ -83,7 +83,7 @@ type RelationShip<'tp,'tc
           )
       |> Seq.iter (
           fun r1 ->
-            let ct = parent.GetType()
+            //let ct = parent.GetType()
             //let co = r1.PropertyType.GetConstructor([|typeof<Client>; typeof<string>; typeof<Tracker>; ct|])
             let co = r1.PropertyType.GetConstructors() |> Seq.head
             let referencedByFieldAttr = r1.GetCustomAttributes<ReferencedByFieldAttribute>() |> Seq.head
@@ -130,11 +130,6 @@ type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
     let c = new SoqlQueryContext<'t>(client, tracker, fieldsProviders, table.Name)
     let queryProvider = new QueryProvider(c, table.Name)
     new Queryable<'t>(queryProvider, table.Name)
-
-  //member x.CreateQueryable(t:Type) =
-  //  let et = t.GetGenericArguments()
-  //  let m = x.GetType().GetMethod("GetTable").MakeGenericMethod(et)
-  //  m.Invoke(x, null)
 
   member x.Insert entity =
     match client.Insert entity with
