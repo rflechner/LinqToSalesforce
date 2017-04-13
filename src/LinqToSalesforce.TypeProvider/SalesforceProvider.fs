@@ -105,10 +105,18 @@ type SalesforceProvider () as this =
                                     HideObjectMethods = false)
                   for field in table.Fields do
                     let fn = field.Name
-                    ProvidedProperty(field.Name, typeof<string>,
+                    let memberType = 
+                      match field.Type with
+                      | Native t -> t
+                      | Picklist _ -> typeof<string>
+                    let typename = memberType.FullName
+                    ProvidedProperty(field.Name, memberType,
                       GetterCode=fun args -> 
                         <@@
-                          fn
+                          let entity = (%%args.[0]:>JsonEntity)
+                          let token = entity.Json.SelectToken fn
+                          let ``type`` = Type.GetType(typename)
+                          token.ToObject ``type``
                         @@>) |> entityType.AddMember
                   
                   do ty.AddMember entityType
@@ -128,7 +136,8 @@ type SalesforceProvider () as this =
                         let url = tableUrls.Item tableName
                         let getTable = getTableFromUrl oauth
                         let table = url |> getTable |> Async.RunSynchronously
-                        ctx.BuildQueryable<JsonEntity>(table)
+                        let q = ctx.BuildQueryable<JsonEntity>(table)
+                        q
                       @@>
                       )
                   )

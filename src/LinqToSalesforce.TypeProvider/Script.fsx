@@ -47,6 +47,10 @@ let accounts =
   |> Seq.toArray
 
 for a in accounts do
-  printfn "name: %s" a.Name
+  printfn "name: %A" a.Name
+  printfn "CreatedDate: %A" a.CreatedDate
 
-let gt = sf.Tables.Accounts.GetType().GetGenericArguments().[0]
+
+
+//let gt = sf.Tables.Accounts.GetType().GetGenericArguments().[0]
+

@@ -20,6 +20,15 @@ type Result<'ts,'te> =
   | Success of 'ts
   | Failure of 'te
 
+type SoqlResult<'t> =
+  { [<JsonProperty("totalSize")>] TotalSize:int
+    [<JsonProperty("done")>] Done:bool
+    [<JsonProperty("records")>] Records:'t[] }
+type InsertResult =
+  { [<JsonProperty("id")>] Id:string
+    [<JsonProperty("success")>] Success:bool
+    [<JsonProperty("errors")>] Errors:string [] }
+
 module Rest =
 
   type HttpMethod with
@@ -39,10 +48,15 @@ module Rest =
   let fromJson<'t> json =
     try
       let t = typeof<'t>
-      if t.IsGenericType && (t.GetGenericArguments() |> Seq.contains (typeof<JsonEntity>))
+      let td = typedefof<SoqlResult<_>>
+      if t.IsGenericType && t.GetGenericTypeDefinition() = td && (t.GetGenericArguments() |> Seq.contains (typeof<JsonEntity>))
       then
         //TODO: lists ...
-        (json |> JObject.Parse |> JsonEntity) |> box :?> 't
+        //(json |> JObject.Parse |> SoqlResult<JsonEntity>) |> box :?> 't
+        let r = JsonConvert.DeserializeObject<SoqlResult<JObject>> json
+        let records = r.Records |> Array.map(fun re -> new JsonEntity(re))
+        let jr : JsonEntity SoqlResult = { TotalSize=r.TotalSize; Done=r.Done; Records=records;}
+        jr |> box :?> 't
       elif t = typeof<JsonEntity>
       then
         (json |> JObject.Parse |> JsonEntity) |> box :?> 't
@@ -288,16 +302,7 @@ module Rest =
           |> Seq.map (getTableFromUrl i)
           |> Async.Parallel
     }
-
-  type SoqlResult<'t> =
-    { [<JsonProperty("totalSize")>] TotalSize:int
-      [<JsonProperty("done")>] Done:bool
-      [<JsonProperty("records")>] Records:'t[] }
-  type InsertResult =
-    { [<JsonProperty("id")>] Id:string
-      [<JsonProperty("success")>] Success:bool
-      [<JsonProperty("errors")>] Errors:string [] }
-
+    
   let readResponse<'ts,'te> (rs:HttpResponseMessage) =
     async {
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask

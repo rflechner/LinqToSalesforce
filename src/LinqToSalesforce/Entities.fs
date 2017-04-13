@@ -33,6 +33,7 @@ module Entities =
         [] |> dict
     override __.ToString() =
       if isNull o then "null" else o.ToString()
+    member __.Json = o
 
   type Tracker() =
     let entities = new System.Collections.Generic.HashSet<ISalesforceEntity>()
