@@ -227,7 +227,15 @@ module Visitor =
             |> Seq.map Constant
             |> Seq.toList
           FieldFunction(f, inverted, m.Method.Name, args)
-      | _ -> failwithf "Cannot convert %A" node
+      | TypeProviderMemberName name ->
+          let f = { Type=m.Type; Name=name; DecorationName=None }
+          let args = 
+            m.Arguments 
+            |> Seq.choose (|ConstantExp|_|) 
+            |> Seq.map Constant
+            |> Seq.toList
+          FieldFunction(f, inverted, m.Method.Name, args)
+      | _ -> failwithf "Cannot convert %A %A" node m
     match node with
     | :? BinaryExpression as exp ->
         match exp.NodeType, exp.Left, exp.Right with
@@ -259,8 +267,12 @@ module Visitor =
             let f = { Type=exp.Left.Type; Name=name; DecorationName=None }
             let c = { Field=f; Kind=kind; Target= Constant value }
             UnaryComparison c
+        //| Comparison kind, TypeProviderMemberName name, ConvertMethod (methodName, d, _) ->
+        //    let f = { Type=exp.Left.Type; Name=name; DecorationName=d }
+        //    let c = { Field=f; Kind=kind; Target= Constant value }
+            //UnaryComparison c
         | t, left, right ->
-            failwithf "Cannot translate convert %A | %A | %A" t left right
+            failwithf "Cannot translate convert BinaryExpression %A | %A | %A" t left right
         | _ -> failwithf "Cannot translate %A" exp
     | :? UnaryExpression as e ->
         match e.Operand with
@@ -270,12 +282,12 @@ module Visitor =
             parseMemberExpression m
         | :? MethodCallExpression as m ->
             parseFunctionCall m (e.NodeType = ExpressionType.Not)
-        | _ -> failwithf "Cannot convert %A" e.Operand
+        | _ -> failwithf "Cannot convert UnaryExpression %A" e.Operand
     | :? MemberExpression as m ->
         parseMemberExpression m
     | :? MethodCallExpression as m ->
         parseFunctionCall m (node.NodeType = ExpressionType.Not)
-    | _ -> failwithf "Cannot convert %A" node
+    | _ -> failwithf "Cannot convert MethodCallExpression %A" node
   let rec parseExpression (node:Expression) acc =
     match node with
     | :? MethodCallExpression as e when e.Method.Name = "Select" ->

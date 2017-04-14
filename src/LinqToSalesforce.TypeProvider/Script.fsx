@@ -40,8 +40,9 @@ let sf = TS()
 let accounts =
   query {
     for a in sf.Tables.Accounts do
-      where (a.Name = "cool name")
-      //select a.AccountNumber
+      where (a.Name.Contains "cool" || a.Name.Contains "company")
+      //where (a.Name = "cool name")
+      select a.AccountNumber
   }
   //|> Seq.take 2
   |> Seq.toArray
