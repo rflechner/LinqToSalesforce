@@ -40,12 +40,12 @@ let sf = TS()
 let accounts =
   query {
     for a in sf.Tables.Accounts do
-      where (a.Name.Contains "cool" || a.Name.Contains "company")
+      // where (a.Name.Contains "cool" || a.Name.Contains "company")
       //where (a.Name = "cool name")
-      take 2
-      //sortBy a.CreatedDate
-      sortByDescending a.CreatedDate
-      select a.Name
+      // take 2
+      // //sortBy a.CreatedDate
+      // sortByDescending a.CreatedDate
+      select (a.Name, a.AccountNumber, a.CreatedDate)
   }
   |> Seq.toArray
 

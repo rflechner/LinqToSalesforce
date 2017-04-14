@@ -118,6 +118,7 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
   member private x.SelectProperties<'rt,'pt>(u:UnaryExpression, results:IEnumerable<'pt>) : IEnumerable<'rt> =
     let operand = u.Operand :?> LambdaExpression
     let paramType = typeof<'pt>
+    let resultType = typeof<'rt>
     match operand.Body with
     | :? MemberExpression as m ->
       let f = x.BuildSelectMemberFunc<'rt,'pt>(m)
@@ -125,21 +126,27 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
     | :? NewExpression as e ->
       let names = 
             e.Arguments
-            |> Seq.map (fun a -> (a :?> MemberExpression).Member.Name)
+            |> Seq.map parseSelectNewArgs
             |> Seq.toList
       let properties = paramType.GetProperties() |> Seq.map (fun m -> m.Name, m) |> dict
-      let toArgs result = 
-        names 
-        |> Seq.map (
-            fun n ->
-              let m = properties.Item n
-              m.GetValue result )
-        |> Seq.toArray
+      let toArgs (result:'pt) = 
+        match result with
+        | _ when paramType = typeof<JsonEntity> -> 
+          let js = result |> box :?> JsonEntity
+          names 
+          |> Seq.map (fun n -> js.GetMember n (typeof<obj>))
+          |> Seq.toArray
+        | _ ->
+          names 
+          |> Seq.map (
+              fun n ->
+                let m = properties.Item n
+                m.GetValue result )
+          |> Seq.toArray
       results |> Seq.map (fun r -> r |> toArgs |> e.Constructor.Invoke :?> 'rt )
     | :? ParameterExpression ->
         results :?> IEnumerable<'rt>
-    | TypeProviderMemberName name when paramType = typeof<JsonEntity>->
-        let resultType = typeof<'rt>
+    | TypeProviderMemberName name when paramType = typeof<JsonEntity> ->
         seq {
           for r in results do
             let entity = r |> box :?> JsonEntity

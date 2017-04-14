@@ -83,6 +83,11 @@ module Visitor =
   let (|TypeProviderMemberName|_|) (exp:Expression) =
     exp.ToString() |> parseTypeProviderMemberName
 
+  let parseSelectNewArgs (exp:Expression) = 
+      match exp with
+      | :? MemberExpression as e -> e.Member.Name
+      | TypeProviderMemberName name -> name
+
   let (|AndOr|_|) (t:ExpressionType) =
     match t with
     | ExpressionType.And -> Some And
@@ -172,7 +177,7 @@ module Visitor =
             |> Seq.toList
           let names = 
             exp.Arguments
-            |> Seq.map (fun a -> (a :?> MemberExpression).Member.Name)
+            |> Seq.map parseSelectNewArgs
             |> Seq.toList
           let fs =
             (fields, names) 
