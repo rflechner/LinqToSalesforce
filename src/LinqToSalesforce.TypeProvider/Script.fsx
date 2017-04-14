@@ -34,7 +34,9 @@ let authparams = authfile |> File.ReadAllText |> ImpersonationParam.FromJson
 
 type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11">
 
-let sf = TS()
+let authJson = File.ReadAllText @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
+//let sf = TS()
+let sf = TS(authJson)
 //sf.Tables.Account.Name
 
 let accounts =

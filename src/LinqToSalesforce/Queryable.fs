@@ -143,7 +143,7 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
                 let m = properties.Item n
                 m.GetValue result )
           |> Seq.toArray
-      results |> Seq.map (fun r -> r |> toArgs |> e.Constructor.Invoke :?> 'rt )
+      results |> Seq.map (fun r -> r |> toArgs |> e.Constructor.Invoke :?> 'rt)
     | :? ParameterExpression ->
         results :?> IEnumerable<'rt>
     | TypeProviderMemberName name when paramType = typeof<JsonEntity> ->

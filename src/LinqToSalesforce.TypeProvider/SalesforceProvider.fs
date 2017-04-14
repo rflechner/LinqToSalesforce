@@ -37,7 +37,7 @@ module RestApi =
     async {
       let! tableUrls = getTablesUrls oauth
       let getTable = getTableFromUrl oauth
-      for url in tableUrls.Values |> Seq.take 5 do
+      for url in tableUrls.Values do // |> Seq.take 5 do
         let key = sprintf "key_%s" url
         let! table = cacheAndReturns key (fun () -> getTable url)
         f table
@@ -73,7 +73,40 @@ type SalesforceProvider () as this =
                   @@>
                 ))
           |> ty.AddMember
-      
+        ProvidedConstructor([ProvidedParameter("authJson", typeof<string>)], 
+              InvokeCode=(
+                fun args -> 
+                  <@@ 
+                    let authJson = %%args.[0]:>string
+                    let imperso = authJson |> ImpersonationParam.FromJson 
+                    let id = imperso |> authenticateWithCredentials |> Async.RunSynchronously
+                    SoqlContext(instanceName, imperso)
+                  @@>
+                ))
+          |> ty.AddMember
+        ProvidedConstructor(
+            [ ProvidedParameter("clientId", typeof<string>)
+              ProvidedParameter("clientSecret", typeof<string>)
+              ProvidedParameter("securityToken", typeof<string>)
+              ProvidedParameter("username", typeof<string>)
+              ProvidedParameter("password", typeof<string>) ],
+            InvokeCode=(
+              fun args -> 
+                <@@ 
+                  let clientId = %%args.[0]:>string
+                  let clientSecret = %%args.[1]:>string
+                  let securityToken = %%args.[2]:>string
+                  let username = %%args.[3]:>string
+                  let password = %%args.[4]:>string
+                  let imperso = 
+                    { ClientId=clientId; ClientSecret=clientSecret; 
+                      SecurityToken=securityToken; Username=username; Password=password }
+                  let id = imperso |> authenticateWithCredentials |> Async.RunSynchronously
+                  SoqlContext(instanceName, imperso)
+                @@>
+              ))
+          |> ty.AddMember
+          
         let tablesType = ProvidedTypeDefinition(
                             "TablesType", 
                             baseType = Some typeof<obj>,
