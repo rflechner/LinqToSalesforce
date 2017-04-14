@@ -59,6 +59,7 @@
     <None Include="Script.fsx" />
     <None Include="Scripts/load-references-debug.fsx" />
     <None Include="Scripts/load-project-debug.fsx" />
+    <None Include="Script1.fsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LinqToSalesforce\LinqToSalesforce.fsproj">

@@ -14,29 +14,24 @@ type ISalesforceEntity =
 module Entities =
   type JsonEntity (o:JObject) =
     let event = Event<_, _>()
-  //  let mutable propval = 0.0
-  //  member this.MyProperty
-  //    with get() = propval
-  //    and  set(v) =
-  //        propval <- v
-  //        event.Trigger(this, new PropertyChangedEventArgs("MyProperty"))
     interface INotifyPropertyChanged with
-      member this.add_PropertyChanged(e) =
+      member __.add_PropertyChanged(e) =
           event.Publish.AddHandler(e)
       member this.remove_PropertyChanged(e) =
           event.Publish.RemoveHandler(e)
     interface ISalesforceEntity with
       member val Id="" with get,set
-      member this.TrackPropertyUpdates(): unit = 
-        ()
-      member this.UpdatedProperties: Collections.Generic.IDictionary<string,obj> = 
-        [] |> dict
-    override __.ToString() =
-      if isNull o then "null" else o.ToString()
+      member __.TrackPropertyUpdates(): unit = ()
+      member __.UpdatedProperties: IDictionary<string,obj> = [] |> dict
+    override __.ToString() = if isNull o then "null" else o.ToString()
     member __.Json = o
+    member __.GetMemberValue fn typename =
+      let token = o.SelectToken fn
+      let ``type`` = Type.GetType typename
+      token.ToObject ``type``
 
   type Tracker() =
-    let entities = new System.Collections.Generic.HashSet<ISalesforceEntity>()
+    let entities = new HashSet<ISalesforceEntity>()
     
     member __.Clear() =
       entities.Clear()

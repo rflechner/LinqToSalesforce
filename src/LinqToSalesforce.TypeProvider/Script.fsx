@@ -40,10 +40,10 @@ let sf = TS()
 let accounts =
   query {
     for a in sf.Tables.Accounts do
-      //where (a.NumberBug__c = "dzdz")
-      yield a
-  } 
-  |> Seq.take 2
+      where (a.Name = "cool name")
+      //select a.AccountNumber
+  }
+  //|> Seq.take 2
   |> Seq.toArray
 
 for a in accounts do

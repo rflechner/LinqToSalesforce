@@ -7,6 +7,7 @@ open System.Linq.Expressions
 open System.Reflection
 open System.Security.Cryptography.X509Certificates
 open System.Text
+open System.Text.RegularExpressions
 
 module Visitor =
   open Newtonsoft.Json
@@ -67,10 +68,21 @@ module Visitor =
     | Count
   and ParsedExpression = Operation list
 
+  // TODO: refactor this to visit this kind of expression
+  let parseTypeProviderMemberName exp =
+    let regex = new Regex(@".* ToFSharpFunc .* GetMemberValue .* Invoke .* \""(?<MemberName>[a-zA-Z0-9\s_-]*)\""", RegexOptions.IgnorePatternWhitespace)
+    let m = regex.Match exp
+    if m.Success
+    then Some(m.Groups.["MemberName"].Value)
+    else None
+
   let findDecorationName (m:MemberInfo) =
     let attr = m.GetCustomAttribute<JsonPropertyAttribute>()
     if isNull attr then None else Some attr.PropertyName
   
+  let (|TypeProviderMemberName|_|) (exp:Expression) =
+    exp.ToString() |> parseTypeProviderMemberName
+
   let (|AndOr|_|) (t:ExpressionType) =
     match t with
     | ExpressionType.And -> Some And
@@ -128,13 +140,15 @@ module Visitor =
     | _ -> None
 
   let rec (|ConvertExp|_|) (exp:Expression) =
+    printfn "analysing %A %A" exp (exp.GetType())
     match exp with
     | :? UnaryExpression as e when e.NodeType = ExpressionType.Convert ->
         match e.Operand with
         | :? ConstantExpression as e ->
           let f = (Expression.Lambda e).Compile()
           f.DynamicInvoke() |> Some
-        | :? UnaryExpression as e -> (|ConvertExp|_|) e
+        | :? UnaryExpression as e -> 
+            (|ConvertExp|_|) e
         | _ -> None
     | _ -> None
   
@@ -241,6 +255,12 @@ module Visitor =
             let f = { Type=exp.Left.Type; Name=name; DecorationName=d }
             let c = { Field=f; Kind=kind; Target= Constant value }
             UnaryComparison c
+        | Comparison kind, TypeProviderMemberName name, ConstantExp value ->
+            let f = { Type=exp.Left.Type; Name=name; DecorationName=None }
+            let c = { Field=f; Kind=kind; Target= Constant value }
+            UnaryComparison c
+        | t, left, right ->
+            failwithf "Cannot translate convert %A | %A | %A" t left right
         | _ -> failwithf "Cannot translate %A" exp
     | :? UnaryExpression as e ->
         match e.Operand with

@@ -114,10 +114,11 @@ type SalesforceProvider () as this =
                       GetterCode=fun args -> 
                         <@@
                           let entity = (%%args.[0]:>JsonEntity)
-                          let token = entity.Json.SelectToken fn
-                          let ``type`` = Type.GetType(typename)
-                          token.ToObject ``type``
+                          entity.GetMemberValue fn typename
                         @@>) |> entityType.AddMember
+                  // TODO: relationships
+                  //for relation in table.RelationShips do
+                  //  let name = relation.RelationshipName
                   
                   do ty.AddMember entityType
                   
@@ -144,7 +145,6 @@ type SalesforceProvider () as this =
         ) |> Async.StartAsTask |> ignore
         
         ty)
-
 
   do this.AddNamespace(ns, [myType])
 
