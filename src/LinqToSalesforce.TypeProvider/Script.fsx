@@ -42,9 +42,10 @@ let accounts =
     for a in sf.Tables.Accounts do
       where (a.Name.Contains "cool" || a.Name.Contains "company")
       //where (a.Name = "cool name")
-      select a.AccountNumber
+      take 2
+      // sortBy a.Id
+      select a.Name
   }
-  //|> Seq.take 2
   |> Seq.toArray
 
 for a in accounts do

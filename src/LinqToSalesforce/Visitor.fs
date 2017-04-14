@@ -182,6 +182,8 @@ module Visitor =
                   then FieldSelect.WithAlias ({field with Name=alias}) field.Name
                   else FieldSelect.WithNoAlias field )
           Select (Fields fs)
+        | TypeProviderMemberName name ->
+            Select (Fields [FieldSelect.WithNoAlias{Name=name; Type=operand.ReturnType; DecorationName=None}])
         | _ -> failwithf "Cannot convert %A" node
     | _ -> failwithf "Cannot convert %A" node
 

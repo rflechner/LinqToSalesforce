@@ -25,10 +25,12 @@ module Entities =
       member __.UpdatedProperties: IDictionary<string,obj> = [] |> dict
     override __.ToString() = if isNull o then "null" else o.ToString()
     member __.Json = o
-    member __.GetMemberValue fn typename =
+    member __.GetMember fn (``type``:Type) =
       let token = o.SelectToken fn
-      let ``type`` = Type.GetType typename
       token.ToObject ``type``
+    member __.GetMemberValue fn (typename:string) =
+      let ``type`` = Type.GetType typename
+      __.GetMember fn ``type``
 
   type Tracker() =
     let entities = new HashSet<ISalesforceEntity>()

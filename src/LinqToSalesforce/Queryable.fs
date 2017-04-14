@@ -7,6 +7,8 @@ open System.Collections.Generic
 open System.Linq
 open System.Linq.Expressions
 open Translator
+open Visitor
+open Entities
 
 type IQueryContext =
   abstract member Execute : Expression -> bool -> obj
@@ -136,7 +138,14 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
       results |> Seq.map (fun r -> r |> toArgs |> e.Constructor.Invoke :?> 'rt )
     | :? ParameterExpression ->
         results :?> IEnumerable<'rt>
-    | _ -> failwith "SelectProperties"
+    | TypeProviderMemberName name when paramType = typeof<JsonEntity>->
+        let resultType = typeof<'rt>
+        seq {
+          for r in results do
+            let entity = r |> box :?> JsonEntity
+            yield (entity.GetMember name resultType) :?> 'rt
+        }
+    | _ -> failwithf "SelectProperties %A on type %A" operand.Body paramType
 
   interface IQueryProvider with
     member x.CreateQuery(exp: Expression): IQueryable<'TElement> = 

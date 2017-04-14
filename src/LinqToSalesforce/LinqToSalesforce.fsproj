@@ -62,11 +62,11 @@
   <Import Project="..\..\.paket\paket.targets" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="BuiltinTypes.fs" />
+    <Compile Include="Entities.fs" />
     <Compile Include="Visitor.fs" />
     <Compile Include="Translator.fs" />
     <Compile Include="Queryable.fs" />
-    <Compile Include="BuiltinTypes.fs" />
-    <Compile Include="Entities.fs" />
     <Compile Include="Rest.fs" />
     <Compile Include="SoqlContext.fs" />
     <Compile Include="CodeGeneration.fs" />
