@@ -193,8 +193,11 @@ module Visitor =
         let operand = e.Operand :?> LambdaExpression
         match operand.Body with
         | :? MemberExpression as m ->
-          let f = {Name=m.Member.Name; Type=operand.ReturnType; DecorationName=(findDecorationName m.Member)}
-          Order (d, f)
+            let f = {Name=m.Member.Name; Type=operand.ReturnType; DecorationName=(findDecorationName m.Member)}
+            Order (d, f)
+        | TypeProviderMemberName name ->
+            let f = {Name=name; Type=operand.ReturnType; DecorationName=None}
+            Order (d, f)
         | _ -> failwithf "Cannot convert %A" node
     | _ -> failwithf "Cannot convert %A" node
 
@@ -269,10 +272,6 @@ module Visitor =
             let f = { Type=exp.Left.Type; Name=name; DecorationName=None }
             let c = { Field=f; Kind=kind; Target= Constant value }
             UnaryComparison c
-        //| Comparison kind, TypeProviderMemberName name, ConvertMethod (methodName, d, _) ->
-        //    let f = { Type=exp.Left.Type; Name=name; DecorationName=d }
-        //    let c = { Field=f; Kind=kind; Target= Constant value }
-            //UnaryComparison c
         | t, left, right ->
             failwithf "Cannot translate convert BinaryExpression %A | %A | %A" t left right
         | _ -> failwithf "Cannot translate %A" exp

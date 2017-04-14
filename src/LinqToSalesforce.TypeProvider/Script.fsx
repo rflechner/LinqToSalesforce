@@ -43,7 +43,8 @@ let accounts =
       where (a.Name.Contains "cool" || a.Name.Contains "company")
       //where (a.Name = "cool name")
       take 2
-      // sortBy a.Id
+      //sortBy a.CreatedDate
+      sortByDescending a.CreatedDate
       select a.Name
   }
   |> Seq.toArray
