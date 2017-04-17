@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
@@ -47,6 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{6BCB0D08
 	EndProjectSection
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "LinqToSalesforce.TypeProvider", "src\LinqToSalesforce.TypeProvider\LinqToSalesforce.TypeProvider.fsproj", "{EF45720C-5818-4CE9-A02F-0697B3ADF707}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{E1E37233-58AF-4F8F-BCE1-B5027C9B76A2}"
 	ProjectSection(SolutionItems) = preProject
 		docs\files\img\nuget_badge.svg.template = docs\files\img\nuget_badge.svg.template
@@ -69,6 +70,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF45720C-5818-4CE9-A02F-0697B3ADF707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF45720C-5818-4CE9-A02F-0697B3ADF707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF45720C-5818-4CE9-A02F-0697B3ADF707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF45720C-5818-4CE9-A02F-0697B3ADF707}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8C8BA7E7-E688-418A-883A-A0C0AF64D375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C8BA7E7-E688-418A-883A-A0C0AF64D375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C8BA7E7-E688-418A-883A-A0C0AF64D375}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -89,10 +94,6 @@ Global
 		{C8971E7A-C89D-4140-979F-A0A8363CBB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8971E7A-C89D-4140-979F-A0A8363CBB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8971E7A-C89D-4140-979F-A0A8363CBB1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF45720C-5818-4CE9-A02F-0697B3ADF707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF45720C-5818-4CE9-A02F-0697B3ADF707}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF45720C-5818-4CE9-A02F-0697B3ADF707}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF45720C-5818-4CE9-A02F-0697B3ADF707}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

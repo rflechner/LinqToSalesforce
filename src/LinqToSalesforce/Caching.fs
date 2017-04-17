@@ -24,7 +24,9 @@ type CacheItem<'t> =
   member __.ToJson () =
     Newtonsoft.Json.JsonConvert.SerializeObject __
   static member FromJson (json:string) =
-    Newtonsoft.Json.JsonConvert.DeserializeObject<CacheItem<'t>>(json)
+    try
+      Newtonsoft.Json.JsonConvert.DeserializeObject<CacheItem<'t>>(json)
+    with | e -> raise(Exception("invalid json: " + json, e))
 
 type FileCache(basePath:string) =
   do Directory.CreateDirectory basePath |> ignore

@@ -31,12 +31,14 @@ ServicePointManager.SecurityProtocol <- SecurityProtocolType.Tls12 ||| SecurityP
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
 let [<Literal>] authfile = @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
+let [<Literal>] cacheFolder = __SOURCE_DIRECTORY__ + "\\.cache"
+let [<Literal>] slidingExpiration = 20.
 let authparams = authfile |> File.ReadAllText |> ImpersonationParam.FromJson
 
-type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11">
+type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11", cacheFolder=cacheFolder, slidingExpirationMinutes=slidingExpiration>
 
 let authJson = File.ReadAllText @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
-let sf = TS(authJson)
+let sf = TS(authJson, cacheFolder, (TimeSpan.FromMinutes slidingExpiration))
 
 
 let accounts =
@@ -50,6 +52,12 @@ let accounts =
       select (a.Name, a.AccountNumber, a.CreatedDate)
   }
   |> Seq.toArray
+
+let contacts = 
+  query {
+    for c in sf.Tables.Contacts do
+      select (c.Name)
+  } |> Seq.toArray
 
 for a in accounts do
   printfn "name: %A" a.Name
