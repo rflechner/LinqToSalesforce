@@ -13,33 +13,43 @@ open Rest.OAuth
 open System.ComponentModel
 open System.Runtime.Caching
 open Entities
+open Caching
 
 type TableContext = SoqlContext*string
 
 module RestApi =
-  let cache = new MemoryCache("RestApi")
-  let cacheAndReturns key (f:unit -> 't) =
-    if cache.Contains key
-    then 
-      cache.Get(key) :?> 't
-    else
-      let result = f()
-      let policy = new CacheItemPolicy()
-      policy.SlidingExpiration <- TimeSpan.FromMinutes 5.
-      cache.Add(key, result, policy) |> ignore
-      result
-
+  //let cache = new MemoryCache("RestApi")
+  let cache = FileCache (Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".cache"))
+  let cacheAndReturns<'t> k (f:unit -> Async<'t>) : Async<'t> =
+    let key = computeKey k
+    match cache.Get<'t> key with
+    | Some item -> 
+        async { return item }
+    | None -> 
+        async {
+          let! item = f() //|> Async.RunSynchronously
+          cache.Add<'t> key item (TimeSpan.FromMinutes 10.)
+          //let policy = new CacheItemPolicy()
+          //policy.SlidingExpiration <- TimeSpan.FromMinutes 10.
+          //cache.Add(key, result, policy) |> ignore
+          return item
+        }
+  let authenticate (authparams:ImpersonationParam) =
+    async {
+      return! cacheAndReturns "oauth" (fun _ -> authenticateWithCredentials authparams)
+    }
   let getTablesUrls oauth =
     async {
-      return! cacheAndReturns "tableNames" (fun () -> getObjectsDescUrls oauth)
+      return! cacheAndReturns "tableNames" (fun _ -> getObjectsDescUrls oauth)
     }
-  let loadTableList oauth (f:TableDesc -> unit) =
+  let loadTableList (authparams:ImpersonationParam) (f:TableDesc -> unit) =
     async {
+      let! oauth = authenticate authparams
       let! tableUrls = getTablesUrls oauth
       let getTable = getTableFromUrl oauth
-      for url in tableUrls.Values do // |> Seq.take 5 do
+      for url in tableUrls.Values |> Seq.take 5 do
         let key = sprintf "key_%s" url
-        let! table = cacheAndReturns key (fun () -> getTable url)
+        let! table = cacheAndReturns key (fun _ -> getTable url)
         f table
     }
 
@@ -50,6 +60,11 @@ type SalesforceProvider () as this =
   let asm = Assembly.GetExecutingAssembly()
   let tyName = "SalesforceTypeProvider"
   let myType = ProvidedTypeDefinition(asm, ns, tyName, None)
+  
+#if DEBUG
+  // to check API traffic with Fiddler
+  do System.Net.ServicePointManager.ServerCertificateValidationCallback <- (fun _ _ _ _ -> true)
+#endif
 
   do myType.DefineStaticParameters(
     [ ProvidedStaticParameter("authFile", typeof<string>)
@@ -61,7 +76,7 @@ type SalesforceProvider () as this =
 
         let authJson = File.ReadAllText authFile
         let authparams = ImpersonationParam.FromJson authJson
-        let oauth = authenticateWithCredentials authparams |> Async.RunSynchronously
+        //let oauth = authenticateWithCredentials authparams |> Async.RunSynchronously
       
         ProvidedConstructor([], 
               InvokeCode=(
@@ -107,6 +122,14 @@ type SalesforceProvider () as this =
               ))
           |> ty.AddMember
           
+#if DEBUG
+        do ProvidedProperty(AppDomain.CurrentDomain.BaseDirectory, typeof<string>,
+            GetterCode = fun args ->
+                <@@
+                    AppDomain.CurrentDomain.BaseDirectory
+                @@>) |> ty.AddMember
+#endif
+
         let tablesType = ProvidedTypeDefinition(
                             "TablesType", 
                             baseType = Some typeof<obj>,
@@ -128,7 +151,7 @@ type SalesforceProvider () as this =
                       a
                   @@>) |> ty.AddMember
         
-        RestApi.loadTableList oauth (
+        RestApi.loadTableList authparams (
           fun table ->
                 tablesType.AddMemberDelayed (fun () ->
                   

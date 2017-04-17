@@ -62,6 +62,7 @@
   <Import Project="..\..\.paket\paket.targets" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Caching.fs" />
     <Compile Include="BuiltinTypes.fs" />
     <Compile Include="Entities.fs" />
     <Compile Include="Visitor.fs" />
