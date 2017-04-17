@@ -19,39 +19,33 @@ type TableContext = SoqlContext*string
 
 module RestApi =
   //let cache = new MemoryCache("RestApi")
+  // Experimental file cache
   let cache = FileCache (Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".cache"))
-  let cacheAndReturns<'t> k (f:unit -> Async<'t>) : Async<'t> =
+  let cacheAndReturns<'t> k (f:unit -> Async<'t>) : 't =
     let key = computeKey k
     match cache.Get<'t> key with
-    | Some item -> 
-        async { return item }
+    | Some item -> item
     | None -> 
         async {
-          let! item = f() //|> Async.RunSynchronously
+          let! item = f()
           cache.Add<'t> key item (TimeSpan.FromMinutes 10.)
           //let policy = new CacheItemPolicy()
           //policy.SlidingExpiration <- TimeSpan.FromMinutes 10.
           //cache.Add(key, result, policy) |> ignore
           return item
-        }
+        } |> Async.RunSynchronously
   let authenticate (authparams:ImpersonationParam) =
-    async {
-      return! cacheAndReturns "oauth" (fun _ -> authenticateWithCredentials authparams)
-    }
+    cacheAndReturns "oauth" (fun _ -> authenticateWithCredentials authparams)
   let getTablesUrls oauth =
-    async {
-      return! cacheAndReturns "tableNames" (fun _ -> getObjectsDescUrls oauth)
-    }
+    cacheAndReturns "tableNames" (fun _ -> getObjectsDescUrls oauth)
   let loadTableList (authparams:ImpersonationParam) (f:TableDesc -> unit) =
-    async {
-      let! oauth = authenticate authparams
-      let! tableUrls = getTablesUrls oauth
-      let getTable = getTableFromUrl oauth
-      for url in tableUrls.Values |> Seq.take 5 do
-        let key = sprintf "key_%s" url
-        let! table = cacheAndReturns key (fun _ -> getTable url)
-        f table
-    }
+    let oauth = authenticate authparams
+    let tableUrls = getTablesUrls oauth
+    let getTable = getTableFromUrl oauth
+    for url in tableUrls.Values do //|> Seq.take 5 do
+      let key = sprintf "key_%s" url
+      let table = cacheAndReturns key (fun _ -> getTable url)
+      f table
 
 [<TypeProvider>]
 type SalesforceProvider () as this =
@@ -76,7 +70,6 @@ type SalesforceProvider () as this =
 
         let authJson = File.ReadAllText authFile
         let authparams = ImpersonationParam.FromJson authJson
-        //let oauth = authenticateWithCredentials authparams |> Async.RunSynchronously
       
         ProvidedConstructor([], 
               InvokeCode=(
@@ -189,7 +182,7 @@ type SalesforceProvider () as this =
                       <@@
                         let ctx = (%%args.[0]:>obj) :?> SoqlContext
                         let oauth = ctx.GetIdentity()
-                        let tableUrls = oauth |> RestApi.getTablesUrls |> Async.RunSynchronously
+                        let tableUrls = oauth |> RestApi.getTablesUrls
                         let url = tableUrls.Item tableName
                         let getTable = getTableFromUrl oauth
                         let table = url |> getTable |> Async.RunSynchronously
@@ -198,7 +191,7 @@ type SalesforceProvider () as this =
                       @@>
                       )
                   )
-        ) |> Async.StartAsTask |> ignore
+        ) |> ignore
         
         ty)
 
