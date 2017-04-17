@@ -1,4 +1,7 @@
 
+#### 0.2.2-beta - April 17 2017
+* A first type provider
+
 #### 0.2.1-beta - March 23 2017
 * Fix addresses deserialization
 
