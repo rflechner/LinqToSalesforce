@@ -31,6 +31,10 @@ module Entities =
     member __.GetMemberValue fn (typename:string) =
       let ``type`` = Type.GetType typename
       __.GetMember fn ``type``
+    member __.SetMemberValue fn (value:obj) =
+      let token = o.SelectToken fn
+      let jt = JToken.FromObject value
+      token.Replace jt
 
   type Tracker() =
     let entities = new HashSet<ISalesforceEntity>()

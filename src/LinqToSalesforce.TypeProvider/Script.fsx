@@ -40,6 +40,15 @@ type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11", cacheFo
 let authJson = File.ReadAllText @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
 let sf = TS(authJson, cacheFolder, (TimeSpan.FromMinutes slidingExpiration))
 
+let account1 =
+  query {
+    for a in sf.Tables.Accounts do
+      take 1
+      select a
+  }
+  |> Seq.head
+
+account1.Phone <- "45454"
 
 let accounts =
   query {

@@ -15,6 +15,7 @@ open System.Runtime.Caching
 open Entities
 open Caching
 open Newtonsoft.Json.Linq
+open Microsoft.FSharp.Quotations
 
 type TpContext = 
   { Soql:SoqlContext
@@ -210,11 +211,16 @@ type SalesforceProvider () as this =
                       | Picklist _ -> typeof<string>
                     let typename = memberType.FullName
                     ProvidedProperty(field.Name, memberType,
-                      GetterCode=fun args -> 
+                      GetterCode=(fun args -> 
                         <@@
                           let entity = (%%args.[0]:>JsonEntity)
                           entity.GetMemberValue fn typename
-                        @@>) |> entityType.AddMember
+                        @@>),
+                      SetterCode=(fun args -> 
+                          let meth = typeof<JsonEntity>.GetMethod("SetMemberValue")
+                          Expr.Call(args.[0],meth,[Expr.Value fn;args.[1]])
+                        )
+                      ) |> entityType.AddMember
                   // TODO: relationships
                   //for relation in table.RelationShips do
                   //  let name = relation.RelationshipName
