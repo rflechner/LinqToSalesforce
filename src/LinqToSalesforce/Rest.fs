@@ -59,7 +59,8 @@ module Rest =
         jr |> box :?> 't
       elif t = typeof<JsonEntity>
       then
-        (json |> JObject.Parse |> JsonEntity) |> box :?> 't
+        let o = JObject.Parse json
+        new JsonEntity(o) |> box :?> 't
       else
         JsonConvert.DeserializeObject<'t> json
     with e -> 
@@ -325,40 +326,57 @@ module Rest =
       return! readRestResponse<'t SoqlResult> rs
     }
     
-  let insert (i:Identity) (entity:#ISalesforceEntity) =
-    let name = entity.GetType() |> findEntityName
+  let insertEntityName (i:Identity) name json =
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
             h.Add("Authorization", sprintf "Bearer %s" i.AccessToken)
-      let! rs = entity |> toInsertJson |> send (Uri uri) "application/json" HttpMethod.Post (Some f)
+      let! rs = json |> send (Uri uri) "application/json" HttpMethod.Post (Some f)
       return! readRestResponse<InsertResult> rs
     }
 
-  let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =
+  let insert (i:Identity) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
+    entity |> toInsertJson |> insertEntityName i name
+
+  let insertJsonEntity (i:Identity) (entity:JsonEntity) =
+    let name = entity.GetTableName()
+    match entity |> toInsertJson |> insertEntityName i name |> Async.RunSynchronously with
+    | Success r ->
+        let id = r.Id
+        r.Success
+    | _ -> false
+    
+  let updateEntityName (i:Identity) (id:string) name json =
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
             h.Add("Authorization", sprintf "Bearer %s" i.AccessToken)
-      let! rs = entity |> toInsertJson |> send (Uri uri) "application/json" HttpMethod.Patch (Some f)
-      let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
-      if String.IsNullOrWhiteSpace json
+      let! rs = json |> send (Uri uri) "application/json" HttpMethod.Patch (Some f)
+      let! rsJson = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
+      if String.IsNullOrWhiteSpace rsJson
       then return true
       else return false
+    }
+    
+  let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =
+    let name = entity.GetType() |> findEntityName
+    entity |> toInsertJson |> updateEntityName i id name
+
+  let deleteEntityName (i:Identity) (id:string) name (json:string) =
+    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
+    async {
+      let f = 
+          fun (h:Headers.HttpRequestHeaders) -> 
+            h.Add("Authorization", sprintf "Bearer %s" i.AccessToken)
+      do! json |> send (Uri uri) "application/json" HttpMethod.Delete (Some f) |> Async.Ignore
     }
 
   let delete (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
-    async {
-      let f = 
-          fun (h:Headers.HttpRequestHeaders) -> 
-            h.Add("Authorization", sprintf "Bearer %s" i.AccessToken)
-      do! entity |> toInsertJson |> send (Uri uri) "application/json" HttpMethod.Delete (Some f) |> Async.Ignore
-    }
+    entity |> toInsertJson |> deleteEntityName i id name
 
   type Client (instanceName:string, authparams:ImpersonationParam) =
     let oauth:Identity option ref = ref None

@@ -35,6 +35,13 @@ module Entities =
       let token = o.SelectToken fn
       let jt = JToken.FromObject value
       token.Replace jt
+    member __.GetTableName() =
+      (o.SelectToken "attributes.type").ToString()
+    member __.GetId() =
+      let t = o.SelectToken "Id"
+      if isNull t
+      then None
+      else Some (t.ToString())
 
   type Tracker() =
     let entities = new HashSet<ISalesforceEntity>()

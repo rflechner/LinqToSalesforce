@@ -195,6 +195,29 @@ type SalesforceProvider () as this =
                       (%%args.[0]:obj) :?> TpContext
                   @@>) |> ty.AddMember
         
+        let saveMethod = 
+          ProvidedMethod(
+            methodName = "Save", 
+            parameters = [ProvidedParameter("entity", typeof<JsonEntity>)],
+            returnType = typeof<bool>, 
+            InvokeCode = 
+              fun args -> 
+                  <@@ 
+                      let ctx = (%%args.[0]:obj) :?> TpContext
+                      let entity = (%%args.[1]:>JsonEntity)
+                      let i = ctx.Soql.GetIdentity()
+                      let name = entity.GetTableName()
+                      let json = entity.Json.ToString()
+                      match entity.GetId() with
+                      | None ->
+                          Rest.insertJsonEntity i entity
+                      | Some id ->
+                          Rest.updateEntityName i id name json |> Async.RunSynchronously
+                      //true
+                  @@>)
+        do saveMethod.AddXmlDoc "Insert or update this entity into Salesforce"
+        do ty.AddMember saveMethod
+
         restApi.LoadTableList authparams (
           fun table ->
                 tablesType.AddMemberDelayed (fun () ->
@@ -233,6 +256,7 @@ type SalesforceProvider () as this =
                   do ty.AddMember ct
                   
                   let tableName = table.Name
+                                    
                   ProvidedProperty(table.LabelPlural, ct,
                     GetterCode=fun args -> 
                       <@@
