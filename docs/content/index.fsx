@@ -79,6 +79,16 @@ foreach (var account in accounts)
 }
 ```
 
+Solutions will be proposed next.
+
+For FSHARP developpers
+----------------------
+
+Using a type provider could be really useful to visualize your salesforce data with Atom and FSlab.
+
+![typeprovider](img/atom_fslab1.png)
+
+
 Futur developments
 ==================
 
@@ -94,17 +104,6 @@ So we need to use something difficult to use with MONO:
 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
 
 ```
-
-Solutions will be proposed next.
-
-For FSHARP developpers
-----------------------
-
-Using a type provider could be really useful to visualize your salesforce data with Atom and FSlab.
-
-![typeprovider](img/atom_fslab1.png)
-
-
  
 Contributing and copyright
 --------------------------

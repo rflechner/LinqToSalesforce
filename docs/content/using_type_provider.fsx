@@ -7,10 +7,26 @@
 #r "LinqToSalesforce.dll"
 #r "LinqToSalesforce.TypeProvider.dll"
 
+
+
 (**
 
 Using F# type provider
 ======================
+
+For the moment, the NugGet is only on my feed.
+MyGet.org
+
+<div class="row">
+  <div class="span1"></div>
+  <div class="span6">
+    <div class="well well-small" id="nuget">
+      The Salesforce.TypeProvider library can be <a href="https://www.myget.org/Package/Details/romcyber?packageType=nuget&packageId=Salesforce.TypeProvider">installed from MyGet</a>:
+      <pre>PM> Install-Package Salesforce.TypeProvider</pre>
+    </div>
+  </div>
+  <div class="span1"></div>
+</div>
 
 In this tutorial we will simply try to generate basic stats of our salesforce accounts
 *)
