@@ -7,17 +7,30 @@ open System.Collections.Generic
 open System.Linq
 open System.Linq.Expressions
 open Translator
+open Visitor
+open Entities
 
 type IQueryContext =
   abstract member Execute : Expression -> bool -> obj
+
+module FieldsProviders =
+  let fieldsFromTypeProvider<'t> () =
+    let t = (typeof<'t>)
+    t.GetProperties()
+    |> Seq.filter (fun p -> p.GetCustomAttributes<EntityFieldAttribute>().Any())
+    |> Seq.map (fun p -> p.GetSerializedName())
+    |> Seq.toArray
 
 type Queryable<'t> (provider:IQueryProvider, tableName, expression:Expression option) =
   new (provider:IQueryProvider, tableName) =
     Queryable<'t>(provider, tableName, None)
   new (args: obj array) =
     Queryable<'t>(args.[0] :?> IQueryProvider, args.[1] :?> string, args.[2] :?> Expression option)
+  
   member val Provider:IQueryProvider=provider with get, set
   member val TableName:string=tableName with get, set
+  member val FieldsProvider=FieldsProviders.fieldsFromTypeProvider<'t> with get, set
+
   member x.BuildExpression() =
     match expression with
     | None -> Expression.Constant(x) :> Expression
@@ -29,7 +42,7 @@ type Queryable<'t> (provider:IQueryProvider, tableName, expression:Expression op
     visitor.Operations |> Seq.toList
   override x.ToString() =
     let operations = x.ProvideOperations ()
-    buildSoql operations (typeof<'t>) tableName
+    buildSoql operations tableName x.FieldsProvider
   
   interface IOrderedQueryable<'t> with
     member x.ElementType: Type = 
@@ -105,6 +118,7 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
   member private x.SelectProperties<'rt,'pt>(u:UnaryExpression, results:IEnumerable<'pt>) : IEnumerable<'rt> =
     let operand = u.Operand :?> LambdaExpression
     let paramType = typeof<'pt>
+    let resultType = typeof<'rt>
     match operand.Body with
     | :? MemberExpression as m ->
       let f = x.BuildSelectMemberFunc<'rt,'pt>(m)
@@ -112,20 +126,33 @@ type QueryProvider (queryContext:IQueryContext, tableName) =
     | :? NewExpression as e ->
       let names = 
             e.Arguments
-            |> Seq.map (fun a -> (a :?> MemberExpression).Member.Name)
+            |> Seq.map parseSelectNewArgs
             |> Seq.toList
       let properties = paramType.GetProperties() |> Seq.map (fun m -> m.Name, m) |> dict
-      let toArgs result = 
-        names 
-        |> Seq.map (
-            fun n ->
-              let m = properties.Item n
-              m.GetValue result )
-        |> Seq.toArray
-      results |> Seq.map (fun r -> r |> toArgs |> e.Constructor.Invoke :?> 'rt )
+      let toArgs (result:'pt) = 
+        match result with
+        | _ when paramType = typeof<JsonEntity> -> 
+          let js = result |> box :?> JsonEntity
+          names 
+          |> Seq.map (fun n -> js.GetMember n (typeof<obj>))
+          |> Seq.toArray
+        | _ ->
+          names 
+          |> Seq.map (
+              fun n ->
+                let m = properties.Item n
+                m.GetValue result )
+          |> Seq.toArray
+      results |> Seq.map (fun r -> r |> toArgs |> e.Constructor.Invoke :?> 'rt)
     | :? ParameterExpression ->
         results :?> IEnumerable<'rt>
-    | _ -> failwith "SelectProperties"
+    | TypeProviderMemberName name when paramType = typeof<JsonEntity> ->
+        seq {
+          for r in results do
+            let entity = r |> box :?> JsonEntity
+            yield (entity.GetMember name resultType) :?> 'rt
+        }
+    | _ -> failwithf "SelectProperties %A on type %A" operand.Body paramType
 
   interface IQueryProvider with
     member x.CreateQuery(exp: Expression): IQueryable<'TElement> = 

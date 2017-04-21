@@ -18,8 +18,9 @@ open LinqToSalesforce.Rest
 open System.Data.Entity.Design.PluralizationServices
 open System.Globalization
 
-let c = CultureInfo "en-us"
-let ps = PluralizationService.CreateService c
+let private c = CultureInfo "en-us"
+let private ps = PluralizationService.CreateService c
+let pluralize = ps.Pluralize
 
 let ucFirst (s:string) =
   match s.ToCharArray() |> Seq.toList with

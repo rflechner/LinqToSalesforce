@@ -125,6 +125,7 @@ Target "CopyBinaries" (fun _ ->
    // -- "src/**/*.shproj"
     !! "src/LinqToSalesforce/LinqToSalesforce.fsproj"
         ++ "src/LinqToSalesforce.ModelGenerator/LinqToSalesforce.ModelGenerator.fsproj"
+        ++ "src/LinqToSalesforce.TypeProvider/LinqToSalesforce.TypeProvider.fsproj"
         ++ "tests/LinqToSalesforce.CsharpTests/LinqToSalesforce.CsharpTests.csproj"
         ++ "tests/LinqToSalesforce.Tests/LinqToSalesforce.Tests.fsproj"
     |>  Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) </> "bin/Release", "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
@@ -207,7 +208,15 @@ Target "NuGet" (fun _ ->
             OutputPath = "bin"
             LockDependencies = true
             Version = release.NugetVersion
-            ReleaseNotes = toLines release.Notes})
+            ReleaseNotes = toLines release.Notes })
+
+    Paket.Pack(fun p ->
+        { p with
+            OutputPath = "bin"
+            WorkingDir = ("bin" </> "LinqToSalesforce.TypeProvider")
+            LockDependencies = true
+            Version = release.NugetVersion
+            ReleaseNotes = toLines release.Notes })
 )
 
 Target "PublishNuget" (fun _ ->
@@ -402,7 +411,8 @@ Target "BuildPackage" DoNothing
 
 Target "All" DoNothing
 
-"AssemblyInfo"
+"Clean"
+  ==> "AssemblyInfo"
   ==> "KeyGen"
   ==> "Build"
   ==> "CopyBinaries"

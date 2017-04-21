@@ -14,10 +14,20 @@ open Newtonsoft.Json
 open Newtonsoft.Json.Serialization
 open Newtonsoft.Json.Converters
 open Newtonsoft.Json.Linq
+open Entities
 
 type Result<'ts,'te> =
   | Success of 'ts
   | Failure of 'te
+
+type SoqlResult<'t> =
+  { [<JsonProperty("totalSize")>] TotalSize:int
+    [<JsonProperty("done")>] Done:bool
+    [<JsonProperty("records")>] Records:'t[] }
+type InsertResult =
+  { [<JsonProperty("id")>] Id:string
+    [<JsonProperty("success")>] Success:bool
+    [<JsonProperty("errors")>] Errors:string [] }
 
 module Rest =
 
@@ -35,19 +45,38 @@ module Rest =
     member __.ToException() =
       RemoteException(__.Message, __.ErrorCode)
 
+  let invalidFields = 
+      [ "Id"; "LastModifiedDate";"CreatedById"; "MasterRecordId";
+        "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";
+        "LastModifiedById"; "IsClosed"; "ClosedDate"]
+
   let fromJson<'t> json =
-    JsonConvert.DeserializeObject<'t> json
+    try
+      let t = typeof<'t>
+      let td = typedefof<SoqlResult<_>>
+      if t.IsGenericType && t.GetGenericTypeDefinition() = td && (t.GetGenericArguments() |> Seq.contains (typeof<JsonEntity>))
+      then
+        //TODO: lists ...
+        //(json |> JObject.Parse |> SoqlResult<JsonEntity>) |> box :?> 't
+        let r = JsonConvert.DeserializeObject<SoqlResult<JObject>> json
+        let records = r.Records |> Array.map(fun re -> new JsonEntity(re))
+        let jr : JsonEntity SoqlResult = { TotalSize=r.TotalSize; Done=r.Done; Records=records;}
+        jr |> box :?> 't
+      elif t = typeof<JsonEntity>
+      then
+        let o = JObject.Parse json
+        new JsonEntity(o) |> box :?> 't
+      else
+        JsonConvert.DeserializeObject<'t> json
+    with e -> 
+      raise (new Exception("Invalid Json " + json, e))
   
   let toJson (o:obj) =
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
     JsonConvert.SerializeObject(o, settings)
   
-  let private toInsertJson (e:#ISalesforceEntity) =
-    let invalidFields = 
-      [ "Id"; "LastModifiedDate";"CreatedById"; "MasterRecordId";
-        "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";
-        "LastModifiedById"; "IsClosed"; "ClosedDate"]
+  let toInsertJson (e:#ISalesforceEntity) =
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
     let properties = e.UpdatedProperties
@@ -205,81 +234,80 @@ module Rest =
     | "double" -> typeof<double>
     | _ -> typeof<String>
 
-  let getObjectsList (i:Identity) (log:string Action) =
-    let baseUrl = Config.BuildUri "https://%s.salesforce.com"
+  let getObjectsDescUrls (i:Identity) =
     let uri = Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/"
     async {
       let! rs = get i uri
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
-      log.Invoke(sprintf "json: %A" json)
       let o = JObject.Parse json
-      return
-        o.SelectTokens("sobjects[*].urls.describe")
-          |> Seq.map (
-              fun t -> 
-                let u = t.ToString()
-                let url = baseUrl.AbsoluteUri + u
-                async {
-                  let! rs = get i (Uri url)
-                  let! c = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
-                  log.Invoke(sprintf "json: %A" c)
-                  let j = JObject.Parse c
-                  let name = (j.Item "name").ToString()
-                  let labelPlural = (j.Item "labelPlural").ToString()
-                  let label = (j.Item "label").ToString()
-                  let fields =
-                    j.Item "fields"
-                    |> Seq.map (
-                      fun f -> 
-                        let autoNumber = f.Item "autoNumber" |> Convert.ToBoolean
-                        let fname = f.Item "name" |> Convert.ToString
-                        let fLabel = f.Item "label" |> Convert.ToString
-                        let typ = f.Item "type" |> Convert.ToString
-                        let length = f.Item "length" |> Convert.ToInt32
-                        let calculated = f.Item "calculated" |> Convert.ToBoolean
-                        let nillable = f.Item "nillable" |> Convert.ToBoolean
-                        let referenceTo = f.Item "referenceTo" |> fun t -> t.Children() |> Seq.map (fun t -> t.ToString()) |> Seq.toList
-                        let ft = 
-                          match typ with
-                          | "picklist" -> 
-                            let picklistValues = 
-                              f.SelectTokens("picklistValues[*].value")
-                              |> Seq.map (fun token -> token.ToString())
-                              |> Seq.toList
-                            Picklist picklistValues
-                          | "address" ->
-                            Native(typeof<BuiltinTypes.Address>)
-                          | _ -> typ |> parseType |> Native
-                        { Name=fname; Label=fLabel; Type=ft; Length=length; ReferenceTo=referenceTo
-                          AutoNumber=autoNumber; Calculated=calculated; Nillable=nillable }
-                      )
-                    |> Seq.toList
-                  let childRelationships =
-                    j.Item "childRelationships"
-                    |> Seq.map (
-                      fun r -> 
-                        let o = r.Item "childSObject" |> Convert.ToString
-                        let name = r.Item "relationshipName" |> Convert.ToString
-                        let field = r.Item "field" |> Convert.ToString
-                        { RelationshipName=name; ChildSObject=o; Field=field }
-                    ) |> Seq.toList
-                  return { Name=name; Label=label; LabelPlural=labelPlural; Fields=fields; RelationShips=childRelationships; }
-                }
-              )
-          |> Async.Parallel
-          |> Async.RunSynchronously
-          |> Seq.toList
+      let urls = o.SelectTokens "sobjects[*].urls.describe"
+      let names = o.SelectTokens "sobjects[*].name"
+      return Seq.map2 (fun url name -> (name.ToString()), (url.ToString())) urls names  |> dict
     }
 
-  type SoqlResult<'t> =
-    { [<JsonProperty("totalSize")>] TotalSize:int
-      [<JsonProperty("done")>] Done:bool
-      [<JsonProperty("records")>] Records:'t[] }
-  type InsertResult =
-    { [<JsonProperty("id")>] Id:string
-      [<JsonProperty("success")>] Success:bool
-      [<JsonProperty("errors")>] Errors:string [] }
+  let downloadTableDesc (i:Identity) name =
+    let baseUrl = Config.BuildUri "https://%s.salesforce.com"
+    let url = baseUrl.AbsoluteUri + name
+    async {
+      let! rs = get i (Uri url)
+      let! c = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
+      return JObject.Parse c
+    }
+  let parseTableDesc (j:JObject) =
+    let name = (j.Item "name").ToString()
+    let labelPlural = (j.Item "labelPlural").ToString()
+    let label = (j.Item "label").ToString()
+    let fields =
+      j.Item "fields"
+      |> Seq.map (
+        fun f -> 
+          let autoNumber = f.Item "autoNumber" |> Convert.ToBoolean
+          let fname = f.Item "name" |> Convert.ToString
+          let fLabel = f.Item "label" |> Convert.ToString
+          let typ = f.Item "type" |> Convert.ToString
+          let length = f.Item "length" |> Convert.ToInt32
+          let calculated = f.Item "calculated" |> Convert.ToBoolean
+          let nillable = f.Item "nillable" |> Convert.ToBoolean
+          let referenceTo = f.Item "referenceTo" |> fun t -> t.Children() |> Seq.map (fun t -> t.ToString()) |> Seq.toList
+          let ft = 
+            match typ with
+            | "picklist" -> 
+              let picklistValues = 
+                f.SelectTokens("picklistValues[*].value")
+                |> Seq.map (fun token -> token.ToString())
+                |> Seq.toList
+              Picklist picklistValues
+            | _ -> typ |> parseType |> Native
+          { Name=fname; Label=fLabel; Type=ft; Length=length; ReferenceTo=referenceTo
+            AutoNumber=autoNumber; Calculated=calculated; Nillable=nillable }
+        )
+      |> Seq.toList
+    let childRelationships =
+      j.Item "childRelationships"
+      |> Seq.map (
+        fun r -> 
+          let o = r.Item "childSObject" |> Convert.ToString
+          let name = r.Item "relationshipName" |> Convert.ToString
+          let field = r.Item "field" |> Convert.ToString
+          { RelationshipName=name; ChildSObject=o; Field=field }
+      ) |> Seq.toList
+    { Name=name; Label=label; LabelPlural=labelPlural; Fields=fields; RelationShips=childRelationships; }
 
+  let getTableFromUrl (i:Identity) name =
+    async {
+      let! j = downloadTableDesc i name
+      return parseTableDesc j
+    }
+
+  let getObjectsList (i:Identity) =
+    async {
+      let! names = getObjectsDescUrls i
+      return!
+        names.Values
+          |> Seq.map (getTableFromUrl i)
+          |> Async.Parallel
+    }
+    
   let readResponse<'ts,'te> (rs:HttpResponseMessage) =
     async {
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
@@ -299,40 +327,58 @@ module Rest =
       return! readRestResponse<'t SoqlResult> rs
     }
     
-  let insert (i:Identity) (entity:#ISalesforceEntity) =
-    let name = entity.GetType() |> findEntityName
+  let insertEntityName (i:Identity) name json =
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
             h.Add("Authorization", sprintf "Bearer %s" i.AccessToken)
-      let! rs = entity |> toInsertJson |> send (Uri uri) "application/json" HttpMethod.Post (Some f)
+      let! rs = json |> send (Uri uri) "application/json" HttpMethod.Post (Some f)
       return! readRestResponse<InsertResult> rs
     }
 
-  let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =
+  let insert (i:Identity) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
+    entity |> toInsertJson |> insertEntityName i name
+
+  let insertJsonEntity (i:Identity) (entity:JsonEntity) =
+    let name = entity.GetTableName()
+    let json = entity |> toInsertJson
+    match (json.ToString()) |> insertEntityName i name |> Async.RunSynchronously with
+    | Success r ->
+        let id = r.Id
+        r.Success
+    | _ -> false
+    
+  let updateEntityName (i:Identity) (id:string) name json =
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
             h.Add("Authorization", sprintf "Bearer %s" i.AccessToken)
-      let! rs = entity |> toInsertJson |> send (Uri uri) "application/json" HttpMethod.Patch (Some f)
-      let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
-      if String.IsNullOrWhiteSpace json
+      let! rs = json |> send (Uri uri) "application/json" HttpMethod.Patch (Some f)
+      let! rsJson = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
+      if String.IsNullOrWhiteSpace rsJson
       then return true
       else return false
+    }
+    
+  let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =
+    let name = entity.GetType() |> findEntityName
+    entity |> toInsertJson |> updateEntityName i id name
+
+  let deleteEntityName (i:Identity) (id:string) name (json:string) =
+    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
+    async {
+      let f = 
+          fun (h:Headers.HttpRequestHeaders) -> 
+            h.Add("Authorization", sprintf "Bearer %s" i.AccessToken)
+      do! json |> send (Uri uri) "application/json" HttpMethod.Delete (Some f) |> Async.Ignore
     }
 
   let delete (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
-    async {
-      let f = 
-          fun (h:Headers.HttpRequestHeaders) -> 
-            h.Add("Authorization", sprintf "Bearer %s" i.AccessToken)
-      do! entity |> toInsertJson |> send (Uri uri) "application/json" HttpMethod.Delete (Some f) |> Async.Ignore
-    }
+    entity |> toInsertJson |> deleteEntityName i id name
 
   type Client (instanceName:string, authparams:ImpersonationParam) =
     let oauth:Identity option ref = ref None
@@ -344,19 +390,18 @@ module Rest =
       | None -> authenticate()
       | Some o when o.IsExired() -> authenticate()
       | _ -> ()
-    let getIdentity() =
+    member __.GetIdentity() =
+      checkSession()
       match !oauth with
       | Some o -> o
       | None -> failwith "Not authenticated"
     member __.ExecuteSoql<'t> soql =
-      checkSession()
-      executeSoql<'t> (getIdentity()) soql
+      executeSoql<'t> (__.GetIdentity()) soql
     member __.Insert<'t when 't :> ISalesforceEntity> (entity:'t) =
-      checkSession()
-      insert (getIdentity()) entity |> Async.RunSynchronously
+      insert (__.GetIdentity()) entity |> Async.RunSynchronously
     member __.Update<'t when 't :> ISalesforceEntity> (entity:'t) =
-      checkSession()
-      update (getIdentity()) entity.Id entity |> Async.RunSynchronously
+      update (__.GetIdentity()) entity.Id entity |> Async.RunSynchronously
     member __.Delete<'t when 't :> ISalesforceEntity> (entity:'t) =
-      checkSession()
-      delete (getIdentity()) entity.Id entity |> Async.RunSynchronously
+      delete (__.GetIdentity()) entity.Id entity |> Async.RunSynchronously
+    member __.GetTablesList() =
+      getObjectsList (__.GetIdentity()) |> Async.StartAsTask
