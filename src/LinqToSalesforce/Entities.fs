@@ -38,7 +38,9 @@ module Entities =
       then updatedProperties.[fn] <- value
       else updatedProperties.Add(fn, value)
       let jt = JToken.FromObject value
-      token.Replace jt
+      if isNull token
+      then o.Add(fn, jt)
+      else token.Replace jt
     member __.GetTableName() =
       (o.SelectToken "attributes.type").ToString()
     member __.GetId() =

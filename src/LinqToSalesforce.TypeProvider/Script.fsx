@@ -26,15 +26,12 @@ ServicePointManager.SecurityProtocol <- SecurityProtocolType.Tls12 ||| SecurityP
     "Instacename":"eu11" // or "login" or "test"
 }
 *)
-//var impersonationParam = new Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
-//let impersonationParam = Rest.OAuth.ImpersonationParam.FromJson json
+
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
 let [<Literal>] authfile = @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
 let [<Literal>] cacheFolder = __SOURCE_DIRECTORY__ + "\\.cache"
 let [<Literal>] slidingExpiration = 20.
-let authparams = authfile |> File.ReadAllText |> ImpersonationParam.FromJson
-
 type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11", cacheFolder=cacheFolder, slidingExpirationMinutes=slidingExpiration>
 
 let authJson = File.ReadAllText @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
@@ -55,8 +52,7 @@ let account1 =
   }
   |> Seq.head
 
-account1.Phone <- "45454"
-//account1.GetId()
+account1.Phone <- "1234548478"
 sf.Save account1
 
 let accounts =
@@ -70,6 +66,10 @@ let accounts =
       select (a.Name, a.AccountNumber, a.CreatedDate)
   }
   |> Seq.toArray
+
+let na = TS.AccountEntity.CreateNew()
+na.Name <- "TP Account"
+sf.Save na
 
 let contacts = 
   query {

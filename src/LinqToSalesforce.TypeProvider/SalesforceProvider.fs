@@ -247,6 +247,26 @@ type SalesforceProvider () as this =
                   //for relation in table.RelationShips do
                   //  let name = relation.RelationshipName
                   
+                  let tableName = table.Name
+
+                  let createNewMethod = 
+                    ProvidedMethod(
+                      methodName = "CreateNew", 
+                      parameters = [],
+                      returnType = entityType, 
+                      InvokeCode = 
+                        fun args -> 
+                            <@@ 
+                                let o = new JObject()
+                                let jtype = new JObject()
+                                jtype.Add("type", JToken.FromObject tableName)
+                                o.Add("attributes", jtype)
+                                new JsonEntity(o)
+                            @@>)
+                  do createNewMethod.AddMethodAttrs(MethodAttributes.Static)
+                  do createNewMethod.AddXmlDoc "Insert or update this entity into Salesforce"
+                  do entityType.AddMember createNewMethod
+                  
                   do ty.AddMember entityType
                   
                   let tq = ProvidedTypeBuilder.MakeGenericType(typedefof<System.Linq.IOrderedQueryable<_>>, [entityType])
@@ -254,8 +274,6 @@ type SalesforceProvider () as this =
                   
                   do ty.AddMember ct
                   
-                  let tableName = table.Name
-                                    
                   ProvidedProperty(table.LabelPlural, ct,
                     GetterCode=fun args -> 
                       <@@
