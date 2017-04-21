@@ -66,7 +66,7 @@
 <p>This example demonstrates how to use LINQ to SOQL.
 In this example, we search 10 accounts where name starts with "Company" and industry is "Biotechnology".</p>
 <p>Then we can iterate their contacts and cases using lazy loading.</p>
-<p>This Linq provider is written in FSharp but is originally made to use in CSharp</p>
+<p>This Linq provider is written in FSharp but is originally made to be used in CSharp</p>
 <h2><a name="In-csharp" class="anchor" href="#In-csharp">In csharp</a></h2>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -127,9 +127,8 @@ ServicePointManager.SecurityProtocol <span class="o">=</span> SecurityProtocolTy
 </code></pre></td></tr></table>
 <p>Solutions will be proposed next.</p>
 <h2><a name="For-FSHARP-developpers" class="anchor" href="#For-FSHARP-developpers">For FSHARP developpers</a></h2>
-<p>Code generator is currently generating C# only.
-But a type provider will be developed soon because F# type providers are magic.</p>
-<p><img src="img/giphy1.gif" alt="giphy1" /></p>
+<p>Using a type provider could be really useful to visualize your salesforce data with Atom and FSlab.</p>
+<p><img src="img/atom_fslab1.png" alt="typeprovider" /></p>
 <h2><a name="Contributing-and-copyright" class="anchor" href="#Contributing-and-copyright">Contributing and copyright</a></h2>
 <p>The project is hosted on <a href="https://github.com/rflechner/LinqToSalesforce">GitHub</a> where you can <a href="https://github.com/rflechner/LinqToSalesforce/issues">report issues</a>, fork
 the project and submit pull requests. If you're adding a new public API, please also
@@ -156,6 +155,7 @@ redistribution for both commercial and non-commercial purposes. For more informa
             <li><a href="/LinqToSalesforce/getting_started_with_salesforce.html">Getting started with salesforce</a></li>
             <li><a href="/LinqToSalesforce/salesforce_api.html">Salesforce API</a></li>
             <li><a href="/LinqToSalesforce/tutorial.html">Sample tutorial</a></li>
+            <li><a href="/LinqToSalesforce/using_type_provider.html">Using F# type provider</a></li>
 
             <li class="nav-header">Releases</li>
             <li><a href="https://www.nuget.org/packages/LinqToSalesforce">NuGet</a></li>

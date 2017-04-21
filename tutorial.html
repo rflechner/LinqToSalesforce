@@ -155,7 +155,7 @@
 <span class="k">using</span> LinqToSalesforce;
 <span class="k">using</span> <span class="k">static</span> System.Console;
 
-<span class="k">var</span> impersonationParam <span class="o">=</span> <span class="k">new</span> Rest.OAuth.ImpersonationParam(clientId, clientId, securityToken, username, password);
+<span class="k">var</span> impersonationParam <span class="o">=</span> <span class="k">new</span> Rest.OAuth.ImpersonationParam(clientId, clientsecret, securityToken, username, password);
 <span class="k">var</span> context <span class="o">=</span> <span class="k">new</span> SalesforceDataContext(<span class="s">"eu11"</span>, impersonationParam);
 
 <span class="k">var</span> accounts <span class="o">=</span> (<span class="k">from</span> a <span class="k">in</span> context.Accounts
@@ -265,6 +265,7 @@ context.Save();
             <li><a href="/LinqToSalesforce/getting_started_with_salesforce.html">Getting started with salesforce</a></li>
             <li><a href="/LinqToSalesforce/salesforce_api.html">Salesforce API</a></li>
             <li><a href="/LinqToSalesforce/tutorial.html">Sample tutorial</a></li>
+            <li><a href="/LinqToSalesforce/using_type_provider.html">Using F# type provider</a></li>
 
             <li class="nav-header">Releases</li>
             <li><a href="https://www.nuget.org/packages/LinqToSalesforce">NuGet</a></li>
