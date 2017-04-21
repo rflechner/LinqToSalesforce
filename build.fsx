@@ -411,7 +411,8 @@ Target "BuildPackage" DoNothing
 
 Target "All" DoNothing
 
-"AssemblyInfo"
+"Clean"
+  ==> "AssemblyInfo"
   ==> "KeyGen"
   ==> "Build"
   ==> "CopyBinaries"
