@@ -100,10 +100,9 @@ Solutions will be proposed next.
 For FSHARP developpers
 ----------------------
 
-Code generator is currently generating C# only.
-But a type provider will be developed soon because F# type providers are magic.
+Using a type provider could be really useful to visualize your salesforce data with Atom and FSlab.
 
-![giphy1](img/giphy1.gif)
+![typeprovider](img/atom_fslab1.png)
 
 
  

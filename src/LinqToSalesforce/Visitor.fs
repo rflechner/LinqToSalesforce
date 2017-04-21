@@ -7,6 +7,7 @@ open System.Linq.Expressions
 open System.Reflection
 open System.Security.Cryptography.X509Certificates
 open System.Text
+open System.Text.RegularExpressions
 
 module Visitor =
   open Newtonsoft.Json
@@ -67,10 +68,26 @@ module Visitor =
     | Count
   and ParsedExpression = Operation list
 
+  // TODO: refactor this to visit this kind of expression
+  let parseTypeProviderMemberName exp =
+    let regex = new Regex(@".* ToFSharpFunc .* GetMemberValue .* Invoke .* \""(?<MemberName>[a-zA-Z0-9\s_-]*)\""", RegexOptions.IgnorePatternWhitespace)
+    let m = regex.Match exp
+    if m.Success
+    then Some(m.Groups.["MemberName"].Value)
+    else None
+
   let findDecorationName (m:MemberInfo) =
     let attr = m.GetCustomAttribute<JsonPropertyAttribute>()
     if isNull attr then None else Some attr.PropertyName
   
+  let (|TypeProviderMemberName|_|) (exp:Expression) =
+    exp.ToString() |> parseTypeProviderMemberName
+
+  let parseSelectNewArgs (exp:Expression) = 
+      match exp with
+      | :? MemberExpression as e -> e.Member.Name
+      | TypeProviderMemberName name -> name
+
   let (|AndOr|_|) (t:ExpressionType) =
     match t with
     | ExpressionType.And -> Some And
@@ -128,13 +145,15 @@ module Visitor =
     | _ -> None
 
   let rec (|ConvertExp|_|) (exp:Expression) =
+    printfn "analysing %A %A" exp (exp.GetType())
     match exp with
     | :? UnaryExpression as e when e.NodeType = ExpressionType.Convert ->
         match e.Operand with
         | :? ConstantExpression as e ->
           let f = (Expression.Lambda e).Compile()
           f.DynamicInvoke() |> Some
-        | :? UnaryExpression as e -> (|ConvertExp|_|) e
+        | :? UnaryExpression as e -> 
+            (|ConvertExp|_|) e
         | _ -> None
     | _ -> None
   
@@ -158,7 +177,7 @@ module Visitor =
             |> Seq.toList
           let names = 
             exp.Arguments
-            |> Seq.map (fun a -> (a :?> MemberExpression).Member.Name)
+            |> Seq.map parseSelectNewArgs
             |> Seq.toList
           let fs =
             (fields, names) 
@@ -168,6 +187,8 @@ module Visitor =
                   then FieldSelect.WithAlias ({field with Name=alias}) field.Name
                   else FieldSelect.WithNoAlias field )
           Select (Fields fs)
+        | TypeProviderMemberName name ->
+            Select (Fields [FieldSelect.WithNoAlias{Name=name; Type=operand.ReturnType; DecorationName=None}])
         | _ -> failwithf "Cannot convert %A" node
     | _ -> failwithf "Cannot convert %A" node
 
@@ -177,8 +198,11 @@ module Visitor =
         let operand = e.Operand :?> LambdaExpression
         match operand.Body with
         | :? MemberExpression as m ->
-          let f = {Name=m.Member.Name; Type=operand.ReturnType; DecorationName=(findDecorationName m.Member)}
-          Order (d, f)
+            let f = {Name=m.Member.Name; Type=operand.ReturnType; DecorationName=(findDecorationName m.Member)}
+            Order (d, f)
+        | TypeProviderMemberName name ->
+            let f = {Name=name; Type=operand.ReturnType; DecorationName=None}
+            Order (d, f)
         | _ -> failwithf "Cannot convert %A" node
     | _ -> failwithf "Cannot convert %A" node
 
@@ -213,7 +237,15 @@ module Visitor =
             |> Seq.map Constant
             |> Seq.toList
           FieldFunction(f, inverted, m.Method.Name, args)
-      | _ -> failwithf "Cannot convert %A" node
+      | TypeProviderMemberName name ->
+          let f = { Type=m.Type; Name=name; DecorationName=None }
+          let args = 
+            m.Arguments 
+            |> Seq.choose (|ConstantExp|_|) 
+            |> Seq.map Constant
+            |> Seq.toList
+          FieldFunction(f, inverted, m.Method.Name, args)
+      | _ -> failwithf "Cannot convert %A %A" node m
     match node with
     | :? BinaryExpression as exp ->
         match exp.NodeType, exp.Left, exp.Right with
@@ -241,6 +273,12 @@ module Visitor =
             let f = { Type=exp.Left.Type; Name=name; DecorationName=d }
             let c = { Field=f; Kind=kind; Target= Constant value }
             UnaryComparison c
+        | Comparison kind, TypeProviderMemberName name, ConstantExp value ->
+            let f = { Type=exp.Left.Type; Name=name; DecorationName=None }
+            let c = { Field=f; Kind=kind; Target= Constant value }
+            UnaryComparison c
+        | t, left, right ->
+            failwithf "Cannot translate convert BinaryExpression %A | %A | %A" t left right
         | _ -> failwithf "Cannot translate %A" exp
     | :? UnaryExpression as e ->
         match e.Operand with
@@ -250,12 +288,12 @@ module Visitor =
             parseMemberExpression m
         | :? MethodCallExpression as m ->
             parseFunctionCall m (e.NodeType = ExpressionType.Not)
-        | _ -> failwithf "Cannot convert %A" e.Operand
+        | _ -> failwithf "Cannot convert UnaryExpression %A" e.Operand
     | :? MemberExpression as m ->
         parseMemberExpression m
     | :? MethodCallExpression as m ->
         parseFunctionCall m (node.NodeType = ExpressionType.Not)
-    | _ -> failwithf "Cannot convert %A" node
+    | _ -> failwithf "Cannot convert MethodCallExpression %A" node
   let rec parseExpression (node:Expression) acc =
     match node with
     | :? MethodCallExpression as e when e.Method.Name = "Select" ->

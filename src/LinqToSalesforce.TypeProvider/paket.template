@@ -1,0 +1,35 @@
+type file
+id
+    Salesforce.TypeProvider
+title
+    FSharp type provider for Salesforce
+owners
+    rflechner
+authors 
+    rflechner
+projectUrl
+    https://rflechner.github.io/LinqToSalesforce/
+iconUrl
+    https://fsharpparis.github.io/images/fsharp-ug-paris-128.png
+licenseUrl
+    https://github.com/rflechner/LinqToSalesforce/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2017
+tags
+    salesforce SOQL linq TypeProvider
+summary
+    Linq provider for Salesforce SOQL REST API
+description
+    Linq provider for Salesforce SOQL REST API
+files
+    ../../bin/LinqToSalesforce.TypeProvider/LinqToSalesforce.dll ==> lib
+    ../../bin/LinqToSalesforce.TypeProvider/LinqToSalesforce.pdb ==> lib
+    ../../bin/LinqToSalesforce.TypeProvider/LinqToSalesforce.TypeProvider.dll ==> lib
+    ../../bin/LinqToSalesforce.TypeProvider/LinqToSalesforce.TypeProvider.pdb ==> lib
+dependencies
+    FSharp.Core >= 4.0.0.1
+    Newtonsoft.Json >= 9.0.1
+    Microsoft.Net.Http >= 2.2.29
+
