@@ -207,13 +207,12 @@ type SalesforceProvider () as this =
                       let entity = (%%args.[1]:>JsonEntity)
                       let i = ctx.Soql.GetIdentity()
                       let name = entity.GetTableName()
-                      let json = entity.Json.ToString()
                       match entity.GetId() with
                       | None ->
                           Rest.insertJsonEntity i entity
                       | Some id ->
+                          let json = entity |> toInsertJson
                           Rest.updateEntityName i id name json |> Async.RunSynchronously
-                      //true
                   @@>)
         do saveMethod.AddXmlDoc "Insert or update this entity into Salesforce"
         do ty.AddMember saveMethod

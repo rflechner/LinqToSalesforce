@@ -14,6 +14,7 @@ type ISalesforceEntity =
 module Entities =
   type JsonEntity (o:JObject) =
     let event = Event<_, _>()
+    let updatedProperties = new Dictionary<string,obj>() :> IDictionary<string,obj>
     interface INotifyPropertyChanged with
       member __.add_PropertyChanged(e) =
           event.Publish.AddHandler(e)
@@ -22,7 +23,7 @@ module Entities =
     interface ISalesforceEntity with
       member val Id="" with get,set
       member __.TrackPropertyUpdates(): unit = ()
-      member __.UpdatedProperties: IDictionary<string,obj> = [] |> dict
+      member __.UpdatedProperties = updatedProperties
     override __.ToString() = if isNull o then "null" else o.ToString()
     member __.Json = o
     member __.GetMember fn (``type``:Type) =
@@ -33,6 +34,9 @@ module Entities =
       __.GetMember fn ``type``
     member __.SetMemberValue fn (value:obj) =
       let token = o.SelectToken fn
+      if updatedProperties.ContainsKey fn
+      then updatedProperties.[fn] <- value
+      else updatedProperties.Add(fn, value)
       let jt = JToken.FromObject value
       token.Replace jt
     member __.GetTableName() =

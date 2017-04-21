@@ -45,6 +45,11 @@ module Rest =
     member __.ToException() =
       RemoteException(__.Message, __.ErrorCode)
 
+  let invalidFields = 
+      [ "Id"; "LastModifiedDate";"CreatedById"; "MasterRecordId";
+        "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";
+        "LastModifiedById"; "IsClosed"; "ClosedDate"]
+
   let fromJson<'t> json =
     try
       let t = typeof<'t>
@@ -71,11 +76,7 @@ module Rest =
     settings.DateFormatString <- "yyyy-MM-dd"
     JsonConvert.SerializeObject(o, settings)
   
-  let private toInsertJson (e:#ISalesforceEntity) =
-    let invalidFields = 
-      [ "Id"; "LastModifiedDate";"CreatedById"; "MasterRecordId";
-        "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";
-        "LastModifiedById"; "IsClosed"; "ClosedDate"]
+  let toInsertJson (e:#ISalesforceEntity) =
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
     let properties = e.UpdatedProperties
@@ -342,7 +343,8 @@ module Rest =
 
   let insertJsonEntity (i:Identity) (entity:JsonEntity) =
     let name = entity.GetTableName()
-    match entity |> toInsertJson |> insertEntityName i name |> Async.RunSynchronously with
+    let json = entity |> toInsertJson
+    match (json.ToString()) |> insertEntityName i name |> Async.RunSynchronously with
     | Success r ->
         let id = r.Id
         r.Success
