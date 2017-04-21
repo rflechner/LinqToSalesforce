@@ -25,13 +25,15 @@ ServicePointManager.SecurityProtocol <- SecurityProtocolType.Tls12 ||| SecurityP
     "Password":"xxxxxxxxxxxxx",
     "Instacename":"eu11" // or "login" or "test"
 }
+  If you don't know how to get those infos, then follow this tutorial: 
+  https://rflechner.github.io/LinqToSalesforce/getting_started_with_salesforce.html
 *)
 
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
 let [<Literal>] authfile = @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
 let [<Literal>] cacheFolder = __SOURCE_DIRECTORY__ + "\\.cache"
-let [<Literal>] slidingExpiration = 20.
+let [<Literal>] slidingExpiration = 200.
 type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11", cacheFolder=cacheFolder, slidingExpirationMinutes=slidingExpiration>
 
 let authJson = File.ReadAllText @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
