@@ -188,6 +188,7 @@ let generateCsharp (tables:TableDesc []) (``namespace``:string) =
           then sprintf "%s?" (fixName t.FullName)
           else fixName t.FullName
         | Picklist _ -> sprintf "Pick%s%s" (fixName table.Name) (fixName field.Name)
+        | MultiPicklist _ -> sprintf "LinqToSalesforce.BuiltinTypes.MultiSelectPicklist<Pick%s%s>" (fixName table.Name) (fixName field.Name)
       
       let backingField = sprintf "private %s __%s;" typeName fieldName
       addLine (indent+1) backingField
@@ -209,7 +210,7 @@ let generateCsharp (tables:TableDesc []) (``namespace``:string) =
         writeProperty tname relation.RelationshipName "" true false
 
     addLine indent "}"
-      
+  
   addLine 0 "using System;"
   addLine 0 "using System.Globalization;"
   addLine 0 "using System.Collections.Generic;"
@@ -235,6 +236,7 @@ let generateCsharp (tables:TableDesc []) (``namespace``:string) =
               fun f -> 
                 match f.Type with
                 | Native _ -> None
+                | MultiPicklist values
                 | Picklist values ->
                     let name = sprintf "%s%s" (fixName t.Name) (fixName f.Name)
                     Some (name, values)

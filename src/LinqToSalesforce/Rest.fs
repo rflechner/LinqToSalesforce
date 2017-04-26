@@ -31,6 +31,49 @@ type InsertResult =
 
 module Rest =
 
+  module Serialization = 
+    let invalidFields = 
+      [ "Id"; "LastModifiedDate";"CreatedById"; "MasterRecordId";
+        "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";
+        "LastModifiedById"; "IsClosed"; "ClosedDate"]
+    let settings = new JsonSerializerSettings()
+    settings.DateFormatString <- "yyyy-MM-dd"
+    //settings.ContractResolver <- new CamelCasePropertyNamesContractResolver()
+    //settings.Converters.Add(new ResponseDocConverter())
+    //JsonConvert.SerializeObject(__, settings)
+
+    let fromJson<'t> json =
+      try
+        let t = typeof<'t>
+        let td = typedefof<SoqlResult<_>>
+        if t.IsGenericType && t.GetGenericTypeDefinition() = td && (t.GetGenericArguments() |> Seq.contains (typeof<JsonEntity>))
+        then
+          //TODO: lists ...
+          //(json |> JObject.Parse |> SoqlResult<JsonEntity>) |> box :?> 't
+          let r = JsonConvert.DeserializeObject<SoqlResult<JObject>> json
+          let records = r.Records |> Array.map(fun re -> new JsonEntity(re))
+          let jr : JsonEntity SoqlResult = { TotalSize=r.TotalSize; Done=r.Done; Records=records;}
+          jr |> box :?> 't
+        elif t = typeof<JsonEntity>
+        then
+          let o = JObject.Parse json
+          new JsonEntity(o) |> box :?> 't
+        else
+          JsonConvert.DeserializeObject<'t> json
+      with e -> 
+        raise (new Exception("Invalid Json " + json, e))
+  
+    let toJson (o:obj) =
+      JsonConvert.SerializeObject(o, settings)
+
+    let toInsertJson (e:#ISalesforceEntity) =
+      let properties = e.UpdatedProperties
+      for f in invalidFields do
+        if properties.ContainsKey f
+        then properties.Remove f |> ignore
+      let j = JObject.FromObject properties
+      JsonConvert.SerializeObject(j, settings)
+
   type HttpMethod with
     static member Patch = new HttpMethod("PATCH")
 
@@ -44,47 +87,6 @@ module Rest =
       [<JsonProperty("errorCode")>] ErrorCode:string }
     member __.ToException() =
       RemoteException(__.Message, __.ErrorCode)
-
-  let invalidFields = 
-      [ "Id"; "LastModifiedDate";"CreatedById"; "MasterRecordId";
-        "IsDeleted";"SystemModstamp";"CreatedDate"; "LastActivityDate";
-        "LastModifiedById"; "IsClosed"; "ClosedDate"]
-
-  let fromJson<'t> json =
-    try
-      let t = typeof<'t>
-      let td = typedefof<SoqlResult<_>>
-      if t.IsGenericType && t.GetGenericTypeDefinition() = td && (t.GetGenericArguments() |> Seq.contains (typeof<JsonEntity>))
-      then
-        //TODO: lists ...
-        //(json |> JObject.Parse |> SoqlResult<JsonEntity>) |> box :?> 't
-        let r = JsonConvert.DeserializeObject<SoqlResult<JObject>> json
-        let records = r.Records |> Array.map(fun re -> new JsonEntity(re))
-        let jr : JsonEntity SoqlResult = { TotalSize=r.TotalSize; Done=r.Done; Records=records;}
-        jr |> box :?> 't
-      elif t = typeof<JsonEntity>
-      then
-        let o = JObject.Parse json
-        new JsonEntity(o) |> box :?> 't
-      else
-        JsonConvert.DeserializeObject<'t> json
-    with e -> 
-      raise (new Exception("Invalid Json " + json, e))
-  
-  let toJson (o:obj) =
-    let settings = new JsonSerializerSettings()
-    settings.DateFormatString <- "yyyy-MM-dd"
-    JsonConvert.SerializeObject(o, settings)
-  
-  let toInsertJson (e:#ISalesforceEntity) =
-    let settings = new JsonSerializerSettings()
-    settings.DateFormatString <- "yyyy-MM-dd"
-    let properties = e.UpdatedProperties
-    for f in invalidFields do
-      if properties.ContainsKey f
-      then properties.Remove f |> ignore
-    let j = JObject.FromObject properties
-    JsonConvert.SerializeObject(j, settings)
   
   module Config =
     let mutable IsProduction = true
@@ -223,6 +225,7 @@ module Rest =
   and FieldType =
     | Native of Type
     | Picklist of string list
+    | MultiPicklist of string list
   let parseType =
     function
     | "id" -> typeof<String>
@@ -269,14 +272,15 @@ module Rest =
           let calculated = f.Item "calculated" |> Convert.ToBoolean
           let nillable = f.Item "nillable" |> Convert.ToBoolean
           let referenceTo = f.Item "referenceTo" |> fun t -> t.Children() |> Seq.map (fun t -> t.ToString()) |> Seq.toList
+          let picklistValues () = 
+            f.SelectTokens("picklistValues[*].value")
+            |> Seq.map (fun token -> token.ToString())
+            |> Seq.toList
           let ft = 
             match typ with
-            | "picklist" -> 
-              let picklistValues = 
-                f.SelectTokens("picklistValues[*].value")
-                |> Seq.map (fun token -> token.ToString())
-                |> Seq.toList
-              Picklist picklistValues
+            | "address" -> Native(typeof<BuiltinTypes.Address>)
+            | "picklist" -> Picklist (picklistValues())
+            | "multipicklist" -> MultiPicklist (picklistValues())
             | _ -> typ |> parseType |> Native
           { Name=fname; Label=fLabel; Type=ft; Length=length; ReferenceTo=referenceTo
             AutoNumber=autoNumber; Calculated=calculated; Nillable=nillable }

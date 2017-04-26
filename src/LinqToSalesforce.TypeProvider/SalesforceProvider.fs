@@ -231,6 +231,7 @@ type SalesforceProvider () as this =
                       match field.Type with
                       | Native t -> t
                       | Picklist _ -> typeof<string>
+                      | MultiPicklist _ -> typeof<MultiSelectPicklist>
                     let typename = memberType.FullName
                     ProvidedProperty(field.Name, memberType,
                       GetterCode=(fun args -> 
