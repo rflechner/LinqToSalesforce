@@ -59,7 +59,8 @@ type RelationShip<'tp,'tc
     let operations = 
       [ Select (SelectType childType)
         Where (UnaryComparison(cmp)) ]
-    let results = ContextHelper.execute<'tc> client tracker operations chidlTableName fieldsProviders
+    let fp = FieldsProviders.fieldsFromTypeProvider<'tc>
+    let results = ContextHelper.execute<'tc> client tracker operations chidlTableName fp
     for r in results do
       RelationShip<'tp,_>.Build childType client tracker r
     results

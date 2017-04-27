@@ -33,6 +33,8 @@ namespace LinqToSalesforce.Example1
                 //var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
                 var coolAccount = context.Accounts.FirstOrDefault(a => a.Name.Contains("cool"));
 
+                var cases = coolAccount.Cases.ToList();
+
                 coolAccount.ActivityTypec = MultiSelectPicklist<PickAccountActivityType>.From(new []
                 {
                     PickAccountActivityType.Buyer,
