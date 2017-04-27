@@ -1,4 +1,7 @@
 
+#### 0.2.3-beta - April 27 2017
+* Can deserialize multi picklist and update them
+
 #### 0.2.2-beta - April 17 2017
 * A first type provider
 
