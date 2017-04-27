@@ -16,6 +16,7 @@ open Entities
 open Caching
 open Newtonsoft.Json.Linq
 open Microsoft.FSharp.Quotations
+open LinqToSalesforce.BuiltinTypes
 
 type TpContext = 
   { Soql:SoqlContext
@@ -211,7 +212,7 @@ type SalesforceProvider () as this =
                       | None ->
                           Rest.insertJsonEntity i entity
                       | Some id ->
-                          let json = entity |> toInsertJson
+                          let json = entity |> Serialization.toInsertJson
                           Rest.updateEntityName i id name json |> Async.RunSynchronously
                   @@>)
         do saveMethod.AddXmlDoc "Insert or update this entity into Salesforce"
@@ -231,6 +232,7 @@ type SalesforceProvider () as this =
                       match field.Type with
                       | Native t -> t
                       | Picklist _ -> typeof<string>
+                      | MultiPicklist _ -> typeof<MultiSelectPicklist<string>>
                     let typename = memberType.FullName
                     ProvidedProperty(field.Name, memberType,
                       GetterCode=(fun args -> 

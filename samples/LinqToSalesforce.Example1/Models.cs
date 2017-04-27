@@ -59,6 +59,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountType Parse(string text) => text;
+
         
 
     }
@@ -135,6 +138,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountIndustry Parse(string text) => text;
+
         
 
     }
@@ -183,6 +189,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountOwnership Parse(string text) => text;
+
         
 
     }
@@ -230,6 +239,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountRating Parse(string text) => text;
+
         
 
     }
@@ -282,6 +294,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountCleanStatus Parse(string text) => text;
+
         
 
     }
@@ -331,6 +346,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountAccountSource Parse(string text) => text;
+
         
 
     }
@@ -378,6 +396,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountCustomerPriority Parse(string text) => text;
+
         
 
     }
@@ -426,6 +447,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountSLA Parse(string text) => text;
+
         
 
     }
@@ -472,6 +496,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountActive Parse(string text) => text;
+
         
 
     }
@@ -519,6 +546,59 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountUpsellOpportunity Parse(string text) => text;
+
+        
+
+    }
+    public class PickAccountActivityTypeConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickAccountActivityType)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickAccountActivityType {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickAccountActivityTypeConverter))]
+    public class PickAccountActivityType
+    {
+        public static readonly string  Buyer = "Buyer"; 
+        public static readonly string  Vendor = "Vendor"; 
+        public static readonly string  Manufacturer = "Manufacturer"; 
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickAccountActivityType o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickAccountActivityType(string s)
+        {
+            return new PickAccountActivityType {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+
+        public static PickAccountActivityType Parse(string text) => text;
+
         
 
     }
@@ -595,6 +675,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountCleanInfoIndustry Parse(string text) => text;
+
         
 
     }
@@ -643,6 +726,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountCleanInfoOwnership Parse(string text) => text;
+
         
 
     }
@@ -689,6 +775,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountCleanInfoCompanyStatusDataDotCom Parse(string text) => text;
+
         
 
     }
@@ -742,6 +831,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountContactRoleRole Parse(string text) => text;
+
         
 
     }
@@ -815,6 +907,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountFeedType Parse(string text) => text;
+
         
 
     }
@@ -850,6 +945,7 @@ namespace LinqToSalesforce
         public static readonly string  Site = "Site"; 
         public static readonly string  AccountSource = "AccountSource"; 
         public static readonly string  Activec = "Active__c"; 
+        public static readonly string  ActivityTypec = "ActivityType__c"; 
         public static readonly string  AnnualRevenue = "AnnualRevenue"; 
         public static readonly string  BillingAddress = "BillingAddress"; 
         public static readonly string  BillingCity = "BillingCity"; 
@@ -923,6 +1019,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountHistoryField Parse(string text) => text;
+
         
 
     }
@@ -980,6 +1079,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountPartnerRole Parse(string text) => text;
+
         
 
     }
@@ -1027,6 +1129,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountShareAccountAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -1074,6 +1179,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountShareOpportunityAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -1121,6 +1229,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountShareCaseAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -1168,6 +1279,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountShareContactAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -1223,6 +1337,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAccountShareRowCause Parse(string text) => text;
+
         
 
     }
@@ -1272,6 +1389,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickActivityHistoryStatus Parse(string text) => text;
+
         
 
     }
@@ -1319,6 +1439,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickActivityHistoryPriority Parse(string text) => text;
+
         
 
     }
@@ -1367,6 +1490,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickActivityHistoryActivityType Parse(string text) => text;
+
         
 
     }
@@ -1414,6 +1540,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickActivityHistoryCallType Parse(string text) => text;
+
         
 
     }
@@ -1461,6 +1590,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickApexClassStatus Parse(string text) => text;
+
         
 
     }
@@ -1511,6 +1643,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickApexComponentControllerType Parse(string text) => text;
+
         
 
     }
@@ -1560,6 +1695,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickApexLogLocation Parse(string text) => text;
+
         
 
     }
@@ -1610,6 +1748,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickApexPageControllerType Parse(string text) => text;
+
         
 
     }
@@ -1661,6 +1802,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickApexTestQueueItemStatus Parse(string text) => text;
+
         
 
     }
@@ -1709,6 +1853,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickApexTestResultOutcome Parse(string text) => text;
+
         
 
     }
@@ -1814,6 +1961,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickApexTriggerTableEnumOrId Parse(string text) => text;
+
         
 
     }
@@ -1861,6 +2011,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickApexTriggerStatus Parse(string text) => text;
+
         
 
     }
@@ -1907,6 +2060,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAppMenuItemMobilePlatform Parse(string text) => text;
+
         
 
     }
@@ -1953,6 +2109,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAppMenuItemCanvasAccessMethod Parse(string text) => text;
+
         
 
     }
@@ -2000,6 +2159,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAppMenuItemType Parse(string text) => text;
+
         
 
     }
@@ -2049,6 +2211,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAssetStatus Parse(string text) => text;
+
         
 
     }
@@ -2122,6 +2287,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAssetFeedType Parse(string text) => text;
+
         
 
     }
@@ -2188,6 +2356,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAssetHistoryField Parse(string text) => text;
+
         
 
     }
@@ -2234,6 +2405,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAssignmentRuleSobjectType Parse(string text) => text;
+
         
 
     }
@@ -2287,6 +2461,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAsyncApexJobJobType Parse(string text) => text;
+
         
 
     }
@@ -2338,6 +2515,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAsyncApexJobStatus Parse(string text) => text;
+
         
 
     }
@@ -2397,6 +2577,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAuraDefinitionDefType Parse(string text) => text;
+
         
 
     }
@@ -2446,6 +2629,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAuraDefinitionFormat Parse(string text) => text;
+
         
 
     }
@@ -2508,6 +2694,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAuraDefinitionBundleLanguage Parse(string text) => text;
+
         
 
     }
@@ -2562,6 +2751,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAuthProviderProviderType Parse(string text) => text;
+
         
 
     }
@@ -2614,6 +2806,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAuthSessionUserType Parse(string text) => text;
+
         
 
     }
@@ -2658,6 +2853,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAuthSessionLoginType Parse(string text) => text;
+
         
 
     }
@@ -2702,6 +2900,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAuthSessionSessionType Parse(string text) => text;
+
         
 
     }
@@ -2749,6 +2950,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickAuthSessionSessionSecurityLevel Parse(string text) => text;
+
         
 
     }
@@ -2777,18 +2981,18 @@ namespace LinqToSalesforce
     public class PickBusinessHoursTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificChatham = "Pacific/Chatham"; 
-        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
         public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificFiji = "Pacific/Fiji"; 
-        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
-        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
         public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
-        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
         public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
         public static readonly string  AsiaSeoul = "Asia/Seoul"; 
         public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
@@ -2818,32 +3022,32 @@ namespace LinqToSalesforce
         public static readonly string  AsiaYerevan = "Asia/Yerevan"; 
         public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
         public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
         public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
         public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
         public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
         public static readonly string  EuropeMinsk = "Europe/Minsk"; 
         public static readonly string  EuropeMoscow = "Europe/Moscow"; 
         public static readonly string  AfricaCairo = "Africa/Cairo"; 
         public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
-        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
-        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
-        public static readonly string  EuropeAthens = "Europe/Athens"; 
-        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
-        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
-        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
         public static readonly string  EuropeBerlin = "Europe/Berlin"; 
         public static readonly string  EuropeBrussels = "Europe/Brussels"; 
         public static readonly string  EuropeParis = "Europe/Paris"; 
         public static readonly string  EuropePrague = "Europe/Prague"; 
         public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  AfricaCasablanca = "Africa/Casablanca"; 
         public static readonly string  EuropeDublin = "Europe/Dublin"; 
         public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
         public static readonly string  EuropeLondon = "Europe/London"; 
-        public static readonly string  GMT = "GMT"; 
         public static readonly string  AmericaScoresbysund = "America/Scoresbysund"; 
         public static readonly string  AtlanticAzores = "Atlantic/Azores"; 
+        public static readonly string  GMT = "GMT"; 
         public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
         public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
         public static readonly string  AmericaStJohns = "America/St_Johns"; 
@@ -2859,12 +3063,12 @@ namespace LinqToSalesforce
         public static readonly string  AmericaBogota = "America/Bogota"; 
         public static readonly string  AmericaChicago = "America/Chicago"; 
         public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
         public static readonly string  AmericaPanama = "America/Panama"; 
         public static readonly string  AmericaDenver = "America/Denver"; 
         public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
-        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
-        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaMazatlan = "America/Mazatlan"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaPhoenix = "America/Phoenix"; 
         public static readonly string  AmericaTijuana = "America/Tijuana"; 
         public static readonly string  AmericaAnchorage = "America/Anchorage"; 
@@ -2892,6 +3096,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickBusinessHoursTimeZoneSidKey Parse(string text) => text;
+
         
 
     }
@@ -2940,6 +3147,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickBusinessProcessTableEnumOrId Parse(string text) => text;
+
         
 
     }
@@ -2996,6 +3206,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCampaignType Parse(string text) => text;
+
         
 
     }
@@ -3044,6 +3257,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCampaignStatus Parse(string text) => text;
+
         
 
     }
@@ -3117,6 +3333,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCampaignFeedType Parse(string text) => text;
+
         
 
     }
@@ -3165,6 +3384,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCampaignMemberStatus Parse(string text) => text;
+
         
 
     }
@@ -3212,6 +3434,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCampaignShareCampaignAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -3267,6 +3492,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCampaignShareRowCause Parse(string text) => text;
+
         
 
     }
@@ -3316,6 +3544,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseType Parse(string text) => text;
+
         
 
     }
@@ -3364,6 +3595,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseStatus Parse(string text) => text;
+
         
 
     }
@@ -3415,6 +3649,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseReason Parse(string text) => text;
+
         
 
     }
@@ -3462,6 +3699,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseOrigin Parse(string text) => text;
+
         
 
     }
@@ -3509,6 +3749,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCasePriority Parse(string text) => text;
+
         
 
     }
@@ -3555,6 +3798,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseSLAViolation Parse(string text) => text;
+
         
 
     }
@@ -3608,6 +3854,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseProduct Parse(string text) => text;
+
         
 
     }
@@ -3654,6 +3903,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCasePotentialLiability Parse(string text) => text;
+
         
 
     }
@@ -3702,6 +3954,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseContactRoleRole Parse(string text) => text;
+
         
 
     }
@@ -3775,6 +4030,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseFeedType Parse(string text) => text;
+
         
 
     }
@@ -3846,6 +4104,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseHistoryField Parse(string text) => text;
+
         
 
     }
@@ -3893,6 +4154,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseShareCaseAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -3948,6 +4212,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseShareRowCause Parse(string text) => text;
+
         
 
     }
@@ -3995,6 +4262,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCaseTeamRoleAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -4041,6 +4311,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCategoryNodeSortStyle Parse(string text) => text;
+
         
 
     }
@@ -4087,6 +4360,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCollaborationGroupCollaborationType Parse(string text) => text;
+
         
 
     }
@@ -4160,6 +4436,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCollaborationGroupFeedType Parse(string text) => text;
+
         
 
     }
@@ -4206,6 +4485,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCollaborationGroupMemberCollaborationRole Parse(string text) => text;
+
         
 
     }
@@ -4254,6 +4536,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCollaborationGroupMemberNotificationFrequency Parse(string text) => text;
+
         
 
     }
@@ -4301,6 +4586,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCollaborationGroupMemberRequestStatus Parse(string text) => text;
+
         
 
     }
@@ -4348,6 +4636,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCollaborationInvitationStatus Parse(string text) => text;
+
         
 
     }
@@ -4397,6 +4688,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContactSalutation Parse(string text) => text;
+
         
 
     }
@@ -4446,6 +4740,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContactLeadSource Parse(string text) => text;
+
         
 
     }
@@ -4498,6 +4795,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContactCleanStatus Parse(string text) => text;
+
         
 
     }
@@ -4545,6 +4845,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContactLevel Parse(string text) => text;
+
         
 
     }
@@ -4598,6 +4901,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContactCleanInfoContactStatusDataDotCom Parse(string text) => text;
+
         
 
     }
@@ -4671,6 +4977,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContactFeedType Parse(string text) => text;
+
         
 
     }
@@ -4771,6 +5080,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContactHistoryField Parse(string text) => text;
+
         
 
     }
@@ -4818,6 +5130,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContactShareContactAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -4873,6 +5188,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContactShareRowCause Parse(string text) => text;
+
         
 
     }
@@ -4920,6 +5238,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentDocumentPublishStatus Parse(string text) => text;
+
         
 
     }
@@ -4993,6 +5314,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentDocumentFeedType Parse(string text) => text;
+
         
 
     }
@@ -5059,6 +5383,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentDocumentHistoryField Parse(string text) => text;
+
         
 
     }
@@ -5106,6 +5433,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentDocumentLinkShareType Parse(string text) => text;
+
         
 
     }
@@ -5153,6 +5483,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentDocumentLinkVisibility Parse(string text) => text;
+
         
 
     }
@@ -5200,6 +5533,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentVersionPublishStatus Parse(string text) => text;
+
         
 
     }
@@ -5246,6 +5582,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentVersionOrigin Parse(string text) => text;
+
         
 
     }
@@ -5292,6 +5631,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentVersionContentLocation Parse(string text) => text;
+
         
 
     }
@@ -5361,6 +5703,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentVersionHistoryField Parse(string text) => text;
+
         
 
     }
@@ -5408,6 +5753,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContentWorkspaceTagModel Parse(string text) => text;
+
         
 
     }
@@ -5458,6 +5806,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContractOwnerExpirationNotice Parse(string text) => text;
+
         
 
     }
@@ -5505,6 +5856,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContractStatus Parse(string text) => text;
+
         
 
     }
@@ -5554,6 +5908,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContractStatusCode Parse(string text) => text;
+
         
 
     }
@@ -5607,6 +5964,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContractContactRoleRole Parse(string text) => text;
+
         
 
     }
@@ -5680,6 +6040,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContractFeedType Parse(string text) => text;
+
         
 
     }
@@ -5772,6 +6135,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContractHistoryField Parse(string text) => text;
+
         
 
     }
@@ -5821,6 +6187,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickContractStatusStatusCode Parse(string text) => text;
+
         
 
     }
@@ -5872,6 +6241,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCronJobDetailJobType Parse(string text) => text;
+
         
 
     }
@@ -5900,18 +6272,18 @@ namespace LinqToSalesforce
     public class PickCronTriggerTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificChatham = "Pacific/Chatham"; 
-        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
         public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificFiji = "Pacific/Fiji"; 
-        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
-        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
         public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
-        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
         public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
         public static readonly string  AsiaSeoul = "Asia/Seoul"; 
         public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
@@ -5941,32 +6313,32 @@ namespace LinqToSalesforce
         public static readonly string  AsiaYerevan = "Asia/Yerevan"; 
         public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
         public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
         public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
         public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
         public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
         public static readonly string  EuropeMinsk = "Europe/Minsk"; 
         public static readonly string  EuropeMoscow = "Europe/Moscow"; 
         public static readonly string  AfricaCairo = "Africa/Cairo"; 
         public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
-        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
-        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
-        public static readonly string  EuropeAthens = "Europe/Athens"; 
-        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
-        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
-        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
         public static readonly string  EuropeBerlin = "Europe/Berlin"; 
         public static readonly string  EuropeBrussels = "Europe/Brussels"; 
         public static readonly string  EuropeParis = "Europe/Paris"; 
         public static readonly string  EuropePrague = "Europe/Prague"; 
         public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  AfricaCasablanca = "Africa/Casablanca"; 
         public static readonly string  EuropeDublin = "Europe/Dublin"; 
         public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
         public static readonly string  EuropeLondon = "Europe/London"; 
-        public static readonly string  GMT = "GMT"; 
         public static readonly string  AmericaScoresbysund = "America/Scoresbysund"; 
         public static readonly string  AtlanticAzores = "Atlantic/Azores"; 
+        public static readonly string  GMT = "GMT"; 
         public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
         public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
         public static readonly string  AmericaStJohns = "America/St_Johns"; 
@@ -5982,12 +6354,12 @@ namespace LinqToSalesforce
         public static readonly string  AmericaBogota = "America/Bogota"; 
         public static readonly string  AmericaChicago = "America/Chicago"; 
         public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
         public static readonly string  AmericaPanama = "America/Panama"; 
         public static readonly string  AmericaDenver = "America/Denver"; 
         public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
-        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
-        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaMazatlan = "America/Mazatlan"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaPhoenix = "America/Phoenix"; 
         public static readonly string  AmericaTijuana = "America/Tijuana"; 
         public static readonly string  AmericaAnchorage = "America/Anchorage"; 
@@ -6015,6 +6387,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCronTriggerTimeZoneSidKey Parse(string text) => text;
+
         
 
     }
@@ -6074,6 +6449,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickCustomBrandAssetAssetCategory Parse(string text) => text;
+
         
 
     }
@@ -6120,6 +6498,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyPublicIndicator Parse(string text) => text;
+
         
 
     }
@@ -6166,6 +6547,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyOutOfBusiness Parse(string text) => text;
+
         
 
     }
@@ -6213,6 +6597,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyOwnOrRent Parse(string text) => text;
+
         
 
     }
@@ -6261,6 +6648,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyEmployeesHereReliability Parse(string text) => text;
+
         
 
     }
@@ -6309,6 +6699,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanySalesVolumeReliability Parse(string text) => text;
+
         
 
     }
@@ -6509,6 +6902,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyCurrencyCode Parse(string text) => text;
+
         
 
     }
@@ -6787,6 +7183,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyLegalStatus Parse(string text) => text;
+
         
 
     }
@@ -6835,6 +7234,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyEmployeesTotalReliability Parse(string text) => text;
+
         
 
     }
@@ -6881,6 +7283,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyMinorityOwned Parse(string text) => text;
+
         
 
     }
@@ -6927,6 +7332,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyWomenOwned Parse(string text) => text;
+
         
 
     }
@@ -6973,6 +7381,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanySmallBusiness Parse(string text) => text;
+
         
 
     }
@@ -7039,6 +7450,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyMarketingSegmentationCluster Parse(string text) => text;
+
         
 
     }
@@ -7091,6 +7505,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyImportExportAgent Parse(string text) => text;
+
         
 
     }
@@ -7137,6 +7554,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanySubsidiary Parse(string text) => text;
+
         
 
     }
@@ -7388,6 +7808,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyNationalIdType Parse(string text) => text;
+
         
 
     }
@@ -7448,6 +7871,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyGeoCodeAccuracy Parse(string text) => text;
+
         
 
     }
@@ -7495,6 +7921,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyMarketingPreScreen Parse(string text) => text;
+
         
 
     }
@@ -7542,6 +7971,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyLocationStatus Parse(string text) => text;
+
         
 
     }
@@ -7748,6 +8180,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDandBCompanyCompanyCurrencyIsoCode Parse(string text) => text;
+
         
 
     }
@@ -7795,6 +8230,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDashboardLeftSize Parse(string text) => text;
+
         
 
     }
@@ -7842,6 +8280,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDashboardMiddleSize Parse(string text) => text;
+
         
 
     }
@@ -7889,6 +8330,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDashboardRightSize Parse(string text) => text;
+
         
 
     }
@@ -7936,6 +8380,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDashboardBackgroundDirection Parse(string text) => text;
+
         
 
     }
@@ -7983,6 +8430,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDashboardType Parse(string text) => text;
+
         
 
     }
@@ -8056,6 +8506,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDashboardComponentFeedType Parse(string text) => text;
+
         
 
     }
@@ -8129,6 +8582,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDashboardFeedType Parse(string text) => text;
+
         
 
     }
@@ -8176,6 +8632,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudCompanySite Parse(string text) => text;
+
         
 
     }
@@ -8229,6 +8688,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudContactDepartment Parse(string text) => text;
+
         
 
     }
@@ -8279,6 +8741,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudContactLevel Parse(string text) => text;
+
         
 
     }
@@ -8325,6 +8790,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyPublicIndicator Parse(string text) => text;
+
         
 
     }
@@ -8371,6 +8839,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyOutOfBusiness Parse(string text) => text;
+
         
 
     }
@@ -8418,6 +8889,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyOwnOrRent Parse(string text) => text;
+
         
 
     }
@@ -8466,6 +8940,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyEmployeesHereReliability Parse(string text) => text;
+
         
 
     }
@@ -8514,6 +8991,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanySalesVolumeReliability Parse(string text) => text;
+
         
 
     }
@@ -8714,6 +9194,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyCurrencyCode Parse(string text) => text;
+
         
 
     }
@@ -8992,6 +9475,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyLegalStatus Parse(string text) => text;
+
         
 
     }
@@ -9040,6 +9526,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyEmployeesTotalReliability Parse(string text) => text;
+
         
 
     }
@@ -9086,6 +9575,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyMinorityOwned Parse(string text) => text;
+
         
 
     }
@@ -9132,6 +9624,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyWomenOwned Parse(string text) => text;
+
         
 
     }
@@ -9178,6 +9673,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanySmallBusiness Parse(string text) => text;
+
         
 
     }
@@ -9244,6 +9742,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyMarketingSegmentationCluster Parse(string text) => text;
+
         
 
     }
@@ -9296,6 +9797,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyImportExportAgent Parse(string text) => text;
+
         
 
     }
@@ -9342,6 +9846,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanySubsidiary Parse(string text) => text;
+
         
 
     }
@@ -9593,6 +10100,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyNationalIdType Parse(string text) => text;
+
         
 
     }
@@ -9653,6 +10163,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyGeoCodeAccuracy Parse(string text) => text;
+
         
 
     }
@@ -9700,6 +10213,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyMarketingPreScreen Parse(string text) => text;
+
         
 
     }
@@ -9747,6 +10263,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyLocationStatus Parse(string text) => text;
+
         
 
     }
@@ -9953,6 +10472,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudDandBCompanyCompanyCurrencyIsoCode Parse(string text) => text;
+
         
 
     }
@@ -10001,6 +10523,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudOwnedEntityDatacloudEntityType Parse(string text) => text;
+
         
 
     }
@@ -10048,6 +10573,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudOwnedEntityPurchaseType Parse(string text) => text;
+
         
 
     }
@@ -10094,6 +10622,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudPurchaseUsageUserType Parse(string text) => text;
+
         
 
     }
@@ -10141,6 +10672,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudPurchaseUsagePurchaseType Parse(string text) => text;
+
         
 
     }
@@ -10189,6 +10723,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDatacloudPurchaseUsageDatacloudEntityType Parse(string text) => text;
+
         
 
     }
@@ -10235,6 +10772,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickDomainDomainType Parse(string text) => text;
+
         
 
     }
@@ -10282,6 +10822,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailDomainKeyDomainMatch Parse(string text) => text;
+
         
 
     }
@@ -10332,6 +10875,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailMessageStatus Parse(string text) => text;
+
         
 
     }
@@ -10381,6 +10927,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailServicesFunctionAttachmentOption Parse(string text) => text;
+
         
 
     }
@@ -10429,6 +10978,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailServicesFunctionOverLimitAction Parse(string text) => text;
+
         
 
     }
@@ -10477,6 +11029,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailServicesFunctionFunctionInactiveAction Parse(string text) => text;
+
         
 
     }
@@ -10525,6 +11080,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailServicesFunctionAddressInactiveAction Parse(string text) => text;
+
         
 
     }
@@ -10573,6 +11131,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailServicesFunctionAuthenticationFailureAction Parse(string text) => text;
+
         
 
     }
@@ -10621,6 +11182,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailServicesFunctionAuthorizationFailureAction Parse(string text) => text;
+
         
 
     }
@@ -10672,6 +11236,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailTemplateTemplateStyle Parse(string text) => text;
+
         
 
     }
@@ -10720,6 +11287,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailTemplateTemplateType Parse(string text) => text;
+
         
 
     }
@@ -10774,6 +11344,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEmailTemplateEncoding Parse(string text) => text;
+
         
 
     }
@@ -10821,6 +11394,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEventShowAs Parse(string text) => text;
+
         
 
     }
@@ -10868,6 +11444,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEventGroupEventType Parse(string text) => text;
+
         
 
     }
@@ -10896,18 +11475,18 @@ namespace LinqToSalesforce
     public class PickEventRecurrenceTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificChatham = "Pacific/Chatham"; 
-        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
         public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificFiji = "Pacific/Fiji"; 
-        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
-        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
         public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
-        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
         public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
         public static readonly string  AsiaSeoul = "Asia/Seoul"; 
         public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
@@ -10937,32 +11516,32 @@ namespace LinqToSalesforce
         public static readonly string  AsiaYerevan = "Asia/Yerevan"; 
         public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
         public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
         public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
         public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
         public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
         public static readonly string  EuropeMinsk = "Europe/Minsk"; 
         public static readonly string  EuropeMoscow = "Europe/Moscow"; 
         public static readonly string  AfricaCairo = "Africa/Cairo"; 
         public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
-        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
-        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
-        public static readonly string  EuropeAthens = "Europe/Athens"; 
-        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
-        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
-        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
         public static readonly string  EuropeBerlin = "Europe/Berlin"; 
         public static readonly string  EuropeBrussels = "Europe/Brussels"; 
         public static readonly string  EuropeParis = "Europe/Paris"; 
         public static readonly string  EuropePrague = "Europe/Prague"; 
         public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  AfricaCasablanca = "Africa/Casablanca"; 
         public static readonly string  EuropeDublin = "Europe/Dublin"; 
         public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
         public static readonly string  EuropeLondon = "Europe/London"; 
-        public static readonly string  GMT = "GMT"; 
         public static readonly string  AmericaScoresbysund = "America/Scoresbysund"; 
         public static readonly string  AtlanticAzores = "Atlantic/Azores"; 
+        public static readonly string  GMT = "GMT"; 
         public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
         public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
         public static readonly string  AmericaStJohns = "America/St_Johns"; 
@@ -10978,12 +11557,12 @@ namespace LinqToSalesforce
         public static readonly string  AmericaBogota = "America/Bogota"; 
         public static readonly string  AmericaChicago = "America/Chicago"; 
         public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
         public static readonly string  AmericaPanama = "America/Panama"; 
         public static readonly string  AmericaDenver = "America/Denver"; 
         public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
-        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
-        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaMazatlan = "America/Mazatlan"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaPhoenix = "America/Phoenix"; 
         public static readonly string  AmericaTijuana = "America/Tijuana"; 
         public static readonly string  AmericaAnchorage = "America/Anchorage"; 
@@ -11011,6 +11590,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEventRecurrenceTimeZoneSidKey Parse(string text) => text;
+
         
 
     }
@@ -11062,6 +11644,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEventRecurrenceType Parse(string text) => text;
+
         
 
     }
@@ -11111,6 +11696,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEventRecurrenceInstance Parse(string text) => text;
+
         
 
     }
@@ -11167,6 +11755,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEventRecurrenceMonthOfYear Parse(string text) => text;
+
         
 
     }
@@ -11240,6 +11831,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEventFeedType Parse(string text) => text;
+
         
 
     }
@@ -11322,6 +11916,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEventLogFileEventType Parse(string text) => text;
+
         
 
     }
@@ -11371,6 +11968,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickEventRelationStatus Parse(string text) => text;
+
         
 
     }
@@ -11433,6 +12033,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickExternalDataSourceLanguage Parse(string text) => text;
+
         
 
     }
@@ -11484,6 +12087,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickExternalDataSourceType Parse(string text) => text;
+
         
 
     }
@@ -11531,6 +12137,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickExternalDataSourcePrincipalType Parse(string text) => text;
+
         
 
     }
@@ -11578,6 +12187,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickExternalDataUserAuthProtocol Parse(string text) => text;
+
         
 
     }
@@ -11624,6 +12236,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFeedCommentCommentType Parse(string text) => text;
+
         
 
     }
@@ -11697,6 +12312,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFeedItemType Parse(string text) => text;
+
         
 
     }
@@ -11776,6 +12394,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFieldPermissionsSobjectType Parse(string text) => text;
+
         
 
     }
@@ -11806,6 +12427,7 @@ namespace LinqToSalesforce
         public static readonly string  AccountAccountNumber = "Account.AccountNumber"; 
         public static readonly string  AccountAccountSource = "Account.AccountSource"; 
         public static readonly string  AccountActivec = "Account.Active__c"; 
+        public static readonly string  AccountActivityTypec = "Account.ActivityType__c"; 
         public static readonly string  AccountAnnualRevenue = "Account.AnnualRevenue"; 
         public static readonly string  AccountBillingAddress = "Account.BillingAddress"; 
         public static readonly string  AccountCleanStatus = "Account.CleanStatus"; 
@@ -12067,6 +12689,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFieldPermissionsField Parse(string text) => text;
+
         
 
     }
@@ -12114,6 +12739,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFiscalYearSettingsYearType Parse(string text) => text;
+
         
 
     }
@@ -12160,6 +12788,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFiscalYearSettingsQuarterLabelScheme Parse(string text) => text;
+
         
 
     }
@@ -12208,6 +12839,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFiscalYearSettingsPeriodLabelScheme Parse(string text) => text;
+
         
 
     }
@@ -12255,6 +12889,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFiscalYearSettingsWeekLabelScheme Parse(string text) => text;
+
         
 
     }
@@ -12303,6 +12940,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFiscalYearSettingsQuarterPrefix Parse(string text) => text;
+
         
 
     }
@@ -12351,6 +12991,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFiscalYearSettingsPeriodPrefix Parse(string text) => text;
+
         
 
     }
@@ -12399,6 +13042,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFolderAccessType Parse(string text) => text;
+
         
 
     }
@@ -12447,6 +13093,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickFolderType Parse(string text) => text;
+
         
 
     }
@@ -12494,6 +13143,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickForecastShareAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -12549,6 +13201,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickForecastShareRowCause Parse(string text) => text;
+
         
 
     }
@@ -12606,6 +13261,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickGroupType Parse(string text) => text;
+
         
 
     }
@@ -12657,6 +13315,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickHolidayRecurrenceType Parse(string text) => text;
+
         
 
     }
@@ -12706,6 +13367,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickHolidayRecurrenceInstance Parse(string text) => text;
+
         
 
     }
@@ -12762,6 +13426,56 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickHolidayRecurrenceMonthOfYear Parse(string text) => text;
+
+        
+
+    }
+    public class PickIdeaCategoriesConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType) 
+            => sourceType == typeof(string);
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            => destinationType == typeof(string);
+
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        {
+            var o = (PickIdeaCategories)value;
+            return destinationType == typeof(string) ? o.Value : base.ConvertTo(context, culture, value, destinationType);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        {
+            if (value is string)
+                return new PickIdeaCategories {Value = (string)value};
+            return base.ConvertFrom(context, culture, value);
+        }
+    }
+    [TypeConverter(typeof(PickIdeaCategoriesConverter))]
+    public class PickIdeaCategories
+    {
+    
+        public string Value { get; set; }
+
+        public static implicit operator string(PickIdeaCategories o)
+        {
+            return o.Value;
+        }
+
+        public static implicit operator PickIdeaCategories(string s)
+        {
+            return new PickIdeaCategories {Value = s};
+        }
+
+        public override string ToString()
+        {
+            return Value;
+        }
+
+        public static PickIdeaCategories Parse(string text) => text;
+
         
 
     }
@@ -12806,6 +13520,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickIdeaStatus Parse(string text) => text;
+
         
 
     }
@@ -12852,6 +13569,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickInstalledMobileAppStatus Parse(string text) => text;
+
         
 
     }
@@ -12901,6 +13621,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadSalutation Parse(string text) => text;
+
         
 
     }
@@ -12950,6 +13673,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadLeadSource Parse(string text) => text;
+
         
 
     }
@@ -12998,6 +13724,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadStatus Parse(string text) => text;
+
         
 
     }
@@ -13074,6 +13803,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadIndustry Parse(string text) => text;
+
         
 
     }
@@ -13121,6 +13853,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadRating Parse(string text) => text;
+
         
 
     }
@@ -13173,6 +13908,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadCleanStatus Parse(string text) => text;
+
         
 
     }
@@ -13220,6 +13958,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadProductInterest Parse(string text) => text;
+
         
 
     }
@@ -13266,6 +14007,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadPrimary Parse(string text) => text;
+
         
 
     }
@@ -13342,6 +14086,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadCleanInfoIndustry Parse(string text) => text;
+
         
 
     }
@@ -13395,6 +14142,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadCleanInfoContactStatusDataDotCom Parse(string text) => text;
+
         
 
     }
@@ -13468,6 +14218,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadFeedType Parse(string text) => text;
+
         
 
     }
@@ -13563,6 +14316,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadHistoryField Parse(string text) => text;
+
         
 
     }
@@ -13610,6 +14366,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadShareLeadAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -13665,6 +14424,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLeadShareRowCause Parse(string text) => text;
+
         
 
     }
@@ -13709,6 +14471,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLoginHistoryLoginType Parse(string text) => text;
+
         
 
     }
@@ -13757,6 +14522,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickLoginIpChallengeMethod Parse(string text) => text;
+
         
 
     }
@@ -13841,6 +14609,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickNameType Parse(string text) => text;
+
         
 
     }
@@ -13989,6 +14760,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickObjectPermissionsSobjectType Parse(string text) => text;
+
         
 
     }
@@ -14038,6 +14812,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpenActivityStatus Parse(string text) => text;
+
         
 
     }
@@ -14085,6 +14862,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpenActivityPriority Parse(string text) => text;
+
         
 
     }
@@ -14133,6 +14913,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpenActivityActivityType Parse(string text) => text;
+
         
 
     }
@@ -14180,6 +14963,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpenActivityCallType Parse(string text) => text;
+
         
 
     }
@@ -14234,6 +15020,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityStageName Parse(string text) => text;
+
         
 
     }
@@ -14282,6 +15071,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityType Parse(string text) => text;
+
         
 
     }
@@ -14331,6 +15123,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityLeadSource Parse(string text) => text;
+
         
 
     }
@@ -14380,6 +15175,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityForecastCategory Parse(string text) => text;
+
         
 
     }
@@ -14429,6 +15227,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityForecastCategoryName Parse(string text) => text;
+
         
 
     }
@@ -14476,6 +15277,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityDeliveryInstallationStatus Parse(string text) => text;
+
         
 
     }
@@ -14529,6 +15333,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityContactRoleRole Parse(string text) => text;
+
         
 
     }
@@ -14602,6 +15409,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityFeedType Parse(string text) => text;
+
         
 
     }
@@ -14674,6 +15484,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityFieldHistoryField Parse(string text) => text;
+
         
 
     }
@@ -14728,6 +15541,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityHistoryStageName Parse(string text) => text;
+
         
 
     }
@@ -14777,6 +15593,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityHistoryForecastCategory Parse(string text) => text;
+
         
 
     }
@@ -14834,6 +15653,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityPartnerRole Parse(string text) => text;
+
         
 
     }
@@ -14881,6 +15703,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityShareOpportunityAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -14936,6 +15761,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityShareRowCause Parse(string text) => text;
+
         
 
     }
@@ -14985,6 +15813,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityStageForecastCategory Parse(string text) => text;
+
         
 
     }
@@ -15034,6 +15865,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOpportunityStageForecastCategoryName Parse(string text) => text;
+
         
 
     }
@@ -15080,6 +15914,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrderStatus Parse(string text) => text;
+
         
 
     }
@@ -15124,6 +15961,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrderType Parse(string text) => text;
+
         
 
     }
@@ -15172,6 +16012,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrderStatusCode Parse(string text) => text;
+
         
 
     }
@@ -15245,6 +16088,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrderFeedType Parse(string text) => text;
+
         
 
     }
@@ -15342,6 +16188,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrderHistoryField Parse(string text) => text;
+
         
 
     }
@@ -15415,6 +16264,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrderItemFeedType Parse(string text) => text;
+
         
 
     }
@@ -15470,6 +16322,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrderItemHistoryField Parse(string text) => text;
+
         
 
     }
@@ -15640,6 +16495,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationDefaultLocaleSidKey Parse(string text) => text;
+
         
 
     }
@@ -15702,6 +16560,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationLanguageLocaleKey Parse(string text) => text;
+
         
 
     }
@@ -15749,6 +16610,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationDefaultAccountAccess Parse(string text) => text;
+
         
 
     }
@@ -15797,6 +16661,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationDefaultContactAccess Parse(string text) => text;
+
         
 
     }
@@ -15844,6 +16711,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationDefaultOpportunityAccess Parse(string text) => text;
+
         
 
     }
@@ -15892,6 +16762,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationDefaultLeadAccess Parse(string text) => text;
+
         
 
     }
@@ -15940,6 +16813,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationDefaultCaseAccess Parse(string text) => text;
+
         
 
     }
@@ -15989,6 +16865,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationDefaultCalendarAccess Parse(string text) => text;
+
         
 
     }
@@ -16036,6 +16915,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationDefaultPricebookAccess Parse(string text) => text;
+
         
 
     }
@@ -16084,6 +16966,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationDefaultCampaignAccess Parse(string text) => text;
+
         
 
     }
@@ -16133,6 +17018,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationUiSkin Parse(string text) => text;
+
         
 
     }
@@ -16185,6 +17073,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickOrganizationOrganizationType Parse(string text) => text;
+
         
 
     }
@@ -16242,6 +17133,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPartnerRole Parse(string text) => text;
+
         
 
     }
@@ -16299,6 +17193,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPartnerRoleReverseRole Parse(string text) => text;
+
         
 
     }
@@ -16347,6 +17244,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPeriodType Parse(string text) => text;
+
         
 
     }
@@ -16395,6 +17295,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPeriodQuarterLabel Parse(string text) => text;
+
         
 
     }
@@ -16439,6 +17342,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPeriodPeriodLabel Parse(string text) => text;
+
         
 
     }
@@ -16501,6 +17407,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPermissionSetLicenseLanguage Parse(string text) => text;
+
         
 
     }
@@ -16547,6 +17456,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPermissionSetLicenseStatus Parse(string text) => text;
+
         
 
     }
@@ -16602,6 +17514,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPricebook2HistoryField Parse(string text) => text;
+
         
 
     }
@@ -16648,6 +17563,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProcessDefinitionType Parse(string text) => text;
+
         
 
     }
@@ -16721,6 +17639,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProcessDefinitionTableEnumOrId Parse(string text) => text;
+
         
 
     }
@@ -16771,6 +17692,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProcessDefinitionLockType Parse(string text) => text;
+
         
 
     }
@@ -16818,6 +17742,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProcessDefinitionState Parse(string text) => text;
+
         
 
     }
@@ -16871,6 +17798,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProcessInstanceStatus Parse(string text) => text;
+
         
 
     }
@@ -16924,6 +17854,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProcessInstanceHistoryStepStatus Parse(string text) => text;
+
         
 
     }
@@ -16977,6 +17910,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProcessInstanceStepStepStatus Parse(string text) => text;
+
         
 
     }
@@ -17022,6 +17958,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProduct2Family Parse(string text) => text;
+
         
 
     }
@@ -17095,6 +18034,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProduct2FeedType Parse(string text) => text;
+
         
 
     }
@@ -17147,6 +18089,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickProfileUserType Parse(string text) => text;
+
         
 
     }
@@ -17195,6 +18140,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPushTopicNotifyForFields Parse(string text) => text;
+
         
 
     }
@@ -17243,6 +18191,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickPushTopicNotifyForOperations Parse(string text) => text;
+
         
 
     }
@@ -17301,6 +18252,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickQueueSobjectSobjectType Parse(string text) => text;
+
         
 
     }
@@ -17368,6 +18322,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickRecentlyViewedType Parse(string text) => text;
+
         
 
     }
@@ -17430,6 +18387,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickRecentlyViewedLanguage Parse(string text) => text;
+
         
 
     }
@@ -17521,6 +18481,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickRecordTypeSobjectType Parse(string text) => text;
+
         
 
     }
@@ -17569,6 +18532,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickReportFormat Parse(string text) => text;
+
         
 
     }
@@ -17642,6 +18608,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickReportFeedType Parse(string text) => text;
+
         
 
     }
@@ -17696,6 +18665,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickScontrolEncodingKey Parse(string text) => text;
+
         
 
     }
@@ -17743,6 +18715,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickScontrolContentSource Parse(string text) => text;
+
         
 
     }
@@ -17805,6 +18780,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSecureAgentLanguage Parse(string text) => text;
+
         
 
     }
@@ -17853,6 +18831,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSetupEntityAccessSetupEntityType Parse(string text) => text;
+
         
 
     }
@@ -17899,6 +18880,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSiteStatus Parse(string text) => text;
+
         
 
     }
@@ -17946,6 +18930,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSiteSiteType Parse(string text) => text;
+
         
 
     }
@@ -17993,6 +18980,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSiteClickjackProtectionLevel Parse(string text) => text;
+
         
 
     }
@@ -18066,6 +19056,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSiteFeedType Parse(string text) => text;
+
         
 
     }
@@ -18169,6 +19162,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSiteHistoryField Parse(string text) => text;
+
         
 
     }
@@ -18216,6 +19212,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSolutionStatus Parse(string text) => text;
+
         
 
     }
@@ -18289,6 +19288,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSolutionFeedType Parse(string text) => text;
+
         
 
     }
@@ -18344,6 +19346,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickSolutionHistoryField Parse(string text) => text;
+
         
 
     }
@@ -18390,6 +19395,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickStaticResourceCacheControl Parse(string text) => text;
+
         
 
     }
@@ -18437,6 +19445,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickStreamingChannelShareAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -18492,6 +19503,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickStreamingChannelShareRowCause Parse(string text) => text;
+
         
 
     }
@@ -18541,6 +19555,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTaskStatus Parse(string text) => text;
+
         
 
     }
@@ -18588,6 +19605,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTaskPriority Parse(string text) => text;
+
         
 
     }
@@ -18635,6 +19655,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTaskCallType Parse(string text) => text;
+
         
 
     }
@@ -18663,18 +19686,18 @@ namespace LinqToSalesforce
     public class PickTaskRecurrenceTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificChatham = "Pacific/Chatham"; 
-        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
         public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificFiji = "Pacific/Fiji"; 
-        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
-        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
         public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
-        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
         public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
         public static readonly string  AsiaSeoul = "Asia/Seoul"; 
         public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
@@ -18704,32 +19727,32 @@ namespace LinqToSalesforce
         public static readonly string  AsiaYerevan = "Asia/Yerevan"; 
         public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
         public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
         public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
         public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
         public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
         public static readonly string  EuropeMinsk = "Europe/Minsk"; 
         public static readonly string  EuropeMoscow = "Europe/Moscow"; 
         public static readonly string  AfricaCairo = "Africa/Cairo"; 
         public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
-        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
-        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
-        public static readonly string  EuropeAthens = "Europe/Athens"; 
-        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
-        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
-        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
         public static readonly string  EuropeBerlin = "Europe/Berlin"; 
         public static readonly string  EuropeBrussels = "Europe/Brussels"; 
         public static readonly string  EuropeParis = "Europe/Paris"; 
         public static readonly string  EuropePrague = "Europe/Prague"; 
         public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  AfricaCasablanca = "Africa/Casablanca"; 
         public static readonly string  EuropeDublin = "Europe/Dublin"; 
         public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
         public static readonly string  EuropeLondon = "Europe/London"; 
-        public static readonly string  GMT = "GMT"; 
         public static readonly string  AmericaScoresbysund = "America/Scoresbysund"; 
         public static readonly string  AtlanticAzores = "Atlantic/Azores"; 
+        public static readonly string  GMT = "GMT"; 
         public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
         public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
         public static readonly string  AmericaStJohns = "America/St_Johns"; 
@@ -18745,12 +19768,12 @@ namespace LinqToSalesforce
         public static readonly string  AmericaBogota = "America/Bogota"; 
         public static readonly string  AmericaChicago = "America/Chicago"; 
         public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
         public static readonly string  AmericaPanama = "America/Panama"; 
         public static readonly string  AmericaDenver = "America/Denver"; 
         public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
-        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
-        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaMazatlan = "America/Mazatlan"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaPhoenix = "America/Phoenix"; 
         public static readonly string  AmericaTijuana = "America/Tijuana"; 
         public static readonly string  AmericaAnchorage = "America/Anchorage"; 
@@ -18778,6 +19801,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTaskRecurrenceTimeZoneSidKey Parse(string text) => text;
+
         
 
     }
@@ -18829,6 +19855,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTaskRecurrenceType Parse(string text) => text;
+
         
 
     }
@@ -18878,6 +19907,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTaskRecurrenceInstance Parse(string text) => text;
+
         
 
     }
@@ -18934,6 +19966,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTaskRecurrenceMonthOfYear Parse(string text) => text;
+
         
 
     }
@@ -18981,6 +20016,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTaskRecurrenceRegeneratedType Parse(string text) => text;
+
         
 
     }
@@ -19054,6 +20092,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTaskFeedType Parse(string text) => text;
+
         
 
     }
@@ -19104,6 +20145,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTenantUsageEntitlementFrequency Parse(string text) => text;
+
         
 
     }
@@ -19177,6 +20221,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickTopicFeedType Parse(string text) => text;
+
         
 
     }
@@ -19205,18 +20252,18 @@ namespace LinqToSalesforce
     public class PickUserTimeZoneSidKey
     {
         public static readonly string  PacificKiritimati = "Pacific/Kiritimati"; 
-        public static readonly string  PacificChatham = "Pacific/Chatham"; 
-        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificEnderbury = "Pacific/Enderbury"; 
         public static readonly string  PacificTongatapu = "Pacific/Tongatapu"; 
+        public static readonly string  PacificChatham = "Pacific/Chatham"; 
         public static readonly string  AsiaKamchatka = "Asia/Kamchatka"; 
+        public static readonly string  PacificAuckland = "Pacific/Auckland"; 
         public static readonly string  PacificFiji = "Pacific/Fiji"; 
-        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
-        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
         public static readonly string  PacificGuadalcanal = "Pacific/Guadalcanal"; 
         public static readonly string  PacificNorfolk = "Pacific/Norfolk"; 
-        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
+        public static readonly string  AustraliaLordHowe = "Australia/Lord_Howe"; 
         public static readonly string  AustraliaBrisbane = "Australia/Brisbane"; 
+        public static readonly string  AustraliaSydney = "Australia/Sydney"; 
+        public static readonly string  AustraliaAdelaide = "Australia/Adelaide"; 
         public static readonly string  AustraliaDarwin = "Australia/Darwin"; 
         public static readonly string  AsiaSeoul = "Asia/Seoul"; 
         public static readonly string  AsiaTokyo = "Asia/Tokyo"; 
@@ -19246,32 +20293,32 @@ namespace LinqToSalesforce
         public static readonly string  AsiaYerevan = "Asia/Yerevan"; 
         public static readonly string  AfricaNairobi = "Africa/Nairobi"; 
         public static readonly string  AsiaBaghdad = "Asia/Baghdad"; 
+        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
+        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
         public static readonly string  AsiaKuwait = "Asia/Kuwait"; 
         public static readonly string  AsiaRiyadh = "Asia/Riyadh"; 
+        public static readonly string  EuropeAthens = "Europe/Athens"; 
+        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
+        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
         public static readonly string  EuropeIstanbul = "Europe/Istanbul"; 
         public static readonly string  EuropeMinsk = "Europe/Minsk"; 
         public static readonly string  EuropeMoscow = "Europe/Moscow"; 
         public static readonly string  AfricaCairo = "Africa/Cairo"; 
         public static readonly string  AfricaJohannesburg = "Africa/Johannesburg"; 
-        public static readonly string  AsiaBeirut = "Asia/Beirut"; 
-        public static readonly string  AsiaJerusalem = "Asia/Jerusalem"; 
-        public static readonly string  EuropeAthens = "Europe/Athens"; 
-        public static readonly string  EuropeBucharest = "Europe/Bucharest"; 
-        public static readonly string  EuropeHelsinki = "Europe/Helsinki"; 
-        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  EuropeAmsterdam = "Europe/Amsterdam"; 
         public static readonly string  EuropeBerlin = "Europe/Berlin"; 
         public static readonly string  EuropeBrussels = "Europe/Brussels"; 
         public static readonly string  EuropeParis = "Europe/Paris"; 
         public static readonly string  EuropePrague = "Europe/Prague"; 
         public static readonly string  EuropeRome = "Europe/Rome"; 
+        public static readonly string  AfricaAlgiers = "Africa/Algiers"; 
         public static readonly string  AfricaCasablanca = "Africa/Casablanca"; 
         public static readonly string  EuropeDublin = "Europe/Dublin"; 
         public static readonly string  EuropeLisbon = "Europe/Lisbon"; 
         public static readonly string  EuropeLondon = "Europe/London"; 
-        public static readonly string  GMT = "GMT"; 
         public static readonly string  AmericaScoresbysund = "America/Scoresbysund"; 
         public static readonly string  AtlanticAzores = "Atlantic/Azores"; 
+        public static readonly string  GMT = "GMT"; 
         public static readonly string  AtlanticCapeVerde = "Atlantic/Cape_Verde"; 
         public static readonly string  AtlanticSouthGeorgia = "Atlantic/South_Georgia"; 
         public static readonly string  AmericaStJohns = "America/St_Johns"; 
@@ -19287,12 +20334,12 @@ namespace LinqToSalesforce
         public static readonly string  AmericaBogota = "America/Bogota"; 
         public static readonly string  AmericaChicago = "America/Chicago"; 
         public static readonly string  AmericaLima = "America/Lima"; 
+        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
         public static readonly string  AmericaPanama = "America/Panama"; 
         public static readonly string  AmericaDenver = "America/Denver"; 
         public static readonly string  AmericaElSalvador = "America/El_Salvador"; 
-        public static readonly string  AmericaMexicoCity = "America/Mexico_City"; 
-        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaMazatlan = "America/Mazatlan"; 
+        public static readonly string  AmericaLosAngeles = "America/Los_Angeles"; 
         public static readonly string  AmericaPhoenix = "America/Phoenix"; 
         public static readonly string  AmericaTijuana = "America/Tijuana"; 
         public static readonly string  AmericaAnchorage = "America/Anchorage"; 
@@ -19320,6 +20367,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserTimeZoneSidKey Parse(string text) => text;
+
         
 
     }
@@ -19490,6 +20540,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserLocaleSidKey Parse(string text) => text;
+
         
 
     }
@@ -19544,6 +20597,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserEmailEncodingKey Parse(string text) => text;
+
         
 
     }
@@ -19596,6 +20652,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserUserType Parse(string text) => text;
+
         
 
     }
@@ -19658,6 +20717,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserLanguageLocaleKey Parse(string text) => text;
+
         
 
     }
@@ -19705,6 +20767,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserDigestFrequency Parse(string text) => text;
+
         
 
     }
@@ -19753,6 +20818,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserDefaultGroupNotificationFrequency Parse(string text) => text;
+
         
 
     }
@@ -19826,6 +20894,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserFeedType Parse(string text) => text;
+
         
 
     }
@@ -19883,6 +20954,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserPreferencePreference Parse(string text) => text;
+
         
 
     }
@@ -19927,6 +21001,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserRecordAccessRecordId Parse(string text) => text;
+
         
 
     }
@@ -19977,6 +21054,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserRecordAccessMaxAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -20024,6 +21104,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserRoleOpportunityAccessForAccountOwner Parse(string text) => text;
+
         
 
     }
@@ -20071,6 +21154,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserRoleCaseAccessForAccountOwner Parse(string text) => text;
+
         
 
     }
@@ -20118,6 +21204,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserRoleContactAccessForAccountOwner Parse(string text) => text;
+
         
 
     }
@@ -20165,6 +21254,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserRolePortalType Parse(string text) => text;
+
         
 
     }
@@ -20211,6 +21303,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserShareUserAccessLevel Parse(string text) => text;
+
         
 
     }
@@ -20266,6 +21361,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickUserShareRowCause Parse(string text) => text;
+
         
 
     }
@@ -20317,6 +21415,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickVoteType Parse(string text) => text;
+
         
 
     }
@@ -20400,6 +21501,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickWebLinkPageOrSobjectType Parse(string text) => text;
+
         
 
     }
@@ -20454,6 +21558,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickWebLinkEncodingKey Parse(string text) => text;
+
         
 
     }
@@ -20503,6 +21610,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickWebLinkLinkType Parse(string text) => text;
+
         
 
     }
@@ -20552,6 +21662,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickWebLinkOpenType Parse(string text) => text;
+
         
 
     }
@@ -20599,6 +21712,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickWebLinkPosition Parse(string text) => text;
+
         
 
     }
@@ -20646,6 +21762,9 @@ namespace LinqToSalesforce
         {
             return Value;
         }
+
+        public static PickWebLinkDisplayType Parse(string text) => text;
+
         
 
     }
@@ -21275,6 +22394,14 @@ namespace LinqToSalesforce
         {
             get { return __NumberBugc; }
             set { SetField(ref __NumberBugc, value, "NumberBug__c"); }
+        }
+        private LinqToSalesforce.BuiltinTypes.MultiSelectPicklist<PickAccountActivityType> __ActivityTypec;
+        [JsonProperty(PropertyName = "ActivityType__c")]
+        [EntityField(true)]
+        public LinqToSalesforce.BuiltinTypes.MultiSelectPicklist<PickAccountActivityType> ActivityTypec
+        {
+            get { return __ActivityTypec; }
+            set { SetField(ref __ActivityTypec, value, "ActivityType__c"); }
         }
         [JsonIgnore]
         [ReferencedByField("ParentId")]
@@ -42936,9 +44063,9 @@ namespace LinqToSalesforce
             get { return __VoteTotal; }
             set { SetField(ref __VoteTotal, value, "VoteTotal"); }
         }
-        private System.String __Categories;
+        private LinqToSalesforce.BuiltinTypes.MultiSelectPicklist<PickIdeaCategories> __Categories;
         [EntityField(true)]
-        public System.String Categories
+        public LinqToSalesforce.BuiltinTypes.MultiSelectPicklist<PickIdeaCategories> Categories
         {
             get { return __Categories; }
             set { SetField(ref __Categories, value, "Categories"); }

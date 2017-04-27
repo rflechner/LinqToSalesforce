@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using LinqToSalesforce.BuiltinTypes;
 using static System.Console;
 
 namespace LinqToSalesforce.Example1
@@ -30,6 +31,15 @@ namespace LinqToSalesforce.Example1
             try
             {
                 //var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
+                var coolAccount = context.Accounts.FirstOrDefault(a => a.Name.Contains("cool"));
+
+                coolAccount.ActivityTypec = MultiSelectPicklist<PickAccountActivityType>.From(new []
+                {
+                    PickAccountActivityType.Buyer,
+                    PickAccountActivityType.Manufacturer
+                });
+                context.Save();
+                //PickAccountActivityType t = PickAccountActivityType.Buyer;
 
                 var accounts100 = (from a in context.Accounts
                                    select a).Take(100).ToList();
