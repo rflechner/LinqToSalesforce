@@ -45,9 +45,13 @@ and MultiSelectPicklistConverter() =
       writer.WriteValue(value.ToString())
       writer.Flush()
     override __.ReadJson (reader:JsonReader,t:Type,_:obj,_:JsonSerializer) =
-      let text = reader.Value.ToString()
-      let m = t.GetMethod "Parse"
-      m.Invoke(null, [|text|])
+      if isNull reader.Value
+      then
+        null
+      else
+        let text = reader.Value.ToString()
+        let m = t.GetMethod "Parse"
+        m.Invoke(null, [|text|])
     override __.CanConvert (objectType:Type) =
       if not objectType.IsGenericType
       then false
