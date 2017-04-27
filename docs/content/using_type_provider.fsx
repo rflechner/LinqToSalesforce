@@ -14,8 +14,7 @@
 Using F# type provider
 ======================
 
-For the moment, the NugGet is only on my feed.
-MyGet.org
+For the moment, the NugGet is only on my personal MyGet feed, which can be used as a package source: https://www.myget.org/F/romcyber/api/v2
 
 <div class="row">
   <div class="span1"></div>
