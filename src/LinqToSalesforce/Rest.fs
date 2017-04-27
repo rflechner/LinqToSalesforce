@@ -39,6 +39,8 @@ module Rest =
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
     settings.Converters.Add(new LinqToSalesforce.BuiltinTypes.MultiSelectPicklistConverter())
+    let serializer = new JsonSerializer()
+    serializer.Converters.Add(new LinqToSalesforce.BuiltinTypes.MultiSelectPicklistConverter())
 
     let fromJson<'t> json =
       try
@@ -67,7 +69,7 @@ module Rest =
       for f in invalidFields do
         if properties.ContainsKey f
         then properties.Remove f |> ignore
-      let j = JObject.FromObject properties
+      let j = JObject.FromObject(properties, serializer)
       JsonConvert.SerializeObject(j, settings)
 
   type HttpMethod with
