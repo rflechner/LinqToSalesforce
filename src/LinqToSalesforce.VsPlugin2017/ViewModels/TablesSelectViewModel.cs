@@ -263,14 +263,9 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
         private async Task<IEnumerable<Rest.TableDesc>> GetTableListAsync()
         {
-            Action<string> logger = s =>
-            {
-                Console.WriteLine(s);
-            };
-
             Rest.Config.ProductionInstance = Document.Credentials.Instance;
 
-            return FSharpAsync.RunSynchronously(Rest.getObjectsList(Identity, logger), FSharpOption<int>.None,
+            return FSharpAsync.RunSynchronously(Rest.getObjectsList(Identity), FSharpOption<int>.None,
                 FSharpOption<CancellationToken>.None);
         }
 
