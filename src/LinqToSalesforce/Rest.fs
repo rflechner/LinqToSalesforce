@@ -38,9 +38,7 @@ module Rest =
         "LastModifiedById"; "IsClosed"; "ClosedDate"]
     let settings = new JsonSerializerSettings()
     settings.DateFormatString <- "yyyy-MM-dd"
-    //settings.ContractResolver <- new CamelCasePropertyNamesContractResolver()
-    //settings.Converters.Add(new ResponseDocConverter())
-    //JsonConvert.SerializeObject(__, settings)
+    settings.Converters.Add(new LinqToSalesforce.BuiltinTypes.MultiSelectPicklistConverter())
 
     let fromJson<'t> json =
       try
@@ -48,8 +46,6 @@ module Rest =
         let td = typedefof<SoqlResult<_>>
         if t.IsGenericType && t.GetGenericTypeDefinition() = td && (t.GetGenericArguments() |> Seq.contains (typeof<JsonEntity>))
         then
-          //TODO: lists ...
-          //(json |> JObject.Parse |> SoqlResult<JsonEntity>) |> box :?> 't
           let r = JsonConvert.DeserializeObject<SoqlResult<JObject>> json
           let records = r.Records |> Array.map(fun re -> new JsonEntity(re))
           let jr : JsonEntity SoqlResult = { TotalSize=r.TotalSize; Done=r.Done; Records=records;}
@@ -59,7 +55,7 @@ module Rest =
           let o = JObject.Parse json
           new JsonEntity(o) |> box :?> 't
         else
-          JsonConvert.DeserializeObject<'t> json
+          JsonConvert.DeserializeObject<'t>(json, settings)
       with e -> 
         raise (new Exception("Invalid Json " + json, e))
   
@@ -139,7 +135,7 @@ module Rest =
         Username:string
         Password:string }
       static member FromJson json = 
-        fromJson<ImpersonationParam> json
+        Serialization.fromJson<ImpersonationParam> json
       member __.ToKeyValues() =
         [ "grant_type","password"
           "client_id",__.ClientId
@@ -175,7 +171,7 @@ module Rest =
       async {
         let! rs = p.ToKeyValues() |> toEncodedParams |> sendRawForm uri
         let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
-        return fromJson<Identity> json
+        return Serialization.fromJson<Identity> json
       }
 
   open OAuth
@@ -198,9 +194,9 @@ module Rest =
         let f = 
           fun (h:Headers.HttpRequestHeaders) -> 
             h.Add("Authorization", sprintf "Bearer %s" i.AccessToken)
-        let! rs = rq |> toJson |> send uri "application/json" m (Some f)
+        let! rs = rq |> Serialization.toJson |> send uri "application/json" m (Some f)
         let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
-        return fromJson<'r> json
+        return Serialization.fromJson<'r> json
       }
 
   type TableDesc =
@@ -317,8 +313,8 @@ module Rest =
       let! json = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
       match rs.StatusCode with
       | HttpStatusCode.Created
-      | HttpStatusCode.OK -> return json |> fromJson<'ts> |> Success
-      | _ -> return json |> fromJson<'te> |> Failure
+      | HttpStatusCode.OK -> return json |> Serialization.fromJson<'ts> |> Success
+      | _ -> return json |> Serialization.fromJson<'te> |> Failure
     }
   let readRestResponse<'t> =
     readResponse<'t, RemoteError list>
@@ -343,11 +339,11 @@ module Rest =
 
   let insert (i:Identity) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    entity |> toInsertJson |> insertEntityName i name
+    entity |> Serialization.toInsertJson |> insertEntityName i name
 
   let insertJsonEntity (i:Identity) (entity:JsonEntity) =
     let name = entity.GetTableName()
-    let json = entity |> toInsertJson
+    let json = entity |> Serialization.toInsertJson
     match (json.ToString()) |> insertEntityName i name |> Async.RunSynchronously with
     | Success r ->
         let id = r.Id
@@ -369,7 +365,7 @@ module Rest =
     
   let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    entity |> toInsertJson |> updateEntityName i id name
+    entity |> Serialization.toInsertJson |> updateEntityName i id name
 
   let deleteEntityName (i:Identity) (id:string) name (json:string) =
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
@@ -382,7 +378,7 @@ module Rest =
 
   let delete (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
-    entity |> toInsertJson |> deleteEntityName i id name
+    entity |> Serialization.toInsertJson |> deleteEntityName i id name
 
   type Client (instanceName:string, authparams:ImpersonationParam) =
     let oauth:Identity option ref = ref None

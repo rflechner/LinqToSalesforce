@@ -107,7 +107,10 @@ let generateCsharp (tables:TableDesc []) (``namespace``:string) =
         {
             return Value;
         }
-        """ typeName typeName typeName
+
+        public static %s Parse(string text) => text;
+
+        """ typeName typeName typeName typeName
     addLine indent operators
     addLine 0 ""
     addLine indent "}"
