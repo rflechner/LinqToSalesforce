@@ -365,12 +365,18 @@ module Visitor =
         parseExpression (e.Arguments.Item 0) (token :: acc)
     | :? MethodCallExpression as e when e.Method.Name = "Count" ->
         match e.Arguments.Item 0 with
+        | :? ConstantExpression as exp when e.Arguments.Count >= 2 ->
+            let subExp = e.Arguments.Item 1
+            let args = parseWhereArgs subExp
+            let wop = Where args
+            parseExpression exp (wop :: Count :: acc)
         | :? ConstantExpression as exp ->
             parseExpression exp (Count :: acc)
         | :? MethodCallExpression as mc2 ->
             let subExp = mc2.Arguments.Item 1
             let args = parseWhereArgs subExp
-            parseExpression mc2 (Count :: acc)
+            let wop = Where args
+            parseExpression mc2 (wop :: Count :: acc)
         | _ ->
             failwithf "Method not visited: '%s'" e.Method.Name
     | :? MethodCallExpression as e ->

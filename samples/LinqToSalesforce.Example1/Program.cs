@@ -30,6 +30,8 @@ namespace LinqToSalesforce.Example1
             var context = new SalesforceDataContext("eu11", impersonationParam);
             try
             {
+                var count2 = context.Accounts.Count(a => a.Name.Contains("Company"));
+
                 //var notExisting = context.Accounts.FirstOrDefault(a => a.Name == "dzdzdz");
                 var coolAccount = context.Accounts.FirstOrDefault(a => a.Name.Contains("cool"));
 
@@ -47,7 +49,7 @@ namespace LinqToSalesforce.Example1
                                    select a).Take(100).ToList();
 
                 var count1 = context.Accounts.Count();
-                var count2 = context.Accounts.Count(a => a.Name.Contains("Company"));
+                
 
                 var a1 = new Account { Name = $"Company {DateTime.Now.Ticks}" };
                 context.Insert(a1);
