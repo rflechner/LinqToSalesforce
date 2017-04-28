@@ -1,4 +1,7 @@
 
+#### 0.2.5-beta - April 28 2017
+* FIX Count expression visitor with predicate
+
 #### 0.2.4-beta - April 27 2017
 * FIX RelationShips querying
 
