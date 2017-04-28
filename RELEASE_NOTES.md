@@ -1,4 +1,7 @@
 
+#### 0.2.6-beta - April 28 2017
+* FEAT improve errors reporting
+
 #### 0.2.5-beta - April 28 2017
 * FIX Count expression visitor with predicate
 
