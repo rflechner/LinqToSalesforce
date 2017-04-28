@@ -200,7 +200,7 @@ type SalesforceProvider () as this =
           ProvidedMethod(
             methodName = "Save", 
             parameters = [ProvidedParameter("entity", typeof<JsonEntity>)],
-            returnType = typeof<bool>, 
+            returnType = typeof<Result<string, RemoteError list>>,
             InvokeCode = 
               fun args -> 
                   <@@ 
@@ -210,10 +210,15 @@ type SalesforceProvider () as this =
                       let name = entity.GetTableName()
                       match entity.GetId() with
                       | None ->
-                          Rest.insertJsonEntity i entity
+                          match Rest.insertJsonEntity i entity with
+                          | Success r when r.Success -> Success r.Id
+                          | Success r -> r.Errors |> Seq.map (fun e -> { ErrorCode=""; Message=e }) |> Seq.toList |> Failure
+                          | Failure errors -> Failure errors
                       | Some id ->
                           let json = entity |> Serialization.toInsertJson
-                          Rest.updateEntityName i id name json |> Async.RunSynchronously
+                          match Rest.updateEntityName i id name json |> Async.RunSynchronously with
+                          | Success r -> Success id
+                          | Failure errors -> errors |> Seq.toList |> Failure
                   @@>)
         do saveMethod.AddXmlDoc "Insert or update this entity into Salesforce"
         do ty.AddMember saveMethod

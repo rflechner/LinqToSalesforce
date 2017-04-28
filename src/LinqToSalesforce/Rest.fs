@@ -346,13 +346,9 @@ module Rest =
   let insertJsonEntity (i:Identity) (entity:JsonEntity) =
     let name = entity.GetTableName()
     let json = entity |> Serialization.toInsertJson
-    match (json.ToString()) |> insertEntityName i name |> Async.RunSynchronously with
-    | Success r ->
-        let id = r.Id
-        r.Success
-    | _ -> false
-    
-  let updateEntityName (i:Identity) (id:string) name json =
+    json.ToString() |> insertEntityName i name |> Async.RunSynchronously
+  
+  let updateEntityName (i:Identity) (id:string) name json : Async<Result<unit, RemoteError array>> =
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
       let f = 
@@ -361,8 +357,8 @@ module Rest =
       let! rs = json |> send (Uri uri) "application/json" HttpMethod.Patch (Some f)
       let! rsJson = rs.Content.ReadAsStringAsync() |> Async.AwaitTask
       if String.IsNullOrWhiteSpace rsJson
-      then return true
-      else return false
+      then return Success ()
+      else return Failure (Serialization.fromJson<RemoteError array> rsJson)
     }
     
   let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =

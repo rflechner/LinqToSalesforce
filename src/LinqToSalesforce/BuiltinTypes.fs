@@ -6,16 +6,16 @@ open System.Collections
 
 [<CLIMutable>]
 type Address = 
-  { Accuracy:string
-    City:string
-    Country:string
-    CountryCode:string
-    Latitude:string
-    Longitude:string
-    PostalCode:string
-    State:string
-    StateCode:string
-    Street:string }
+  { [<JsonProperty("geocodeAccuracy")>] GeocodeAccuracy:string
+    [<JsonProperty("city")>] City:string
+    [<JsonProperty("country")>] Country:string
+    [<JsonProperty("countryCode")>] CountryCode:string
+    [<JsonProperty("latitude")>] Latitude:string
+    [<JsonProperty("longitude")>] Longitude:string
+    [<JsonProperty("postalCode")>] PostalCode:string
+    [<JsonProperty("state")>] State:string
+    [<JsonProperty("stateCode")>] StateCode:string
+    [<JsonProperty("street")>] Street:string }
 
 [<CLIMutable>]
 type MultiSelectPicklist<'t> =

@@ -149,9 +149,21 @@ type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
   member x.Delete entity =
     client.Delete entity
 
-  member x.Save() =
+  member x.Save() : unit =
     let entities = tracker.GetTrackedEntities()
-    for e in entities do
-      client.Update e |> ignore
+    let errors =
+        entities
+        |> List.choose (
+            fun e ->
+              match client.Update e with
+              | Success _ -> None
+              | Failure errors ->
+                  errors
+                  |> Array.map (fun error -> error.ToException() :> Exception)
+                  |> Some)
+        |> List.toArray
+        |> Array.collect (fun e -> e)
     tracker.Clear()
+    if errors.Length > 0
+    then raise (new AggregateException("Cannot save all entities", errors))
 
