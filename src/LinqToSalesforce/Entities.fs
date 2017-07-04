@@ -60,5 +60,7 @@ module Entities =
       then entities.Add e |> ignore
     
     member __.GetTrackedEntities() =
-      entities |> Seq.toList
+      entities
+      |> Seq.filter (fun e -> e.UpdatedProperties.Count > 0)
+      |> Seq.toList
 

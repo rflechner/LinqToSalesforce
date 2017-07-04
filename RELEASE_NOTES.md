@@ -1,4 +1,7 @@
 
+#### 0.2.7-beta - July 04 2017
+* FIX inserted entities was flagged as modified and resent on when saving context
+
 #### 0.2.6-beta - April 28 2017
 * FEAT improve errors reporting
 
