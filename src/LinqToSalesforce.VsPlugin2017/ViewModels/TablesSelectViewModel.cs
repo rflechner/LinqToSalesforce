@@ -33,6 +33,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         private readonly IDiagramDocumentStorage documentStorage;
         private bool allChecked;
         private string sourceCode;
+        private TableDescPresenter _selectedTable;
 
         public TablesSelectViewModel(DTE dte, IDiagramDocumentStorage documentStorage,
             string filename, Rest.OAuth.Identity identity)
@@ -45,7 +46,6 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             Identity = identity;
 
             Tables = new ObservableCollection<TableDescPresenter>();
-            Fields = new ObservableCollection<FieldDescPresenter>();
 
             allChecked = false;
         }
@@ -67,8 +67,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         public Rest.OAuth.Identity Identity { get; }
 
         public ObservableCollection<TableDescPresenter> Tables { get; set; }
-
-        public ObservableCollection<FieldDescPresenter> Fields { get; set; }
+        
 
         public ICommand Save => new RelayCommand(GenerateSourceCode);
         
@@ -77,21 +76,6 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         public string Title => Path.GetFileName(Filename);
 
         public string TutorialUrl => "https://rflechner.github.io/LinqToSalesforce/tutorial.html";
-
-        public void SelectTable(TableDescPresenter table)
-        {
-            Fields.Clear();
-
-            var fields = table.Table.Fields.Select(f => new FieldDescPresenter
-            {
-                Field = f,
-                Selected = false
-            }).ToList();
-            foreach (var f in fields)
-            {
-                Fields.Add(f);
-            }
-        }
 
         private void SaveGeneratedCode()
         {
@@ -157,11 +141,19 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             }
         }
 
-        public TableDescPresenter SelectedTable { get; set; }
+        public TableDescPresenter SelectedTable
+        {
+            get { return _selectedTable; }
+            set
+            {
+                _selectedTable = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand OnTableSelected => new RelayCommand(() =>
         {
-            SelectTable(SelectedTable);
+            //SelectedTable;
         });
 
         public void GenerateSourceCode()
@@ -182,7 +174,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 SubscribeTablePresenters();
                 if (Tables.Any())
                 {
-                    Document.Tables = Tables.Select(t => t.Table.Name).ToArray();
+                    Document.Tables = Tables.ToDictionary(t => t.Table.Name, t => t.Fields.Where(f => f.Selected).Select(f => f.Field.Name).ToArray()).ToArray();
                     Document.SelectedTables = selectedTables.Select(t => t.Name).ToArray();
                     documentStorage.Save(Document, Filename);
                 }
@@ -255,15 +247,14 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                     foreach (var tableDesc in tableDescs)
                     {
                         var selected = Document?.SelectedTables?.Contains(tableDesc.Name) ?? false;
-                        var presenter = new TableDescPresenter
+                        var presenter = new TableDescPresenter(tableDesc)
                         {
-                            Selected = selected,
-                            Table = tableDesc
+                            Selected = selected
                         };
                         Tables.Add(presenter);
                     }
 
-                    allChecked = Document?.SelectedTables?.SequenceEqual(Document?.Tables ?? Enumerable.Empty<string>()) ?? false;
+                    allChecked = Document?.SelectedTables?.SequenceEqual(Document?.Tables?.Select(t => t.Key) ?? Enumerable.Empty<string>()) ?? false;
                     OnPropertyChanged(nameof(AllChecked));
 
                     SubscribeTablePresenters();

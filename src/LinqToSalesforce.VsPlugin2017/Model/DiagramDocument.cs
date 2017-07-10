@@ -1,4 +1,6 @@
-﻿using LinqToSalesforce.VsPlugin2017.ViewModels;
+﻿using System.Collections.Generic;
+using System.Linq;
+using LinqToSalesforce.VsPlugin2017.ViewModels;
 
 namespace LinqToSalesforce.VsPlugin2017.Model
 {
@@ -6,7 +8,11 @@ namespace LinqToSalesforce.VsPlugin2017.Model
     {
 
         public Credentials Credentials { get; set; }
-        public string[] Tables { get; set; }
+
+        public KeyValuePair<string,string[]>[] Tables { get; set; }
+
+        public Dictionary<string, string[]> GetTables() => Tables?.ToDictionary(kv => kv.Key, kv => kv.Value);
+
         public string[] SelectedTables { get; set; }
     }
 }

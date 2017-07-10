@@ -87,7 +87,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0">Fields</TextBlock>
-            <ListView x:Name="FieldsListView" Background="#FFEFF6FF" Grid.Row="1" ItemsSource="{Binding Path=TablesSelect.Fields}">
+            <ListView x:Name="FieldsListView" Background="#FFEFF6FF" Grid.Row="1" ItemsSource="{Binding Path=TablesSelect.SelectedTable.Fields}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
@@ -100,8 +100,5 @@
         </Grid>
         
         <WebBrowser x:Name="Browser" Grid.Row="2" Grid.Column="4" />
-        
-        <Button Visibility="Hidden" Command="{Binding Path=SaveCommand}" Grid.Column="2"  Background="White" BorderBrush="#FF224091" Foreground="#FF224091" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="10" VerticalAlignment="Bottom">Save code</Button>
-        
     </Grid>
 </Page>
