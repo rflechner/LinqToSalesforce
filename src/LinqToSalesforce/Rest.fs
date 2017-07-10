@@ -207,6 +207,9 @@ module Rest =
       LabelPlural:string
       Fields:FieldDesc list
       RelationShips:RelationShipDef list }
+    member __.SelectFields (names:string array) =
+      let fields = __.Fields |> List.filter(fun f -> names.Contains f.Name)
+      { __ with Fields=fields }
   and RelationShipDef =
     { RelationshipName:string
       ChildSObject:string

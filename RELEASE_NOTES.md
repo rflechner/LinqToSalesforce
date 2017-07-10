@@ -1,4 +1,7 @@
 
+#### 0.2.9-beta - July 10 2017
+* FEAT type provider can delete entities.
+
 #### 0.2.8-beta - July 10 2017
 * FIX type provider could have issues when loading Result type.
 

@@ -218,6 +218,28 @@ type SalesforceProvider () as this =
         do saveMethod.AddXmlDoc "Insert or update this entity into Salesforce"
         do ty.AddMember saveMethod
 
+        let deleteMethod = 
+          ProvidedMethod(
+            methodName = "Delete", 
+            parameters = [ProvidedParameter("entity", typeof<JsonEntity>)],
+            returnType = typeof<unit>,
+            InvokeCode = 
+              fun args -> 
+                  <@@ 
+                      let ctx = (%%args.[0]:obj) :?> TpContext
+                      let entity = (%%args.[1]:>JsonEntity)
+                      let i = ctx.Soql.GetIdentity()
+                      let name = entity.GetTableName()
+                      match entity.GetId() with
+                      | None -> ()
+                      | Some id ->
+                          let json = entity |> Serialization.toJson
+                          Rest.deleteEntityName i id name json
+                          |> Async.RunSynchronously
+                  @@>)
+        do deleteMethod.AddXmlDoc "Delete this entity into Salesforce"
+        do ty.AddMember deleteMethod
+
         restApi.LoadTableList authparams (
           fun table ->
                 tablesType.AddMemberDelayed (fun () ->
