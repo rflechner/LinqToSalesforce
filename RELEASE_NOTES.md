@@ -1,4 +1,7 @@
 
+#### 0.2.8-beta - July 10 2017
+* FIX type provider could have issues when loading Result type.
+
 #### 0.2.7-beta - July 04 2017
 * FIX inserted entities was flagged as modified and resent on when saving context
 
