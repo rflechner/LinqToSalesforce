@@ -7,7 +7,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using System.Windows.Threading;
 using EnvDTE;
 using LinqToSalesforce.VsPlugin2017.Annotations;
@@ -32,17 +34,19 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         private bool allChecked;
         private string sourceCode;
 
-        public TablesSelectViewModel(DTE dte, Dispatcher dispatcher, IDiagramDocumentStorage documentStorage,
-            DiagramDocument document, string filename, Rest.OAuth.Identity identity)
+        public TablesSelectViewModel(DTE dte, IDiagramDocumentStorage documentStorage,
+            string filename, Rest.OAuth.Identity identity)
         {
             this.dte = dte;
-            this.dispatcher = dispatcher;
+            dispatcher = System.Windows.Application.Current.Dispatcher;
             this.documentStorage = documentStorage;
-            Document = document;
+            Document = documentStorage.LoadDocument(filename);
             Filename = filename;
             Identity = identity;
 
             Tables = new ObservableCollection<TableDescPresenter>();
+            Fields = new ObservableCollection<FieldDescPresenter>();
+
             allChecked = false;
         }
 
@@ -64,10 +68,30 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
         public ObservableCollection<TableDescPresenter> Tables { get; set; }
 
-        public ICommand SaveCommand => new RelayCommand(() =>
+        public ObservableCollection<FieldDescPresenter> Fields { get; set; }
+
+        public ICommand Save => new RelayCommand(GenerateSourceCode);
+        
+        public ICommand StartTablesLoad => new RelayCommand(LoadTables);
+
+        public string Title => Path.GetFileName(Filename);
+
+        public string TutorialUrl => "https://rflechner.github.io/LinqToSalesforce/tutorial.html";
+
+        public void SelectTable(TableDescPresenter table)
         {
-            GenerateSourceCode();
-        });
+            Fields.Clear();
+
+            var fields = table.Table.Fields.Select(f => new FieldDescPresenter
+            {
+                Field = f,
+                Selected = false
+            }).ToList();
+            foreach (var f in fields)
+            {
+                Fields.Add(f);
+            }
+        }
 
         private void SaveGeneratedCode()
         {
@@ -76,13 +100,13 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 var csFullPath = CsFullPath;
                 File.WriteAllText(csFullPath, SourceCode);
 
-                var activeSolutionProjects = (Array) dte.ActiveSolutionProjects;
+                var activeSolutionProjects = (Array)dte.ActiveSolutionProjects;
                 if (activeSolutionProjects.Length <= 0)
                 {
                     //MessageBox.Show("Please select a project in the Solution Explorer.");
                     return;
                 }
-                var project = (Project) activeSolutionProjects.GetValue(0);
+                var project = (Project)activeSolutionProjects.GetValue(0);
                 var fileNames = project.GetProjectFiles().ToArray();
 
                 if (fileNames.All(f => f.FileNames[0] != csFullPath))
@@ -92,8 +116,6 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 }
 
                 project.Save();
-
-                
             }
         }
 
@@ -119,7 +141,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 return (Project)activeSolutionProjects.GetValue(0);
             }
         }
-        
+
         public bool AllChecked
         {
             get { return allChecked; }
@@ -130,10 +152,17 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 {
                     table.Selected = allChecked;
                 }
-                
+
                 OnPropertyChanged();
             }
         }
+
+        public TableDescPresenter SelectedTable { get; set; }
+
+        public ICommand OnTableSelected => new RelayCommand(() =>
+        {
+            SelectTable(SelectedTable);
+        });
 
         public void GenerateSourceCode()
         {
@@ -157,7 +186,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                     Document.SelectedTables = selectedTables.Select(t => t.Name).ToArray();
                     documentStorage.Save(Document, Filename);
                 }
-                
+
                 SaveGeneratedCode();
             });
         }
@@ -168,8 +197,6 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             {
                 TryOpenGeneratedCsFile(project);
             }
-
-            
         }
 
         private void TryOpenGeneratedCsFile(Project project)
@@ -215,7 +242,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             return defaultNamespace.ToString();
         }
 
-        public void LoadTables()
+        private void LoadTables()
         {
             Task.Factory.StartNew(async () =>
             {
@@ -258,7 +285,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
         private void PresenterOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            
+
         }
 
         private async Task<IEnumerable<Rest.TableDesc>> GetTableListAsync()

@@ -2,7 +2,9 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using EnvDTE;
+using LinqToSalesforce.VsPlugin2017.Ioc;
 using LinqToSalesforce.VsPlugin2017.Ui;
+using LinqToSalesforce.VsPlugin2017.ViewModels;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -19,7 +21,9 @@ namespace LinqToSalesforce.VsPlugin2017
     {
         public EditorPane(string filename, DTE dte) : base(null)
         {
-            Content = new AuthenticationControl(filename, dte);
+            IocServiceProvider.Current.Dte = dte;
+            IocServiceProvider.Current.Filename = filename;
+            Content = new MainWindow(filename, dte);
         }
         
         public int FReserved1(uint dwReserved, uint message, IntPtr wParam, IntPtr lParam) => VSConstants.S_OK;

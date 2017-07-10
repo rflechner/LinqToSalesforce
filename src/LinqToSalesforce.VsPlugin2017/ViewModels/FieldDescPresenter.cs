@@ -1,31 +1,29 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 using LinqToSalesforce.VsPlugin2017.Annotations;
 
 namespace LinqToSalesforce.VsPlugin2017.ViewModels
 {
-    public class TableDescPresenter : INotifyPropertyChanged
+    public class FieldDescPresenter : INotifyPropertyChanged
     {
         private bool _selected;
 
         public bool Selected
         {
-            get => _selected;
+            get => !IsOptional || _selected;
             set
             {
-                _selected = value;
-                OnPropertyChanged();
+                if (IsOptional)
+                {
+                    _selected = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        public Rest.TableDesc Table { get; set; }
+        public bool IsOptional => Field.Name != "Id";
 
-        public ICommand SelectTable => new RelayCommand(() =>
-        {
-            
-        });
-
+        public Rest.FieldDesc Field { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
