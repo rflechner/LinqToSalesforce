@@ -168,9 +168,20 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             }
         }
 
+        public ICommand CheckAllFields => new RelayCommand(() =>
+        {
+            if (SelectedTable == null)
+                return;
+
+            foreach (var field in SelectedTable.Fields)
+            {
+                field.Selected = AllFieldsChecked;
+            }
+        });
+
         public ICommand OnTableSelected => new RelayCommand(() =>
         {
-            //SelectedTable;
+            AllFieldsChecked = false;
         });
 
         public void GenerateSourceCode()

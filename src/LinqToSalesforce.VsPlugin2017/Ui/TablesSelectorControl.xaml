@@ -57,7 +57,7 @@
         </WrapPanel>
 
         <WrapPanel Grid.Row="1" Grid.Column="2">
-            <CheckBox  Margin="4,0,0,0" ToolTip="Check / UnCheck all" IsChecked="{Binding Path=TablesSelect.AllFieldsChecked}" HorizontalAlignment="Center"></CheckBox>
+            <CheckBox  Command="{Binding Path=TablesSelect.CheckAllFields}"  Margin="4,0,0,0" ToolTip="Check / UnCheck all" IsChecked="{Binding Path=TablesSelect.AllFieldsChecked}" HorizontalAlignment="Center"></CheckBox>
             <TextBlock Margin="0" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center">All fields</TextBlock>
         </WrapPanel>
 
