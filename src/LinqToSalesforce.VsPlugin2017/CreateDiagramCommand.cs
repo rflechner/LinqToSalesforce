@@ -99,7 +99,7 @@ namespace LinqToSalesforce.VsPlugin2017
             //string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
             //string title = "Create Salesforce linq entities";
             //VsShellUtilities.ShowMessageBox(
-            //    this.ServiceProvider,
+            //    this.IocServiceProvider,
             //    message,
             //    title,
             //    OLEMSGICON.OLEMSGICON_INFO,

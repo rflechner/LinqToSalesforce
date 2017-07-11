@@ -55,8 +55,9 @@
     <Compile Include="CreateDiagramCommand.cs" />
     <Compile Include="CreateDiagramCommandPackage.cs" />
     <Compile Include="Helpers\DteExtensions.cs" />
+    <Compile Include="Ioc\IocServiceProvider.cs" />
     <Compile Include="Model\Credentials.cs" />
-    <Compile Include="Model\DiagramDocument.cs" />
+    <Compile Include="Model\Documents\DiagramDocument.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SalesforceEntity.cs" />
     <Compile Include="EditorPane.cs" />
@@ -67,9 +68,14 @@
     <Compile Include="Ui\AuthenticationControl.xaml.cs">
       <DependentUpon>AuthenticationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ui\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\TablesSelectorControl.xaml.cs">
       <DependentUpon>TablesSelectorControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\FieldDescPresenter.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\TableDescPresenter.cs" />
     <Compile Include="ViewModels\TablesSelectViewModel.cs" />
@@ -231,6 +237,7 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="vslangproj, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -248,6 +255,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Ui\AuthenticationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

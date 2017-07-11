@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 using LinqToSalesforce.VsPlugin2017.Model;
+using LinqToSalesforce.VsPlugin2017.Model.Documents;
+using Newtonsoft.Json;
 
 namespace LinqToSalesforce.VsPlugin2017.Storage
 {
@@ -9,8 +11,6 @@ namespace LinqToSalesforce.VsPlugin2017.Storage
 
         static readonly object locker = new object();
 
-        readonly XmlSerializer serializer = new XmlSerializer(typeof(DiagramDocument));
-        
         public DiagramDocument LoadDocument(string filename)
         {
             lock (locker)
@@ -20,8 +20,8 @@ namespace LinqToSalesforce.VsPlugin2017.Storage
 
                 try
                 {
-                    using (var stream = File.OpenRead(filename))
-                        return (DiagramDocument) serializer.Deserialize(stream);
+                    var json = File.ReadAllText(filename);
+                    return JsonConvert.DeserializeObject<DiagramDocument>(json);
                 }
                 catch
                 {
@@ -34,11 +34,8 @@ namespace LinqToSalesforce.VsPlugin2017.Storage
         {
             lock (locker)
             {
-                using (var stream = File.Open(filename, FileMode.Create))
-                {
-                    serializer.Serialize(stream, document);
-                    stream.Close();
-                }
+                var json = JsonConvert.SerializeObject(document);
+                File.WriteAllText(filename, json);
             }
         }
     }

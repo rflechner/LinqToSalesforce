@@ -16,7 +16,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
 using EnvDTE;
+using LinqToSalesforce.VsPlugin2017.Ioc;
 using LinqToSalesforce.VsPlugin2017.Model;
+using LinqToSalesforce.VsPlugin2017.Model.Documents;
 using LinqToSalesforce.VsPlugin2017.Storage;
 using Microsoft.FSharp.Collections;
 using Microsoft.FSharp.Control;
@@ -31,7 +33,7 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
     /// <summary>
     /// Interaction logic for AuthenticationControl.xaml
     /// </summary>
-    public partial class AuthenticationControl : UserControl
+    public partial class AuthenticationControl : Page
     {
         private readonly DTE dte;
         readonly DiagramDocumentStorage documentStorage = new DiagramDocumentStorage();
@@ -73,15 +75,21 @@ namespace LinqToSalesforce.VsPlugin2017.Ui
                 if (string.IsNullOrWhiteSpace(identity?.AccessToken))
                     MessageBox.Show("Authentication failed !");
                 else
+                {
+                    IocServiceProvider.Current.Identity = identity;
                     Dispatcher.Invoke(() => DisplayTablesSelector(identity));
+                }
             });
         }
 
+        
         private void DisplayTablesSelector(Rest.OAuth.Identity identity)
         {
-            var tablesSelectorControl = new TablesSelectorControl(Filename, document, identity, dte);
-            tablesSelectorControl.Backclicked += (sender, args) => { Content = MainGrid; };
-            Content = tablesSelectorControl;
+            var tablesSelectorControl = new TablesSelectorControl();
+            ////tablesSelectorControl.Backclicked += (sender, args) => { Content = MainGrid; };
+            //Content = tablesSelectorControl;
+
+            NavigationService.GetNavigationService(this).Navigate(tablesSelectorControl);
         }
 
         public async Task<Rest.OAuth.Identity> AuthenticateAsync()
