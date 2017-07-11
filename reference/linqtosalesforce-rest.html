@@ -115,6 +115,12 @@
           </td>
           <td class="xmldoc"></td>
         </tr>
+        <tr>
+          <td class="module-name">
+            <a href="linqtosalesforce-rest-serialization.html">Serialization</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
     </tbody>
   </table>
 
@@ -133,11 +139,11 @@
             delete i id entity
           </code>
           <div class="tip" id="2">
-            <strong>Signature:</strong> i:Identity -&gt; id:string -&gt; entity:&#39;?7565 -&gt; Async&lt;unit&gt;<br />
-                          <strong>Type parameters:</strong> '?7565          </div>
+            <strong>Signature:</strong> i:Identity -&gt; id:string -&gt; entity:&#39;?7446 -&gt; Async&lt;unit&gt;<br />
+                          <strong>Type parameters:</strong> '?7446          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L379-379" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L393-393" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -155,7 +161,7 @@
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L370-370" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L384-384" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -173,7 +179,7 @@
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L248-248" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L252-252" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -209,7 +215,7 @@
                           <strong>Type parameters:</strong> 't          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L322-322" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L327-327" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -220,27 +226,9 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
-            fromJson json
-          </code>
-          <div class="tip" id="7">
-            <strong>Signature:</strong> json:string -&gt; &#39;t<br />
-                          <strong>Type parameters:</strong> 't          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L53-53" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
             get i uri
           </code>
-          <div class="tip" id="8">
+          <div class="tip" id="7">
             <strong>Signature:</strong> i:Identity -&gt; uri:Uri -&gt; Async&lt;HttpResponseMessage&gt;<br />
                       </div>
         </td>
@@ -255,15 +243,33 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
             getObjectsDescUrls i
           </code>
-          <div class="tip" id="9">
+          <div class="tip" id="8">
             <strong>Signature:</strong> i:Identity -&gt; Async&lt;IDictionary&lt;string,string&gt;&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L237-237" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L241-241" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+            getObjectsList i
+          </code>
+          <div class="tip" id="9">
+            <strong>Signature:</strong> i:Identity -&gt; Async&lt;TableDesc []&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L307-307" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -274,14 +280,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
-            getObjectsList i
+            getTableFromUrl i name
           </code>
           <div class="tip" id="10">
-            <strong>Signature:</strong> i:Identity -&gt; Async&lt;TableDesc []&gt;<br />
+            <strong>Signature:</strong> i:Identity -&gt; name:string -&gt; Async&lt;TableDesc&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L302-302" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L301-301" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -292,14 +298,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
-            getTableFromUrl i name
+            insert i entity
           </code>
           <div class="tip" id="11">
-            <strong>Signature:</strong> i:Identity -&gt; name:string -&gt; Async&lt;TableDesc&gt;<br />
-                      </div>
+            <strong>Signature:</strong> i:Identity -&gt; entity:&#39;?7437 -&gt; Async&lt;Result&lt;InsertResult,RemoteError list&gt;&gt;<br />
+                          <strong>Type parameters:</strong> '?7437          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L296-296" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L345-345" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -310,14 +316,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
-            insert i entity
+            insertEntityName i name json
           </code>
           <div class="tip" id="12">
-            <strong>Signature:</strong> i:Identity -&gt; entity:&#39;?7558 -&gt; Async&lt;Result&lt;InsertResult,RemoteError list&gt;&gt;<br />
-                          <strong>Type parameters:</strong> '?7558          </div>
+            <strong>Signature:</strong> i:Identity -&gt; name:string -&gt; json:string -&gt; Async&lt;Result&lt;InsertResult,RemoteError list&gt;&gt;<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L340-340" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L335-335" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -328,14 +334,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
-            insertEntityName i name json
+            insertJsonEntity i entity
           </code>
           <div class="tip" id="13">
-            <strong>Signature:</strong> i:Identity -&gt; name:string -&gt; json:string -&gt; Async&lt;Result&lt;InsertResult,RemoteError list&gt;&gt;<br />
+            <strong>Signature:</strong> i:Identity -&gt; entity:JsonEntity -&gt; Result&lt;InsertResult,RemoteError list&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L330-330" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L349-349" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -346,14 +352,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
-            insertJsonEntity i entity
+            insertJsonEntityWithExeptions i entity
           </code>
           <div class="tip" id="14">
-            <strong>Signature:</strong> i:Identity -&gt; entity:JsonEntity -&gt; bool<br />
+            <strong>Signature:</strong> i:Identity -&gt; entity:JsonEntity -&gt; string<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L344-344" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L354-354" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -364,14 +370,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
-            invalidFields 
+            parseTableDesc j
           </code>
           <div class="tip" id="15">
-            <strong>Signature:</strong> string list<br />
+            <strong>Signature:</strong> j:JObject -&gt; TableDesc<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L48-48" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L260-260" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -382,14 +388,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
-            parseTableDesc j
+            parseType _arg1
           </code>
           <div class="tip" id="16">
-            <strong>Signature:</strong> j:JObject -&gt; TableDesc<br />
+            <strong>Signature:</strong> _arg1:string -&gt; Type<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L256-256" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L230-230" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -400,14 +406,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
-            parseType _arg1
+            readResponse rs
           </code>
           <div class="tip" id="17">
-            <strong>Signature:</strong> _arg1:string -&gt; Type<br />
-                      </div>
+            <strong>Signature:</strong> rs:HttpResponseMessage -&gt; Async&lt;Result&lt;&#39;ts,&#39;te&gt;&gt;<br />
+                          <strong>Type parameters:</strong> 'ts, 'te          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L226-226" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L316-316" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -418,14 +424,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
-            readResponse rs
+            readRestResponse 
           </code>
           <div class="tip" id="18">
-            <strong>Signature:</strong> rs:HttpResponseMessage -&gt; Async&lt;Result&lt;&#39;ts,&#39;te&gt;&gt;<br />
-                          <strong>Type parameters:</strong> 'ts, 'te          </div>
+            <strong>Signature:</strong> HttpResponseMessage -&gt; Async&lt;Result&lt;&#39;t,RemoteError list&gt;&gt;<br />
+                          <strong>Type parameters:</strong> 't          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L311-311" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L324-324" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -436,27 +442,9 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
-            readRestResponse 
-          </code>
-          <div class="tip" id="19">
-            <strong>Signature:</strong> HttpResponseMessage -&gt; Async&lt;Result&lt;&#39;t,RemoteError list&gt;&gt;<br />
-                          <strong>Type parameters:</strong> 't          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L319-319" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
             send uri contentType me f text
           </code>
-          <div class="tip" id="20">
+          <div class="tip" id="19">
             <strong>Signature:</strong> uri:Uri -&gt; contentType:string -&gt; me:HttpMethod -&gt; f:(HttpRequestHeaders -&gt; unit) option -&gt; text:string -&gt; Async&lt;HttpResponseMessage&gt;<br />
                       </div>
         </td>
@@ -471,10 +459,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
             sendRawForm uri text
           </code>
-          <div class="tip" id="21">
+          <div class="tip" id="20">
             <strong>Signature:</strong> uri:Uri -&gt; text:string -&gt; Async&lt;HttpResponseMessage&gt;<br />
                       </div>
         </td>
@@ -489,10 +477,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
+          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
             toBinary text
           </code>
-          <div class="tip" id="22">
+          <div class="tip" id="21">
             <strong>Signature:</strong> text:string -&gt; byte []<br />
                       </div>
         </td>
@@ -507,12 +495,12 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
+          <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
             toEncodedParams d
           </code>
-          <div class="tip" id="23">
-            <strong>Signature:</strong> d:IDictionary&lt;&#39;?7507,&#39;?7508&gt; -&gt; string<br />
-                          <strong>Type parameters:</strong> '?7507, '?7508          </div>
+          <div class="tip" id="22">
+            <strong>Signature:</strong> d:IDictionary&lt;&#39;?7385,&#39;?7386&gt; -&gt; string<br />
+                          <strong>Type parameters:</strong> '?7385, '?7386          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L99-99" class="github-link">
@@ -525,15 +513,33 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
-            toInsertJson e
+          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
+            update i id entity
           </code>
-          <div class="tip" id="24">
-            <strong>Signature:</strong> e:&#39;?7504 -&gt; string<br />
-                          <strong>Type parameters:</strong> '?7504          </div>
+          <div class="tip" id="23">
+            <strong>Signature:</strong> i:Identity -&gt; id:string -&gt; entity:&#39;?7443 -&gt; Async&lt;Result&lt;unit,RemoteError array&gt;&gt;<br />
+                          <strong>Type parameters:</strong> '?7443          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L79-79" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L380-380" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
+            updateEntityName i id name json
+          </code>
+          <div class="tip" id="24">
+            <strong>Signature:</strong> i:Identity -&gt; id:string -&gt; name:string -&gt; json:string -&gt; Async&lt;Result&lt;unit,RemoteError array&gt;&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L362-362" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -544,50 +550,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
-            toJson o
+            updateEntityNameWithExeptions (...)
           </code>
           <div class="tip" id="25">
-            <strong>Signature:</strong> o:obj -&gt; string<br />
+            <strong>Signature:</strong> i:Identity -&gt; id:string -&gt; name:string -&gt; json:string -&gt; string<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L74-74" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
-            update i id entity
-          </code>
-          <div class="tip" id="26">
-            <strong>Signature:</strong> i:Identity -&gt; id:string -&gt; entity:&#39;?7562 -&gt; Async&lt;bool&gt;<br />
-                          <strong>Type parameters:</strong> '?7562          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L366-366" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
-            updateEntityName i id name json
-          </code>
-          <div class="tip" id="27">
-            <strong>Signature:</strong> i:Identity -&gt; id:string -&gt; name:string -&gt; json:string -&gt; Async&lt;bool&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L353-353" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L374-374" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -605,15 +575,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
+          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
             Patch
           </code>
-          <div class="tip" id="28">
+          <div class="tip" id="26">
             <strong>Signature:</strong> HttpMethod<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L35-35" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L76-76" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -624,15 +594,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
             Patch
           </code>
-          <div class="tip" id="29">
+          <div class="tip" id="27">
             <strong>Signature:</strong> HttpMethod<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L35-35" class="github-link">
+            <a href="https://github.com/rflechner/LinqToSalesforce/tree/master/src/LinqToSalesforce/Rest.fs#L76-76" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
