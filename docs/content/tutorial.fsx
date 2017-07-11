@@ -19,7 +19,7 @@ Enter your credentials.
 
 Select entities to generate.
 
-![screen3](img/sf_plugin_screen3.gif)
+![screen3](img/sf_plugin_screen4.gif)
 
 
 Generating your entities using command line
