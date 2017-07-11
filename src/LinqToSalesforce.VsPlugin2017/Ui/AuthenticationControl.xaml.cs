@@ -18,6 +18,7 @@ using System.Xml.Serialization;
 using EnvDTE;
 using LinqToSalesforce.VsPlugin2017.Ioc;
 using LinqToSalesforce.VsPlugin2017.Model;
+using LinqToSalesforce.VsPlugin2017.Model.Documents;
 using LinqToSalesforce.VsPlugin2017.Storage;
 using Microsoft.FSharp.Collections;
 using Microsoft.FSharp.Control;

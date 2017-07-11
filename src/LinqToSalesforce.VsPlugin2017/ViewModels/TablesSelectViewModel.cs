@@ -15,6 +15,7 @@ using EnvDTE;
 using LinqToSalesforce.VsPlugin2017.Annotations;
 using LinqToSalesforce.VsPlugin2017.Helpers;
 using LinqToSalesforce.VsPlugin2017.Model;
+using LinqToSalesforce.VsPlugin2017.Model.Documents;
 using LinqToSalesforce.VsPlugin2017.Storage;
 using Microsoft.FSharp.Control;
 using Microsoft.FSharp.Core;
@@ -34,6 +35,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         private bool allChecked;
         private string sourceCode;
         private TableDescPresenter _selectedTable;
+        private bool _allFieldsChecked;
 
         public TablesSelectViewModel(DTE dte, IDiagramDocumentStorage documentStorage,
             string filename, Rest.OAuth.Identity identity)
@@ -67,7 +69,12 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         public Rest.OAuth.Identity Identity { get; }
 
         public ObservableCollection<TableDescPresenter> Tables { get; set; }
-        
+
+
+        public ICommand OnTutorialLinkClick => new RelayCommand(() =>
+        {
+            System.Diagnostics.Process.Start(TutorialUrl);
+        });
 
         public ICommand Save => new RelayCommand(GenerateSourceCode);
         
@@ -126,7 +133,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             }
         }
 
-        public bool AllChecked
+        public bool AllTablesChecked
         {
             get { return allChecked; }
             set
@@ -137,6 +144,16 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                     table.Selected = allChecked;
                 }
 
+                OnPropertyChanged();
+            }
+        }
+
+        public bool AllFieldsChecked
+        {
+            get { return _allFieldsChecked; }
+            set
+            {
+                _allFieldsChecked = value;
                 OnPropertyChanged();
             }
         }
@@ -163,7 +180,8 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             UnsubscribeTablePresenters();
             Task.Factory.StartNew(() =>
             {
-                var selectedTables = Tables.Where(t => t.Selected).Select(t => t.Table).ToArray();
+                var selectedTables = GetSelectedTables().ToArray();
+                
                 var csharp = CodeGeneration.generateCsharp(selectedTables, nameSpace);
 
                 dispatcher.InvokeAsync(() =>
@@ -174,13 +192,25 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 SubscribeTablePresenters();
                 if (Tables.Any())
                 {
-                    Document.Tables = Tables.ToDictionary(t => t.Table.Name, t => t.Fields.Where(f => f.Selected).Select(f => f.Field.Name).ToArray()).ToArray();
+                    Document.Tables = Tables
+                    .Select(t => new TableDocument(t.Table.Name, t.Fields.Where(f => f.Selected).Select(f => f.Field.Name).ToArray()))
+                    .ToArray();
+
                     Document.SelectedTables = selectedTables.Select(t => t.Name).ToArray();
                     documentStorage.Save(Document, Filename);
                 }
 
                 SaveGeneratedCode();
             });
+        }
+
+        private IEnumerable<Rest.TableDesc> GetSelectedTables()
+        {
+            return 
+                from table in Tables
+                where table.Selected
+                let fields = table.Fields.Where(f => f.Selected).Select(f => f.Field.Name).ToArray()
+                select table.Table.SelectFields(fields);
         }
 
         public void ViewCode()
@@ -246,16 +276,31 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
 
                     foreach (var tableDesc in tableDescs)
                     {
+                        var docTable = Document?.Tables?.FirstOrDefault(t => t.Name == tableDesc.Name);
+                        
                         var selected = Document?.SelectedTables?.Contains(tableDesc.Name) ?? false;
                         var presenter = new TableDescPresenter(tableDesc)
                         {
                             Selected = selected
                         };
+
+                        if (docTable != null)
+                        {
+                            foreach (var field in docTable.Fields)
+                            {
+                                var fieldPresenter = presenter.Fields.FirstOrDefault(f => f.Field.Name == field);
+                                if (fieldPresenter != null)
+                                {
+                                    fieldPresenter.Selected = true;
+                                }
+                            }
+                        }
+
                         Tables.Add(presenter);
                     }
 
-                    allChecked = Document?.SelectedTables?.SequenceEqual(Document?.Tables?.Select(t => t.Key) ?? Enumerable.Empty<string>()) ?? false;
-                    OnPropertyChanged(nameof(AllChecked));
+                    allChecked = Document?.SelectedTables?.SequenceEqual(Document?.Tables?.Select(t => t.Name) ?? Enumerable.Empty<string>()) ?? false;
+                    OnPropertyChanged(nameof(AllTablesChecked));
 
                     SubscribeTablePresenters();
                 });

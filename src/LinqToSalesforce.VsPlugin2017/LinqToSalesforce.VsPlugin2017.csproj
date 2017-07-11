@@ -57,7 +57,7 @@
     <Compile Include="Helpers\DteExtensions.cs" />
     <Compile Include="Ioc\IocServiceProvider.cs" />
     <Compile Include="Model\Credentials.cs" />
-    <Compile Include="Model\DiagramDocument.cs" />
+    <Compile Include="Model\Documents\DiagramDocument.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SalesforceEntity.cs" />
     <Compile Include="EditorPane.cs" />

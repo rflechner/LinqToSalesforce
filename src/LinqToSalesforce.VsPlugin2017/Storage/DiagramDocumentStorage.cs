@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 using LinqToSalesforce.VsPlugin2017.Model;
+using LinqToSalesforce.VsPlugin2017.Model.Documents;
 using Newtonsoft.Json;
 
 namespace LinqToSalesforce.VsPlugin2017.Storage

@@ -34,11 +34,9 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="5,0" Grid.Row="0" Grid.ColumnSpan="3">
+        <StackPanel Orientation="Horizontal" Margin="5,0" Grid.Row="0" Grid.ColumnSpan="5">
             <StackPanel Margin="0,5,0,0">
-                <TextBlock Text="{Binding Path=TablesSelect.Title}" MaxWidth="200"></TextBlock>
-                <!--<Button BorderBrush="#FF224091" Command="{Binding TablesSelect.GoBack}" FontSize="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF224091">Credentials</Button>-->
-                <Button Margin="0,5,0,0" BorderBrush="#FF224091" FontSize="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF224091" Command="{Binding TablesSelect.Save}">Generate code</Button>
+                
             </StackPanel>
             <TextBlock Foreground="#FF224091" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">Linq to Salesforce</TextBlock>
         </StackPanel>
@@ -54,8 +52,13 @@
                       Width="4" Background="#FF224091"/>
 
         <WrapPanel Grid.Row="1" Grid.Column="0">
-            <CheckBox ToolTip="Check / UnCheck all" IsChecked="{Binding Path=AllChecked}" Margin="5,0,0,0" HorizontalAlignment="Center"></CheckBox>
-            <TextBlock Margin="0" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center">All</TextBlock>
+            <CheckBox ToolTip="Check / UnCheck all" IsChecked="{Binding Path=TablesSelect.AllTablesChecked}" Margin="5,0,0,0" HorizontalAlignment="Center"></CheckBox>
+            <TextBlock Margin="0" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center">All tables</TextBlock>
+        </WrapPanel>
+
+        <WrapPanel Grid.Row="1" Grid.Column="2">
+            <CheckBox  Margin="4,0,0,0" ToolTip="Check / UnCheck all" IsChecked="{Binding Path=TablesSelect.AllFieldsChecked}" HorizontalAlignment="Center"></CheckBox>
+            <TextBlock Margin="0" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center">All fields</TextBlock>
         </WrapPanel>
 
         <Grid Grid.Row="2" Grid.Column="0">
@@ -63,8 +66,8 @@
                 <RowDefinition Height="15"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0">Tables</TextBlock>
-            <ListView x:Name="TablesListView" Grid.Row="1" Background="#FFEFF6FF" SelectedItem="{Binding Path=TablesSelect.SelectedTable}" ItemsSource="{Binding Path=TablesSelect.Tables}">
+            <TextBlock Margin="5,0,0,0" Grid.Row="0">Tables</TextBlock>
+            <ListView x:Name="TablesListView" Grid.Row="1" Margin="5" Background="#FFEFF6FF" SelectedItem="{Binding Path=TablesSelect.SelectedTable}" ItemsSource="{Binding Path=TablesSelect.Tables}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding TablesSelect.OnTableSelected}" />
@@ -86,8 +89,8 @@
                 <RowDefinition Height="15"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0">Fields</TextBlock>
-            <ListView x:Name="FieldsListView" Background="#FFEFF6FF" Grid.Row="1" ItemsSource="{Binding Path=TablesSelect.SelectedTable.Fields}">
+            <TextBlock Grid.Row="0" Margin="5,0,0,0">Fields</TextBlock>
+            <ListView x:Name="FieldsListView" Background="#FFEFF6FF" Margin="5" Grid.Row="1" ItemsSource="{Binding Path=TablesSelect.SelectedTable.Fields}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
@@ -98,7 +101,23 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+
+
+        <Grid Grid.Row="2" Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Margin="5">
+                <Button Command="{Binding TablesSelect.OnTutorialLinkClick}" Background="Transparent">
+                    <TextBlock TextDecorations="Underline" Foreground="Blue" Text="Read tutorial" FontSize="10" TextAlignment="Center"></TextBlock>
+                </Button>
+                <Button Margin="0,5,0,5" BorderBrush="#FF224091" FontSize="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF224091" Command="{Binding TablesSelect.Save}">Generate code</Button>
+                <TextBlock Text="Code will be saved in "></TextBlock>
+                <TextBlock Text="{Binding Path=TablesSelect.Filename}" TextWrapping="Wrap"></TextBlock>
+            </StackPanel>
+            <WebBrowser Margin="5" x:Name="Browser" Grid.Row="1" />
+        </Grid>
         
-        <WebBrowser x:Name="Browser" Grid.Row="2" Grid.Column="4" />
     </Grid>
 </Page>
