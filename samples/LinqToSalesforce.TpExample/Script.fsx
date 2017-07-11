@@ -37,11 +37,11 @@ ServicePointManager.SecurityProtocol <- SecurityProtocolType.Tls12 ||| SecurityP
 
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
-let [<Literal>] authfile = @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
+let [<Literal>] authfile = @"C:\dev\LinqToSalesforce\src\Files\OAuth.config.json"
 let [<Literal>] cacheFolder = __SOURCE_DIRECTORY__ + "\\.cache"
 let [<Literal>] slidingExpiration = 200.
 type TS = SalesforceTypeProvider<authFile=authfile, instanceName="eu11", cacheFolder=cacheFolder, slidingExpirationMinutes=slidingExpiration>
-let authJson = File.ReadAllText @"C:\prog\LinqToSalesforce\src\Files\OAuth.config.json"
+let authJson = File.ReadAllText authfile
 let sf = TS(authJson, cacheFolder, (TimeSpan.FromMinutes slidingExpiration))
 
 query {

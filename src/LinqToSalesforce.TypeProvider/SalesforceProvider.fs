@@ -200,7 +200,7 @@ type SalesforceProvider () as this =
           ProvidedMethod(
             methodName = "Save", 
             parameters = [ProvidedParameter("entity", typeof<JsonEntity>)],
-            returnType = typeof<Result<string, RemoteError list>>,
+            returnType = typeof<string>,
             InvokeCode = 
               fun args -> 
                   <@@ 
@@ -209,19 +209,36 @@ type SalesforceProvider () as this =
                       let i = ctx.Soql.GetIdentity()
                       let name = entity.GetTableName()
                       match entity.GetId() with
-                      | None ->
-                          match Rest.insertJsonEntity i entity with
-                          | Success r when r.Success -> Success r.Id
-                          | Success r -> r.Errors |> Seq.map (fun e -> { ErrorCode=""; Message=e }) |> Seq.toList |> Failure
-                          | Failure errors -> Failure errors
+                      | None -> Rest.insertJsonEntityWithExeptions i entity
                       | Some id ->
-                          let json = entity |> Serialization.toInsertJson
-                          match Rest.updateEntityName i id name json |> Async.RunSynchronously with
-                          | Success r -> Success id
-                          | Failure errors -> errors |> Seq.toList |> Failure
+                          entity 
+                          |> Serialization.toInsertJson
+                          |> Rest.updateEntityNameWithExeptions i id name
                   @@>)
         do saveMethod.AddXmlDoc "Insert or update this entity into Salesforce"
         do ty.AddMember saveMethod
+
+        let deleteMethod = 
+          ProvidedMethod(
+            methodName = "Delete", 
+            parameters = [ProvidedParameter("entity", typeof<JsonEntity>)],
+            returnType = typeof<unit>,
+            InvokeCode = 
+              fun args -> 
+                  <@@ 
+                      let ctx = (%%args.[0]:obj) :?> TpContext
+                      let entity = (%%args.[1]:>JsonEntity)
+                      let i = ctx.Soql.GetIdentity()
+                      let name = entity.GetTableName()
+                      match entity.GetId() with
+                      | None -> ()
+                      | Some id ->
+                          let json = entity |> Serialization.toJson
+                          Rest.deleteEntityName i id name json
+                          |> Async.RunSynchronously
+                  @@>)
+        do deleteMethod.AddXmlDoc "Delete this entity into Salesforce"
+        do ty.AddMember deleteMethod
 
         restApi.LoadTableList authparams (
           fun table ->

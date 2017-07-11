@@ -136,6 +136,7 @@ type SoqlContext (instanceName:string, authparams:ImpersonationParam) =
         entity.PropertyChanged.Add
           <| fun _ -> tracker.Track entity
         entity.Id <- r.Id
+        entity.UpdatedProperties.Clear()
         r.Id
     | Failure [e] -> e.ToException() |> raise
     | Failure errors -> 

@@ -207,6 +207,9 @@ module Rest =
       LabelPlural:string
       Fields:FieldDesc list
       RelationShips:RelationShipDef list }
+    member __.SelectFields (names:string array) =
+      let fields = __.Fields |> List.filter(fun f -> names.Contains f.Name)
+      { __ with Fields=fields }
   and RelationShipDef =
     { RelationshipName:string
       ChildSObject:string
@@ -348,6 +351,14 @@ module Rest =
     let json = entity |> Serialization.toInsertJson
     json.ToString() |> insertEntityName i name |> Async.RunSynchronously
   
+  let insertJsonEntityWithExeptions (i:Identity) (entity:JsonEntity) =
+    match insertJsonEntity i entity with
+    | Success r when r.Success -> r.Id
+    | Success r -> 
+        raise (new AggregateException(r.Errors |> Seq.map(fun e -> new Exception(e))))
+    | Failure errors ->
+        raise (new AggregateException(errors |> Seq.map(fun e -> new Exception(e.Message))))
+  
   let updateEntityName (i:Identity) (id:string) name json : Async<Result<unit, RemoteError array>> =
     let uri = (Config.BuildUri "https://%s.salesforce.com/services/data/v30.0/sobjects/").ToString() + name + "/" + id + "/"
     async {
@@ -360,6 +371,11 @@ module Rest =
       then return Success ()
       else return Failure (Serialization.fromJson<RemoteError array> rsJson)
     }
+  let updateEntityNameWithExeptions (i:Identity) (id:string) name json =
+    match updateEntityName i id name json |> Async.RunSynchronously with
+    | Success _ -> id
+    | Failure errors ->
+        raise (new AggregateException(errors |> Seq.map(fun e -> new Exception(e.Message))))
     
   let update (i:Identity) (id:string) (entity:#ISalesforceEntity) =
     let name = entity.GetType() |> findEntityName
