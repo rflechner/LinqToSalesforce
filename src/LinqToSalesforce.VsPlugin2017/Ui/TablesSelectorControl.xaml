@@ -90,7 +90,12 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Margin="5,0,0,0">Fields</TextBlock>
-            <ListView x:Name="FieldsListView" Background="#FFEFF6FF" Margin="5" Grid.Row="1" ItemsSource="{Binding Path=TablesSelect.SelectedTable.Fields}">
+            <ListView x:Name="FieldsListView" Background="#FFEFF6FF" Margin="5" Grid.Row="1" SelectedItem="{Binding Path=TablesSelect.SelectedField}" ItemsSource="{Binding Path=TablesSelect.SelectedTable.Fields}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding TablesSelect.OnFieldSelected}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>

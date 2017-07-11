@@ -35,6 +35,7 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         private bool allChecked;
         private string sourceCode;
         private TableDescPresenter _selectedTable;
+        private FieldDescPresenter _selectedField;
         private bool _allFieldsChecked;
 
         public TablesSelectViewModel(DTE dte, IDiagramDocumentStorage documentStorage,
@@ -168,6 +169,16 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
             }
         }
 
+        public FieldDescPresenter SelectedField
+        {
+            get { return _selectedField; }
+            set
+            {
+                _selectedField = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand CheckAllFields => new RelayCommand(() =>
         {
             if (SelectedTable == null)
@@ -178,10 +189,16 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
                 field.Selected = AllFieldsChecked;
             }
         });
+        
+        public ICommand OnFieldSelected => new RelayCommand(() =>
+        {
+            //SelectedField.Selected = true;
+        });
 
         public ICommand OnTableSelected => new RelayCommand(() =>
         {
             AllFieldsChecked = false;
+            //SelectedTable.Selected = true;
         });
 
         public void GenerateSourceCode()

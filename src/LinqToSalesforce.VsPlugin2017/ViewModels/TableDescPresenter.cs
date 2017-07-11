@@ -37,9 +37,9 @@ namespace LinqToSalesforce.VsPlugin2017.ViewModels
         public Rest.TableDesc Table { get; }
         public ObservableCollection<FieldDescPresenter> Fields { get; }
 
-        public ICommand SelectTable => new RelayCommand(() =>
+        public ICommand ToggleSelect => new RelayCommand(() =>
         {
-            
+            Selected = !Selected;
         });
 
         public event PropertyChangedEventHandler PropertyChanged;
