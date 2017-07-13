@@ -3,6 +3,7 @@
 open System
 open System.IO
 open System.Text
+open System.Text.RegularExpressions
 
 let computeKey (s:string) = 
   let md5 = System.Security.Cryptography.MD5.Create()
@@ -12,6 +13,19 @@ let computeKey (s:string) =
   for h in hash do
     sb.Append(h.ToString("X2")) |> ignore
   sb.ToString()
+
+let findTableUrlName (url:string) =
+  let regex = Regex(@"sobjects/(?<table>.*?)/describe", RegexOptions.Compiled ||| RegexOptions.IgnorePatternWhitespace)
+  let m = regex.Match url
+  if m.Success
+  then Some (m.Groups.["table"].Value)
+  else None
+
+let computeKeyFromUrl url =
+  match findTableUrlName url with
+  | Some name -> name
+  | None -> url
+  |> computeKey
 
 type CacheItem<'t> =
   { Date:DateTime
@@ -36,7 +50,7 @@ type FileCache(basePath:string) =
     lock locker 
       (fun _ ->
         try
-          let fp = Path.Combine(basePath, key) 
+          let fp = Path.Combine(basePath, key)
           if File.Exists fp
           then
             let content = File.ReadAllText fp
@@ -45,7 +59,8 @@ type FileCache(basePath:string) =
             then
               File.Delete fp
               None
-            else Some cacheItem.Item
+            else
+              Some cacheItem.Item
           else None
         with
           | _ -> None

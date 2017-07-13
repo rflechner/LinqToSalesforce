@@ -27,7 +27,7 @@ type RestApi(cacheFolder, slidingExpiration) =
   let locker = new Object()
   let cache = FileCache cacheFolder
   member __.CacheAndReturns<'t> k (f:unit -> Async<'t>) : 't =
-    let key = computeKey k
+    let key = computeKeyFromUrl k
     match cache.Get<'t> key with
     | Some item -> item
     | None -> 
@@ -40,12 +40,14 @@ type RestApi(cacheFolder, slidingExpiration) =
     __.CacheAndReturns "oauth" (fun _ -> authenticateWithCredentials authparams)
   member __.GetTablesUrls oauth =
     __.CacheAndReturns "tableNames" (fun _ -> getObjectsDescUrls oauth)
+  member __.GetTableFromUrl oauth url =
+    let key = sprintf "key_%s" url
+    __.CacheAndReturns key (fun _ -> downloadTableDesc oauth url) |> parseTableDesc
   member __.LoadTableList (authparams:ImpersonationParam) (f:TableDesc -> unit) =
     let oauth = __.Authenticate authparams
     let tableUrls = __.GetTablesUrls oauth
-    for url in tableUrls.Values do // |> Seq.take 5 do
-      let key = sprintf "key_%s" url
-      let table = __.CacheAndReturns key (fun _ -> downloadTableDesc oauth url) |> parseTableDesc
+    for url in tableUrls.Values do
+      let table = __.GetTableFromUrl oauth url
       f table
 
 [<TypeProvider>]
@@ -307,8 +309,8 @@ type SalesforceProvider () as this =
                         let restApi = RestApi(tpCtx.CacheFolder, tpCtx.SlidingExpiration)
                         let tableUrls = oauth |> restApi.GetTablesUrls
                         let url = tableUrls.Item tableName
-                        let getTable = getTableFromUrl oauth
-                        let table = url |> getTable |> Async.RunSynchronously
+                        let getTable = restApi.GetTableFromUrl oauth
+                        let table = url |> getTable
                         let q = ctx.BuildQueryable<JsonEntity>(table)
                         q
                       @@>
