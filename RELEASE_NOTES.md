@@ -1,4 +1,7 @@
 
+#### 1.0.0 - July 13 2017
+* First stable release
+
 #### 1.0.0-alpha - July 13 2017
 * FEAT type provider improve number of API calls.
 
