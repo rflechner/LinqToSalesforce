@@ -18,7 +18,7 @@
 
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding TablesSelect.StartTablesLoad}" />
+                <i:InvokeCommandAction Command="{Binding TablesSelect.StartTablesLoad}" x:Name="interactivityFix1" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
 
@@ -70,7 +70,7 @@
             <ListView x:Name="TablesListView" Grid.Row="1" Margin="5" Background="#FFEFF6FF" SelectedItem="{Binding Path=TablesSelect.SelectedTable}" ItemsSource="{Binding Path=TablesSelect.Tables}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding TablesSelect.OnTableSelected}" />
+                        <i:InvokeCommandAction Command="{Binding TablesSelect.OnTableSelected}" x:Name="interactivityFix2" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <ListView.ItemTemplate>
@@ -93,7 +93,7 @@
             <ListView x:Name="FieldsListView" Background="#FFEFF6FF" Margin="5" Grid.Row="1" SelectedItem="{Binding Path=TablesSelect.SelectedField}" ItemsSource="{Binding Path=TablesSelect.SelectedTable.Fields}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding TablesSelect.OnFieldSelected}" />
+                        <i:InvokeCommandAction Command="{Binding TablesSelect.OnFieldSelected}" x:Name="interactivityFix3" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <ListView.ItemTemplate>
