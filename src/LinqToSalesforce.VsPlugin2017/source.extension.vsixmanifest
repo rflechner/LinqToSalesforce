@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="LinqToSalesforce.VsPlugin.d8cf1da6-2ca2-4879-ba36-133827f9c342" Version="0.2.9.2" Language="en-US" Publisher="romain flechner" />
+        <Identity Id="LinqToSalesforce.VsPlugin.d8cf1da6-2ca2-4879-ba36-133827f9c342" Version="0.2.9.3" Language="en-US" Publisher="romain flechner" />
         <DisplayName>LinqToSalesforce.VsPlugin</DisplayName>
         <Description xml:space="preserve">Linq to Salesforce entities generator</Description>
     </Metadata>
