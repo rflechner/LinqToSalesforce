@@ -28,6 +28,7 @@ files
     ../../bin/LinqToSalesforce/LinqToSalesforce.pdb ==> lib
     ../../bin/LinqToSalesforce.ModelGenerator/* ==> tools
 dependencies
+    Argu >= 4.0.0.1
     FSharp.Core >= 4.0.0.1
     Newtonsoft.Json >= 9.0.1
     Microsoft.Net.Http >= 2.2.29
