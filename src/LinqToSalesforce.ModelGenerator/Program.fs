@@ -4,11 +4,6 @@ open System.IO
 open LinqToSalesforce
 open Rest
 open Rest.OAuth
-open System.Data.Entity.Design.PluralizationServices
-open System.Globalization
-
-let c = CultureInfo "en-us"
-let ps = PluralizationService.CreateService c
 
 type Arguments =
     | Login of string

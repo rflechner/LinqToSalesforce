@@ -1,19 +1,8 @@
 ﻿module CodeGeneration
 
 open System
-open System.Collections.Generic
 open System.Linq
-open System.Linq.Expressions
-open System.Reflection
-open System.Security.Cryptography.X509Certificates
 open System.Text
-open System.Net
-open System.Net.Http
-open Newtonsoft
-open Newtonsoft.Json
-open Newtonsoft.Json.Serialization
-open Newtonsoft.Json.Converters
-open Newtonsoft.Json.Linq
 open LinqToSalesforce.Rest
 open Pluralize.NET.Core
 open System.Globalization
