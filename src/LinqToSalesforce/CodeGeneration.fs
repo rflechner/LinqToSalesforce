@@ -15,11 +15,11 @@ open Newtonsoft.Json.Serialization
 open Newtonsoft.Json.Converters
 open Newtonsoft.Json.Linq
 open LinqToSalesforce.Rest
-open System.Data.Entity.Design.PluralizationServices
+open Pluralize.NET.Core
 open System.Globalization
 
 let private c = CultureInfo "en-us"
-let private ps = PluralizationService.CreateService c
+let private ps = new Pluralizer()
 let pluralize = ps.Pluralize
 
 let ucFirst (s:string) =
