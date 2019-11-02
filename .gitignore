@@ -192,3 +192,5 @@ docs/content/release-notes.md
 docs/tools/FSharp.Formatting.svclog
 *OAuth.config.json
 .idea/
+
+.ionide/

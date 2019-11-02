@@ -1,7 +1,7 @@
 source https://nuget.org/api/v2
 
 nuget Argu
-nuget FSharp.Core redirects: force
+nuget FSharp.Core 4.7.0
 nuget FSharp.TypeProviders.StarterPack
 nuget FsLab
 nuget Microsoft.Net.Http

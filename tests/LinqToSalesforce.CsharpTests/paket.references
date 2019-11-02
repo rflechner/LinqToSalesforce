@@ -1,6 +1,5 @@
 Newtonsoft.Json
 FSharp.Core
-Microsoft.VisualStudio.OLE.Interop
 group Test
 NUnit
 NUnit.Runners

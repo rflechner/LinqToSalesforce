@@ -2,11 +2,12 @@
 // Helpers for writing type providers
 // ----------------------------------------------------------------------------------------------
 
-namespace ProviderImplementation
+namespace ProviderImplementation.ProvidedTypesTesting
 
 open System
 open System.Collections.Generic
 open System.Reflection
+open System.IO
 open System.Text
 open Microsoft.FSharp.Core.CompilerServices
 open Microsoft.FSharp.Core.Printf
@@ -15,23 +16,55 @@ open Microsoft.FSharp.Quotations.Patterns
 open Microsoft.FSharp.Reflection
 open ProviderImplementation.ProvidedTypes
 
-module internal Debug = 
+/// Simulate a real host of TypeProviderConfig
+type internal DllInfo(path: string) =
+    member x.FileName = path
 
-    /// Simulates a real instance of TypeProviderConfig and then creates an instance of the last
-    /// type provider added to a namespace by the type provider constructor
-    let generate (resolutionFolder: string) (runtimeAssembly: string) typeProviderForNamespacesConstructor args =
+/// Simulate a real host of TypeProviderConfig
+type internal TcImports(bas: TcImports option, dllInfos: DllInfo list) =
+    member x.Base = bas
+    member x.DllInfos = dllInfos
+
+
+type internal Testing() =
+
+    /// Simulates a real instance of TypeProviderConfig
+    static member MakeSimulatedTypeProviderConfig (resolutionFolder: string, runtimeAssembly: string, runtimeAssemblyRefs: string list) =
 
         let cfg = new TypeProviderConfig(fun _ -> false)
         let (?<-) cfg prop value =
-            cfg.GetType().GetProperty(prop).GetSetMethod(nonPublic = true).Invoke(cfg, [| box value |]) |> ignore
+            let ty = cfg.GetType()
+            match ty.GetProperty(prop,BindingFlags.Instance ||| BindingFlags.Public ||| BindingFlags.NonPublic) with
+            | null -> ty.GetField(prop,BindingFlags.Instance ||| BindingFlags.Public ||| BindingFlags.NonPublic).SetValue(cfg, value)|> ignore
+            | p -> p.GetSetMethod(nonPublic = true).Invoke(cfg, [| box value |]) |> ignore
         cfg?ResolutionFolder <- resolutionFolder
         cfg?RuntimeAssembly <- runtimeAssembly
         cfg?ReferencedAssemblies <- Array.zeroCreate<string> 0
 
+        // Fake an implementation of SystemRuntimeContainsType the shape expected by AssemblyResolver.fs.
+        let dllInfos = [yield DllInfo(runtimeAssembly); for r in runtimeAssemblyRefs do yield DllInfo(r)]
+        let tcImports = TcImports(Some(TcImports(None,[])),dllInfos)
+        let systemRuntimeContainsType = (fun (_s:string) -> if tcImports.DllInfos.Length = 1 then true else true)
+        cfg?systemRuntimeContainsType <- systemRuntimeContainsType
+
+        //Diagnostics.Debugger.Launch() |> ignore
+        Diagnostics.Debug.Assert(cfg.GetType().GetField("systemRuntimeContainsType",BindingFlags.NonPublic ||| BindingFlags.Public ||| BindingFlags.Instance) <> null)
+        Diagnostics.Debug.Assert(systemRuntimeContainsType.GetType().GetField("tcImports",BindingFlags.NonPublic ||| BindingFlags.Public ||| BindingFlags.Instance) <> null)
+        Diagnostics.Debug.Assert(typeof<TcImports>.GetField("dllInfos",BindingFlags.NonPublic ||| BindingFlags.Public ||| BindingFlags.Instance) <> null)
+        Diagnostics.Debug.Assert(typeof<TcImports>.GetProperty("Base",BindingFlags.NonPublic ||| BindingFlags.Public ||| BindingFlags.Instance) <> null)
+        Diagnostics.Debug.Assert(typeof<DllInfo>.GetProperty("FileName",BindingFlags.NonPublic ||| BindingFlags.Public ||| BindingFlags.Instance) <> null)
+
+        cfg
+
+    /// Simulates a real instance of TypeProviderConfig and then creates an instance of the last
+    /// type provider added to a namespace by the type provider constructor
+    static member GenerateProvidedTypeInstantiation (resolutionFolder: string, runtimeAssembly: string, runtimeAssemblyRefs: string list, typeProviderForNamespacesConstructor, args) =
+        let cfg = Testing.MakeSimulatedTypeProviderConfig (resolutionFolder, runtimeAssembly, runtimeAssemblyRefs)
+
         let typeProviderForNamespaces = typeProviderForNamespacesConstructor cfg :> TypeProviderForNamespaces
 
         let providedTypeDefinition = typeProviderForNamespaces.Namespaces |> Seq.last |> snd |> Seq.last
-            
+
         match args with
         | [||] -> providedTypeDefinition
         | args ->
@@ -40,15 +73,21 @@ module internal Debug =
                     providedTypeDefinition.Name + (args |> Seq.map (fun s -> ",\"" + (if s = null then "" else s.ToString()) + "\"") |> Seq.reduce (+))
                 else
                     // The type name ends up quite mangled in the dll output if we combine the name using static parameters, so for generated types we don't do that
-                    providedTypeDefinition.Name 
+                    providedTypeDefinition.Name
             providedTypeDefinition.MakeParametricType(typeName, args)
 
     /// Returns a string representation of the signature (and optionally also the body) of all the
     /// types generated by the type provider up to a certain depth and width
     /// If ignoreOutput is true, this will still visit the full graph, but it will output an empty string to be faster
-    let prettyPrint signatureOnly ignoreOutput maxDepth maxWidth (t: ProvidedTypeDefinition) = 
+    static member FormatProvidedType (t: ProvidedTypeDefinition, ?signatureOnly, ?ignoreOutput, ?maxDepth, ?maxWidth, ?useQualifiedNames) =
 
-        let ns = 
+        let signatureOnly = defaultArg signatureOnly false
+        let ignoreOutput = defaultArg ignoreOutput false
+        let maxDepth = defaultArg maxDepth 10
+        let maxWidth = defaultArg maxWidth 100
+        let useQualifiedNames = defaultArg useQualifiedNames false
+
+        let knownNamespaces =
             [ t.Namespace
               "Microsoft.FSharp.Core"
               "Microsoft.FSharp.Core.Operators"
@@ -65,7 +104,10 @@ module internal Debug =
                 pending.Enqueue t
 
         let fullName (t: Type) =
-            let fullName = t.Namespace + "." + t.Name
+            let fullName =
+                if useQualifiedNames && not (t :? ProvidedTypeDefinition) then
+                    t.AssemblyQualifiedName
+                else t.Namespace + "." + t.Name
             if fullName.StartsWith "FSI_" then
                 fullName.Substring(fullName.IndexOf('.') + 1)
             else
@@ -77,16 +119,16 @@ module internal Debug =
 
             let innerToString (t: Type) =
                 match t with
-                | t when t = typeof<bool> -> "bool"
-                | t when t = typeof<obj> -> "obj"
-                | t when t = typeof<int> -> "int"
-                | t when t = typeof<int64> -> "int64"
-                | t when t = typeof<float> -> "float"
-                | t when t = typeof<float32> -> "float32"
-                | t when t = typeof<decimal> -> "decimal"
-                | t when t = typeof<string> -> "string"
-                | t when t = typeof<Void> -> "()"
-                | t when t = typeof<unit> -> "()"
+                | _ when t.Name = typeof<bool>.Name -> "bool"
+                | _ when t.Name = typeof<obj>.Name -> "obj"
+                | _ when t.Name = typeof<int>.Name -> "int"
+                | _ when t.Name = typeof<int64>.Name -> "int64"
+                | _ when t.Name = typeof<float>.Name -> "float"
+                | _ when t.Name = typeof<float32>.Name -> "float32"
+                | _ when t.Name = typeof<decimal>.Name -> "decimal"
+                | _ when t.Name = typeof<string>.Name -> "string"
+                | _ when t.Name = typeof<Void>.Name -> "()"
+                | _ when t.Name = typeof<unit>.Name -> "()"
                 | t when t.IsArray -> (t.GetElementType() |> toString useFullName) + "[]"
                 | :? ProvidedTypeDefinition as t ->
                     add t
@@ -94,33 +136,37 @@ module internal Debug =
                 | t when t.IsGenericType ->
                     let args =
                         if useFullName then
-                            t.GetGenericArguments() 
+                            t.GetGenericArguments()
                             |> Seq.map (if hasUnitOfMeasure then (fun t -> t.Name) else toString useFullName)
                         else
-                            t.GetGenericArguments() 
+                            t.GetGenericArguments()
                             |> Seq.map (fun _ -> "_")
-                    if FSharpType.IsTuple t then
+                    if t.FullName.StartsWith "System.Tuple`" then
                         String.concat " * " args
                     elif t.Name.StartsWith "FSharpFunc`" then
                         "(" + (String.concat " -> " args) + ")"
-                    else 
+                    else
                         let args = String.concat "," args
-                        let name, reverse = 
+                        let name, reverse =
                             match t with
                             | t when hasUnitOfMeasure -> toString useFullName t.UnderlyingSystemType, false
-                            | t when t.GetGenericTypeDefinition().Name = typeof<int seq>.GetGenericTypeDefinition().Name -> "seq", true
-                            | t when t.GetGenericTypeDefinition().Name = typeof<int list>.GetGenericTypeDefinition().Name -> "list", true
-                            | t when t.GetGenericTypeDefinition().Name = typeof<int option>.GetGenericTypeDefinition().Name -> "option", true
-                            | t when t.GetGenericTypeDefinition().Name = typeof<int ref>.GetGenericTypeDefinition().Name -> "ref", true
-                            | t when t.Name = "FSharpAsync`1" -> "async", true
-                            | t when ns.Contains t.Namespace -> t.Name, false
+                            // Short names for some known generic types
+                            | t when not useQualifiedNames && t.GetGenericTypeDefinition().Name = typeof<int seq>.GetGenericTypeDefinition().Name -> "seq", true
+                            | t when not useQualifiedNames && t.GetGenericTypeDefinition().Name = typeof<int list>.GetGenericTypeDefinition().Name -> "list", true
+                            | t when not useQualifiedNames && t.GetGenericTypeDefinition().Name = typeof<int option>.GetGenericTypeDefinition().Name -> "option", true
+                            | t when not useQualifiedNames && t.GetGenericTypeDefinition().Name = typeof<int ref>.GetGenericTypeDefinition().Name -> "ref", true
+                            | t when not useQualifiedNames && t.Name = "FSharpAsync`1" -> "async", true
+                            // Short names for types in F# namespaces
+                            | t when not useQualifiedNames && knownNamespaces.Contains t.Namespace -> t.Name, false
                             | t -> (if useFullName then fullName t else t.Name), false
                         let name = name.Split('`').[0]
                         if reverse then
-                            args + " " + name 
+                            args + " " + name
                         else
                             name + "<" + args + ">"
-                | t when ns.Contains t.Namespace -> t.Name
+                // Short names for types in F# namespaces
+                | t when not useQualifiedNames && knownNamespaces.Contains t.Namespace -> t.Name
+                // Short names for generic parameters
                 | t when t.IsGenericParameter -> t.Name
                 | t -> if useFullName then fullName t else t.Name
 
@@ -142,7 +188,7 @@ module internal Debug =
             if parameters.Length = 0 then
                 "()"
             else
-                parameters 
+                parameters
                 |> Seq.map (fun p -> p.Name + ":" + (toString true p.ParameterType))
                 |> String.concat " -> "
 
@@ -150,12 +196,12 @@ module internal Debug =
 
             let sb = StringBuilder ()
             let print (str:string) = sb.Append(str) |> ignore
-        
+
             let getCurrentIndent() =
                 let lastEnterPos = sb.ToString().LastIndexOf('\n')
                 if lastEnterPos = -1 then sb.Length + 4 else sb.Length - lastEnterPos - 1
 
-            let breakLine indent = 
+            let breakLine indent =
                 print "\n"
                 print (new String(' ', indent))
 
@@ -163,14 +209,14 @@ module internal Debug =
             | Let _ | NewArray _ | NewTuple _ -> true
             | _ -> false
 
-            let inline getAttrs attrName m = 
+            let inline getAttrs attrName m =
                 ( ^a : (member GetCustomAttributesData : unit -> IList<CustomAttributeData>) m)
-                |> Seq.filter (fun attr -> attr.Constructor.DeclaringType.Name = attrName) 
+                |> Seq.filter (fun attr -> attr.Constructor.DeclaringType.Name = attrName)
 
-            let inline hasAttr attrName m = 
+            let inline hasAttr attrName m =
                 not (Seq.isEmpty (getAttrs attrName m))
 
-            let rec printSeparatedByCommas exprs = 
+            let rec printSeparatedByCommas exprs =
                 match exprs with
                 | [] -> ()
                 | e::es ->
@@ -178,8 +224,8 @@ module internal Debug =
                     for e in es do
                         print ", "
                         printExpr false true e
-                     
-            and printCall fromPipe printName (mi:MethodInfo) args = 
+
+            and printCall fromPipe printName (mi:MethodInfo) args =
                 if fromPipe && List.length args = 1 then
                     printName()
                 elif not (hasAttr "CompilationArgumentCountsAttribute" mi) then
@@ -212,19 +258,19 @@ module internal Debug =
                         printExpr false true args.Tail.Head
                         print "]"
                     elif mi.DeclaringType.IsGenericType && mi.DeclaringType.GetGenericTypeDefinition().Name = typeof<int option>.GetGenericTypeDefinition().Name then
-                        if args.IsEmpty then 
+                        if args.IsEmpty then
                             match instance with
                             | None -> print "None"
-                            | Some instance -> 
+                            | Some instance ->
                                 printExpr false true instance
                                 print "."
                                 print <| mi.Name.Substring("get_".Length)
-                        else 
+                        else
                           print "Some "
                           printExpr false true args.Head
                     elif mi.Name.Contains "." && not args.IsEmpty then
                         // instance method in type extension
-                        let printName() = 
+                        let printName() =
                             printExpr false true args.Head
                             print "."
                             print (mi.Name.Substring(mi.Name.IndexOf '.' + 1))
@@ -252,12 +298,12 @@ module internal Debug =
                         let isOptional (arg:Expr, param:ParameterInfo) =
                             hasAttr "OptionalArgumentAttribute" param
                             && arg.ToString() = "Call (None, get_None, [])"
-                        let args = 
+                        let args =
                             mi.GetParameters()
-                            |> List.ofArray 
+                            |> List.ofArray
                             |> List.zip args
                             |> List.filter (not << isOptional)
-                            |> List.map fst                        
+                            |> List.map fst
                         printCall fromPipe printName mi args
                 | Let (var1, TupleGet (Var x, 1), Let (var2, TupleGet (Var y, 0), body)) when x = y ->
                     let indent = getCurrentIndent()
@@ -267,19 +313,19 @@ module internal Debug =
                 | Let (var, value, body) ->
                     let indent = getCurrentIndent()
                     let usePattern = sprintf "IfThenElse(TypeTest(IDisposable,Coerce(%s,Object)),Call(Some(Call(None,UnboxGeneric,[Coerce(%s,Object)])),Dispose,[]),Value(<null>))" var.Name var.Name
-                    let body = 
+                    let body =
                         match body with
                         | TryFinally (tryExpr, finallyExpr) when finallyExpr.ToString().Replace("\n", null).Replace(" ", null) = usePattern ->
                             bprintf sb "use %s = " var.Name
                             tryExpr
-                        | _ -> 
+                        | _ ->
                             if var.IsMutable then
                                 bprintf sb "let mutable %s = " var.Name
                             else
                                 bprintf sb "let %s = " var.Name
                             body
-                    match value with 
-                    | Let _ -> 
+                    match value with
+                    | Let _ ->
                         breakLine (indent + 4)
                         printExpr false false value
                     | _ -> printExpr false false value
@@ -296,7 +342,7 @@ module internal Debug =
                 | NewObject (ci, args) ->
                     let getSourceConstructFlags (attr:CustomAttributeData) =
                         let arg = attr.ConstructorArguments
-                                  |> Seq.filter (fun arg -> arg.ArgumentType.Name = "SourceConstructFlags") 
+                                  |> Seq.filter (fun arg -> arg.ArgumentType.Name = "SourceConstructFlags")
                                   |> Seq.head
                         arg.Value :?> int
                     let compilationMappings = getAttrs "CompilationMappingAttribute" ci.DeclaringType
@@ -366,7 +412,7 @@ module internal Debug =
                     print "(let "
                     let rec getTupleLength (typ:Type) =
                         let length = typ.GetGenericArguments().Length
-                        if length = 0 then // happens in the Apiary provider                            
+                        if length = 0 then // happens in the Apiary provider
                             let typeNameSuffix = typ.Name.Substring(typ.Name.IndexOf('`') + 1)
                             typeNameSuffix.Substring(0, typeNameSuffix.IndexOf('[')) |> Int32.Parse
                         else
@@ -396,35 +442,35 @@ module internal Debug =
         let print (str: string) =
             if not ignoreOutput then
                 sb.Append(str) |> ignore
-        
+
         let println() =
             if not ignoreOutput then
                 sb.AppendLine() |> ignore
-              
-        let printMember (memberInfo: MemberInfo) =        
+
+        let printMember (memberInfo: MemberInfo) =
 
             let print str =
-                print "    "                
+                print "    "
                 print str
                 println()
 
-            let getMethodBody (m: ProvidedMethod) = 
+            let getMethodBody (m: ProvidedMethod) =
                 seq { if not m.IsStatic then yield (ProvidedTypeDefinition.EraseType m.DeclaringType)
                       for param in m.GetParameters() do yield (ProvidedTypeDefinition.EraseType param.ParameterType) }
                 |> Seq.map (fun typ -> Expr.Value(null, typ))
                 |> Array.ofSeq
                 |> m.GetInvokeCodeInternal false
 
-            let getConstructorBody (c: ProvidedConstructor) = 
+            let getConstructorBody (c: ProvidedConstructor) =
                 if c.IsImplicitCtor then Expr.Value(()) else
                 seq { for param in c.GetParameters() do yield (ProvidedTypeDefinition.EraseType param.ParameterType) }
                 |> Seq.map (fun typ -> Expr.Value(null, typ))
                 |> Array.ofSeq
                 |> c.GetInvokeCodeInternal false
 
-            let printExpr x = 
+            let printExpr x =
                 if not ignoreOutput then
-                    let rec removeParams x = 
+                    let rec removeParams x =
                       match x with
                       | Let (_, Value(null, _), body) -> removeParams body
                       | _ -> x
@@ -432,13 +478,13 @@ module internal Debug =
                     print formattedExpr
                     println()
 
-            let printObj x = 
-                if ignoreOutput then 
+            let printObj x =
+                if ignoreOutput then
                     ""
-                else 
+                else
                     sprintf "\n%O\n" x
 
-            let getName (m:MemberInfo) = 
+            let getName (m:MemberInfo) =
                 if memberInfo.Name.Contains(" ") then
                     "``" + m.Name + "``"
                 else
@@ -446,27 +492,27 @@ module internal Debug =
 
             match memberInfo with
 
-            | :? ProvidedConstructor as cons -> 
+            | :? ProvidedConstructor as cons ->
                 if not ignoreOutput then
-                    print <| "new : " + 
-                             (toSignature <| cons.GetParameters()) + " -> " + 
+                    print <| "new : " +
+                             (toSignature <| cons.GetParameters()) + " -> " +
                              (toString true memberInfo.DeclaringType)
                 if not signatureOnly then
                     cons |> getConstructorBody |> printExpr
 
-            | :? ProvidedLiteralField as field -> 
-                let value = 
+            | :? ProvidedLiteralField as field ->
+                let value =
                     if signatureOnly then ""
                     else field.GetRawConstantValue() |> printObj
                 if not ignoreOutput then
-                    print <| "val " + (getName field) + ": " + 
-                             (toString true field.FieldType) + 
+                    print <| "val " + (getName field) + ": " +
+                             (toString true field.FieldType) +
                              value
-                         
-            | :? ProvidedProperty as prop -> 
+
+            | :? ProvidedProperty as prop ->
                 if not ignoreOutput then
-                    print <| (if prop.IsStatic then "static " else "") + "member " + 
-                             (getName prop) + ": " + (toString true prop.PropertyType) + 
+                    print <| (if prop.IsStatic then "static " else "") + "member " +
+                             (getName prop) + ": " + (toString true prop.PropertyType) +
                              " with " + (if prop.CanRead && prop.CanWrite then "get, set" else if prop.CanRead then "get" else "set")
                 if not signatureOnly then
                     if prop.CanRead then
@@ -477,8 +523,8 @@ module internal Debug =
             | :? ProvidedMethod as m ->
                 if m.Attributes &&& MethodAttributes.SpecialName <> MethodAttributes.SpecialName then
                     if not ignoreOutput then
-                        print <| (if m.IsStatic then "static " else "") + "member " + 
-                        (getName m) + ": " + (toSignature <| m.GetParameters()) + 
+                        print <| (if m.IsStatic then "static " else "") + "member " +
+                        (getName m) + ": " + (toSignature <| m.GetParameters()) +
                         " -> " + (toString true m.ReturnType)
                     if not signatureOnly then
                         m |> getMethodBody |> printExpr
@@ -492,7 +538,7 @@ module internal Debug =
         while pending.Count <> 0 && !currentDepth <= maxDepth do
             let pendingForThisDepth = new List<_>(pending)
             pending.Clear()
-            let pendingForThisDepth = 
+            let pendingForThisDepth =
                 pendingForThisDepth
                 |> Seq.sortBy (fun m -> m.Name)
                 |> Seq.truncate maxWidth
@@ -511,14 +557,124 @@ module internal Debug =
                 | _ -> ""
                 |> print
                 print (toString true t)
-                if t.BaseType <> typeof<obj> then
-                    print " : "
-                    print (toString true t.BaseType)
+                let bt = if t.BaseType = null then typeof<obj> else t.BaseType
+                print " : "
+                print (toString true bt)
                 println()
-                t.GetMembers() 
+                t.GetMembers(BindingFlags.DeclaredOnly ||| BindingFlags.Instance ||| BindingFlags.Static ||| BindingFlags.Public)
                 |> Seq.sortBy (fun m -> m.Name)
                 |> Seq.iter printMember
                 println()
             currentDepth := !currentDepth + 1
-    
+
         sb.ToString()
+
+
+module internal Targets =
+
+    let private (++) a b = System.IO.Path.Combine(a,b)
+
+    let runningOnMono = Type.GetType("Mono.Runtime") <> null
+    let runningOnMac =
+        (Environment.OSVersion.Platform = PlatformID.MacOSX)
+        || (Environment.OSVersion.Platform = PlatformID.Unix) && Directory.Exists("/Applications") && Directory.Exists("/System") && Directory.Exists("/Users") && Directory.Exists("/Volumes")
+    let runningOnLinux =
+        (Environment.OSVersion.Platform = PlatformID.Unix) && not runningOnMac
+
+    // Assumes OSX
+    let monoRoot =
+        Path.GetFullPath(Path.Combine(System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory(),".."))
+        //match System.Environment.OSVersion.Platform with
+        //| System.PlatformID.MacOSX -> "/Library/Frameworks/Mono.framework/Versions/Current/lib/mono"
+        //| System.PlatformID.MacOSX -> "/Library/Frameworks/Mono.framework/Versions/Current/lib/mono"
+        //| _ ->
+
+    let referenceAssembliesPath =
+        (if runningOnMono then monoRoot else Environment.GetFolderPath Environment.SpecialFolder.ProgramFilesX86)
+        ++ "Reference Assemblies"
+        ++ "Microsoft"
+
+    let private fsharpPortableAssembliesPath fsharp profile =
+         match fsharp, profile with
+         | "3.1", 47 -> referenceAssembliesPath ++ "FSharp" ++ ".NETPortable" ++ "2.3.5.1" ++ "FSharp.Core.dll"
+         | "3.1", 7 -> referenceAssembliesPath ++ "FSharp" ++ ".NETCore" ++ "3.3.1.0" ++ "FSharp.Core.dll"
+         | "3.1", 78 -> referenceAssembliesPath ++ "FSharp" ++ ".NETCore" ++ "3.78.3.1" ++ "FSharp.Core.dll"
+         | "3.1", 259 -> referenceAssembliesPath ++ "FSharp" ++ ".NETCore" ++ "3.259.3.1" ++ "FSharp.Core.dll"
+         | "4.0", 47 -> referenceAssembliesPath ++ "FSharp" ++ ".NETPortable" ++ "3.47.4.0" ++ "FSharp.Core.dll"
+         | "4.0", 7 -> referenceAssembliesPath ++ "FSharp" ++ ".NETCore" ++ "3.7.4.0" ++ "FSharp.Core.dll"
+         | "4.0", 78 -> referenceAssembliesPath ++ "FSharp" ++ ".NETCore" ++ "3.78.4.0" ++ "FSharp.Core.dll"
+         | "4.0", 259 -> referenceAssembliesPath ++ "FSharp" ++ ".NETCore" ++ "3.259.4.0" ++ "FSharp.Core.dll"
+         | _ -> failwith "unimplemented portable profile"
+
+    let private fsharpPortableAssembliesPathFromNuGet fsharp profile =
+        let paketGroup =
+           match fsharp with
+           | "3.1" -> "fs31"
+           | "4.0" -> "fs40"
+           | _ -> failwith "unimplemented F# versin"
+        let profileFolder =
+            match profile with
+            | 47    -> "portable-net45+sl5+netcore45"       //"portable-net45+sl5+win8"
+            | 7     -> "portable-net45+netcore45"           //"portable-net45+win8"
+            | 78    -> "portable-net45+netcore45+wp8"       //"portable-net45+win8+wp8"
+            | 259   -> "portable-net45+netcore45+wpa81+wp8" //"portable-net45+win8+wpa81+wp8"
+            | _ -> failwith "unimplemented portable profile"
+        __SOURCE_DIRECTORY__ ++ ".." ++ "packages" ++ paketGroup ++ "FSharp.Core" ++ "lib" ++ profileFolder ++ "FSharp.Core.dll"
+
+    let private fsharpAssembliesPath fsharp =
+        match fsharp with
+        | "3.1" ->
+            if runningOnMono then monoRoot ++ "gac" ++ "FSharp.Core" ++ "4.3.1.0__b03f5f7f11d50a3a"
+            else referenceAssembliesPath ++ "FSharp" ++ ".NETFramework" ++ "v4.0" ++ "4.3.1.0"
+        | "4.0" ->
+            if runningOnMono then monoRoot ++ "gac" ++ "FSharp.Core" ++ "4.4.0.0__b03f5f7f11d50a3a"
+            else referenceAssembliesPath ++ "FSharp" ++ ".NETFramework" ++ "v4.0" ++ "4.4.0.0"
+        | _ -> failwith "unimplemented portable profile"
+
+    let private net45AssembliesPath =
+        if runningOnMono then monoRoot ++ "4.5"
+        else referenceAssembliesPath ++ "Framework" ++ ".NETFramework" ++ "v4.5"
+
+    let private portableAssembliesPath profile =
+        let portableRoot = if runningOnMono then monoRoot ++ "xbuild-frameworks" else referenceAssembliesPath ++ "Framework"
+        match profile with
+        | 47 -> portableRoot ++ ".NETPortable" ++ "v4.0" ++ "Profile" ++ "Profile47"
+        | 7 -> portableRoot ++ ".NETPortable" ++ "v4.5" ++ "Profile" ++ "Profile7"
+        | 78 -> portableRoot ++ ".NETPortable" ++ "v4.5" ++ "Profile" ++ "Profile78"
+        | 259 -> portableRoot ++ ".NETPortable" ++ "v4.5" ++ "Profile" ++ "Profile259"
+        | _ -> failwith "unimplemented portable profile"
+
+    let private portableCoreFSharpRefs fsharp profile =
+        [ for asm in [ "System.Runtime"; "mscorlib"; "System.Collections"; "System.Core"; "System"; "System.Globalization"; "System.IO"; "System.Linq"; "System.Linq.Expressions";
+                       "System.Linq.Queryable"; "System.Net"; "System.Net.NetworkInformation"; "System.Net.Primitives"; "System.Net.Requests"; "System.ObjectModel"; "System.Reflection";
+                       "System.Reflection.Extensions"; "System.Reflection.Primitives"; "System.Resources.ResourceManager"; "System.Runtime.Extensions";
+                       "System.Runtime.InteropServices.WindowsRuntime"; "System.Runtime.Serialization"; "System.Threading"; "System.Threading.Tasks"; "System.Xml"; "System.Xml.Linq"; "System.Xml.XDocument";
+                       "System.Runtime.Serialization.Json"; "System.Runtime.Serialization.Primitives"; "System.Windows" ] do
+             yield portableAssembliesPath profile ++ asm + ".dll"
+          let installedFSharpCore = fsharpPortableAssembliesPath fsharp profile
+          let restoredFSharpCore  = fsharpPortableAssembliesPathFromNuGet fsharp profile
+          if (not(File.Exists(installedFSharpCore)) && File.Exists(restoredFSharpCore))
+          then yield restoredFSharpCore
+          else yield installedFSharpCore
+        ]
+
+    let DotNet45Refs = [net45AssembliesPath ++ "mscorlib.dll"; net45AssembliesPath ++ "System.Xml.dll"; net45AssembliesPath ++ "System.Core.dll"; net45AssembliesPath ++ "System.Xml.Linq.dll"; net45AssembliesPath ++ "System.dll" ]
+    let FSharpCoreRef fsharp = fsharpAssembliesPath fsharp ++ "FSharp.Core.dll"
+    let DotNet45FSharpRefs fsharp = [ yield! DotNet45Refs; yield FSharpCoreRef fsharp ]
+    let Portable47FSharpRefs fsharp = [portableAssembliesPath 47 ++ "mscorlib.dll"; portableAssembliesPath 47 ++ "System.Xml.Linq.dll"; fsharpPortableAssembliesPath fsharp 47]
+
+    let DotNet45FSharp31Refs = DotNet45FSharpRefs "3.1"
+    let Portable47FSharp31Refs = Portable47FSharpRefs "3.1"
+    let Portable7FSharp31Refs = portableCoreFSharpRefs "3.1" 7
+    let Portable78FSharp31Refs = portableCoreFSharpRefs "3.1" 78
+    let Portable259FSharp31Refs = portableCoreFSharpRefs "3.1" 259
+
+    let FSharpCore40Ref = FSharpCoreRef "4.0"
+    let DotNet45FSharp40Refs = DotNet45FSharpRefs "4.0"
+    let Portable7FSharp40Refs = portableCoreFSharpRefs "4.0" 7
+    let Portable78FSharp40Refs = portableCoreFSharpRefs "4.0" 78
+    let Portable259FSharp40Refs = portableCoreFSharpRefs "4.0" 259
+
+    let supportsFSharp40 = (try File.Exists FSharpCore40Ref with _ -> false)
+    // Some tests disabled on Linux for now because the standard packages don't come with F# PCL FSharp.Core.dll for this profile
+    let hasPortableFSharpCoreDLLs = not runningOnLinux
